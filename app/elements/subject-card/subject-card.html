@@ -1,0 +1,52 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="subject-card">
+  <template>
+    <style>
+      :host 
+      {
+        display: block;
+      }
+      .subjectcard
+      {
+        width: 30%;
+        margin-left: 35%;
+      } 
+      .button paper-button
+      {
+       background-color: #363636;
+      color: #ffffff;
+      width: 10%;
+      margin-left: 40%;
+      }
+
+    </style>
+    
+    <div class="subjectcard">
+    <paper-input value="{{subjectid}}" label="Subject Id"></paper-input>
+    <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
+    <paper-input value="{{subjectcategory}}" label="Subject category"></paper-input>
+    </div>
+    <div class="button">
+    <paper-button on-click="FnSubmit">Submit </paper-button>
+    </div>
+
+    <master-ui-service id="uiservice"></master-ui-service>
+    </template>
+
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'subject-card',
+      FnSubmit:function(){
+        this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,this.subjectcategory);
+      }
+     
+    });
+  })();
+  </script>
+</dom-module>

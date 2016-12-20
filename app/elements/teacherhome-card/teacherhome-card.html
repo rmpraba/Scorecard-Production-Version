@@ -1,0 +1,345 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="..\..\bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../beginner-assesment-service/beginner-assesment-service.html">
+<link rel="import" href="../term-assesment-service/term-assesment-service.html">
+<link rel="import" href="../scorecard-service/scorecard-service.html">
+
+
+<dom-module id="teacherhome-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button{
+        margin-left: 25%;
+        margin-top: 10%;
+      }
+      .container{
+        width: 100%;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+      .card{
+        width: 20%;
+      }
+      .container-full{
+        /*background-color: #fefefe;*/
+      }
+    </style>
+    <div class="container-full">
+    <div class="container">
+    <!-- <center> -->
+      <div id="entry" class="card" hidden$="{{BA}}">    
+       <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div  class="card" hidden$="{{TA}}">
+       <paper-button on-click="FnSelectTermType" no ink><img src="../../images/term.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Report}}">
+       <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
+      </div>  
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approve}}">
+       <paper-button on-click="FnApprovecard" no ink><img src="../../images/approve.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Analysis}}">
+       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{ConsolidatedReport}}">
+       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approvalstatus}}">
+       <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
+      </div>
+       <div class="card" hidden$="{{teach_obser}}">
+       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{comparison}}">
+       <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{editinfo}}">
+       <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{createemployee}}">
+       <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{createrole}}">
+       <paper-button on-click="FnCreateRole" no ink><img src="../../images/role.png" height="180px" width="180px"></paper-button>
+     </div>
+      <div class="card" hidden$="{{createsubject}}">
+       <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px"></paper-button>
+     </div>
+    
+    <!-- </center>   -->
+    </div>
+    <div class="cdialog">      
+      <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+         <paper-dropdown-menu id="academicyear" label="Select Academic Year" disabled="{{read}}" required>
+            <paper-menu id="academicyr" class="dropdown-content"  on-iron-select="FnSelectacademicyear"  attr-for-selected="value" required>  
+              <template is="dom-repeat" items="{{academicarr}}">
+                <paper-item value="{{item.year}}">{{item.year}}</paper-item>                               
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+      </paper-dialog>
+    </div>
+    <div class="dialog">      
+      <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+          <paper-dropdown-menu id="term" label="Select Term" disabled="{{read}}" required>
+            <paper-menu id="termtype" class="dropdown-content" on-iron-select="FnSelectTerm" attr-for-selected="value" selected="{{selectterm}}">
+              <template is="dom-repeat" items="{{termarr}}">
+                <paper-item value="{{item.term_name}}">{{item.term_name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+      </paper-dialog>
+    </div>
+   
+    </div>
+    <term-assesment-service id="assesmentservice"></term-assesment-service>
+    <beginner-assesment-service id="bassesmentservice"></beginner-assesment-service>
+    <scorecard-service id="scorecardservice"></scorecard-service>
+    <teacher-observation_service id="observerservice"></teacher-observation_service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var academicyear;
+    Polymer({
+      is: 'teacherhome-card',
+      ready:function(){
+        this.Report=true;
+        this.GenerateReport=true;
+        this.Approve=true;       
+        this.BA=true;
+        this.TA=true;
+        this.Analysis=true;
+        this.ConsolidatedReport=true;
+       // this.teach_obser=true;
+        this.comparison=true;
+        this.Approvalstatus=true;
+        this.editinfo=true;
+        this.createrole=true;
+        this.createemployee=true;
+        this.createsubject=true;
+        this.teach_obser=true;
+        // localStorage.setItem("curr_sess_page","teacherhome-card");
+      },
+      FnSelectacademicyear:function(e){
+        academicyear = e.target.selectedItem.textContent.trim();
+        localStorage.setItem("curr_sess_academicyear",academicyear); 
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
+        this.$.assesmentservice.callTermService("Term");
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard") 
+         {
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('scorecard','');
+         }  
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="PreEntry") 
+         {
+          this.$.bassesmentservice.callAssesmentService("Beginner Level"); 
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('beginnerassesment','');
+         }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Analysis") 
+         {
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('beginnertermanalysis','');
+         } 
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Consolidatedreport") 
+         {
+          // alert('consolidated');
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('consolidatedreport','');
+         } 
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Comparisonreport") 
+         {          
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('scorecard','');
+         }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Approvalstatus") 
+         {     
+          this.$.assesmentservice.callTermService("Term");
+         }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Editinfo") 
+         {          
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('scorecard','');
+         }
+      },
+      FnSelectPreEntryType:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','PreEntry');
+        this.$.bassesmentservice.callAcademicService(); 
+        this.$.cdialog.toggle();
+      },
+      FnGenerateScorecard:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Scorecard');
+        // this.$.scorecardservice.callFetchstudentnameService();
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();    
+      },
+      FnSelectTermType:function(){
+        localStorage.setItem('curr_sess_report','0');
+        localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        this.$.assesmentservice.callAcademicService();
+      },
+      FnGenerateReportcard:function()
+       {
+        localStorage.setItem('curr_sess_report','1');
+        localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        this.$.assesmentservice.callAcademicService();
+        // localStorage.setItem('curr_sess_report','1');
+        // localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        // this.$.assesmentservice.callAcademicService();
+      },
+      FnToggle:function(){
+        this.$.dialog.toggle();
+      },
+      FnSelectTerm:function(e)
+      {
+        var termname = e.target.selectedItem.textContent.trim();  
+        localStorage.setItem('curr_sess_termname',termname);  
+        this.$.assesmentservice.callAssesmentService("Term",termname,"");               
+        this.$.assesmentservice.callGradeService();   
+        
+        if(localStorage.getItem('curr_sess_report')=="1")
+        {
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('termscholasticcategory','');
+        document.querySelector('term-scholastic-category').FnHideView();
+        // document.querySelector('home-page').setPage('termassesment','');        
+        }
+        else if(localStorage.getItem('curr_sess_report')=="3"){
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('approvalstatus');
+        this.$.assesmentservice.FnFetchApprovalStatus();
+        }
+        else
+        {
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('termscholasticcategory','');
+        document.querySelector('term-scholastic-category').FnHideView();
+        }
+      },
+      FnYearToggle:function(){
+        this.$.cdialog.toggle();
+      },
+      FnApprovecard:function()
+      {        
+        localStorage.setItem('curr_sess_report','2');
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('approveassesment','');  
+        this.$.assesmentservice.callApproveService();   
+      },
+      FnHideView:function(){ 
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin'){
+          this.createrole=false;
+          this.createemployee=false;  
+          this.teach_obser=false;        
+        }
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
+          this.BA=false;
+          this.TA=false;
+          this.GenerateReport=false;
+        }  
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='class-teacher'){  
+          this.BA=false;        
+          this.TA=false;
+          this.GenerateReport=false;
+          this.Report=false;
+          this.comparison=false;
+          this.editinfo=false;
+          this.ConsolidatedReport=false;
+        }
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
+          // this.BA=false;
+          // this.TA=false;
+          if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress")
+          {
+          this.ConsolidatedReport=false;
+          this.Report=false;
+          this.GenerateReport=false;
+          this.teach_obser=false;
+          this.comparison=false;
+          this.Approvalstatus=false;
+          this.Analysis=false;
+          }
+          if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
+          {
+          this.GenerateReport=false;
+          this.Approve=false;
+          this.Analysis=false;
+          this.teach_obser=false;
+          this.Approvalstatus=false;
+          }
+        }
+      },
+      FnRefresh:function()
+      {
+         document.querySelector('#academicyr').selected=-1;
+         document.querySelector('#termtype').selected=-1;
+      },
+      FnAnalysiscard:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Analysis');        
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();
+      },
+      FnConsolidatedReport:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Consolidatedreport');
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();
+      },
+      FnTeacherbserver:function()
+      {
+        localStorage.setItem('curr_sess_loggedassesmenttype','teach_obser'); 
+        this.$.cdialog.toggle();
+         document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('teacherobservation','Teacher Observation Card'); 
+         this.$.observerservice.fetchobserverdescription();
+        this.$.observerservice.fetchteachersid();
+         document.querySelector('teacher-observation_card').Fnobservername();
+       //this.$.service.uname=sessionStorage.getItem("curr_sess_loggeduname");     
+      },
+      FnComparison:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Comparisonreport');
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();
+      },
+      FnApprovalStatus:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Approvalstatus');
+        localStorage.setItem('curr_sess_report','3');
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle(); 
+      },
+      FnEditInfo:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Editinfo');
+        // this.$.scorecardservice.callFetchstudentnameService();
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle(); 
+      },
+      FnCreateRole:function(e){
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('rolecard','');
+      },
+      FnCreatesubject:function(e)
+      {
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('subjectcard','');
+      
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

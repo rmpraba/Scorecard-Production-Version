@@ -1,0 +1,475 @@
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../teacherhome-card/teacherhome-card.html">
+<link rel="import" href="../beginner-assesment/beginner-assesment.html">
+<link rel="import" href="../term-assesment/term-assesment.html">
+<link rel="import" href="../cce-generate-score-card/cce-generate-score-card.html">
+<link rel="import" href="../cce-fivetoten-score-card/cce-fivetoten-score-card.html">
+<link rel="import" href="../cce-performance-name-card/cce-performance-name-card.html">
+<link rel="import" href="../cce-onetofour-score-card/cce-onetofour-score-card.html">
+<link rel="import" href="../coscholastic-assesment/coscholastic-assesment.html">
+<link rel="import" href="../coscholastic-assesment-sheet-card/coscholastic-assesment-sheet-card.html">
+<link rel="import" href="../term-scholastic-category/term-scholastic-category.html">
+<link rel="import" href="../term-coscholastic-category/term-coscholastic-category.html">
+<link rel="import" href="../term-assesment-sheet-card/term-assesment-sheet-card.html">
+<link rel="import" href="../language-enrichment-card/language-enrichment-card.html">
+<link rel="import" href="../beginner-term-analysis-card/beginner-term-analysis-card.html">
+<link rel="import" href="../consolidated-report-card/consolidated-report-card.html">
+<link rel="import" href="../teacher-observation_card/teacher-observation_card.html">
+<link rel="import" href="../comparisonreport-card/comparisonreport-card.html">
+<link rel="import" href="../fivetotencomparisonreport-card/fivetotencomparisonreport-card.html">
+<link rel="import" href="../approvalstatus-card/approvalstatus-card.html">
+  <dom-module id="home-page">
+  <template>
+  <style>
+  .in
+  {
+
+  float:right;
+  font-size:12px;
+  }
+  .backbutton
+  {
+    float:left;
+    width: 4%;
+  }
+  .head{
+     height: 10%;
+     margin-top: -3.5%;
+     margin-left: -2%;
+
+     width: 105%;
+     /*background-color:slategrey;*/
+     background-color: #12A5F4;
+     color: white;
+  }
+  .card{
+    @apply(--layout-vertical);
+    /*width: 105%;*/
+  }
+  label{
+    margin-left: 35%;
+    /*font-size: 20px;*/
+    /*font-weight: bold;*/
+    
+  }
+  b{
+    font-size: 20px;
+  }
+  i{
+    margin-left: 10%;
+    text-transform: capitalize;
+  }
+  </style>
+  <div class="card">
+    <div class="head" id="templateheader">
+      <paper-icon-button icon="home" on-click="FnHome"></paper-icon-button>      
+      <label><b>{{title}}</b><i>Hello! {{username}}</i></label>
+      <paper-button class="in" on-click="signout">Sign Out</paper-button>
+    </div>
+
+    <div class="content">
+      <iron-pages selected="{{page}}" attr-for-selected="data-category">
+        <section data-category="teacherhomecard">
+          <teacherhome-card></teacherhome-card>
+        </section>
+        <section data-category="termscholasticcategory">
+          <term-scholastic-category></term-scholastic-category>
+        </section>
+        <section data-category="termcoscholasticcategory">
+          <term-coscholastic-category></term-coscholastic-category>
+        </section>
+        <section data-category="beginnerassesment">
+          <beginner-assesment></beginner-assesment>
+        </section>
+        <section data-category="termassesment">
+          <term-assesment></term-assesment>
+        </section>
+         <section data-category="termassesmentsheet">
+          <term-assesment-sheet-card></term-assesment-sheet-card>
+        </section>
+        <section data-category="coscholasticassesment">
+          <coscholastic-assesment></coscholastic-assesment>
+        </section>
+        <section data-category="coscholasticassesmentsheet">
+          <coscholastic-assesment-sheet-card></coscholastic-assesment-sheet-card>
+        </section>
+        <section data-category="scorecard">
+          <cce-generate-score-card></cce-generate-score-card>
+        </section>
+        <section data-category="ccefivetotenscorecard">
+          <cce-fivetoten-score-card></cce-fivetoten-score-card>
+        </section>
+        <section data-category="cce-performance-name-card">
+          <cce-performance-name-card></cce-performance-name-card>
+        </section>
+        <section data-category="cce-onetofour-score-card">
+          <cce-onetofour-score-card></cce-onetofour-score-card>
+        </section>
+        <section data-category="approveassesment">
+          <approve-one-to-four-card></approve-one-to-four-card>
+        </section>
+        <!-- <section data-category="languageenrichment">
+          <language-enrichment-card></language-enrichment-card>
+        </section> -->
+        <section data-category="beginnertermanalysis">
+          <beginner-term-analysis-card></beginner-term-analysis-card>
+        </section>
+        <section data-category="consolidatedreport">
+          <consolidated-report-card></consolidated-report-card>
+        </section>
+        <section data-category="teacherobservation">
+          <teacher-observation_card></teacher-observation_card>
+        </section>
+        <section data-category="comparisonreport">
+          <comparisonreport-card></comparisonreport-card>
+        </section>
+          <section data-category="fivetotencomparisonreport">
+          <fivetotencomparisonreport-card></fivetotencomparisonreport-card>
+        </section>
+        <section data-category="approvalstatus">
+          <approvalstatus-card></approvalstatus-card>
+        </section>
+        <section data-category="studentinfoedit">
+          <studentinfoedit-card></studentinfoedit-card>
+        </section>
+        <section data-category="rolecard">
+          <role-card></role-card>
+        </section>
+        <section data-category="subjectcard">
+          <subject-card></subject-card>
+        </section>
+      </iron-pages>
+    </div>
+    
+
+    <div class="footer"></div>
+  </div>
+
+  </template>
+  
+  <script>
+  Polymer({
+  is: "home-page",
+  ready: function(){      
+  },
+  setUsername:function(name){
+    this.username=name+" ("+sessionStorage.getItem("curr_sess_loggedrole")+")";
+    this.title=sessionStorage.getItem("curr_sess_loggedschoolname");
+  },
+  setPage:function(page,title){    
+   this.page=page;
+   // this.title=title;
+   localStorage.setItem("curr_sess_page",page);
+  },
+  signout:function()
+  {
+   window.location.href="../index.html";   
+  },
+  FnHome:function(){    
+     // alert(localStorage.getItem("curr_sess_page"));
+
+    if(localStorage.getItem("curr_sess_page")=="cc-eng-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-eng-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-maths-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-maths-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-computer-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-computer-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-evs-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-evs-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-gk-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-gk-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cs-personalitydevelopment-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cs-personalitydevelopment-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-art-craft-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cc-art-craft-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-dance-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cc-dance-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-music-onetofour-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cc-music-onetofour-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cs-games-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cs-games-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="cce-fivetoten-health-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('cce-fivetoten-health-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="attendance-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+      document.querySelector('attendance-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="termscholasticcategory")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      
+    }
+    if(localStorage.getItem("curr_sess_page")=="termassesment")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+    }
+    if(localStorage.getItem("curr_sess_page")=="coscholasticassesment")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+        document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();
+    }
+    if(localStorage.getItem("curr_sess_page")=="beginnerassesment")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="scorecard")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('cce-generate-score-card').FnRefresh();
+      document.querySelector('cce-onetofour-score-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="ccefivetotenscorecard")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('cce-generate-score-card').FnRefresh();
+      document.querySelector('cce-fivetoten-score-card').FnRefresh();      
+    }
+    if(localStorage.getItem("curr_sess_page")=="approveassesment")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="beginner-assesment-lang-markentrysheet")
+    {
+      
+      this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+     if(localStorage.getItem("curr_sess_page")=="beginner-assesment-markentrysheet")
+    {
+      
+      this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+     if(localStorage.getItem("curr_sess_page")=="consolidatedreport")
+    {
+      
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('consolidated-report-card').FnRefresh();
+       document.querySelector('subjectwise-report-card').FnRefresh();
+       document.querySelector('categorywise-report-card').FnRefresh();
+    }
+     if(localStorage.getItem("curr_sess_page")=="cce-onetofour-score-card")
+    {
+      
+       this.page="scorecard";
+       localStorage.setItem("curr_sess_page",this.page);
+       document.querySelector('teacherhome-card').FnRefresh();
+       // document.querySelector('cce-generate-score-card').FnRefresh();
+       document.querySelector('cce-onetofour-score-card').FnRefresh();
+    }
+     if(localStorage.getItem("curr_sess_page")=="comparisonreport")
+    {
+      this.page="scorecard"; 
+      localStorage.setItem("curr_sess_page",this.page);     
+      document.querySelector('teacherhome-card').FnRefresh();
+      // document.querySelector('cce-generate-score-card').FnRefresh();   
+      document.querySelector('comparisonreport-card').FnRefresh(); 
+
+    }
+     if(localStorage.getItem("curr_sess_page")=="fivetotencomparisonreport")
+    {
+      this.page="scorecard"; 
+      localStorage.setItem("curr_sess_page",this.page);     
+      document.querySelector('teacherhome-card').FnRefresh();
+      // document.querySelector('cce-generate-score-card').FnRefresh();   
+      //document.querySelector('fivetotencomparisonreport-card').FnRefresh(); 
+
+    }
+    if(localStorage.getItem("curr_sess_page")=="artverticals-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard(); 
+      document.querySelector('art-verticals-card').FnRefresh();   
+    }
+    if(localStorage.getItem("curr_sess_page")=="talentidentification-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('talentidentification-card').FnRefresh();    
+    }
+    if(localStorage.getItem("curr_sess_page")=="cs-life-skill-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('cs-life-skill-card').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="cs-visual-performing-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('cs-visual-performing-card').FnRefresh();    
+    }
+
+ if(localStorage.getItem("curr_sess_page")=="cs-attitudes-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('cs-attitudes-card').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="cs-co-curricular-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('cs-co-curricular-card').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="cs-education-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('coscholastic-assesment-card').FnRefreshcard();  
+      document.querySelector('cs-education-card').FnRefresh();    
+    }
+    if(localStorage.getItem("curr_sess_page")=="cc-fa-fivetoten-card")
+    {
+
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();  
+      document.querySelector('cc-fa-fivetoten-card').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="cc-sa-fivetoten-card")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();  
+      document.querySelector('cc-sa-fivetoten-card').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="cc-sa-ninetoten-english")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();  
+      document.querySelector('cc-sa-ninetoten-english').FnRefresh();    
+    }
+     if(localStorage.getItem("curr_sess_page")=="approvalstatus")
+    {
+      this.page="teacherhomecard";
+      // this.page="termscholasticcategory";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();  
+      document.querySelector('approvalstatus-card').FnRefresh();    
+    }
+    if(localStorage.getItem("curr_sess_page")=="studentinfoedit")
+    {
+      this.page="scorecard"; 
+      localStorage.setItem("curr_sess_page",this.page);     
+      document.querySelector('teacherhome-card').FnRefresh();
+      // document.querySelector('cce-generate-score-card').FnRefresh();   
+      document.querySelector('studentinfoedit-card').FnRefresh(); 
+
+    }
+    if(localStorage.getItem("curr_sess_page")=="beginnertermanalysis")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+       // document.querySelector('language-enrichment-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="teacherobservation")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+       // document.querySelector('language-enrichment-card').FnRefresh();
+    }
+  },
+
+  FnsetTitle:function(title){
+    this.title=title;
+  },
+  FnHideView:function(flag){
+    this.$.templateheader.hidden=flag;
+  } 
+  });
+  </script>
+</dom-module>
