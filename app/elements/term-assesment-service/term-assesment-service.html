@@ -444,6 +444,16 @@
         on-response="deletemarkResponse"
         debounce-duration="300"
     >
+    <iron-ajax
+        method="post"
+        id="revertsubmittedmarkajax"
+        url="{{revertsubmittedmarkurl}}"
+        params="{{revertsubmittedmarkparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="revertsubmittedmarkResponse"
+        debounce-duration="300"
+    >
   </template>
   <script>
   (function() {
@@ -2265,6 +2275,24 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         document.querySelector('term-assesment-card').callService();
         else
         document.querySelector('coscholastic-assesment-card').callService();
+    },
+    revertsubmittedmarkService:function(academic,term,assesment,grade,section,subject){
+        this.revertsubmittedmarkurl=sessionStorage.getItem("addrinfo")+"/revertsubmittedmark-service";
+        var obj={};
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.academicyear=academic;
+         obj.termname=term;
+         obj.assesmentid=assesment;
+         obj.grade=grade;
+         obj.section=section;
+         obj.subject=subject;
+         this.revertsubmittedmarkparam=obj;  
+         // alert(JSON.stringify(obj));
+         this.$.revertsubmittedmarkajax.generateRequest();
+    },
+    revertsubmittedmarkResponse:function(e){
+        alert(e.detail.response.returnval);
+        this.callApproveService();   
     }
     });
   })();

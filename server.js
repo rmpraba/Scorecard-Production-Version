@@ -5222,6 +5222,22 @@ var qur="DELETE FROM tr_term_assesment_marks WHERE  school_id LIKE  '"+req.query
 });
 
 
+app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
+{  
+  var qur="DELETE FROM tr_term_assesment_import_marks WHERE school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and assesment_id='"+req.query.assesmentid+"' and grade='"+req.query.grade+"' and section='"+req.query.section+"' and subject='"+req.query.subject+"' and flag='0'";
+   console.log('-----------------------');
+   console.log(qur);
+   connection.query(qur,function(err, result)
+    {
+    if(result.affectedRows>0){
+      res.status(200).json({'returnval': 'Reverted!'});
+    }
+    else
+      res.status(200).json({'returnval': 'Unable to revert!'});
+    });
+});
+
+
 var server = app.listen(5000, function () {
 var host = server.address().address
 var port = server.address().port

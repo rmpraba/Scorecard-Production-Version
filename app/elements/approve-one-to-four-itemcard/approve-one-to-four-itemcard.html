@@ -60,6 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    <p class='p5'>{{section}}</p>
    <p class='p6'>{{subject}}</p>
    <p class='p7'><ahref class="viewdata" on-click="Fnview"><u>View</u></ahref></p>
+   <p class='p8'><ahref class="viewdata" on-click="Fnrevert"><u>Revert</u></ahref></p>
    </div>
 <!-- </tr> -->
 <!-- </table> -->
@@ -106,6 +107,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       else
       this.$.assesmentservice.fetchimportmark(this.academic,this.term,this.assesment,this.grade,this.section,this.subject);
+     },
+     Fnrevert:function(){
+      this.$.assesmentservice.revertsubmittedmarkService(this.academic,this.term,this.assesment,this.grade,this.section,this.subject);
      }
     });
   })();
