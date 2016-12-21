@@ -29,16 +29,119 @@
         @apply(--layout-center-justified);
       }
       .card{
-        width: 20%;
+        width: 33.3%;
       }
       .container-full{
         /*background-color: #fefefe;*/
+      }
+      .subjectteacher,.classteacher,.coordinator,.highlevelcommon{
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
+      .inner1,.inner2{
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
       }
     </style>
     <div class="container-full">
     <div class="container">
     <!-- <center> -->
+    <div class="subjectteacher" hidden$="{{subjectteacher}}">
+    <div class="inner1">
       <div id="entry" class="card" hidden$="{{BA}}">    
+       <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div  class="card" hidden$="{{TA}}">
+       <paper-button on-click="FnSelectTermType" no ink><img src="../../images/term.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="classteacher" hidden$="{{classteacher}}">
+    <div class="inner1">
+      <div id="entry" class="card" hidden$="{{BA}}">    
+       <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div  class="card" hidden$="{{TA}}">
+       <paper-button on-click="FnSelectTermType" no ink><img src="../../images/term.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Report}}">
+       <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
+      </div> 
+      <div class="card" hidden$="{{editinfo}}">
+       <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
+     </div> 
+    </div>
+    <div class="inner2">
+      <div class="card" hidden$="{{comparison}}">
+       <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
+     </div>
+
+     <div class="card" hidden$="{{ConsolidatedReport}}">
+       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
+      </div>
+    </div>
+    </div>
+
+    <div class="coordinator" hidden$="{{coordinator}}">
+    <div class="inner1">
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approve}}">
+       <paper-button on-click="FnApprovecard" no ink><img src="../../images/approve.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approvalstatus}}">
+       <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
+      </div>
+       <div class="card" hidden$="{{teach_obser}}">
+       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
+       </div>
+      <div class="card" hidden$="{{Analysis}}">
+       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
+      </div>
+
+    </div>
+    </div>
+
+    <div class="highlevelcommon" hidden$="{{highlevelcommon}}">
+    <div class="inner1">
+    <div class="card" hidden$="{{ConsolidatedReport}}">
+       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
+    </div>
+    <div class="card" hidden$="{{Report}}">
+       <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
+      </div>  
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Analysis}}">
+       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
+      </div>
+        <div class="card" hidden$="{{comparison}}">
+       <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
+     </div>   
+    </div>
+    <div class="inner2">
+     <div class="card" hidden$="{{Approvalstatus}}">
+       <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
+      </div>
+     <div class="card" hidden$="{{teach_obser}}">
+       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
+     </div> 
+      
+    </div>
+    </div>
+
+
+     <!--  <div id="entry" class="card" hidden$="{{BA}}">    
        <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
       </div>
       <div  class="card" hidden$="{{TA}}">
@@ -79,7 +182,7 @@
      </div>
       <div class="card" hidden$="{{createsubject}}">
        <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px"></paper-button>
-     </div>
+     </div> -->
     
     <!-- </center>   -->
     </div>
@@ -119,21 +222,25 @@
     Polymer({
       is: 'teacherhome-card',
       ready:function(){
-        this.Report=true;
-        this.GenerateReport=true;
-        this.Approve=true;       
-        this.BA=true;
-        this.TA=true;
-        this.Analysis=true;
-        this.ConsolidatedReport=true;
-       // this.teach_obser=true;
-        this.comparison=true;
-        this.Approvalstatus=true;
-        this.editinfo=true;
-        this.createrole=true;
-        this.createemployee=true;
-        this.createsubject=true;
-        this.teach_obser=true;
+        this.subjectteacher=true;
+        this.classteacher=true;
+        this.coordinator=true;
+        this.highlevelcommon=true;
+       //  this.Report=true;
+       //  this.GenerateReport=true;
+       //  this.Approve=true;       
+       //  this.BA=true;
+       //  this.TA=true;
+       //  this.Analysis=true;
+       //  this.ConsolidatedReport=true;
+       // // this.teach_obser=true;
+       //  this.comparison=true;
+       //  this.Approvalstatus=true;
+       //  this.editinfo=true;
+       //  this.createrole=true;
+       //  this.createemployee=true;
+       //  this.createsubject=true;
+       //  this.teach_obser=true;
         // localStorage.setItem("curr_sess_page","teacherhome-card");
       },
       FnSelectacademicyear:function(e){
@@ -244,44 +351,48 @@
       },
       FnHideView:function(){ 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin'){
-          this.createrole=false;
-          this.createemployee=false;  
-          this.teach_obser=false;        
+          // this.createrole=false;
+          // this.createemployee=false;  
+          // this.teach_obser=false;        
         }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
-          this.BA=false;
-          this.TA=false;
-          this.GenerateReport=false;
+          this.subjectteacher=false;
+          // this.BA=false;
+          // this.TA=false;
+          // this.GenerateReport=false;
         }  
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='class-teacher'){  
-          this.BA=false;        
-          this.TA=false;
-          this.GenerateReport=false;
-          this.Report=false;
-          this.comparison=false;
-          this.editinfo=false;
-          this.ConsolidatedReport=false;
+          this.classteacher=false;
+          // this.BA=false;        
+          // this.TA=false;
+          // this.GenerateReport=false;
+          // this.Report=false;
+          // this.comparison=false;
+          // this.editinfo=false;
+          // this.ConsolidatedReport=false;
         }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
           // this.BA=false;
           // this.TA=false;
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress")
           {
-          this.ConsolidatedReport=false;
-          this.Report=false;
-          this.GenerateReport=false;
-          this.teach_obser=false;
-          this.comparison=false;
-          this.Approvalstatus=false;
-          this.Analysis=false;
+            this.highlevelcommon=false;
+          // this.ConsolidatedReport=false;
+          // this.Report=false;
+          // this.GenerateReport=false;
+          // this.teach_obser=false;
+          // this.comparison=false;
+          // this.Approvalstatus=false;
+          // this.Analysis=false;
           }
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
-          this.GenerateReport=false;
-          this.Approve=false;
-          this.Analysis=false;
-          this.teach_obser=false;
-          this.Approvalstatus=false;
+            this.coordinator=false;
+          // this.GenerateReport=false;
+          // this.Approve=false;
+          // this.Analysis=false;
+          // this.teach_obser=false;
+          // this.Approvalstatus=false;
           }
         }
       },
