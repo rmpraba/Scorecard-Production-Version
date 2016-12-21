@@ -32,6 +32,8 @@
          <!-- <td><paper-checkbox disabled="{{read}}" checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>  -->
          <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button>
         <paper-tooltip for="ps" offset="0">save</paper-tooltip></td>
+         <td><paper-icon-button id="ps" icon="icons:delete" on-click="FnDelete" ></paper-icon-button>
+        <paper-tooltip for="ps" offset="0">Delete</paper-tooltip></td>  
         </tr>
       </table> 
     </div>
@@ -148,7 +150,12 @@
         this.$.assesmentservice.callinsertassesmentmarkService(this.studid,this.studname,"Music","Rhythm",this.rhythm,2,3);  
         this.$.assesmentservice.callinsertassesmentmarkService(this.studid,this.studname,"Music","Melody",this.melody,3,3);  
         // this.$.assesmentservice.calloverallinsertcocurricularmarkService(this.studid,this.studname,"Music",this.total,this.reduction,this.grade);
-      }         
+      }   ,
+       FnDelete:function(){
+        var studentid=this.studid;
+        var studentname=this.studname;
+        this.$.assesmentservice.callDeletemarkService(studentid);
+      }        
      
     });
   })();

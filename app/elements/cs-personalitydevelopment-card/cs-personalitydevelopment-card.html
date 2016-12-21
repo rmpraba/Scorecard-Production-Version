@@ -6,6 +6,7 @@
 <link rel="import" href="..\..\bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="..\..\bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../deleteicon-card/deleteicon-card.html">
 <dom-module id="cs-personalitydevelopment-card">
   <template>
     <style>
@@ -13,9 +14,9 @@
         display: block;
       }
         table{
-          width:100%;
+          width:103%;
           border-collapse: collapse;
-          margin-left: 1%;
+          /*margin-left: 1%;*/
       }
       #tb2{
         width:16%;
@@ -23,7 +24,7 @@
       #tb1{
         width:9%
           }
-             #tb3{width:2.5%;
+             #tb3{width:3%;
           }
            .button{
             width: 10%;
@@ -82,6 +83,7 @@
        <th id="tb1">Respect for other's property</th>
        <th id="tb1">Self control</th>
        <th colspan="1" id="tb3"></th>
+       <th colspan="1" id="tb3"></th>
        </tr>
        </div>
        <template is="dom-repeat" items="{{markarr}}" as="m">
@@ -109,6 +111,9 @@
 </template>
 <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button>
 <paper-tooltip for="ps" offset="0">update</paper-tooltip></td>
+<template is="dom-repeat" items="{{m}}" as="m1">
+<td><deleteicon-card studentid="{{m1.studentid}}"></deleteicon-card></td>
+</template>
 </tr>
 </template>
       <template is="dom-repeat" items="{{studarr}}">

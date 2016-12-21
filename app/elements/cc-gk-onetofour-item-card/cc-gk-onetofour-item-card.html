@@ -44,6 +44,8 @@
          <!-- <td><paper-checkbox disabled="{{read}}" checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td> -->
          <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button>
         <paper-tooltip for="ps" offset="0">save</paper-tooltip></td>
+        <td><paper-icon-button id="ps" icon="icons:delete" on-click="FnDelete" ></paper-icon-button>
+        <paper-tooltip for="ps" offset="0">Delete</paper-tooltip></td>  
         </tr>
       </table>
     </div>
@@ -139,7 +141,12 @@
       callService:function(){
         this.$.assesmentservice.callinsertassesmentmarkService(this.studid,this.studname,"General Knowledge","Activity",this.activity,1,1);
         // this.$.assesmentservice.callOveralltermmarkinsertService(this.studid,this.studname,"General Knowledge",this.gk,this.gk,this.gkgrade,1);  
-      }     
+      }  ,
+       FnDelete:function(){
+        var studentid=this.studid;
+        var studentname=this.studname;
+        this.$.assesmentservice.callDeletemarkService(studentid);
+      }    
     });
   })();
   </script>

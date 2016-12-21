@@ -5192,6 +5192,36 @@ app.post('/fetchconsolidatedtermwise-service' ,  urlencodedParser,function (req,
 });
 
 
+app.post('/deletemarks-service' ,  urlencodedParser,function (req, res)
+{  
+var qur="DELETE FROM tr_term_assesment_marks WHERE  school_id LIKE  '"+req.query.schoolid+"' "+
+"AND academic_year LIKE  '"+req.query.academicyear+"' AND assesment_id LIKE  '"+req.query.assesmentid+"' "+
+"AND  term_name LIKE  '"+req.query.termname+"' AND  student_id LIKE  '"+req.query.studentid+"' AND  grade LIKE  '"+req.query.grade+"' "+
+"AND  section LIKE  '"+req.query.section+"' AND  subject_id LIKE  '"+req.query.subject+"'";
+    
+    console.log('......................delete mark..............................');
+    console.log(qur);
+    connection.query(qur,
+    function(err, result)
+    {
+    if(!err)
+    {
+    if(result.affectedRows>0)
+    {
+      res.status(200).json({'returnval': 'Deleted!'});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'Not Deleted!'});
+    }
+    }
+    else
+      console.log(err);
+});
+});
+
+
 var server = app.listen(5000, function () {
 var host = server.address().address
 var port = server.address().port

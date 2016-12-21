@@ -35,6 +35,8 @@
         <!-- <td><paper-checkbox disabled="{{read}}" checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td> -->
         <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button>
         <paper-tooltip for="ps" offset="0">save</paper-tooltip></td>
+        <td><paper-icon-button id="ps" icon="icons:delete" on-click="FnDelete" ></paper-icon-button>
+        <paper-tooltip for="ps" offset="0">Delete</paper-tooltip></td>  
         </tr>
       </table>
     </div>
@@ -212,6 +214,11 @@
         this.$.assesmentservice.callOveralltermmarkinsertService(this.studid,this.studname,"Activity/Project",this.ap,this.ap,this.apgrade,4);
         this.$.assesmentservice.callOveralltermmarkinsertService(this.studid,this.studname,"Group Discussion",this.gd,this.gd,this.gdgrade,4);
         this.$.assesmentservice.callOveralltermmarkinsertService(this.studid,this.studname,"Written Work",this.ww,this.ww,this.wwgrade,4);*/
+      } ,
+       FnDelete:function(){
+        var studentid=this.studid;
+        var studentname=this.studname;
+        this.$.assesmentservice.callDeletemarkService(studentid);
       }   
     }); 
   })();

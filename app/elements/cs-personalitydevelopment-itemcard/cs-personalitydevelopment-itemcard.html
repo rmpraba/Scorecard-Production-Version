@@ -38,6 +38,8 @@
         <!-- <td><paper-checkbox disabled="{{read}}" checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>         -->
          <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button>
         <paper-tooltip for="ps" offset="0">save</paper-tooltip></td>
+         <td><paper-icon-button id="ps" icon="icons:delete" on-click="FnDelete" ></paper-icon-button>
+        <paper-tooltip for="ps" offset="0">Delete</paper-tooltip></td>  
         </tr>
       </table> 
     </div>
@@ -151,7 +153,7 @@
         this.$.p6.validate();
         this.$.p7.validate();
         this.$.p8.validate();
-         this.callFetchGrade();
+         // this.callFetchGrade();
       }  
       else{
         this.callService(); 
@@ -190,7 +192,12 @@
         if(grade=="D"||grade=="d")
           mark=3;
         return mark;
-      }
+      },
+       FnDelete:function(){
+        var studentid=this.studid;
+        var studentname=this.studname;
+        this.$.assesmentservice.callDeletemarkService(studentid);
+      }  
     });
   })();
   </script>

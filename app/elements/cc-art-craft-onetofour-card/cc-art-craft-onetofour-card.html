@@ -7,6 +7,7 @@
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../validation-dialog/validation-dialog.html">
 <link rel="import" href="../bindmarks-card/bindmarks-card.html">
+<link rel="import" href="../deleteicon-card/deleteicon-card.html">
 <dom-module id="cc-art-craft-onetofour-card">
   <template>
     <style>
@@ -14,7 +15,7 @@
         display: block;
       }
         table{
-          width:60%;
+          width:65%;
           border-collapse: collapse;
           margin-left: 1%;
       }
@@ -25,7 +26,7 @@
              width:10%
 
           }
-           #tb3{width:2.5%;
+           #tb3{width:5%;
           }
           .button{
             width: 10%;
@@ -82,14 +83,14 @@
        <th id="tb1">Creativity</th>
        <th id="tb1">Skill</th>
        <th id="tb1">Interest</th>
-       <th colspan="1" id="tb3"></th>
+       <th colspan="1" id="tb3"></th><th colspan="1" id="tb3"></th>
        </tr>
       <tr><th></th><th></th>
 
       <th id="tb1">(10)</th>
       <th id="tb1">(10)</th>
       <th id="tb1">(10)</th>
-      <th></th>
+      <th></th><th></th>
       </tr>
       </div>
 <template is="dom-repeat" items="{{markarr}}" as="m">
@@ -113,7 +114,10 @@
 </template>
 </template>
 <!-- <td><paper-checkbox disabled checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>   -->
-<td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button>
+<td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button></td>
+<template is="dom-repeat" items="{{m}}" as="m1">
+<td><deleteicon-card studentid="{{m1.studentid}}"></deleteicon-card></td>
+</template>
 </tr>
 </template>
 
@@ -239,6 +243,7 @@ var tableToExcel = (function() {
      
       FnRefresh:function()
       {
+        // alert('calling');
         this.markarr=[];
         this.importarr=[];
         this.studarr=[];

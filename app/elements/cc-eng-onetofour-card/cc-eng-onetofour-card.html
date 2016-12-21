@@ -8,6 +8,8 @@
 <link rel="import" href="..\..\bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="..\..\bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../deleteicon-card/deleteicon-card.html">
+
 <dom-module id="cc-eng-onetofour-card">
 
  <template>
@@ -16,9 +18,9 @@
         display: block;
       }
        table{
-          width: 100%;
+          width: 103%;
           border-collapse: collapse;
-          margin-left: 1%;
+          /*margin-left: 1%;*/
       }
      /* .studname{
         width: 30%;
@@ -53,7 +55,7 @@
             font-family: Calibri;
             font-size: 17px;
           }
-          #tb5{width:2.5%;
+          #tb5{width:5%;
           }
            paper-item,td,paper-input{
             text-align:center;
@@ -87,7 +89,7 @@
       <th colspan="2" id="tb2">Speaking Skills</th>
       <th colspan="1" id="tb1">Listening Skills</th>
       <th colspan="1" id="tb1">Written Work</th>
-      <th colspan="1" id="tb5"></th>
+      <th colspan="1" id="tb5"></th><th colspan="1" id="tb5"></th>
       </tr>
       <tr><th></th><th></th>
       <th id="tb1">Pronunciation</th>      
@@ -104,7 +106,7 @@
       <th id="tb1">Recitation</th>
       <th id="tb1">Comprehension</th>
       <th id="tb1">Activity</th>
-       <th></th>
+       <th></th><th></th>
       </tr>
       <tr><th></th><th></th>
       <th>{{assesment}}(10)</th>
@@ -125,7 +127,7 @@
       <th>{{assesment}}(10)</th>
 
       <th>{{assesment}}(10)</th>
-      <th></th>
+      <th></th><th></th>
       </tr>
       </div>
 <template is="dom-repeat" items="{{markarr}}" as="m">
@@ -155,6 +157,9 @@
 <!-- <td><paper-checkbox disabled checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>   -->
 <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button>
 <paper-tooltip for="ps" offset="0">update</paper-tooltip></td>
+<template is="dom-repeat" items="{{m}}" as="m1">
+<td><deleteicon-card studentid="{{m1.studentid}}"></deleteicon-card></td>
+</template>
 </tr>
 </template>
 
@@ -163,7 +168,7 @@
       <template is="dom-repeat" items="{{studarr}}">
       <tr>
         <td>{{item.serialno}}</td><td>{{item.student_name}}</td>
-        <td colspan="66"><cc-eng-onetofour-item-card flag="{{flag}}" studid="{{item.id}}" studname="{{item.student_name}}"></cc-eng-onetofour-item-card></td>
+        <td colspan="70"><cc-eng-onetofour-item-card flag="{{flag}}" studid="{{item.id}}" studname="{{item.student_name}}"></cc-eng-onetofour-item-card></td>
       </tr>
       </template>
 

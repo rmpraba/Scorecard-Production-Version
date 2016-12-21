@@ -8,6 +8,7 @@
 <link rel="import" href="..\..\bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="..\..\bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../deleteicon-card/deleteicon-card.html">
 <dom-module id="cc-dance-onetofour-card">
   <template>
     <style>
@@ -15,14 +16,14 @@
         display: block;
       }
         table{
-          width: 60%;
+          width: 65%;
           border-collapse: collapse;
           margin-left: 1%;
       }
       #tb1{
         width:10%;
       }
-        #tb3{width:2.5%;
+        #tb3{width:3%;
           }
       .studname{
         width: 20%;
@@ -78,6 +79,7 @@
        <th id="tb1">Rhythm (10)</th>
        <th id="tb1">Grace (10)</th>
        <th colspan="1" id="tb3"></th>
+       <th colspan="1" id="tb3"></th>
       </tr>
 
 </div>
@@ -107,6 +109,9 @@
 <!-- <td><paper-checkbox disabled checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>   -->
 <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button>
 <paper-tooltip for="ps" offset="0">update</paper-tooltip></td>
+<template is="dom-repeat" items="{{m}}" as="m1">
+<td><deleteicon-card studentid="{{m1.studentid}}"></deleteicon-card></td>
+</template>
 </tr>
 </template>
       

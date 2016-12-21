@@ -434,7 +434,16 @@
         on-response="insertoverallfagradeResponse"
         debounce-duration="300"
     >
-      
+     <iron-ajax
+        method="post"
+        id="deletemarkajax"
+        url="{{deletemarkurl}}"
+        params="{{deletemarkparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="deletemarkResponse"
+        debounce-duration="300"
+    >
   </template>
   <script>
   (function() {
@@ -551,6 +560,7 @@
         else
         {            
             if(localStorage.getItem("curr_sess_subject")=='music'||localStorage.getItem("curr_sess_subject")=='dance'||localStorage.getItem("curr_sess_subject")=='Art&Craft'||localStorage.getItem("curr_sess_subject")=='Games'||localStorage.getItem("curr_sess_subject")=='Personality Development'){
+                // alert('yes');
                 this.fetchimportmark(localStorage.getItem("curr_sess_academicyear"),localStorage.getItem("curr_sess_termname"),"Assesment3",localStorage.getItem("curr_sess_grade"),localStorage.getItem("curr_sess_section"),localStorage.getItem("curr_sess_subject")); 
             }
             else
@@ -1692,6 +1702,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         var markarr=[];
         var nameobj={"serialno":"","name":"","marks":""};
         nameobj.name=arr1[i].student_name; 
+        nameobj.studentid=arr1[i].student_id; 
         nameobj.serialno=i+1; 
         var obj={"mark":"","category":"","sub_category":"","name":"","subseq":""};
         if(localStorage.getItem("curr_sess_subject")=="Personality Development"){
@@ -1747,6 +1758,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         a=[];
         overall.push(markarr);
         overallfetchimportarr.push({"overall":markarr});
+        markarr=[];
        }
        
        //alert('c');
@@ -1868,6 +1880,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         this.studarrlength=0;
         this.fetchstudentService(); 
         }  
+        // overall=[];
     },
     Fnupdatemark:function()
     {
@@ -2223,6 +2236,35 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         overallcount=0;
         }
         }
+    },
+    callDeletemarkService:function(studid){
+         this.deletemarkurl=sessionStorage.getItem("addrinfo")+"/deletemarks-service";
+         // alert(JSON.stringify(this.deletemarkurl));
+         var obj={"schoolid":"","academicyear":"","assesmentid":"","classid":"","studentid":"","studentname":"","termname":"","grade":"","section":"","subject":"","category":"","subcategory":"","mark":"","total":"","assesmentflag":"","absflag":"","subcatseq":""};
+         obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.academicyear=localStorage.getItem("curr_sess_academicyear");
+         if(localStorage.getItem("curr_sess_subject")=="Art&Craft"||localStorage.getItem("curr_sess_subject")=="music"||localStorage.getItem("curr_sess_subject")=="dance"||localStorage.getItem("curr_sess_subject")=="Games"||localStorage.getItem("curr_sess_subject")=="Personality Development"||localStorage.getItem("curr_sess_subject")=="Attendance"||localStorage.getItem("curr_sess_subject")=="Health")
+         obj.assesmentid= "Assesment3";
+         else
+         obj.assesmentid=localStorage.getItem("curr_sess_assesment");
+         obj.termname=localStorage.getItem("curr_sess_termname");
+         obj.classid=sessionStorage.getItem("curr_sess_classid");
+         obj.studentid=studid;
+         // obj.studentname=studname;        
+         obj.grade=localStorage.getItem("curr_sess_grade");;
+         obj.section=localStorage.getItem("curr_sess_section");
+         obj.subject=localStorage.getItem("curr_sess_subject");
+         this.deletemarkparam=obj;  
+         // alert(JSON.stringify(obj));
+         this.$.deletemarkajax.generateRequest();
+    },
+    deletemarkResponse:function(e){
+        alert(e.detail.response.returnval);
+        var sub=localStorage.getItem("curr_sess_subject");
+        if(sub=="English"||sub=="Mathematics"||sub=="Computer"||sub=="EVS"||sub=="Hindi"||sub=="Kannada"||sub=="GK")
+        document.querySelector('term-assesment-card').callService();
+        else
+        document.querySelector('coscholastic-assesment-card').callService();
     }
     });
   })();

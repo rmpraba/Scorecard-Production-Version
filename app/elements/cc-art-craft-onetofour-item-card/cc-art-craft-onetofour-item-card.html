@@ -30,7 +30,9 @@
         <td><paper-input  disabled="{{read}}" required allowed-pattern="^[0-9.a,]+$" value="{{skill}}" id="p2" on-change="FnSkill"></paper-input></td>
         <td><paper-input disabled="{{read}}" required allowed-pattern="^[0-9.a,]+$" value="{{interest}}" id="p3" on-change="FnInterest"></paper-input></td>
         <!-- <td><paper-checkbox disabled="{{read}}" checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td> -->
-        <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button>
+        <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave"></paper-icon-button></td>
+        <td><paper-icon-button id="ps" icon="icons:delete" on-click="FnDelete" ></paper-icon-button>
+        
         </tr>
       </table> 
     </div>
@@ -149,7 +151,12 @@
         this.$.assesmentservice.callinsertassesmentmarkService(this.studid,this.studname,"Art&Craft","Skill",this.skill,2,3);
         this.$.assesmentservice.callinsertassesmentmarkService(this.studid,this.studname,"Art&Craft","Interest",this.interest,3,3); 
         // this.$.assesmentservice.calloverallinsertcocurricularmarkService(this.studid,this.studname,"Art&Craft",this.total,this.reduction,this.grade);   
-      }
+      },
+       FnDelete:function(){
+        var studentid=this.studid;
+        var studentname=this.studname;
+        this.$.assesmentservice.callDeletemarkService(studentid);
+      }  
     });
   })();
   </script>

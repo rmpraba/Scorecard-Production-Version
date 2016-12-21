@@ -256,35 +256,35 @@
          // var subj=localStorage.getItem("curr_sess_subject");
          // var grad=localStorage.getItem("curr_sess_grade");
          // this.flag=0;
-      if(subj=="Health"){         
+      if(subject=="Health"){         
         document.querySelector('cce-fivetoten-health-card').FnRefresh(); 
         }
-        else if(subj=="Attendance"){
+        else if(subject=="Attendance"){
         this.$.assesmentservice.callWorkingdaysService();         
         
         document.querySelector('attendance-card').FnRefresh();  
         } 
-        else if(subj=="Art&Craft"){                    
+        else if(subject=="Art&Craft"){                    
         
         document.querySelector('cc-art-craft-onetofour-card').FnRefresh();
         }
-        else if(subj=="dance"){                   
+        else if(subject=="dance"){                   
         
         document.querySelector('cc-dance-onetofour-card').FnRefresh();
         }
-        else if(subj=="music"){                   
+        else if(subject=="music"){                   
         
         document.querySelector('cc-music-onetofour-card').FnRefresh();
         }  
-        else if(subj=="Games"){                   
+        else if(subject=="Games"){                   
         
         document.querySelector('cs-games-card').FnRefresh();
         } 
-        else if(subj=="Personality Development"){
+        else if(subject=="Personality Development"){
         document.querySelector('cs-personalitydevelopment-card').FnRefresh();                   
                
         }      
-        else if(subj=="Life Skills"){
+        else if(subject=="Life Skills"){
         if(grad=="Grade-9"||grad=="Grade-10"){
         document.querySelector('cs-life-skill-card').FnRefresh();  
         
@@ -294,26 +294,26 @@
         
         }
         }
-        else if(subj=="Work Education"){
+        else if(subject=="Work Education"){
         document.querySelector('cs-education-card').FnRefresh();  
         
 
         }
-        else if(subj=="Visual & Performing Arts"){
+        else if(subject=="Visual & Performing Arts"){
         document.querySelector('cs-visual-performing-card').FnRefresh();  
         
 
         }
-        else if(subj=="Attitudes & Values"){
+        else if(subject=="Attitudes & Values"){
         document.querySelector('cs-attitudes-card').FnRefresh();  
         
 
         }
-        else if(subj=="Co-Curricular Activities"){
+        else if(subject=="Co-Curricular Activities"){
         document.querySelector('cs-co-curricular-card').FnRefresh();  
         
         }
-        else if(subj="Health & Physical Activities"){
+        else if(subject="Health & Physical Activities"){
         document.querySelector('cs-health-physical-education-card').FnRefresh();  
         
         }

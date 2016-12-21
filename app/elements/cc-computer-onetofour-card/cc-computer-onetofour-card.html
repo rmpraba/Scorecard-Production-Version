@@ -6,7 +6,7 @@
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../validation-dialog/validation-dialog.html">
 <link rel="import" href="../bindmarks-card/bindmarks-card.html">
-
+<link rel="import" href="../deleteicon-card/deleteicon-card.html">
 
 <dom-module id="cc-computer-onetofour-card">
   <template>
@@ -15,14 +15,14 @@
         display: block;
       }
         table{
-          width: 60%;
+          width: 65%;
           border-collapse: collapse;
           margin-left: 1%;
       }
       .studname{
         width: 30%;
           }
-          #tb3{width:2.5%;
+          #tb3{width:3%;
           }
           .button{
             width: 10%;
@@ -74,7 +74,7 @@
 
       <th>Sl.No</th>
       <th>Student's Name</th>
-      <th colspan="2">Activity</th>
+      <th colspan="3">Activity</th>
      <!-- <th colspan="2" id="tb3"></th> -->
 
       </tr>
@@ -106,6 +106,9 @@
 <!-- <td><paper-checkbox disabled checked id="{{studid}}" on-change="FnChange"></paper-checkbox></td>   -->
 <td><paper-icon-button id="ps" icon="icons:save" on-click="FnSave" ></paper-icon-button>
 <paper-tooltip for="ps" offset="0">update</paper-tooltip></td>
+<template is="dom-repeat" items="{{m}}" as="m1">
+<td><deleteicon-card studentid="{{m1.studentid}}"></deleteicon-card></td>
+</template>
 </tr>
 </template>
 
