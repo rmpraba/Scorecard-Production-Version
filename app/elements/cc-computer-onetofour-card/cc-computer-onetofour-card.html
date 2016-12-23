@@ -113,16 +113,16 @@
 </template>
 
 
- <template is="dom-repeat" items="{{studarr}}">
+    <template is="dom-repeat" items="{{studarr}}">
       <tr>
         <td>{{item.serialno}}</td><td>{{item.student_name}}</td>
         <td colspan="66"><cc-computer-onetofour-item-card flag="{{flag}}" studid="{{item.id}}" studname="{{item.student_name}}"></cc-computer-onetofour-item-card></td>
       </tr>
-      </template>
+    </template>
     </table>
     <!-- <paper-button class="button" id="save" on-click="FnSave">Save</paper-button>   -->
-     <paper-button class="button" id="submit" on-click="importmark">{{importlabel}}</paper-button>
-<input type="button" id="btn2" onclick="tableToExcel('MarkTable2', 'Mark Report')" value="Export to Excel">
+     <paper-button disabled="{{disableflag}}" hidden$="{{hideapprovalbtn}}" class="button" id="submit" on-click="importmark">{{importlabel}}</paper-button>
+    <input type="button" id="btn2" onclick="tableToExcel('MarkTable2', 'Mark Report')" value="Export to Excel">
     </div>
     <term-assesment-service id="assesmentservice"></term-assesment-service>
     <paper-dialog modal id="adialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
@@ -130,7 +130,7 @@
       <paper-button on-click="FnYes">Ok</paper-button>  
       <!-- <paper-button on-click="FnNo">No</paper-button>       -->
     </paper-dialog>
-<validationdialog-card id="validatedialog"></validationdialog-card>
+<validationdialog-card id="validatedialog"></vaalidationdialog-card>
   </template>
    <script type="text/javascript">
 var tableToExcel = (function() {
@@ -156,6 +156,7 @@ var tableToExcel = (function() {
         this.$.btn2.hidden=true;
         this.$.submit.hidden=true;
         // this.$.save.hidden=true;
+        this.disableflag=false;
       },
        FnResetFlag:function(){
         // var flag=1;
@@ -165,7 +166,8 @@ var tableToExcel = (function() {
       FnToggleDialog:function(value){
         this.$.validatedialog.FnSetMessage1(value);
       } , 
-      setDefaultHeaders:function(){        
+      setDefaultHeaders:function(){    
+        this.disableflag=false;    
         this.$.hidetop.hidden=false;
         this.schoolname=sessionStorage.getItem("curr_sess_loggedschoolname");
         this.academicyear=localStorage.getItem("curr_sess_academicyear");
@@ -236,26 +238,40 @@ var tableToExcel = (function() {
       {
         // alert('import');
         // this.$.assesmentservice.Fnimportmark();
+        this.disableflag=true;
         this.$.assesmentservice.Fnauditterm();
       },
      
         FnRefresh:function()
       {
- this.markarr=[];
- this.importarr=[];
- this.studarr=[];
- this.schoolname="";
+        this.markarr=[];
+        this.importarr=[];
+        this.studarr=[];
+        this.schoolname="";
         this.academicyear="";
         this.grade="";
         this.section="";
         this.subject="";
-         this.$.hidetop.hidden=true;
+        this.$.hidetop.hidden=true;
+        this.disableflag=false;
       },
         FnSpinnerrActive:function(flag){
         if(flag==true)
         this.$.spinner.opened=true;
         if(flag==false)
         this.$.spinner.opened=false;
+      },
+      FnEnableFlag:function(flag){
+        if(flag==false)
+        this.disableflag=false;
+        if(flag==true)
+        this.disableflag=true;
+      },
+      FnHideApprovebtnFlag:function(flag){
+        if(flag==false)
+        this.hideapprovalbtn=false;
+        if(flag==true)
+        this.hideapprovalbtn=true;
       }
     });
   })();
