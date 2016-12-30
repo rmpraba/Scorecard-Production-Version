@@ -232,7 +232,8 @@
          obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.academicyear=localStorage.getItem("curr_sess_academicyear");
          obj.grade=localStorage.getItem("curr_sess_grade");
-         obj.section=localStorage.getItem("curr_sess_section");         
+         obj.section=localStorage.getItem("curr_sess_section");
+         obj.termname=localStorage.getItem("curr_sess_termname");          
          this.scorecardreadynessparam= obj;
          this.$.scorecardreadynessajax.generateRequest();
       },

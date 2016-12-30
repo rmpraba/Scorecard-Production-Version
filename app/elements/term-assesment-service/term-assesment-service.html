@@ -646,9 +646,9 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         if(sarr1=="imported"){
         this.FnSpinnerDeactive();
 
-        if(sessionStorage.getItem("curr_sess_loggedroleid")!='co-ordinator'){
-        this.FnHideApprovalBtn();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='co-ordinator'){        
         alert('Marks already submitted!');
+        // this.FnHideApprovalBtn();
         }
        }
       
@@ -750,6 +750,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
        fetchfastudentResponse:function(e)
        { 
     var arr=e.detail.response.returnval;
+    // alert(JSON.stringify(arr));
    for(var j=0;j<sarr1.length;j++)
     {
      for(var i=0;i<arr.length;i++)
@@ -1042,9 +1043,10 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         var arr=e.detail.response.returnval;
         if(arr=='imported'){
            this.FnSpinnerDeactive();
-           if(sessionStorage.getItem("curr_sess_loggedroleid")!="co-ordinator"){
-           this.FnHideApprovalBtn();
+           if(sessionStorage.getItem("curr_sess_loggedroleid")!="co-ordinator"){           
            alert('Marks already submitted!');
+           localStorage.getItem("curr_sess_importflag",1);
+           // this.FnHideApprovalBtn();
            }
         }
         // localStorage.setItem('curr_sess_fetchstudent','1');
@@ -1055,7 +1057,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         // alert(arr.length);
 
         if(overallfetchimportarr.length>0){
-          
+        localStorage.setItem("curr_sess_importflag",0);          
 
         for(var i=0;i<arr.length;i++){
           flag=0;
@@ -1194,6 +1196,8 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
             document.querySelector('cc-sa-fivetoten-card').studarr=arr;    
         }
         } 
+        if(localStorage.setItem("curr_sess_importflag")=="1")
+          this.FnHideApprovalBtn();
         }
         else{
           // alert('hi');
@@ -1708,14 +1712,16 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
        if(arr1=="imported"){
         this.FnSpinnerDeactive();
 
-        if(sessionStorage.getItem("curr_sess_loggedroleid")!='co-ordinator'){
-        this.FnHideApprovalBtn();
-        alert('Marks already submitted!');        
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='co-ordinator'){        
+        alert('Marks already submitted!'); 
+        localStorage.setItem("curr_sess_importflag",1);
+        // this.FnHideApprovalBtn();       
         }
        }
        else{
        if(arr1!="invalid")
        {
+       localStorage.setItem("curr_sess_importflag",0);
        for(var i=0;i<arr1.length;i++)
        {
         var markarr=[];
@@ -1782,7 +1788,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
        
        //alert('c');
        // alert(JSON.stringify(overall));
-       this.studarrlength=(overall.length);       
+        this.studarrlength=(overall.length);       
         if(localStorage.getItem("curr_sess_importsubject")=="Art&Craft"||localStorage.getItem("curr_sess_importsubject")=="dance"||localStorage.getItem("curr_sess_importsubject")=="music"||localStorage.getItem("curr_sess_importsubject")=="Games"||localStorage.getItem("curr_sess_importsubject")=="Personality Development")
         {
         document.querySelector('home-page').setPage('coscholasticassesment','');
@@ -1893,7 +1899,9 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
         document.querySelector('cce-fivetoten-health-card').setDefaultHeaders();    
         document.querySelector('cce-fivetoten-health-card').importarr=overall;
         document.querySelector('cce-fivetoten-health-card').FnResetFlag();
-        }*/  
+        }*/ 
+        if(localStorage.getItem("curr_sess_importflag")=="1")
+        this.FnHideApprovalBtn(); 
         }        
         else
         this.studarrlength=0;

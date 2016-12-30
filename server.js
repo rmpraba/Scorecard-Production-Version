@@ -6,8 +6,12 @@ var express    = require("express");
 var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
    host     : 'localhost',
+   port     : '3306',
    user     : 'root',
    password : 'admin',
+   // port     : '58116',
+   // user     : 'adminTEZN77',
+   // password : 'pEbElHqKSxh2',
    database : 'scorecarddb'
  });
 var bodyParser = require('body-parser');
@@ -523,7 +527,7 @@ app.post('/fetchstudentforhealth-service',  urlencodedParser,function (req, res)
 "(select class_id   from mp_grade_section where grade_id=(select grade_id "+
 "from md_grade where grade_name='"+req.query.gradename+"') and section_id=(select "+
 "section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and "+
-"school_id='"+req.query.schoolid+"' and id not in(select student_id from tr_term_health where  grade='"+req.query.gradename+"' and  section='"+req.query.section+"' and school_id='"+req.query.schoolid+"')";
+"school_id='"+req.query.schoolid+"' and id not in(select student_id from tr_term_health where   term_id='"+req.query.termname+"' and grade='"+req.query.gradename+"' and  section='"+req.query.section+"' and school_id='"+req.query.schoolid+"')";
  connection.query(qur,
     function(err, rows)
     {
@@ -790,7 +794,7 @@ app.post('/fetchstudentreportforartverticals-service',  urlencodedParser,functio
 
 app.post('/fetchstudentreportforhealth-service',  urlencodedParser,function (req, res)
 {
-  var qur="select student_id as id,student_name,grade,section,height,weight,blood_group,vision_left,vision_right,dental from tr_term_health where  grade='"+req.query.gradename+"' and  section='"+req.query.section+"' and school_id='"+req.query.schoolid+"'";
+  var qur="select student_id as id,student_name,grade,section,height,weight,blood_group,vision_left,vision_right,dental from tr_term_health where  term_id='"+req.query.termname+"' and grade='"+req.query.gradename+"' and  section='"+req.query.section+"' and school_id='"+req.query.schoolid+"'";
  connection.query(qur,
     function(err, rows)
     {
@@ -1600,11 +1604,19 @@ app.post('/overallinsertcocurricularmark-service',  urlencodedParser,function (r
 //fetching student names
 app.post('/scorecardreadyness-service',  urlencodedParser,function (req,res)
 {   
+var n=0;
+console.log('--------------------'+req.query.termname+'-----------');
 if(req.query.grade=="Grade-1"||req.query.grade=="Grade-2"||req.query.grade=="Grade-3"||req.query.grade=="Grade-4"){
+if(req.query.termname=='Term1')
+n=1;
+if(req.query.termname=='Term2')
+n=2;
+if(req.query.termname=='Term3')
+n=3;
 var qur="select * from md_grade_subject_count where no_of_subjects=(( "+
-"select count(distinct(subject_id)) from tr_term_assesment_overall_assesmentmarks where "+
+"(select count(distinct(subject_id)) from tr_term_assesment_overall_assesmentmarks where "+
 "school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and "+
-"grade='"+req.query.grade+"' and section='"+req.query.section+"')/"+
+"grade='"+req.query.grade+"' and section='"+req.query.section+"')*("+n+"))/"+
 "(select count(distinct(term_name)) from tr_term_assesment_overall_assesmentmarks where "+
 "school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and "+
 "grade='"+req.query.grade+"' and section='"+req.query.section+"')) and school_id='"+req.query.schoolid+"' and "+
@@ -1833,7 +1845,8 @@ app.post('/fetchscholasticmark-service',  urlencodedParser,function (req,res)
   var studid={student_id:req.query.studid}; 
   var academicyear={academic_year:req.query.academicyear};  
   var qur="SELECT * FROM tr_term_assesment_overall_assesmentmarks am join "+
-  "md_grade_descriptor gd on(am.category=gd.category_check) WHERE school_id='"+req.query.schoolid+"' AND academic_year='"+req.query.academicyear+"' AND student_id='"+req.query.studid+"' and am.term_cat_grade=gd.grade and "+
+  "md_grade_descriptor gd on(am.category=gd.category_check) WHERE school_id='"+req.query.schoolid+"' "+
+  " AND academic_year='"+req.query.academicyear+"' AND student_id='"+req.query.studid+"' and am.term_cat_grade=gd.grade and "+
   "am.subject_id=gd.subject_name";
   console.log('.........................Score card....................................');
   console.log(qur);
@@ -2162,7 +2175,7 @@ app.post('/fetchhealthattendanceinfo-service',  urlencodedParser,function (req,r
 
 
   var qur1="select * from tr_term_attendance ta join tr_term_health th on(ta.student_id=th.student_id)"+
-  " where ta.student_id='"+req.query.studid+"' "+
+  " where ta.student_id='"+req.query.studid+"' and ta.term_id=th.term_id "+
   "and ta.school_id='"+req.query.schoolid+"' and  ta.academic_year='"+req.query.academicyear+"' and th.school_id='"+req.query.schoolid+"'";
   
   connection.query(qur,function(err, rows)

@@ -431,6 +431,7 @@
          obj.gradename=grade;
          obj.section=section;
          obj.subject=localStorage.getItem("curr_sess_subject");
+         obj.termname=localStorage.getItem("curr_sess_termname");
          this.fetchstudentreportforhealthparam= obj;
          // alert(JSON.stringify(obj));
          this.$.fetchstudentreportforhealthajax.generateRequest();
@@ -446,6 +447,7 @@
          obj.gradename=hgrade;
          obj.section=hsection;
          obj.subject=localStorage.getItem("curr_sess_subject");
+         obj.termname=localStorage.getItem("curr_sess_termname");
          this.fetchstudentparam= obj;
          // alert(JSON.stringify(obj));
          this.$.fetchstudentajax.generateRequest();

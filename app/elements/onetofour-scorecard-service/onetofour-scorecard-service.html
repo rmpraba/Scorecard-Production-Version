@@ -227,7 +227,7 @@
         if(arr.length==2){
         document.querySelector('cce-onetofour-score-card').adterm2=arr[1].attendance;
         document.querySelector('cce-onetofour-score-card').wdterm2=arr[1].working_days;
-        document.querySelector('cce-onetofour-score-card').pterm1=parseFloat((arr[1].attendance/arr[1].working_days)*100).toFixed(2)+"%";
+        document.querySelector('cce-onetofour-score-card').pterm2=parseFloat((arr[1].attendance/arr[1].working_days)*100).toFixed(2)+"%";
         document.querySelector('cce-onetofour-score-card').t2height=arr[1].height+" cm";
         document.querySelector('cce-onetofour-score-card').t2weight=arr[1].weight+" Kg";
         document.querySelector('cce-onetofour-score-card').generalfeedback=arr[1].generic; 
@@ -236,7 +236,7 @@
         if(arr.length==3){
         document.querySelector('cce-onetofour-score-card').adterm3=arr[2].attendance; 
         document.querySelector('cce-onetofour-score-card').wdterm3=arr[2].working_days;
-        document.querySelector('cce-onetofour-score-card').pterm1=parseFloat((arr[2].attendance/arr[2].working_days)*100).toFixed(2)+"%";
+        document.querySelector('cce-onetofour-score-card').pterm3=parseFloat((arr[2].attendance/arr[2].working_days)*100).toFixed(2)+"%";
         document.querySelector('cce-onetofour-score-card').t3height=arr[2].height+" cm";
         document.querySelector('cce-onetofour-score-card').t3weight=arr[2].weight+" Kg";
         document.querySelector('cce-onetofour-score-card').generalfeedback=arr[2].generic; 
@@ -312,7 +312,9 @@
         var gamearr=[];
         var parr=[];
         var dancearr=[];
+        var engsubarr=[];
         scholasticarr=e.detail.response.returnval;
+        // var engobj={"catcheck":"","subject":"","category":"","t1grade":"","t2grade":"","t3grade":"","comment":""};
         for(var i=0;i<scholasticarr.length;i++){
           // alert(scholasticarr[i].subject_name);
           var obj={"catcheck":"","subject":"","category":"","t1grade":"","t2grade":"","t3grade":"","comment":""};          
@@ -320,14 +322,56 @@
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
             obj.catcheck=scholasticarr[i].category_check;
             obj.category=scholasticarr[i].category;
+            // alert((localStorage.getItem("curr_sess_termname")).toUpperCase()+"   "+(scholasticarr[i].term_name).toUpperCase());
+            // if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
             obj.comment=scholasticarr[i].description;
-            if(scholasticarr[i].term_name=="term1")
+            // }
+            if(scholasticarr[i].term_name=="term1"){
             obj.t1grade=scholasticarr[i].term_cat_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
             if(scholasticarr[i].term_name=="term2")
+            {
             obj.t2grade=scholasticarr[i].term_cat_grade;
-            if(scholasticarr[i].term_name=="term3")
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(scholasticarr[i].term_name=="term3"){
             obj.t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if(engarr.length==0)
             engarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<engarr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(engarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(scholasticarr[i].term_name=="term1"){
+            engarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            engarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            engarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            engarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            engarr.push(obj);  
+            }
+            }
+            // alert(JSON.stringify(engarr));
           }
           if(scholasticarr[i].subject_name=="Mathematics"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -340,7 +384,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // matharr.push(obj);
+            if(matharr.length==0)
             matharr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<matharr.length;j++)
+            {            
+            if(matharr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            matharr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            matharr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            matharr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            matharr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            matharr.push(obj);  
+            }
+            }
           }
           if(scholasticarr[i].subject_name=="EVS"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -353,7 +425,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // evsarr.push(obj);
+            if(evsarr.length==0)
             evsarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<evsarr.length;j++)
+            {            
+            if(evsarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            evsarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            evsarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            evsarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            evsarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            evsarr.push(obj);  
+            }
+            }
           }
           if((scholasticarr[i].subject_name).trim()=="Hindi"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -366,7 +466,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // hinarr.push(obj);
+            if(hinarr.length==0)
             hinarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<hinarr.length;j++)
+            {            
+            if(hinarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            hinarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            hinarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            hinarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            hinarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            hinarr.push(obj);  
+            }
+            }
           }
            if((scholasticarr[i].subject_name).trim()=="Kannada"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -379,7 +507,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // hinarr.push(obj);
+            if(hinarr.length==0)
             hinarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<hinarr.length;j++)
+            {            
+            if(hinarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            hinarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            hinarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            hinarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            hinarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            hinarr.push(obj);  
+            }
+            }
           }
           if((scholasticarr[i].subject_name).trim()=="Computer"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -392,7 +548,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // comarr.push(obj);
+            if(comarr.length==0)
             comarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<comarr.length;j++)
+            {            
+            if(comarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            comarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            comarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            comarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            comarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            comarr.push(obj);  
+            }
+            }
             // alert(JSON.stringify(comarr));
           }          
           if(scholasticarr[i].subject_name=="GK"){
@@ -406,7 +590,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // gkarr.push(obj);
+            if(gkarr.length==0)
             gkarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<gkarr.length;j++)
+            {            
+            if(gkarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            gkarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            gkarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            gkarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            gkarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            gkarr.push(obj);  
+            }
+            }
           }          
         
         // for(var i=0;i<scholasticarr.length;i++){
@@ -422,7 +634,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;     
+            // acarr.push(obj);
+            if(acarr.length==0)
             acarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<acarr.length;j++)
+            {            
+            if(acarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            acarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            acarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            acarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            acarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            acarr.push(obj);  
+            }
+            }
           }
           if(scholasticarr[i].subject_name=="music"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -435,7 +675,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // mdarr.push(obj);
+            if(mdarr.length==0)
             mdarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<mdarr.length;j++)
+            {            
+            if(mdarr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            mdarr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            mdarr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            mdarr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            mdarr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            mdarr.push(obj);  
+            }
+            }
           }
           if(scholasticarr[i].subject_name=="dance"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -448,7 +716,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // dancearr.push(obj);
+            if(dancearr.length==0)
             dancearr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<dancearr.length;j++)
+            {            
+            if(dancearr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            dancearr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            dancearr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            dancearr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            dancearr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            dancearr.push(obj);  
+            }
+            }
           }
           if(scholasticarr[i].subject_name=="Games"){
             obj.subject=scholasticarr[i].subject_name+"@"+localStorage.getItem("curr_sess_termname");
@@ -461,7 +757,35 @@
             obj.t2grade=scholasticarr[i].term_cat_grade;
             if(scholasticarr[i].term_name=="term3")
             obj.t3grade=scholasticarr[i].term_cat_grade;
+            // gamearr.push(obj);
+            if(gamearr.length==0)
             gamearr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<gamearr.length;j++)
+            {            
+            if(gamearr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            gamearr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            gamearr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            gamearr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            gamearr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            gamearr.push(obj);  
+            }
+            }
           }
 
         if(scholasticarr[i].subject_name=="Personality Development"){ 
@@ -481,9 +805,46 @@
             // alert('term3');
           obj.t3grade=scholasticarr[i].term_cat_grade;
           }
-          parr.push(obj);                  
+          // parr.push(obj);
+          if(parr.length==0)
+            parr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<parr.length;j++)
+            {            
+            if(parr[j].category==scholasticarr[i].category)
+            {
+            flag=1;
+            if(scholasticarr[i].term_name=="term1"){
+            parr[j].t1grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term2")
+            {
+            parr[j].t2grade=scholasticarr[i].term_cat_grade;
+            }
+            if(scholasticarr[i].term_name=="term3"){
+            parr[j].t3grade=scholasticarr[i].term_cat_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(scholasticarr[i].term_name).toUpperCase()){
+            parr[j].comment=scholasticarr[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            parr.push(obj);  
+            }
+            }                  
         }
        }
+
+        // for(var i=0;i<engarr.length;i++){
+
+        // }
+        // alert(JSON.stringify(engarr.length));
+        // alert(JSON.stringify(engarr));
+
+        // engarr.push(engobj);
+
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard"){  
         document.querySelector('cce-onetofour-score-card').personalityArray=parr;
         document.querySelector('cce-onetofour-score-card').acArray=acarr;
