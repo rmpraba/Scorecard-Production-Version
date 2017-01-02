@@ -29,11 +29,22 @@
       }
       paper-dropdown-menu{
         margin-left: 5%;
+        --paper-input-container-label: { color: red };
+        text-align:center;
       }
     </style>
 
       <div class="card">
           <div class="inner">
+
+          <paper-dropdown-menu hidden$="{{hideschool}}" label="Select School" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content" id="reportschoolname"  on-iron-select="FnSelectSchool"  attr-for-selected="value" required>     
+              <template is="dom-repeat" items="{{schoolarr}}">
+                <paper-item value="{{item.id}}">{{item.name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+
           <paper-dropdown-menu id="grade" label="Select Grade" disabled="{{read}}" required>
             <paper-menu class="dropdown-content" id="gradetyp"  on-iron-select="FnSelectGrade"  attr-for-selected="value" required>     
               <template is="dom-repeat" items="{{gradearr}}">
@@ -126,7 +137,25 @@
         this.hideterm=true;
         this.hideassesment=true; 
         this.hidesubject=true; 
+
         // this.hidecategory=true; 
+      },
+      FnHideSchool:function(){
+        // this.ready();
+
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='management')
+          this.hideschool=true;
+        else
+          this.hideschool=false;
+      },
+      FnSelectSchool:function(e){
+        
+        var name=e.target.selectedItem.textContent.trim(); 
+        var school=e.target.selectedItem.value.trim(); 
+        sessionStorage.setItem("curr_sess_loggedschoolid",school);
+        sessionStorage.setItem("curr_sess_loggedschoolname",name);
+        this.FnRefresh();
+        this.$.scorecardservice.callGradeService();
       },
       FnSelectGrade:function(e){        
         gradename = e.target.selectedItem.textContent.trim();       
@@ -233,12 +262,14 @@
       {
         this.gradearr=[];
         this.sectionarr=[];
-         document.querySelector('#gradetyp').selected=-1;
-          document.querySelector('#sectyp').selected=-1;
+        document.querySelector('#reportschoolname').selected=-1;
+        document.querySelector('#gradetyp').selected=-1;
+        document.querySelector('#sectyp').selected=-1;
         document.querySelector('#rpttype').selected=-1;
         document.querySelector('#termtyp').selected=-1;
         document.querySelector('#asstyp').selected=-1;
         document.querySelector('#subtyp').selected=-1;
+        
          this.assesmentcard=true;  
          this.subjectcard=true;
         this.termcard=true;
@@ -254,6 +285,7 @@
      termname="";
      assesment="";
     item=[];
+
       }
   });
   })();

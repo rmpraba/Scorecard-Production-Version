@@ -160,7 +160,16 @@
         debounce-duration="300"
     >
     
-
+     <iron-ajax
+        method="post"
+        id="fetchschoolajax"
+        url="{{fetchschoolurl}}"
+        params="{{fetchschoolparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="fetchschoolResponse"
+        debounce-duration="300"
+    >
   </template>
   <script>
   (function() {
@@ -183,16 +192,32 @@
       ready:function(){
         this.callFetchGrade();
       },
+      callSchoolService:function()
+      {
+        this.fetchschoolurl=sessionStorage.getItem("addrinfo")+"/fetchschool-service";
+         // var obj={"schoolid":"","loggedid":"","roleid":""};
+         // obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+         // obj.loggedid=sessionStorage.getItem("curr_sess_loggedid");
+         // obj.roleid=sessionStorage.getItem("curr_sess_loggedroleid");
+         // this.gradeparam= obj;
+         this.$.fetchschoolajax.generateRequest();
+      },
+      fetchschoolResponse:function(e){
+        // alert(JSON.stringify(e.detail.response.returnval))
+        document.querySelector('consolidated-report-card').schoolarr=e.detail.response.returnval;
+      },
        callGradeService:function(){
+        // alert('calling');
          this.gradeurl=sessionStorage.getItem("addrinfo")+"/grade-service";
          var obj={"schoolid":"","loggedid":"","roleid":""};
          obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.loggedid=sessionStorage.getItem("curr_sess_loggedid");
          obj.roleid=sessionStorage.getItem("curr_sess_loggedroleid");
          this.gradeparam= obj;
-         this.$.gradeajax.generateRequest();
+         this.$.gradeajax.generateRequest();      
       },
       gradeResponse:function(e){
+        // alert(JSON.stringify(e.detail.response.returnval));
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Scorecard')
           document.querySelector('cce-generate-score-card').gradearr=e.detail.response.returnval;
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Comparisonreport')

@@ -141,6 +141,13 @@
     </div>
 
 
+    <div class="managementreport" hidden$="{{managementreport}}">
+    <div class="inner1">
+    <div class="card" hidden$="{{ConsolidatedReport}}">
+       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
+    </div>
+    </div>
+    </div>
      <!--  <div id="entry" class="card" hidden$="{{BA}}">    
        <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
       </div>
@@ -226,6 +233,7 @@
         this.classteacher=true;
         this.coordinator=true;
         this.highlevelcommon=true;
+        this.managementreport=true;
        //  this.Report=true;
        //  this.GenerateReport=true;
        //  this.Approve=true;       
@@ -350,6 +358,12 @@
         this.$.assesmentservice.callApproveService();   
       },
       FnHideView:function(){ 
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
+          this.managementreport=false;
+          // this.createrole=false;
+          // this.createemployee=false;  
+          // this.teach_obser=false;        
+        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin'){
           // this.createrole=false;
           // this.createemployee=false;  
@@ -408,6 +422,10 @@
       },
       FnConsolidatedReport:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','Consolidatedreport');
+        document.querySelector('consolidated-report-card').FnHideSchool();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='management')
+        this.$.scorecardservice.callSchoolService();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='management')
         this.$.scorecardservice.callGradeService();
         this.$.cdialog.toggle();
       },

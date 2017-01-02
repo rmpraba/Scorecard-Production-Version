@@ -238,7 +238,7 @@ app.post('/grade-service',  urlencodedParser,function (req, res)
     "in(select grade_id from mp_teacher_grade where "+
     "school_id='"+req.query.schoolid+"')";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select grade_name from md_grade where grade_id "+
     "in(select grade_id from mp_teacher_grade where "+
@@ -307,7 +307,7 @@ app.post('/section-service',  urlencodedParser,function (req, res)
     "where grade_name='"+req.query.gradename+"') and "+
     "school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"'";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     //console.log('5');
     var qur="select * from md_section where section_id in "+
@@ -5250,6 +5250,22 @@ app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
     });
 });
 
+
+
+app.post('/fetchschool-service' ,  urlencodedParser,function (req, res)
+{  
+  var qur="SELECT * FROM md_school where id not in('School')";
+   console.log('-----------------------');
+   console.log(qur);
+   connection.query(qur,function(err, rows)
+    {
+    if(rows.length>0){
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': 'no rows!'});
+    });
+});
 
 var server = app.listen(5000, function () {
 var host = server.address().address
