@@ -7,8 +7,20 @@
       :host {
         display: block;
       }
+       #btn2{
+            width: 10%;
+            background: #252626;
+            color: white;
+            margin-top: 2%;
+            height: 45px;
+            border-radius: 2px;
+            /*font-weight: bold;*/
+            font-family: Calibri;
+            font-size: 17px;
+            margin-left: 40%;
+          }
     </style>
-    <div class="card">
+    <div class="card" id="termwisereport">
       <center><h1>{{schoolname}}</h1>
       <div id="hidetop">
       <h3>Beginner Assesment Comparison -AY-{{academicyear}}</h3>  
@@ -51,7 +63,21 @@
       </table>
       </div>
     </div>
+     <input type="button" id="btn2" onclick="tableToExcel('termwisereport', 'Termwise Report')" value="Export to Excel">
   </template>
+  <script type="text/javascript">
+  var tableToExcel = (function() {
+  var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+  return function(table, name) {
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+    window.location.href = uri + base64(format(template, ctx))
+  }
+})()
+</script>
   <script>
   (function() {
     'use strict';

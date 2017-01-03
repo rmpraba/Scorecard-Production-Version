@@ -23,12 +23,13 @@
             margin-left: 40%;
           }
     </style>
-    <div class="card" hidden$="{{hidetop}}">
+    <div class="card" hidden$="{{hidetop}}" id="subjectwisereport">
+      <tr><td colspan="3">
       <center><h1>{{schoolname}}</h1>
-      <div id="hidetop">
+      <div id="hidetop" >
       <h3>Subjectwise Report -AY-{{academicyear}}</h3>  
-      <h4> Grade {{grade}} - &nbsp&nbsp&nbsp&nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4>
-      <table border="1" style="border-collapse: collapse;" id="subjectwisereport">  
+      <h4> Grade {{grade}} - &nbsp&nbsp&nbsp&nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4></td></tr>
+      <table border="1" style="border-collapse: collapse;" >  
       <!-- <tr>
         <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
         <th colspan="2">{{subject}}</th>
