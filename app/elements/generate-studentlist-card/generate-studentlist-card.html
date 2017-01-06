@@ -1,8 +1,8 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-<link rel="import" href="..\student-list-itemcard/student-list-itemcard.html">
+<link rel="import" href="..\generate-studentlist-itemcard/generate-studentlist-itemcard.html">
 
-<dom-module id="student-list-card">
+<dom-module id="generate-studentlist-card">
   <template>
     <style>
       :host {
@@ -36,7 +36,7 @@
     <div>
       <table >
 
-      <tr><th>Student Id</th><th colspan="2">Student Name</th><th>View</th></tr>
+      <tr><th>Student Id</th><th colspan="2">Student Name</th><th>Enable/Disable</th></tr>
 
       </table>
 
@@ -44,7 +44,7 @@
       <!-- <tr> -->
         <!-- <td colspan="3">-->
         <div id='itemcard'>
-        <student-list-itemcard studentid="{{item.id}}" studentname="{{item.student_name}}" sno="{{item.sno}}" edit="{{item.editable}}"></student-list-itemcard>
+        <generate-studentlist-itemcard studentid="{{item.id}}" studentname="{{item.student_name}}" sno="{{item.sno}}" edit="{{item.editable}}"></generate-studentlist-itemcard>
         </div>
         <!-- </td>  -->
       <!-- </tr> -->
@@ -58,7 +58,7 @@
     'use strict';
 
     Polymer({
-      is: 'student-list-card',
+      is: 'generate-studentlist-card',
     });
   })();
   </script>

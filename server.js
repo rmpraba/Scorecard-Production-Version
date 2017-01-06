@@ -5267,6 +5267,52 @@ app.post('/fetchschool-service' ,  urlencodedParser,function (req, res)
     });
 });
 
+
+//fetching student names
+app.post('/fetchstudnameforenable-service',  urlencodedParser,function (req,res)
+{   
+  var schoolid={school_id:req.query.schoolid};
+  var gradeid={grade_id:req.query.grade};
+  var sectionid={section_id:req.query.section};
+
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"' and feepaid_status='No'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {  
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'fail'});
+    }  
+
+  });
+});     
+
+
+//enable student names
+app.post('/enablestudent-service',  urlencodedParser,function (req,res)
+{   
+  var qur="update md_student set feepaid_status='Yes' where school_id='"+req.query.schoolid+"' and feepaid_status='No' and id='"+req.query.studentid+"'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {  
+      res.status(200).json({'returnval': 'Enabled successfully!!'});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'Unable to process!'});
+    }  
+
+  });
+});
+
 var server = app.listen(5000, function () {
 var host = server.address().address
 var port = server.address().port

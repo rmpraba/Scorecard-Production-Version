@@ -107,7 +107,9 @@
       <div class="card" hidden$="{{Analysis}}">
        <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
       </div>
-
+      <div class="card" hidden$="{{feecollection}}">
+       <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
+      </div>
     </div>
     </div>
 
@@ -127,7 +129,8 @@
       </div>
         <div class="card" hidden$="{{comparison}}">
        <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
-     </div>   
+     </div>
+
     </div>
     <div class="inner2">
      <div class="card" hidden$="{{Approvalstatus}}">
@@ -136,7 +139,9 @@
      <div class="card" hidden$="{{teach_obser}}">
        <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
      </div> 
-      
+      <div class="card" hidden$="{{feecollection}}">
+       <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
+      </div>
     </div>
     </div>
 
@@ -256,6 +261,11 @@
         localStorage.setItem("curr_sess_academicyear",academicyear); 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         this.$.assesmentservice.callTermService("Term");
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="feecollectionupdate") 
+         {
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('studentlistcard','');
+         } 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard") 
          {
           document.querySelector('app-card').setPage('homepage','');
@@ -464,9 +474,13 @@
       FnCreatesubject:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
-        document.querySelector('home-page').setPage('subjectcard','');
-      
-
+        document.querySelector('home-page').setPage('subjectcard','');     
+      },
+      FnFeeCollection:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');
+        // this.$.scorecardservice.callFetchstudentnameService();
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();        
       }
     });
   })();
