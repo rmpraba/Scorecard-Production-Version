@@ -12,36 +12,139 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="employe-category-creation-card">
   <template>
-    <style>    
+   <style>
       :host {
         display: block;
       }
-      .card1{
-        margin-left:5%;
+
+      .outercard
+      {
+        @apply(--layout-vertical);
+      }
+      
+     .outercard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 20px;
+        margin-top: 6%;
+        width: 75%;
+        margin-left: 15%;
+        min-height: 300px;
+      }
+       .subbutton paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 8%;
+        margin-left: 70%;
         margin-top: 4%;
       }
-      .card2{
-        margin-left:40%;
-         margin-top:-17%;
+      .newcard
+      {
+        @apply(--layout-horizontal);
+        width: 260%;
+        margin-top: -9%;
       }
-      .outcard{
-      width:25% 
-     margin-left:5.0em;
-      }
-       .innercard{     
-      @apply(--layout-horizontal);
-       width:100%
-      margin-left:2.5em;
-     }
-     .innercard1{
-       @apply(--layout-horizontal);
-       width:100%
-      margin-left:5.0em;
-   }
-     .tt{   
-      width:70%;
-     }
+       paper-dropdown-menu
+       {
+        /*width: 260%;*/
+        margin-left: 10%;
+        /*--paper-input-container-label: { color: red };*/
+        text-align:center;
+       }
+       .catcard
+       {
+        @apply(--layout-center);
+        margin-top: 5%;
+       }
+     
     </style>
+
+
+    <div>
+      <CENTER>
+        <h3><b>EMPLOYEE TO GRADE</b></h3>
+      </CENTER>
+    </div>
+
+    <div>
+      <div class="outercard">
+        <table>
+          <div>
+          <div class="catcard">
+            <label>School Type</label>
+            <template is="dom-repeat" items="{{empschoolarr}}" as="view">
+              <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}"></emp-category-get-card>
+            </template>
+          </div>  
+
+            <div class="newcard">
+              <paper-dropdown-menu  label="select the grade">
+                <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
+                  <template is="dom-repeat" items="{{empschoolgrads}}">
+                    <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
+                  </template>    
+                </paper-menu>
+              </paper-dropdown-menu>
+            
+              <paper-dropdown-menu  label="select the employee">
+                <paper-menu id="employeeidz" class="dropdown-content"   on-iron-select="fnemployeename">
+                  <template is="dom-repeat" items="{{empschoolnamesarr}}">
+                    <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
+                  </template>    
+                </paper-menu>
+              </paper-dropdown-menu>
+            </div>  
+
+          </div>  
+        </table>
+      </div>
+   
+      <div>
+        <table class="table table-bordered" style="margin-top:5%">
+          <div class="container">
+            <thead> 
+              <tr>
+                <th></th>
+                <th class="innercard">
+                  <template is="dom-repeat" items="{{setsectionname}}" as="view">
+                    <h4 style="margin-left:6.5%;">{{view.subjectarr}}</h4>
+                  </template>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <template is="dom-repeat" items="{{allarrr}}" as="view">
+                <tr>
+                  <td class="outcard"> 
+                    <h4>{{view.subject_name}}</h4>
+                  </td>
+                  <td class="innercard">
+                    <template is="dom-repeat" items="{{view.subject}}" as="s">
+                      <emp-grade-get-card employeesectionidz="{{s.section_id}}" id="{{s.id}}" employeesubjectz="{{view.subject_name}}"  empsubjectidz="{{view.subjectid}}" employeesectionnamez="{{s.section_name}}" employeeidz="{{empselectid}}" empgradeidz="{{setgradeidz}}" >
+                      </emp-grade-get-card>
+                    </template>
+                  </td>
+                  <td></td>
+                </tr>
+              </template>
+            </tbody>
+          </div>
+        </table>
+      </div>           
+    </div>  
+              <div class="subbutton">
+                <paper-button on-click="fnsubmit">Submit</paper-button> 
+              </div>
+
+      
+
+
+<!-- 
     <div>   
      <template is="dom-repeat" items="{{empschoolarr}}" as="view">
         <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}"></emp-category-get-card>
@@ -62,7 +165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-menu>
           </paper-dropdown-menu>
     </div>
-<table class="table table-bordered">
+    <table class="table table-bordered">
           <div class="container">
              <thead> 
               <tr>
@@ -92,9 +195,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </tbody>
         </div>
   </table>
-<paper-button on-click="fnsubmit">Submit</paper-button>
-<master-ui-service id="uiservice"></master-ui-service>
+<paper-button on-click="fnsubmit">Submit</paper-button>-->
 
+
+<master-ui-service id="uiservice"></master-ui-service>
+ 
 <iron-ajax        
         id="fnselectgradezajax"
         url="{{fnselectgradezurl}}"
