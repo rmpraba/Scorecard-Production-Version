@@ -117,10 +117,10 @@
             <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
 
 
-            <paper-dropdown-menu id="subcat" label="Select Subject Category" >
-              <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategory">
-                <template is="dom-repeat" items="{{categoryarr}}" as="n">
-                  <paper-item value="{{n.category_type}}">{{n.category_name}}</paper-item>                        
+            <paper-dropdown-menu id="subcat" label="Select Category Type" >
+              <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategoryzzz">
+                <template is="dom-repeat" items="{{categoryarr}}" as="view">
+                  <paper-item value="{{view.category_type}}">{{view.category_name}}</paper-item>                        
                 </template>
               </paper-menu>
             </paper-dropdown-menu> 
@@ -160,12 +160,12 @@
        //this.subjectid="";                  
       }, 
 
-      fetchmastercategorynameResponse:function(e)
+      /*fetchmastercategorynameResponse:function(e)
       {
         var arr=e.detail.response.returnval;
         alert(JSON.stringify(arr));     
       },
-
+*/
        FnSubmit:function()
       {
         if(this.subjectname==null || this.subjectname=="")
@@ -174,19 +174,20 @@
         }
         else
         {
-      
+         //alert(this.subjectname);
+         //alert(category);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
          document.querySelector('subject-card').FnRefresh();
          //this.$.subjectdialog.toggle();
         }
        
       },
-      
-      FnSelectcategory:function(e)
+      FnSelectCategoryzzz:function(e)
       {
-        category = e.target.selectedItem.value.trim();
-        
-      }
+        //alert('1');
+      category=e.target.selectedItem.value;
+      //alert(category);
+     }
 
     });
   })();  

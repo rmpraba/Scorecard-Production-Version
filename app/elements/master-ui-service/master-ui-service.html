@@ -317,14 +317,16 @@
         obj.subjectid=subjectid;
         obj.subjectname=subjectname;
         obj.category=category;
-        this.subjectcreationparam=obj; 
+        this.subjectcreationparam=obj;
+        //alert(JSON.stringify(obj)); 
         this.$.subjectcreationajax.generateRequest();
       },
       subjectcreationResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        
         if(e.detail.response.returnval=="Inserted!")
         {
+          
             alert("Inserted");
           this.FnFetchSubjectname(); 
           this.FnFetchSubjectSeq(); 
@@ -343,8 +345,8 @@
       },
       category1Response:function(e)
       {
+          document.querySelector('subject-card').categoryarr=e.detail.response.returnval;   
           //alert(JSON.stringify(e.detail.response.returnval));
-          document.querySelector('subject-card').categoryarr=e.detail.response.returnval;          
       },
       
 

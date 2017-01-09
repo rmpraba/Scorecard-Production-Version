@@ -5218,7 +5218,8 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
 
     //console.log(JSON.stringify(response));
 
-    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"' or subject_name='"+req.query.subjectname+"'",function(err, rows)
+    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"' or subject_name='"+req.query.subjectname+"'",
+    function(err, rows)
     {
     if(rows.length==0)
     {
@@ -5249,14 +5250,14 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
 
 app.post('/fetchmastercategoryname-service',  urlencodedParser,function (req,res)
   {  
-  // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
-    var qur="SELECT category_name FROM md_category_type";
+    var qur="SELECT * FROM md_category_type";
+    //console.log(qur);
      connection.query(qur,
     function(err, rows)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
     else
@@ -5288,7 +5289,7 @@ app.post('/fetchsubjectseq-service',  urlencodedParser,function (req,res)
 app.post('/fetchmastersubject-service',  urlencodedParser,function (req,res)
 {  
   var qur="SELECT subject_id,subject_name ,(select category_name from md_category_type where category_type=subject_category) as category,subject_category from md_subject";
-  console.log(qur);
+  //console.log(JSON.stringify(qur));
   connection.query(qur,
     function(err, rows)
     {
@@ -5470,7 +5471,11 @@ app.post('/updateschooltypename-service' ,  urlencodedParser,function (req, res)
     if(!err)
     {
       res.status(200).json({'returnval': 'Updated!'});
-=======
+    }
+    else
+      res.status(200).json({'returnval': 'Unable to update!'});
+  });
+  });
 app.post('/fetchschool-service' ,  urlencodedParser,function (req, res)
 {  
   var qur="SELECT * FROM md_school where id not in('School')";
