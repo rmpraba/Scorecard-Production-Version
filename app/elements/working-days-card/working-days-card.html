@@ -1,0 +1,156 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="working-days-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .inputelements
+      {
+        /*@apply(--layout-vertical);*/
+        @apply(--layout-center);
+        display: inline-block;
+        margin-left: 30%;
+        width: 50%;
+      
+      }
+      .outcard
+      {
+        @apply(--layout-vertical);
+      }
+      .outcard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 20px;
+        margin-top: 6%;
+        width: 30%;
+        margin-left: 36%;
+        min-height: 300px;
+      }
+      #btn1 paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 7%;
+        margin-left: 60%;
+        margin-top: 4%;
+      }
+    </style>
+
+    <div>
+
+        <div>
+          <CENTER>
+            <h3><b>WORKING DAYS</b></h3>
+          </CENTER>
+        </div>
+        
+        <div class="outcard">
+          <table>
+            <span class="inputelements">
+              <paper-input value="{{workingschoolid}}" hidden></paper-input>
+              <paper-input value="{{workingschoolname}}" hidden></paper-input>
+            </span>
+
+            <span class="inputelements">
+              <paper-input value="{{academicyears}}" label="Acadamic Year"></paper-input>
+            </span> 
+
+            <span class="inputelements">
+              <paper-dropdown-menu label="Select Grade">
+              <paper-menu id="wgradeid"  class="dropdown-content"  on-iron-select="SelectGradeid">   
+                <template is="dom-repeat" items="{{workingarras}}" as="view">
+                  <paper-item value="{{view.grade_name}}">{{view.grade_name}}</paper-item>
+                </template>
+              </paper-menu>
+              </paper-dropdown-menu>
+            </span>
+
+            <span class="inputelements">
+              <paper-dropdown-menu label="Select Term">
+              <paper-menu  id="termid11" class="dropdown-content" on-iron-select="fnterm">   
+                <paper-item >Term1</paper-item>
+                <paper-item>Term2</paper-item>
+                <paper-item>Term3</paper-item>
+              </paper-menu>
+              </paper-dropdown-menu>
+            </span> 
+
+            <span class="inputelements">
+              <paper-input label="No of working Days" value="{{noofdays}}" allowed-pattern="[0-9]" maxlength="2"></paper-input>
+            </span>
+
+            <div id="btn1">
+              <paper-button on-click="FnSubmit" id="subid">Submit</paper-button> 
+            </div>
+          </table>
+        </div>
+    </div>
+
+
+      <master-ui-service id="uiservice"></master-ui-service>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'working-days-card',
+      acdemic:function(){
+               this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
+     },
+     
+      
+     /* Fnterm:function(e){
+      this.$.fnworkingdialog.open();
+      },
+     */
+      fnterm:function(e){
+        this.termids=e.target.selectedItem.textContent.trim();
+        this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
+        this.noofdays="";
+  
+        this.$.uiservice.termrecovery(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade);
+      },
+     SelectGradeid:function(e){
+       this.termgrade=e.target.selectedItem.value;
+      },
+      FnSubmit:function(e){
+            this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
+            alert( this.acadamicyears);
+           if(this.termid11==""){
+            alert("select the current section");
+           }
+           else{
+    this.$.uiservice.terminsert(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade,this.noofdays);
+       this.noofdays="";
+      document.querySelector('#termid11').selected=-1;
+      //document.querySelector('#grdj').selected=-1;
+   
+        // temarr.splice(obj);
+        }
+      },
+      rfclaen:function(e){
+       document.querySelector('#termid11').selected=-1;
+       document.querySelector('#wgradeid').selected=-1;
+      // document.querySelector('#wacadamicid').selected=-1;
+       this.noofdays="";
+   },
+
+ });
+  })();
+  </script>
+</dom-module>

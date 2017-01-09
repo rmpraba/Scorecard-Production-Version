@@ -111,9 +111,6 @@
         <section data-category="approveassesment">
           <approve-one-to-four-card></approve-one-to-four-card>
         </section>
-        <!-- <section data-category="languageenrichment">
-          <language-enrichment-card></language-enrichment-card>
-        </section> -->
         <section data-category="beginnertermanalysis">
           <beginner-term-analysis-card></beginner-term-analysis-card>
         </section>
@@ -141,11 +138,44 @@
         <section data-category="subjectcard">
           <subject-card></subject-card>
         </section>
-      </iron-pages>
+        <section data-category="school-creation-card">
+          <school-creation-card></school-creation-card>
+        </section>
+        <section data-category="category-card">
+          <category-card></category-card>
+        </section>
+         <section data-category="grade-creation-card">
+          <grade-creation-card></grade-creation-card>
+        </section>
+        <section data-category="new-employee-creation-card">
+          <new-employee-creation-card></new-employee-creation-card>
+        </section>
+         <section data-category="working-days-card">
+          <working-days-card></working-days-card>
+        </section>
+         <section data-category="student-transfer-grade">
+          <student-transfer-grade></student-transfer-grade>
+        </section>
+        <section data-category="master-school_type-creation">
+          <master-school_type-creation></master-school_type-creation>
+        </section>
+         <section data-category="employe-schooltype-to-category-card">
+          <employe-schooltype-to-category-card></employe-schooltype-to-category-card>
+        </section>
+          <section data-category="employe-category-creation-card">
+          <employe-category-creation-card></employe-category-creation-card>
+        </section>
+        </section>
+          <section data-category="school-grade-to-subject-card">
+          <school-grade-to-subject-card></school-grade-to-subject-card>
+        </section>
+        <section data-category="student-to-subject-mapping-card">
+          <student-to-subject-mapping-card></student-to-subject-mapping-card>
+        </section>
+    </iron-pages>
     </div>
     
-
-    <div class="footer"></div>
+  <div class="footer"></div>
   </div>
 
   </template>
@@ -171,13 +201,63 @@
   FnHome:function(){    
      // alert(localStorage.getItem("curr_sess_page"));
 
+    if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+     if(localStorage.getItem("curr_sess_page")=="student-to-subject-mapping-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="school-grade-to-subject-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+      if(localStorage.getItem("curr_sess_page")=="employe-category-creation-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="category-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    
+    if(localStorage.getItem("curr_sess_page")=="master-school_type-creation")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+   if(localStorage.getItem("curr_sess_page")=="student-transfer-grade")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="working-days-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+        if(localStorage.getItem("curr_sess_page")=="new-employee-creation-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="grade-creation-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    
     if(localStorage.getItem("curr_sess_page")=="cc-eng-onetofour-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
-      document.querySelector('term-assesment-card').FnRefreshcard();
-      document.querySelector('cc-eng-onetofour-card').FnRefresh();      
-    }
+     }
     if(localStorage.getItem("curr_sess_page")=="cc-maths-onetofour-card")
     {
       this.page="teacherhomecard";
@@ -462,6 +542,14 @@
        document.querySelector('beginner-assesment-card').FnRefresh();
        // document.querySelector('language-enrichment-card').FnRefresh();
     }
+
+     if(localStorage.getItem("curr_sess_page")=="school-creation-card")
+    {
+      this.page="teacherhomecard";
+     /* document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('term-assesment-card').FnRefreshcard();
+      document.querySelector('cc-eng-onetofour-card').FnRefresh();      
+   */ }
   },
 
   FnsetTitle:function(title){

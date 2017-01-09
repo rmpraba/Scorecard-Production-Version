@@ -1,0 +1,173 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+
+
+<dom-module id="category-card">
+  <template>
+    <style>
+      :host
+      {
+         margin-left: 10%;
+        display: block;      
+         @apply(--layout-center);
+        /*width: 40%;*/
+      }
+      .card          
+      {
+         @apply(--layout-center);
+        width: 55%;
+        margin-left: 10%;
+      }
+      .title
+      {
+        @apply(--layout-center);
+        width: 255%;
+        margin-left: 33%; 
+      }
+       .creatediv paper-button
+      {
+      background-color: #363636;
+      color: #ffffff;
+      width: 7%;
+      margin-left: 39%;
+      margin-top: 3%;
+      }
+
+      .buttons paper-button
+      {
+        @apply(--layout-right);
+      background-color: #363636;
+      color: #ffffff;
+      width: 10%;
+      margin-top: 6%;
+      }
+     /* .category
+      {
+        margin-top: 4%;
+        margin-left:30%;
+        width: 50%;
+      } 
+
+      #categorydialog
+      {
+        width: 40%;
+        margin: 0 auto;
+        box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
+      }*/
+      .popup-btn
+      {
+        /*margin: 0 auto;*/
+        @apply(--layout-right);
+        margin-left: 30%;
+      }
+       table{
+         border-collapse: collapse;
+        border: 1px solid #dedede;
+        width: 90%;
+      }
+      .outcard{
+        @apply(--layout-horizontal);
+      }
+
+      .creatediv{
+         border-radius: 10px;
+          border: 1px solid #6699ff;
+          padding: 10px; 
+          width: 25%;
+          max-height: 270px;
+          /*height: 150px; */
+      }
+      
+    </style>
+     
+  <div class="title"> 
+        <h3><b>CATEGORY</b></h3>
+  </div>
+
+  <div class="outcard">
+    <div>
+      <table>
+          <tr>
+              <th><label>Category ID</label></th>
+              <th><label style="margin-left:-5%">Category Name</label></th>
+          </tr>
+
+          <template is="dom-repeat" items="{{catarr}}" as="ca">
+              <tr><td colspan="3">
+              <category-display-card  categoryname="{{ca.category_name}}" categoryid="{{ca.category_id}}"  categorytype="{{ca.category_type}}" hidecategoryinput="true" hidecategoryitem="false">  </category-display-card></td>
+              </tr>
+          </template>   
+      </table>
+    </div>
+
+    <div hidden>{{temphidden}}</div>
+    
+    <div class="creatediv">
+        <div class="card">
+              <label>Create New Category</label>
+              <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
+              <paper-input value="{{categoryname}}" label="Category Name"></paper-input>
+        </div>  
+
+        <div class="buttons">
+              <paper-button  class="popup-btn" on-click="FnSubmit">Submit </paper-button>    
+        </div>
+    </div>
+  </div>
+    
+    <master-ui-service id="uiservice"></master-ui-service>
+
+  </template>
+
+    <script>
+    (function() {
+    'use strict';
+       
+    Polymer({
+      is: 'category-card',
+
+      ready:function()
+      {
+       //alert("test");   
+       this.$.uiservice.FnFetchCategorySeq();
+       this.$.uiservice.FnFetchCategoryname();
+       this.$.hidenewcategorycard=true;
+      },
+      FnRefresh:function()
+      {
+         this.categoryname=""; 
+      },
+ 
+      FnSubmit:function()
+      {
+        if(this.categoryname==null || this.categoryname=="")
+        {          
+          alert("Please enter categoryname before submit");
+        }
+        else
+        {
+        //alert("test");
+        var categoryid=(this.categoryname).toLowerCase();
+        //alert(this.categoryname);
+        this.$.uiservice.FnSetCategoryInfo(this.categorytype,this.categoryname,categoryid,this.temphidden);
+       //  this.$.uiservice.FnFetchCategorySeq();
+         document.querySelector('category-card').FnRefresh(); 
+         //this.$.categorydialog.toggle();                       
+        }
+      }
+      
+      /*Fncreate:function()
+      {
+           this.$.uiservice.FnFetchCategorySeq();
+            this.$.categorydialog.open();   
+      }
+      */
+    });
+  })();
+  </script>
+</dom-module>
