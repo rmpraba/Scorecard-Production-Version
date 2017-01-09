@@ -3,41 +3,81 @@
 <dom-module id="master-school_type-creation">
   <template>
     <style>
-      :host {
+      :host 
+      {
         display: block;
       }
+
+      .outercard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 0px;
+        margin-top: 6%;
+        width: 50%;
+        margin-left: 25%;
+        min-height: 300px;
+      }
+      .cbutton
+      {
+        background-color: #363636;
+        color: #ffffff;
+        width: 20%;
+        margin-left: 78%;
+        margin-top: 3%;
+
+      }
+      .school
+      {
+        margin-top: 2%;
+      }
     </style>
-      <div class="title"> 
-    <h3>SCHOOLTYPE CREATION TO GRADE MAPPING</h3>
+
+    <div class="title"> 
+      <CENTER>
+        <h3><b>SCHOOL TO SCHOOL TYPE</b></h3>
+      </CENTER>
     </div>
-    <div class="cbutton">
-    <paper-button on-click="Fncreate">Create </paper-button>
+
+    <div>
+        <div class="outercard">
+          <div class="cbutton">
+            <CENTER>
+              <paper-button on-click="Fncreate">School Type Mapping</paper-button>
+            </CENTER>
+          </div>
+
+          <div class="school">
+            <template is="dom-repeat" items="{{setschooltypeinfoarr}}" as="s">
+              <master-school-type-creation-item-card  schoolid="{{s.school_id}}" schooltypename="{{s.school_type_name}}" schooltypeid="{{s.school_type_id}}" hideschooltypenameinput="true" hideschooltypenameitem="false">     
+              </master-school-type-creation-item-card>
+            </template>    
+          </div>
+        </div>
+
+
+        <paper-dialog id="schooldialog" modal>
+          <div class="card">                                                    
+            <paper-input value="{{schoolname}}" label="Schooltype name"></paper-input>  
+              <paper-dropdown-menu  label="Select School Type">
+                <paper-menu id="schooltypename" class="dropdown-content"   on-iron-select="schoolTypeName">
+                  <template is="dom-repeat" items="{{SchoolToschoolTypearr}}">
+                  <paper-item value="{{item.school_type_id}}">{{item.school_type_name}}</paper-item>
+                  </template>       
+                </paper-menu>
+              </paper-dropdown-menu>
+          </div>
+
+          <div class="buttons">
+            <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
+            <paper-button dialog-confirm autofocus>Close </paper-button>
+          </div>
+        </paper-dialog>
     </div>
-    <div class="school">
-   <template is="dom-repeat" items="{{setschooltypeinfoarr}}" as="s">
-   <master-school-type-creation-item-card  schoolid="{{s.school_id}}" schooltypename="{{s.school_type_name}}" schooltypeid="{{s.school_type_id}}" hideschooltypenameinput="true" hideschooltypenameitem="false">      
-    </master-school-type-creation-item-card>
-    </div>
-    </template>   
-     <paper-dialog id="schooldialog" modal>
-     <div class="card">                                                    
-       <paper-input value="{{schoolname}}" label="Schooltype name"></paper-input>  
-        <paper-dropdown-menu  label="Select School Type">
-            <paper-menu id="schooltypename" class="dropdown-content"   on-iron-select="schoolTypeName">
-              <template is="dom-repeat" items="{{SchoolToschoolTypearr}}">
-                <paper-item value="{{item.school_type_id}}">{{item.school_type_name}}</paper-item>
-              </template>       
-            </paper-menu>
-        </paper-dropdown-menu>
-    </div>   
-    <div class="buttons">
-    <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
-    <paper-button dialog-confirm autofocus>Close </paper-button>
-    </div>
-    </paper-dialog>
+
     <master-ui-service id="service"></master-ui-service>
-  
-</template>
+  </template>
+
   <script>
   (function() {     
     'use strict';
