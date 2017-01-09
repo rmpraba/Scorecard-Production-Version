@@ -23,7 +23,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', function (req, res) {
 
-   res.sendFile("app/index.html" );
+  res.sendFile("app/index.html" );
 })
 
 // app.get('/', function (req, res)                                         
