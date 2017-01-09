@@ -203,7 +203,9 @@
       FnSelectSubject:function(e){
         subject = e.target.selectedItem.textContent.trim();
         localStorage.setItem("curr_sess_subject",subject);
-        if(type=="Subjectwise"||type=="Categorywise"){   
+        if(type=="Subjectwise"||type=="Categorywise"){  
+          // if(type=="Categorywise") 
+          // document.querySelector('categorywise-report').FnRefresh();
           this.$.categ.setDefaultHeaders(); 
           this.$.subject.setDefaultHeaders();      
           this.$.reportservice.callFetchstudentnameService(); 

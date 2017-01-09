@@ -107,7 +107,9 @@
       <div class="card" hidden$="{{Analysis}}">
        <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
       </div>
-
+      <div class="card" hidden$="{{feecollection}}">
+       <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
+      </div>
     </div>
     </div>
 
@@ -127,7 +129,8 @@
       </div>
         <div class="card" hidden$="{{comparison}}">
        <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
-     </div>   
+     </div>
+
     </div>
     <div class="inner2">
      <div class="card" hidden$="{{Approvalstatus}}">
@@ -136,6 +139,7 @@
      <div class="card" hidden$="{{teach_obser}}">
        <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
      </div> 
+
   </div>
  </div>
    <div class="inner1">
@@ -153,6 +157,23 @@
           <paper-button on-click="FnCreategrade" no ink><img src="../../images/grade.jpg" height="180px" width="180px">
               <h4>Grade</h4>
           </paper-button>
+      </div>
+      <div class="card" hidden$="{{feecollection}}">
+       <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
+      </div>
+    </div>
+    </div>
+    <div class="card" hidden$="{{createschooltype}}">
+      <paper-button on-click="FnCreateSchooltype" no ink><img src="../../images/schooltype.jpg" height="180px" width="180px">
+        <h4>School Type</h4>
+      </paper-button>
+    </div>
+
+    <div class="card" hidden$="{{createsubject}}">
+       <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px">
+          <h4>Subjects</h4>
+      </paper-button>
+
     </div>
      <div class="card" hidden$="{{createemployee}}">
        <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px">
@@ -201,6 +222,15 @@
       
 
 
+    <div class="card" hidden$="{{createrole}}">
+       <paper-button on-click="FnCreateRole" no ink><img src="../../images/role.png" height="180px" width="180px">
+          <h4>Role</h4>
+       </paper-button>
+    </div> 
+
+
+    
+
     <div class="managementreport" hidden$="{{managementreport}}">
     <div class="inner1">
     <div class="card" hidden$="{{ConsolidatedReport}}">
@@ -208,6 +238,54 @@
     </div>
     </div>
     </div>
+
+     <!--  <div id="entry" class="card" hidden$="{{BA}}">    
+       <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div  class="card" hidden$="{{TA}}">
+       <paper-button on-click="FnSelectTermType" no ink><img src="../../images/term.png" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Report}}">
+       <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
+      </div>  
+      <div class="card" hidden$="{{GenerateReport}}">
+       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approve}}">
+       <paper-button on-click="FnApprovecard" no ink><img src="../../images/approve.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Analysis}}">
+       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{ConsolidatedReport}}">
+       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
+      </div>
+      <div class="card" hidden$="{{Approvalstatus}}">
+       <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
+      </div>
+       <div class="card" hidden$="{{teach_obser}}">
+       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{comparison}}">
+       <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{editinfo}}">
+       <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{createemployee}}">
+       <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px"></paper-button>
+     </div>
+     <div class="card" hidden$="{{createrole}}">
+       <paper-button on-click="FnCreateRole" no ink><img src="../../images/role.png" height="180px" width="180px"></paper-button>
+     </div>
+      <div class="card" hidden$="{{createsubject}}">
+       <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px"></paper-button>
+     </div> -->
+
+    
+    <!-- </center>   -->
+
+
     </div>
     <div class="cdialog">      
       <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
@@ -237,7 +315,11 @@
     <beginner-assesment-service id="bassesmentservice"></beginner-assesment-service>
     <scorecard-service id="scorecardservice"></scorecard-service>
     <teacher-observation_service id="observerservice"></teacher-observation_service>
+
     <master-ui-service id="uiservice"></master-ui-service> 
+
+    <master-ui-service id="uiservice"></master-ui-service>
+
   </template>
   <script>
   (function() {
@@ -250,7 +332,13 @@
         this.classteacher=true;
         this.coordinator=true;
         this.highlevelcommon=true;
+
+        this.createschooltype=true;
+        this.createsubject=true;
+        this.createrole=true;
+
         this.managementreport=true;
+
         this.createschoolz=true; 
         this.createcategory=true;
         this.createemployee=true;
@@ -262,6 +350,7 @@
         this.categorytoschooltype=true;
         this.gradetosubject=true;
         this.subjecttostudent=true;
+
        //  this.Report=true;
        //  this.GenerateReport=true;
        //  this.Approve=true;       
@@ -284,6 +373,11 @@
         localStorage.setItem("curr_sess_academicyear",academicyear); 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         this.$.assesmentservice.callTermService("Term");
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="feecollectionupdate") 
+         {
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('studentlistcard','');
+         } 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard") 
          {
           document.querySelector('app-card').setPage('homepage','');
@@ -386,10 +480,18 @@
         this.$.assesmentservice.callApproveService();   
       },
       FnHideView:function(){ 
+
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='super-admin')
+        {
+          this.createschooltype=false;
+          this.createsubject=false;
+          this.createrole=false;
+        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
           // this.createrole=false;
           // this.createemployee=false;  
+
           // this.teach_obser=false;  
          }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='super-admin'){
@@ -407,6 +509,12 @@
           this.gradetosubject=false;
           this.subjecttostudent=false;
         }
+
+          // this.teach_obser=false;        
+        }
+     
+
+
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
           this.subjectteacher=false;
           // this.BA=false;
@@ -502,16 +610,22 @@
         this.$.scorecardservice.callGradeService();
         this.$.cdialog.toggle(); 
       },
+
     FnCreateCategory:function(e)
        {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('category-card','');
         document.querySelector('category-card').ready();
       },
-      FnCreateRole:function(e){
+
+      FnCreateRole:function(e)
+      {
+
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('rolecard','');
+        document.querySelector('role-card').ready();
       },
+
        FnCreategrade:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
@@ -584,6 +698,27 @@
       {    
       document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('school-creation-card','');
+     },
+     FnCreatesubject:function(e)
+      {
+        document.querySelector('app-card').setPage('homepage','');
+
+        document.querySelector('home-page').setPage('subjectcard','');  
+        document.querySelector('subject-card').ready();  
+      },
+      FnCreateSchooltype:function(e)
+      {
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('schooltype-card','');
+        document.querySelector('schooltype-card').ready();
+   
+      },
+      FnFeeCollection:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');
+        // this.$.scorecardservice.callFetchstudentnameService();
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();        
+
 
           this.$.uiservice.fnschoolcreation();   
           this.$.uiservice.fnschoolidgenerate();

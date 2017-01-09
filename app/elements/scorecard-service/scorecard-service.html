@@ -25,7 +25,17 @@
         on-response="sectionResponse"
         debounce-duration="300"
     >
+    <iron-ajax
+        method="post"
+        id="fetchstudnameforenableajax"
+        url="{{fetchstudnameforenableurl}}"
 
+        params="{{fetchstudnameforenableparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="fetchstudnameforenableResponse"
+        debounce-duration="300"
+    > 
     <iron-ajax
         method="post"
         id="fetchstudnameajax"
@@ -170,6 +180,17 @@
         on-response="fetchschoolResponse"
         debounce-duration="300"
     >
+
+    <iron-ajax        
+        method="post"
+        id="enablestudentajax"
+        url="{{enablestudenturl}}"
+        params="{{enablestudentparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="enablestudentResponse"
+        debounce-duration="300"
+    >
   </template>
   <script>
   (function() {
@@ -218,6 +239,8 @@
       },
       gradeResponse:function(e){
         // alert(JSON.stringify(e.detail.response.returnval));
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=='feecollectionupdate')
+          document.querySelector('generate-studentlist-outcard').gradearr=e.detail.response.returnval;
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Scorecard')
           document.querySelector('cce-generate-score-card').gradearr=e.detail.response.returnval;
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Comparisonreport')
@@ -239,7 +262,9 @@
          this.sectionparam= obj;
          this.$.sectionajax.generateRequest();
       },
-      sectionResponse:function(e){        
+      sectionResponse:function(e){ 
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=='feecollectionupdate')
+          document.querySelector('generate-studentlist-outcard').sectionarr=e.detail.response.returnval;       
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Scorecard')
           document.querySelector('cce-generate-score-card').sectionarr=e.detail.response.returnval; 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Comparisonreport')
@@ -285,7 +310,16 @@
         // alert(JSON.stringify(arr));
         
         document.querySelector('cce-generate-score-card').FnHide();
-        document.querySelector('student-list-card').studentarr=arr;  
+        // document.querySelector('generate-studentlist-outcard').FnHide();
+        for(var i=0;i<arr.length;i++){
+          arr[i].sno=i+1;
+          if(arr[i].feepaid_status=='Yes')
+            arr[i].editable=false;
+          else
+            arr[i].editable=true;
+        }
+        document.querySelector('student-list-card').studentarr=arr; 
+        // document.querySelector('generate-studentlist-card').studentarr=arr; 
         
       },
       callFetchstudentinfoService:function(studid)
@@ -770,6 +804,36 @@
         if(e.detail.response=="mail sent")
             document.querySelector('cce-onetofour-score-card').FnCloseSpinner();
       },
+      callFetchstudentnameforenableService:function(){
+        this.fetchstudnameforenableurl=sessionStorage.getItem("addrinfo")+"/fetchstudnameforenable-service";
+        var obj={"scoolid":"","roleid":"","grade":"","section":""};
+        obj.roleid=sessionStorage.getItem("curr_sess_loggedroleid");
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.grade=localStorage.getItem("curr_sess_grade");
+        obj.section=localStorage.getItem("curr_sess_section");
+        this.fetchstudnameforenableparam=obj;
+        this.$.fetchstudnameforenableajax.generateRequest();
+      },
+      fetchstudnameforenableResponse:function(e){
+        var arr=e.detail.response.returnval;
+        // alert(JSON.stringify(arr));
+        document.querySelector('generate-studentlist-outcard').FnHide();
+        
+        document.querySelector('generate-studentlist-card').studentarr=arr;  
+      },
+      FnEnableStudentService:function(studid){
+        this.enablestudenturl=sessionStorage.getItem("addrinfo")+"/enablestudent-service";
+        var obj={"scoolid":"","roleid":"","grade":"","section":""};
+        
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.studentid=studid;
+        this.enablestudentparam=obj;
+        this.$.enablestudentajax.generateRequest();
+      },
+      enablestudentResponse:function(e){
+        alert(e.detail.response.returnval);
+        this.callFetchstudentnameforenableService();
+      }
     });
   })();
   </script>

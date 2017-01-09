@@ -1,0 +1,90 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="schooltype-display-card">
+  <template>
+    <style>
+      :host 
+      {
+        display: block;
+      }
+      .card
+      {
+        @apply(--layout-center);
+        @apply(--layout-horizontal);
+        border-bottom: 1px solid #dedede;
+        width: 200%;        
+      }
+       paper-item,paper-input
+      {
+        width:40%;
+      }
+      paper-icon-button
+      {
+        width:4%;
+      }
+      .itemcard
+      {
+      @apply(--layout-horizontal); 
+      }
+    </style>   
+
+
+    
+    <div class='itemcard'>
+        <paper-item>{{schooltypeid}}</paper-item>
+        <paper-item hidden$="{{hideschooltypenameitem}}">{{schooltypename}}</paper-item>
+        <paper-input value="{{schooltypename}}" hidden$="{{hideschooltypenameinput}}"></paper-input>
+        <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
+        <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
+        <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+    </div>
+  
+     <master-ui-service id="sclservice"></master-ui-service>
+  </template>
+
+  
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'schooltype-display-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'schooltype-display-card',
+          notify: true
+        }
+      },
+      ready:function()
+      {
+        //alert("test");   
+        this.hideschooltypenameinput=true;
+        this.hideschooltypenameitem=false;
+      },
+      FnDelete:function()
+      {
+        //alert("test");
+        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+      },
+      FnEdit:function()
+      {
+        //alert("test");
+        this.hideschooltypenameinput=false        
+        this.hideschooltypenameitem=true;;
+
+      },
+      FnSave:function()
+      {
+        //alert("test");
+        this.$.sclservice.FnUpdateSchooltypename(this.schooltypename,this.schooltypeid);
+        this.hideschooltypenameinput=true;
+        this.hideschooltypenameitem=false;
+      }
+      
+    });
+  })();
+  </script>
+</dom-module>

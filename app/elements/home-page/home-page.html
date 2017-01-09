@@ -138,6 +138,7 @@
         <section data-category="subjectcard">
           <subject-card></subject-card>
         </section>
+
         <section data-category="school-creation-card">
           <school-creation-card></school-creation-card>
         </section>
@@ -172,10 +173,19 @@
         <section data-category="student-to-subject-mapping-card">
           <student-to-subject-mapping-card></student-to-subject-mapping-card>
         </section>
-    </iron-pages>
-    </div>
-    
-  <div class="footer"></div>
+
+        <section data-category="schooltype-card">
+          <schooltype-card></schooltype-card>
+          </section>
+        <section data-category="studentlistcard">
+          <generate-studentlist-outcard></generate-studentlist-outcard>
+
+        </section>
+      </iron-pages>
+    </div>    
+
+    <div class="footer"></div>
+
   </div>
 
   </template>
@@ -367,6 +377,13 @@
       document.querySelector('cce-generate-score-card').FnRefresh();
       document.querySelector('cce-onetofour-score-card').FnRefresh();
     }
+    if(localStorage.getItem("curr_sess_page")=="studentlistcard")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('generate-studentlist-outcard').FnRefresh();
+      document.querySelector('generate-studentlist-card').FnRefresh();
+    }
     if(localStorage.getItem("curr_sess_page")=="ccefivetotenscorecard")
     {
       this.page="teacherhomecard";
@@ -543,6 +560,7 @@
        // document.querySelector('language-enrichment-card').FnRefresh();
     }
 
+
      if(localStorage.getItem("curr_sess_page")=="school-creation-card")
     {
       this.page="teacherhomecard";
@@ -550,6 +568,30 @@
       document.querySelector('term-assesment-card').FnRefreshcard();
       document.querySelector('cc-eng-onetofour-card').FnRefresh();      
    */ }
+
+
+     if(localStorage.getItem("curr_sess_page")=="schooltypecard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('schooltype-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+
+    if(localStorage.getItem("curr_sess_page")=="subjectcard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('subject-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+
+     if(localStorage.getItem("curr_sess_page")=="rolecard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('role-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+       
+    }
+
   },
 
   FnsetTitle:function(title){
