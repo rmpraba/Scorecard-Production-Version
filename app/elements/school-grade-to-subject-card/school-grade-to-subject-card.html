@@ -114,12 +114,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="subbutton">
             <paper-button on-click="Generate">Generate</paper-button>
           </div>
+          
       </div>     
     </div>
 
 
 
-  <!-- <div> -->
+  <div id="tbz1">
     <div class="list-group col-sm-12 panel-body form-category">
       <table class="table table-bordered">
       <!-- <table border="1" class="tt"> -->
@@ -128,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <td class="outcard"></td>
             <td class="innercard">
               <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:22%; margin-left:9%;">{{view.srtarr}}</h4>
+                <h4 style="width:22%; margin-left:9%;">{{view.srtarr}}</h4>   
               </template>
             </td>
             <td class="outcard"></td>
@@ -146,17 +147,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
         </tbody>    
       </table>  
-    </div>  
-
-          <div>
-            <paper-button on-click='FnSave'>Submit</paper-button>  
-          </div>
-  <!-- </div>   -->      
-                 
-
-
-       <master-ui-service id="uiservice"></master-ui-service>
- 
+    </div>
+    </div> 
+    <master-ui-service id="uiservice"></master-ui-service>
+        <div >
+            <paper-button on-click='FnSave'></paper-button>  
+         </div>
+         <div style="color:white;background-color:black;width:7%;margin-left:41%;border-radius:10px" id="z">
+            <paper-button on-click="FnSavez">Submit</paper-button>  
+           </div>
   </template>
   <script>
   (function() {
@@ -166,7 +165,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    var passservicearr=[];
     Polymer({
       is: 'school-grade-to-subject-card',
-
+     ready:function(){
+      this.$.z.hidden=true;
+       this.$.tbz1.hidden=true;
+     },
        getgrade:function(arr1){
          getgradearr=arr1;
        //  alert(JSON.stringify(getgradearr));
@@ -183,7 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fnapssgradedetails:function(arr){
         passservicearr=arr;  
       },
-      FnSave:function(e){
+      FnSavez:function(e){
            alert('save');
            alert(JSON.stringify(passservicearr));
            this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
@@ -268,9 +270,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    //  alert(JSON.stringify(overall));
      // overall.splice(0,1);
          this.bigarr=overall;
-       this.$.uiservice.fngetThefunction(this.schooltypename,this.schooltypesubjectid);
-      overall.splice();
+          this.$.uiservice.fngetThefunction(this.schooltypename,this.schooltypesubjectid);
+         overall.splice();
          generatearr=[];
+         this.$.z.hidden=false;
+         this.$.tbz1.hidden=false;
+    
         } 
 
     });
