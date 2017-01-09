@@ -6754,7 +6754,7 @@ var collection = {"school_id":req.query.school_id,"emp_id":req.query.emp_id,"emp
        {
         //console.log(rows);
         res.status(200).json({'returnval': 'Inserted!'});
-        }
+        }    
       else 
       {
         console.log(err);

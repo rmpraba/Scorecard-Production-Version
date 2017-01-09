@@ -69,15 +69,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 80%;
         margin-top: 4%;
       }
-      .but1
+       #subbutton1
       {
-        @apply(--layout-right);
+        margin-left:35%;
         background-color: #363636;
         color: #ffffff;                
-        width: 10%;
-        margin-left: 70%;
-        margin-top: 4%;
+        width:17%;
+      
       }
+      /*.but1
+      {
+       margin-left: 70%;
+       margin-top: 4%;
+       background-color:#363636;
+       height:-1%;
+       width:10%;
+       color: #ffffff;                
+       
+        
+      }*/
       
      /* .container
       {
@@ -124,7 +134,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </div>
 
 
-        <div>
+     <div id="talhidn">
         <div class="list-group col-sm-12 panel-body form-category">
           <table class="table table-bordered">
             <div class="container">
@@ -157,10 +167,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </table>
         </div>   
-            <div class="but1">
-              <paper-button on-click="fnsubmit">Submit</paper-button>
-            </div>
-        </div>    
+        </div>  
+           <span id="subbutton1">
+            <paper-button on-click="FnSubmit">Submit</paper-button>
+          </span>
   <master-ui-service id="uiservice"></master-ui-service>      
 </template>
           <script>
@@ -172,6 +182,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    //  var empgradearr=[];
     Polymer({
       is: 'employe-schooltype-to-category-card',
+      ready:function(){
+        this.$.subbutton1.hidden=true;
+      },
        getgrade:function(arr){
         empteacharr=arr;
         this.emparr=empteacharr;
@@ -269,6 +282,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          overall.splice();
          generatearr=[];
         // this.$.uiservice.fngetThefunction();
+           this.$.subbutton1.hidden=false;
+     
         }
      });
   })();
