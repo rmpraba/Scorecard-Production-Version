@@ -68,9 +68,180 @@
         </tr>
       </template>
       </table>
+
+      <div hidden id="categorywiseengreport">
+      <tr hidden$="{{hideeng}}"><th>
+      <h3>Categorywise Report -AY-{{academicyear}}</h3>  
+      <h4> Grade: {{grade}} - &nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4> </th>
+      </tr> 
+      <table border="1" style="border-collapse: collapse;" >
+      
+      <tr hidden$="{{hideeng}}">
+        <th>Sno</th><th>Student Name</th><th colspan="6">Reading Skills</th><th colspan="10">Writing Skills</th><th colspan="4">Speaking Skills</th><th colspan="2">Listening Skills</th><th colspan="2">Written Work</th>
+      </tr> 
+     
+       <tr hidden$="{{hidesub1}}">
+       <!-- <th>Sno</th><th>Student Name</th>        -->
+       <th></th><th></th>
+        <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
+        <th colspan="2">{{subject}}</th>
+        </template>
+       </tr>
+       <tr>
+        <th></th><th></th>
+        <template is="dom-repeat" items="{{titlearr}}" as="title"> 
+        <th>{{title}}</th>
+        </template>
+       </tr>     
+      <template is="dom-repeat" items="{{itemarr}}" as="i">
+        <tr>
+      <template is="dom-repeat" items="{{i}}" as="item">
+        <td>{{item}}</td>
+      </template>
+        </tr>
+      </template>
+      </table>
+      </div>
+
+      <div hidden id="categorywisemathreport">
+     <tr hidden$="{{hidemath}}">
+       <h3>Categorywise Report -AY-{{academicyear}}</h3>  
+      <h4> Grade: {{grade}} - &nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4>
+      </tr>
+      <table border="1" style="border-collapse: collapse;" >  
+      
+      <tr hidden$="{{hidemath}}">
+         <th>Sno</th><th>Student Name</th><th colspan="2">Concept</th><th colspan="4">Activity/Project</th><th colspan="4">Mental Ability</th><th colspan="4">Table Activity</th><th colspan="2">Written Work</th>
+      </tr> 
+     
+       <tr hidden$="{{hidesub1}}">
+       <!-- <th>Sno</th><th>Student Name</th>        -->
+       <th></th><th></th>
+        <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
+        <th colspan="2">{{subject}}</th>
+        </template>
+       </tr>
+       <tr>
+        <th></th><th></th>
+        <template is="dom-repeat" items="{{titlearr}}" as="title"> 
+        <th>{{title}}</th>
+        </template>
+       </tr>     
+      <template is="dom-repeat" items="{{itemarr}}" as="i">
+        <tr>
+      <template is="dom-repeat" items="{{i}}" as="item">
+        <td>{{item}}</td>
+      </template>
+        </tr>
+      </template>
+      </table>
+      </div>
+
+      <div hidden id="categorywiseevsreport">
+      <tr hidden$="{{hideevs}}">
+        <th><h3>Categorywise Report -AY-{{academicyear}}</h3>  
+      <h4> Grade: {{grade}} - &nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4> </th>
+      </tr>
+      <table border="1" style="border-collapse: collapse;" > 
+      
+      <tr hidden$="{{hideevs}}">
+         <th>Sno</th><th>Student Name</th><th colspan="2">Environmental sensitivity</th><th colspan="6">Activity/Project</th><th colspan="6">Group Discussion</th><th colspan="2">Written Work</th>
+      </tr> 
+     
+       <tr hidden$="{{hidesub1}}">
+       <!-- <th>Sno</th><th>Student Name</th>        -->
+       <th></th><th></th>
+        <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
+        <th colspan="2">{{subject}}</th>
+        </template>
+       </tr>
+       <tr>
+        <th></th><th></th>
+        <template is="dom-repeat" items="{{titlearr}}" as="title"> 
+        <th>{{title}}</th>
+        </template>
+       </tr>     
+      <template is="dom-repeat" items="{{itemarr}}" as="i">
+        <tr>
+      <template is="dom-repeat" items="{{i}}" as="item">
+        <td>{{item}}</td>
+      </template>
+        </tr>
+      </template>
+      </table>
+      </div>
+
+      <div hidden id="categorywisecompreport">
+      <tr hidden$="{{hidecomp}}">
+        <td><h3>Categorywise Report -AY-{{academicyear}}</h3>  
+      <h4> Grade: {{grade}} - &nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4> </td>
+      </tr>
+      <table border="1" style="border-collapse: collapse;" > 
+       
+      <tr hidden$="{{hidecomp}}">
+          <th>Sno</th><th>Student Name</th><th colspan="2">Activity</th>
+      </tr> 
+     
+       <tr hidden$="{{hidesub1}}">
+       <!-- <th>Sno</th><th>Student Name</th>        -->
+       <th></th><th></th>
+        <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
+        <th colspan="2">{{subject}}</th>
+        </template>
+       </tr>
+       <tr>
+        <th></th><th></th>
+        <template is="dom-repeat" items="{{titlearr}}" as="title"> 
+        <th>{{title}}</th>
+        </template>
+       </tr>     
+      <template is="dom-repeat" items="{{itemarr}}" as="i">
+        <tr>
+      <template is="dom-repeat" items="{{i}}" as="item">
+        <td>{{item}}</td>
+      </template>
+        </tr>
+      </template>
+      </table>
+      </div>
+
+      <div hidden id="categorywisegeneralreport">
+      <tr hidden$="{{hidesub2}}">
+        <td>
+          <h3>Categorywise Report -AY-{{academicyear}}</h3>  
+      <h4> Grade: {{grade}} - &nbsp&nbsp{{section}} &nbsp&nbsp Term: {{termname}} &nbsp;&nbsp;Subject: {{subject}} </h4>
+        </td>
+      </tr>
+      <table border="1" style="border-collapse: collapse;"  hidden>
+       
+        <tr hidden$="{{hidesub2}}">
+       <th>Sno</th><th>Student Name</th>       
+        <template is="dom-repeat" items="{{subjectarr}}" as="subject"> 
+        <th colspan="2">{{subject}}</th>
+        </template>
+       </tr>
+       <tr>
+        <th></th><th></th>
+        <template is="dom-repeat" items="{{titlearr}}" as="title"> 
+        <th>{{title}}</th>
+        </template>
+       </tr>     
+      <template is="dom-repeat" items="{{itemarr}}" as="i">
+        <tr>
+      <template is="dom-repeat" items="{{i}}" as="item">
+        <td>{{item}}</td>
+      </template>
+        </tr>
+      </template>
+      </table>
+      </div>
       </div>
     </div>
-    <input type="button" id="btn2" onclick="tableToExcel('categorywisereport', 'Categorywise Report')" value="Export to Excel">
+    <input type="button" hidden$="{{hideeng}}" id="btn2" onclick="tableToExcel('categorywiseengreport', 'Categorywise Report')" value="Export to Excel">
+    <input type="button" hidden$="{{hidemath}}" id="btn2" onclick="tableToExcel('categorywisemathreport', 'Categorywise Report')" value="Export to Excel">
+    <input type="button" hidden$="{{hideevs}}" id="btn2" onclick="tableToExcel('categorywiseevsreport', 'Categorywise Report')" value="Export to Excel">
+    <input type="button" hidden$="{{hidecomp}}" id="btn2" onclick="tableToExcel('categorywisecompreport', 'Categorywise Report')" value="Export to Excel">
+    <input type="button" hidden$="{{hidesub2}}" id="btn2" onclick="tableToExcel('categorywisegeneralreport', 'Categorywise Report')" value="Export to Excel">
   </template>
   <script type="text/javascript">
   var tableToExcel = (function() {
@@ -122,19 +293,31 @@
       FnHideView:function(){
         if(localStorage.getItem("curr_sess_subject")=="English"||localStorage.getItem("curr_sess_subject")=="Hindi"||localStorage.getItem("curr_sess_subject")=="Kannada")
         {
+          // this.hidetop=true;
+          this.hidecomp=true;
+          this.hideevs=true;
+          this.hidemath=true;
           this.hideeng=false;
           this.hidesub1=false;
           this.hidesub2=true;
         }
         else if(localStorage.getItem("curr_sess_subject")=="Evs")
         {
+          // this.hidetop=true;
+          this.hidecomp=true;
           this.hideevs=false;
+          this.hidemath=true;
+          this.hideeng=true;
           this.hidesub1=false;
           this.hidesub2=true;
         }
         else if(localStorage.getItem("curr_sess_subject")=="Mathematics")
         {
+          // this.hidetop=true;
+          this.hidecomp=true;
+          this.hideevs=true;
           this.hidemath=false;
+          this.hideeng=true;
           this.hidesub1=false;
           this.hidesub2=true;
         }

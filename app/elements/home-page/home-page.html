@@ -141,12 +141,16 @@
         <section data-category="subjectcard">
           <subject-card></subject-card>
         </section>
+
         <section data-category="schooltype-card">
           <schooltype-card></schooltype-card>
+          </section>
+        <section data-category="studentlistcard">
+          <generate-studentlist-outcard></generate-studentlist-outcard>
+
         </section>
       </iron-pages>
-    </div>
-    
+    </div>    
 
     <div class="footer"></div>
   </div>
@@ -290,6 +294,13 @@
       document.querySelector('cce-generate-score-card').FnRefresh();
       document.querySelector('cce-onetofour-score-card').FnRefresh();
     }
+    if(localStorage.getItem("curr_sess_page")=="studentlistcard")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('generate-studentlist-outcard').FnRefresh();
+      document.querySelector('generate-studentlist-card').FnRefresh();
+    }
     if(localStorage.getItem("curr_sess_page")=="ccefivetotenscorecard")
     {
       this.page="teacherhomecard";
@@ -323,7 +334,7 @@
        document.querySelector('teacherhome-card').FnRefresh();
        document.querySelector('consolidated-report-card').FnRefresh();
        document.querySelector('subjectwise-report-card').FnRefresh();
-       document.querySelector('categorywise-report-card').FnRefresh();
+       document.querySelector('categorywise-report').FnRefresh();
     }
      if(localStorage.getItem("curr_sess_page")=="cce-onetofour-score-card")
     {

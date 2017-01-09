@@ -237,7 +237,7 @@ app.post('/grade-service',  urlencodedParser,function (req, res)
     "in(select grade_id from mp_teacher_grade where "+
     "school_id='"+req.query.schoolid+"')";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select grade_name from md_grade where grade_id "+
     "in(select grade_id from mp_teacher_grade where "+
@@ -306,7 +306,7 @@ app.post('/section-service',  urlencodedParser,function (req, res)
     "where grade_name='"+req.query.gradename+"') and "+
     "school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"'";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     //console.log('5');
     var qur="select * from md_section where section_id in "+
@@ -5422,6 +5422,7 @@ app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
 
 
 
+
 app.post('/schooltypecreation-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_type_id":req.query.schooltypeid,"school_type_name":req.query.schooltypename};
@@ -5469,10 +5470,43 @@ app.post('/updateschooltypename-service' ,  urlencodedParser,function (req, res)
     if(!err)
     {
       res.status(200).json({'returnval': 'Updated!'});
+=======
+app.post('/fetchschool-service' ,  urlencodedParser,function (req, res)
+{  
+  var qur="SELECT * FROM md_school where id not in('School')";
+   console.log('-----------------------');
+   console.log(qur);
+   connection.query(qur,function(err, rows)
+    {
+    if(rows.length>0){
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': 'no rows!'});
+    });
+});
+
+
+//fetching student names
+app.post('/fetchstudnameforenable-service',  urlencodedParser,function (req,res)
+{   
+  var schoolid={school_id:req.query.schoolid};
+  var gradeid={grade_id:req.query.grade};
+  var sectionid={section_id:req.query.section};
+
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"' and feepaid_status='No'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {  
+      res.status(200).json({'returnval': rows});
+
     }
     else
     {
       console.log(err);
+
       res.status(200).json({'returnval': 'Not Updated!'});
     }
     });
@@ -5484,18 +5518,44 @@ app.post('/deleteschooltype-service' ,  urlencodedParser,function (req, res)
 {  
    
 var qur="DELETE FROM  md_school_type where  school_type_id='"+req.query.schooltypeid+"'";
-console.log(qur);
-  connection.query(qur,
+ connection.query(qur,
     function(err, rows)
     {
     if(!err)
-    {
+    {  
       res.status(200).json({'returnval': 'Deleted!'});
+
     }
     else
     {
       console.log(err);
-      res.status(200).json({'returnval': 'Not Deleted!'});
+
+      res.status(200).json({'returnval': 'Fail!'});
+    }
+    });
+});     
+
+
+//enable student names
+app.post('/enablestudent-service',  urlencodedParser,function (req,res)
+{   
+  var qur="update md_student set feepaid_status='Yes' where school_id='"+req.query.schoolid+"' and feepaid_status='No' and id='"+req.query.studentid+"'";
+
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+
+    {
+
+      res.status(200).json({'returnval': 'Enabled successfully!!'});
+
+    }
+    else
+    {
+      console.log(err);
+
+      res.status(200).json({'returnval': 'Unable to process!'});
     }
     });
     
@@ -5516,6 +5576,7 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
     else
       res.status(200).json({'returnval': ''});
     });
+
 });
 
 
