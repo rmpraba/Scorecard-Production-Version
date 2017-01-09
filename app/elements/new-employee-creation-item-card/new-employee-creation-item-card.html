@@ -14,88 +14,104 @@
       }
       .card{
         @apply(--layout-horizontal);
-        border-bottom: 1px solid #dedede;   
+        border-bottom: 1px solid #dedede;  
+        width: 100%;
+        margin-left: 7%; 
       }      
     </style>
   <div>
     <table class="card" id="card{{schoolid}}" >
-      <tr><td>{{employeeid}}</td><td hidden>{{employeepassword}}</td>
+      <tr>
+        <td>{{employeeid}}</td><td hidden>{{employeepassword}}</td>
         <td width="20%">{{employeename}}</td>
         <td width="5%" ><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button></td>
-   \    <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
+        <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
       </tr>
-    </table>   
+    </table>
+
    <paper-dialog id="entetroleset" modal style="width:75%;">
     <button type="button" class="close close-icon" dialog-dismiss>&times;</button>
+
        <div class="form-group-heading"><h4>employee personal  Details</h4></div>
-                 <div class="list-group col-sm-12 panel-body form-category">
-                            <paper-input value={{schoolid}} hidden></paper-input>
-                           <div class="col-sm-3">
-                         <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                      <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
-                        </div>
-                        <div class="col-sm-3">
-                         <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
-                        </div>
-                         <div class="col-sm-3">
-                         <gold-email-input label="Emailid" value="{{employeemail}}"></gold-email-input>
-                        </div>
-                        <div class="col-sm-3">
-                         <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
-                        </div>
-                     </div>
-
-
-  <div class="form-group-heading">
-              <h4>Employee Role Mapping</h4>
-         </div>
-             <div class="list-group col-sm-12 panel-body form-category">
-                 <paper-input value={{schoolid}} hidden></paper-input>
-        <div class="col-sm-12">
-            <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
-              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
-            </template>   
-         </div>
-             </div>
-           <iron-ajax          
-        id="selectschoolroleajax"
-        url="{{selectschoolroleurl}}"
-        params="{{selectschoolroleparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="selectschoolroleResponse"
-        debounce-duration="300"
-      ></iron-ajax>
-   <div class="form-group-heading">
-              <h4>Employee schooltype Mapping</h4></div>
           <div class="list-group col-sm-12 panel-body form-category">
-                <paper-input value={{schoolid}} hidden></paper-input>
-          <div class="col-sm-12">
+            <paper-input value={{schoolid}} hidden></paper-input>
+                           
+              <div class="col-sm-3">
+                <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
+              </div>
+                        
+              <div class="col-sm-3">
+                <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
+              </div>
+
+              <div class="col-sm-3">
+                <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
+              </div>
+
+              <div class="col-sm-3">
+                <gold-email-input label="Emailid" value="{{employeemail}}"></gold-email-input>
+              </div>
+
+              <div class="col-sm-3">
+                <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
+              </div>
+          </div>
+
+
+          <div class="form-group-heading">
+            <h4>Employee Role Mapping</h4>
+          </div>
+
+          <div class="list-group col-sm-12 panel-body form-category">
+            <paper-input value={{schoolid}} hidden></paper-input>
+              <div class="col-sm-12">
+                <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
+                  <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
+                </template>   
+              </div>
+          </div>
+
+        <iron-ajax          
+          id="selectschoolroleajax"
+          url="{{selectschoolroleurl}}"
+          params="{{selectschoolroleparam}}"
+          handle-as="json"
+          content-type="application/json"
+          method="post"
+          on-response="selectschoolroleResponse"
+          debounce-duration="300">
+      </iron-ajax>
+
+      <div class="form-group-heading">
+        <h4>Employee schooltype Mapping</h4></div>
+          <div class="list-group col-sm-12 panel-body form-category">
+            <paper-input value={{schoolid}} hidden></paper-input>
+              <div class="col-sm-12">           
                   <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                  <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+                    <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
                   </template>   
+              </div>
           </div>
-          </div>
+
         <iron-ajax        
-        id="selectschooltypemapajax"
-        url="{{selectschooltypemapurl}}"
-        params="{{selectschooltypemapparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="selectschooltypemapResponse"
-        debounce-duration="300"
-      ></iron-ajax>
-    <div style="float:center;">
-        <paper-button class="btn btn-primary" on-click="FnpersonalSave">Submit</paper-button>
-      </div>
-    </paper-dialog>
-<master-ui-service id="uiservice"></master-ui-service>
+          id="selectschooltypemapajax"
+          url="{{selectschooltypemapurl}}"
+          params="{{selectschooltypemapparam}}"
+          handle-as="json"
+          content-type="application/json"
+          method="post"
+          on-response="selectschooltypemapResponse"
+          debounce-duration="300">
+        </iron-ajax>
+
+        <div style="float:center;">
+          <paper-button class="btn btn-primary" on-click="FnpersonalSave">Submit</paper-button>
+        </div>
+      </paper-dialog>
     </div>
+
+
+      <master-ui-service id="uiservice"></master-ui-service>
     </template>   
   <script>
   (function() {
