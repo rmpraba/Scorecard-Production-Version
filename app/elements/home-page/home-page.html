@@ -141,6 +141,9 @@
         <section data-category="subjectcard">
           <subject-card></subject-card>
         </section>
+        <section data-category="schooltype-card">
+          <schooltype-card></schooltype-card>
+        </section>
       </iron-pages>
     </div>
     
@@ -461,6 +464,29 @@
        document.querySelector('teacherhome-card').FnRefresh();
        document.querySelector('beginner-assesment-card').FnRefresh();
        // document.querySelector('language-enrichment-card').FnRefresh();
+    }
+
+
+     if(localStorage.getItem("curr_sess_page")=="schooltypecard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('schooltype-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+
+    if(localStorage.getItem("curr_sess_page")=="subjectcard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('subject-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+    }
+
+     if(localStorage.getItem("curr_sess_page")=="rolecard")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('role-card').FnRefresh();
+       document.querySelector('beginner-assesment-card').FnRefresh();
+       
     }
   },
 

@@ -1,52 +1,194 @@
 
+
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+
 
 <dom-module id="subject-card">
   <template>
     <style>
-      :host 
+      :host
       {
+         margin-left: 10%;
         display: block;
+         @apply(--layout-center);
+        /*width: 40%;*/
       }
-      .subjectcard
+
+      .card
       {
-        width: 30%;
-        margin-left: 35%;
-      } 
-      .button paper-button
+         @apply(--layout-center);
+        width: 80%;
+        margin-left: 10%;
+      }
+      .headdiv
       {
-       background-color: #363636;
+        width: 200%;
+      }
+
+      .title
+      {
+        @apply(--layout-center);
+        width: 255%;
+        margin-left: 30%; 
+      }
+
+      .creatediv paper-button
+      {
+      background-color: #363636;
+      color: #ffffff;
+      width: 6%;
+      margin-top: 3%;
+      }
+
+      .buttons paper-button
+      {
+        @apply(--layout-center);
+      background-color: #363636;
       color: #ffffff;
       width: 10%;
-      margin-left: 40%;
+      margin-top: 6%;
       }
 
+      .popup-btn
+      {
+        margin: 0 auto;
+        margin-left: 63%;
+      }
+
+      table
+      {
+         border-collapse: collapse;
+        border: 1px solid #dedede;
+        width: 90%;
+      }
+      .outcard
+      {
+        @apply(--layout-horizontal);
+      }
+
+      .creatediv
+      {
+         border-radius: 10px;
+          border: 1px solid #6699ff;
+          padding: 10px; 
+          width: 28%;
+          max-height: 330px;
+          /*height: 150px; */
+      }
+      
     </style>
-    
-    <div class="subjectcard">
-    <paper-input value="{{subjectid}}" label="Subject Id"></paper-input>
-    <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
-    <paper-input value="{{subjectcategory}}" label="Subject category"></paper-input>
-    </div>
-    <div class="button">
-    <paper-button on-click="FnSubmit">Submit </paper-button>
+
+
+    <div class="title"> 
+        <h2><b>SUBJECTS</b></h2>
     </div>
 
-    <master-ui-service id="uiservice"></master-ui-service>
-    </template>
+   <div class="outcard">
+    <div>
+      <table>
+        <tr>
+            <th> <label style="margin-left:-70%">Subject ID</label></th>
+            <th> <label style="margin-left:-35%">Subject Name</label></th>
+            <th> <label style="margin-left:-60%">Category Type</label>
+            <th></th>
+        </tr>
 
-  <script>
+        <template is="dom-repeat" items="{{subarr}}" as="sb">
+            <tr><td colspan="4">
+             <subject-display-card subjectid="{{sb.subject_id}}" subjectname="{{sb.subject_name}}" subjectcategory="{{sb.category}}" hidesubjectinput="true" hidesubjectitem="false">
+            </subject-display-card></td>
+            </tr>
+        </template>
+      </table>
+    </div>
+
+    <div class="creatediv">
+        <div class="card">    
+          <div class="headdiv">
+              <label><b>Create New Subject</b></label>
+          </div>   
+            
+            <paper-input readonly value="{{subjectid}}" label="Subject ID"></paper-input>
+            <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
+
+
+            <paper-dropdown-menu id="subcat" label="Select Subject Category" >
+              <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategory">
+                <template is="dom-repeat" items="{{categoryarr}}" as="n">
+                  <paper-item value="{{n.category_type}}">{{n.category_name}}</paper-item>                        
+                </template>
+              </paper-menu>
+            </paper-dropdown-menu> 
+        </div>   
+        
+
+            <div class="buttons">
+              <paper-button class="popup-btn" on-click="FnSubmit">Submit </paper-button>
+            </div>
+      </div>
+    </div> 
+
+      <master-ui-service id="uiservice"></master-ui-service>
+     
+   </template>
+
+   <script>
   (function() {
     'use strict';
-    Polymer({
+     var category;
+    Polymer
+    ({
       is: 'subject-card',
-      FnSubmit:function(){
-        this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,this.subjectcategory);
+      ready:function()
+      {
+       // alert("hi");
+        this.$.uiservice.category1();   
+        this.$.uiservice.FnFetchSubjectSeq();
+        this.$.uiservice.FnFetchSubjectname();
+        this.$.hidenewssubjectcard=true;     
+      },
+      
+      FnRefresh:function()
+      {
+       document.querySelector('#category').selected=-1;
+       this.subjectname="";
+       //this.subjectid="";                  
+      }, 
+
+      fetchmastercategorynameResponse:function(e)
+      {
+        var arr=e.detail.response.returnval;
+        alert(JSON.stringify(arr));     
+      },
+
+       FnSubmit:function()
+      {
+        if(this.subjectname==null || this.subjectname=="")
+        {
+          alert("please enter Subjectname before Submit");
+        }
+        else
+        {
+      
+         this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
+         document.querySelector('subject-card').FnRefresh();
+         //this.$.subjectdialog.toggle();
+        }
+       
+      },
+      
+      FnSelectcategory:function(e)
+      {
+        category = e.target.selectedItem.value.trim();
+        
       }
-     
+
     });
-  })();
+  })();  
   </script>
 </dom-module>
