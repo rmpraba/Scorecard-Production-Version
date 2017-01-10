@@ -59,19 +59,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .form-dialog{
         margin:0;
       }
+       .outercard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 20px;
+        margin-top: -45%;
+        width: 50%;
+        margin-left: 22%;
+        min-height: 300px;
+      }
+
     </style>
   
      <!-- <paper-input label="Search here.........." prefix>
       <paper-icon-button prefix icon="search" on-click="FnSearch"></paper-icon-button>
     </paper-input>
  --> <div>
-     <center><h3 style="color:#1A5276">EMPLOYEE CREATION</h3></center> 
+    
+  
+    
+    <div>
+      <CENTER><h3><b>EMPLOYEE CREATION</b></h3></CENTER>
+      </div>
+
     </div>
      <center>
        <div class="rbutton">
         <paper-button on-click="Fncreate">Create</paper-button>
        </div>
      </center>  
+
   <div class="role">
     <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
     <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>
