@@ -68,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 80%;
         margin-top: 4%;
       }
-       #subbutton1
+      /* #subbutton1
       {
         margin-left:35%;
         background-color: #363636;
@@ -76,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width:17%;
         
       
-      }
+      }*/
       /*.but1
       {
        margin-left: 70%;
@@ -168,8 +168,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </table>
         </div>   
         </div>  
-           <span id="subbutton1">
-            <paper-button on-click="FnSubmit">Submit</paper-button>
+           <span id="subbutton1" style="color:white;background-color:black;margin-left:41%;border-radius:10px">
+            <paper-button on-click="FnSubmit" style="width:12%;height:5%">Submit</paper-button>
           </span>
   <master-ui-service id="uiservice"></master-ui-service>      
 </template>
@@ -199,7 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       passempgrade:function(arr){
        getgradenames=arr;
       },
-      fnsubmit:function(e){
+      FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
        document.querySelector('employe-creation-card').Fnsubjectclean();        

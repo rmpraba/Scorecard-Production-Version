@@ -33,8 +33,8 @@
            <template is="dom-repeat" items="{{fngradearr}}" as="view">
               <school-grade-mapping--item-card schooltype="{{schooltypename}}" gradeidzzzw="{{view.grade_id}}" schoolgraddidz="{{view.grade_id}}{{schooltypename}}" gradenamezzzw="{{view.grade_name}}" style="display:inline-block;"></school-grade-mapping--item-card>
             </template></br>
-         <paper-button on-click='FnSave'>Submit</paper-button>
-              <paper-button on-click='create' dialog-confirm autofocus>X</paper-button>
+          <center><paper-button on-click='FnSave' style="color:white;background-color:black">Submit</paper-button></center>
+              <paper-button on-click='create' dialog-confirm autofocus style="margin-left:90%">Close</paper-button>
       </paper-dialog>
     </div>  
     <iron-ajax   

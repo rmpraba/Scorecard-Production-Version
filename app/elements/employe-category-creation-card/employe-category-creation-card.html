@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #363636;
         color: #ffffff;                
         width: 8%;
-        margin-left: 70%;
+        margin-left: 60%;
         margin-top: 4%;
       }
       .newcard
@@ -59,6 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--layout-center);
         margin-top: 5%;
        }
+       .innercard{     
+      @apply(--layout-horizontal);
+       width:100%
+      margin-left:2.5em;
+     }
      
     </style>
 
@@ -90,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-dropdown-menu>
             
               <paper-dropdown-menu  label="select the employee">
-                <paper-menu id="employeeidz" class="dropdown-content"   on-iron-select="fnemployeename">
+                <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
                   <template is="dom-repeat" items="{{empschoolnamesarr}}">
                     <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
                   </template>    
@@ -102,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </table>
       </div>
    
-      <div>
+      <div id=sectionz>
         <table class="table table-bordered" style="margin-top:5%">
           <div class="container">
             <thead> 
@@ -114,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </template>
                 </th>
                 <th></th>
-              </tr>
+              </tr>   
             </thead>
 
             <tbody>
@@ -137,7 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </table>
       </div>           
     </div>  
-              <div class="subbutton">
+              <div class="subbutton" id="subx">
                 <paper-button on-click="fnsubmit">Submit</paper-button> 
               </div>
 
@@ -230,6 +235,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var empsectionarr=[];
     Polymer({
       is: 'employe-category-creation-card',
+      ready:function(e){
+     
+        this.$.sectionz.hidden=true;
+        this.$.subx.hidden=true;
+      },
         fnschoolempnames:function(arr){
           this.empschoolnamesarr=arr;
         },  
@@ -341,8 +351,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            a=[];
    }
 //    alert(JSON.stringify(overall));
-     this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
-    this.allarrr=overall;
+        this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
+        this.allarrr=overall;
+        this.$.sectionz.hidden=false;
+        this.$.subx.hidden=false;
+   
      // overall.splice(0,1);
         /* this.bigarr=overall;
          overall.splice();
