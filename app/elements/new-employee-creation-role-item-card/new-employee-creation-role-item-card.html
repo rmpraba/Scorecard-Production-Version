@@ -27,7 +27,7 @@
         handle-as="json"
         content-type="application/json"
         method="post"
-        on-response="getempschoolroleResponse"
+        on-response="getempschoolroleResponse"    
         debounce-duration="300">     
         </iron-ajax>
 </template>
@@ -74,7 +74,7 @@
                          alert(JSON.stringify(m));
                         // alert("hi");
                          document.querySelector('#'+m).checked=false;
-                      }
+ }
                    var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempgetid;

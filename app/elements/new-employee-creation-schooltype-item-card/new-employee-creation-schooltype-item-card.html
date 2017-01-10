@@ -50,7 +50,7 @@
                   obj.emp_name=this.schoolempschooltypename;
                   obj.emp_schol_type=this.schooltypeids;
                   getschooltypearr.push(obj);
-                  alert(JSON.stringify(getschooltypearr));
+                //  alert(JSON.stringify(getschooltypearr));
                   document.querySelector('new-employee-creation-item-card').passschooltype(getschooltypearr);
  }
         else if(document.querySelector('#'+this.schooltypeids).checked==false){
@@ -68,7 +68,7 @@
                },
      getempschooltypeResponse:function(e){
       var res=e.detail.response.returnval;
-      alert(JSON.stringify(res));
+  //    alert(JSON.stringify(res));
 
      },  //document.querySelector('new-employee-creation-role-item-card').typesplicerole();
       
@@ -76,7 +76,7 @@
    typesplice:function(e){
        for(var i=0;i<getschooltypearr.length;i++){
          var schooltypexxxxx=getschooltypearr[i].emp_schol_type;
-         alert(schooltypexxxxx);
+       //  alert(schooltypexxxxx);
          alert(document.querySelector('#'+schooltypexxxxx).checked);
        document.querySelector('#'+schooltypexxxxx).checked=false; 
     //   alert("hi2");

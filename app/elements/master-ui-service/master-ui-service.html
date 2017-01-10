@@ -9,7 +9,7 @@
         url="{{subjectcreationurl}}"
         params="{{subjectcreationparam}}"
         handle-as="json"
-        content-type="application/json"
+        content-type="application/json"   
         method="post"
         on-response="subjectcreationResponse"
         debounce-duration="300"
@@ -1054,7 +1054,7 @@
      },
     fnempgenerateidResponse:function(e){
       var res=e.detail.response.returnval;  
-       alert(JSON.stringify(res));
+     //  alert(JSON.stringify(res));
         alert(document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence);
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
@@ -1310,7 +1310,7 @@ fnschoolemployeeroleResponse:function(e){
   },
 fnschoolemployeepersonalResponse:function(e){
      var res=e.detail.response.returnval; 
-     alert(JSON.stringify(res));
+    // alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
  fnschoolemployeeschooltypeResponse:function(e){
@@ -1330,7 +1330,7 @@ fnschoolemployeepersonalResponse:function(e){
      },
      selectschooltypeResponse:function(e){
          var res=e.detail.response.returnval; 
-         alert(JSON.stringify(res));  
+        // alert(JSON.stringify(res));  
          document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
      },
       selectrolename:function(){
@@ -1339,7 +1339,7 @@ fnschoolemployeepersonalResponse:function(e){
      },
     selectrolenameResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         document.querySelector('new-employee-creation-card').selectrolearr=res; 
      },
    empsubjectTeacher:function(){
@@ -1373,6 +1373,7 @@ fnschoolemployeepersonalResponse:function(e){
       },
      empschooltypeResponse:function(e){
           var res=e.detail.response.returnval;
+          alert(JSON.stringify(res));
          document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;          
       },
  terminsert:function(workingschoolid,acadamicyear,termids,termgrade,noofdays)
