@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddb'
+   database : 'scorecardbatabase'
  });
 var bodyParser = require('body-parser');
 var app = express();
