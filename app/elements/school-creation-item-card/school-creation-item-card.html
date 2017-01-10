@@ -1,5 +1,4 @@
 
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/gold-email-input/gold-email-input.html">
 
@@ -46,29 +45,74 @@
         margin-left: 10%;
       }
 
-      #updatedetails
-       {
-        @apply(--layout-horizontal);
-
-              margin-left:30%;
-        } 
-
-
-       }
-       #updatedetails
-       {
-        border-radius: 10px;
-        border: 1px solid #6699ff;
-        padding: 10px;
-        min-height: 510px;
-        margin-top: -5%;
-        width: 91%;
-       }
-
     </style>       
     <div> 
+   <!--  <table class="card" id="card{{schoolid}}">
+      <tr><td hidden>{{schoolid}}</td>
+      <td width="40%" >{{schoolname}}</td>
+       <td width="5%"><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
+      </td>
+      <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
+     </table>
+   <paper-dialog id="entetroleset" modal style="width:50%;">
+       <div class="form-group-heading">
+                             <h4>School Details</h4>
+       </div>
+                 <div class="list-group col-sm-12 panel-body form-category">
+                            <paper-input value={{schoolid}} hidden></paper-input>
+                          <div class="col-sm-6">
+                        <paper-input label="School Name"  value="{{schoolname}}" ></paper-input>
+                        </div>
+                        <div class="col-sm-6">
+                      <paper-input label="Telephone Number" value="{{telno}}"  allowed-pattern="[0-9]"></paper-input>
+                        </div>
+                        <div class="col-sm-6">
+                         <paper-input label="Mobile Number" value="{{mobile}}" allowed-pattern="[0-9]"></paper-input>
+                        </div>
+                         <div class="col-sm-6">
+                         <gold-email-input label="Emailid" value="{{mailid}}"></gold-email-input>
+                        </div>
+                        <div class="col-sm-4">
+                         <paper-input label="Website" value="{{wesite}}"></paper-input>
+                        </div>
+                        <div class="col-sm-4">
+                         <paper-input label="affiliation" value="{{affiliationno}}"></paper-input>
+                        </div>
+                        <div class="col-sm-4">
+                         <paper-input label="Board Type"  value="{{boardselection}}"></paper-input>
+                       </div>
+                      </div>
+                     <div class="form-group-heading">
+                             <h4> School Address Details</h4>
+                     </div>
+                  
+                     <div class="list-group col-sm-12 panel-body form-category">
+                        <div class="col-sm-6">
+                         <paper-input label="Village/Town" value="{{address}}"></paper-input>
+                        </div>
+                        <div class="col-sm-6">
+                        <paper-input label="District"  value="{{address1}}"></paper-input>
+                        </div>
+                       <div class="col-sm-6">
+                         <paper-input label="State" value="{{address2}}"></paper-input>
+                       </div>
+                      <div class="col-sm-6">
+                       <paper-input label="Pincode" value="{{address3}}"></paper-input>
+                      </div></br>
+                      <span style="float:right;color:#1C63C9">
+                          <paper-button dialog-confirm autofocus >Tap me to close</paper-button>
+                     </span>
+                     <span class="button" style="float:center;color:white;background-color:black;">
+                            <paper-button  on-click='FnSave'>Save</paper-button>
+                      </span>
+                  </div>
+                </div>
+           </paper-dialog> -->
+
     </table>   
-   <div class="row">  
+      <div>
+        
+    <div class="row">  
     <div class="itemcard col-sm-12">
       <div class="sclid">
         <paper-item>{{schoolid}}</paper-item>
@@ -84,8 +128,7 @@
     <div id="updatedetails" style="margin-top:-18%" hidden>
       <div> 
         <div class="form-group-heading">
-          <CENTER><h3>School Details</h3></CENTER>
-          
+          <h4>School Details</h4>
         </div>
         <div class="list-group col-sm-12 panel-body form-category">
           <paper-input value={{schoolid}} hidden></paper-input>
@@ -136,7 +179,7 @@
       </div>         
     </div>
     </div>
-    <master-ui-service id="uiservice"></master-ui-service>
+    <master-ui-service id="uiservice"></master-ui-service></div>
   </template>
   <script>
   
@@ -156,12 +199,33 @@
             this.$.uiservice.Fndeleteinfo(this.schoolid);
         },
 
+        
+
+         /*Fnhideupdatediv:function()
+         {
+          this.hidecreatediv=true;
+          this.hideupdatediv=false;
+         },*/
+
         showupdetails:function()
         {  
+          // this.hideupdatediv=false;
+
           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
         },
         
-        });
+        /*FnSave:function()
+        {
+          alert(this.addr);
+          alert(this.addr1);
+          alert(this.addr2);
+          alert(this.addr3);
+
+            this.$.uiservice.Fnsaveschoolinfo(this.schoolname,this.schoolid,this.telnum,this.mobile,this.mailid,
+              this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);
+        }*/
+
+    });
   })();
   </script>
 </dom-module>
