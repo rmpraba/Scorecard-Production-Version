@@ -964,7 +964,7 @@
      },
      tranfersectionResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
         document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },
      empgetsectionvalues:function(setgradeidz,empselectid){
@@ -974,12 +974,12 @@
       obj.empselectid=empselectid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       this.empgetsectionvaluesparam=obj;
-      alert(JSON.stringify(obj));
+      //alert(JSON.stringify(obj));
       this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
       document.querySelector('emp-grade-get-card').empsctionmaping(res);
      },
      fngetempsubject:function(schooltypeid,categoryid){     
@@ -993,7 +993,7 @@
       },
       fngetempsubjectResponse:function(e){
        var res=e.detail.response.returnval; 
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
        document.querySelector('employe-creation-card').setempsubject(res);
       },
     insertgradeinfo:function(setgradeid,tranfersection,studentname){
@@ -1004,7 +1004,7 @@
        obj.tranfersection=tranfersection;
        obj.studentname=studentname;
        this.insertgradeinfoparam=obj;
-       alert(JSON.stringify(obj));
+       //alert(JSON.stringify(obj));
        this.$.insertgradeinfoajax.generateRequest();
      /*this.Deleteinsertgradeinfourl=sessionStorage.getItem("addrinfo")+"/Deleteinsertgradeinfo-service";
        var obj={"school_id":"","setgradeid":"","tranfersection":"","studentname":""};
@@ -1025,7 +1025,7 @@
        obj.tranfersection=classid;
        obj.studentname=studentname;
        this.deletegradeinfoparam=obj;
-       alert(JSON.stringify(obj));
+       //alert(JSON.stringify(obj));
        this.$.deletegradeinfoajax.generateRequest();
 
       this.delectegradethirdinfourl=sessionStorage.getItem("addrinfo")+"/delectegradethirdinfo-service";
@@ -1035,26 +1035,26 @@
        obj.tranfersection=classid;
        obj.studentname=studentname;
        this.delectegradethirdinfoparam=obj;
-       alert(JSON.stringify(obj));
+       //alert(JSON.stringify(obj));
        this.$.delectegradethirdinfoajax.generateRequest();
       
      },
      delectegradethirdinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
      },
      deletegradeinfoResponse:function(e){
     var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
       },
   insertgradeinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
         //document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },
     fnempgenerateidResponse:function(e){
       var res=e.detail.response.returnval;  
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
         alert(document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence);
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
@@ -1081,7 +1081,7 @@
           obj.name=name;
           obj.schooltypeid=schooltypeid;
          this.empschooltypemappingparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
          this.$.empschooltypemappingajax.generateRequest();
          }
      for(var i=0;i<setrolearr.length;i++){
@@ -1094,7 +1094,7 @@
          obj.name=name;
          obj.password=password;
          obj.roleid=roleid;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
         this.emprolemappingparam=obj;
          this.$.emprolemappingajax.generateRequest();
          }
@@ -1109,11 +1109,11 @@
 
       empschooltypemappingResponse:function(e){
         var res=e.detail.response.returnval;
-           alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
        },
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
     },
 fnschooltypesaveinfo:function(passschooltypearr)
 {
@@ -1121,7 +1121,7 @@ fnschooltypesaveinfo:function(passschooltypearr)
             var empid=passschooltypearr[i].emp_id;
             var empname=passschooltypearr[i].emp_name;
             var empschooltypeid=passschooltypearr[i].emp_schol_type;
-       alert(empschooltypeid);
+       //alert(empschooltypeid);
         this.fnschooltypesaveinfowwurl=sessionStorage.getItem("addrinfo")+"/fnschooltypesaveinfo-service";
         var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":""};
         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -1129,13 +1129,13 @@ fnschooltypesaveinfo:function(passschooltypearr)
         obj.emp_name=empname;
         obj.emp_schol_type=empschooltypeid;
         this.fnschooltypesaveinfoparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
         this.$.fnschooltypesaveinfoajax.generateRequest();
     }
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr){
      for(var i=0;i<empsectionarr.length;i++){
@@ -1155,14 +1155,14 @@ fnschooltypesaveinfo:function(passschooltypearr)
         obj.rolename='subject-teacher';
         
         this.fnsavesectionparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
         this.$.fnsavesectionajax.generateRequest();
     }
               
  },
  fnsavesectionResponse:function(e){
      var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
 fnempsubjectdetails:function(getgradenames)
  {
@@ -1183,12 +1183,12 @@ fnempsubjectdetails:function(getgradenames)
         obj.schooltypeid=schooltypeid;
         obj.categoryid=categoryid;
        this.fnempsubjectdetailsparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
         this.$.fnempsubjectdetailsajax.generateRequest();}
     },
   fnempsubjectdetailsResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
  fnrolesaveinfo:function(passrolearr){
     for(var j=0;j<passrolearr.length;j++){
@@ -1206,14 +1206,14 @@ fnempsubjectdetails:function(getgradenames)
         obj.emp_role_id=emproleid1;
         obj.password=emppsw1;
        this.fnrolesaveinfoparam=obj;
-       alert(JSON.stringify(obj));
+       //alert(JSON.stringify(obj));
      this.$.fnrolesaveinfoajax.generateRequest();
    
     }
  },
  fnrolesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
 Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,employeemail,employeepassword){
    this.Fnpersonalinfourl=sessionStorage.getItem("addrinfo")+"/Fnpersonalinfo-service";
@@ -1226,12 +1226,12 @@ Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,emp
          obj.employeemail=employeemail;
          obj.employeepassword=employeepassword;
          this.Fnpersonalinfoparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.Fnpersonalinfoajax.generateRequest();
     },
     FnpersonalinfoResponse:function(e){
            var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
     },
 fnschoolemployeerole:function( employeeid,employeename){
         this.fnschoolemployeeroleurl=sessionStorage.getItem("addrinfo")+"/fnschoolemployeerole-service";
@@ -1251,7 +1251,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      },
     schoolemployeegrademappingResponse:function(e){
      var res=e.detail.response.returnval;
-     alert(JSON.stringify(res));
+     //alert(JSON.stringify(res));
      document.querySelector('employe-category-creation-card').empschoolarr=res;
     
     },
@@ -1267,13 +1267,13 @@ fnschoolemployeerole:function( employeeid,employeename){
      var obj={"school_id":"","grade_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.grade_id=gradeid;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
          this.getstudentnameparam=obj;
          this.$.getstudentnameajax.generateRequest();
     },
     getstudentnameResponse:function(e){
      var res=e.detail.response.returnval;
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
      document.querySelector('student-transfer-grade').autocompletename(res);
     
          },
@@ -1287,7 +1287,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     },
     studentinfoResponse:function(e){
      var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));  
+        //alert(JSON.stringify(res));  
       document.querySelector('student-transfer-grade').gradename=res[0].class;
        document.querySelector('student-transfer-grade').section=res[0].section;
       document.querySelector('student-transfer-grade').classid=res[0].class_id;
@@ -1310,7 +1310,7 @@ fnschoolemployeeroleResponse:function(e){
   },
 fnschoolemployeepersonalResponse:function(e){
      var res=e.detail.response.returnval; 
-     alert(JSON.stringify(res));
+     //alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
  fnschoolemployeeschooltypeResponse:function(e){
@@ -1330,7 +1330,7 @@ fnschoolemployeepersonalResponse:function(e){
      },
      selectschooltypeResponse:function(e){
          var res=e.detail.response.returnval; 
-         alert(JSON.stringify(res));  
+         //alert(JSON.stringify(res));  
          document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
      },
       selectrolename:function(){
@@ -1339,7 +1339,7 @@ fnschoolemployeepersonalResponse:function(e){
      },
     selectrolenameResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         document.querySelector('new-employee-creation-card').selectrolearr=res; 
      },
    empsubjectTeacher:function(){
@@ -1385,7 +1385,7 @@ fnschoolemployeepersonalResponse:function(e){
         obj.termids=termids;
         obj.termgrade=termgrade;
         obj.noofdays=noofdays;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
        this.terminsertparam=obj;
         this.$.terminsertajax.generateRequest();
     
@@ -1394,7 +1394,7 @@ fnschoolemployeepersonalResponse:function(e){
       terminsertResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
        
       },
       termrecovery:function(workingschoolid,acadamicyear,termids,termgrade)
@@ -1406,14 +1406,14 @@ fnschoolemployeepersonalResponse:function(e){
         obj.acadamicyear=acadamicyear;
         obj.termids=termids;
         obj.termgrade=termgrade;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.termrecoveryparam=obj;
         this.$.termrecoveryajax.generateRequest();
     },
       termrecoveryResponse:function(e)
       {
         var res=e.detail.response.returnval;
-         alert(JSON.stringify(res));
+         //alert(JSON.stringify(res));
          //alert(JSON.stringify(res[0].no_of_days));
          document.querySelector('working-days-card').noofdays=res[0].no_of_days;
    
@@ -1439,7 +1439,7 @@ fnschoolemployeepersonalResponse:function(e){
       FngradeinsetschoolResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
        
       },
 fnsubjecttocategorysaving:function(passservicearr)
@@ -1458,7 +1458,7 @@ fnsubjecttocategorysaving:function(passservicearr)
         obj.gradename=gradename;
         obj.schootypename=schootypename;
         obj.categoryname=categoryname;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
        this.fnsubjecttocategorysavingparam=obj;
       this.$.fnsubjecttocategorysavingajax.generateRequest();
     } 
@@ -1466,7 +1466,7 @@ fnsubjecttocategorysaving:function(passservicearr)
     fnsubjecttocategorysavingResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
           },
 
 
@@ -1487,27 +1487,27 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
        if(res=="Inserted!"){
          this.getschoolTypename();
            }
-         alert(JSON.stringify(res));
+         //alert(JSON.stringify(res));
        
      },
-  workingsearchinfo:function(workingschoolid,acadamicyear,termgrade){
+     workingsearchinfo:function(workingschoolid,acadamicyear,termgrade){
         this.workingsearchinfourl=sessionStorage.getItem("addrinfo")+"/workingsearchinfo-service";
         var obj={"workingschoolid":"","acadamicyear":"","termgrade":""};
         obj.workingschoolid=workingschoolid;
         obj.acadamicyear=acadamicyear;
         obj.termgrade=termgrade;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
        this.workingsearchinfoparam=obj;
         this.$.workingsearchinfoajax.generateRequest();
 
      },
-workingsearchinfoResponse:function(e)
+    workingsearchinfoResponse:function(e)
       {
       var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
        document.querySelector('working-day-item-card').fngetworkingdays(res);
    },
-FnSetRoleInfo:function(rolename,roleid)
+    FnSetRoleInfo:function(rolename,roleid)
        {
         this.rolecreationurl=sessionStorage.getItem("addrinfo")+"/rolecreation-service";
         var obj={"rolename":"","roleid":""};
@@ -1581,13 +1581,13 @@ FnSetRoleInfo:function(rolename,roleid)
        {
  
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res)); 
+        //alert(JSON.stringify(res)); 
           if(res=="Updated!"){
           this.fnschoolcreation();
         }
       },
 
-       FnSchoolidseq:function() 
+       FnSchoolidseq:function()
       {        
         this.fetchsclidsequrl=sessionStorage.getItem("addrinfo")+"/fetchsclidseq-service";
         this.$.fetchsclidseqajax.generateRequest();
@@ -1633,7 +1633,7 @@ FnSetRoleInfo:function(rolename,roleid)
       },
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
-            alert(JSON.stringify(res));
+            //alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },
@@ -1646,7 +1646,7 @@ FnSetRoleInfo:function(rolename,roleid)
        },
        schoolGradetypeResponse:function(e){
             var res=e.detail.response.returnval;
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
          document.querySelector('school-grade-to-subject-card').schooltypegrarr=res;
  
       },
@@ -1668,7 +1668,7 @@ FnSetRoleInfo:function(rolename,roleid)
 
        getschoolTypenameResponse:function(e){
          var res=e.detail.response.returnval;
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
              document.querySelector('master-school_type-creation').setschooltypeinfoarr=res;
          },
              
@@ -1686,12 +1686,13 @@ FnSetRoleInfo:function(rolename,roleid)
         },
     */ fnschoolidgenerateResponse:function(e)
 
-     {
+        {
          var res=e.detail.response.returnval;
         //  alert(JSON.stringify(res)); 
             document.querySelector('school-creation-card').schoolid1=res[0].school_prefix+res[0].school_seq;
 
-            },
+        },
+  
   
 
 
@@ -1871,11 +1872,11 @@ FnSetRoleInfo:function(rolename,roleid)
       },
       FnempdeleteinfotypeResponse:function(e){
        var res=e.detail.response.returnval;
-       alert(res);
+       //alert(res);
       },
       FnempdeleteinforoleResponse:function(e){
       var res=e.detail.response.returnval;
-      alert(res);
+      //alert(res);
       },
 
 
@@ -1946,7 +1947,7 @@ FnSetRoleInfo:function(rolename,roleid)
      fnschoolcreationResponse:function(e)
      {
           var res=e.detail.response.returnval;
-          alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
          document.querySelector('school-creation-card').schoolcreatarr=res;
   
      },
@@ -1975,14 +1976,14 @@ FnSetRoleInfo:function(rolename,roleid)
       deleteschooltypenameResponse:function(e)
       { 
           var res=e.detail.response.returnval;
-          alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
         if(e.detail.response.returnval=="Deleted!"){
           this.getschoolTypename();
         }
         },
         deletemappingResponse:function(e){
            var res=e.detail.response.returnval;
-          alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
         },
       FnUpdateSchooltypename:function(schooltypename,schooltypeid)
       {
@@ -2225,7 +2226,7 @@ FnSetRoleInfo:function(rolename,roleid)
      
       },
       FnSecondLangSubjectToStudentResponse:function(e){
-             alert(JSON.stringify(e.detail.response.returnval));
+             //alert(JSON.stringify(e.detail.response.returnval));
       },
       FnSecondLangSubjectToStudentsets:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid){
         this.FnSecondLangSubjectToStudentsetsurl=sessionStorage.getItem("addrinfo")+"/FnSecondLangSubjectToStudentsets-service";
@@ -2245,7 +2246,7 @@ FnSetRoleInfo:function(rolename,roleid)
         
       },
       FnSecondLangSubjectToStudentsetsResponse:function(e){
-             alert(JSON.stringify(e.detail.response.returnval));
+             //alert(JSON.stringify(e.detail.response.returnval));
       },
        FnThirdLangSubjectToStudent:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,thirdlang11,Sectionnameseeee,termsname1,assesmentid){
         this.FnThirdLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnThirdLangSubjectToStudent-service";
@@ -2265,7 +2266,7 @@ FnSetRoleInfo:function(rolename,roleid)
         this.$.FnThirdLangSubjectToStudentajax.generateRequest();
     },
       FnThirdLangSubjectToStudentResponse:function(e){
-        alert(JSON.stringify(e.detail.response.returnval));
+        //alert(JSON.stringify(e.detail.response.returnval));
       },
       //teacher-home
        SelectSchoolgrades:function(){
