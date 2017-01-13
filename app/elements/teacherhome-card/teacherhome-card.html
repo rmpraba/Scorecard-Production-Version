@@ -411,10 +411,8 @@
     <beginner-assesment-service id="bassesmentservice"></beginner-assesment-service>
     <scorecard-service id="scorecardservice"></scorecard-service>
     <teacher-observation_service id="observerservice"></teacher-observation_service>
-
     <master-ui-service id="uiservice"></master-ui-service> 
 
-    <master-ui-service id="uiservice"></master-ui-service>
 
   </template>
   <script>
@@ -584,7 +582,8 @@
 
           // this.teach_obser=false;  
        }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin'){
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
+        {
           // this.createrole=false;
           // this.teach_obser=false; 
           this.createcategory=false;  
@@ -601,10 +600,7 @@
           this.createschooltype=false;
           this.createsubject=false;
           this.createrole=false;
-        
-        
-
-          // this.teach_obser=false;        
+       // this.teach_obser=false;        
         }
      
 

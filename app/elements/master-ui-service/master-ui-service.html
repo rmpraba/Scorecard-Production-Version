@@ -1,4 +1,5 @@
 
+
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
 <dom-module id="master-ui-service">
@@ -1715,7 +1716,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
-            alert("Inserted");
+            //alert("Inserted");
           this.FnFetchRole();
           document.querySelector('role-card').FnRefresh();
         }
@@ -1751,7 +1752,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("Deleted");
+            //alert("Deleted");
         this.FnFetchRole();
         }
       },
@@ -1770,7 +1771,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
-            alert("Updated");
+            //alert("Updated");
           this.FnFetchRole();
         }
       },
@@ -1791,7 +1792,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
-            alert("Inserted");
+            //alert("Inserted");
           this.FnFetchSchooltypename();
           document.querySelector('schooltype-card').FnRefresh();
         }
@@ -1806,15 +1807,12 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
        FnFetchSchooltypename:function()
 
       {        
+        //alert('hi1');
         this.fetchschooltypenameurl=sessionStorage.getItem("addrinfo")+"/fetchschooltypename-service";
         this.$.fetchschooltypenameajax.generateRequest();
       },
 
-      fetchschooltypenameResponse:function(e)
-      {
-
-        document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
-      },     
+        
    
 
 
@@ -1831,10 +1829,10 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("Deleted");
+            //alert("Deleted");
           this.FnFetchSchooltypename();
         }
-      },
+       },
 
       Fnempdeleteinfo:function(employeeid,employeename)
       {
@@ -1882,7 +1880,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
 
 
-      FnUpdateSchooltypename:function(schooltypename,schooltypeid)
+      /*FnUpdateSchooltypename:function(schooltypename,schooltypeid)
       {
         var obj={"schooltypename":"","schooltypeid":""};
         obj.schooltypeid=schooltypeid;
@@ -1896,11 +1894,11 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
-            alert("Updated");
+            //alert("Updated");
           this.FnFetchSchooltypename();
         }
       },
-
+*/
       
 
       fnsetgrademapping:function(){
@@ -1957,7 +1955,16 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
 
       fetchschooltypenameResponse:function(e)
       {
-        document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
+       //alert('hi');
+        //alert(JSON.stringify(e.detail.response.returnval));
+         if(e.detail.response.returnval=="empty")
+         {
+          document.querySelector("schooltype-card").secooltypehide();
+         }
+         else{
+               document.querySelector("schooltype-card").secooltypeview();
+               document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
+             }             
       },     
       fnDeleteSchooltypename:function(schooltypeid)
       {  
@@ -2025,7 +2032,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
-            alert("Inserted");
+            //alert("Inserted");
           this.FnFetchCategoryname();
           document.querySelector('category-card').FnRefresh();
         }
@@ -2047,7 +2054,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
        var arr= e.detail.response.returnval;
        //alert(JSON.stringify(arr));       
        document.querySelector('category-card').categorytype=arr[0].category_prefix+arr[0].category_seq;
-      // alert(JSON.stringify(categorytype));
+       //alert(JSON.stringify(categorytype));
       // document.querySelector('category-card').temphidden=arr[0].category_prefix+arr[0].category_seq;
        //alert(JSON.stringify(arr[0].category_prefix+arr[0].category_seq));
 
@@ -2077,7 +2084,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("Deleted");
+            //alert("Deleted");
           this.FnFetchCategoryname();
         }
       },
@@ -2096,7 +2103,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
-            alert("Updated");
+            //alert("Updated");
           this.FnFetchCategoryname();
         }
       },
@@ -2118,7 +2125,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         if(e.detail.response.returnval=="Inserted!")
         {
           
-            alert("Inserted");
+            //alert("Inserted");
           this.FnFetchSubjectname(); 
           this.FnFetchSubjectSeq(); 
           document.querySelector('subject-card').FnRefresh();
@@ -2131,7 +2138,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
       category1:function()
       {
-
            // this.category1url=sessionStorage.getItem("addrinfo")+"/fetchmastersubjectname-service";
 
            this.category1url=sessionStorage.getItem("addrinfo")+"/fetchmastercategoryname-service";
@@ -2183,7 +2189,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("Deleted");
+            //alert("Deleted");
           this.FnFetchSubjectname();
         }
       },
@@ -2204,7 +2210,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
-            alert("Updated");
+            //alert("Updated");
           this.FnFetchSubjectname();
         }
 
@@ -2331,14 +2337,14 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
 
 
-      FnSetGradeCreationInfo:function(gradeid,gradename)
+     FnSetGradeCreationInfo:function(gradeid,gradename)
       {
         this.gradecreationurl=sessionStorage.getItem("addrinfo")+"/gradecreation-service";
         var obj={"gradeid":"","gradename":""};
         obj.gradeid=gradeid;
         obj.gradename=gradename;
         this.gradecreationparam=obj; 
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.gradecreationajax.generateRequest();
       },  
            

@@ -40,14 +40,14 @@
           margin-left: 33%;
       }
 
-       .creatediv paper-button
+      /* .creatediv paper-button
       {
       background-color: #363636;
       color: #ffffff;
       width: 7%;
       margin-left: 43%;
       margin-top: 5%;
-      }
+      }*/
       
       .buttons paper-button
       {
@@ -55,7 +55,8 @@
       background-color: #363636;    
       color: #ffffff;
       width: 10%;
-      margin-top: 6%;
+      margin-left: -66%;
+      margin-top: 180%;
       }
 
        .school
@@ -73,11 +74,11 @@
         box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
       }*/
 
-      .popup-btn
+     /* .popup-btn
       {
         margin: 0 auto;
       }
-
+*/
       
       table
       {
@@ -86,20 +87,29 @@
         width: 90%;
         margin-top: 5%;
       }
-      .outcard
+      #outcardzzzzzzzz
       {
         @apply(--layout-horizontal);
+      }
+      .creatediv
+      {
+        @apply(--layout-horizontal);
+        margin-left: 65%;
       }
 
       .creatediv
       {
-         border-radius: 10px;
+          border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px; 
-          width: 25%;
-          margin-top: 5%;
-          max-height: 270px;
+          width: 30%;
+          margin-top: -16%;
+          min-height: 270px;
           /*height: 150px; */
+      }
+      .newcard
+      {
+        margin-left: -6%;
       }
     </style>
 
@@ -108,12 +118,12 @@
         <h2><b>SCHOOL TYPE</b></h2>        
     </div>
 
-    <div class="outcard">
-      <div>
-        <table>
+    <div id="outcardzzzzzzzz">
+      <div class="newcard">
+        <table hidden$="{{hidenewcard}}">
           <tr>
             <th><label style="margin-left:4%">School Type ID</label></th>
-            <th><label style="margin-left:-6%">School Type Name</label></th>
+            <th><label style="margin-left:-5%">School Type Name</label></th>
             <th></th>
           </tr>
           <template is="dom-repeat" items="{{schoolarr}}" as="s">
@@ -124,6 +134,7 @@
           </template>
         </table>
       </div>
+   </div>
       <div class="creatediv">
         <div class="card">
           <div class="headdiv">
@@ -136,7 +147,7 @@
           <paper-button class="popup-btn" on-click="FnSubmit">Submit </paper-button>
         </div>      
       </div>
-    </div>
+   
       
     <master-ui-service id="service"></master-ui-service>    
 
@@ -151,8 +162,8 @@
       is: 'schooltype-card',
       ready:function()
       {
-        //alert("test");
-        
+      
+      //  document.GetElementbyId('#')
         this.$.service.FnFetchSchooltypename();
         this.$.hidenewschooltypecard=true;
       }, 
@@ -168,7 +179,14 @@
         schooltypes = e.target.selectedItem.textContent.trim();
         localStorage.setItem("curr_sess_school_type_name",schooltypes);               
       },*/  
-     
+      secooltypehide:function(e)
+      {
+        this.$.outcardzzzzzzzz.hidden=true;
+  
+      },
+      secooltypeview:function(e){
+            this.$.outcardzzzzzzzz.hidden=false;
+      },
       FnSubmit:function()
       {
 
@@ -187,7 +205,8 @@
         document.querySelector('schooltype-card').FnRefresh();
         this.$.schooldialog.toggle();
         }
-      }
+      },
+    
       
 /*
         Fncreate:function()

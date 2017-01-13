@@ -1,4 +1,5 @@
 
+
 var express    = require("express");
  var mysql      = require('mysql');
  var email   = require("emailjs/email");
@@ -12,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecardbatabase'
+   database : 'scorecarddatabase'
  });
 var bodyParser = require('body-parser');
 var app = express();
@@ -5646,7 +5647,7 @@ app.post('/fnschoolcreation-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
     else
@@ -5782,7 +5783,7 @@ app.post('/categorynewcreation-service' , urlencodedParser,function (req, res)
     if(!err)
     {
       var tempseq=parseInt((req.query.categorytype).substring(8))+1;
-      //console.log(tempseq);
+      console.log(tempseq);
       connection.query("UPDATE sequence SET category_seq='"+tempseq+"'",
       function (err,result)
       {
@@ -5821,7 +5822,7 @@ app.post('/deletecategoryname-service' ,  urlencodedParser,function (req, res)
     }
     });
     });
-app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
+ app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
 {  
   // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
   var qur="SELECT * FROM md_grade";
@@ -5837,6 +5838,10 @@ app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+
+
+
+
 app.post('/updatecategoryname-service' ,  urlencodedParser,function (req, res)
 
 {
@@ -5877,7 +5882,7 @@ app.post('/fetchgradeseq-service',  urlencodedParser,function (req,res)
 
   });
 });
-app.post('/gradecreation-service' , urlencodedParser,function (req, res)
+app.post('/gradecreation-service' ,  urlencodedParser,function (req, res)
 {  
     var response={"grade_id":req.query.gradeid,"grade_name":req.query.gradename}; 
 
@@ -5913,6 +5918,7 @@ app.post('/gradecreation-service' , urlencodedParser,function (req, res)
     }
   });
 });
+
 app.post('/deletegrade-service' ,  urlencodedParser,function (req, res)
 {  
    
@@ -5933,6 +5939,7 @@ var qur="DELETE FROM  md_grade where  grade_id='"+req.query.gradeid+"'";
     });
     
 });
+
 app.post('/updategrade-service' ,  urlencodedParser,function (req, res)
 {  
    
@@ -5951,7 +5958,8 @@ var qur="UPDATE  md_grade SET grade_name='"+req.query.gradename+"' where  grade_
       res.status(200).json({'returnval': 'Not Updated!'});
     }
     });
-    });
+    
+});
 app.post('/fnempgenerateid-service',  urlencodedParser,function (req,res)
 {  
    var qur="SELECT * FROM sequence";
@@ -7454,17 +7462,21 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
   connection.query(qur,
     function(err, rows)
     {
-    if(!err)
+    if(rows.length>0)
     { 
       //console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
+   else if(rows.length==0)
+    { 
+      //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': 'empty'});
+    }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'invalid'});
     });
 
 });
-
 
 
 var server = app.listen(5000, function () {
