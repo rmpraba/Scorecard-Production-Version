@@ -5119,11 +5119,11 @@ app.post('/insertoverallfagrade-service' ,  urlencodedParser,function (req, res)
 
 app.post('/rolecreation-service' ,  urlencodedParser,function (req, res)
 {  
-    var response={"id":req.query.roleid,"role_name":req.query.rolename}; 
+    var response={"id":req.query.roleid,"role_name":req.query.rname}; 
 
     //console.log(JSON.stringify(response));
 
-    connection.query("SELECT * FROM md_role WHERE  id='"+req.query.roleid+"' or role_name='"+req.query.rolename+"'",
+    connection.query("SELECT * FROM md_role WHERE  id='"+req.query.roleid+"' or role_name='"+req.query.rname+"'",
       function(err, rows)
     {
     if(rows.length==0)
@@ -5191,9 +5191,9 @@ console.log(qur);
 
 app.post('/updaterole-service' ,  urlencodedParser,function (req, res)
 {  
-   
-   var val=(req.query.rolename).toLowerCase();
-var qur="UPDATE  md_role SET role_name='"+req.query.rolename+"', id='"+val+"' where  id='"+req.query.roleid+"'";
+   var rval=(req.query.roleid);
+   var val=(req.query.rname);
+  var qur="UPDATE  md_role SET role_name='"+val+"', id='"+rval+"' where  id='"+req.query.oldid+"'";
 //console.log(qur);
   connection.query(qur,
     function(err, rows)
@@ -5425,9 +5425,9 @@ app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
 
 app.post('/schooltypecreation-service' , urlencodedParser,function (req, res)
 {  
-  var collection = {"school_type_id":req.query.schooltypeid,"school_type_name":req.query.schooltypename};
+  var collection = {"school_type_id":req.query.schooltypeid,"school_type_name":req.query.stypename};
    //console.log(JSON.stringify(collection));
-   connection.query("SELECT * FROM md_school_type WHERE school_type_name='"+req.query.schooltypename+"' or school_type_id='"+req.query.schooltypeid+"'",function(err, rows)
+   connection.query("SELECT * FROM md_school_type WHERE school_type_name='"+req.query.stypename+"' or school_type_id='"+req.query.schooltypeid+"'",function(err, rows)
     {
     if(rows.length==0)
     {
@@ -5455,14 +5455,12 @@ app.post('/schooltypecreation-service' , urlencodedParser,function (req, res)
   });
 
 
-
-
-
 app.post('/updateschooltypename-service' ,  urlencodedParser,function (req, res)
 {  
-   var val=(req.query.schooltypename).toLowerCase();
-   var qur="UPDATE  md_school_type SET school_type_name='"+req.query.schooltypename+"', school_type_id='"+val+"' WHERE school_type_id='"+req.query.schooltypeid+"' "; 
-    //console.log(qur);    
+   var sval=(req.query.schooltypeid);
+   var val=(req.query.stypename);
+   var qur="UPDATE  md_school_type SET school_type_name='"+val+"', school_type_id='"+sval+"' WHERE school_type_id='"+req.query.oldscltypeid+"' "; 
+    console.log(qur);    
     connection.query(qur,
     function(err, rows)
     {
@@ -5767,7 +5765,7 @@ app.post('/fetchmastercategory-service',  urlencodedParser,function (req,res)
 app.post('/categorynewcreation-service' , urlencodedParser,function (req, res)
  {  
   var collection = {"category_id":req.query.categoryid,
-  "category_name":req.query.categoryname,"category_type":req.query.categorytype};
+  "category_name":req.query.cname,"category_type":req.query.categorytype};
 
    //console.log(JSON.stringify(collection));
 
@@ -5845,9 +5843,10 @@ app.post('/deletecategoryname-service' ,  urlencodedParser,function (req, res)
 app.post('/updatecategoryname-service' ,  urlencodedParser,function (req, res)
 
 {
-   var val=(req.query.categoryname).toLowerCase();
-var qur="UPDATE  md_category_type SET category_name='"+req.query.categoryname+"', category_id='"+val+"'  where category_id='"+req.query.categoryid+"'";
-//console.log(qur);
+  var cval=(req.query.categoryid);
+   var val=(req.query.cname);
+  var qur="UPDATE  md_category_type SET category_name='"+val+"', category_id='"+cval+"'  where category_id='"+req.query.oldcatid+"'";
+  //console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -7462,9 +7461,10 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
   connection.query(qur,
     function(err, rows)
     {
-    if(rows.length>0)
+    /*if(rows.length>0)*/
+    if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
    else if(rows.length==0)

@@ -127,13 +127,13 @@
     <script>
     (function() {
     'use strict';
-       
+       var cname="";
     Polymer({
       is: 'category-card',
 
       ready:function()
       {
-       //alert("test");   
+       //alert("hiiiiii");   
        this.$.uiservice.FnFetchCategorySeq();
        this.$.uiservice.FnFetchCategoryname();
        this.$.hidenewcategorycard=true;
@@ -145,28 +145,25 @@
  
       FnSubmit:function()
       {
-        if(this.categoryname==null || this.categoryname=="")
-        {          
-          alert("Please enter categoryname before submit");
-        }
-        else
+        if(this.categoryname!=null)
         {
-        //alert("test");
-        var categoryid=(this.categoryname).toLowerCase();
-        //alert(this.categoryname);
-        this.$.uiservice.FnSetCategoryInfo(this.categorytype,this.categoryname,categoryid,this.temphidden);
-       //  this.$.uiservice.FnFetchCategorySeq();
+          cname=this.toTitleCase(this.categoryname);
+          var categoryid=((cname).toLowerCase()).replace(' ','');
+          this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
          document.querySelector('category-card').FnRefresh(); 
-         //this.$.categorydialog.toggle();                       
         }
+        else if(this.categoryname==null || this.categoryname=="")
+        {
+          alert("Please enter categoryname before submit"); 
+        }
+      },
+
+      toTitleCase:function(str)
+      {
+         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
       }
       
-      /*Fncreate:function()
-      {
-           this.$.uiservice.FnFetchCategorySeq();
-            this.$.categorydialog.open();   
-      }
-      */
+      
     });
   })();
   </script>

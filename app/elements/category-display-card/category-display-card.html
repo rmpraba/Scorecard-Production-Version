@@ -68,17 +68,25 @@
       },
       FnEdit:function()
       {
-        //alert("test");
+        localStorage.setItem('curr_sess_oldcategoryid',this.categoryid);
         this.hidecategoryinput=false;
         this.hidecategoryitem=true;
       },
       FnSave:function()
       {
-        //alert("test");
-        this.$.catservice.FnUpdateCategoryname(this.categorytype,this.categoryid,this.categoryname);
+        //alert("testtttt");
+        var categoryname=this.toTitleCase(this.categoryname);
+        var categoryid=(categoryname.toLowerCase()).replace(' ','');
+        //alert(categoryname+"  "+categoryid);
+        this.$.catservice.FnUpdateCategoryname(this.categorytype,categoryid,categoryname);
         this.hidecategoryinput=true;
         this.hidecategoryitem=false;
-      }    
+      },
+      toTitleCase:function(str)
+      {
+         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      }
+      
     });
   })();
   </script>

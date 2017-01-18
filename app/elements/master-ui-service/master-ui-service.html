@@ -1375,7 +1375,7 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
       },
      empschooltypeResponse:function(e){
           var res=e.detail.response.returnval;
-          alert(JSON.stringify(res));
+          //alert(JSON.stringify(res));
          document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;          
       },
  terminsert:function(workingschoolid,acadamicyear,termids,termgrade,noofdays)
@@ -1510,16 +1510,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(JSON.stringify(res));
        document.querySelector('working-day-item-card').fngetworkingdays(res);
    },
-    FnSetRoleInfo:function(rolename,roleid)
-       {
-        this.rolecreationurl=sessionStorage.getItem("addrinfo")+"/rolecreation-service";
-        var obj={"rolename":"","roleid":""};
-        obj.roleid=roleid;
-        obj.rolename=rolename;
-        this.rolecreationparam=obj;
-        this.$.rolecreationajax.generateRequest();
-      },
-     
+    
        workingsearchinfoResponse:function(e)
       {
        
@@ -1699,15 +1690,13 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
   
 
 
-      FnSetRoleInfo:function(rolename,roleid)
-
-      
+      FnSetRoleInfo:function(rname,roleid)     
        {
         this.rolecreationurl=sessionStorage.getItem("addrinfo")+"/rolecreation-service";
-        var obj={"rolename":"","roleid":""};
+        var obj={"rname":"","roleid":""};
 
         obj.roleid=roleid;
-        obj.rolename=rolename;
+        obj.rname=rname;
         this.rolecreationparam=obj;
         this.$.rolecreationajax.generateRequest();
       },
@@ -1757,11 +1746,12 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         }
       },
 
-      FnUpdateRole:function(roleid,rolename)
+      FnUpdateRole:function(rname,roleid)
       {
-        var obj={"roleid":"","rolename":""};
+        var obj={"roleid":"","rname":"","oldid":""};
         obj.roleid=roleid;
-        obj.rolename=rolename;
+        obj.rname=rname;
+        obj.oldid=localStorage.getItem('curr_sess_oldroleid');
         this.updateroleurl=sessionStorage.getItem("addrinfo")+"/updaterole-service";
         this.updateroleparam=obj;
         this.$.updateroleajax.generateRequest();
@@ -1777,13 +1767,13 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
 
 
-       FnSetSchooltypeInfo:function(schooltypename,schooltypeid)
+       FnSetSchooltypeInfo:function(stypename,schooltypeid)
       {
 
         this.schooltypecreationurl=sessionStorage.getItem("addrinfo")+"/schooltypecreation-service";
-        var obj={"schooltypename":"","schooltypeid":""};    
+        var obj={"sname":"","schooltypeid":""};    
         obj.schooltypeid=schooltypeid;
-        obj.schooltypename=schooltypename;       
+        obj.stypename=stypename;       
         this.schooltypecreationparam=obj; 
         this.$.schooltypecreationajax.generateRequest();
       },
@@ -1813,9 +1803,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
 
         
-   
-
-
       FnDeleteSchooltype:function(schooltypeid)
       {
         var obj={"schooltypeid":""};
@@ -1866,7 +1853,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("Deleted");
+            //alert("Deleted");
           this.fnschoolemployeepersonal();
         }
       },
@@ -1878,27 +1865,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       var res=e.detail.response.returnval;
       //alert(res);
       },
-
-
-      /*FnUpdateSchooltypename:function(schooltypename,schooltypeid)
-      {
-        var obj={"schooltypename":"","schooltypeid":""};
-        obj.schooltypeid=schooltypeid;
-        obj.schooltypename=schooltypename;
-        this.updateschooltypenameurl=sessionStorage.getItem("addrinfo")+"/updateschooltypename-service";
-        this.updateschooltypenameparam=obj;
-        this.$.updateschooltypenameajax.generateRequest();
-      },
-      updateschooltypenameResponse:function(e)
-      {
-        //alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
-        {
-            //alert("Updated");
-          this.FnFetchSchooltypename();
-        }
-      },
-*/
       
 
       fnsetgrademapping:function(){
@@ -1994,17 +1960,19 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
            var res=e.detail.response.returnval;
           //alert(JSON.stringify(res));
         },
-      FnUpdateSchooltypename:function(schooltypename,schooltypeid)
+      FnUpdateSchooltypename:function(stypename,schooltypeid)
       {
-        var obj={"schooltypename":"","schooltypeid":""};
+        var obj={"stypename":"","schooltypeid":"","oldscltypeid":""};
         obj.schooltypeid=schooltypeid;
-        obj.schooltypename=schooltypename;
+        obj.stypename=stypename;
+        obj.oldscltypeid=localStorage.getItem('curr_sess_oldschooltypeid');
         this.updateschooltypenameurl=sessionStorage.getItem("addrinfo")+"/updateschooltypename-service";
         this.updateschooltypenameparam=obj;
         this.$.updateschooltypenameajax.generateRequest();
       },
       updateschooltypenameResponse:function(e)
       {
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
           this.FnFetchSchooltypename();
@@ -2012,14 +1980,14 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       },
      
 
-      FnSetCategoryInfo:function(categorytype,categoryname,categoryid,tempno)
+      FnSetCategoryInfo:function(categorytype,cname,categoryid,tempno)
       {
 
         this.categorycreationurl=sessionStorage.getItem("addrinfo")+"/categorynewcreation-service";
-        var obj={"categorytype":"","categoryname":"","categoryid":"","tempno":""};   
+        var obj={"categorytype":"","cname":"","categoryid":"","tempno":""};   
         obj.categoryid=categoryid;
         obj.categorytype=categorytype;
-        obj.categoryname=categoryname;
+        obj.cname=cname;
         obj.tempno=tempno;       
         this.categorycreationparam=obj; 
         //alert(JSON.stringify(obj));
@@ -2054,10 +2022,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
        var arr= e.detail.response.returnval;
        //alert(JSON.stringify(arr));       
        document.querySelector('category-card').categorytype=arr[0].category_prefix+arr[0].category_seq;
-       //alert(JSON.stringify(categorytype));
-      // document.querySelector('category-card').temphidden=arr[0].category_prefix+arr[0].category_seq;
-       //alert(JSON.stringify(arr[0].category_prefix+arr[0].category_seq));
-
       },
 
       FnFetchCategoryname:function()
@@ -2088,12 +2052,13 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
           this.FnFetchCategoryname();
         }
       },
-      FnUpdateCategoryname:function(categorytype,categoryid,categoryname)
+      FnUpdateCategoryname:function(categorytype,categoryid,cname)
       {
-        var obj={"categorytype":"","categoryid":"","categoryname":""};
+        var obj={"categorytype":"","categoryid":"","cname":"","oldcatid":""};
         obj.categoryid=categoryid;
         obj.categorytype=categorytype;
-        obj.categoryname=categoryname;
+        obj.cname=cname;
+        obj.oldcatid=localStorage.getItem('curr_sess_oldcategoryid');
         this.updatecategorynameurl=sessionStorage.getItem("addrinfo")+"/updatecategoryname-service";
         this.updatecategorynameparam=obj;
         this.$.updatecategorynameajax.generateRequest();
@@ -2344,7 +2309,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         obj.gradeid=gradeid;
         obj.gradename=gradename;
         this.gradecreationparam=obj; 
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.gradecreationajax.generateRequest();
       },  
            
@@ -2354,7 +2319,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
        
         if(e.detail.response.returnval=="Inserted!")
         {
-            alert("Inserted");
+            //alert("Inserted");
           this.FnFetchGrade(); 
           this.FnFetchGradeSeq(); 
            //document.querySelector('grade-creation-card').FnRefresh();
@@ -2401,7 +2366,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
-            alert("deleted");
+            //alert("deleted");
             this.FnFetchGrade();
         }
       },
@@ -2419,7 +2384,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
-            alert("Updated");
+            //alert("Updated");
           this.FnFetchGrade();
         }
       }

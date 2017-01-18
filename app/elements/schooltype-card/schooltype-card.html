@@ -103,7 +103,7 @@
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 30%;
-          margin-top: -16%;
+          margin-top: -18%;
           min-height: 270px;
           /*height: 150px; */
       }
@@ -157,13 +157,14 @@
   (function() 
   {
     'use strict';
-    //var schooltypes="";
-    Polymer({
+     var stypename="";
+      Polymer({
       is: 'schooltype-card',
       ready:function()
       {
       
       //  document.GetElementbyId('#')
+        //alert("test");
         this.$.service.FnFetchSchooltypename();
         this.$.hidenewschooltypecard=true;
       }, 
@@ -187,32 +188,29 @@
       secooltypeview:function(e){
             this.$.outcardzzzzzzzz.hidden=false;
       },
+
       FnSubmit:function()
       {
-
-        if(this.schooltypename==null || this.schooltypename=="")
+        if(this.schooltypename!=null)
+        {
+          stypename=this.toTitleCase(this.schooltypename);
+          var schooltypeid = ((stypename).toLowerCase()).replace(' ','');   
+          //alert(schooltypeid);   
+          //alert(stypename);
+          this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);        
+          document.querySelector('schooltype-card').FnRefresh();
+        }
+       else if(this.schooltypename==null || this.schooltypename=="")
         {          
           alert("Please enter schooltypename befor submit");
         }
-        else
-        { 
-        var schooltypeid = (this.schooltypename).toLowerCase();
-        //alert(this.schoolname);
-        //alert(this.schoolid);
-        //alert(this.schooltypename);
-        //alert(schooltypeid);
-        this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
-        document.querySelector('schooltype-card').FnRefresh();
-        this.$.schooldialog.toggle();
-        }
       },
-    
-      
-/*
-        Fncreate:function()
-        {
-          this.$.schooldialog.open();   
-      }  */
+      toTitleCase:function(strr)
+      {
+        return strr.replace(/\w\S*/g, 
+        function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      }
+
     });
   })();
   </script>

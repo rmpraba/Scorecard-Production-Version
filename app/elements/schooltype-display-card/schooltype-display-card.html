@@ -80,6 +80,7 @@
       FnEdit:function()
       {
         //alert("test");
+        localStorage.setItem('curr_sess_oldschooltypeid',this.schooltypeid);
         this.hideschooltypenameinput=false        
         this.hideschooltypenameitem=true;;
 
@@ -87,10 +88,18 @@
       FnSave:function()
       {
         //alert("test");
-        this.$.sclservice.FnUpdateSchooltypename(this.schooltypename,this.schooltypeid);
+        var schooltypename=this.toTitleCase(this.schooltypename);
+        var schooltypeid=(schooltypename.toLowerCase()).replace(' ','');
+        //alert(schooltypename+"  "+schooltypeid);
+        this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
-      }
+      },
+
+      toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
       
     });
   })();
