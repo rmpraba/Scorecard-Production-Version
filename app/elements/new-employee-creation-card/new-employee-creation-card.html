@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       } 
       .rbutton paper-button
       {
-      background-color: #363636;
+      background-color: #363636;    
       color: #ffffff;
       width: 10%;
       margin-left:5%;
@@ -94,13 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
     <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>
    </template>
-    <!-- <template is="dom-repeat" items="{{selectemployeerolearr}}" as="view">
-    <new-employee-creation-role-item-card roleemployeeid="{{view.eid}}" roleemployeename="{{view.name}}" role="{{view.role_id}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-role-item-card>
-   </template>  
-  <template is="dom-repeat" items="{{selectemployeeschooltypearr}}" as="view">
-    <new-employee-creation-schooltype-item-card schooltypemployeeid="{{view.emp_id}}" schooltypemployeename="{{view.emp_name}}" schooltyp="{{view.school_type}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-schooltype-item-card>
-   </template>
-  -->
+        
   </div>
     <paper-dialog id="roledialog" modal style="width:70%;">
      <button type="button" class="close close-icon" dialog-dismiss>&times;</button>
@@ -132,16 +126,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>  
          <div class="col-sm-12">
           <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
-              <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}"></employe-schooltype-creation-card>
+              <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschoolname="{{view.school_type_name}}"></employe-schooltype-creation-card>
          </template>
         </div>
       </div>
       <div class="list-group col-sm-12 panel-body form-category"> 
-        <div class="form-group-heading">
+        <div class="form-group-heading">   
           <h4>Employee Role Selection</h4>
         </div>
         <template is="dom-repeat" items="{{selectrolearr}}" as="view">
-          <employee-role-item-card emprolename="{{view.role_name}}"></employee-role-item-card>
+          <employee-role-item-card emprolename="{{view.role_name}}" emproleid="{{view.id}}"></employee-role-item-card>
         </template>
       </div> 
       <div style="float:center;">
@@ -243,3 +237,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   })();
   </script>
 </dom-module>
+r

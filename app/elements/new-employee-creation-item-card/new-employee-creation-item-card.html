@@ -15,12 +15,12 @@
       .card{
         @apply(--layout-horizontal);
         border-bottom: 1px solid #dedede;   
-      }      
+      }          
     </style>
   <div>
     <table class="card" id="card{{schoolid}}" >
       <tr><td>{{employeeid}}</td><td hidden>{{employeepassword}}</td>
-        <td width="20%">{{employeename}}</td>
+        <td width="50%">{{employeename}}</td>
         <td width="5%" ><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button></td>
      <!--    <td width="20%">EmployeRole</td>
         <td width="5%"><paper-icon-button icon='create' on-click='fnrolecreation'></paper-icon-button></td>
@@ -30,7 +30,7 @@
        <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
       </tr>
     </table>   
-   <paper-dialog id="entetroleset" modal style="width:75%;">
+   <paper-dialog id="entetroleset" modal style="width:60%;">
     <button type="button" class="close close-icon" dialog-dismiss>&times;</button>
        <div class="form-group-heading"><h4>employee personal  Details</h4></div>
                  <div class="list-group col-sm-12 panel-body form-category">
@@ -49,19 +49,17 @@
                          <gold-email-input label="Emailid" value="{{employeemail}}"></gold-email-input>
                         </div>
                         <div class="col-sm-3">
-                         <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
+                            <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
                         </div>
                      </div>
-
-
-  <div class="form-group-heading">
+   <div class="form-group-heading">
               <h4>Employee Role Mapping</h4>
-         </div>
+    </div>
              <div class="list-group col-sm-12 panel-body form-category">
                  <paper-input value={{schoolid}} hidden></paper-input>
         <div class="col-sm-12">
             <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
-              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
+              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>     
             </template>   
          </div>
              </div>
@@ -86,9 +84,9 @@
           <div class="list-group col-sm-12 panel-body form-category">
                 <paper-input value={{schoolid}} hidden></paper-input>
           <div class="col-sm-12">
-                  <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                  <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
-                  </template>   
+                 <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
+                   <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+                 </template>      
           </div>
           </div><!-- <span style="float:right;color:#1C63C9">
                  <paper-button dialog-confirm autofocus >Tap me to close</paper-button>
@@ -253,7 +251,7 @@
        this.$.uiservice.fnrolesaveinfo(passrolearr);
      },
      fndeletearr:function(e){
-      alert('1');
+     // alert('1');
         document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
         document.querySelector('new-employee-creation-role-item-card').typesplicerole();
         },
@@ -265,11 +263,14 @@
    },*/
  selectschoolroleResponse:function(e){
          var res=e.detail.response.returnval; 
+         //alert('z');
+         //alert(JSON.stringify(res));
+         //alert(JSON.stringify(getrolearr));
           for(var j=0;j<res.length;j++){
             var flag=0;
               for(var i=0;i<getrolearr.length;i++){
                   
-                  if(res[j].role_name==getrolearr[i].role_id)
+                  if(res[j].id==getrolearr[i].role_id)
                   {    
                    flag=1;
                    res[j].check=true;   
@@ -281,6 +282,7 @@
                  }
                }
               this.selectschoolrolearr=res;
+              alert(JSON.stringify(this.selectschoolrolearr));
               this.$.entetroleset.open();
    
         },
@@ -299,12 +301,14 @@
                   }
 
                  }
-                 if(flag==0){
+                 if(flag==0){   
                   res[j].check=false;
                  }
                }
                 
                this.selectmapschooltypearr=res;
+                  alert(JSON.stringify(this.selectmapschooltypearr));
+       
 
             }
     });

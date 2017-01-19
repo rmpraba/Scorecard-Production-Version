@@ -9,12 +9,13 @@
 
 <dom-module id="employee-role-item-card">
   <template>
-    <style>  
+    <style>     
       :host {
         display: block;
       }
     </style>   
     <div>
+       <paper-input hidden>{{emproleid}}</paper-input>
          <paper-checkbox class="col-md-3"  on-change="fnsetrole" id="{{emprolename}}">{{emprolename}}</paper-checkbox>
    </div>
   </template>
@@ -26,15 +27,15 @@
       is: 'employee-role-item-card',
        fnsetrole:function(e){
          if(document.querySelector('#'+this.emprolename).checked==true){
-           alert(this.emprolename); 
+           alert(this.emproleid); 
             var obj={"role_id":""};
-            obj.role_id=this.emprolename;
-           setrolearr1.push(obj);
+            obj.role_id=this.emproleid;
+            setrolearr1.push(obj);
             document.querySelector('new-employee-creation-card').setschoolrolezz(setrolearr1);
-           //alert(this.emprolename)
-          }else if(document.querySelector('#'+this.emprolename).checked==false){
+           //alert(this.emprolename);
+    }else if(document.querySelector('#'+this.emprolename).checked==false){
            for(var i=0;i<setrolearr1.length;i++){
-             if(setrolearr1[i].role_id==this.emprolename){
+             if(setrolearr1[i].role_id==this.emproleid){
              /* this.a=arr;
               alert(this.a);*/
                setrolearr1.splice(i,1);

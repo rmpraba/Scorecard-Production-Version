@@ -1,14 +1,3 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/gold-email-input/gold-email-input.html">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -34,18 +23,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .outcard{
       width:25% 
-     margin-left:5.0em;
+     margin-left:2.0em;
       }
        .innercard{     
       @apply(--layout-horizontal);
        width:100%
       margin-left:2.5em;
      }
-     .innercard1{
-       @apply(--layout-horizontal);
-       width:100%
-      margin-left:5.0em;
-     }
+    
      .tt{
       width:70%;
      }
@@ -68,43 +53,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 80%;
         margin-top: 4%;
       }
-      /* #subbutton1
-      {
-        margin-left:35%;
-        background-color: #363636;
-        color: #ffffff;                
-        width:17%;
-        
-      
-      }*/
-      /*.but1
-      {
-       margin-left: 70%;
-       margin-top: 4%;
-       background-color:#363636;
-       height:-1%;
-       width:10%;
-       color: #ffffff;                
-       
-        
-      }*/
-      
-     /* .container
-      {
-        margin-left: 30%;
-      }*/
-      .subcat1
+.subcat1
       {
         margin-left: 60%;
       }
    
     </style>
-
+   
       <div>
         <CENTER>
           <h3><b>EMPLOYEE TO SUBJECT MAPPING</b></h3>
         </CENTER>
-      </div>   
+      </div>      
      
      <div>
        <div class="outercard">
@@ -112,13 +72,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class="form-group-heading">
                 <h4>SCHOOL TYPE</h4>
               </div>
-              
-              <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
+               <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
                 <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
               </template>
               </div>
-            
-            <div class="subcat1">
+          <div class="subcat1">
               <div class="form-group-heading">
                 <h4>SUBJECT CATEGORY</h4>
               </div>
@@ -126,16 +84,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname=" {{view.subject_category_name}}"></employee-category-item-card>
               </template>
           </div>
-          <!-- </div> -->  
            <div class="subbutton">
               <paper-button on-click="grnerate">Generate</paper-button>
            </div>
-      </div>
+           <div >
+             <paper-checkbox on-change="fnsetemployee" id="empidz">Select The Employee name</paper-checkbox>
+          </div>
+          <div id="generateidz">
+           <paper-input  id="locality" required error-message="needs locality!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
+          <paper-listbox class="dropdown-content" id="itemlist111" on-iron-select="Fnselected" valueattr="value">
+                <template is="dom-repeat" items="{{itemArray}}" as="item">
+                  <paper-item value="{{item.itemid}}">{{item.itemdes}}</paper-item>
+                </template>
+           </paper-listbox>
+
+
+         </div>
+     </div>
   </div>
-
-
-     <div id="talhidn">
-        <div class="list-group col-sm-12 panel-body form-category">
+     <div id="dialog">
+      <paper-dialog id="dialogvaluezz" modal>
+           
+          <div class="list-group col-sm-12 panel-body form-category">  
           <table class="table table-bordered">
             <div class="container">
               <thead> 
@@ -143,7 +113,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <th></th>
                   <th class="innercard">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4 style="margin-left:6.5%;">{{view.srtarr}}</h4>
+                      <h5>{{view.srtarr}}</h5>
+                    </template>
+                  </th>   
+                  <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="{{bigarrzs}}" as="view">
+                <tr>
+                  <td class="outcard"> 
+                    <h4>{{view.emp_name}}</h4>
+                    </td>
+                    <td class="innercard">
+                      <template is="dom-repeat" items="{{view.employee}}" as="s">
+                        <employee-specific-subject-card employeesetidz="{{view.emp_id}}" id="{{s.id}}"        empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}">
+                       </employee-specific-subject-card>
+                      <!--  <paper-checkbox value="{{s.subject_id}}"></paper-checkbox> -->
+                      </template>
+                  </td>
+                  <td></td>  
+                </tr>
+                </template>
+              </tbody>
+            </div>
+          </table>
+        </div>
+        <paper-button on-click="fnclick" style="color:white;background-color:black;">Submit</paper-button>
+        <paper-button dialog-confirm autofocus>close</paper-button>   
+      </paper-dialog>
+ 
+      </div>
+
+     <div id="talhidn">
+        <div class="list-group col-sm-12 panel-body form-category">  
+          <table class="table table-bordered">
+            <div class="container">
+              <thead> 
+              <tr>
+                <th></th>
+                  <th class="innercard">
+                    <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                      <h5>{{view.srtarr}}</h5>
                     </template>
                   </th>   
                   <th></th>
@@ -153,14 +164,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
                 <tr>
                   <td class="outcard"> 
-                    <h4>{{view.subject_name}}</h4>
+                    <h4>{{view.emp_name}}</h4>   
+                    </td>
+                    <td class="innercard">
+                      <template is="dom-repeat" items="{{view.employee}}" as="s">
+                        <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"></employe-creation-card>
+                      </template>
                   </td>
-                  <td class="innercard">
-                    <template is="dom-repeat" items="{{view.employee}}" as="s">
-                      <employe-creation-card employeesetidz="{{s.emp_id}}" id="{{s.id}}" empsubjectname="{{view.subject_id}}"  empnames="{{s.emp_name}}"></employe-creation-card>
-                    </template>
-                  </td>
-                  <td></td>
+                  <td></td>  
                 </tr>
                 </template>
               </tbody>
@@ -179,16 +190,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      var empteacharr=[];
      var getcategory=[];
      var getgradenames=[];
-   //  var empgradearr=[];
+     var namearr=[];
+     var setspecificarr=[];
+     var bigarrz=[];
     Polymer({
       is: 'employe-schooltype-to-category-card',
       ready:function(){
         this.$.subbutton1.hidden=true;
         this.$.talhidn.hidden=true;
-      },
+        this.$.empidz.hidden=true;
+        this.$.generateidz.hidden=true;
+    },
        getgrade:function(arr){
         empteacharr=arr;
-        this.emparr=empteacharr;
+        //emparr=arr;
+        
        },
        getcategory:function(arr){
        getcategory=arr;
@@ -199,94 +215,228 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       passempgrade:function(arr){
        getgradenames=arr;
       },
+      autocompletename:function(nameitem){
+          namearr=nameitem;
+      },
+      fnsetemployee:function(e){
+          if(document.querySelector('#'+e.target.id).checked==true){
+                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+                this.$.uiservice.dynamicinfo(this.schooltypeid);
+                 this.$.generateidz.hidden=false;
+                     }
+          else if(document.querySelector('#'+e.target.id).checked==false){
+        this.$.generateidz.hidden=true;
+      }
+    },
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
        document.querySelector('employe-creation-card').Fnsubjectclean();        
        
        },
-        grnerate:function(e){
+      /* Fnselected:function(e)
+        {
+          //alert('s');
+          this.querySelector('paper-listbox').style.visibility='hidden';
+         // this.textvalue=e.target.selectedItem.textContent.trim();
+          //this.studentname=e.target.selectedItem.value;
+          //alert(this.textvalue+this.textvalue1);
+          this.itemArray=[];
+          //document.querySelector('#itemlist11www').selected=-1;
+         // this.$.uiservice.studentinfo(this.studentname);
+          },*/
 
+        grnerate:function(e){
+      //      document.querySelector('employe-creation-card').Fnsubjectclean();        
+      
             var setarrr=[];
-                 for(var i=0;i<empteacharr.length;i++){
-                          var emp_name=empteacharr[i].emp_name;
+                 for(var i=0;i<getcategory.length;i++){
+                          var subject_name=getcategory[i].subject_name;
                           
                             var obj={"srtarr":""};
-                                obj.srtarr=emp_name;
+                                obj.srtarr=subject_name;
                                setarrr.push(obj);
-                              // alert(JSON.stringify(obj));
-                  
                           }
-                // alert(JSON.stringify(setarrr));
-                   this.setsubjectarr=setarrr;
+
+                 /*for(var i=0;i<empteacharr.length;i++){
+                          var emp_id=empteacharr[i].emp_id;
+                          var emp_name=empteacharr[i].emp_name;
+                          
+                            var obj={"emp_id":"","emp_name":""};
+                                obj.emp_id=emp_id;
+                                obj.emp_name=emp_name;
+                               emparr.push(obj);
+                          }*/
+   this.setsubjectarr=setarrr;
 
           var generatearr=[];
          var subarr=[];
-                for(var j=0;j<getcategory.length;j++){
-                     for(var i=0;i<empteacharr.length;i++){
-                   var subjectname=getcategory[j].subject_name;
-                    var subject_id=getcategory[j].subject_id;
+                for(var j=0;j<empteacharr.length;j++){
+                     for(var i=0;i<getcategory.length;i++){
+                   var emp_name=empteacharr[j].emp_name;
+                    var emp_id=empteacharr[j].emp_id;
                          
                          var obj={"emp_name":"","subject_name":"","subject_id":"","emp_id":""}; 
-                           var emp_name=empteacharr[i].emp_name;
-                           var emp_id=empteacharr[i].emp_id;
+                           var subjectname=getcategory[i].subject_name;
+                           var subject_id=getcategory[i].subject_id;
                            obj.emp_id=emp_id;
                            obj.subject_name=subjectname;
                            obj.emp_name=emp_name;
                            obj.subject_id=subject_id;
                            generatearr.push(obj);
-                        }}//alert(JSON.stringify(generatearr));
+                        }}
         var a=[];
         var overall=[];
        for(var k=0;k<generatearr.length;k++)
        {       
-         var nameobj={"subject_name":"","subject_id":""};
-         nameobj.subject_name=generatearr[k].subject_name; 
-         nameobj.subject_id=generatearr[k].subject_id; 
+         var nameobj={"emp_name":"","emp_id":""};
+         nameobj.emp_name=generatearr[k].emp_name; 
+         nameobj.emp_id=generatearr[k].emp_id; 
        
-         var obj={"emp_name":"","emp_id":""};
-        // obj.Grade_name=generatearr[k].gradename;
-        obj.emp_name=generatearr[k].emp_name;
-        obj.emp_id=generatearr[k].emp_id;
+         var obj={"subject_name":"","subject_id":""};
+        obj.subject_name=generatearr[k].subject_name;
+        obj.subject_id=generatearr[k].subject_id;
         obj.id=generatearr[k].subject_id+generatearr[k].emp_id;
         a.push(obj);
         for(var l=k+1;l<generatearr.length;l++)
         {
-           if(generatearr[k].subject_name==generatearr[l].subject_name)
+           if(generatearr[k].emp_id==generatearr[l].emp_id)
            {
-             var obj1={"emp_id":"","emp_name":""}
-             //obj1.Grade_name=generatearr[l].gradename;
-             obj1.emp_name=generatearr[l].emp_name;
-             obj1.emp_id=generatearr[l].emp_id;
-             obj1.id=generatearr[k].subject_id+generatearr[l].emp_id;
-             //alert('1');
-           //  alert(JSON.stringify(obj1));
+             var obj1={"subject_name":"","subject_id":""}
+             obj1.subject_name=generatearr[l].subject_name;
+             obj1.subject_id=generatearr[l].subject_id;
+             obj1.id=generatearr[l].subject_id+generatearr[k].emp_id;
              a.push(obj1);
-      //       alert(JSON.stringify(a));
              generatearr.splice(l,1);
              l--;
-           // alert(JSON.stringify(generatearr));
          }}
            nameobj.employee=a;
            overall.push(nameobj);
-          // alert(JSON.stringify(obj1));
            a=[];
          }
-        //alert(JSON.stringify(overall));
-      // overall.splice(0,1);
          this.subjectbigarr=overall;
-       
+            setspecificarr=overall;
+        
          this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
          this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
          this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid);
-      
+         
          overall.splice();
          generatearr=[];
         // this.$.uiservice.fngetThefunction();
            this.$.subbutton1.hidden=false;
            this.$.talhidn.hidden=false;
-     
-        }
+           this.$.empidz.hidden=false;
+         //  this.$.generateidz.hidden=false;
+  
+         //  alert(JSON.stringify(emparr));
+         },
+
+FnInputChanged:function(e){
+          if(e.keyCode==13|| e.keyCode==40)
+            this.querySelector('paper-listbox').focus();
+          var arr=[];
+          arr.push({"itemdes":"-----Select-----"});
+          this.querySelector('paper-listbox').style.visibility='visible';
+          if(e.keyCode==8){
+            this.itemflag="true";
+            this.itemval="";
+            //alert('yes');
+            var len=(this.textvalue).length;
+            if(len<=1){
+              this.querySelector('paper-listbox').style.visibility='hidden';
+              this.itemArray="";
+              this.itemval="";
+            }
+            if(len>1){   
+              this.querySelector('paper-listbox').style.visibility='visible';
+              var backsubval=(((this.textvalue).substring(0,(len-1))).trim()).toUpperCase();
+              for(var i=0;i<namearr.length;i++)
+              {
+                var subval=((namearr[i].student_name).trim()).substring(0,backsubval.length);
+                if((subval).toUpperCase()==(backsubval).toUpperCase())
+                {
+                  var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                }
+              }
+              this.itemArray=arr;
+            }
+          }
+          if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39){
+            if(this.itemflag=="true") {
+              this.itemval = (this.textvalue).toUpperCase()+String.fromCharCode((e.keyCode)).toUpperCase();
+              this.itemflag="false";
+            }
+            else
+            this.itemval = this.textvalue +String.fromCharCode((e.keyCode));
+            if(this.itemval.length>0)
+            {
+              for(var i=0;i<namearr.length;i++){
+                var subval=((namearr[i].emp_name).trim()).substring(0,this.itemval.length);
+                if((subval).toUpperCase()==(this.itemval).toUpperCase()){
+                  var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                }
+              }
+              if(arr.length>0)
+                this.itemArray=arr;
+              else {
+                var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                this.itemArray=arr;
+              }
+            }
+          }
+        },
+Fnselected:function(e)
+        {
+          //alert('s');
+          this.querySelector('paper-listbox').style.visibility='hidden';
+          this.textvalue=e.target.selectedItem.textContent.trim();
+          this.empname=e.target.selectedItem.value;
+        //  alert(this.textvalue+this.empname);
+          alert(JSON.stringify(setspecificarr)); 
+              var setsubarr=[]; 
+                 for(var i=0;i<getcategory.length;i++){
+                          var subject_name=getcategory[i].subject_name;
+                          
+                            var obj={"subject":""};
+                                obj.subject=subject_name;
+                               setsubarr.push(obj);
+                          }
+                          alert(JSON.stringify(setsubarr));
+                          this.setsubarrz=setsubarr;
+          for(var i=0;i<setspecificarr.length;i++){
+          if(this.empname==setspecificarr[i].emp_id){
+               var emp_id=setspecificarr[i].emp_id;
+               var emp_name=setspecificarr[i].emp_name;
+               var employee=setspecificarr[i].employee;
+               var obj={"emp_id":"","emp_name":"","employee":""};
+               obj.emp_id=emp_id;
+               obj.emp_name=emp_name;
+               obj.employee=employee;
+               bigarrz.push(obj);
+             }
+          }
+              this.bigarrzs=bigarrz;
+               alert(JSON.stringify(bigarrz));  
+               this.$.dialogvaluezz.open();
+              bigarrz=[];
+          // bigarrz=[];
+          this.itemArray=[];
+          document.querySelector('#itemlist111').selected=-1;
+          //this.$.uiservice.studentinfo(this.studentname);
+           
+        },
+
+
      });
   })();
   </script>

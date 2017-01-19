@@ -22,8 +22,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          }
     </style>
     <span style="width:50px !important;">
-    <div hidden>{{schooltypename}}</div>
-    <div hidden>{{gradeidzzzw}}</div>
+    <div hidden>{{schooltypeid}}</div>
+     <div hidden>{{schooltypename}}</div>
+     <div hidden>{{gradeidzzzw}}</div>
     <paper-checkbox on-change="fngradechage" id="{{schoolgraddidz}}">{{gradenamezzzw}}</paper-checkbox> 
    </span>
   </template>
@@ -35,8 +36,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          Polymer({   
       is: 'school-grade-mapping--item-card',
      fngradechage:function(e){
-       // alert('1');
-       alert(JSON.stringify(this.schoolgraddidz));
+       alert(this.schoolgraddidz);
+      // alert(JSON.stringify(this.schoolgraddidz));
        alert(document.querySelector('#'+this.schoolgraddidz));
         alert(document.querySelector('#'+this.schoolgraddidz).checked);
       

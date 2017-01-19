@@ -176,14 +176,16 @@
         {          
           alert("Please enter schooltypename befor submit");
         }
-        else
-        { 
-        var schooltypeid = (this.schooltypename).toLowerCase();
+        else  
+        {  
+          var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
+          
+         
         //alert(this.schoolname);
         //alert(this.schoolid);
         //alert(this.schooltypename);
         //alert(schooltypeid);
-        this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
+       this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
         document.querySelector('schooltype-card').FnRefresh();
         this.$.schooldialog.toggle();
         }
