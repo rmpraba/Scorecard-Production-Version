@@ -8,7 +8,7 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
  <dom-module id="new-employee-creation-item-card">
    <template>
-    <style>
+   <style>
       :host {
         display: block;    
       }
@@ -41,16 +41,11 @@
        {
         margin-left: 20%;
        }
-       .card
+/*
+        #updateempdetails
        {
         @apply(--layout-horizontal);
-       }
-
-
-       #updateempdetails
-       {
-        @apply(--layout-horizontal);
-        margin-left:30%;
+        margin-left:40%;
         } 
 
        #updateempdetails
@@ -59,139 +54,63 @@
         border: 1px solid #6699ff;
         padding: 10px;
         min-height: 510px;
-        margin-top: 2%;
         width: 50%;
-        /*margin-left: 110%;*/
        }
-
+      */
     </style>
 
-
-    
-  <div> 
-
-    <div class="card col-sm-12">
-      <div class="eid col-sm-4">
-        <paper-item>{{employeeid}}</paper-item>
-      </div>
-        <paper-item hidden$="{{employeepassword}}"></paper-item>
-      <div class="ename col-sm-4">
-        <paper-item width="60%">{{employeename}}</paper-item>
-      </div>  
-      <div class="clbutton col-sm-4">
-        <paper-icon-button icon='create' on-click='showempdetails'></paper-icon-button>
-        <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
-      </div>     
-    </div>
-
-
-  <div class="updateemp" hidden>
-      <div>
-        <div class="form-group-heading">
-          <h4>employee personal  Details</h4>
+  <div>
+     <div class="card col-sm-12">
+        <div class="eid col-sm-4">
+          <paper-item>{{employeeid}}</paper-item>
         </div>
-
-        <div class="list-group col-sm-12 panel-body form-category">
+          <paper-item hidden$="{{employeepassword}}"></paper-item>
+        <div class="ename col-sm-4">
+          <paper-item width="60%">{{employeename}}</paper-item>
+        </div>  
+        <div class="clbutton col-sm-4">
+          <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
+        </div>     
+    </div>
+ <span>
+   <div id="updateempdetails" hidden>
+      <div class="form-group-heading">
+          <h4>employee personal  Details</h4>
+      </div>
+      <div class="list-group col-sm-12 panel-body form-category">
           <paper-input value={{schoolid}} hidden></paper-input>
-            <div class="col-sm-4">
-              <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
-            </div>
-            <div class="col-sm-4">
-              <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
-            </div>
-            <div class="col-sm-4">
-              <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
-            </div>
-        </div> 
 
-        <div class="list-group col-sm-12 panel-body form-category">       
-          <div class="col-sm-4">
-            <gold-email-input label="Email id" value="{{employeemail}}"></gold-email-input>
+          <div class="col-sm-3">
+            <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
           </div>
-          <div class="col-sm-4">
+                        
+          <div class="col-sm-3">
+            <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
+          </div>
+          <div class="col-sm-3">
+            <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
+          </div>
+          <div class="col-sm-3">
+            <gold-email-input label="Emailid" value="{{employeemail}}"></gold-email-input>
+          </div>
+          <div class="col-sm-3">
             <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
           </div>
-        </div>
-      </div> 
-
-      <div>
-          <div class="form-group-heading">
-            <h4>Employee Role Mapping</h4>
-          </div>
-
-          <div class="list-group col-sm-12 panel-body form-category">
-            <paper-input value={{schoolid}} hidden></paper-input>
-              <div class="col-sm-12">
-                <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
-                  <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
-                </template>   
-              </div>
-          </div>  
       </div>
 
-      <iron-ajax          
-        id="selectschoolroleajax"
-        url="{{selectschoolroleurl}}"
-        params="{{selectschoolroleparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="selectschoolroleResponse"
-        debounce-duration="300"
-    ></iron-ajax>
-
-    <div>
       <div class="form-group-heading">
-        <h4>Employee schooltype Mapping</h4>
+          <h4>Employee Role Mapping</h4>
       </div>
-
       <div class="list-group col-sm-12 panel-body form-category">
-        <paper-input value={{schoolid}} hidden></paper-input>
-          <div class="col-sm-12">
-            <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
-            </template>   
-          </div>
-        </div>
-    </div>
-
-
-      <iron-ajax        
-        id="selectschooltypemapajax"
-        url="{{selectschooltypemapurl}}"
-        params="{{selectschooltypemapparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="selectschooltypemapResponse"
-        debounce-duration="300"
-      ></iron-ajax>
-   
-          <div>
-            <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
-          </div>
-    </div>                  
-  </div>
-
-
-<!--  <paper-dialog id="entetroleset2" modal style="width:50%;">
-         <div class="form-group-heading">
-              <h4>Employee Role Mapping</h4>
-         </div>
-             <div class="list-group col-sm-12 panel-body form-category">
-                 <paper-input value={{schoolid}} hidden></paper-input>
+          <paper-input value={{schoolid}} hidden></paper-input>
         <div class="col-sm-12">
             <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
-              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
+              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>     
             </template>   
-         </div>
-             </div>
-              <span style="float:right;color:#1C63C9">
-               <paper-button dialog-confirm autofocus >Tap me to close</paper-button>
-              </span>
-              <span class="button" style="float:center;color:white;background-color:black;">
-               <paper-button  on-click='FnroleSave'>Save</paper-button>
-              </span>
+        </div>
+      </div>
+              
        <iron-ajax          
         id="selectschoolroleajax"
         url="{{selectschoolroleurl}}"
@@ -202,23 +121,18 @@
         on-response="selectschoolroleResponse"
         debounce-duration="300"
       ></iron-ajax>
-     </paper-dialog>
-     <paper-dialog id="entetroleset1" modal style="width:50%;">
-       <div class="form-group-heading">
-              <h4>Employee schooltype Mapping</h4></div>
-          <div class="list-group col-sm-12 panel-body form-category">
-                <paper-input value={{schoolid}} hidden></paper-input>
-          <div class="col-sm-12">
-                  <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                  <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
-                  </template>   
+
+    <div class="form-group-heading">
+        <h4>Employee schooltype Mapping</h4></div>
+        <div class="list-group col-sm-12 panel-body form-category">
+          <paper-input value={{schoolid}} hidden></paper-input>
+        <div class="col-sm-12">
+            <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
+              <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+            </template>      
+        </div>
           </div>
-          </div><span style="float:right;color:#1C63C9">
-                 <paper-button dialog-confirm autofocus >Tap me to close</paper-button>
-               </span>
-                <span class="button" style="float:center;color:white;background-color:black;">
-                     <paper-button  on-click='FnschooltypeSave'>Save</paper-button>
-               </span>
+          
         <iron-ajax        
         id="selectschooltypemapajax"
         url="{{selectschooltypemapurl}}"
@@ -229,8 +143,14 @@
         on-response="selectschooltypemapResponse"
         debounce-duration="300"
       ></iron-ajax>
-    </paper-dialog>          
- -->        <master-ui-service id="uiservice"></master-ui-service>
+   
+        <div>
+          <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
+        </div>
+       </div>
+  
+</span>
+        <master-ui-service id="uiservice"></master-ui-service>
     </template>   
   <script>
   (function() {
@@ -243,8 +163,7 @@
      
   Polymer({
       is: 'new-employee-creation-item-card',
-      FnDelete:function()
-      {
+      FnDelete:function(){
         this.$.uiservice.Fnempdeleteinfo(this.employeeid,this.employeename);
        },
     /*fnrolecreation:function(e){
@@ -282,7 +201,7 @@
          var obj={"school_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          this.selectschooltypemapparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
          this.$.selectschooltypemapajax.generateRequest();
         // this.$.entetroleset1.open();
      },
@@ -293,10 +212,13 @@
      //  this.$.entetroleset2.open();
    
       },
-      showempdetails:function()
+      FnEdit:function()
       {
           this.f1();
           this.f2();
+          document.querySelector('new-employee-creation-card').funct1(this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
+          document.querySelector('new-employee-creation-card').FnSchooltypemap();
+          document.querySelector('new-employee-creation-card').FnSchoolrole();
      },
      /*FnschooltypeSave:function(e){
         // alert(JSON.stringify(passschooltypearr));
@@ -304,15 +226,13 @@
               document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
  
      },*/
-     FnpersonalSave:function(e)
-     {
+    /* FnpersonalSave:function(e){
      this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
        this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
        this.$.uiservice.fnrolesaveinfo(passrolearr);
-     },
-     fndeletearr:function(e)
-     {
-        alert('1');
+     },*/
+     fndeletearr:function(e){
+     // alert('1');
         document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
         document.querySelector('new-employee-creation-role-item-card').typesplicerole();
         },
@@ -322,13 +242,16 @@
           document.querySelector('new-employee-creation-role-item-card').typesplicerole();
  
    },*/
-      selectschoolroleResponse:function(e){
+    selectschoolroleResponse:function(e){
          var res=e.detail.response.returnval; 
+         //alert('z');
+         //alert(JSON.stringify(res));
+         //alert(JSON.stringify(getrolearr));
           for(var j=0;j<res.length;j++){
             var flag=0;
               for(var i=0;i<getrolearr.length;i++){
                   
-                  if(res[j].role_name==getrolearr[i].role_id)
+                  if(res[j].id==getrolearr[i].role_id)
                   {    
                    flag=1;
                    res[j].check=true;   
@@ -340,12 +263,16 @@
                  }
                }
               this.selectschoolrolearr=res;
-              this.$.entetroleset.open();
+
+              document.querySelector('new-employee-creation-card').FnSchoolrole(res);
+              //alert(JSON.stringify(this.selectschoolrolearr));
+              // this.$.entetroleset.open();
    
         },
-        selectschooltypemapResponse:function(e){
+        selectschooltypemapResponse:function(e)
+        {
          var res=e.detail.response.returnval;
-         alert(JSON.stringify(res));      
+         //alert(JSON.stringify(res));      
           for(var j=0;j<res.length;j++){
             var flag=0;
               // var getschoolroleid=res[j].role_name;
@@ -358,14 +285,16 @@
                   }
 
                  }
-                 if(flag==0){
+                 if(flag==0){   
                   res[j].check=false;
                  }
                }
                 
                this.selectmapschooltypearr=res;
+               document.querySelector('new-employee-creation-card').FnSchooltypemap(res);
+               //alert(JSON.stringify(this.selectmapschooltypearr));
 
-            }
+        }
     });
   })();
   </script>

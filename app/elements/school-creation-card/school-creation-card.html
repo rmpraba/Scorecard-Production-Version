@@ -133,7 +133,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <tr>
           <th><label style="margin-left:3%">School ID</label></th>
           <th><label style="margin-left:-36%">School Name</label></th>
-          <th><paper-icon-button icon="add" on-click="getscldetails"></paper-icon-button></th>
+          <!-- <th><paper-icon-button icon="add" on-click="getscldetails"></paper-icon-button></th> -->
         </tr>
         <template is="dom-repeat" items="{{schoolcreatarr}}" as="view">
           <tr>
@@ -145,6 +145,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>
     </div>
     <div class="col-sm-6" id="creatediv" hidden$="{{hidecreatediv}}">
+      <div>
       <div class="form-group-heading">
         <h4>School Details</h4>
       </div>
@@ -160,16 +161,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input label="Mobile Number" id="Mobile" required error-message="needs mobileno" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
         <div class="col-sm-6">
-          <gold-email-input label="Emailid" id="Emailid" required error-message="needs mailid!" value="{{Emailid}}"></gold-email-input>
+          <gold-email-input label="Email" id="Emailid" required error-message="needs mailid!" value="{{Emailid}}"></gold-email-input>
         </div>
         <div class="col-sm-4">
           <paper-input label="Website" id="Website" required error-message="needs wevbsite!" value="{{Website}}"></paper-input>
         </div>
         <div class="col-sm-4">
-          <paper-input label="affiliation" id="affiliation" required error-message="needs affiliationno!" value="{{affiliation}}"></paper-input>
-        </div>
-        <div class="col-sm-4">
-          <!-- <paper-input label="affiliation" id="affiliation" required error-message="needs affiliationno!" value="{{affiliation}}"></paper-input> -->
           <paper-dropdown-menu label="Board Type">
             <paper-listbox id="academicswww" class="dropdown-content" on-iron-select="boardtype">
               <paper-item>ICSE</paper-item>
@@ -178,8 +175,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-item>IB</paper-item>
             </paper-listbox>
           </paper-dropdown-menu>
-        </div>  
-        <div class="form-group-heading">
+        </div> 
+        <div class="col-sm-4">
+          <paper-input label="Affiliation" id="affiliation" required error-message="needs affiliationno!" value="{{affiliation}}"></paper-input>
+        </div> 
+      </div>  
+
+        <div class="form-group-heading" style="margin-top:10%">
           <h4> School Address Details</h4>
         </div>
         <div class="list-group col-sm-12 panel-body form-category">
@@ -267,7 +269,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'school-creation-card',
         ready:function(){
           this.hideupdatediv=true;
-          this.hidecreatediv=true;  
+          this.hidecreatediv=false;  
           this.$.uiservice.FnSchoolidseq();
           this.FnRefresh();
           this.$.uiservice.fnschoolcreation();

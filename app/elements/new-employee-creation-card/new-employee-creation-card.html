@@ -1,4 +1,3 @@
-
 <!--
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
@@ -14,71 +13,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="new-employee-creation-card">
   <template>
     <style>
-     :host{
+     :host
+     {
          margin-left: 10%;
         display: block;     
          @apply(--layout-left);
-        /*width: 50%;*/   
-      }
-      .rolecard
+     } 
+     .card
       {
-         @apply(--layout-center);
-        width: 6%;
-        margin-left: 10%;
-      } 
-      /*.subbutton
-      {
-      background-color: #363636;
-      color: #ffffff;
-      width: 6%;
-      margin-left:30%;
-      margin-top: 4%;
-      }*/
-      /*.button paper-button
-      {
-      background-color: #363636;
-      color: #ffffff;                
-      width: 7%;
-      margin-left: 80%;
-      margin-top: 4%;
-      }*/
-      .role{
-        width: 50%;
-         margin-left:25%;
-      }
-      /*paper-button{
-        margin-left: 50%;
-        margin-top: 5%;
-      }*/
-      .card{
         @apply(--layout-horizontal);
-              margin-left:30%;
-        } 
-      .close-icon{
-        padding-right: 20px;
-      }
-      .form-dialog{
-        margin:0;
-      }
-      /* .outercard
-      {
-        border-radius: 10px;
-        border: 2px solid #6699ff;
-        padding: 20px;
-        margin-top: -45%;
-        width: 50%;
-        margin-left: 22%;
-        min-height: 300px;
-      }*/
-
-
+        margin-left:30%;
+      } 
 
        #createemp paper-button
       {
       background-color: #363636;
       color: #ffffff;
       width: 7%;
-      margin-left: 70%;
+      margin-left: 75%;
       margin-top: 3%;
       }
 
@@ -95,6 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .newcard
        {
          @apply(--layout-horizontal);
+         float: left;
+
        }
 
       #createemp
@@ -102,8 +56,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;
-          min-height: 200px; 
-          margin-top: -210%;
+          min-height: 200%; 
+          margin-top: -204%;
           width: 50%;
           margin-left: 44%;
               
@@ -112,46 +66,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        {
         margin-left: 30%;
        }
-
-
        #updateempdetails
        {
-        @apply(--layout-horizontal);
-        margin-left:30%;
-        } 
+        /*@apply(--layout-horizontal);*/
+        margin-top: -200%;
 
-       #updateempdetails
-       {
-        border-radius: 10px;
-        border: 1px solid #6699ff;
-        padding: 10px;
-        min-height: 510px;
-        margin-top: 2%;
-        width: 50%;
-        /*margin-left: 110%;*/
        }
-       .updateemp paper-button
+       #updateempdetails
        {
-        background-color: #363636;
+        float: right;
+        border-radius: 10px;
+        border:1px solid #6699ff;
+        padding: 10px;
+        margin-left:50%;
+        width: 50%;
+        min-height: 200%; 
+       }
+
+       .subbutton
+       {
+         background-color: #363636;
         color: #ffffff;
         width: 7%;
-        margin-left: 82%;
+        margin-left: 70%;
         margin-top: 3%;
        }
 
-
     </style>
 
-    <div class="title">
+     <div class="title">
       <h3><b>EMPLOYEE CREATION</b></h3>
     </div>
-
+    <span>
     <div class="newcard col-sm-12">
       <table>
         <tr>
-          <th><label style="margin-left:3%">Employee ID</label></th>
-          <th><label style="margin-left:12%">Employee Name</label></th>
-          <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th>
+          <th><label style="margin-left:12% ">Employee ID</label></th>
+          <th><label style="margin-left:-7%">Employee Name</label></th>
+          <!-- <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th> -->
         </tr>
         <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
           <tr>
@@ -212,21 +164,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <employee-role-item-card emprolename="{{view.role_name}}"></employee-role-item-card>
         </template>
 
-        <span class="subbutton">
+        <span>
           <paper-button on-click="FnSubmit">Submit</paper-button>     
         </span>
       </div>    
-    </div>
+     </div>
+    </span>
 
 
-
-
-
-    <div class="updateempdetails">
-     <div class="updateemp" hidden$="{{hideupdateemp}}">
-      <div>
+    <div id="updateempdetails" hidden$="{{hideupdateemp}}">
+     <div class="updateemp">
+      <!-- <div hidden$="{{hideupdateemp}}"> -->
         <div class="form-group-heading">
-          <h4>employee personal  Details</h4>
+          <h4>Employee Personal  Details</h4>
         </div>
 
         <div class="list-group col-sm-12 panel-body form-category">
@@ -250,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
           </div>
         </div>
-      </div> 
+      <!-- </div> --> 
 
       <div>
           <div class="form-group-heading">
@@ -266,7 +216,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </div>
           </div>  
       </div>
-
+<!-- 
       <iron-ajax          
         id="selectschoolroleajax"
         url="{{selectschoolroleurl}}"
@@ -276,7 +226,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         method="post"
         on-response="selectschoolroleResponse"
         debounce-duration="300"
-    ></iron-ajax>
+    ></iron-ajax> -->
 
     <div>
       <div class="form-group-heading">
@@ -294,7 +244,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
 
-      <iron-ajax        
+     <!--  <iron-ajax        
         id="selectschooltypemapajax"
         url="{{selectschooltypemapurl}}"
         params="{{selectschooltypemapparam}}"
@@ -303,40 +253,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         method="post"
         on-response="selectschooltypemapResponse"
         debounce-duration="300"
-      ></iron-ajax>
+      ></iron-ajax> -->
    
           <div>
             <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
           </div>
       </div>                  
-    </div>
-  </div>  
+    </div>    
 
-
-
-   
     <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
-  (function() {
+     (function() {
     'use strict';
-   var setrolearr=[];
-   var empschooltypearr=[];
+   
     Polymer({
       is: 'new-employee-creation-card',
      ready:function()
      {
-      this.hidecreateemp=true;
+      this.hidecreateemp=false;
       this.hideupdateemp=true;
+      var passrolearr=[];
+       var passschooltypearr=[];
      },  
      setschoolrolezz:function(arr){
           setrolearr=arr;   
-          alert(JSON.stringify(setrolearr));
+          //alert(JSON.stringify(setrolearr));
          },
   
     passetschooltype:function(arr){
           empschooltypearr=arr;
-       alert(JSON.stringify(empschooltypearr));
+       //alert(JSON.stringify(empschooltypearr));
        
      },
   
@@ -386,7 +333,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.$.uiservice.selectschooltype();
          this.$.uiservice.selectrolename();
          this.hidecreateemp=false;
-         alert(this.hidecreateemp);
+         //alert(this.hidecreateemp);
          document.getElementId('#hidecreateemp');
       },
 
@@ -398,13 +345,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.employeemobile=employeemobile;
         this.employeemail=employeemail;
         this.employeepassword=employeepassword;
-        this.schoolid=schoolid;
-        
+        this.schoolid=schoolid;      
+      },
+      FnSchooltypemap:function(arr){
+        this.selectmapschooltypearr=arr;
+        this.hidecreateemp=true;
+        this.hideupdateemp=false;
+      },
+      FnSchoolrole:function(arr){
+        this.selectschoolrolearr=arr;
+        this.hidecreateemp=true;
+        this.hideupdateemp=false;
+      },
+      
+       FnpersonalSave:function(e)
+       {
+       this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+       this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
+       this.$.uiservice.fnrolesaveinfo(passrolearr);
+       this.ready();
+       
+       
+     }  
 
-      }
-     
-
- 
     });
   })();
   </script>
