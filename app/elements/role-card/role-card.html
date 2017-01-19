@@ -119,7 +119,7 @@
           </div>
 
            <div class="buttons">
-            <paper-button class="popup-btn" on-click="FnSubmit">Submit</paper-button>    
+            <paper-button on-click="FnSubmit">Submit</paper-button>    
           </div>    
         </div>
     </div>  
@@ -131,6 +131,7 @@
   <script>
   (function() {
     'use strict';
+     var rname="";
     Polymer({
       is: 'role-card',
       ready:function()
@@ -144,31 +145,28 @@
        this.rolename="";        
       },  
       
-      FnSubmit:function()
-      {                      
-         if(this.rolename==null||this.rolename=="")
-         {
-          alert('Please enter rolename before save!!');
-         }
-         else 
-         {
-          //alert("test");
-         var roleid = (this.rolename).toLowerCase(); 
-         //alert("hi"); 
-               
-         //alert("hi2");
-         //alert(roleid);
-         this.$.uiservice.FnSetRoleInfo(this.rolename,roleid);
-         document.querySelector('role-card').FnRefresh(); 
-         //this.$.roledialog.toggle();
-       }    
-      } 
-     /* 
-      Fncreate:function()
-      {
-         this.$.roledialog.open();
-     }
-     */
+     FnSubmit:function()
+     {
+        if( this.rolename!=null)
+        {
+          // alert( this.rolename);
+          rname=this.toTitleCase(this.rolename);
+          // rname=(this.rolename).charAt(0).toUpperCase() + (this.rolename).slice(1);
+          var roleid=((rname).toLowerCase()).replace(' ','');
+          //alert(roleid);
+          this.$.uiservice.FnSetRoleInfo(rname,roleid);
+          document.querySelector('role-card').FnRefresh();
+        }
+        else if( this.rolename==null ||  this.rolename=="")
+        {
+          alert('Please enter Role Name before Submit');
+        }
+        
+     },
+    toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
     });
   })();
   </script>

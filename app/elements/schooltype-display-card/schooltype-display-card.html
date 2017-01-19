@@ -31,7 +31,7 @@
 
 
     
-    <div class='itemcard'>
+    <div class='itemcard' hidden$="{{hideitemcard}}">
         <paper-item>{{schooltypeid}}</paper-item>
         <paper-item hidden$="{{hideschooltypenameitem}}">{{schooltypename}}</paper-item>
         <paper-input value="{{schooltypename}}" hidden$="{{hideschooltypenameinput}}"></paper-input>
@@ -66,12 +66,21 @@
       },
       FnDelete:function()
       {
-        //alert("test");
-        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+            this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+        
+        /*if(this.schooltypename=="null" || this.schooltypeid=="null")
+         {
+          document.querySelector('schooltype-card').fn1();
+         } 
+         else
+         {
+            this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+         }*/
       },
       FnEdit:function()
       {
         //alert("test");
+        localStorage.setItem('curr_sess_oldschooltypeid',this.schooltypeid);
         this.hideschooltypenameinput=false        
         this.hideschooltypenameitem=true;;
 
@@ -79,10 +88,18 @@
       FnSave:function()
       {
         //alert("test");
-        this.$.sclservice.FnUpdateSchooltypename(this.schooltypename,this.schooltypeid);
+        var schooltypename=this.toTitleCase(this.schooltypename);
+        var schooltypeid=(schooltypename.toLowerCase()).replace(' ','');
+        //alert(schooltypename+"  "+schooltypeid);
+        this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
-      }
+      },
+
+      toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
       
     });
   })();

@@ -1,4 +1,5 @@
 
+
 var express    = require("express");
  var mysql      = require('mysql');
  var email   = require("emailjs/email");
@@ -12,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecardbatabase'
+   database : 'scorecarddatabase'
  });
 var bodyParser = require('body-parser');
 var app = express();
@@ -5118,11 +5119,11 @@ app.post('/insertoverallfagrade-service' ,  urlencodedParser,function (req, res)
 
 app.post('/rolecreation-service' ,  urlencodedParser,function (req, res)
 {  
-    var response={"id":req.query.roleid,"role_name":req.query.rolename}; 
+    var response={"id":req.query.roleid,"role_name":req.query.rname}; 
 
     //console.log(JSON.stringify(response));
 
-    connection.query("SELECT * FROM md_role WHERE  id='"+req.query.roleid+"' or role_name='"+req.query.rolename+"'",
+    connection.query("SELECT * FROM md_role WHERE  id='"+req.query.roleid+"' or role_name='"+req.query.rname+"'",
       function(err, rows)
     {
     if(rows.length==0)
@@ -5190,9 +5191,9 @@ console.log(qur);
 
 app.post('/updaterole-service' ,  urlencodedParser,function (req, res)
 {  
-   
-   var val=(req.query.rolename).toLowerCase();
-var qur="UPDATE  md_role SET role_name='"+req.query.rolename+"', id='"+val+"' where  id='"+req.query.roleid+"'";
+   var rval=(req.query.roleid);
+   var val=(req.query.rname);
+  var qur="UPDATE  md_role SET role_name='"+val+"', id='"+rval+"' where  id='"+req.query.oldid+"'";
 //console.log(qur);
   connection.query(qur,
     function(err, rows)
@@ -5424,9 +5425,9 @@ app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
 
 app.post('/schooltypecreation-service' , urlencodedParser,function (req, res)
 {  
-  var collection = {"school_type_id":req.query.schooltypeid,"school_type_name":req.query.schooltypename};
+  var collection = {"school_type_id":req.query.schooltypeid,"school_type_name":req.query.stypename};
    //console.log(JSON.stringify(collection));
-   connection.query("SELECT * FROM md_school_type WHERE school_type_name='"+req.query.schooltypename+"' or school_type_id='"+req.query.schooltypeid+"'",function(err, rows)
+   connection.query("SELECT * FROM md_school_type WHERE school_type_name='"+req.query.stypename+"' or school_type_id='"+req.query.schooltypeid+"'",function(err, rows)
     {
     if(rows.length==0)
     {
@@ -5454,14 +5455,12 @@ app.post('/schooltypecreation-service' , urlencodedParser,function (req, res)
   });
 
 
-
-
-
 app.post('/updateschooltypename-service' ,  urlencodedParser,function (req, res)
 {  
-   var val=(req.query.schooltypename).toLowerCase();
-   var qur="UPDATE  md_school_type SET school_type_name='"+req.query.schooltypename+"', school_type_id='"+val+"' WHERE school_type_id='"+req.query.schooltypeid+"' "; 
-    //console.log(qur);    
+   var sval=(req.query.schooltypeid);
+   var val=(req.query.stypename);
+   var qur="UPDATE  md_school_type SET school_type_name='"+val+"', school_type_id='"+sval+"' WHERE school_type_id='"+req.query.oldscltypeid+"' "; 
+    console.log(qur);    
     connection.query(qur,
     function(err, rows)
     {
@@ -5646,7 +5645,7 @@ app.post('/fnschoolcreation-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
     else
@@ -5766,7 +5765,7 @@ app.post('/fetchmastercategory-service',  urlencodedParser,function (req,res)
 app.post('/categorynewcreation-service' , urlencodedParser,function (req, res)
  {  
   var collection = {"category_id":req.query.categoryid,
-  "category_name":req.query.categoryname,"category_type":req.query.categorytype};
+  "category_name":req.query.cname,"category_type":req.query.categorytype};
 
    //console.log(JSON.stringify(collection));
 
@@ -5782,7 +5781,7 @@ app.post('/categorynewcreation-service' , urlencodedParser,function (req, res)
     if(!err)
     {
       var tempseq=parseInt((req.query.categorytype).substring(8))+1;
-      //console.log(tempseq);
+      console.log(tempseq);
       connection.query("UPDATE sequence SET category_seq='"+tempseq+"'",
       function (err,result)
       {
@@ -5821,7 +5820,7 @@ app.post('/deletecategoryname-service' ,  urlencodedParser,function (req, res)
     }
     });
     });
-app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
+ app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
 {  
   // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
   var qur="SELECT * FROM md_grade";
@@ -5837,12 +5836,17 @@ app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+
+
+
+
 app.post('/updatecategoryname-service' ,  urlencodedParser,function (req, res)
 
 {
-   var val=(req.query.categoryname).toLowerCase();
-var qur="UPDATE  md_category_type SET category_name='"+req.query.categoryname+"', category_id='"+val+"'  where category_id='"+req.query.categoryid+"'";
-//console.log(qur);
+  var cval=(req.query.categoryid);
+   var val=(req.query.cname);
+  var qur="UPDATE  md_category_type SET category_name='"+val+"', category_id='"+cval+"'  where category_id='"+req.query.oldcatid+"'";
+  //console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -5877,7 +5881,7 @@ app.post('/fetchgradeseq-service',  urlencodedParser,function (req,res)
 
   });
 });
-app.post('/gradecreation-service' , urlencodedParser,function (req, res)
+app.post('/gradecreation-service' ,  urlencodedParser,function (req, res)
 {  
     var response={"grade_id":req.query.gradeid,"grade_name":req.query.gradename}; 
 
@@ -5913,6 +5917,7 @@ app.post('/gradecreation-service' , urlencodedParser,function (req, res)
     }
   });
 });
+
 app.post('/deletegrade-service' ,  urlencodedParser,function (req, res)
 {  
    
@@ -5933,6 +5938,7 @@ var qur="DELETE FROM  md_grade where  grade_id='"+req.query.gradeid+"'";
     });
     
 });
+
 app.post('/updategrade-service' ,  urlencodedParser,function (req, res)
 {  
    
@@ -5951,7 +5957,8 @@ var qur="UPDATE  md_grade SET grade_name='"+req.query.gradename+"' where  grade_
       res.status(200).json({'returnval': 'Not Updated!'});
     }
     });
-    });
+    
+});
 app.post('/fnempgenerateid-service',  urlencodedParser,function (req,res)
 {  
    var qur="SELECT * FROM sequence";
@@ -7533,17 +7540,22 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
   connection.query(qur,
     function(err, rows)
     {
+    /*if(rows.length>0)*/
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
+   else if(rows.length==0)
+    { 
+      //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': 'empty'});
+    }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'invalid'});
     });
 
 });
-
 
 
 var server = app.listen(5000, function () {

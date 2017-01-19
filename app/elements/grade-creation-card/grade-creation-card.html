@@ -1,5 +1,4 @@
 
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -25,7 +24,7 @@
         width: 55%;
         margin-left: 10%;
       }
-    
+
       .title
       {
         @apply(--layout-center);
@@ -66,6 +65,7 @@
       table{
          border-collapse: collapse;
         border: 1px solid #dedede;
+        margin-top: 10%;
         width: 90%;
       }
       .outcard{
@@ -77,6 +77,7 @@
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 25%;
+          margin-top: 10%;
           max-height: 270px;
           /*height: 150px; */
       }
@@ -93,7 +94,7 @@
       <table>
         <tr>
             <th> <label>Grade ID</label></th>
-            <th> <label>Grade Name</label></th>
+            <th> <label>Grade Name</label>    </th>
             <th></th>
         </tr>
 
@@ -144,14 +145,11 @@
         this.$.hidenewgradecreationcard=true;  
       },
 
-      /* FnRefresh:function()
-      {     
-       this.gradename="";      
-      }, */
       FnSubmit:function()
       {
         if(this.gradename==null || this.gradename=="")
         {
+          //alert("hiiii");
           alert("please enter Grade name before save");
         }
         else
@@ -159,19 +157,11 @@
         this.$.uiservice.FnSetGradeCreationInfo(this.gradeid,this.gradename);
         this.ready();
         //document.querySelector('grade-creation-card').FnRefresh();
-        //this.$.gradedialog.toggle();
+        //this.$.gradedialog.toggle();8
         }
         
       }
-     /* Fnclose:function()
-      {
-        this.ready();
-      },
-      Fncreate:function()
-      {
-        this.$.gradedialog.open();
-      }
-     */
+     
     });
   })();
 

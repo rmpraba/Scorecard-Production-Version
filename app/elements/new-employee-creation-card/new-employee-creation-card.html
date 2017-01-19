@@ -13,180 +13,282 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="new-employee-creation-card">
   <template>
     <style>
-     :host{
+     :host
+     {
          margin-left: 10%;
         display: block;     
          @apply(--layout-left);
-        /*width: 50%;*/   
-      }
-      .rolecard
+     } 
+     .card
       {
-         @apply(--layout-center);
-        width: 6%;
-        margin-left: 10%;
+        @apply(--layout-horizontal);
+        margin-left:30%;
       } 
-      .rbutton paper-button
-      {
-      background-color: #363636;    
-      color: #ffffff;
-      width: 10%;
-      margin-left:5%;
-      margin-top: 4%;
-      }
-      .button paper-button
+
+       #createemp paper-button
       {
       background-color: #363636;
-      color: #ffffff;                
-      width: 10%;
-      margin-left: 40%;
-      margin-top: 4%;
+      color: #ffffff;
+      width: 7%;
+      margin-left: 75%;
+      margin-top: 3%;
       }
-      .role{
-        width: 50%;
-         margin-left:25%;
-      }
-      paper-button{
-        margin-left: 50%;
-        margin-top: 5%;
-      }
-      .card{
-        @apply(--layout-horizontal);
-              margin-left:30%;
-        } 
-      .close-icon{
-        padding-right: 20px;
-      }
-      .form-dialog{
-        margin:0;
-      }
-       .outercard
+
+       table
       {
-        border-radius: 10px;
-        border: 2px solid #6699ff;
-        padding: 20px;
-        margin-top: -45%;
-        width: 50%;
-        margin-left: 22%;
-        min-height: 300px;
+         margin-top: 3%;
+         border-collapse: collapse;
+         margin-left: -8%;
+         border: 1px solid #dedede;
+         width: 530px;
+         padding: 10px;
+              
       }
+      .newcard
+       {
+         @apply(--layout-horizontal);
+         float: left;
+
+       }
+
+      #createemp
+       {
+          border-radius: 10px;
+          border: 1px solid #6699ff;
+          padding: 10px;
+          min-height: 200%; 
+          margin-top: -204%;
+          width: 50%;
+          margin-left: 44%;
+              
+       }
+       .title
+       {
+        margin-left: 30%;
+       }
+       #updateempdetails
+       {
+        /*@apply(--layout-horizontal);*/
+        margin-top: -200%;
+
+       }
+       #updateempdetails
+       {
+        float: right;
+        border-radius: 10px;
+        border:1px solid #6699ff;
+        padding: 10px;
+        margin-left:50%;
+        width: 50%;
+        min-height: 200%; 
+       }
+
+       .subbutton
+       {
+         background-color: #363636;
+        color: #ffffff;
+        width: 7%;
+        margin-left: 70%;
+        margin-top: 3%;
+       }
 
     </style>
-  
-     <!-- <paper-input label="Search here.........." prefix>
-      <paper-icon-button prefix icon="search" on-click="FnSearch"></paper-icon-button>
-    </paper-input>
- --> <div>
-    
-  
-    
-    <div>
-      <CENTER><h3><b>EMPLOYEE CREATION</b></h3></CENTER>
-      </div>
 
+     <div class="title">
+      <h3><b>EMPLOYEE CREATION</b></h3>
     </div>
-     <center>
-       <div class="rbutton">
-        <paper-button on-click="Fncreate">Create</paper-button>
-       </div>
-     </center>  
+    <span>
+    <div class="newcard col-sm-12">
+      <table>
+        <tr>
+          <th><label style="margin-left:12% ">Employee ID</label></th>
+          <th><label style="margin-left:-7%">Employee Name</label></th>
+          <!-- <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th> -->
+        </tr>
+        <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
+          <tr>
+            <td colspan="6">
+              <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>           
+            </td>
+          </tr>
+        </template> 
+      </table>
+    </div>
 
-  <div class="role">
-    <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
-    <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>
-   </template>
-        
-  </div>
-    <paper-dialog id="roledialog" modal style="width:70%;">
-     <button type="button" class="close close-icon" dialog-dismiss>&times;</button>
+    <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">    
           <h4>Employee Details</h4>
         </div>  
-        <paper-input value={{empid}} hidden></paper-input>
+
+          <paper-input value={{empid}} hidden></paper-input>
+
         <div class="col-sm-4">
           <paper-input label="Emplyoee name" id="empname" required error-message="needs emplyoee name!" value="{{name}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
+
         <div class="col-sm-4">
           <paper-input label="Mobile Number" id="empTelephone" required error-message="needs telepnoneno!" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
+
         <div class="col-sm-4">
           <paper-input label="Secondry Mobile Number" id="empMobile" required error-message="needs mobileno" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
+
         <div class="col-sm-4">
           <paper-input label="Password" id="emppassword" type="password" required error-message="needs password!" value="{{password}}"></paper-input>
         </div>
+
         <div class="col-sm-4">
           <gold-email-input label="Emailid" id="empmailid" required error-message="needs mailid!" value="{{mailid}}"></gold-email-input>
-        </div>
-       
+        </div>    
       </div>    
+
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">
           <h4>Emplyoee School Type</h4>
         </div>  
+
          <div class="col-sm-12">
           <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
-              <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschoolname="{{view.school_type_name}}"></employe-schooltype-creation-card>
+            <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}"></employe-schooltype-creation-card>
          </template>
         </div>
       </div>
+
       <div class="list-group col-sm-12 panel-body form-category"> 
-        <div class="form-group-heading">   
+        <div class="form-group-heading">
           <h4>Employee Role Selection</h4>
         </div>
         <template is="dom-repeat" items="{{selectrolearr}}" as="view">
-          <employee-role-item-card emprolename="{{view.role_name}}" emproleid="{{view.id}}"></employee-role-item-card>
+          <employee-role-item-card emprolename="{{view.role_name}}"></employee-role-item-card>
         </template>
-      </div> 
-      <div style="float:center;">
-        <paper-button class="btn btn-primary" on-click="FnSubmit">Submit</paper-button>
+
+        <span>
+          <paper-button on-click="FnSubmit">Submit</paper-button>     
+        </span>
+      </div>    
+     </div>
+    </span>
+
+
+    <div id="updateempdetails" hidden$="{{hideupdateemp}}">
+     <div class="updateemp">
+      <!-- <div hidden$="{{hideupdateemp}}"> -->
+        <div class="form-group-heading">
+          <h4>Employee Personal  Details</h4>
+        </div>
+
+        <div class="list-group col-sm-12 panel-body form-category">
+          <paper-input value={{schoolid}} hidden></paper-input>
+            <div class="col-sm-4">
+              <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
+            </div>
+            <div class="col-sm-4">
+              <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
+            </div>
+            <div class="col-sm-4">
+              <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
+            </div>
+        </div> 
+
+        <div class="list-group col-sm-12 panel-body form-category">       
+          <div class="col-sm-4">
+            <gold-email-input label="Email id" value="{{employeemail}}"></gold-email-input>
+          </div>
+          <div class="col-sm-4">
+            <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
+          </div>
+        </div>
+      <!-- </div> --> 
+
+      <div>
+          <div class="form-group-heading">
+            <h4>Employee Role Mapping</h4>
+          </div>
+
+          <div class="list-group col-sm-12 panel-body form-category">
+            <paper-input value={{schoolid}} hidden></paper-input>
+              <div class="col-sm-12">
+                <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
+                  <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>
+                </template>   
+              </div>
+          </div>  
       </div>
-    </paper-dialog>
+<!-- 
+      <iron-ajax          
+        id="selectschoolroleajax"
+        url="{{selectschoolroleurl}}"
+        params="{{selectschoolroleparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="selectschoolroleResponse"
+        debounce-duration="300"
+    ></iron-ajax> -->
+
+    <div>
+      <div class="form-group-heading">
+        <h4>Employee schooltype Mapping</h4>
+      </div>
+
+      <div class="list-group col-sm-12 panel-body form-category">
+        <paper-input value={{schoolid}} hidden></paper-input>
+          <div class="col-sm-12">
+            <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
+                <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}" check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+            </template>   
+          </div>
+        </div>
+    </div>
+
+
+     <!--  <iron-ajax        
+        id="selectschooltypemapajax"
+        url="{{selectschooltypemapurl}}"
+        params="{{selectschooltypemapparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="selectschooltypemapResponse"
+        debounce-duration="300"
+      ></iron-ajax> -->
+   
+          <div>
+            <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
+          </div>
+      </div>                  
+    </div>    
+
     <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
-  (function() {
+     (function() {
     'use strict';
-   var setrolearr=[];
-   var empschooltypearr=[];
+   
     Polymer({
       is: 'new-employee-creation-card',
-     ready:function(){
-       },  
+     ready:function()
+     {
+      this.hidecreateemp=false;
+      this.hideupdateemp=true;
+      var passrolearr=[];
+       var passschooltypearr=[];
+     },  
      setschoolrolezz:function(arr){
           setrolearr=arr;   
-          alert(JSON.stringify(setrolearr));
+          //alert(JSON.stringify(setrolearr));
          },
-   /*  passsetschoolrole1:function(arr1){
-      for(var i=0;i<setrolearr.length;i++){
-        if(setrolearr[i].role_id==arr1){
-              this.a=arr;
-              alert(this.a);
-               setrolearr.splice(i,1);
-                  }
-               }
-             },
-   */  passetschooltype:function(arr){
+  
+    passetschooltype:function(arr){
           empschooltypearr=arr;
-       alert(JSON.stringify(empschooltypearr));
+       //alert(JSON.stringify(empschooltypearr));
        
-
      },
-   /*  passetschooltype1:function(arr1){
-      for(var i=0;i<empschooltypearr.length;i++){
-        if(empschooltypearr[i].school_type==arr1){
-              this.a=arr;
-              alert(this.a);
-               empschooltypearr.splice(i,1);
-                  }
-               }
-     },
-   */  FnSearch:function(){
-    },/*boardtype:function(e){
-        this.Board=e.target.selectedItem.textContent.trim();
-        alert(this.Board);
-        this.$.uiservice.fnschoolidgrnerate();  
-     */
+  
+   FnSearch:function(){
+    },
        FnRefresh:function()
       {    
        this.name="";
@@ -197,14 +299,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },  
       FnSubmit:function()
       { 
-      if(this.name==""||this.Telephone==""||this.MobileNumber==""||this.password==""||this.mailid==""){
+      if(this.name==""||this.Telephone==""||this.MobileNumber==""||this.password==""||this.mailid=="")
+      {
               this.$.empname.validate();
               this.$.empTelephone.validate();
               this.$.empMobile.validate();  
               this.$.emppassword.validate();
               this.$.empmailid.validate();
-           }
-        else  {
+      }
+      else  
+      {
              this.$.uiservice.fninsetschoolemployeeinfo(this.empid,this.name,this.Telephone,this.MobileNumber,this.password,this.mailid,empschooltypearr,setrolearr);
              this.FnRefresh();
              this.$.uiservice.selectschooltype();
@@ -216,25 +320,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             //empschooltypearr=[];
             // setrolearr=[];
              this.$.uiservice.fnempgenerateid();
-        }},     
-     Fncreate:function(){
+        }},  
+
+        /*Fncreate:function(){
            this.$.uiservice.selectschooltype();
            this.$.uiservice.selectrolename();
-           /*document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
-           document.querySelector('new-employee-creation-role-item-card').typesplicerole();
-         */
-       //    document.querySelector('employee-role-item-card').setschoolroleclean();
-         //  document.querySelector('employe-schooltype-creation-card').empschooltypesplice();
-           //this.$.uiservice.fnschoolemployeepersonal();
-          // this.FnRefresh();
           this.$.roledialog.open();
-     
-      }  
-     
+        },*/
+      getempdetails:function(e)
+      {
+         //  alert("hii");
+         this.$.uiservice.selectschooltype();
+         this.$.uiservice.selectrolename();
+         this.hidecreateemp=false;
+         //alert(this.hidecreateemp);
+         document.getElementId('#hidecreateemp');
+      },
 
- 
+
+      funct1:function(employeename,employeephone,employeemobile,employeemail,employeepassword,schoolid)
+      {
+        this.employeename=employeename;
+        this.employeephone=employeephone;
+        this.employeemobile=employeemobile;
+        this.employeemail=employeemail;
+        this.employeepassword=employeepassword;
+        this.schoolid=schoolid;      
+      },
+      FnSchooltypemap:function(arr){
+        this.selectmapschooltypearr=arr;
+        this.hidecreateemp=true;
+        this.hideupdateemp=false;
+      },
+      FnSchoolrole:function(arr){
+        this.selectschoolrolearr=arr;
+        this.hidecreateemp=true;
+        this.hideupdateemp=false;
+      },
+      
+       FnpersonalSave:function(e)
+       {
+       this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+       this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
+       this.$.uiservice.fnrolesaveinfo(passrolearr);
+       this.ready();
+       
+       
+     }  
+
     });
   })();
   </script>
 </dom-module>
-r

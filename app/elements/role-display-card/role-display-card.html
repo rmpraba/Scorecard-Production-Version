@@ -38,20 +38,6 @@
           <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
     </div>
 
-
-
-          <!-- <table class="card" id="card{{roleid}}">
-          <tr><td hidden>{{roleid}}</td>
-          <td width="40%" hidden$="{{hiderolenameitem}}">{{rolename}}</td>
-          <td width="40%" hidden$="{{hiderolenameinput}}"><paper-input value="{{rolename}}"></paper-input></td>
-          <td width="5%" hidden$="{{hiderolenameitem}}"><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
-          </td>
-          <td width="5%" hidden$="{{hiderolenameinput}}"><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button>
-          </td>
-          <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
-          </table></tr> -->
-
-
         <master-ui-service id="service"></master-ui-service>
   </template>
 
@@ -82,15 +68,23 @@
       },
       FnEdit:function()
       {
+        localStorage.setItem('curr_sess_oldroleid',this.roleid);
         this.hiderolenameinput=false;
         this.hiderolenameitem=true;
       },
       FnSave:function()
       {
-        this.$.service.FnUpdateRole(this.roleid,this.rolename);
+        var rolename=this.toTitleCase(this.rolename);
+        var roleid=(rolename.toLowerCase()).replace(' ','');
+        alert(rolename+"  "+roleid);
+        this.$.service.FnUpdateRole(rolename,roleid);
         this.hiderolenameinput=true;
         this.hiderolenameitem=false;
-      }
+      },
+    toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
      
     });
   })();
