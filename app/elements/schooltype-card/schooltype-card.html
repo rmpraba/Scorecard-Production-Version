@@ -84,10 +84,10 @@
       {
          border-collapse: collapse;
         border: 1px solid #dedede;
-        width: 90%;
+        width: 85%;
         margin-top: 5%;
       }
-      #outcardzzzzzzzz
+      .outcardzzzzzzzz
       {
         @apply(--layout-horizontal);
       }
@@ -103,8 +103,8 @@
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 30%;
-          margin-top: -18%;
-          min-height: 270px;
+          margin-top: -13%;
+          min-height: 240px;
           /*height: 150px; */
       }
       .newcard
@@ -118,9 +118,9 @@
         <h2><b>SCHOOL TYPE</b></h2>        
     </div>
 
-    <div id="outcardzzzzzzzz">
+    <div class="outcardzzzzzzzz" hidden$="{{hideoutnewcard}}">
       <div class="newcard">
-        <table hidden$="{{hidenewcard}}">
+        <table>
           <tr>
             <th><label style="margin-left:4%">School Type ID</label></th>
             <th><label style="margin-left:-5%">School Type Name</label></th>
@@ -167,6 +167,8 @@
         //alert("test");
         this.$.service.FnFetchSchooltypename();
         this.$.hidenewschooltypecard=true;
+        //this.hideoutnewcard=true;
+
       }, 
      
        FnRefresh:function()
@@ -180,13 +182,14 @@
         schooltypes = e.target.selectedItem.textContent.trim();
         localStorage.setItem("curr_sess_school_type_name",schooltypes);               
       },*/  
-      secooltypehide:function(e)
+      schooltypehide:function()
       {
-        this.$.outcardzzzzzzzz.hidden=true;
+        this.hideoutnewcard=true;
   
       },
-      secooltypeview:function(e){
-            this.$.outcardzzzzzzzz.hidden=false;
+      schooltypeview:function()
+      {
+            this.hideoutnewcard=false;
       },
 
       FnSubmit:function()

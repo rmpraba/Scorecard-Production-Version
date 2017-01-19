@@ -1065,7 +1065,7 @@
     {
       var res=e.detail.response.returnval;  
          //  alert(JSON.stringify(res));
-        alert(document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence);
+        //alert(document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence);
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
          this.emppersonaldetailsurl=sessionStorage.getItem("addrinfo")+"/emppersonaldetails-service";
@@ -1835,6 +1835,21 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         this.$.fetchschooltypenameajax.generateRequest();
       },
 
+       fetchschooltypenameResponse:function(e)
+       {
+        //alert('hi');
+        //alert(JSON.stringify(e.detail.response.returnval));
+         if(e.detail.response.returnval=="empty")
+         {
+          document.querySelector('schooltype-card').schooltypehide();
+         }
+         else
+         {
+               document.querySelector('schooltype-card').schooltypeview();
+               document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
+         }             
+      },     
+
         
       FnDeleteSchooltype:function(schooltypeid)
       {
@@ -1974,6 +1989,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
      },
      
 
+
       fetchschooltypenameResponse:function(e)
       {
 
@@ -1987,6 +2003,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
                document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
              }             
       },     
+
 
       fnDeleteSchooltypename:function(schooltypeid)
       {  

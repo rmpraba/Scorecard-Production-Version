@@ -7218,7 +7218,6 @@ var qur="DELETE FROM  md_school_type where  school_type_id='"+req.query.schoolty
     else
     {
       console.log(err);
-
       res.status(200).json({'returnval': 'Not Deleted!'});
     }
     });
@@ -7548,8 +7547,8 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
     }
    else if(rows.length==0)
     { 
-      //console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': 'empty'});
+      console.log(JSON.stringify(rows));  
+      res.status(200).json({'returnval': empty});
     }
     else
       res.status(200).json({'returnval': 'invalid'});
