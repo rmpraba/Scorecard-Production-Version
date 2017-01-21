@@ -113,7 +113,7 @@
         <div class="card">
               <label><b>Create New Category</b></label>
               <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
-              <paper-input value="{{categoryname}}" label="Category Name"></paper-input>
+              <paper-input value="{{categoryname}}" label="Category Name" on-change="fnseq"></paper-input>
         </div>  
 
         <div class="buttons">
@@ -144,14 +144,25 @@
       {
          this.categoryname=""; 
       },
- 
+      fnseq:function(){
+         this.$.uiservice.FnFetchCategorySeq();
+       },
       FnSubmit:function()
       {
         if(this.categoryname!=null)
         {
+
+        //alert("test");
+
+        var categoryid=(this.categoryname).toLowerCase();
+        //alert(this.categoryname);
+
+        this.$.uiservice.FnSetCategoryInfo(this.categorytype,this.categoryname,categoryid,this.temphidden);
+
           cname=this.toTitleCase(this.categoryname);
           var categoryid=((cname).toLowerCase()).replace(' ','');
           this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
+
          document.querySelector('category-card').FnRefresh(); 
         }
         else if(this.categoryname==null || this.categoryname=="")

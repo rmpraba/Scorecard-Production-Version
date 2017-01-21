@@ -14,13 +14,13 @@
       }
     .card{
         @apply(--layout-horizontal);
-        border-bottom: 1px solid #dedede;   
+        border-bottom: 1px solid #dedede;      
       }     
     </style>
     <div>
         <paper-input hidden value={{schoolempschooltypeid}}></paper-input>
          <paper-input hidden value={{schoolempschooltypename}}></paper-input>
-      <paper-checkbox class="col-md-4" on-change="fnschooltypename" id={{schooltypeids}} checked="{{check}}">{{schooltypeids}}</paper-checkbox>
+      <paper-checkbox class="col-md-4" on-change="fnschooltypename" id={{schooltypeids}} checked="{{check}}">{{schooltypenames}}</paper-checkbox>
   </div>
   <iron-ajax        
         id="getempschooltypeajax"
@@ -49,11 +49,11 @@
                   obj.emp_id=this.schoolempschooltypeid;
                   obj.emp_name=this.schoolempschooltypename;
                   obj.emp_schol_type=this.schooltypeids;
-                  getschooltypearr.push(obj);
+                  getschooltypearr.push(obj);    
                 //  alert(JSON.stringify(getschooltypearr));
                   document.querySelector('new-employee-creation-item-card').passschooltype(getschooltypearr);
- }
-        else if(document.querySelector('#'+this.schooltypeids).checked==false){
+           }
+else if(document.querySelector('#'+this.schooltypeids).checked==false){
                    this.getempschooltypeurl=sessionStorage.getItem("addrinfo")+"/getempschooltype-service";
                    var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");

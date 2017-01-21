@@ -70,7 +70,7 @@
             </div>
 
             <div class="elementsdiv">
-              <paper-input  id="localitysssssssss" required error-message="needs locality!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
+              <paper-input  id="locality" required error-message="needs locality!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
               <paper-listbox class="dropdown-content" id="itemlist11" on-iron-select="Fnselected" valueattr="value">
                 <template is="dom-repeat" items="{{itemArray}}" as="item">
                   <paper-item value="{{item.itemid}}">{{item.itemdes}}</paper-item>
@@ -210,7 +210,6 @@ Fnselected:function(e)
           document.querySelector('#itemlist11').selected=-1;
           document.querySelector('#fntranfergradeid').selected=-1;
           document.querySelector('#fntranfersectionid').selected=-1;
-          document.querySelector('#localitysssssssss').selected=-1;
         },
         fndelete:function(e){
         this.$.uiservice.deletegradeinfo(this.schooltype,this.classid,this.studentname,this.gradename,this.section);

@@ -146,62 +146,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-button on-click="fnsubmit">Submit</paper-button> 
               </div>
 
-      
-
-
-<!-- 
-    <div>   
-     <template is="dom-repeat" items="{{empschoolarr}}" as="view">
-        <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}"></emp-category-get-card>
-      </template>
-      <paper-dropdown-menu  label="select the grade">
-            <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
-              <template is="dom-repeat" items="{{empschoolgrads}}">
-                <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
-              </template>    
-            </paper-menu>
-          </paper-dropdown-menu>
-             
-          <paper-dropdown-menu  label="select the employee">
-            <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
-              <template is="dom-repeat" items="{{empschoolnamesarr}}">
-                <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
-              </template>    
-            </paper-menu>
-          </paper-dropdown-menu>
-    </div>
-    <table class="table table-bordered">
-          <div class="container">
-             <thead> 
-              <tr>
-                  <th></th>
-                    <th class="innercard">
-                      <template is="dom-repeat" items="{{setsectionname}}" as="view">
-                        <h4 style="margin-left:6.5%;">{{view.subjectarr}}</h4>
-                      </template>
-                    </th>
-                    <th></th>
-                  </tr>
-            </thead>
-              <tbody>
-                 <template is="dom-repeat" items="{{allarrr}}" as="view">
-                 <tr>
-                    <td class="outcard"> 
-                      <h4>{{view.subject_name}}</h4>
-                   </td>
-                    <td class="innercard">
-                      <template is="dom-repeat" items="{{view.subject}}" as="s">
-                        <emp-grade-get-card employeesectionidz="{{s.section_id}}" id="{{s.id}}" employeesubjectz="{{view.subject_name}}"  empsubjectidz="{{view.subjectid}}" employeesectionnamez="{{s.section_name}}" employeeidz="{{empselectid}}" empgradeidz="{{setgradeidz}}" ></emp-grade-get-card>
-                      </template>
-                    </td>
-                   <td></td>
-                 </tr>
-              </template>
-            </tbody>
-        </div>
-  </table>
-<paper-button on-click="fnsubmit">Submit</paper-button>-->
-
 
 <master-ui-service id="uiservice"></master-ui-service>
  

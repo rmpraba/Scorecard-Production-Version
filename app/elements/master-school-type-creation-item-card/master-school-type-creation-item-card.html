@@ -23,15 +23,16 @@
 
     <table class="card" id="card{{schoolid}}"> 
       <tr><td hidden>{{schoolid}}</td>  
-      <td width=20"%" hidden$="{{hidesubjectitem}}">{{schooltypename}}</td>
+      <td width=20"%" hidden$="{{hidesubjectitem}}" value="{{schooltypeid}}">{{schooltypename}}</td>
       <td width="5%" hidden$="{{hidesubjectitem}}"><paper-button  on-click='FnEdit'>GradeSelection</paper-button></td>
+      
       <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
      </table>
    <div class="innercard">
-      <paper-dialog id="dialog{{schooltypename}}" modal style="width:60%">
+      <paper-dialog id="schooldialogwww" modal style="width:60%">
          <h2>SELECT THE GRADES</h2>
            <template is="dom-repeat" items="{{fngradearr}}" as="view">
-              <school-grade-mapping--item-card schooltype="{{schooltypename}}" gradeidzzzw="{{view.grade_id}}" schoolgraddidz="{{view.grade_id}}{{schooltypename}}" gradenamezzzw="{{view.grade_name}}" style="display:inline-block;"></school-grade-mapping--item-card>
+              <school-grade-mapping--item-card schooltype="{{schooltypename}}" gradeidzzzw="{{view.grade_id}}" schoolgraddidz="{{view.grade_id}}{{schooltypeid}}" gradenamezzzw="{{view.grade_name}}" style="display:inline-block;"></school-grade-mapping--item-card>
             </template></br>
           <center><paper-button on-click='FnSave' style="color:white;background-color:black">Submit</paper-button></center>
               <paper-button on-click='create' dialog-confirm autofocus style="margin-left:90%">Close</paper-button>
@@ -42,11 +43,22 @@
         url="{{FnschoolgettheGradeurl}}"
         params="{{FnschoolgettheGradeparam}}"
         handle-as="json"
-        content-type="application/json"
+        content-type="application/json"  
         method="post"
         on-response="FnschoolgettheGradeResponse"
         debounce-duration="300">
+    </iron-ajax> 
+      <iron-ajax   
+        id="FnschoolgettheGrade1ajax"
+        url="{{FnschoolgettheGrade1url}}"
+        params="{{FnschoolgettheGrade1param}}"
+        handle-as="json"
+        content-type="application/json"  
+        method="post"
+        on-response="FnschoolgettheGrade1Response"
+        debounce-duration="300">
     </iron-ajax>   
+    
   <master-ui-service id="subservice"></master-ui-service>
   </template>
   <script>
@@ -64,21 +76,45 @@
     */ 
       FnDelete:function()
       {
-        this.$.subservice.fnDeleteSchooltypename(this.schooltypename);
+         alert(this.schooltypeid);
+        this.$.subservice.fnDeleteSchooltypename(this.schooltypeid);
       },
       FnEdit:function()
-      { 
+      {
         alert(this.schooltypename);
-        this.FnschoolgettheGradeurl=sessionStorage.getItem("addrinfo")+"/FnschoolgettheGrade-service";
-        this.$.FnschoolgettheGradeajax.generateRequest();
+        this.FnschoolgettheGrade1url=sessionStorage.getItem("addrinfo")+"/FnschoolgettheGrade1-service";
+         var obj={"schooltypeid":"","school_id":""};
+           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+           obj.schooltypeid=this.schooltypeid;
+             this.FnschoolgettheGrade1param=obj;
+           //  alert(JSON.stringify(obj));
+             this.$.FnschoolgettheGrade1ajax.generateRequest();
+      
         this.hidesubjectitem=false;
-        // this.$.schooldialogwww.open();
-        document.querySelector('#dialog'+this.schooltypename).toggle();
+       
+      //  document.querySelector('#dialog'+this.schooltypename).toggle();
       },
+      FnschoolgettheGrade1Response:function(e){
+
+            var res=e.detail.response.returnval;
+          //  alert(JSON.stringify(res));
+            if(res=='fill'){
+              alert("All ready mapping this schooltype");
+             }
+           else if(res=='empty')
+           {
+           this.FnschoolgettheGradeurl=sessionStorage.getItem("addrinfo")+"/FnschoolgettheGrade-service";
+           this.$.FnschoolgettheGradeajax.generateRequest();
+           this.$.schooldialogwww.open();
+       
+            }
+           // alert(JSON.stringify(this.fngradearr));
+   },
    FnschoolgettheGradeResponse:function(e){
+      // this.$.subservice.chckmapping(this.schooltypename);
         var res=e.detail.response.returnval;
-        this.fngradearr=res;
-        alert(JSON.stringify(this.fngradearr));
+           this.fngradearr=res;
+         //    alert(JSON.stringify(this.fngradearr));
        },
    fnsetpassgrade:function(arr){
            getarr=arr;
@@ -87,13 +123,12 @@
            document.querySelector('school-grade-mapping--item-card').fnsetclean();
          },
       FnSave:function(){
-          alert(JSON.stringify(getarr));
+         // alert(JSON.stringify(getarr));
           alert(this.schoolid+this.schooltypename);
-        this.$.subservice.Fngradeinsetschool(this.schoolid,getarr,this.schooltypename);
+        this.$.subservice.Fngradeinsetschool(this.schoolid,getarr,this.schooltypeid);
         this.hidesubjectitem=false;
         },
-         
-    });
+      });
   })();
   </script>
 </dom-module>

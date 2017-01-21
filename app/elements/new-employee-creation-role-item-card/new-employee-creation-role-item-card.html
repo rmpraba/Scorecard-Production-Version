@@ -18,7 +18,7 @@
         <paper-input hidden value={{schoolempgetid}}></paper-input>
         <paper-input hidden value={{schoolempgetname}}></paper-input>
         <paper-input hidden value={{emppsw}}></paper-input>
-        <paper-checkbox class="col-md-4" id={{schoolroleids}} on-change="fnroleset" checked="{{check}}">{{schoolroleids}}</paper-checkbox>
+        <paper-checkbox class="col-md-4" id="{{schoolroleidxx}}" on-change="fnroleset" checked="{{check}}">{{schoolroleids}}</paper-checkbox>
     </div>
     <iron-ajax        
         id="getempschoolroleajax"
@@ -38,26 +38,25 @@
    Polymer({
       is: 'new-employee-creation-role-item-card',
       fnroleset:function(e){
-        alert(this.schoolroleids+this.schoolempgetname+this.schoolempgetid+this.emppsw);
-         if(document.querySelector('#'+e.target.id).checked==true){
-
+        alert(this.schoolroleidxx+this.schoolempgetname+this.schoolempgetid+this.emppsw);
+        alert(document.querySelector('#'+this.schoolroleidxx).checked=true)
+         if(document.querySelector('#'+this.schoolroleidxx).checked==true){
               var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
                   obj.emp_id=this.schoolempgetid;
                   obj.emp_name=this.schoolempgetname;
-                  obj.school_role_id=this.schoolroleids;
+                  obj.school_role_id=this.schoolroleidxx;
                   obj.emp_psw=this.emppsw;
                   getrolearrr.push(obj);
-                  alert(JSON.stringify(getrolearrr));
+                  //alert(JSON.stringify(getrolearrr));
                document.querySelector('new-employee-creation-item-card').passrole(getrolearrr);
-          
-         }
-         else if(document.querySelector('#'+e.target.id).checked==false){
+           }
+         else if(document.querySelector('#'+this.schoolroleidxx).checked==false){
               this.getempschoolroleurl=sessionStorage.getItem("addrinfo")+"/getempschoolrole-service";
                var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempgetid;
                    obj.emp_name=this.schoolempgetname;
-                   obj.school_role_id=this.schoolroleids;
+                   obj.school_role_id=this.schoolroleidxx;
                    obj.emp_psw=this.emppsw;
                    this.getempschoolroleparam=obj;
                    this.$.getempschoolroleajax.generateRequest();
@@ -79,7 +78,7 @@
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempgetid;
                    obj.emp_name=this.schoolempgetname;
-                   obj.school_role_id=this.schoolroleids;
+                   obj.school_role_id=this.schoolroleidxx;
                    obj.emp_psw=this.emppsw;
                 getrolearrr.splice(obj);
                 }

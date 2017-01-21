@@ -48,6 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'employe-schooltype-to-category-item-card',
       fnschooltypeget11:function(e)
       {
+        alert(this.schooltypeidxx);
        if(document.querySelector('#'+this.schooltypeidxx).checked==true)
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);

@@ -15,10 +15,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-      }  
+      }
       .innercard{
       @apply(--layout-horizontal);
-      margin-left:7.0em;
+      margin-left:3.0em;
       width:100%
      }
     </style>
@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'employe-creation-card',
      fnempsetsubject:function(e){
-      alert(this.employeesetidz);
+      alert(this.employeesetidz+this.empnames+this.employeesetidz);
         alert(this.id);
        if(document.querySelector('#'+this.id).checked==true){
             this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
@@ -101,8 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var subject_id=empsubjectarr[i].subjectid;
               var subject_name=empsubjectarr[i].subject_name;
               var getsubid=empsubjectarr[i].subjectid+empsubjectarr[i].emp_id;
-             alert(getsubid)
-            document.querySelector('#'+getsubid).checked=true; 
+          //  alert(getsubid)
+           document.querySelector('#'+getsubid).checked=true;
            if(document.querySelector('#'+getsubid).checked==true){
               var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
               obj.empid=empid;
@@ -110,10 +110,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               obj.subjectid=subject_id;
               obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
               obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                    
               empgetarr.push(obj);
-             v.push(obj);
-              alert(JSON.stringify(empgetarr));
+              v.push(obj);
+         //     alert(JSON.stringify(empgetarr));
            }
          
          }
@@ -126,9 +125,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          Fnsubjectclean:function(e){
       //alert('1');
       for(var j=0;j<v.length;j++){
-         var getsubid=v[j].subjectid+v[j].empid;
-          alert(getsubid);
-              document.querySelector('#'+getsubid).checked=false;
+         var getsubidz=v[j].subjectid+v[j].empid;
+          alert(getsubidz);
+              document.querySelector('#'+getsubidz).checked=false;
               }
              v.splice(obj);
             var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};

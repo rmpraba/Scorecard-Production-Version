@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="school-creation-card">
   <template>
     <style>
+      <style>
       :host{
          margin-left: 10%;
         display: block;     
@@ -78,6 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .outcard
        {
          @apply(--layout-horizontal);
+         margin-left: 5%;
        }
 
       #creatediv
@@ -86,15 +88,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200px; 
-          margin-top: -20%;
+          margin-top: -23%;
           width: 54%;
           margin-left: 47%;
-              
        }
        #updatedetails
        {
         @apply(--layout-horizontal);
-        margin-left:30%;
+        margin-left:50%;
         } 
 
        #updatedetails
@@ -103,9 +104,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border: 1px solid #6699ff;
         padding: 10px;
         min-height: 510px;
-        margin-top: 2%;
-        width: 50%;
-        /*margin-left: 110%;*/
+        margin-top: 1%;
+        width: 35%;
        }
        .updatediv paper-button
        {
@@ -123,6 +123,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       }
   </style>
+
+  
     <div class="title">    
         <h3><b>SCHOOL CREATION</b></h3>
     </div>
@@ -269,9 +271,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.hideupdatediv=true;
           this.hidecreatediv=false;  
           this.$.uiservice.FnSchoolidseq();
+          this.$.uiservice.fnschoolcreation();
           this.FnRefresh();
           this.$.uiservice.fnschoolcreation();
-        },  
+        }.
+
         FnShowUpdatediv:function(){
 
         },
@@ -356,6 +360,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 document.querySelector('#academicswww').selected=-1;
       
              }    
+          },
+           FnSave:function()
+          {
+            alert(this.addr);
+            alert(this.addr1);
+            alert(this.addr2);
+            alert(this.addr3);
+
+            this.$.uiservice.Fnsaveschoolinfo(this.schoolname,this.schoolid,this.telnum,this.mobile,this.mailid,
+              this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);                
+            this.ready();
           },
 
           getscldetails:function(e)

@@ -189,11 +189,25 @@
         {          
           alert("Please enter schooltypename befor submit");
         }
+        else  
+        {  
+          var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
+          
+         
+        //alert(this.schoolname);
+        //alert(this.schoolid);
+        //alert(this.schooltypename);
+        //alert(schooltypeid);
+       this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
+        document.querySelector('schooltype-card').FnRefresh();
+        this.$.schooldialog.toggle();
+        }
       },
       toTitleCase:function(str)
       {
-        return str.replace(/\w\S*/g,        
-          function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        
+        return strr.replace(/\w\S*/g, 
+        function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
       }
 
     });
