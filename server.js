@@ -4914,28 +4914,29 @@ app.post('/updateattendanceimportmark-service' ,  urlencodedParser,function (req
       {
       if(!err)
       {        
-      if(rows.length>0)
-      {
-        res.status(200).json({'returnval': 'exist'});
+        if(rows.length>0)
+        {
+          res.status(200).json({'returnval': 'exist'});
+        }
+        else
+        { 
+          connection.query('insert into tr_term_assesment_import_marks set ?',[data],
+          function(err, rows)
+          {
+            if(!err)
+            {
+            res.status(200).json({'returnval': 'succ'});
+            }
+            else
+            {
+              console.log('No data Fetched'+err);
+            }
+          });
+        }
       }
-      else{ 
-      connection.query('insert into tr_term_assesment_import_marks set ?',[data],
-      function(err, rows)
-      {
-      if(!err)
-      {
-      res.status(200).json({'returnval': 'succ'});
-      }
-    else
-    {
-      console.log('No data Fetched'+err);
-    }
-});
-  }
-}
-else
-console.log(err);
-});
+      else
+      console.log(err);
+    });
 });
 
 
@@ -5754,14 +5755,25 @@ app.post('/fetchmastercategory-service',  urlencodedParser,function (req,res)
     function(err, rows)
     {
     if(!err)
-    { 
-      //console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': rows});
+    {
+      if(rows.length>0)
+        { 
+          console.log(JSON.stringify(rows));   
+          res.status(200).json({'returnval': rows});
+        }
+       else if(rows.length==0|| row.length==null)
+        { 
+          console.log(JSON.stringify(rows));  
+          res.status(200).json({'returnval': 'empty'});
+        }
     }
+        
     else
-      res.status(200).json({'returnval': ''});
-  });
+      res.status(200).json({'returnval': 'invalid'});
+    });
+
 });
+
 app.post('/categorynewcreation-service' , urlencodedParser,function (req, res)
  {  
   var collection = {"category_id":req.query.categoryid,
@@ -7460,22 +7472,26 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
   connection.query(qur,
     function(err, rows)
     {
-    /*if(rows.length>0)*/
     if(!err)
-    { 
-      console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': rows});
+    {
+      if(rows.length>0)
+        { 
+          console.log(JSON.stringify(rows));   
+          res.status(200).json({'returnval': rows});
+        }
+       else if(rows.length==0|| row.length==null)
+        { 
+          console.log(JSON.stringify(rows));  
+          res.status(200).json({'returnval': 'empty'});
+        }
     }
-   else if(rows.length==0)
-    { 
-      console.log(JSON.stringify(rows));  
-      res.status(200).json({'returnval': empty});
-    }
+        
     else
       res.status(200).json({'returnval': 'invalid'});
     });
 
 });
+
 
 
 var server = app.listen(5000, function () {

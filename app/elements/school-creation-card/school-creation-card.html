@@ -35,9 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 6%;
         margin-left: 10%;
       } 
-      .rbutton paper-button
-
-      }
+     
       .button paper-button 
 
       {
@@ -88,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200px; 
-          margin-top: -25%;
+          margin-top: -20%;
           width: 54%;
           margin-left: 47%;
               
@@ -131,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <div class="outcard col-sm-6">
       <table>
         <tr>
-          <th><label style="margin-left:3%">School ID</label></th>
+          <th><label style="margin-left:5%">School ID</label></th>
           <th><label style="margin-left:-36%">School Name</label></th>
           <!-- <th><paper-icon-button icon="add" on-click="getscldetails"></paper-icon-button></th> -->
         </tr>
@@ -145,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>
     </div>
     <div class="col-sm-6" id="creatediv" hidden$="{{hidecreatediv}}">
-      <div>
+    <div>
       <div class="form-group-heading">
         <h4>School Details</h4>
       </div>
@@ -201,7 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button style="margin-left:73%" on-click="FnSubmit">Submit </paper-button>
           </span>
         </div>
-      </div>
+    </div>
       </div>
 
       <div id="updatedetails" hidden$="{{hideupdatediv}}">
@@ -320,7 +318,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           {
                 this.Board=e.target.selectedItem.textContent.trim();
                 //alert(this.Board);
-                this.$.uiservice.fnschoolidgenerate();  
+                //this.$.uiservice.fnschoolidgenerate();  
          
           },
           FnSave:function(e)

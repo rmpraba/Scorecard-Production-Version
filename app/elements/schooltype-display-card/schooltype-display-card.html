@@ -67,7 +67,7 @@
       FnDelete:function()
       {
             this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
-            
+
       },
       FnEdit:function()
       {
@@ -81,8 +81,8 @@
       {
         //alert("test");
         var schooltypename=this.toTitleCase(this.schooltypename);
-        var schooltypeid=(schooltypename.toLowerCase()).replace(' ','');
-        //alert(schooltypename+"  "+schooltypeid);
+        var schooltypeid=(schooltypename.toLowerCase()).replace(' ','',' ');
+        alert(schooltypename+"  "+schooltypeid);
         this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
@@ -90,7 +90,8 @@
 
       toTitleCase:function(str)
     {
-        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        return str.replace(/\w\S*/g,
+         function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
       
     });

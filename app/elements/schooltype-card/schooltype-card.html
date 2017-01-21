@@ -1,5 +1,4 @@
 
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -18,7 +17,6 @@
          @apply(--layout-center);
          /*width: 30%;*/
       }
-      
       .card
       {
          @apply(--layout-center);
@@ -67,19 +65,6 @@
         
       }
 
-      /*#schooldialog
-      {
-        width: 40%;
-        margin: 0 auto;
-        box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
-      }*/
-
-     /* .popup-btn
-      {
-        margin: 0 auto;
-      }
-*/
-      
       table
       {
          border-collapse: collapse;
@@ -90,6 +75,7 @@
       .outcardzzzzzzzz
       {
         @apply(--layout-horizontal);
+        position: relative;
       }
       .creatediv
       {
@@ -103,12 +89,13 @@
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 30%;
-          margin-top: -13%;
+          margin-top: 8%;
           min-height: 240px;
           /*height: 150px; */
       }
       .newcard
       {
+        position: absolute;
         margin-left: -6%;
       }
     </style>
@@ -122,8 +109,8 @@
       <div class="newcard">
         <table>
           <tr>
-            <th><label style="margin-left:4%">School Type ID</label></th>
-            <th><label style="margin-left:-5%">School Type Name</label></th>
+            <th><label style="margin-left:5%">School Type ID</label></th>
+            <th><label style="margin-left:-7%">School Type Name</label></th>
             <th></th>
           </tr>
           <template is="dom-repeat" items="{{schoolarr}}" as="s">
@@ -176,12 +163,7 @@
          this.schooltypename="";
             
       },
-      /*FnSelectSchooltypename:function(e)
-      {
-        //alert("test");       
-        schooltypes = e.target.selectedItem.textContent.trim();
-        localStorage.setItem("curr_sess_school_type_name",schooltypes);               
-      },*/  
+     
       schooltypehide:function()
       {
         this.hideoutnewcard=true;
@@ -189,7 +171,7 @@
       },
       schooltypeview:function()
       {
-            this.hideoutnewcard=false;
+          this.hideoutnewcard=false;
       },
 
       FnSubmit:function()
@@ -197,7 +179,7 @@
         if(this.schooltypename!=null)
         {
           stypename=this.toTitleCase(this.schooltypename);
-          var schooltypeid = ((stypename).toLowerCase()).replace(' ','');   
+          var schooltypeid = ((stypename).toLowerCase()).replace(' ','',' ');   
           //alert(schooltypeid);   
           //alert(stypename);
           this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);        
@@ -208,10 +190,10 @@
           alert("Please enter schooltypename befor submit");
         }
       },
-      toTitleCase:function(strr)
+      toTitleCase:function(str)
       {
-        return strr.replace(/\w\S*/g, 
-        function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        return str.replace(/\w\S*/g,        
+          function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
       }
 
     });
