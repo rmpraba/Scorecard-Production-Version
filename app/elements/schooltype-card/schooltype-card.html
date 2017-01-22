@@ -66,21 +66,7 @@
         width: 50%;
         
       }
-
-      /*#schooldialog
-      {
-        width: 40%;
-        margin: 0 auto;
-        box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
-      }*/
-
-     /* .popup-btn
-      {
-        margin: 0 auto;
-      }
-*/
-      
-      table
+     table
       {
          border-collapse: collapse;
         border: 1px solid #dedede;
@@ -207,27 +193,19 @@
         {          
           alert("Please enter schooltypename befor submit");
         }
-<<<<<<< HEAD
-        else  
+      else  
         {  
-          var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
-          
-         
-        //alert(this.schoolname);
-        //alert(this.schoolid);
-        //alert(this.schooltypename);
-        //alert(schooltypeid);
-       this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
+        var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
+         this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
         document.querySelector('schooltype-card').FnRefresh();
         this.$.schooldialog.toggle();
         }
-=======
+
       },
       toTitleCase:function(strr)
       {
         return strr.replace(/\w\S*/g, 
         function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
->>>>>>> origin/master
       }
 
     });

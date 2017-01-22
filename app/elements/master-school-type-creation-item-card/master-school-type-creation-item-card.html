@@ -77,7 +77,6 @@
       FnDelete:function()
       {
          alert(this.schooltypeid);
-        this.$.subservice.fnDeleteSchooltypename(this.schooltypeid);
       },
       FnEdit:function()
       {
@@ -125,7 +124,6 @@
       FnSave:function(){
          // alert(JSON.stringify(getarr));
           alert(this.schoolid+this.schooltypename);
-        this.$.subservice.Fngradeinsetschool(this.schoolid,getarr,this.schooltypeid);
         this.hidesubjectitem=false;
         },
       });

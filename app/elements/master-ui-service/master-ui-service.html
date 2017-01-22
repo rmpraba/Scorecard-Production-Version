@@ -755,15 +755,6 @@
         on-response="schoolemployeegrademappingResponse"
         debounce-duration="300">
         <iron-ajax        
-        id="deletemappingajax"
-        url="{{deletemappingurl}}"
-        params="{{deletemappingparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="deletemappingResponse"
-        debounce-duration="300">
-        <iron-ajax        
         id="fnsavesectionajax"
         url="{{fnsavesectionurl}}"
         params="{{fnsavesectionparam}}"
@@ -817,16 +808,7 @@
         method="post"
         on-response="FnempdeleteinfotypeResponse"
         debounce-duration="300">
-        <iron-ajax        
-        id="deleteschooltypenameajax"
-        url="{{deleteschooltypenameurl}}"
-        params="{{deleteschooltypenameparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="deleteschooltypenameResponse"
-        debounce-duration="300">
-    <iron-ajax        
+     <iron-ajax        
         id="category1ajax"
         url="{{category1url}}"
         params="{{category1param}}"
@@ -940,15 +922,36 @@
         on-response="dynamicinfoResponse"
         debounce-duration="300"
         >
-
+         <iron-ajax        
+        id="DelteschoolTypenameajax"
+        url="{{DelteschoolTypenameurl}}"
+        params="{{DelteschoolTypenameparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="DelteschoolTypenameResponse"
+        debounce-duration="300"
+        >
+<iron-ajax        
+        id="masterschoolmappingajax"
+        url="{{masterschoolmappingurl}}"
+        params="{{masterschoolmappingparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="masterschoolmappingResponse"
+        debounce-duration="300"
+        >
   </template>
 
   <script>
   (function() {
     'use strict';
+           var schoolarrs=[];
+  
     Polymer({
       is: 'master-ui-service',
-
+    
 
        fnempgenerateid:function(){
      //   alert('1');
@@ -1130,13 +1133,14 @@
         var res=e.detail.response.returnval;
         //alert(JSON.stringify(res));
     },
-fnschooltypesaveinfo:function(passschooltypearr)
-{
-    for(var i=0;i<passschooltypearr.length;i++){
-            var empid=passschooltypearr[i].emp_id;
-            var empname=passschooltypearr[i].emp_name;
-            var empschooltypeid=passschooltypearr[i].emp_schol_type;
-       //alert(empschooltypeid);
+fnschooltypesaveinfo:function(selectmapschooltypearr)
+{ 
+      alert(JSON.stringify(selectmapschooltypearr));
+    for(var i=0;i<selectmapschooltypearr.length;i++){
+            var empid=selectmapschooltypearr[i].emp_id;
+            var empname=selectmapschooltypearr[i].emp_name;
+            var empschooltypeid=selectmapschooltypearr[i].emp_schol_type;
+       alert(empschooltypeid);
         this.fnschooltypesaveinfowwurl=sessionStorage.getItem("addrinfo")+"/fnschooltypesaveinfo-service";
         var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":"","flage":""};
         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -1145,13 +1149,13 @@ fnschooltypesaveinfo:function(passschooltypearr)
         obj.emp_schol_type=empschooltypeid;
         obj.flage='active';
         this.fnschooltypesaveinfoparam=obj;
-         //alert(JSON.stringify(obj));
+         alert(JSON.stringify(obj));
         this.$.fnschooltypesaveinfoajax.generateRequest();
     }
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr){
      for(var i=0;i<empsectionarr.length;i++){
@@ -1171,8 +1175,7 @@ fnschooltypesaveinfo:function(passschooltypearr)
         obj.rolename='subject-teacher';
         obj.flage='active';
         this.fnsavesectionparam=obj;
-
-        // alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.fnsavesectionajax.generateRequest();
     }
               
@@ -1207,6 +1210,7 @@ fnempsubjectdetails:function(getgradenames)
       var res=e.detail.response.returnval; 
  },
  fnrolesaveinfo:function(passrolearr){
+    alert(JSON.stringify(passrolearr));
     for(var j=0;j<passrolearr.length;j++){
 
           var empid1=passrolearr[j].emp_id;
@@ -1222,10 +1226,8 @@ fnempsubjectdetails:function(getgradenames)
         obj.password=emppsw1;
         obj.flage='active';
        this.fnrolesaveinfoparam=obj;
-      // alert(JSON.stringify(obj));
+     alert(JSON.stringify(obj));
        this.$.fnrolesaveinfoajax.generateRequest();
-       //alert(JSON.stringify(obj));
-     this.$.fnrolesaveinfoajax.generateRequest();
     }
  },
  fnrolesaveinfoResponse:function(e){
@@ -1243,12 +1245,12 @@ Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,emp
          obj.employeemail=employeemail;
          obj.employeepassword=employeepassword;
          this.Fnpersonalinfoparam=obj;
-      //alert(JSON.stringify(obj));
+      alert(JSON.stringify(obj));
         this.$.Fnpersonalinfoajax.generateRequest();
     },
     FnpersonalinfoResponse:function(e){
            var res=e.detail.response.returnval; 
-          //alert(JSON.stringify(res));
+          alert(JSON.stringify(res));
     },
 fnschoolemployeerole:function( employeeid,employeename){
         this.fnschoolemployeeroleurl=sessionStorage.getItem("addrinfo")+"/fnschoolemployeerole-service";
@@ -1361,11 +1363,12 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
          var obj={"school_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          this.selectschooltypeparam=obj;
+         //alert(JSON.)
          this.$.selectschooltypeajax.generateRequest();
      },
      selectschooltypeResponse:function(e){
          var res=e.detail.response.returnval; 
-        // alert(JSON.stringify(res));  
+         alert(JSON.stringify(res));  
          document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
      },
       selectrolename:function(){
@@ -1506,24 +1509,59 @@ fnsubjecttocategorysaving:function(passservicearr)
           },
 
 
-insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
+insertschoolTypename:function(schooltypesarr)
 
        {
+          for(var i=0;i<schooltypesarr.length;i++){
+              var schoolid=schooltypesarr[i].schoolid;
+              var schooltypeid=schooltypesarr[i].schooltypeid;
+              var schooltypes=schooltypesarr[i].schooltypename;
+            //  alert(schooltypeid);
+            //alert(schooltypes);
+        
         this.insertschoolTypenameurl=sessionStorage.getItem("addrinfo")+"/insertschoolTypename-service";
         var obj={"schooltypes":"","schooltypeid":"","schoolid":""};
         obj.schooltypes=schooltypes;
         obj.schooltypeid=schooltypeid;
         obj.schoolid=schoolid;
         this.insertschoolTypenameparam=obj;
-
-        this.$.insertschoolTypenameajax.generateRequest();
+        alert(JSON.stringify(obj));
+       this.$.insertschoolTypenameajax.generateRequest();
+      }
     },
      insertschoolTypenameResponse:function(e){
         var res=e.detail.response.returnval;
-       if(res=="Inserted!"){
+         alert(JSON.stringify(res));
+       /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
-         //alert(JSON.stringify(res));
+       */  //alert(JSON.stringify(res));
+       
+     },
+     DelteschoolTypename:function(schooltypesnarr)
+
+       {
+          for(var i=0;i<schooltypesnarr.length;i++){
+                var schoolid=schooltypesnarr[i].schoolid;
+              var schooltypeid=schooltypesnarr[i].schooltypeid;
+              var schooltypes=schooltypesnarr[i].schooltypename;
+
+        this.DelteschoolTypenameurl=sessionStorage.getItem("addrinfo")+"/DelteschoolTypename-service";
+        var obj={"schooltypes":"","schooltypeid":"","schoolid":""};
+        obj.schooltypes=schooltypes;
+        obj.schooltypeid=schooltypeid;
+        obj.schoolid=schoolid;
+        this.DelteschoolTypenameparam=obj;
+       this.$.DelteschoolTypenameajax.generateRequest();
+      }
+    },
+     DelteschoolTypenameResponse:function(e){
+        var res=e.detail.response.returnval;
+        alert(JSON.stringify(res));
+       /*if(res=="Inserted!"){
+         this.getschoolTypename();
+           }
+       */  //alert(JSON.stringify(res));
        
      },
      workingsearchinfo:function(workingschoolid,acadamicyear,termgrade){
@@ -1695,8 +1733,9 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
 
        getschoolTypenameResponse:function(e){
          var res=e.detail.response.returnval;
+         schoolarrs=res;
            //alert(JSON.stringify(res));
-             document.querySelector('master-school_type-creation').setschooltypeinfoarr=res;
+          //   document.querySelector('master-school_type-creation').setschooltypeinfoarr=res;
          },
              
        SchooltypetoGrademapping:function(){
@@ -1705,13 +1744,87 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
           },
        SchooltypetoGrademappingResponse:function(e){
          var res=e.detail.response.returnval;
-        document.querySelector('master-school_type-creation').SchoolToschoolTypearr=res;
+           alert(JSON.stringify(res));
+           alert(JSON.stringify(schoolarrs));
+             var setarrr=[];
+                 for(var i=0;i<res.length;i++){
+                          var school_type_name=res[i].school_type_name;
+                          
+                            var obj={"schooltype":""};
+                                obj.schooltype=school_type_name;
+                               setarrr.push(obj);
+                              // alert(JSON.stringify(obj));
+                          }
+               //  alert(JSON.stringify(setarrr));
+        //setarrr;
+
+          var generatearr=[];
+         var subarr=[];
+                for(var j=0;j<schoolarrs.length;j++){
+                     for(var i=0;i<res.length;i++){
+                   var name=schoolarrs[j].name;
+                    var id=schoolarrs[j].id;
+                         
+                        var obj={"school_type_name":"","school_type_id":"","id":"","name":""}; 
+                           var school_type_name=res[i].school_type_name;
+                           var school_type_id=res[i].school_type_id;
+                           obj.school_type_name=school_type_name;
+                           obj.school_type_id=school_type_id;
+                           obj.id=id;
+                           obj.name=name;
+                           generatearr.push(obj);
+                        }}//alert(JSON.stringify(generatearr));
+        var a=[];
+        var overall=[];
+       for(var k=0;k<generatearr.length;k++)
+       {       
+         var nameobj={"name":"","id":""};
+         nameobj.id=generatearr[k].id; 
+         nameobj.name=generatearr[k].name; 
+       
+         var obj={"school_type_name":"","school_type_id":""};
+        // obj.Grade_name=generatearr[k].gradename;
+        obj.school_type_name=generatearr[k].school_type_name;
+        obj.school_type_id=generatearr[k].school_type_id;
+        obj.id=generatearr[k].id+generatearr[k].school_type_id;
+        a.push(obj);
+        for(var l=k+1;l<generatearr.length;l++)
+        {
+           if(generatearr[k].id==generatearr[l].id)
+           {
+             var obj1={"school_type_id":"","school_type_name":""}
+             //obj1.Grade_name=generatearr[l].gradename;
+             obj1.school_type_id=generatearr[l].school_type_id;
+             obj1.school_type_name=generatearr[l].school_type_name;
+             obj1.id=generatearr[k].id+generatearr[l].school_type_id;
+              //alert('1');
+             //alert(JSON.stringify(obj1));
+             a.push(obj1);
+             //alert(JSON.stringify(a));
+             generatearr.splice(l,1);
+             l--;
+           // alert(JSON.stringify(generatearr));
+         }}
+           nameobj.subject=a;
+           overall.push(nameobj);
+          // alert(JSON.stringify(obj1));
+           a=[];
+       }
+       alert(JSON.stringify(overall));
+       document.querySelector('master-school_type-creation').overall=overall;
+       document.querySelector('master-school_type-creation').setsubjectarr=setarrr;
+       this.masterschoolmappingurl=sessionStorage.getItem("addrinfo")+"/masterschoolmapping-service";
+       this.$.masterschoolmappingajax.generateRequest();
+
+ 
        },
-    /* fnschoolidgrnerateResponse:function(e)
-       {
-        document.querySelector('master-school_type-creation').SchoolToschoolTypearr=res;
-        },
-    */ fnschoolidgenerateResponse:function(e)
+     masterschoolmappingResponse:function(e)
+       {   var res=e.detail.response.returnval;
+           alert(JSON.stringify(res));
+        
+           document.querySelector('school-schooltypemapping-card').masterschooltypecheking(res);
+       },
+     fnschoolidgenerateResponse:function(e)
 
         {
          var res=e.detail.response.returnval;
@@ -1987,52 +2100,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
          document.querySelector('school-creation-card').schoolcreatarr=res;
   
      },
-     
-
-
-      fetchschooltypenameResponse:function(e)
-      {
-
-    
-         if(e.detail.response.returnval=="empty")
-         {
-          document.querySelector("schooltype-card").secooltypehide();
-         }
-         else{
-               document.querySelector("schooltype-card").secooltypeview();
-               document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
-             }             
-      },     
-
-
-      fnDeleteSchooltypename:function(schooltypeid)
-      {  
-         this.deleteschooltypenameurl=sessionStorage.getItem("addrinfo")+"/deleteschooltypename-service";
-         var obj={"schooltypeid":"","school_id":""};
-         obj.schooltypeid=schooltypeid;
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-         this.deleteschooltypenameparam=obj;
-         this.$.deleteschooltypenameajax.generateRequest();
-
-         this.deletemappingurl=sessionStorage.getItem("addrinfo")+"/deletemapping-service";
-         var obj={"schooltypeid":"","school_id":""};
-         obj.schooltypeid=schooltypeid;
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-         this.deletemappingparam=obj;
-         this.$.deletemappingajax.generateRequest();
-       },
-      deleteschooltypenameResponse:function(e)
-      { 
-          var res=e.detail.response.returnval;
-          //alert(JSON.stringify(res));
-        if(e.detail.response.returnval=="Deleted!"){
-          this.getschoolTypename();
-        }
-        },
-        deletemappingResponse:function(e){
-           var res=e.detail.response.returnval;
-          //alert(JSON.stringify(res));
-        },
       FnUpdateSchooltypename:function(stypename,schooltypeid)
       {
         var obj={"stypename":"","schooltypeid":"","oldscltypeid":""};
