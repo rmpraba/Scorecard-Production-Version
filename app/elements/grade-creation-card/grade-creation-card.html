@@ -29,7 +29,7 @@
       {
         @apply(--layout-center);
         width: 255%;
-        margin-left: 30%; 
+        margin-left: 38%; 
       }
 
       .creatediv paper-button
@@ -62,24 +62,32 @@
         margin: 0 auto;
       }
 
-      table{
+      table
+      {
+        @apply(--layout-horizontal);
          border-collapse: collapse;
         border: 1px solid #dedede;
-        margin-top: 10%;
-        width: 90%;
+        margin-top: 3%;
+        margin-left: 30%;
+        width: 55%;
       }
-      .outcard{
+     /* .outcard{
         @apply(--layout-horizontal);
-      }
+      }*/
 
-      .creatediv{
+      .creatediv
+      {
          border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 25%;
-          margin-top: 10%;
-          max-height: 270px;
-          /*height: 150px; */
+          margin-left: -4%;
+          margin-top: -43%;
+          min-height: 400%;
+      }
+      .newtitle
+      {
+        margin-top: 4%;
       }
       
     </style>
@@ -90,11 +98,14 @@
     </div>
 
    <div class="outcard">
-    <div>
+    <div class="newtitle" style="margin-left:50%">
+        <h4>Current Grade Details</h4>
+    </div>
+    <div>     
       <table>
         <tr>
             <th> <label>Grade ID</label></th>
-            <th> <label>Grade Name</label>    </th>
+            <th> <label>Grade Name</label></th>
             <th></th>
         </tr>
 
@@ -109,7 +120,7 @@
     <div class="creatediv">
         <div class="card">       
             <label>Create New Grade</label>
-            <paper-input readonly value="{{gradeid}}" label="Grade ID"></paper-input>
+            <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
             <paper-input value="{{gradename}}" label="Grade Name"></paper-input>
         </div>
 
@@ -139,7 +150,7 @@
       ready:function()
       {
         //alert("hii");        
-        this.gradename="Grade-";
+        /*this.gradename="Grade-";*/
         this.$.uiservice.FnFetchGrade();
         this.$.uiservice.FnFetchGradeSeq();
         this.$.hidenewgradecreationcard=true;  

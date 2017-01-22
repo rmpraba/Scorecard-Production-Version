@@ -1999,10 +1999,10 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
     
          if(e.detail.response.returnval=="empty")
          {
-          document.querySelector("schooltype-card").secooltypehide();
+          document.querySelector("schooltype-card").schooltypehide();
          }
          else{
-               document.querySelector("schooltype-card").secooltypeview();
+               document.querySelector("schooltype-card").schooltypeview();
                document.querySelector('schooltype-card').schoolarr=e.detail.response.returnval;              
              }             
       },     
@@ -2028,8 +2028,13 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
       { 
           var res=e.detail.response.returnval;
           //alert(JSON.stringify(res));
-        if(e.detail.response.returnval=="Deleted!"){
+        if(e.detail.response.returnval=="Deleted!")
+        {
           this.getschoolTypename();
+        }
+        else
+        {
+            document.querySelector('schooltype-card').schooltypehide();
         }
         },
         deletemappingResponse:function(e){
@@ -2186,7 +2191,7 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
         }
         else if(e.detail.response.returnval=="failed")
         {
-          //alert('Already Exist!');
+          alert('Already Exist!');
         }
         
       },
@@ -2267,8 +2272,6 @@ insertschoolTypename:function(schooltypes,schooltypeid,schoolid)
             //alert("Updated");
           this.FnFetchSubjectname();
         }
-
-
       },
    FnSecondLangSubjectToStudent:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid){
         this.FnSecondLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnSecondLangSubjectToStudent-service";

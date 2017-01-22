@@ -5292,7 +5292,7 @@ app.post('/fetchsubjectseq-service',  urlencodedParser,function (req,res)
 app.post('/fetchmastersubject-service',  urlencodedParser,function (req,res)
 {  
   var qur="SELECT subject_id,subject_name ,(select category_name from md_category_type where category_type=subject_category) as category,subject_category from md_subject";
-  //console.log(JSON.stringify(qur));
+  console.log(JSON.stringify(qur));
   connection.query(qur,
     function(err, rows)
     {
@@ -5386,7 +5386,7 @@ var qur="DELETE FROM tr_term_assesment_marks WHERE  school_id LIKE  '"+req.query
 "AND  section LIKE  '"+req.query.section+"' AND  subject_id LIKE  '"+req.query.subject+"'";
     
     console.log('......................delete mark..............................');
-    console.log(qur);
+    //console.log(qur);
     connection.query(qur,
     function(err, result)
     {

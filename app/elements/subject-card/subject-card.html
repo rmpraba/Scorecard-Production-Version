@@ -62,25 +62,33 @@
 
       table
       {
+        @apply(--layout-horizontal);
          border-collapse: collapse;
         border: 1px solid #dedede;
-        width: 90%;
+        margin-left: 33%;
+        margin-top: 3%;
+        width: 58%;
       }
-      .outcard
+      /*.outcard
       {
         @apply(--layout-horizontal);
       }
-
+*/
       .creatediv
       {
          border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 28%;
+          margin-top: -130%;
+          margin-left: -3%;
           max-height: 330px;
-          /*height: 150px; */
       }
-      
+      .newwwww
+      {
+        line-height: 4px;
+        margin-top: 4%;
+      }
     </style>
 
 
@@ -90,10 +98,13 @@
 
    <div class="outcard">
     <div>
+      <div class="newwwww" style="margin-left:48%">
+        <h4>Current Subject Details</h4>
+      </div>
       <table>
         <tr>
             <th> <label style="margin-left:1%">Subject ID</label></th>
-            <th> <label style="margin-left:10%">Subject Name</label></th>
+            <th> <label style="margin-left:8%">Subject Name</label></th>
             <th> <label style="margin-left:-1%">Category Type</label>
             <th></th>
         </tr>
@@ -113,7 +124,7 @@
               <label><b>Create New Subject</b></label>
           </div>   
             
-            <paper-input readonly value="{{subjectid}}" label="Subject ID"></paper-input>
+            <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
             <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
 
 
@@ -175,7 +186,7 @@
         else
         {
          //alert(this.subjectname);
-         //alert(category);
+         alert(category);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
          document.querySelector('subject-card').FnRefresh();
          //this.$.subjectdialog.toggle();
@@ -193,3 +204,4 @@
   })();  
   </script>
 </dom-module>
+
