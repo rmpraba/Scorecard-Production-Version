@@ -57,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200%; 
-          margin-top: -204%;
+          margin-top: -207%;
           width: 50%;
           margin-left: 44%;
               
@@ -69,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        #updateempdetails
        {
         /*@apply(--layout-horizontal);*/
-        margin-top: -200%;
+        margin-top: -205%;
 
        }
        #updateempdetails
@@ -287,8 +287,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        
      },
   
-   FnSearch:function(){
-    },
+   
        FnRefresh:function()
       {    
        this.name="";
@@ -322,11 +321,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              this.$.uiservice.fnempgenerateid();
         }},  
 
-        /*Fncreate:function(){
-           this.$.uiservice.selectschooltype();
-           this.$.uiservice.selectrolename();
-          this.$.roledialog.open();
-        },*/
       getempdetails:function(e)
       {
          //  alert("hii");
@@ -368,6 +362,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
        FnpersonalSave:function(e)
        {
+
         alert('2');  
         alert(this.employeeid);
        this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.selectmapschooltypearr,this.selectschoolrolearr);
@@ -377,7 +372,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        
        
      }  
+     
 
+     /*getfocus:function(e)
+     {
+      document.getElementById("hideupdateemp").focus();
+     }  
+*/
     });
   })();
   </script>

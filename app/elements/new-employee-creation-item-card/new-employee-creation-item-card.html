@@ -200,6 +200,7 @@
       {
           this.f1();
           this.f2();
+
           document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
          /* document.querySelector('new-employee-creation-card').FnSchooltypemap();
           document.querySelector('new-employee-creation-card').FnSchoolrole();
@@ -217,17 +218,17 @@
        this.$.uiservice.fnrolesaveinfo(passrolearr);
      },
      fndeletearr:function(e){
-     // alert('1');
-        document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
-        document.querySelector('new-employee-creation-role-item-card').typesplicerole();
-        },
-     /*FnroleSave:function(e){
-       // alert(JSON.stringify(passrolearr));
-        this.$.uiservice.fnrolesaveinfo(passrolearr);
-          document.querySelector('new-employee-creation-role-item-card').typesplicerole();
- 
-   },*/
-    selectschoolroleResponse:function(e){
+
+          document.querySelector('new-employee-creation-card').funct1(this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
+         /* document.querySelector('new-employee-creation-card').FnSchooltypemap();
+          document.querySelector('new-employee-creation-card').FnSchoolrole();*/
+         // document.querySelector('new-employee-creation-card').getfocus();
+
+     },
+     
+     
+    selectschoolroleResponse:function(e)
+    {
          var res=e.detail.response.returnval; 
          //alert('z');
          //alert(JSON.stringify(res));

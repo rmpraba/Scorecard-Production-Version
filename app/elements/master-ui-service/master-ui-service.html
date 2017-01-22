@@ -1,5 +1,4 @@
 
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
 <dom-module id="master-ui-service">
@@ -1818,6 +1817,7 @@ insertschoolTypename:function(schooltypesarr)
 
  
        },
+
      masterschoolmappingResponse:function(e)
        {   var res=e.detail.response.returnval;
            alert(JSON.stringify(res));
@@ -1826,13 +1826,20 @@ insertschoolTypename:function(schooltypesarr)
        },
      fnschoolidgenerateResponse:function(e)
 
+    /* fnschoolidgrnerateResponse:function(e)
+       {
+        document.querySelector('master-school_type-creation').SchoolToschoolTypearr=res;
+        },*/
+
+
+
+      /* fnschoolidgenerateResponse:function(e)
         {
          var res=e.detail.response.returnval;
-        //  alert(JSON.stringify(res)); 
+         alert(JSON.stringify(res)); 
             document.querySelector('school-creation-card').schoolid1=res[0].school_prefix+res[0].school_seq;
-
         },
-  
+  */
   
 
 
@@ -1950,8 +1957,8 @@ insertschoolTypename:function(schooltypesarr)
 
        fetchschooltypenameResponse:function(e)
        {
-        //alert('hi');
-        //alert(JSON.stringify(e.detail.response.returnval));
+         //alert('hi');
+         //alert(JSON.stringify(e.detail.response.returnval));
          if(e.detail.response.returnval=="empty")
          {
           document.querySelector('schooltype-card').schooltypehide();
@@ -1979,6 +1986,10 @@ insertschoolTypename:function(schooltypesarr)
         {
             //alert("Deleted");
           this.FnFetchSchooltypename();
+        }
+        else
+        {
+            document.querySelector('schooltype-card').schooltypehide();
         }
        },
 
@@ -2172,7 +2183,16 @@ insertschoolTypename:function(schooltypesarr)
       fetchcategorynameResponse:function(e)
       {
         //alert(JSON.stringify(e.detail.response.returnval));
-        document.querySelector('category-card').catarr=e.detail.response.returnval;          
+        if(e.detail.response.returnval=="empty")
+        {
+            document.querySelector('category-card').categoryyhide();
+        }
+        else
+        {
+            document.querySelector('category-card').categoryyview();
+            document.querySelector('category-card').catarr=e.detail.response.returnval; 
+        }
+                 
       },      
       FnDeleteCategoryname:function(categoryid)
       {
@@ -2190,6 +2210,10 @@ insertschoolTypename:function(schooltypesarr)
         {
             //alert("Deleted");
           this.FnFetchCategoryname();
+        }
+        else
+        {
+            document.querySelector('category-card').categoryyhide();
         }
       },
       FnUpdateCategoryname:function(categorytype,categoryid,cname)
