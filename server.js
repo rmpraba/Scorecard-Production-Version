@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecardbatabase'
  });
 var bodyParser = require('body-parser');
 var app = express();
@@ -4271,8 +4271,7 @@ app.post('/fmailreportcard-service' ,  urlencodedParser,function (req, res)
         var img1="./app/images/"+req.query.loggedid+req.query.schoolid+".jpg";
         var img2="./app/images/principal"+req.query.schoolid+".jpg";
         console.log('asa');
-
-        /*console.log('.........................healthattendanceinfo....................................');
+     /*console.log('.........................healthattendanceinfo....................................');
         console.log(global.healthattendanceinfo.length);
         console.log('.................................................................................');
 
@@ -4430,15 +4429,8 @@ app.post('/fmailreportcard-service' ,  urlencodedParser,function (req, res)
                 obj.point='2.0';                         
               }
               finalarr.push(obj); 
-            }
-            
-          
-                                       
-        }
-       
-
-
-       var lsarr=[];
+            }}
+        var lsarr=[];
         var wkarr=[];
         var vparr=[];
         var avarr=[];
@@ -6609,7 +6601,7 @@ app.post('/getstudentname-service',  urlencodedParser,function (req, res)
 });
 app.post('/getschoolTypename-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM master_school_type";
+   var qur="SELECT * FROM md_school";
   connection.query(qur,
     function(err, rows)
     {
@@ -6638,7 +6630,26 @@ app.post('/SchooltypetoGrademapping-service',  urlencodedParser,function (req,re
     else
       res.status(200).json({'returnval': ''});
   });
-}); app.post('/insertschoolTypename-service' , urlencodedParser,function (req, res)
+});
+
+app.post('/masterschoolmapping-service',  urlencodedParser,function (req,res)
+{  
+   //  var e={school_id:req.query.schoolid};
+  //   console.log(e);
+  var qur="SELECT * FROM master_school_type ";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
+ app.post('/insertschoolTypename-service' , urlencodedParser,function (req, res)
 {  
    var collection = {"school_id":req.query.schoolid,"school_type_id":req.query.schooltypeid,"school_type_name":req.query.schooltypes};
   //console.log(JSON.stringify(collection));
@@ -6667,40 +6678,7 @@ app.post('/SchooltypetoGrademapping-service',  urlencodedParser,function (req,re
       res.status(200).json({'returnval': 'Already Exit'});
     }
     });
-  });app.post('/deleteschooltypename-service' ,  urlencodedParser,function (req, res)
-{  
-  var qur="DELETE FROM master_school_type where school_type_id='"+req.query.schooltypeid+"' and school_id='"+req.query.school_id+"'";
-    console.log(qur);
-    connection.query(qur,function(err, rows)
-     {
-    if(!err)
-    {
-      res.status(200).json({'returnval': 'Deleted!'});
-    }
-    else
-    {
-      console.log(err);
-      res.status(200).json({'returnval': 'Not Deleted!'});
-    }
-    });
-    
-});
-app.post('/deletemapping-service',urlencodedParser,function (req, res)
-{  
-  var qur="DELETE FROM md_school_grade_mapping_dummy where school_type='"+req.query.schooltypeid+"' and school_id='"+req.query.school_id+"'";
-    console.log(qur);
-    connection.query(qur,function(err, rows)
-     {
-    if(!err)
-    {
-      res.status(200).json({'returnval': 'Deleted!'});
-    }
-    else
-    {
-      console.log(err);
-      res.status(200).json({'returnval': 'Not Deleted!'});
-    }
-    });});
+  });
 app.post('/Fngradeinsetschool-service' , urlencodedParser,function (req, res)
 {  
      
@@ -6949,6 +6927,24 @@ app.post('/deletesubjectz-service' ,  urlencodedParser,function (req, res)
                 
    
     var qur="DELETE FROM  md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empid+"' and emp_name='"+req.query.empname+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"'";
+    //console.log(qur);
+    connection.query(qur,function(err, rows)
+    {
+    if(!err)
+    {
+      res.status(200).json({'returnval': 'Deleted!'});
+    }
+    else
+    {
+      //console.log(err);
+      res.status(200).json({'returnval': 'Not Deleted!'});
+    }
+    });
+    });
+app.post('/DelteschoolTypename-service' ,  urlencodedParser,function (req, res)
+{  
+     // var obj={"schooltypes":"","schooltypeid":"","schoolid":""};
+  var qur="DELETE FROM  master_school_type where school_id='"+req.query.schoolid+"' and school_type_id='"+req.query.schooltypeid+"'";
     //console.log(qur);
     connection.query(qur,function(err, rows)
     {
@@ -7409,8 +7405,7 @@ app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function
       class_id:req.query.Sectionnameseeee
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
-
-    console.log(JSON.stringify(response));
+console.log(JSON.stringify(response));
     var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and section='"+req.query.Sectionnames+"' and  student_name='"+req.query.studentname+"' and subject_type='II Language'";
     var qurr="SELECT subject_type FROM md_language_type_master where subject_id='"+req.query.seclang11+"'";
     

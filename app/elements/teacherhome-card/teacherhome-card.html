@@ -1,4 +1,4 @@
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="..\..\bower_components/neon-animation/animations/fade-out-animation.html">
@@ -586,24 +586,45 @@
         {
           // this.createrole=false;
           // this.teach_obser=false; 
-          this.createcategory=false;  
-          this.createschoolz=false; 
-          this.createemployee=false;
-          this.creategrade=false;
+         // this.createcategory=false;  
+        //  this.createschoolz=false; 
+         this.createemployee=false;
+         // this.creategrade=false;
           this.workingdats=false;
-          this.SchooltypettoGrade=false;
           this.employeetograde=false;
           this.emptocategory=false;
           this.categorytoschooltype=false;
           this.gradetosubject=false;
           this.subjecttostudent=false;
-          this.createschooltype=false;
-          this.createsubject=false;
-          this.createrole=false;
+          //this.createschooltype=false;
+          //this.createsubject=false;
+         // this.createrole=false;
        // this.teach_obser=false;        
         }
      
-
+         if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
+        {
+          // this.createrole=false;
+          // this.teach_obser=false; 
+          this.createcategory=false;  
+          this.createschoolz=false; 
+          this.SchooltypettoGrade=false;
+          this.createschooltype=false;
+          this.createsubject=false;
+          this.createrole=false;
+          this.creategrade=false;
+         
+          //this.createemployee=false;
+          //this.workingdats=false;
+          //this.SchooltypettoGrade=false;
+          //this.employeetograde=false;
+          //this.emptocategory=false;
+          //this.categorytoschooltype=false;
+          //this.gradetosubject=false;
+          //this.subjecttostudent=false;
+          //this.teach_obser=false;        
+        }
+     
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
           this.subjectteacher=false;

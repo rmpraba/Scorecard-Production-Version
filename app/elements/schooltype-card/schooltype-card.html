@@ -63,27 +63,22 @@
         margin-left:27%;
         width: 50%;
         
+
       }
 
       table
       {
         @apply(--layout-horizontal);
+      } 
+      .outcardzzzzzzzz  {
          border-collapse: collapse;
         border: 1px solid #dedede;
         width: 59%;
         margin-left: 38%;
         margin-top: 2%;
       }
-      .outcardzzzzzzzz
-      {
-        /*@apply(--layout-horizontal);*/
-      }
-      /*.creatediv
-      {
-        @apply(--layout-horizontal);
-        margin-left: 65%;
-      }*/
-
+     
+   
       .creatediv
       {
         border-radius: 10px;
@@ -196,16 +191,10 @@
         {          
           alert("Please enter schooltypename befor submit");
         }
-        else  
-        {  
-          var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
-          
-         
-        //alert(this.schoolname);
-        //alert(this.schoolid);
-        //alert(this.schooltypename);
-        //alert(schooltypeid);
-       this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
+        else
+          {  
+        var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
+         this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
         document.querySelector('schooltype-card').FnRefresh();
         this.$.schooldialog.toggle();
         }

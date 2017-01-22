@@ -14,7 +14,7 @@
     </style>
      <div>
 
-       <paper-checkbox class="col-md-3" on-change="setempschooltype" id="{{empschooltype}}">{{empschooltype}}</paper-checkbox>
+       <paper-checkbox class="col-md-3" on-change="setempschooltype" id="{{empschooltype}}">{{empschooltypename}}</paper-checkbox>
 
     </div>
   </template>
@@ -25,6 +25,7 @@
     Polymer({
       is: 'employe-schooltype-creation-card',
         setempschooltype:function(e){
+          alert(this.empschooltype);
             if(document.querySelector('#'+this.empschooltype).checked==true){
                var obj={"school_type":""};
                obj.school_type=this.empschooltype;
@@ -37,12 +38,10 @@
                empschooltypearr1.splice(i,1);
                   }
                } }
-      },
+             },
      empschooltypesplice:function(e){
          for(var i=0;i<empschooltypearr1.length;i++){
                 var n=empschooltypearr1[i].school_type;
-               // alert(n);
-               //alert(document.querySelector('#'+n).checked);
                 document.querySelector('#'+n).checked=false;
             }
              var obj={"school_type":""};
