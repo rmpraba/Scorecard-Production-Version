@@ -177,6 +177,9 @@
         <section data-category="student-to-subject-mapping-card">
           <student-to-subject-mapping-card></student-to-subject-mapping-card>
         </section>
+         <section data-category="schooltype-to-grade-card">
+          <schooltype-to-grade-card></schooltype-to-grade-card>
+        </section>
 
         <!-- <section data-category="schooltype-card">
           <schooltype-card></schooltype-card>
@@ -216,6 +219,11 @@
      // alert(localStorage.getItem("curr_sess_page"));
 
     if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+    if(localStorage.getItem("curr_sess_page")=="schooltype-to-grade-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();

@@ -6009,6 +6009,22 @@ app.post('/selectschooltype-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+app.post('/fnschooltypez-service',  urlencodedParser,function (req,res)
+{  
+ 
+   var qur="SELECT * FROM  md_school_grade_mapping_dummy where school_type='"+req.query.schooltypeid+"'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+     console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
 app.post('/selectrolename-service',  urlencodedParser,function (req,res)
 {  
    var qur="SELECT * FROM md_role";
@@ -6105,6 +6121,70 @@ connection.query("SELECT * FROM employee_to_school_type_category_mapping WHERE e
     }
     });
   });
+app.post('/fnschooltypegradmapz-service' , urlencodedParser,function (req, res)
+{  
+     var obj={"school_id":"","schooltype":"","gradename":""};
+      
+  var collection = {"school_id":req.query.school_id,"school_type":req.query.schooltype,"grade_id":req.query.gradeid,"grade_name":req.query.gradename};
+   //console.log(JSON.stringify(collection));
+connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'",function(err, rows)
+    {
+    if(rows.length==0)
+    {
+      connection.query("INSERT INTO md_school_grade_mapping SET ? ",[collection],
+      function(err, rows)
+      {
+
+      if(!err)
+       {
+        //console.log(rows);
+        res.status(200).json({'returnval': 'Inserted!'});
+        }
+      else 
+      {
+        console.log(err);
+        res.status(200).json({'returnval': 'Not Inserted!'});
+      }
+    });
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'Already Exit'});
+    }
+    });
+  });
+app.post('/fnschooltypegradmapz-service' , urlencodedParser,function (req, res)
+{  
+     var obj={"school_id":"","schooltype":"","gradename":""};
+      
+  var collection = {"school_id":req.query.school_id,"school_type":req.query.schooltype,"grade_id":req.query.gradeid,"grade_name":req.query.gradename};
+   //console.log(JSON.stringify(collection));
+connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'",function(err, rows)
+    {
+    if(rows.length==0)
+    {
+      connection.query("INSERT INTO md_school_grade_mapping SET ? ",[collection],
+      function(err, rows)
+      {
+
+      if(!err)
+       {
+        //console.log(rows);
+        res.status(200).json({'returnval': 'Inserted!'});
+        }
+      else 
+      {
+        console.log(err);
+        res.status(200).json({'returnval': 'Not Inserted!'});
+      }
+    });
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'Already Exit'});
+    }
+    });
+  });
   app.post('/emprolemapping-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_id":req.query.school_id,"id":req.query.empid,"role_id":req.query.roleid,"password":req.query.password,"name":req.query.name,"flage":req.query.flage};
@@ -6167,6 +6247,26 @@ app.post('/selectrolename11-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+app.post('/fnschooltypegradmapzdb-service',  urlencodedParser,function (req,res)
+{  
+   var qur="SELECT * FROM md_school_grade_mapping where  school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltypeid+"'";
+  console.log(JSON.stringify(qur));   
+      
+  connection.query(qur,
+
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
+
+
 app.post('/getempschoolrole-service' ,  urlencodedParser,function (req, res)
 {  
     // var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":""};

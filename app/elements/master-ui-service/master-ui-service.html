@@ -22,15 +22,7 @@
         method="post"
         on-response="rolecreationResponse"
         debounce-duration="300"
-    ><iron-ajax        
-        id="fetchroleajax"    
-        url="{{fetchroleurl}}"
-        params="{{fetchroleparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="fetchroleResponse"
-        debounce-duration="300">
+    >
     <iron-ajax        
         id="deleteroleajax"
         url="{{deleteroleurl}}"
@@ -1048,7 +1040,7 @@
        this.delectegradethirdinfoparam=obj;
        //alert(JSON.stringify(obj));
        this.$.delectegradethirdinfoajax.generateRequest();
-      
+    
      },
      delectegradethirdinfoResponse:function(e){
       var res=e.detail.response.returnval; 
@@ -1368,7 +1360,8 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
      selectschooltypeResponse:function(e){
          var res=e.detail.response.returnval; 
          alert(JSON.stringify(res));  
-         document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
+       //  document.querySelector('new-employee-creation-card').selectschooltypearr=res;
+         document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
      },
       selectrolename:function(){
         this.selectrolenameurl=sessionStorage.getItem("addrinfo")+"/selectrolename-service";
@@ -1824,8 +1817,7 @@ insertschoolTypename:function(schooltypesarr)
         
            document.querySelector('school-schooltypemapping-card').masterschooltypecheking(res);
        },
-     fnschoolidgenerateResponse:function(e)
-
+    
     /* fnschoolidgrnerateResponse:function(e)
        {
         document.querySelector('master-school_type-creation').SchoolToschoolTypearr=res;
