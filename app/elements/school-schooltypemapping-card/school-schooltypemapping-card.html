@@ -43,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       masterschooltypecheking:function(arr){
           schooltyedbarr=arr;
-          alert(JSON.stringify(schooltyedbarr));
+          //alert(JSON.stringify(schooltyedbarr));
            for(var j=0;j<schooltyedbarr.length;j++){
               var schoolid=schooltyedbarr[j].school_id;
               var schooltypeid=schooltyedbarr[j].school_type_id;
@@ -51,13 +51,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var schtypid=schooltyedbarr[j].school_id+schooltyedbarr[j].school_type_id;
             //  alert(schoolid)
                document.querySelector('#'+schtypid).checked=true;
-                  if(document.querySelector('#'+schtypid).checked==true){
+                  if(document.querySelector('#'+schtypid).checked==true)
+                  {
                     var obj={"schoolid":"","schooltypeid":"","schooltypename":""};
                     obj.schoolid=schoolid;
                     obj.schooltypeid=schooltypeid;
                     obj.schooltypename=schooltypes;
                     v.push(obj);
-                    alert(JSON.stringify(v));
+                    //alert(JSON.stringify(v));
                    
                     }
                }

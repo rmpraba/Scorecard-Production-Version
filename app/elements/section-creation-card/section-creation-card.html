@@ -18,8 +18,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-      <h3><b>Section</b></h3>
+      <h3><b>Section Creation</b></h3>
     </div>
+
+    <div>
+      <paper-input value="{{schoolname}}" label="School Name"></paper-input>
+      <paper-dropdown-menu id="gdname" label="Select Grade">
+        <paper-menu id="gradename" class="dropdown-content" on-iron-select="FnSelectGrade">
+          <template is="dom-repeat" items="{{gradearr}}" as="view">
+            <paper-item value="{{view.grade_name}}">{{view.grade_id}}</paper-item>
+          </template>
+        </paper-menu>
+      </paper-dropdown-menu>
+      <paper-input vlaue="{{sectionname}}" label="Section Name"></paper-input>
+    </div>
+
   </template>
   <script>
   (function() {

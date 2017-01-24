@@ -1824,7 +1824,6 @@ insertschoolTypename:function(schooltypesarr)
         
            document.querySelector('school-schooltypemapping-card').masterschooltypecheking(res);
        },
-     fnschoolidgenerateResponse:function(e)
 
     /* fnschoolidgrnerateResponse:function(e)
        {
@@ -1840,14 +1839,11 @@ insertschoolTypename:function(schooltypesarr)
             document.querySelector('school-creation-card').schoolid1=res[0].school_prefix+res[0].school_seq;
         },
   */
-  
 
-
-      FnSetRoleInfo:function(rname,roleid)     
+        FnSetRoleInfo:function(rname,roleid)     
        {
         this.rolecreationurl=sessionStorage.getItem("addrinfo")+"/rolecreation-service";
         var obj={"rname":"","roleid":""};
-
         obj.roleid=roleid;
         obj.rname=rname;
         this.rolecreationparam=obj;

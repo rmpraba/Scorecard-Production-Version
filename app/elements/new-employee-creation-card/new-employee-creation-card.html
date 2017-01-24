@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <tr>
           <th><label style="margin-left:12% ">Employee ID</label></th>
           <th><label style="margin-left:-7%">Employee Name</label></th>
-          <!-- <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th> -->
+          <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th>
         </tr>
         <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
           <tr>
@@ -369,8 +369,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.selectmapschooltypearr,this.selectschoolrolearr);
        this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
        this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
-       this.ready();
-       
+       this.ready();  
        
      }  
      
