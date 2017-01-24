@@ -55,20 +55,19 @@
       }
        table
        {
+        @apply(--layout-horizontal);
          border-collapse: collapse;
         border: 1px solid #dedede;
-        width: 90%;
-        margin-top: 7%;
+        width: 60%;
+        margin-left: 35%;
+        margin-top: 5%;
       }
-      .outcard
+      /*.outcard
       {
         @apply(--layout-horizontal);
-         /*margin-left: 60%*/
-
-      }
+      }*/
       .newcatcardddd
       {
-        @apply(--layout-horizontal);
         margin-left: -2%;
       }
 
@@ -78,9 +77,14 @@
           border: 1px solid #6699ff;
           padding: 10px; 
           width: 25%;
-          margin-top: 10%;
-          min-height: 270%;
-          /*height: 150px; */
+          margin-left: -5%;
+          margin-top: -26%;
+          min-height: 270px;
+      }
+      .newtitle
+      {
+        line-height: 5px;
+        margin-top: 10%;
       }
       
     </style>
@@ -91,11 +95,14 @@
 
   <div class="outcard" hidden$="{{hideoutcard}}">
     <div class="newcatcardddd" hidden$="{{hidenewcatcard}}">
-      <div>
+    <div>
+       <div class="newtitile" style="margin-left:50%">
+          <h4>Current Category Type Details</h4>
+        </div>
       <table>
           <tr>
               <th><label style="margin-left:5%">Category ID</label></th>
-              <th><label style="margin-left:-2%">Category Name</label></th>
+              <th><label style="margin-left:-6%">Category Name</label></th>
           </tr>
 
           <template is="dom-repeat" items="{{catarr}}" as="ca">

@@ -30,7 +30,7 @@
       {
         @apply(--layout-center);
         width: 100%;
-        margin-left: 28%; 
+        margin-left: 40%; 
       }
 
        .creatediv paper-button
@@ -65,42 +65,52 @@
         @apply(--layout-right)
       }
 
-      table
+      table    
       {
+        @apply(--layout-horizontal);
          border-collapse: collapse;
          border: 1px solid #dedede;
          padding: 10px;
-         margin-top: 5%;
-         width: 90%;
+         margin-top: 4%;
+         margin-left: 30%;
+         width: 70%;
       }
-      .outcard
+      /*.outcard
        {
          @apply(--layout-horizontal);
-       }
+       }*/
 
       .creatediv
        {
           border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 15px; 
-          width: 30%;
-          margin-top: 10%;
-          max-height: 200px;
-          /*height: 150px; */
+          width: 25%;
+          margin-left: -5%;
+          margin-top: -44%;
+          min-height: 200px;
        }
 
+       .newtitle
+       {
+        line-height: 7px;
+        margin-top: 4%;       
+      }
     </style>
 
     <div class="title">  
-    <h3>ROLE</h3>
+      <h3><b>ROLE</b></h3>
     </div>
 
     <div class="outcard">
         <div>
+          <div class="newtitle" style="margin-left:53%">
+            <h4>Current Role Details</h4>
+          </div>
             <table>
               <tr>
-                <th><label style="margin-left:3%">Role ID</label></th>
-                <th><label style="margin-left:3%">Role Name</label></th>
+                <th><label style="margin-left:2%">Role ID</label></th>
+                <th><label style="margin-left:-4%">Role Name</label></th>
                 <th></th>
               </tr>
               <template is="dom-repeat" items="{{rolearr}}" as="r">  
@@ -128,7 +138,7 @@
 
  </template>
 
-  <script>
+   <script>
   (function() {
     'use strict';
      var rname="";

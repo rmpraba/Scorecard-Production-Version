@@ -15,7 +15,8 @@
       {
         border-radius: 10px;
         border: 2px solid #6699ff;
-        padding: 0px;
+        padding: 5px;
+        min-height: 500px;
         margin-top: 6%;
         width: 50%;  
         margin-left: 25%;
@@ -46,6 +47,26 @@
       {
         margin-top: 2%;
       }
+      .button1 paper-button
+      {
+        background-color: #363636;
+        color: #ffffff;
+        width: 7%;
+        margin-left: 140%;
+        margin-top: 5%;
+      }
+       paper-button
+      {
+        background-color: #363636;
+        color: #ffffff;
+        width: 10%;
+        margin-left: 170%;
+        /*margin-top: -50%; */
+      }
+      /*.newbuttons
+      {
+        @apply(--layout-horizontal);
+      }*/
     </style>
 
     <div class="title"> 
@@ -83,13 +104,20 @@
         </tbody>    
       </table>  
     </div>
-    </div> 
- </div>
-  <div class="buttons">
-            <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
-             <paper-button autofocus on-click="Fndelete">Delete</paper-button>
+    </div>
+
+    <div class="newbuttons col-sm-6"> 
+      <div class="button1"> 
+        <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
+      </div>
+      <div class="button2" style="margin-top:-13%">
+        <paper-button autofocus on-click="Fndelete">Delete</paper-button>
+      </div>
+    </div>  
   </div>
-<!-- <div >
+
+    
+<!-- <div>
           <div class="cbutton">
             <CENTER>
               <paper-button on-click="Fncreate">School Type Mapping</paper-button>
