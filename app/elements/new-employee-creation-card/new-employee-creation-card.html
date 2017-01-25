@@ -58,9 +58,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200%; 
-          margin-top: -219%;
-          width: 47%;
-          margin-left:-3%;
+          margin-top: -197% !important;
+          width: 50%;
+          margin-left:-2%;
               
        }
        .title
@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--layout-horizontal);
         margin-top: -205%;
        }*/
-       #updateempdetails
+      #updateempdetails
        {
         float: left;
         border-radius: 10px;
@@ -80,10 +80,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
         margin-left:-4%;
         width: 50%;
-        margin-top: -220%;
+        margin-top: -194% !important;
         min-height: 200%; 
        }
-
+       #focus{
+           float: left;
+        border-radius: 10px;
+        border:1px solid #6699ff;
+        padding: 10px;
+        margin-left:-4%;
+        width: 50%;
+        margin-top: -194% !important;
+        min-height: 200%;
+        }
        .subbutton
        {
          background-color: #363636;
@@ -141,14 +150,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
 
         <div class="col-sm-4">
-          <gold-email-input label="Emailid" id="empmailid" required error-message="needs mailid!" value="{{mailid}}"></gold-email-input>
+          <gold-email-input label="Email" id="empmailid" required error-message="needs mailid!" value="{{mailid}}"></gold-email-input>
         </div>    
       </div>    
 
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">
           <h4>Emplyoee School Type</h4>
-        </div>  
+        </div>     
 
          <div class="col-sm-12">
           <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
@@ -195,7 +204,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="list-group col-sm-12 panel-body form-category">       
           <div class="col-sm-4">
-            <gold-email-input label="Email id" value="{{employeemail}}"></gold-email-input>
+            <gold-email-input label="Email" value="{{employeemail}}"></gold-email-input>
           </div>
           <div class="col-sm-4">
             <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
@@ -238,13 +247,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-input value={{schoolid}} hidden></paper-input>
           <div class="col-sm-12">
              <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                   <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+                   <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>    
                    </template>
           </div>
         </div>
     </div>
 
-
+      
      <!--  <iron-ajax        
         id="selectschooltypemapajax"
         url="{{selectschooltypemapurl}}"
@@ -269,6 +278,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
       var setrolearr=[];
        var empschooltypearr=[];
+       var passschooltypearr=[];
+        var passrolearr=[];
     Polymer({
       is: 'new-employee-creation-card',
      ready:function()
@@ -333,18 +344,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          //alert(this.hidecreateemp);
          document.getElementById('#hidecreateemp');
       },
-    /* passrole:function(arr1){
+     passrole:function(arr1){
        passrolearr=arr1;
-       //alert(JSON.stringify(passrolearr));   
+       alert(JSON.stringify(passrolearr));   
       },
       passschooltype:function(arr){
        passschooltypearr=arr;
-      },*/
+      },
 
       funct1:function(employeeid,employeename,employeephone,employeemobile,employeemail,employeepassword,schoolid)
       {
         this.employeeid=employeeid;
-        this.employeename=employeename;
+        this.employeename=employeename;   
         this.employeephone=employeephone;
         this.employeemobile=employeemobile;
         this.employeemail=employeemail;
@@ -356,7 +367,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       FnSchooltypemap:function(arr){
         this.selectmapschooltypearr=arr;
-        alert(JSON.stringify(this.selectmapschooltypearr));
+        //alert(JSON.stringify(this.selectmapschooltypearr));
         this.hidecreateemp=true;
         this.hideupdateemp=false;   
       },
@@ -369,18 +380,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        FnpersonalSave:function(e)
        {
 
-        alert('2');  
-        alert(this.employeeid);
-       this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.selectmapschooltypearr,this.selectschoolrolearr);
-       this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
-       this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
-       this.ready();
-       }  
-
-       
+        //alert('2');  
+        //alert(this.employeeid);
+        alert(JSON.stringify(passrolearr));
+        alert(JSON.stringify(passschooltypearr));
   
+      //  this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+    //   this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
+      /// this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
+       this.ready();
+       },
 
-    });
+       getfocus:function(e)
+       {
+        alert('1');
+        var id="updateempdetails";
+        alert(document.getElementById(id));
+        document.getElementById(id).focus();
+       } 
+});
   })();
   </script>
 </dom-module>

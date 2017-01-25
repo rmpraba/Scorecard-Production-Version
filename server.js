@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecardbatabase'
  });
 var bodyParser = require('body-parser');
 var app = express();
@@ -5978,7 +5978,7 @@ app.post('/fnempgenerateid-service',  urlencodedParser,function (req,res)
   });
 });
 app.post('/tranfergradeinfo-service', urlencodedParser,function (req,res)
-{  
+{      
      
   var qur="SELECT * FROM md_grade";
   connection.query(qur,
@@ -6373,11 +6373,11 @@ app.post('/Fnpersonalinfo-service' ,  urlencodedParser,function (req, res)
     {
     if(!err)
     {
-      res.status(200).json({'returnval': 'Updated!'});
+      res.status(200).json({'returnval': 'updated!'});
     }
     else
     {
-     res.status(200).json({'returnval': 'Not Updated!'});
+     res.status(200).json({'returnval': 'Not updated!'});
     }
     });
     

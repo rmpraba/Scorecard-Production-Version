@@ -19,7 +19,7 @@
       /*.close close-icon
       {
         position: absolute;
-        margin-top: 5%;
+        margin-top: 5%;    
       }     */
       .panel-body
        {
@@ -98,7 +98,7 @@
             <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
           </div>
       </div>
-
+  
       <div class="form-group-heading">
           <h4>Employee Role Mapping</h4>
       </div>
@@ -128,7 +128,7 @@
           <paper-input value={{schoolid}} hidden></paper-input>
         <div class="col-sm-12">
              <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                   <new-employee-creation-schooltype-item-card schooltypeids="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+                   <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
             </template>      
         </div>
           </div>
@@ -158,8 +158,8 @@
        var getrolearr=[];
        var schooltypearr=[];
        var samearr=[];
-       var passrolearr=[];
-       var passschooltypearr=[];
+    /*   var passrolearr=[];
+       var passschooltypearr=[];*/
      
   Polymer({
       is: 'new-employee-creation-item-card',
@@ -172,13 +172,13 @@
       setschoolrole:function(arr1){
          getrolearr=arr1;
        }, 
-      passrole:function(arr1){
+    /*  passrole:function(arr1){
        passrolearr=arr1;
        //alert(JSON.stringify(passrolearr));   
       },
       passschooltype:function(arr){
        passschooltypearr=arr;
-      },
+      },*/
       f1:function(e){   
        this.$.uiservice.fnschoolemployeeschooltype(this.employeeid,this.employeename); 
          this.selectschooltypemapurl=sessionStorage.getItem("addrinfo")+"/selectschooltype11-service";
@@ -203,8 +203,10 @@
 
           document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
          /* document.querySelector('new-employee-creation-card').FnSchooltypemap();
-          document.querySelector('new-employee-creation-card').FnSchoolrole();
-   */  },
+          document.querySelector('new-employee-creation-card').FnSchoolrole();*/
+          document.querySelector('new-employee-creation-card').getfocus();
+
+     },
      /*FnschooltypeSave:function(e){
         // alert(JSON.stringify(passschooltypearr));
         this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
@@ -212,11 +214,11 @@
  
      },*/
      FnpersonalSave:function(e){
-      alert("1");
-      this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+    
+    /*  this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
        this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
        this.$.uiservice.fnrolesaveinfo(passrolearr);
-     },
+    */ },
      fndeletearr:function(e){
 
           document.querySelector('new-employee-creation-card').funct1(this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
