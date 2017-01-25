@@ -79,19 +79,23 @@
         margin-top: -5%;
         width: 91%;
        }
+       paper-item
+       {
+        width: 170%;
+       }
 
     </style>       
     <div> 
     </table>   
    <div class="row">  
     <div class="itemcard col-sm-12">
-      <div class="sclid">
+      <div class="sclid col-sm-3">
         <paper-item>{{schoolid}}</paper-item>
       </div>
-      <div class="sub">
+      <div class="sub col-sm-6">
         <paper-item>{{schoolname}}</paper-item>
       </div>
-      <div class="clsbutton">
+      <div class="clsbutton col-sm-3">
           <paper-icon-button icon='create' on-click="showupdetails"></paper-icon-button>
           <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
       </div>
