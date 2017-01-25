@@ -375,12 +375,16 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SchoolTypeToGrade" no ink><img src="../../images/schooltoschoolType.jpg" height="180px" width="180px">  <h4>School to School Type</h4>
         </paper-button>
       </div>
-      
-      <div class="card" hidden$="{{employeetograde}}">
+       <div class="card" hidden$="{{employeetograde}}">
             <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">
                <h4>Employee To Grade</h4>
             </paper-button>
-      </div>  
+      </div>
+        <div class="card" hidden$="{{schooltyptograde}}">
+            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
+               <h4>School type to Grade</h4>
+            </paper-button>
+       </div>    
     </div>
  
     <div class="cdialog">      
@@ -426,13 +430,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.classteacher=true;
         this.coordinator=true;
         this.highlevelcommon=true;
-
         this.createschooltype=true;
         this.createsubject=true;
         this.createrole=true;
-
         this.managementreport=true;
-
+        this.schooltyptograde=true;
         this.createschoolz=true; 
         this.createcategory=true;
         this.createemployee=true;
@@ -589,7 +591,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          // this.createcategory=false;  
         //  this.createschoolz=false; 
          this.createemployee=false;
-         // this.creategrade=false;
+         this.schooltyptograde=false;
           this.workingdats=false;
           this.employeetograde=false;
           this.emptocategory=false;
@@ -822,6 +824,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('schooltype-card').ready();
    
       },
+       SchooltypToGrade:function(e)
+       {
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('schooltype-to-grade-card','');
+       // document.querySelector('category-card').ready();
+      this.$.uiservice.selectschooltype();
+      },
+
       FnFeeCollection:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');
         // this.$.scorecardservice.callFetchstudentnameService();

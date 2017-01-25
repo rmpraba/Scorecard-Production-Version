@@ -22,13 +22,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          }
     </style>
     <span style="width:50px !important;">
-    <div hidden>{{schooltypeid}}</div>
-     <div hidden>{{schooltypename}}</div>
-     <div hidden>{{gradeidzzzw}}</div>
-    <paper-checkbox on-change="fngradechage" id="{{schoolgraddidz}}">{{gradenamezzzw}}</paper-checkbox> 
+    <!-- <div hidden>{{schooltypeid}}</div>
+     <div hidden>{{schooltypename}}</div> -->
+     <div hidden>{{schooltype}}</div>
+    <paper-checkbox on-change="fngradechage" id="{{gradeid}}" checked="{{check}}">{{gradename}}</paper-checkbox> 
+
    </span>
   </template>
-  <script>
+  <script>      
   (function() {
     'use strict';
    var gradearrs=[];
@@ -36,8 +37,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          Polymer({   
       is: 'school-grade-mapping--item-card',
      fngradechage:function(e){
-       alert(this.schoolgraddidz);
-      // alert(JSON.stringify(this.schoolgraddidz));
+           alert("1");
+           alert(this.schooltype);
+           alert(this.gradename+this.schooltype);
+          if(document.querySelector('#'+this.gradeid).checked==true){
+              var obj={"school_id":"","schooltype":"","gradename":"","gradeid":""};
+              obj.gradeid=this.gradeid;
+              obj.gradename=this.gradename;
+              obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+              obj.schooltype=this.schooltype;
+               gradearrs.push(obj);
+               alert(JSON.stringify(gradearrs));
+           document.querySelector('master-school-type-creation-item-card').fnsetgrade(gradearrs);
+        }
+     
+     }
+      /*// alert(JSON.stringify(this.schoolgraddidz));
        alert(document.querySelector('#'+this.schoolgraddidz));
         alert(document.querySelector('#'+this.schoolgraddidz).checked);
       
@@ -56,7 +71,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            var obj={"gradeid":"","gradename":""}
                 gradearrs.splice(obj);
         }
-     });
+*/     });
   })();
   </script>
 </dom-module>

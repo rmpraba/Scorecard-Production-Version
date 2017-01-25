@@ -36,9 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
        table
       {
-         margin-top: 3%;
+         apply(--layout-horizontal);
+         margin-top: 5%;
          border-collapse: collapse;
-         margin-left: -8%;
+         margin-left: 50%;
          border: 1px solid #dedede;
          width: 530px;
          padding: 10px;
@@ -46,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .newcard
        {
-         @apply(--layout-horizontal);
+         /*@apply(--layout-horizontal);*/
          float: left;
 
        }
@@ -57,29 +58,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200%; 
-          margin-top: -207%;
-          width: 50%;
-          margin-left: 44%;
+          margin-top: -219%;
+          width: 47%;
+          margin-left:-3%;
               
        }
        .title
        {
         margin-left: 30%;
        }
-       #updateempdetails
+      /* #updateempdetails
        {
-        /*@apply(--layout-horizontal);*/
+        @apply(--layout-horizontal);
         margin-top: -205%;
-
-       }
+       }*/
        #updateempdetails
        {
-        float: right;
+        float: left;
         border-radius: 10px;
         border:1px solid #6699ff;
         padding: 10px;
-        margin-left:50%;
+        margin-left:-4%;
         width: 50%;
+        margin-top: -220%;
         min-height: 200%; 
        }
 
@@ -328,8 +329,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.$.uiservice.selectschooltype();
          this.$.uiservice.selectrolename();
          this.hidecreateemp=false;
+         this.hideupdateemp=true;
          //alert(this.hidecreateemp);
-         document.getElementId('#hidecreateemp');
+         document.getElementById('#hidecreateemp');
       },
     /* passrole:function(arr1){
        passrolearr=arr1;
@@ -347,7 +349,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.employeemobile=employeemobile;
         this.employeemail=employeemail;
         this.employeepassword=employeepassword;
-        this.schoolid=schoolid;      
+        this.schoolid=schoolid; 
+         this.hidecreateemp=true;
+         this.hideupdateemp=false;     
+
       },
       FnSchooltypemap:function(arr){
         this.selectmapschooltypearr=arr;
@@ -369,16 +374,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.selectmapschooltypearr,this.selectschoolrolearr);
        this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
        this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
-       this.ready();  
-       
-     }  
-     
+       this.ready();
+       }  
 
-     /*getfocus:function(e)
-     {
-      document.getElementById("hideupdateemp").focus();
-     }  
-*/
+       
+  
+
     });
   })();
   </script>
