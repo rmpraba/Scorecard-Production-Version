@@ -947,20 +947,24 @@
       is: 'master-ui-service',
     
 
-       fnempgenerateid:function(){
+       fnempgenerateid:function()
+       {
      //   alert('1');
         this.fnempgenerateidurl=sessionStorage.getItem("addrinfo")+"/fnempgenerateid-service";
        this.$.fnempgenerateidajax.generateRequest();
        },
-       tranfergradeinfo:function(){
-      this.tranfergradeinfourl=sessionStorage.getItem("addrinfo")+"/tranfergradeinfo-service";
+       tranfergradeinfo:function()
+       {
+        this.tranfergradeinfourl=sessionStorage.getItem("addrinfo")+"/tranfergradeinfo-service";
        this.$.tranfergradeinfoajax.generateRequest();
-     },
-     tranfergradeinfoResponse:function(e){
+      },
+      tranfergradeinfoResponse:function(e)
+     {
        var res=e.detail.response.returnval; 
         document.querySelector('student-transfer-grade').tranfergradearr=res;
       },
-      tranfersection:function(setgradeid){
+      tranfersection:function(setgradeid)
+      {
       this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
       var obj={"school_id":"","setgradeid":""};
       obj.setgradeid=setgradeid;
@@ -1061,7 +1065,7 @@
     fnempgenerateidResponse:function(e)
     {
       var res=e.detail.response.returnval;  
-           //alert(JSON.stringify(res));
+         //  alert(JSON.stringify(res));
         document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence;
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
@@ -1104,7 +1108,6 @@
          obj.name=name;
          obj.password=password;
          obj.roleid=roleid;
-
          obj.flage='active';
          //alert(JSON.stringify(obj));
         this.emprolemappingparam=obj;
@@ -1353,20 +1356,24 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
     },
     
      selectschooltype:function(){
-      //alert('1');
+         //alert('1');
          this.selectschooltypeurl=sessionStorage.getItem("addrinfo")+"/selectschooltype-service";
          var obj={"school_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          this.selectschooltypeparam=obj;
-         //alert(JSON.)
+         //alert(JSON.stringify(obj));
          this.$.selectschooltypeajax.generateRequest();
      },
-     selectschooltypeResponse:function(e){
+     selectschooltypeResponse:function(e)
+     {
          var res=e.detail.response.returnval; 
          //alert(JSON.stringify(res));  
-         document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
+         document.querySelector('new-employee-creation-card').selectschooltypearr=res;
+         document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
+         /*document.querySelector('new-employee-creation-card').selectschooltypearr=res;*/ 
      },
-      selectrolename:function(){
+      selectrolename:function()
+      {
         this.selectrolenameurl=sessionStorage.getItem("addrinfo")+"/selectrolename-service";
         this.$.selectrolenameajax.generateRequest();
      },
@@ -1465,7 +1472,7 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
         obj.gradeid=gradeid;
         obj.gradename=gradename;
         obj.schooltypeid=schooltypeid;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
        this.Fngradeinsetschoolparam=obj;
       this.$.Fngradeinsetschoolajax.generateRequest();
     } 
@@ -1501,8 +1508,7 @@ fnsubjecttocategorysaving:function(passservicearr)
       {
         var res=e.detail.response.returnval;
        //alert(JSON.stringify(res));
-          },
-
+     },
 
 insertschoolTypename:function(schooltypesarr)
 
@@ -2036,8 +2042,8 @@ insertschoolTypename:function(schooltypesarr)
       },
       FnempdeleteinfoResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        alert(e.detail.response.returnval);
+        if(e.detail.response.returnval=="update!")
         {
             //alert("Deleted");
           this.fnschoolemployeepersonal();
@@ -2603,3 +2609,4 @@ insertschoolTypename:function(schooltypesarr)
   })();
   </script>
 </dom-module>
+ 
