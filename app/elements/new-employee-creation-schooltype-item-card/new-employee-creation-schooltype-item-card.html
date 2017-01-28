@@ -20,7 +20,7 @@
     <div>
         <paper-input hidden value={{schoolempschooltypeid}}></paper-input>
          <paper-input hidden value={{schoolempschooltypename}}></paper-input>
-      <paper-checkbox class="col-md-4" on-change="fnschooltypename" id={{schooltypeids}} checked="{{check}}">{{schooltypenames}}</paper-checkbox>
+      <paper-checkbox class="col-md-4" on-change="fnschooltypename" id="{{schooltypeidszzzz}}" checked="{{check}}">{{schooltypenames}}</paper-checkbox>
   </div>
   <iron-ajax        
         id="getempschooltypeajax"
@@ -28,7 +28,7 @@
         params="{{getempschooltypeparam}}"
         handle-as="json"    
         content-type="application/json"
-        method="post"
+        method="post"   
         on-response="getempschooltypeResponse"
         debounce-duration="300">
         </iron-ajax>
@@ -41,19 +41,23 @@
     Polymer({
       is: 'new-employee-creation-schooltype-item-card',
      fnschooltypename:function(e){
-       alert(this.schoolempschooltypeid+this.schoolempschooltypename+this.schooltypeids);
-       alert(document.querySelector('#'+this.schooltypeids).checked);
-     if(document.querySelector('#'+this.schooltypeids).checked==true){
+      alert(this.schoolempschooltypeid);
+      alert("hhh");
+      alert(this.schooltypeidszzzz);
+      alert(document.querySelector('#'+this.schooltypeidszzzz).checked);
+       alert(this.schoolempschooltypeid+this.schoolempschooltypename+this.schooltypeidszzzz);
+    //   alert(document.querySelector('#'+this.schooltypeids).checked);
+     if(document.querySelector('#'+this.schooltypeidszzzz).checked==true){
          //alert(JSON.stringify(obj));
           var obj={"emp_id":"","emp_name":"","emp_schol_type":""};
                   obj.emp_id=this.schoolempschooltypeid;
                   obj.emp_name=this.schoolempschooltypename;
                   obj.emp_schol_type=this.schooltypeids;
                   getschooltypearr.push(obj);    
-                //  alert(JSON.stringify(getschooltypearr));
-                  document.querySelector('new-employee-creation-item-card').passschooltype(getschooltypearr);
+                  alert(JSON.stringify(getschooltypearr));
+                  document.querySelector('new-employee-creation-card').passschooltype(getschooltypearr);
            }
-else if(document.querySelector('#'+this.schooltypeids).checked==false){
+      else if(document.querySelector('#'+this.schooltypeids).checked==false){
                    this.getempschooltypeurl=sessionStorage.getItem("addrinfo")+"/getempschooltype-service";
                    var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");

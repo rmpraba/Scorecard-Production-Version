@@ -576,7 +576,7 @@
         debounce-duration="300"
     >
 
-    <iron-ajax        
+    <!-- <iron-ajax        
         id="fetchroleajax"    
         url="{{fetchroleurl}}"
         params="{{fetchroleparam}}"
@@ -596,7 +596,7 @@
         method="post"
         on-response="deleteroleResponse"
         debounce-duration="300"
-    >
+    > -->
 
      <iron-ajax        
         id="subjectcreationajax"
@@ -866,13 +866,8 @@
         content-type="application/json"
         method="post"
         on-response="updateroleResponse"
-        debounce-duration="300"
-    >
-
-
-    
-
-    ><iron-ajax        
+        debounce-duration="300">
+    <iron-ajax        
         id="fnschoolsubjetflageajax"
         url="{{fnschoolsubjetflageurl}}"
         params="{{fnschoolsubjetflageparam}}"
@@ -931,7 +926,7 @@
         on-response="DelteschoolTypenameResponse"
         debounce-duration="300"
         >
-<iron-ajax        
+        <iron-ajax        
         id="masterschoolmappingajax"
         url="{{masterschoolmappingurl}}"
         params="{{masterschoolmappingparam}}"
@@ -1061,13 +1056,13 @@
   insertgradeinfoResponse:function(e){
       var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res));
-        //document.querySelector('student-transfer-grade').tranfersectionarr=res;
+        document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },
     fnempgenerateidResponse:function(e)
     {
       var res=e.detail.response.returnval;  
-         //  alert(JSON.stringify(res));
-        //alert(document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence);
+           //alert(JSON.stringify(res));
+        document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence;
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
          this.emppersonaldetailsurl=sessionStorage.getItem("addrinfo")+"/emppersonaldetails-service";
@@ -1081,7 +1076,7 @@
              obj.mailid=mailid;
              obj.flage='active';
         
-             //alert(JSON.stringify(obj));
+            //alert(JSON.stringify(obj));
           this.emppersonaldetailsparam=obj;
           this.$.emppersonaldetailsajax.generateRequest();
 
@@ -1118,7 +1113,7 @@
       },
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
-             //  alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
          if(res=="Inserted!"){
           this.fnschoolemployeepersonal();
         }
@@ -1132,8 +1127,8 @@
         var res=e.detail.response.returnval;
         //alert(JSON.stringify(res));
     },
-fnschooltypesaveinfo:function(selectmapschooltypearr)
-{ 
+    fnschooltypesaveinfo:function(selectmapschooltypearr)
+    { 
       //alert(JSON.stringify(selectmapschooltypearr));
     for(var i=0;i<selectmapschooltypearr.length;i++){
             var empid=selectmapschooltypearr[i].emp_id;
@@ -1344,10 +1339,11 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
        document.querySelector('new-employee-creation-item-card').setschoolrole(res);
      
     },
-    fnschoolemployeepersonalResponse:function(e){
+    fnschoolemployeepersonalResponse:function(e)
+    {
      var res=e.detail.response.returnval; 
-    // alert(JSON.stringify(res));
-     document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
+    //alert(JSON.stringify(res));
+     document.querySelector('new-employee-creation-card').selectschoolpersonalarr(res);
       }, 
     fnschoolemployeeschooltypeResponse:function(e){
      var res=e.detail.response.returnval; 
@@ -1524,13 +1520,13 @@ insertschoolTypename:function(schooltypesarr)
         obj.schooltypeid=schooltypeid;
         obj.schoolid=schoolid;
         this.insertschoolTypenameparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
        this.$.insertschoolTypenameajax.generateRequest();
       }
     },
      insertschoolTypenameResponse:function(e){
         var res=e.detail.response.returnval;
-         alert(JSON.stringify(res));
+         //alert(JSON.stringify(res));
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
@@ -2497,7 +2493,8 @@ insertschoolTypename:function(schooltypesarr)
        //  alert(JSON.stringify(arr));
       //  document.querySelector('cce-generate-score-card').FnHide();
         document.querySelector('student-list-mapping').studentarr=arr;  
-        }
+        },
+
          SelectSchoolName:function(){
             this.SelectSchoolNameurl=sessionStorage.getItem("addrinfo")+"/SelectSchoolName-service";
             var obj={"school_id":""};

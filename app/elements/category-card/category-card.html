@@ -76,10 +76,10 @@
          border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px; 
-          width: 25%;
+          width: 28%;
           margin-left: -5%;
-          margin-top: -26%;
-          min-height: 270px;
+          margin-top: -23%;
+          min-height: 266px;
       }
       .newtitle
       {
@@ -158,18 +158,10 @@
       {
         if(this.categoryname!=null)
         {
-
         //alert("test");
-
-        var categoryid=(this.categoryname).toLowerCase();
-        //alert(this.categoryname);
-
-        this.$.uiservice.FnSetCategoryInfo(this.categorytype,this.categoryname,categoryid,this.temphidden);
-
           cname=this.toTitleCase(this.categoryname);
           var categoryid=((cname).toLowerCase()).replace(' ','');
           this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
-
          document.querySelector('category-card').FnRefresh(); 
         }
         else if(this.categoryname==null || this.categoryname=="")
@@ -191,8 +183,7 @@
       {
         this.hidenewcatcard=false;
       }
-      
-      
+            
     });
   })();
   </script>

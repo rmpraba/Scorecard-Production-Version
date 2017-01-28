@@ -88,10 +88,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200px; 
-          margin-top: -28%;
+          margin-top: -30% !important;
           width: 49%;
           margin-left: 2%;
        }
+
        /*#updatedetails
        {
         @apply(--layout-horizontal);
@@ -284,15 +285,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           this.$.uiservice.fnschoolcreation();
           this.FnRefresh();
-       //   this.$.uiservice.fnschoolcreation();
+          //this.$.uiservice.fnschoolcreation();
         },
-
-        /*FnShowUpdatediv:function(){
-
-<<<<<<< HEAD
-        },*/     
-      
-        
+  
        fn1:function(schoolid,schoolname,telnum,mobile,mailid,wesite,affiliationno,boardselection,addr,addr1,addr2,addr3)
          {
           this.schoolid=schoolid;
@@ -391,9 +386,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            this.hideupdatediv=true;
            this.hidecreatediv=false;
            //document.querySelector('school-creation-card').fn2();
+          },
+          getfocus:function(e)
+          {
+            document.getElementById("updatedetails").focus();
           }
-        
-
           
       });
   })();
