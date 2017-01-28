@@ -125,7 +125,8 @@
         <div class="creatediv">
           <div class="card">
               <label><b>Create New Role</b></label>
-            <paper-input style="width:68%" value="{{rolename}}" label="Role Name"></paper-input>
+            <!-- <paper-input style="width:68%" value="{{}}" label="Role Name"></paper-input> -->
+            <paper-input label="Role Name" id="rolename" required error-message="needs Role name!" value="{{rolename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
           </div>
 
            <div class="buttons">
@@ -157,7 +158,12 @@
       
      FnSubmit:function()
      {
-        if( this.rolename!=null)
+       if(this.rolename=="" || this.rolename==null)
+        {
+          this.$.rolename.validate();
+          //alert('Please enter Role Name before Submit');
+        }
+        else if( this.rolename!=null)
         {
           // alert( this.rolename);
           rname=this.toTitleCase(this.rolename);
@@ -165,12 +171,10 @@
           var roleid=((rname).toLowerCase()).replace(' ','');
           //alert(roleid);
           this.$.uiservice.FnSetRoleInfo(rname,roleid);
+
           document.querySelector('role-card').FnRefresh();
         }
-        else if( this.rolename==null ||  this.rolename=="")
-        {
-          alert('Please enter Role Name before Submit');
-        }
+       
         
      },
     toTitleCase:function(str)

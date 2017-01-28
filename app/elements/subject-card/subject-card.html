@@ -125,8 +125,7 @@
           </div>   
             
             <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
-            <paper-input value="{{subjectname}}" label="Subject Name"></paper-input>
-
+            <paper-input label="Subject Name"  required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
             <paper-dropdown-menu id="subcat" label="Select Category Type" >
               <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategoryzzz">
@@ -174,14 +173,15 @@
       fetchmastercategorynameResponse:function(e)
       {
         var arr=e.detail.response.returnval;
-        alert(JSON.stringify(arr));     
+        //alert(JSON.stringify(arr));     
       },
 
        FnSubmit:function()
       {
         if(this.subjectname==null || this.subjectname=="")
         {
-          alert("please enter Subjectname before Submit");
+          this.$.subjectname.validate();
+          //alert("please enter Subjectname before Submit");
         }
         else
         {

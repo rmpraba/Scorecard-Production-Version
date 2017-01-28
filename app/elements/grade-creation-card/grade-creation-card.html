@@ -121,7 +121,8 @@
         <div class="card">       
             <label>Create New Grade</label>
             <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
-            <paper-input value="{{gradename}}" label="Grade Name"></paper-input>
+             <paper-input label="Grade Name" id="gradename" required error-message="needs Grade name!" value="{{gradename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+
         </div>
 
         <div class="buttons">
@@ -160,8 +161,8 @@
       {
         if(this.gradename==null || this.gradename=="")
         {
-          //alert("hiiii");
-          alert("please enter Grade name before save");
+          this.$.gradename.validate();
+         // alert("please enter Grade name before save");
         }
         else
         {  

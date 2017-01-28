@@ -129,7 +129,7 @@
           <div class="headdiv">
               <label><b>Create New School Type</b></label>
            </div> 
-          <paper-input value="{{schooltypename}}" label="School type name"></paper-input> 
+           <paper-input label="School Type Name" id="schooltypename" required error-message="needs School Type name!" value="{{schooltypename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
 
         <div class="buttons">
@@ -178,7 +178,12 @@
 
       FnSubmit:function()
       {
-        if(this.schooltypename!=null)
+        if(this.schooltypename==null || this.schooltypename=="")
+        {   
+          this.$.schooltypename.validate();       
+          //alert("Please enter School Type Name before submit");
+        }
+        else if(this.schooltypename!=null)
         {
           stypename=this.toTitleCase(this.schooltypename);
           var schooltypeid = ((stypename).toLowerCase()).replace(' ','',' ');   
@@ -187,17 +192,14 @@
           this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);        
           document.querySelector('schooltype-card').FnRefresh();
         }
-       else if(this.schooltypename==null || this.schooltypename=="")
-        {          
-          alert("Please enter schooltypename befor submit");
-        }
-        else
+       
+        /*else
           {  
         var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
          this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
         document.querySelector('schooltype-card').FnRefresh();
         this.$.schooldialog.toggle();
-        }
+        }*/
       },
       toTitleCase:function(str)
       {

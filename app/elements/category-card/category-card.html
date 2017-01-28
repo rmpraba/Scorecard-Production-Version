@@ -101,8 +101,8 @@
         </div>
       <table>
           <tr>
-              <th><label style="margin-left:5%">Category ID</label></th>
-              <th><label style="margin-left:-6%">Category Name</label></th>
+              <th><label style="margin-left:4%">Category ID</label></th>
+              <th><label style="margin-left:2%">Category Name</label></th>
           </tr>
 
           <template is="dom-repeat" items="{{catarr}}" as="ca">
@@ -120,7 +120,8 @@
         <div class="card">
               <label><b>Create New Category</b></label>
               <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
-              <paper-input value="{{categoryname}}" label="Category Name" on-change="fnseq"></paper-input>
+              <paper-input label="Category Name" id="categoryname" required error-message="needs Category name!" value="{{categoryname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+
         </div>  
 
         <div class="buttons">
@@ -156,7 +157,12 @@
        },
       FnSubmit:function()
       {
-        if(this.categoryname!=null)
+        if(this.categoryname== null|| this.categoryname=="")
+        {
+          this.$.categoryname.validate();
+          //alert("Please enter categoryname before submit"); 
+        }
+        else if(this.categoryname!=null)
         {
         //alert("test");
           cname=this.toTitleCase(this.categoryname);
@@ -164,10 +170,7 @@
           this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
          document.querySelector('category-card').FnRefresh(); 
         }
-        else if(this.categoryname==null || this.categoryname=="")
-        {
-          alert("Please enter categoryname before submit"); 
-        }
+        
       },
 
       toTitleCase:function(str)
