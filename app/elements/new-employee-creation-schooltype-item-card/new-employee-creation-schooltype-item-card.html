@@ -49,7 +49,7 @@
           var obj={"emp_id":"","emp_name":"","emp_schol_type":""};
                   obj.emp_id=this.schoolempschooltypeid;
                   obj.emp_name=this.schoolempschooltypename;
-                  obj.emp_schol_type=this.schooltypeids;
+                  obj.emp_schol_type=this.schooltypeidszzzz;
                   getschooltypearr.push(obj);    
                   alert(JSON.stringify(getschooltypearr));
                   document.querySelector('new-employee-creation-card').passschooltype(getschooltypearr);
@@ -60,7 +60,7 @@
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempschooltypeid;
                    obj.emp_name=this.schoolempschooltypename;
-                   obj.emp_schol_type=this.schooltypeids;
+                   obj.emp_schol_type=this.schooltypeidszzzz;
                    //alert(JSON.stringify(getscooltypdelarr))
                    
                    this.getempschooltypeparam=obj;
@@ -85,7 +85,7 @@
        var obj={"emp_id":"","emp_name":"","emp_schol_type":""};
                   obj.emp_id=this.schoolempschooltypeid;
                   obj.emp_name=this.schoolempschooltypename;
-                  obj.emp_schol_type=this.schooltypeids;
+                  obj.emp_schol_type=this.schooltypeidszzzz;
            getschooltypearr.splice(obj);
    },   
 

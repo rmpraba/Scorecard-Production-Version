@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
    // password : 'pEbElHqKSxh2',
    database : 'scorecardbatabase'
  });
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 var app = express();
 var logfile;
 
@@ -5283,7 +5283,7 @@ app.post('/fetchsubjectseq-service',  urlencodedParser,function (req,res)
 app.post('/fetchmastersubject-service',  urlencodedParser,function (req,res)
 {  
   var qur="SELECT subject_id,subject_name ,(select category_name from md_category_type where category_type=subject_category) as category,subject_category from md_subject";
-  console.log(JSON.stringify(qur));
+  //console.log(JSON.stringify(qur));
   connection.query(qur,
     function(err, rows)
     {
@@ -5513,7 +5513,7 @@ app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
 {  
      var e={school_id:req.query.school_id,school_type:req.query.schooltypeid};
     console.log(e);
-  var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"'and flag='active'";
+  var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"'and flage='active'";
   connection.query(qur,
     function(err, rows)
     {
@@ -6284,7 +6284,10 @@ connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.q
   app.post('/emprolemapping-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_id":req.query.school_id,"id":req.query.empid,"role_id":req.query.roleid,"password":req.query.password,"name":req.query.name,"flage":req.query.flage};
+
    //console.log(JSON.stringify(collection));
+
+   console.log(JSON.stringify(collection));
     connection.query("SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"'  and role_id='"+req.query.roleid+"'",function(err, rows)
     {
     if(rows.length==0)
@@ -7879,6 +7882,5 @@ var host = server.address().address
 var port = server.address().port
 console.log("Example app listening at http://%s:%s", host, port)
 });
-
 
 

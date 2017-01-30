@@ -37,7 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        table
       {
          apply(--layout-horizontal);
+
          margin-top: 5%;
+         margin-top: 4%;
          border-collapse: collapse;
          margin-left: 50%;
          border: 1px solid #dedede;
@@ -101,6 +103,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 70%;
         margin-top: 3%;
        }
+       .newtitle
+       {
+        margin-top: 5%;
+        margin-left: 60%;
+        line-height: 3px;
+       }
 
     </style>
 
@@ -108,6 +116,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3><b>EMPLOYEE CREATION</b></h3>
     </div>
     <span>
+    <div class="newtitle">
+      <h4>Current Employee Details</h4>
+    </div>
     <div class="newcard col-sm-12">
       <table>
         <tr>
@@ -247,8 +258,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-input value={{schoolid}} hidden></paper-input>
           <div class="col-sm-12">
              <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                   <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>    
-                   </template>
+                  <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>    
+              </template>
           </div>
         </div>
     </div>
@@ -294,9 +305,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           alert(JSON.stringify(setrolearr));
          },
   
-    passetschooltype:function(arr){
+    passetschooltype:function(arr)
+    {
           empschooltypearr=arr;
-       alert(JSON.stringify(empschooltypearr));
+       //alert(JSON.stringify(empschooltypearr));
        
      },
   
@@ -348,8 +360,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        passrolearr=arr1;
        alert(JSON.stringify(passrolearr));   
       },
-      passschooltype:function(arr){
+      passschooltype:function(arr)
+      {
        passschooltypearr=arr;
+       //alert(JSON.stringify(passschooltypearr));
       },
 
       funct1:function(employeeid,employeename,employeephone,employeemobile,employeemail,employeepassword,schoolid)
@@ -365,7 +379,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.hideupdateemp=false;     
 
       },
-      FnSchooltypemap:function(arr){
+      FnSchooltypemap:function(arr)
+      {
         this.selectmapschooltypearr=arr;
         //alert(JSON.stringify(this.selectmapschooltypearr));
         this.hidecreateemp=true;
@@ -373,6 +388,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       FnSchoolrole:function(arr){
         this.selectschoolrolearr=arr;
+        alert(JSON.stringify(this.selectschoolrolearr));
         this.hidecreateemp=true;
         this.hideupdateemp=false;
       },
@@ -385,17 +401,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         alert(JSON.stringify(passrolearr));
         alert(JSON.stringify(passschooltypearr));
   
-      //  this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
-    //   this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
-      /// this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
+       this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+      this.$.uiservice.fnschooltypesaveinfo(this.selectmapschooltypearr);
+      this.$.uiservice.fnrolesaveinfo(this.selectschoolrolearr);
        this.ready();
        },
 
        getfocus:function(e)
        {
-        alert('1');
+        //alert('1');
         var id="updateempdetails";
-        alert(document.getElementById(id));
+        //alert(document.getElementById(id));
         document.getElementById(id).focus();
        } 
 });

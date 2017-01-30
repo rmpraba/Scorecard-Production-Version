@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200px; 
-          margin-top: -27% !important;
+          margin-top: -29% !important;
           width: 49%;
           margin-left: 2%;
        }
@@ -365,9 +365,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              else
              {
                 this.$.uiservice.FnSetschoolInfo(this.school,this.schoolid1,this.Telephone,this.MobileNumber,this.Emailid,this.Website,this.address,this.address1,this.address2,this.address3,this.affiliation,this.Board);
-                this.ready();
                 document.querySelector('#academicswww').selected=-1;
-      
+                document.querySelector('school-creation-card').FnRefresh(); 
+                //this.ready();
              }    
           },
            FnSave:function()
@@ -378,7 +378,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             alert(this.addr3);*/
 
             this.$.uiservice.Fnsaveschoolinfo(this.schoolname,this.schoolid,this.telnum,this.mobile,this.mailid,
-              this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);                
+              this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);  
+                           
             this.ready();
           },
 
