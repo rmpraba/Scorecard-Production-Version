@@ -213,12 +213,9 @@
               document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
  
      },*/
-     FnpersonalSave:function(e)
-     {
-     //alert("1");
-     this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
+     FnpersonalSave:function(e){
     
-    /*  
+    /*  this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
        this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
        this.$.uiservice.fnrolesaveinfo(passrolearr);
     */ },
@@ -263,7 +260,8 @@
         selectschooltypemapResponse:function(e)
         {
          var res=e.detail.response.returnval;
-         //alert(JSON.stringify(res));      
+          alert(JSON.stringify(res));
+          alert(JSON.stringify(schooltypearr));      
           for(var j=0;j<res.length;j++){
             var flag=0;
               // var getschoolroleid=res[j].role_name;
@@ -280,8 +278,7 @@
                   res[j].check=false;
                  }
                }
-                
-               this.selectmapschooltypearr=res;
+              this.selectmapschooltypearr=res;
                document.querySelector('new-employee-creation-card').FnSchooltypemap(res);
                //alert(JSON.stringify(this.selectmapschooltypearr));
 

@@ -48,7 +48,7 @@
                   obj.emp_psw=this.emppsw;
                   getrolearrr.push(obj);
                   alert(JSON.stringify(getrolearrr));
-               document.querySelector('new-employee-creation--card').passrole(getrolearrr);
+               document.querySelector('new-employee-creation-card').passrole(getrolearrr);
            }
          else if(document.querySelector('#'+this.schoolroleidxx).checked==false){
               this.getempschoolroleurl=sessionStorage.getItem("addrinfo")+"/getempschoolrole-service";

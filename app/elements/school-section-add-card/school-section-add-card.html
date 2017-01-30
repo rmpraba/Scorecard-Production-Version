@@ -1,0 +1,138 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="school-section-add-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  
+    <div hidden>{{sectiongradeidzx}}</div>
+    <div hidden>{{sectiongradenamezx}}</div>
+ <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button>
+     <paper-dialog id="sectiongradeid" modal>
+          <paper-input label="Enter The Section" value="{{section}}"></paper-input>
+          <paper-button style="background-color:black;color:white" on-click="fnsetsubmit">submit</paper-button>
+            <paper-button dialog-confirm autofocus> close</paper-button>
+   </paper-dialog>
+   <iron-ajax        
+        id="sectioncreationmappingajax"
+        url="{{sectioncreationmappingurl}}"
+        params="{{sectioncreationmappingparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="sectioncreationmappingResponse"
+        debounce-duration="300"
+        >
+        <iron-ajax           
+        id="sectioncreationmapping1ajax"
+        url="{{sectioncreationmapping1url}}"
+        params="{{sectioncreationmapping1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="sectioncreationmapping1Response"
+        debounce-duration="300"
+        >
+    <iron-ajax        
+        id="sectioncreationmapping2ajax"
+        url="{{sectioncreationmapping2url}}"
+        params="{{sectioncreationmapping2param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="sectioncreationmapping2Response"
+        debounce-duration="300"
+        >
+   
+   </template>
+  <script>
+  (function() {
+    'use strict';
+          var sectionid;
+          var sectionname;
+          var classid;
+    Polymer({
+      is: 'school-section-add-card',
+     fnsubmit:function(){
+   //   alert(this.sectiongradeidzx);
+        this.$.sectiongradeid.open();
+   },
+       fnsetsubmit:function(e){
+       //     var sectionname=this.section.
+              sectionname=this.section.toUpperCase();
+              sectionid=sectionname.toLowerCase();
+              classid="ClS-0"+sectionname.charAt(0);
+             alert(sectionname+" "+sectionid+" "+this.sectiongradeidzx+" "+classid+" "+this.sectiongradenamezx);
+          this.section1();
+          this.section2();
+          this.section3();
+
+       
+         
+      },
+
+section3:function(){
+    this.sectioncreationmappingurl=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping-service";
+         var obj={"school_id":"","grade_id":"","sectionid":"","classid":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.grade_id=this.sectiongradeidzx;
+         obj.sectionid=sectionid;
+         obj.classid=classid;
+        // alert(JSON.stringify(obj));
+         this.sectioncreationmappingparam=obj;
+         this.$.sectioncreationmappingajax.generateRequest();
+        
+     
+},
+section2:function(){
+   this.sectioncreationmapping1url=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping1-service";
+         var obj={"school_id":"","sectionname":"","sectionid":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.sectionname=sectionname;
+         obj.sectionid=sectionid;
+       //  alert(JSON.stringify(obj));
+         this.sectioncreationmapping1param=obj;
+         this.$.sectioncreationmapping1ajax.generateRequest();
+
+},
+section1:function(){
+  this.sectioncreationmapping2url=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping2-service";
+         var obj={"school_id":"","grade_name":"","sectionid":"","classid":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.grade_name=this.sectiongradenamezx;
+         obj.sectionid=sectionid;
+         obj.classid=classid;
+        //  alert(JSON.stringify(obj));
+         this.sectioncreationmapping2param=obj;
+         this.$.sectioncreationmapping2ajax.generateRequest();
+      
+},
+sectioncreationmappingResponse:function(e){
+     var res=e.detail.response.returnval; 
+       alert(JSON.stringify(res));
+           document.querySelector('school-grade-section-creation-card').f1();
+            document.querySelector('school-grade-section-creation-card').f2();
+  
+},
+sectioncreationmapping1Response:function(e){
+ var res=e.detail.response.returnval; 
+     //  alert(JSON.stringify(res));
+     
+},
+     });
+  })();
+  </script>
+</dom-module>
