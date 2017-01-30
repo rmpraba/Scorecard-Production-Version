@@ -361,6 +361,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
               <h4>Working Days</h4>
         </paper-button>
       </div>
+       <div class="card" hidden$="{{sectioncreation}}">
+            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.png" height="180px" width="180px">
+               <h4>Section Creation</h4>
+            </paper-button>
+       </div>    
+      <div class="card" hidden$="{{gradetosection}}">
+            <paper-button on-click="GradeToSection" no ink><img src="../../images/gradetosection.jpg" height="180px" width="180px">
+               <h4>Student to Section mapping</h4>
+            </paper-button>
+       </div>    
+      
     </div>
  
     <div class="cdialog">      
@@ -422,6 +433,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.categorytoschooltype=true;
         this.gradetosubject=true;
         this.subjecttostudent=true;
+        this.sectioncreation=true;
+        this.gradetosection=true;
+       
 
        //  this.Report=true;
        //  this.GenerateReport=true;
@@ -574,6 +588,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.categorytoschooltype=false;
           this.gradetosubject=false;
           this.subjecttostudent=false;
+           this.sectioncreation=false;
+          this.gradetosection=false;
+       
           //this.createschooltype=false;
           //this.createsubject=false;
          // this.createrole=false;
@@ -719,6 +736,21 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('home-page').setPage('grade-creation-card','');  
         document.querySelector('grade-creation-card').ready();  
       },
+         SectionCreation:function(e)
+      {  
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('school-section-creation-card','');  
+         this.$.uiservice.selectsectiongrade();
+        //this.$.uiservice.SchoolCategorytype();
+      },
+      GradeToSection:function(e)
+      {
+         document.querySelector('app-card').setPage('homepage','');
+         document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
+     /*   this.$.uiservice.schoolGradetype();
+        this.$.uiservice.SchoolCategorytype();
+    */  },
+   
       FnCreatesubject:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
