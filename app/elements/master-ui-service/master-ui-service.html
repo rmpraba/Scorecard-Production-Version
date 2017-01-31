@@ -1639,11 +1639,9 @@ fnschoolemployeerole:function( employeeid,employeename){
       termrecoveryResponse:function(e)
       {
         var res=e.detail.response.returnval;
-         //alert(JSON.stringify(res));
+         alert(JSON.stringify(res));
          //alert(JSON.stringify(res[0].no_of_days));
          document.querySelector('working-days-card').noofdays=res[0].no_of_days;
-   
-       
       },
  
         Fngradeinsetschool:function(schoolid,getarr,schooltypeid)
