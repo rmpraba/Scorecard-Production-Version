@@ -18,7 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>   
     <div>
-       <paper-checkbox  on-change="fnschoolgrade" id="{{empschoolnames}}">{{empschooltypeids}}</paper-checkbox>
+    <paper-input hidden>{{empschoolnames}}</paper-input>
+       <paper-checkbox  on-change="fnschoolgrade" id="{{id}}">{{empschooltypeids}}</paper-checkbox>
     </div>
   <iron-ajax        
         id="empschoolgradezajax"
@@ -50,10 +51,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'emp-category-get-card',
       fnschoolgrade:function(e){
         alert(this.empschoolnames);
-        alert(document.querySelector('#'+e.target.id).checked);
-      /*if(document.querySelector('#'+e.target.id).checked==true)
+        alert(document.querySelector('#'+this.id).checked);
+      if(document.querySelector('#'+this.id).checked==true)
        {
-      */   // alert('1');
+         // alert('1');
           this.empschoolgradezurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
           var obj={"schooltypename":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -69,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.empgetnameparam=obj;
           alert(JSON.stringify(obj));
           this.$.empgetnameajax.generateRequest();
-        /*}*/
+        }
         },
         empgetnameResponse:function(e){
            var res=e.detail.response.returnval;

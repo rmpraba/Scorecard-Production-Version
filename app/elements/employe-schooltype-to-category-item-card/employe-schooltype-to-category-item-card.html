@@ -25,8 +25,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      }
     </style>
     <div>
-     <div>  
-    <paper-checkbox on-change="fnschooltypeget11" id="{{schooltypeidxx}}">{{schooltypenamexx}}</paper-checkbox>
+     <div> 
+      <paper-input hidden>{{schooltypeidxx}}</paper-input> 
+    <paper-checkbox on-change="fnschooltypeget11" id="{{id}}">{{schooltypenamexx}}</paper-checkbox>
     </div>
      <iron-ajax        
         id="empgetteacherschooltypeajax"
@@ -48,8 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'employe-schooltype-to-category-item-card',
       fnschooltypeget11:function(e)
       {
-        alert(this.schooltypeidxx);
-       if(document.querySelector('#'+this.schooltypeidxx).checked==true)
+        alert(this.id);
+      alert(document.querySelector('#'+this.id).checked);
+       if(document.querySelector('#'+this.id).checked==true)
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
           this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
@@ -63,7 +65,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }, 
       empgetteacherschooltypeResponse:function(e)
       {
-       // alert('1');
         var res=e.detail.response.returnval;
         alert(JSON.stringify(res));
         document.querySelector('employe-schooltype-to-category-card').getgrade(res);

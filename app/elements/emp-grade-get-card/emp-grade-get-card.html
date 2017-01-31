@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="empsectionclassResponse"
         debounce-duration="300">
    </iron-ajax>
-     
+        
   </template>
   <script>
   (function() {
@@ -53,6 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'emp-grade-get-card',
           fnsetsection:function(e){
             alert(this.id);
+            alert(  document.querySelector('#'+this.id).checked);
             if(document.querySelector('#'+this.id).checked==true)
             {
                     alert(this.employeeidz+this.empgradeidz+this.empsubjectidz+this.employeesectionnamez);
@@ -128,82 +129,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              obj.employeesectionidz=cassidz;
              empsectionarr.push(obj);
              v.push(obj);
-              alert(JSON.stringify(empsectionarr));}}
-            },
-    /*fnsetgradetosubject:function(arr){
-             getcategoryandsubjectarr=arr;
-           for(var i=0;i<getcategoryandsubjectarr.length;i++){
-             // var flag=0;
-              var gradeid=getcategoryandsubjectarr[i].grade_id;
-              var subjectid=getcategoryandsubjectarr[i].subject_id;
-              var subjectcategory=getcategoryandsubjectarr[i].subject_category;
-              var schooltype=getcategoryandsubjectarr[i].school_type_id;
-              var grasubjectid=getcategoryandsubjectarr[i].subject_id+getcategoryandsubjectarr[i].grade_id;
-             document.querySelector('#'+grasubjectid).checked=true; 
-           if(document.querySelector('#'+grasubjectid).checked==true){
-             var obj={"schootypename":"","categoryname":"","gradename":"","subjectname":""};
-             obj.schootypename=schooltype;
-             obj.categoryname=subjectcategory;
-             obj.gradename=gradeid;
-             obj.subjectname=subjectid;
-             passbigarr.push(obj);
-             v.push(obj);
-              alert(JSON.stringify(passbigarr));
-           }
+              alert(JSON.stringify(empsectionarr));
+            }
           }
-          },
-      fnsetgrade:function(e){
-        // document.querySelector('#'+e.target.id).checked=true;
-        // alert('hi');
-        //alert(this.id);
-        // alert(this.getsubjectname+this.getgradename+this.getname+this.getschoolcategory);
-        //alert(document.querySelector('#'+this.id).checked);
-        if(document.querySelector('#'+this.id).checked==true){
-         var obj={"schootypename":"","categoryname":"","gradename":"","subjectname":""};
-             obj.schootypename=this.getname;
-             obj.categoryname=this.getschoolcategory;
-             obj.gradename=this.getgradename;
-             obj.subjectname=this.getsubjectname;
-             passbigarr.push(obj);
-             v.push(obj);
-             // alert(JSON.stringify(passbigarr));
-             document.querySelector('school-grade-to-subject-card').fnapssgradedetails(passbigarr);        
-        }
-        else if(document.querySelector('#'+this.id).checked==false){
-                 for(var i=0;i<passbigarr.length;i++){
-                 if(passbigarr[i].gradename==this.getgradename && passbigarr[i].subjectname==this.getsubjectname){
-                 this.Fngetcategoryandsubjecturl=sessionStorage.getItem("addrinfo")+"/Fngetcategoryandsubject-service";
-                 var obj={"school_id":"","schootypename":"","categoryname":"","gradename":"","subjectname":""};
-                     obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-                     obj.schootypename=this.getname;
-                     obj.categoryname=this.getschoolcategory;
-                     obj.gradename=this.getgradename;
-                     obj.subjectname=this.getsubjectname;
-                     // alert(JSON.stringify(obj));
-                     this.Fngetcategoryandsubjectparam=obj;
-                     this.$.Fngetcategoryandsubjectajax.generateRequest();
-                      passbigarr.splice(i,1);
-                  }
-             }
-        }
-      },
-    Fngradeclean:function(e){
-      //alert('1');
-      for(var j=0;j<v.length;j++){
-            var grasubjectid=v[j].subjectname+v[j].gradename;
-            alert(grasubjectid);
-              document.querySelector('#'+grasubjectid).checked=false;
-               }
-             v.splice(obj);
-               var obj={"schootypename":"","categoryname":"","gradename":"","subjectname":""};
-                     obj.schootypename=this.getname;
-                     obj.categoryname=this.getschoolcategory;
-                     obj.gradename=this.getgradename;
-                     obj.subjectname=this.getsubjectname;
-                     passbigarr.splice(obj);
-                    getcategoryandsubjectarr.splice(obj);
-             },*/
-      });
+            },
+         });
   })();
   </script>
 </dom-module>

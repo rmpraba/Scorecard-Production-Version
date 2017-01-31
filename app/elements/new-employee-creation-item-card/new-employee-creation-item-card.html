@@ -75,80 +75,30 @@
     </div>
  <span>
    <div id="updateempdetails" hidden>
-      <div class="form-group-heading">
-          <h4>employee personal  Details</h4>
-      </div>
-      <div class="list-group col-sm-12 panel-body form-category">
-          <paper-input value={{schoolid}} hidden></paper-input>
-
-          <div class="col-sm-3">
-            <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
-          </div>
-                        
-          <div class="col-sm-3">
-            <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
-          </div>
-          <div class="col-sm-3">
-            <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
-          </div>
-          <div class="col-sm-3">
-            <gold-email-input label="Emailid" value="{{employeemail}}"></gold-email-input>
-          </div>
-          <div class="col-sm-3">
-            <paper-input label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
-          </div>
-      </div>
-  
-      <div class="form-group-heading">
-          <h4>Employee Role Mapping</h4>
-      </div>
-      <div class="list-group col-sm-12 panel-body form-category">
-          <paper-input value={{schoolid}} hidden></paper-input>
-        <div class="col-sm-12">
-            <template is="dom-repeat" items="{{selectschoolrolearr}}" as="view">
-              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>     
-            </template>   
-        </div>
-      </div>
               
        <iron-ajax          
-        id="selectschoolroleajax"
-        url="{{selectschoolroleurl}}"
-        params="{{selectschoolroleparam}}"
+        id="selectschoolrole11ajax"
+        url="{{selectschoolrole11url}}"
+        params="{{selectschoolrole11param}}"
         handle-as="json"
         content-type="application/json"
         method="post"
-        on-response="selectschoolroleResponse"
+        on-response="selectschoolrole11Response"
         debounce-duration="300"
       ></iron-ajax>
 
-    <div class="form-group-heading">
-        <h4>Employee schooltype Mapping</h4></div>
-        <div class="list-group col-sm-12 panel-body form-category">
-          <paper-input value={{schoolid}} hidden></paper-input>
-        <div class="col-sm-12">
-             <template is="dom-repeat" items="{{selectmapschooltypearr}}" as="view">
-                   <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
-            </template>      
-        </div>
-          </div>
           
         <iron-ajax        
-        id="selectschooltypemapajax"
-        url="{{selectschooltypemapurl}}"
-        params="{{selectschooltypemapparam}}"
+        id="selectschooltypemap11ajax"
+        url="{{selectschooltypemap11url}}"
+        params="{{selectschooltypemap11param}}"
         handle-as="json"
         content-type="application/json"
         method="post"
-        on-response="selectschooltypemapResponse"
+        on-response="selectschooltypemap11Response"
         debounce-duration="300"
       ></iron-ajax>
    
-        <div>
-          <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
-        </div>
-       </div>
-  
 </span>
         <master-ui-service id="uiservice"></master-ui-service>
     </template>   
@@ -181,18 +131,18 @@
       },*/
       f1:function(e){   
        this.$.uiservice.fnschoolemployeeschooltype(this.employeeid,this.employeename); 
-         this.selectschooltypemapurl=sessionStorage.getItem("addrinfo")+"/selectschooltype11-service";
+         this.selectschooltypemap11url=sessionStorage.getItem("addrinfo")+"/selectschooltype11-service";
          var obj={"school_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-         this.selectschooltypemapparam=obj;
+         this.selectschooltypemap11param=obj;
          //alert(JSON.stringify(obj));
-         this.$.selectschooltypemapajax.generateRequest();
+         this.$.selectschooltypemap11ajax.generateRequest();
         // this.$.entetroleset1.open();
      },
       f2:function(e){
        this.$.uiservice.fnschoolemployeerole(this.employeeid,this.employeename);
-       this.selectschoolroleurl=sessionStorage.getItem("addrinfo")+"/selectrolename11-service";
-       this.$.selectschoolroleajax.generateRequest();
+       this.selectschoolrole11url=sessionStorage.getItem("addrinfo")+"/selectrolename11-service";
+       this.$.selectschoolrole11ajax.generateRequest();
      //  this.$.entetroleset2.open();
    
       },
@@ -202,34 +152,10 @@
           this.f2();
 
           document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
-         /* document.querySelector('new-employee-creation-card').FnSchooltypemap();
-          document.querySelector('new-employee-creation-card').FnSchoolrole();*/
-          document.querySelector('new-employee-creation-card').getfocus();
-
+   
      },
-     /*FnschooltypeSave:function(e){
-        // alert(JSON.stringify(passschooltypearr));
-        this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
-              document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
- 
-     },*/
-     FnpersonalSave:function(e){
     
-    /*  this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
-       this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
-       this.$.uiservice.fnrolesaveinfo(passrolearr);
-    */ },
-     fndeletearr:function(e){
-
-          document.querySelector('new-employee-creation-card').funct1(this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
-         /* document.querySelector('new-employee-creation-card').FnSchooltypemap();
-          document.querySelector('new-employee-creation-card').FnSchoolrole();*/
-         // document.querySelector('new-employee-creation-card').getfocus();
-
-     },
-     
-     
-    selectschoolroleResponse:function(e)
+    selectschoolrole11Response:function(e)
     {
          var res=e.detail.response.returnval; 
          //alert('z');
@@ -249,15 +175,9 @@
                   res[j].check=false;
                  }
                }
-              this.selectschoolrolearr=res;
               document.querySelector('new-employee-creation-card').FnSchoolrole(res);
-              //alert(JSON.stringify(res));
-
-              //alert(JSON.stringify(this.selectschoolrolearr));
-              // this.$.entetroleset.open();
-   
         },
-        selectschooltypemapResponse:function(e)
+        selectschooltypemap11Response:function(e)
         {
          var res=e.detail.response.returnval;
           alert(JSON.stringify(res));
@@ -278,10 +198,8 @@
                   res[j].check=false;
                  }
                }
-              this.selectmapschooltypearr=res;
                document.querySelector('new-employee-creation-card').FnSchooltypemap(res);
-               //alert(JSON.stringify(this.selectmapschooltypearr));
-
+   
         }
     });
   })();

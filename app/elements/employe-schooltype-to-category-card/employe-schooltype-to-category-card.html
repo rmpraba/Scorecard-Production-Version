@@ -68,10 +68,10 @@
        <div class="outercard">
             <div class="col-sm-4">
               <div class="form-group-heading">
-                <h4>SCHOOL TYPE</h4>
+                <h4>SCHOOL TYPE</h4>   
               </div>
                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
-                <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
+                <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
               </template>
               </div>
           <div class="subcat1">
@@ -79,7 +79,7 @@
                 <h4>SUBJECT CATEGORY</h4>
               </div>
               <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
-                <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname=" {{view.subject_category_name}}"></employee-category-item-card>
+                <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
               </template>
           </div>
            <div class="subbutton">

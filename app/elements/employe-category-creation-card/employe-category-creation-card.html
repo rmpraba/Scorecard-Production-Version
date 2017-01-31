@@ -81,9 +81,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="catcard">
             <label>School Type</label>
             <template is="dom-repeat" items="{{empschoolarr}}" as="view">
-              <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}"></emp-category-get-card>
+              <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
             </template>
-          </div>  
+          </div>     
 
             <div class="newcard">
               <paper-dropdown-menu  label="select the grade">
@@ -205,15 +205,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
           fnselectgradezResponse:function(e){
                sectionnamearr=e.detail.response.returnval;
-                 alert(JSON.stringify(sectionnamearr));
+              //   alert(JSON.stringify(sectionnamearr));
      },
      fnsubmit:function(e){
+      alert(JSON.stringify(empsectionarr));
       this.$.uiservice.fnsavesection(empsectionarr);
    document.querySelector('emp-grade-get-card').Fngradecleansection(); 
 
      },
      fnsetempsection:function(arr){
       empsectionarr=arr;
+  //    alert(JSON.stringify(empsectionarr));
     },
     fnemployeename:function(e){
          this.empselectid=e.target.selectedItem.value;
