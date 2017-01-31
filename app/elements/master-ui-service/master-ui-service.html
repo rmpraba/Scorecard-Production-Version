@@ -1445,8 +1445,8 @@ fnschoolemployeerole:function( employeeid,employeename){
         document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
        }
      
-      }, 
-    */getstudentname:function(gradeid){
+      }, */
+    getstudentname:function(gradeid){
      this.getstudentnameurl=sessionStorage.getItem("addrinfo")+"/getstudentname-service";
      var obj={"school_id":"","grade_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -1508,11 +1508,11 @@ fnschoolemployeerole:function( employeeid,employeename){
       //alert(JSON.stringify(res));
        document.querySelector('new-employee-creation-item-card').setschoolrole(res);
     },
-    /*fnschoolemployeepersonalResponse:function(e){
+    fnschoolemployeepersonalResponse:function(e){
      var res=e.detail.response.returnval; 
     // alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
-      }, */
+      }, 
     
     fnschoolemployeeschooltypeResponse:function(e)
     {

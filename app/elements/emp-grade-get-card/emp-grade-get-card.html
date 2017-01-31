@@ -86,18 +86,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       },
-    empsectionclassResponse:function(e){
+    empsectionclassResponse:function(e)
+    {
          var res=e.detail.response.returnval; 
             //alert(JSON.stringify(res));
    },
-    Fngradecleansection:function(e){
+    Fngradecleansection:function(e)
+    {
       //alert('1');
-      for(var j=0;j<v.length;j++){
+      for(var j=0;j<v.length;j++)
+      {
              var empdbsubject=v[j].empsubjectidz+v[j].employeesectionidz;
             //alert(empdbsubject);
             document.querySelector('#'+empdbsubject).checked=false;
             //  document.querySelector('#'+this.id).checked=false;
-               }
+        }
                v.splice(obj);
                    var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.employeeidz=this.employeeidz;
@@ -109,9 +112,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      empsectionarr.splice(obj);
                      empdbsubjectarr.splice(obj);
     }, 
-      empsctionmaping:function(arr){
-     empdbsubjectarr=arr;
-        for(var i=0;i<empdbsubjectarr.length;i++){
+      empsctionmaping:function(arr)
+      {
+        empdbsubjectarr=arr;
+        for(var i=0;i<empdbsubjectarr.length;i++)
+        {
              //var flag=0;
               var employeeidz=empdbsubjectarr[i].id;
               var empgradeidz=empdbsubjectarr[i].grade_id;
@@ -121,7 +126,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var cassidz=empdbsubjectarr[i].classid;
               //alert("empdbsubject");
              document.querySelector('#'+empdbsubject).checked=true; 
-           if(document.querySelector('#'+empdbsubject).checked==true){
+           if(document.querySelector('#'+empdbsubject).checked==true)
+           {
            var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
               obj.employeeidz=employeeidz;
              obj.empgradeidz=empgradeidz;
@@ -132,9 +138,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              v.push(obj);
               //alert(JSON.stringify(empsectionarr));}}
             }
+          } 
+        }   
 
 
-    /*fnsetgradetosubject:function(arr){
+   /* fnsetgradetosubject:function(arr)
+    {
              getcategoryandsubjectarr=arr;
            for(var i=0;i<getcategoryandsubjectarr.length;i++){
              // var flag=0;
@@ -158,6 +167,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
           }
             },
+         });*/
+         
          });
   })();
   </script>
