@@ -987,6 +987,16 @@
         on-response="selectschooltype1Response"
         debounce-duration="300"
         >
+          <iron-ajax        
+        id="studentsectiontypeajax"
+        url="{{studentsectiontypeurl}}"
+        params="{{studentsectiontypeparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="studentsectiontypeResponse"
+        debounce-duration="300"
+        >
   </template>
 
   <script>
@@ -1022,12 +1032,25 @@
     
        this.$.selectsectiongradeajax.generateRequest();
      },
-      selectsectiongradeResponse:function(e){
+      studentsectiontype:function(){     
+        this.studentsectiontypeurl=sessionStorage.getItem("addrinfo")+"/studentsectiontype-service";
+        var obj={"school_id":""};
+        obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+        this.studentsectiontypeparam=obj;
+        this.$.studentsectiontypeajax.generateRequest();
+    },
+      studentsectiontypeResponse:function(e){
        var res=e.detail.response.returnval; 
        //alert(JSON.stringify(res));
       //  alert('1');
-
-       document.querySelector('school-section-creation-card').schootypearrss=res;
+    document.querySelector('Student-to-section-mapping-card').studentsectionarr=res;
+   
+      },
+      selectsectiongradeResponse:function(e){
+       var res=e.detail.response.returnval; 
+       alert(JSON.stringify(res));
+      // alert('1');
+        document.querySelector('school-section-creation-card').schootypearrss=res;
       },
     
       tranfersection:function(setgradeid)
@@ -1274,7 +1297,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
         obj.emp_schol_type=empschooltypeid;
         obj.flage='active';
         this.fnschooltypesaveinfoparam=obj;
-         //alert(JSON.stringify(obj));
+         alert(JSON.stringify(obj));
         this.$.fnschooltypesaveinfoajax.generateRequest();
     }
     },
@@ -1300,7 +1323,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
         obj.rolename='subject-teacher';
         obj.flage='active';
         this.fnsavesectionparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.fnsavesectionajax.generateRequest();
     }
               
@@ -1408,7 +1431,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
 
-    fnschoolemployeepersonalResponse:function(e)
+    /*fnschoolemployeepersonalResponse:function(e)
     {
        if(e.detail.response.returnval=="empty")
        {
@@ -1423,7 +1446,7 @@ fnschoolemployeerole:function( employeeid,employeename){
        }
      
       }, 
-    getstudentname:function(gradeid){
+    */getstudentname:function(gradeid){
      this.getstudentnameurl=sessionStorage.getItem("addrinfo")+"/getstudentname-service";
      var obj={"school_id":"","grade_id":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -1469,8 +1492,8 @@ fnschoolemployeerole:function( employeeid,employeename){
       document.querySelector('student-transfer-grade').classid=res[0].class_id;
       document.querySelector('student-transfer-grade').schooltype=res[0].school_type;
  
-    },
-fnschoolemployeeschooltype:function(employeeid,employeename){
+    }, 
+   fnschoolemployeeschooltype:function(employeeid,employeename){
            this.fnschoolemployeeschooltypeurl=sessionStorage.getItem("addrinfo")+"/fnschoolemployeeschooltype-service";
           var obj={"school_id":"","employeeid":"","employeename":""};
             obj.employeeid=employeeid;
@@ -1513,7 +1536,7 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
          //alert(JSON.stringify(res));  
 
         // document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
-         document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
+       //  document.querySelector('new-employee-creation-card').selectschooltypearr=res; 
 
          document.querySelector('new-employee-creation-card').selectschooltypearr=res;
          //document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
@@ -1530,7 +1553,7 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         //alert(JSON.stringify(res));  
+         alert(JSON.stringify(res));  
         document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
       },
    

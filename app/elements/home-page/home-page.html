@@ -183,10 +183,9 @@
          <section data-category="school-section-creation-card">
           <school-section-creation-card></school-section-creation-card>
         </section>
-
-        <!-- <section data-category="schooltype-card">
-          <schooltype-card></schooltype-card>
-          </section> -->
+     <section data-category="Student-to-section-mapping-card">
+          <Student-to-section-mapping-card></Student-to-section-mapping-card>
+          </section>
         <section data-category="studentlistcard">
           <generate-studentlist-outcard></generate-studentlist-outcard>
 
@@ -222,6 +221,11 @@
      // alert(localStorage.getItem("curr_sess_page"));
 
     if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+    }
+        if(localStorage.getItem("curr_sess_page")=="Student-to-section-mapping-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();

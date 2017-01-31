@@ -18,7 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-    <paper-checkbox  on-change="FnsetGradename" id="{{schooltypecategoryid}}">{{schooltypecategoryname}}</paper-checkbox>
+    <paper-input hidden>{{schooltypecategoryid}}</paper-input>
+    <paper-checkbox  on-change="FnsetGradename" id="{{id}}">{{schooltypecategoryname}}</paper-checkbox>
     </div>
     <iron-ajax        
         id="schooltypegetcategoryajax"
@@ -37,8 +38,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      Polymer({
       is: 'schoolcategory-type-item-card',
      FnsetGradename:function(e){
-       if(document.querySelector('#'+this.schooltypecategoryid).checked==true){
+       if(document.querySelector('#'+this.schooltypecategoryid).checked==true)
+       {
         //alert(this.schooltypecategoryid+this.schooltypecategoryname);
+       
        document.querySelector('school-grade-to-subject-card').getschoolcategory(this.schooltypecategoryid);
        this.schooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
        var obj={"schoolcategoryid":"","schoolcategoryname":""};
@@ -53,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var res=e.detail.response.returnval;
         document.querySelector('school-grade-to-subject-card').getcategory(res);},
      fnschoolcategoryclean:function(e){
-     document.querySelector('#'+this.schooltypecategoryid).checked=false;
+     document.querySelector('#'+this.id).checked=false;
           }
 
     });

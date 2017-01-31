@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
-<dom-module id="school-type-item-card">
+<dom-module id="school-type-item-card">   
   <template>
     <style>
       :host {
@@ -18,7 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-    <paper-checkbox on-change="fnschooltypeget" id="{{schooltypeidxx}}">{{schooltypenamexx}}</paper-checkbox></div>
+    <paper-input hidden>{{schooltypeidxx}}</paper-input>
+    <paper-checkbox on-change="fnschooltypeget" id="{{id}}">{{schooltypenamexx}}</paper-checkbox></div>
      <iron-ajax        
         id="getschooltypeajax"
         url="{{getschooltypeurl}}"
@@ -41,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 fnschooltypeget:function(e){
         //alert(this.schooltypeidxx);
-if(document.querySelector('#'+this.schooltypeidxx).checked==true)
+if(document.querySelector('#'+this.id).checked==true)
      {
        //alert(this.schooltypeidxx+this.schooltypenamexx);
           document.querySelector('school-grade-to-subject-card').getschootypename(this.schooltypeidxx);
@@ -61,7 +62,7 @@ if(document.querySelector('#'+this.schooltypeidxx).checked==true)
         document.querySelector('school-grade-to-subject-card').getgrade(res);
     },
     fnschooltypeclaen:function(e){
-     document.querySelector('#'+this.schooltypeidxx).checked=false;
+     document.querySelector('#'+this.id).checked=false;
     }
 
      });

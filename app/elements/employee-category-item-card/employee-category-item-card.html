@@ -8,7 +8,8 @@
       }
     </style>
     <div>
-      <paper-checkbox  on-change="FnsetGradename" id="{{schooltypecategoryid}}">{{schooltypecategoryname}}</paper-checkbox>
+        <paper-input hidden>{{schooltypecategoryid}}</paper-input>
+      <paper-checkbox  on-change="FnsetGradename" id="{{id}}">{{schooltypecategoryname}}</paper-checkbox>
     <div>
        <iron-ajax        
         id="empschooltypegetcategoryajax"
@@ -30,7 +31,8 @@
     Polymer({
       is: 'employee-category-item-card',
     FnsetGradename:function(e){
-       if(document.querySelector('#'+this.schooltypecategoryid).checked==true){
+       if(document.querySelector('#'+this.schooltypecategoryid).checked==true)
+       {
             //alert(this.schooltypecategoryid);
                sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
               this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";

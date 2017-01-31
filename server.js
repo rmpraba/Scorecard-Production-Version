@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
    // password : 'pEbElHqKSxh2',
    database : 'scorecarddatabase'
  });
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser'); 
 var app = express();
 var logfile;
 
@@ -5291,7 +5291,7 @@ app.post('/fetchsubjectseq-service',  urlencodedParser,function (req,res)
 app.post('/fetchmastersubject-service',  urlencodedParser,function (req,res)
 {  
   var qur="SELECT subject_id,subject_name ,(select category_name from md_category_type where category_type=subject_category) as category,subject_category from md_subject";
-  //console.log(JSON.stringify(qur));
+  console.log(JSON.stringify(qur));
   connection.query(qur,
     function(err, rows)
     {
@@ -5528,8 +5528,11 @@ app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
 
 {  
      var e={school_id:req.query.school_id,school_type:req.query.schooltypeid};
+    console.log(e);
+  var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"'and flag='active'";
     //console.log(e);
   var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"'and flage='active'";
+
   connection.query(qur,
     function(err, rows)
     {
@@ -6324,7 +6327,6 @@ connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.q
   app.post('/emprolemapping-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_id":req.query.school_id,"id":req.query.empid,"role_id":req.query.roleid,"password":req.query.password,"name":req.query.name,"flage":req.query.flage};
-   
    //console.log(JSON.stringify(collection));
     connection.query("SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"'  and role_id='"+req.query.roleid+"'",function(err, rows)
     {
@@ -6371,7 +6373,7 @@ connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.q
 });
 app.post('/selectrolename11-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM md_role where id!='management' and id!='superadmin' ";
+   var qur="SELECT * FROM md_role where id!='management' and id!='superadmin' and id!='schooladmin'";
   connection.query(qur,
     function(err, rows)
     {
@@ -6408,8 +6410,8 @@ app.post('/getempschoolrole-service' ,  urlencodedParser,function (req, res)
 {  
     // var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":""};
                
-    var qur="DELETE FROM  md_employee where school_id='"+req.query.school_id+"' and emp_id='"+req.query.emp_id+"' and emp_name='"+req.query.emp_name+"' and role_id='"+req.query.school_role_id+"' and password='"+req.query.emp_psw+"'";
-    //console.log(qur);
+    var qur="DELETE FROM  md_employee where school_id='"+req.query.school_id+"' and id='"+req.query.emp_id+"' and  name='"+req.query.emp_name+"' and role_id='"+req.query.school_role_id+"' and password='"+req.query.emp_psw+"'";
+    console.log(qur);
     connection.query(qur,function(err, rows)
     {
     if(!err)
@@ -7393,6 +7395,10 @@ app.post('/empgetsectionvalues-service',  urlencodedParser,function (req,res)
     // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
 
 
+
+    var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where section=s.section_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"'  and s.role_id='subject-teacher' and flage='active'";
+    console.log(qur);
+
     var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where section=s.section_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"' and flage='active'";
     console.log(qur);
 connection.query(qur,
@@ -7895,7 +7901,7 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     {
-      if(rows.length>0)
+      if(rows.length>0)  
         { 
           //console.log(JSON.stringify(rows));   
           res.status(200).json({'returnval': rows});
@@ -7912,6 +7918,42 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
     });
 
 });
+app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
+    {  
+      var e={id:req.query.school_id};
+      console.log(e);
+      var qur="select * from master_school_type where school_id='"+req.query.school_id+"'";
+      connection.query(qur,function(err, rows){
+        if(!err){
+
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+        }
+
+        else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+
+      });
+    });
+app.post('/studentsectiontype-service' ,urlencodedParser, function (req, res)
+    {  
+      var e={id:req.query.school_id};
+      console.log(e);
+      var qur="select * from master_school_type where school_id='"+req.query.school_id+"'";
+      connection.query(qur,function(err, rows){
+        if(!err){
+
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+        }
+
+        else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+
+      });
+    });
 
 
 
@@ -7920,5 +7962,6 @@ var host = server.address().address
 var port = server.address().port
 console.log("Example app listening at http://%s:%s", host, port)
 });
+
 
 

@@ -89,7 +89,7 @@
           </div>
               
           <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
-            <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}"></school-type-item-card>
+            <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
           </template>
         </div>   
 
@@ -100,7 +100,8 @@
           </div>
               
           <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
-            <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
+            <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
+            id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
           </template>
         </div>  
 
