@@ -1024,7 +1024,7 @@
      },
       selectsectiongradeResponse:function(e){
        var res=e.detail.response.returnval; 
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
       //  alert('1');
 
        document.querySelector('school-section-creation-card').schootypearrss=res;
@@ -1051,7 +1051,7 @@
       obj.empselectid=empselectid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       this.empgetsectionvaluesparam=obj;
-      //alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
       this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
@@ -1198,7 +1198,7 @@
          obj.grade_id=grade_id;
          obj.sectionid=sectionid;
          obj.classid=classid;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
          this.fndelsectiongradeparam=obj;
          this.$.fndelsectiongradeajax.generateRequest();
         
@@ -1208,7 +1208,7 @@
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.sectionname=sectionname;
          obj.sectionid=sectionid;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
          this.fndelsectiongrade1param=obj;
          this.$.fndelsectiongrade1ajax.generateRequest();
 
@@ -1218,14 +1218,14 @@
          obj.grade_name=grade_name;
          obj.sectionid=sectionid;
          obj.classid=classid;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
          this.fndelsectiongrade2param=obj;
          this.$.fndelsectiongrade2ajax.generateRequest();
       }
       },
       fndelsectiongradeResponse:function(e){
         var res=e.detail.response.returnval;
-               alert(JSON.stringify(res));
+               //alert(JSON.stringify(res));
          if(res=="Deleted!"){
             document.querySelector('school-grade-section-creation-card').f1();
             document.querySelector('school-grade-section-creation-card').f2();
@@ -1233,18 +1233,18 @@
       },
       fndelsectiongrade1Response:function(e){
     var res=e.detail.response.returnval;
-               alert(JSON.stringify(res));
+               //alert(JSON.stringify(res));
     
       },
       fndelsectiongrade2esponse:function(e){
       var res=e.detail.response.returnval;
-               alert(JSON.stringify(res));
+               //alert(JSON.stringify(res));
     
       },
     
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
-             //  alert(JSON.stringify(res));
+            //alert(JSON.stringify(res));
          if(res=="Inserted!"){
           this.fnschoolemployeepersonal();
         }
@@ -1280,7 +1280,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr){
      for(var i=0;i<empsectionarr.length;i++){
@@ -1410,9 +1410,18 @@ fnschoolemployeerole:function( employeeid,employeename){
 
     fnschoolemployeepersonalResponse:function(e)
     {
-     var res=e.detail.response.returnval; 
-    //setempsubjectsetempsubjealert(JSON.stringify(res));
-     document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
+       if(e.detail.response.returnval=="empty")
+       {
+        document.querySelector('new-employee-creation-card').employeehide();
+       }
+       else
+       {
+        document.querySelector('new-employee-creation-card').employeeview();
+        var res=e.detail.response.returnval; 
+        //setempsubjectsetempsubjealert(JSON.stringify(res));
+        document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
+       }
+     
       }, 
     getstudentname:function(gradeid){
      this.getstudentnameurl=sessionStorage.getItem("addrinfo")+"/getstudentname-service";
@@ -1476,11 +1485,11 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
       //alert(JSON.stringify(res));
        document.querySelector('new-employee-creation-item-card').setschoolrole(res);
     },
-    fnschoolemployeepersonalResponse:function(e){
+    /*fnschoolemployeepersonalResponse:function(e){
      var res=e.detail.response.returnval; 
     // alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
-      }, 
+      }, */
     
     fnschoolemployeeschooltypeResponse:function(e)
     {
@@ -1633,10 +1642,10 @@ fnschoolemployeeschooltype:function(employeeid,employeename){
       FngradeinsetschoolResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       //alert(JSON.stringify(res));
+       alert(JSON.stringify(res));
        
       },
-fnsubjecttocategorysaving:function(passservicearr)
+    fnsubjecttocategorysaving:function(passservicearr)
        {
            for(var i=0;i<passservicearr.length;i++){
                 var subjectid=passservicearr[i].subjectname;
@@ -1660,7 +1669,7 @@ fnsubjecttocategorysaving:function(passservicearr)
     fnsubjecttocategorysavingResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       //alert(JSON.stringify(res));
+       alert(JSON.stringify(res));
      },
 
 insertschoolTypename:function(schooltypesarr)
@@ -1685,7 +1694,7 @@ insertschoolTypename:function(schooltypesarr)
     },
      insertschoolTypenameResponse:function(e){
         var res=e.detail.response.returnval;
-         //alert(JSON.stringify(res));
+         alert(JSON.stringify(res));
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
@@ -1709,14 +1718,14 @@ insertschoolTypename:function(schooltypesarr)
        this.$.DelteschoolTypenameajax.generateRequest();
       }
     },
-     DelteschoolTypenameResponse:function(e){
+     DelteschoolTypenameResponse:function(e)
+     {
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
-       */  //alert(JSON.stringify(res));
-       
+       */  //alert(JSON.stringify(res));   
      },
      workingsearchinfo:function(workingschoolid,acadamicyear,termgrade){
         this.workingsearchinfourl=sessionStorage.getItem("addrinfo")+"/workingsearchinfo-service";
@@ -1769,7 +1778,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
-          //alert(JSON.stringify(res)); 
+          alert(JSON.stringify(res)); 
           if(res=="Inserted!"){
           this.fnschoolcreation();
         }
@@ -1800,8 +1809,9 @@ insertschoolTypename:function(schooltypesarr)
        {
  
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res)); 
-          if(res=="Updated!"){
+        alert(JSON.stringify(res)); 
+          if(res=="Updated!")
+          {
           this.fnschoolcreation();
         }
       },
@@ -1829,12 +1839,19 @@ insertschoolTypename:function(schooltypesarr)
         //alert(JSON.stringify(obj));
         this.$.Fndeleteinfoajax.generateRequest();
       },
-      FndeleteinfoResponse:function(e){
+      FndeleteinfoResponse:function(e)
+      {
            var res=e.detail.response.returnval;
              //  alert(JSON.stringify(res));
-              if(res=="Deleted!"){
-          this.fnschoolcreation();
-        }
+            if(res=="Deleted!")
+            {
+                alert("Deleted !");
+                this.fnschoolcreation();
+            }
+            else
+            {
+                document.querySelector('school-creation-card').schoollhide();
+            }
       },
    
      fnschoolidgenerate:function(){
@@ -2005,7 +2022,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       rolecreationResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
             //alert("Inserted");
@@ -2027,7 +2044,15 @@ insertschoolTypename:function(schooltypesarr)
       },
       fetchroleResponse:function(e)
       {
+        if(e.detail.response.returnval=="empty")
+        {
+            document.querySelector('role-card').roleehide();
+        }
+        else
+        {
+            document.querySelector('role-card').roleeview();
         document.querySelector('role-card').rolearr=e.detail.response.returnval;
+        }
 
       },
 
@@ -2041,11 +2066,15 @@ insertschoolTypename:function(schooltypesarr)
       },
       deleteroleResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
             //alert("Deleted");
         this.FnFetchRole();
+        }
+        else
+        {
+            document.querySelector('role-card').roleehide();
         }
       },
 
@@ -2061,7 +2090,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updateroleResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
             //alert("Updated");
@@ -2082,7 +2111,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       schooltypecreationResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
             //alert("Inserted");
@@ -2131,7 +2160,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deleteschooltypeResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
             //alert("Deleted");
@@ -2197,7 +2226,7 @@ insertschoolTypename:function(schooltypesarr)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="update!")
         {
-            //alert("Deleted");
+            alert("Deleted");
           this.fnschoolemployeepersonal();
         }
       },
@@ -2256,10 +2285,18 @@ insertschoolTypename:function(schooltypesarr)
   
      fnschoolcreationResponse:function(e)
      {
-          var res=e.detail.response.returnval;
+        if(e.detail.response.returnval=="empty")
+        {
+            document.querySelector('school-creation-card').schoollhide();
+        }
+        else
+        {
+            document.querySelector('school-creation-card').schoolllview();
+            var res=e.detail.response.returnval;
           //alert(JSON.stringify(res));
          document.querySelector('school-creation-card').schoolcreatarr=res;
-  
+        }
+          
      },
 
       fetchschooltypenameResponse:function(e)
@@ -2295,9 +2332,9 @@ insertschoolTypename:function(schooltypesarr)
       deleteschooltypenameResponse:function(e)
       { 
           var res=e.detail.response.returnval;
-          //alert(JSON.stringify(res));
         if(e.detail.response.returnval=="Deleted!")
         {
+            alert("Deleted!");
           this.getschoolTypename();
         }
         else
@@ -2322,7 +2359,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updateschooltypenameResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
           this.FnFetchSchooltypename();
@@ -2347,7 +2384,7 @@ insertschoolTypename:function(schooltypesarr)
       
       categorycreationResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Inserted!")
         {
             //alert("Inserted");
@@ -2404,7 +2441,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletecategorynameResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
             //alert("Deleted");
@@ -2428,7 +2465,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updatecategorynameResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
             //alert("Updated");
@@ -2452,8 +2489,7 @@ insertschoolTypename:function(schooltypesarr)
         
         if(e.detail.response.returnval=="Inserted!")
         {
-          
-            //alert("Inserted");
+            alert("Inserted");
           this.FnFetchSubjectname(); 
           this.FnFetchSubjectSeq(); 
           document.querySelector('subject-card').FnRefresh();
@@ -2500,8 +2536,17 @@ insertschoolTypename:function(schooltypesarr)
       },
       fetchsubjectnameResponse:function(e)
       {
-        //alert(JSON.stringify(e.detail.response.returnval));
-        document.querySelector('subject-card').subarr=e.detail.response.returnval;       
+        if(e.detail.response.returnval=="empty")
+        {
+            document.querySelector('subject-card').subjectthide();
+        }
+        else
+        {
+            document.querySelector('subject-card').subjecttview();
+             //alert(JSON.stringify(e.detail.response.returnval));
+        document.querySelector('subject-card').subarr=e.detail.response.returnval;  
+        }
+            
       }, 
       FnDeleteSubjectname:function(subjectid)
       {
@@ -2514,11 +2559,15 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletesubjectnameResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
             //alert("Deleted");
           this.FnFetchSubjectname();
+        }
+        else
+        {
+            document.querySelector('subject-card').subjectthide();     
         }
       },
 
@@ -2535,7 +2584,7 @@ insertschoolTypename:function(schooltypesarr)
         updatesubjectnameResponse:function(e)
       {
 
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
             //alert("Updated");
@@ -2679,7 +2728,7 @@ insertschoolTypename:function(schooltypesarr)
            
       gradecreationResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
        
         if(e.detail.response.returnval=="Inserted!")
         {
@@ -2714,8 +2763,17 @@ insertschoolTypename:function(schooltypesarr)
       },
       fetchgradeResponse:function(e)
       {
-        //alert(JSON.stringify(e.detail.response.returnval));
-        document.querySelector('grade-creation-card').gradearr=e.detail.response.returnval;
+        if(e.detail.response.returnval=="empty")
+        {
+            document.querySelector('grade-creation-card').gradeehide();
+        }
+        else
+        {
+            document.querySelector('grade-creation-card').gradeeview();
+            //alert(JSON.stringify(e.detail.response.returnval));
+        document.querySelector('grade-creation-card').gradearr=e.detail.response.returnval;   
+        }
+        
       },
       FnDeleteGrade:function(gradeid)
       {
@@ -2727,11 +2785,15 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletegradeResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Deleted!")
         {
             //alert("deleted");
             this.FnFetchGrade();
+        }
+        else
+        {
+            document.querySelector('grade-creation-card').gradeehide();
         }
       },
       FnUpdateGrade:function(gradeid,gradename)
@@ -2745,7 +2807,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updategradeResponse:function(e)
       {
-        //alert(e.detail.response.returnval);
+        alert(e.detail.response.returnval);
         if(e.detail.response.returnval=="Updated!")
         {
             //alert("Updated");

@@ -52,10 +52,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'emp-grade-get-card',
           fnsetsection:function(e){
-            alert(this.id);
+            //alert(this.id);
             if(document.querySelector('#'+this.id).checked==true)
             {
-                    alert(this.employeeidz+this.empgradeidz+this.empsubjectidz+this.employeesectionnamez);
+                    //alert(this.employeeidz+this.empgradeidz+this.empsubjectidz+this.employeesectionnamez);
               var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                     obj.employeeidz=this.employeeidz;
                     obj.empgradeidz=this.empgradeidz;
@@ -64,6 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     obj.employeesectionidz=this.employeesectionidz;
                      empsectionarr.push(obj);
                      v.push(obj);
+                     //alert(JSON.stringify(obj));
                  document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr); 
 
                 }   
@@ -77,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.empsubjectidz=this.empsubjectidz;
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
-                     alert(JSON.stringify(obj));
+                     //alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
                      this.$.empsectionclassajax.generateRequest();
                     empsectionarr.splice(i,1);
@@ -86,13 +87,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
     empsectionclassResponse:function(e){
          var res=e.detail.response.returnval; 
-            alert(JSON.stringify(res));
+            //alert(JSON.stringify(res));
    },
     Fngradecleansection:function(e){
       //alert('1');
       for(var j=0;j<v.length;j++){
              var empdbsubject=v[j].empsubjectidz+v[j].employeesectionidz;
-            alert(empdbsubject);
+            //alert(empdbsubject);
             document.querySelector('#'+empdbsubject).checked=false;
             //  document.querySelector('#'+this.id).checked=false;
                }
@@ -117,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var employeesectionnamez=empdbsubjectarr[i].section_id;
               var empdbsubject=empdbsubjectarr[i].subject_id+empdbsubjectarr[i].classid;
               var cassidz=empdbsubjectarr[i].classid;
-              alert(empdbsubject);
+              //alert("empdbsubject");
              document.querySelector('#'+empdbsubject).checked=true; 
            if(document.querySelector('#'+empdbsubject).checked==true){
            var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
@@ -128,8 +129,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              obj.employeesectionidz=cassidz;
              empsectionarr.push(obj);
              v.push(obj);
-              alert(JSON.stringify(empsectionarr));}}
-            },
+              //alert(JSON.stringify(empsectionarr));}}
+            }
+
+
     /*fnsetgradetosubject:function(arr){
              getcategoryandsubjectarr=arr;
            for(var i=0;i<getcategoryandsubjectarr.length;i++){

@@ -38,11 +38,11 @@
     Polymer({
       is: 'new-employee-creation-schooltype-item-card',
      fnschooltypename:function(e){
-      alert(this.schoolempschooltypeid);
-      alert("hhh");
-      alert(this.schooltypeidszzzz);
-      alert(document.querySelector('#'+this.schooltypeidszzzz).checked);
-       alert(this.schoolempschooltypeid+this.schoolempschooltypename+this.schooltypeidszzzz);
+      //alert(this.schoolempschooltypeid);
+      //alert("hhh");
+      //alert(this.schooltypeidszzzz);
+      //alert(document.querySelector('#'+this.schooltypeidszzzz).checked);
+       //alert(this.schoolempschooltypeid+this.schoolempschooltypename+this.schooltypeidszzzz);
     //   alert(document.querySelector('#'+this.schooltypeids).checked);
      if(document.querySelector('#'+this.schooltypeidszzzz).checked==true){
          //alert(JSON.stringify(obj));
@@ -51,7 +51,7 @@
                   obj.emp_name=this.schoolempschooltypename;
                   obj.emp_schol_type=this.schooltypeidszzzz;
                   getschooltypearr.push(obj);    
-                  alert(JSON.stringify(getschooltypearr));
+                  //alert(JSON.stringify(getschooltypearr));
                   document.querySelector('new-employee-creation-card').passschooltype(getschooltypearr);
            }
        else if(document.querySelector('#'+this.schooltypeids).checked==false){
@@ -78,7 +78,7 @@
        for(var i=0;i<getschooltypearr.length;i++){
          var schooltypexxxxx=getschooltypearr[i].emp_schol_type;
        //  alert(schooltypexxxxx);
-         alert(document.querySelector('#'+schooltypexxxxx).checked);
+         //alert(document.querySelector('#'+schooltypexxxxx).checked);
        document.querySelector('#'+schooltypexxxxx).checked=false; 
     //   alert("hi2");
      }        

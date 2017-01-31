@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'employe-schooltype-to-category-item-card',
       fnschooltypeget11:function(e)
       {
-        alert(this.schooltypeidxx);
+        //alert(this.schooltypeidxx);
        if(document.querySelector('#'+this.schooltypeidxx).checked==true)
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
@@ -57,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypenamexx;
           this.empgetteacherschooltypeparam=obj;
-            alert(JSON.stringify(obj));
+            //alert(JSON.stringify(obj));
           this.$.empgetteacherschooltypeajax.generateRequest();
         }
       }, 
@@ -65,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
        // alert('1');
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         document.querySelector('employe-schooltype-to-category-card').getgrade(res);
       }
       

@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                }
              },
   Fngradeclean:function(e){
-    alert('1');
+    //alert('1');
       for(var j=0;j<v.length;j++){
             var schooltypesplice=v[j].schoolid+v[j].schooltypeid;
             //alert(schooltypesplice);
@@ -79,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       schooltyedbarr.splice(obj);
                     },
            Fngradeclean1:function(e){
-            alert('ee');
+            //alert('ee');
                var obj={"schoolid":"","schooltypeid":"","schooltypename":""};
                     obj.schoolid=this.schoolid;
                     obj.schooltypeid=this.schooltypeid;
@@ -100,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     obj.schooltypename=this.schooltypename;
                      schooltyearr.push(obj);
                      v.push(obj);
-                    alert(JSON.stringify(schooltyearr));
+                    //alert(JSON.stringify(schooltyearr));
                       document.querySelector('master-school_type-creation').schooltypeinsert(schooltyearr); 
                        for(var j=0;j<schooltyedeletearr.length;j++){
                      if(schooltyedeletearr[j].schoolid+schooltyedeletearr[j].schooltypeid==this.id){
@@ -112,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     obj.schooltypeid=this.schooltypeid;
                     obj.schooltypename=this.schooltypename;
                     schooltyedeletearr.push(obj);
-                     alert(JSON.stringify(schooltyedeletearr));
+                     //alert(JSON.stringify(schooltyedeletearr));
                     document.querySelector('master-school_type-creation').fnschooltypedeleted(schooltyedeletearr); 
             
                     for(var i=0;i<schooltyearr.length;i++){

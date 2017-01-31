@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'schoolcategory-type-item-card',
      FnsetGradename:function(e){
        if(document.querySelector('#'+this.schooltypecategoryid).checked==true){
-        alert(this.schooltypecategoryid+this.schooltypecategoryname);
+        //alert(this.schooltypecategoryid+this.schooltypecategoryname);
        document.querySelector('school-grade-to-subject-card').getschoolcategory(this.schooltypecategoryid);
        this.schooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
        var obj={"schoolcategoryid":"","schoolcategoryname":""};

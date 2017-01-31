@@ -38,8 +38,8 @@
    Polymer({
       is: 'new-employee-creation-role-item-card',
       fnroleset:function(e){
-        alert(this.schoolroleidxx+this.schoolempgetname+this.schoolempgetid+this.emppsw);
-        alert(document.querySelector('#'+this.schoolroleidxx).checked)
+        //alert(this.schoolroleidxx+this.schoolempgetname+this.schoolempgetid+this.emppsw);
+        //alert(document.querySelector('#'+this.schoolroleidxx).checked)
          if(document.querySelector('#'+this.schoolroleidxx).checked==true){
               var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
                   obj.emp_id=this.schoolempgetid;
@@ -47,7 +47,7 @@
                   obj.school_role_id=this.schoolroleidxx;
                   obj.emp_psw=this.emppsw;
                   getrolearrr.push(obj);
-                  alert(JSON.stringify(getrolearrr));
+                  //alert(JSON.stringify(getrolearrr));
                document.querySelector('new-employee-creation-card').passrole(getrolearrr);
            }
          else if(document.querySelector('#'+this.schoolroleidxx).checked==false){
@@ -65,12 +65,12 @@
              },
             getempschoolroleResponse:function(e){
                    var res=e.detail.response.returnval;
-                  alert(JSON.stringify(res));
+                  //alert(JSON.stringify(res));
                 },
                 typesplicerole:function(e){
                     for(var i=0;i<getrolearrr.length.length;i++){
                          var m=getrolearrr[i].school_role_id;
-                         alert(JSON.stringify(m));
+                         //alert(JSON.stringify(m));
                         // alert("hi");
                          document.querySelector('#'+m).checked=false;
  }

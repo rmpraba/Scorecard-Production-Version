@@ -198,14 +198,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.setgradeid=this.setgradeid;
           this.fnselectgradezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.fnselectgradezajax.generateRequest();
           document.querySelector('#employeeidzzzzzz').selected=-1;
       
       },
           fnselectgradezResponse:function(e){
                sectionnamearr=e.detail.response.returnval;
-                 alert(JSON.stringify(sectionnamearr));
+                // alert(JSON.stringify(sectionnamearr));
      },
      fnsubmit:function(e){
       this.$.uiservice.fnsavesection(empsectionarr);
@@ -222,14 +222,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
          },
      
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
-         alert(JSON.stringify(sectionnamearr));
-          alert(JSON.stringify(empnamearrr));
+         //alert(JSON.stringify(sectionnamearr));
+          //alert(JSON.stringify(empnamearrr));
        
   var setarr=[];
             for(var i=0;i<sectionnamearr.length;i++){
@@ -306,22 +306,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          generatearr=[];
          this.$.uiservice.fngetThefunction();
         */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
        });

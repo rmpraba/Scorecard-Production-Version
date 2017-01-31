@@ -77,7 +77,7 @@
       {
         var rolename=this.toTitleCase(this.rolename);
         var roleid=(rolename.toLowerCase()).replace(' ','');
-        alert(rolename+"  "+roleid);
+        //alert(rolename+"  "+roleid);
         this.$.service.FnUpdateRole(rolename,roleid);
         this.hiderolenameinput=true;
         this.hiderolenameitem=false;

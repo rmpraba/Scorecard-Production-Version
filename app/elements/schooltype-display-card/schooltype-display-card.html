@@ -21,7 +21,7 @@
       }
       paper-icon-button
       {
-        width:4%;
+        width:5%;
       }
       .itemcard
       {
@@ -82,7 +82,7 @@
         //alert("test");
         var schooltypename=this.toTitleCase(this.schooltypename);
         var schooltypeid=(schooltypename.toLowerCase()).replace(' ','',' ');
-        alert(schooltypename+"  "+schooltypeid);
+        //alert(schooltypename+"  "+schooltypeid);
         this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;

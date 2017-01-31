@@ -65,9 +65,9 @@
         @apply(--layout-horizontal);
          border-collapse: collapse;
         border: 1px solid #dedede;
-        margin-left: 33%;
+        margin-left: 31%;
         margin-top: 3%;
-        width: 58%;
+        width: 61%;
       }
       /*.outcard
       {
@@ -97,7 +97,8 @@
     </div>
 
    <div class="outcard">
-     <div class="newwwww" style="margin-left:49%">
+   <div class="newsubcard" hidden$="{{hidenewsubcard}}">
+      <div class="newwwww" style="margin-left:49%">
         <h4>Current Subject Details</h4>
       </div>
     <div>
@@ -105,7 +106,7 @@
         <tr>
             <th> <label style="margin-left:1%">Subject ID</label></th>
             <th> <label style="margin-left:8%">Subject Name</label></th>
-            <th> <label style="margin-left:-1%">Category Type</label>
+            <th> <label style="margin-left:-1%">Category Type</label></th>
             <th></th>
         </tr>
 
@@ -116,7 +117,10 @@
             </tr>
         </template>
       </table>
-    </div>
+    </div> 
+   </div>
+
+     
 
     <div class="creatediv">
         <div class="card">    
@@ -125,7 +129,7 @@
           </div>   
             
             <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
-            <paper-input label="Subject Name"  required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+            <paper-input label="Subject Name" id="subjectname" required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
             <paper-dropdown-menu id="subcat" label="Select Category Type" >
               <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategoryzzz">
@@ -178,9 +182,10 @@
 
        FnSubmit:function()
       {
-        if(this.subjectname==null || this.subjectname=="")
+        if(this.subjectname==""|| category=="")
         {
           this.$.subjectname.validate();
+          this.$.category.validate();
           //alert("please enter Subjectname before Submit");
         }
         else
@@ -198,6 +203,14 @@
         //alert('1');
       category=e.target.selectedItem.value;
       //alert(category);
+     },
+     subjecttview:function()
+     {
+      this.hidenewsubcard=false;
+     },
+     subjectthide:function()
+     {
+      this.hidenewsubcard=true;
      }
 
     });

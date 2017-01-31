@@ -58,7 +58,7 @@
               var subjectcategory=getcategoryandsubjectarr[i].subject_category;
               var schooltype=getcategoryandsubjectarr[i].school_type_id;
               var grasubjectid=getcategoryandsubjectarr[i].subject_id+getcategoryandsubjectarr[i].grade_id;
-               alert(grasubjectid);
+               //alert(grasubjectid);
              document.querySelector('#'+grasubjectid).checked=true; 
            if(document.querySelector('#'+grasubjectid).checked==true){
              var obj={"schootypename":"","categoryname":"","gradename":"","subjectname":""};
@@ -86,7 +86,7 @@
              obj.subjectname=this.getsubjectname;
              passbigarr.push(obj);
              v.push(obj);
-              alert(JSON.stringify(passbigarr));
+              //alert(JSON.stringify(passbigarr));
              document.querySelector('school-grade-to-subject-card').fnapssgradedetails(passbigarr);        
         }
         else if(document.querySelector('#'+this.id).checked==false){
@@ -111,7 +111,7 @@
       //alert('1');
       for(var j=0;j<v.length;j++){
             var grasubjectid=v[j].subjectname+v[j].gradename;
-            alert(grasubjectid);
+            //alert(grasubjectid);
               document.querySelector('#'+grasubjectid).checked=false;
                }
              v.splice(obj);

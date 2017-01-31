@@ -49,8 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'emp-category-get-card',
       fnschoolgrade:function(e){
-        alert(this.empschoolnames);
-        alert(document.querySelector('#'+e.target.id).checked);
+        //alert(this.empschoolnames);
+        //alert(document.querySelector('#'+e.target.id).checked);
       /*if(document.querySelector('#'+e.target.id).checked==true)
        {
       */   // alert('1');
@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypename=this.empschoolnames;
           this.empschoolgradezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
         this.$.empschoolgradezajax.generateRequest();
 
         this.empgetnameurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
@@ -67,18 +67,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.empschoolnames;
           this.empgetnameparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.empgetnameajax.generateRequest();
         /*}*/
         },
         empgetnameResponse:function(e){
            var res=e.detail.response.returnval;
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
         document.querySelector('employe-category-creation-card').fnschoolempnames(res);
       },
-      empschoolgradezResponse:function(e){
+      empschoolgradezResponse:function(e)
+      {
        var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
       document.querySelector('employe-category-creation-card').fnschoolempgrade(res);
               }
     });

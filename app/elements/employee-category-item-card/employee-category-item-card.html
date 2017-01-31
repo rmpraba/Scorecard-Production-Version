@@ -31,7 +31,7 @@
       is: 'employee-category-item-card',
     FnsetGradename:function(e){
        if(document.querySelector('#'+this.schooltypecategoryid).checked==true){
-            alert(this.schooltypecategoryid);
+            //alert(this.schooltypecategoryid);
                sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
               this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
                var obj={"schoolcategoryid":""};
