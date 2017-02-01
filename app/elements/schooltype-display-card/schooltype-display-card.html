@@ -1,0 +1,100 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="schooltype-display-card">
+  <template>
+    <style>
+      :host 
+      {
+        display: block;
+      }
+      .card
+      {
+        @apply(--layout-center);
+        @apply(--layout-horizontal);
+        border-bottom: 1px solid #dedede;
+        width: 200%;        
+      }
+       paper-item,paper-input
+      {
+        width:40%;
+      }
+      paper-icon-button
+      {
+        width:5%;
+      }
+      .itemcard
+      {
+      @apply(--layout-horizontal); 
+      }
+    </style>   
+
+
+    
+    <div class='itemcard' hidden$="{{hideitemcard}}">
+        <paper-item>{{schooltypeid}}</paper-item>
+        <paper-item hidden$="{{hideschooltypenameitem}}">{{schooltypename}}</paper-item>
+        <paper-input value="{{schooltypename}}" hidden$="{{hideschooltypenameinput}}"></paper-input>
+        <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
+        <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
+        <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+    </div>
+  
+     <master-ui-service id="sclservice"></master-ui-service>
+  </template>
+
+  
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'schooltype-display-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'schooltype-display-card',
+          notify: true
+        }
+      },
+      ready:function()
+      {
+        //alert("test");   
+        this.hideschooltypenameinput=true;
+        this.hideschooltypenameitem=false;
+      },
+      FnDelete:function()
+      {
+            this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+
+      },
+      FnEdit:function()
+      {
+        //alert("test");
+        localStorage.setItem('curr_sess_oldschooltypeid',this.schooltypeid);
+        this.hideschooltypenameinput=false        
+        this.hideschooltypenameitem=true;;
+
+      },
+      FnSave:function()
+      {
+        //alert("test");
+        var schooltypename=this.toTitleCase(this.schooltypename);
+        var schooltypeid=(schooltypename.toLowerCase()).replace(' ','',' ');
+        //alert(schooltypename+"  "+schooltypeid);
+        this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
+        this.hideschooltypenameinput=true;
+        this.hideschooltypenameitem=false;
+      },
+
+      toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g,
+         function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
+      
+    });
+  })();
+  </script>
+</dom-module>

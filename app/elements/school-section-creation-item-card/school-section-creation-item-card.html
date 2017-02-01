@@ -1,0 +1,80 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="school-section-creation-item-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+         @apply(--layout-horizontal);
+       width:100%
+      margin-left:5em;
+     }
+       
+      }
+    </style>
+           <paper-input hidden >{{classid}}</paper-input>
+           <paper-input hidden value="{{sectiongradeidzx}}"></paper-input>
+           <paper-input hidden value="{{sectiongradenamezx}}"></paper-input>
+     
+       <paper-checkbox style="padding-left:5%" on-change="fngetsectiongrade" checked id="{{id}}">{{sectiongradeid}}</paper-checkbox>    
+            
+
+          <iron-ajax        
+        id="getsectioncreategradeajax"   
+        url="{{getsectioncreategradeurl}}"
+        params="{{getsectioncreategradeparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="getsectioncreategradeResponse"
+        debounce-duration="300">
+   </iron-ajax>
+ 
+   
+  </template>
+  <script>
+  (function() {
+    'use strict';
+ var delsecarr=[];
+    Polymer({
+      is: 'school-section-creation-item-card',
+    
+       fngetsectiongrade:function(e){
+       // alert(this.id);
+         if(document.querySelector('#'+this.id).checked==false){
+          //var obj={"sectiongradeid":"","school_id":""};
+          var sectionid=this.sectiongradeid.toLowerCase();
+          var sectionname=sectionid.toUpperCase();
+          var obj={"grade_id":"","grade_name":"","sectionid":"","sectionname":"","classid":""};
+          obj.grade_id=this.sectiongradeidzx;
+          obj.grade_name=this.sectiongradenamezx
+          obj.sectionid=sectionid;
+          obj.sectionname=sectionname;
+          obj.classid=this.classid;
+          delsecarr.push(obj);
+      //    alert(JSON.stringify(obj));
+        //  alert(JSON.stringify(delsecarr));
+          document.querySelector('school-section-creation-card').fndeletepass(delsecarr);
+       }
+       },
+     /*  getsectioncreategradeResponse:function(e){
+           var res=e.detail.response.returnval; 
+           alert(JSON.stringify(res));
+       },*/
+
+   
+
+    });
+  })();
+  </script>
+</dom-module>

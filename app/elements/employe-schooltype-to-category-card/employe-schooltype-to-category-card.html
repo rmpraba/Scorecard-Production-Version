@@ -1,0 +1,441 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/gold-email-input/gold-email-input.html">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <!-- Jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<dom-module id="employe-schooltype-to-category-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+     .card1{
+        margin-left:5%;
+        margin-top: 4%;
+      }
+      .card2{
+        margin-left:40%;
+         margin-top:-17%;
+      }
+      .outcard{
+      width:25% 
+     margin-left:2.0em;
+      }
+       .innercard{     
+      @apply(--layout-horizontal);
+       width:100%
+      margin-left:2.5em;
+     }
+    
+     .tt{
+      width:70%;
+     }
+     .outercard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 0px;
+        margin-top: 6%;
+        width: 50%;
+        margin-left: 25%;
+        min-height: 300px;
+      }
+       .subbutton paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 17%;
+        margin-left: 80%;
+        margin-top: 4%;
+      }
+     .subcat1
+      {
+        margin-left: 60%;
+      }
+   
+    </style>
+   
+      <div>
+        <CENTER>
+          <h3><b>EMPLOYEE TO SUBJECT MAPPING</b></h3>
+        </CENTER>
+      </div>      
+     
+     <div>
+       <div class="outercard">
+            <div class="col-sm-4">
+              <div class="form-group-heading">
+                <h4>SCHOOL TYPE</h4>   
+              </div>
+               <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
+                <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
+              </template>
+              </div>
+          <div class="subcat1">
+              <div class="form-group-heading">
+                <h4>SUBJECT CATEGORY</h4>
+              </div>
+              <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
+                <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
+              </template>
+          </div>
+           <div class="subbutton">
+              <paper-button on-click="grnerate">Generate</paper-button>
+           </div>
+           <div >
+             <paper-checkbox on-change="fnsetemployee" id="empidz">Select The Employee name</paper-checkbox>
+          </div>
+          <div id="generateidz">
+           <paper-input  id="locality" required error-message="needs locality!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
+          <paper-listbox class="dropdown-content" id="itemlist111" on-iron-select="Fnselected" valueattr="value">
+                <template is="dom-repeat" items="{{itemArray}}" as="item">
+                  <paper-item value="{{item.itemid}}">{{item.itemdes}}</paper-item>
+                </template>
+           </paper-listbox>
+
+
+         </div>
+     </div>
+  </div>
+     <div id="dialog">
+      <paper-dialog id="dialogvaluezz" modal>
+           
+          <div class="list-group col-sm-12 panel-body form-category">  
+          <table class="table table-bordered">
+            <div class="container">
+              <thead> 
+              <tr>
+                <th></th>
+                  <th class="innercard">
+                    <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                      <h5>{{view.srtarr}}</h5>
+                    </template>
+                  </th>   
+                  <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="{{bigarrzs}}" as="view">
+                <tr>
+                  <td class="outcard"> 
+                    <h4>{{view.emp_name}}</h4>
+                    </td>
+                    <td class="innercard">
+                      <template is="dom-repeat" items="{{view.employee}}" as="s">
+                        <employee-specific-subject-card employeesetidz="{{view.emp_id}}" id="{{s.id}}"        empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}">
+                       </employee-specific-subject-card>
+                      <!--  <paper-checkbox value="{{s.subject_id}}"></paper-checkbox> -->
+                      </template>
+                  </td>
+                  <td></td>  
+                </tr>
+                </template>
+              </tbody>
+            </div>
+          </table>
+        </div>
+        <paper-button on-click="fnclick" style="color:white;background-color:black;">Submit</paper-button>
+        <paper-button dialog-confirm autofocus>close</paper-button>   
+      </paper-dialog>
+ 
+      </div>
+
+     <div id="talhidn">
+        <div class="list-group col-sm-12 panel-body form-category">  
+          <table class="table table-bordered">
+            <div class="container">
+              <thead> 
+              <tr>
+                <th></th>
+                  <th class="innercard">
+                    <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                      <h5>{{view.srtarr}}</h5>
+                    </template>
+                  </th>   
+                  <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
+                <tr>
+                  <td class="outcard"> 
+                    <h4>{{view.emp_name}}</h4>   
+                    </td>
+                    <td class="innercard">
+                      <template is="dom-repeat" items="{{view.employee}}" as="s">
+                        <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"></employe-creation-card>
+                      </template>
+                  </td>
+                  <td></td>  
+                </tr>
+                </template>
+              </tbody>
+            </div>
+          </table>
+        </div>   
+        </div>  
+           <span id="subbutton1" style="color:white;background-color:black;margin-left:41%;border-radius:10px">
+            <paper-button on-click="FnSubmit" style="width:12%;height:5%">Submit</paper-button>
+          </span>
+  <master-ui-service id="uiservice"></master-ui-service>      
+</template>
+          <script>
+  (function() {
+    'use strict';
+     var empteacharr=[];
+     var getcategory=[];
+     var getgradenames=[];
+     var namearr=[];
+     var setspecificarr=[];
+     var bigarrz=[];
+    Polymer({
+      is: 'employe-schooltype-to-category-card',
+      ready:function(){
+        this.$.subbutton1.hidden=true;
+        this.$.talhidn.hidden=true;
+        this.$.empidz.hidden=true;
+        this.$.generateidz.hidden=true;
+    },
+       getgrade:function(arr){
+        empteacharr=arr;
+        //emparr=arr;
+        
+       },
+       getcategory:function(arr){
+       getcategory=arr;
+       },
+       getemployeegrade:function(arr){
+        empgradearr=arr;
+      },
+      passempgrade:function(arr){
+       getgradenames=arr;
+      },
+      autocompletename:function(nameitem){
+          namearr=nameitem;
+      },
+      fnsetemployee:function(e){
+          if(document.querySelector('#'+e.target.id).checked==true){
+                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+                this.$.uiservice.dynamicinfo(this.schooltypeid);
+                 this.$.generateidz.hidden=false;
+                     }
+          else if(document.querySelector('#'+e.target.id).checked==false){
+        this.$.generateidz.hidden=true;
+      }
+    },
+      FnSubmit:function(e){
+      //  alert(JSON.stringify(getgradenames));
+        this.$.uiservice.fnempsubjectdetails(getgradenames);
+       document.querySelector('employe-creation-card').Fnsubjectclean();        
+       
+       },
+      /* Fnselected:function(e)
+        {
+          //alert('s');
+          this.querySelector('paper-listbox').style.visibility='hidden';
+         // this.textvalue=e.target.selectedItem.textContent.trim();
+          //this.studentname=e.target.selectedItem.value;
+          //alert(this.textvalue+this.textvalue1);
+          this.itemArray=[];
+          //document.querySelector('#itemlist11www').selected=-1;
+         // this.$.uiservice.studentinfo(this.studentname);
+          },*/
+
+        grnerate:function(e){
+      //      document.querySelector('employe-creation-card').Fnsubjectclean();        
+      
+            var setarrr=[];
+                 for(var i=0;i<getcategory.length;i++){
+                          var subject_name=getcategory[i].subject_name;
+                          
+                            var obj={"srtarr":""};
+                                obj.srtarr=subject_name;
+                               setarrr.push(obj);
+                          }
+
+                 /*for(var i=0;i<empteacharr.length;i++){
+                          var emp_id=empteacharr[i].emp_id;
+                          var emp_name=empteacharr[i].emp_name;
+                          
+                            var obj={"emp_id":"","emp_name":""};
+                                obj.emp_id=emp_id;
+                                obj.emp_name=emp_name;
+                               emparr.push(obj);
+                          }*/
+   this.setsubjectarr=setarrr;
+
+          var generatearr=[];
+         var subarr=[];
+                for(var j=0;j<empteacharr.length;j++){
+                     for(var i=0;i<getcategory.length;i++){
+                   var emp_name=empteacharr[j].emp_name;
+                    var emp_id=empteacharr[j].emp_id;
+                         
+                         var obj={"emp_name":"","subject_name":"","subject_id":"","emp_id":""}; 
+                           var subjectname=getcategory[i].subject_name;
+                           var subject_id=getcategory[i].subject_id;
+                           obj.emp_id=emp_id;
+                           obj.subject_name=subjectname;
+                           obj.emp_name=emp_name;
+                           obj.subject_id=subject_id;
+                           generatearr.push(obj);
+                        }}
+        var a=[];
+        var overall=[];
+       for(var k=0;k<generatearr.length;k++)
+       {       
+         var nameobj={"emp_name":"","emp_id":""};
+         nameobj.emp_name=generatearr[k].emp_name; 
+         nameobj.emp_id=generatearr[k].emp_id; 
+       
+         var obj={"subject_name":"","subject_id":""};
+        obj.subject_name=generatearr[k].subject_name;
+        obj.subject_id=generatearr[k].subject_id;
+        obj.id=generatearr[k].subject_id+generatearr[k].emp_id;
+        a.push(obj);
+        for(var l=k+1;l<generatearr.length;l++)
+        {
+           if(generatearr[k].emp_id==generatearr[l].emp_id)
+           {
+             var obj1={"subject_name":"","subject_id":""}
+             obj1.subject_name=generatearr[l].subject_name;
+             obj1.subject_id=generatearr[l].subject_id;
+             obj1.id=generatearr[l].subject_id+generatearr[k].emp_id;
+             a.push(obj1);
+             generatearr.splice(l,1);
+             l--;
+         }}
+           nameobj.employee=a;
+           overall.push(nameobj);
+           a=[];
+         }
+         this.subjectbigarr=overall;
+            setspecificarr=overall;
+        
+         this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+         this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+         this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid);
+         
+         overall.splice();
+         generatearr=[];
+        // this.$.uiservice.fngetThefunction();
+           this.$.subbutton1.hidden=false;
+           this.$.talhidn.hidden=false;
+           this.$.empidz.hidden=false;
+         //  this.$.generateidz.hidden=false;
+  
+         //  alert(JSON.stringify(emparr));
+         },
+
+FnInputChanged:function(e){
+          if(e.keyCode==13|| e.keyCode==40)
+            this.querySelector('paper-listbox').focus();
+          var arr=[];
+          arr.push({"itemdes":"-----Select-----"});
+          this.querySelector('paper-listbox').style.visibility='visible';
+          if(e.keyCode==8){
+            this.itemflag="true";
+            this.itemval="";
+            //alert('yes');
+            var len=(this.textvalue).length;
+            if(len<=1){
+              this.querySelector('paper-listbox').style.visibility='hidden';
+              this.itemArray="";
+              this.itemval="";
+            }
+            if(len>1){   
+              this.querySelector('paper-listbox').style.visibility='visible';
+              var backsubval=(((this.textvalue).substring(0,(len-1))).trim()).toUpperCase();
+              for(var i=0;i<namearr.length;i++)
+              {
+                var subval=((namearr[i].student_name).trim()).substring(0,backsubval.length);
+                if((subval).toUpperCase()==(backsubval).toUpperCase())
+                {
+                  var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                }
+              }
+              this.itemArray=arr;
+            }
+          }
+          if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39){
+            if(this.itemflag=="true") {
+              this.itemval = (this.textvalue).toUpperCase()+String.fromCharCode((e.keyCode)).toUpperCase();
+              this.itemflag="false";
+            }
+            else
+            this.itemval = this.textvalue +String.fromCharCode((e.keyCode));
+            if(this.itemval.length>0)
+            {
+              for(var i=0;i<namearr.length;i++){
+                var subval=((namearr[i].emp_name).trim()).substring(0,this.itemval.length);
+                if((subval).toUpperCase()==(this.itemval).toUpperCase()){
+                  var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                }
+              }
+              if(arr.length>0)
+                this.itemArray=arr;
+              else {
+                var obj={"itemdes":"","itemid":""};
+                  obj.itemdes=namearr[i].emp_name;
+                  obj.itemid=namearr[i].emp_id;
+                  arr.push(obj);
+                this.itemArray=arr;
+              }
+            }
+          }
+        },
+Fnselected:function(e)
+        {
+          //alert('s');
+          this.querySelector('paper-listbox').style.visibility='hidden';
+          this.textvalue=e.target.selectedItem.textContent.trim();
+          this.empname=e.target.selectedItem.value;
+        //  alert(this.textvalue+this.empname);
+          //alert(JSON.stringify(setspecificarr)); 
+              var setsubarr=[]; 
+                 for(var i=0;i<getcategory.length;i++){
+                          var subject_name=getcategory[i].subject_name;
+                          
+                            var obj={"subject":""};
+                                obj.subject=subject_name;
+                               setsubarr.push(obj);
+                          }
+                          //alert(JSON.stringify(setsubarr));
+                          this.setsubarrz=setsubarr;
+          for(var i=0;i<setspecificarr.length;i++){
+          if(this.empname==setspecificarr[i].emp_id){
+               var emp_id=setspecificarr[i].emp_id;
+               var emp_name=setspecificarr[i].emp_name;
+               var employee=setspecificarr[i].employee;
+               var obj={"emp_id":"","emp_name":"","employee":""};
+               obj.emp_id=emp_id;
+               obj.emp_name=emp_name;
+               obj.employee=employee;
+               bigarrz.push(obj);
+             }
+          }
+              this.bigarrzs=bigarrz;
+               //alert(JSON.stringify(bigarrz));  
+               this.$.dialogvaluezz.open();
+              bigarrz=[];
+          // bigarrz=[];
+          this.itemArray=[];
+          document.querySelector('#itemlist111').selected=-1;
+          //this.$.uiservice.studentinfo(this.studentname);
+           
+        },
+
+
+     });
+  })();
+  </script>
+</dom-module>

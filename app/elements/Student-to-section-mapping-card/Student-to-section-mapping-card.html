@@ -1,0 +1,77 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="Student-to-section-mapping-card">  
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <div>
+      <CENTER>
+        <h3><b>EMPLOYEE TO GRADE</b></h3>
+      </CENTER>
+    </div>
+
+    <div class="outercard">
+        <table>
+          <div>
+
+          <div class="catcard">
+            <label>School Type</label>
+            <template is="dom-repeat" items="{{studentsectionarr}}" as="view">
+              <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}"></emp-category-get-card>
+            </template>
+          </div>  
+
+            <div class="newcard">
+              <paper-dropdown-menu  label="select the grade">
+                <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
+                  <template is="dom-repeat" items="{{empschoolgrads}}">
+                    <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
+                  </template>    
+                </paper-menu>
+              </paper-dropdown-menu>
+            
+              <paper-dropdown-menu  label="select the employee">
+                <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
+                  <template is="dom-repeat" items="{{empschoolnamesarr}}">
+                    <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
+                  </template>    
+                </paper-menu>
+              </paper-dropdown-menu>
+            </div>  
+
+          </div>  
+        </table>
+      </div>
+   /template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'Student-to-section-mapping-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'Student-to-section-mapping-card',
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

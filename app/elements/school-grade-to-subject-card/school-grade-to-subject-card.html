@@ -1,0 +1,275 @@
+   <link rel="import" href="..\..\bower_components/gold-email-input/gold-email-input.html">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+   <dom-module id="school-grade-to-subject-card">
+   <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card1{
+        margin-left:5%;
+        margin-top: 4%;
+      }
+      .card2
+      {
+        margin-left:40%;
+         margin-top:-21%;
+      }
+      .outcard
+      {
+      width:25% 
+      margin-left:5.0em;
+      }
+       .innercard
+       {     
+        @apply(--layout-horizontal);
+        width:100%
+        margin-left:2.5em;
+       }
+     .innercard1
+     {
+       @apply(--layout-horizontal);
+       width:100%
+      margin-left:5.0em;
+     }
+     .tt
+     {      
+      width:70%;
+     }   
+
+      .outer1
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 0px;
+        margin-top: 6%;
+        width: 50%;
+        margin-left: 25%;
+        min-height: 300px;
+      }
+
+       .subbutton paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 17%;
+        margin-left: 80%;
+        margin-top: 4%;
+      }
+      .sbutton
+      {
+        @apply(--layput-right);
+        background-color: #363636;
+        color: #ffffff;  
+        width: 9%;
+        margin-left: 50%;        
+      }
+      .subbcatt
+      {
+        margin-left: 50%;
+      }
+    </style>
+
+
+    <div>
+      <CENTER>
+        <h3><b>GRADE TO SUBJECT MAPPING</b></h3>
+      </CENTER>
+    </div>
+
+    <div>
+      <div class="outer1">
+        <div class="col-sm-4">
+          <div class="form-group-heading">
+            <h4>SCHOOL TYPE</h4>
+          </div>
+              
+          <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
+            <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
+          </template>
+        </div>   
+
+
+        <div class="subbcatt">
+          <div class="form-group-heading">
+            <h4> SUBJECT CATEGORY</h4>
+          </div>
+              
+          <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
+            <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
+            id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
+          </template>
+        </div>  
+
+          <div class="subbutton">
+            <paper-button on-click="Generate">Generate</paper-button>
+          </div>
+          
+      </div>     
+    </div>
+  <div id="tbz1">
+    <div class="list-group col-sm-12 panel-body form-category">
+      <table class="table table-bordered">
+      <!-- <table border="1" class="tt"> -->
+        <tbody>
+          <tr>
+            <td class="outcard"></td>
+            <td class="innercard">
+              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                <h4 style="width:22%; margin-left:5%;">{{view.srtarr}}</h4>   
+              </template>
+            </td>
+            <td class="outcard"></td>
+          </tr>   
+            <template is="dom-repeat" items="{{bigarr}}" as="view">  
+            <tr>
+              <td class="outcard">
+                <h4>{{view.subject_name}}</h4>
+              </td>
+              <td class="innercard">
+                <template is="dom-repeat" items="{{view.subject}}" as="s">
+                <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypename}}" getschoolcategory="{{schooltypesubjectid}}"></school_grade-subject-item-card>
+               </template></td>
+            </tr>
+            </template>
+        </tbody>    
+      </table>  
+    </div>
+    </div>    
+    <master-ui-service id="uiservice"></master-ui-service>
+        <div >
+            <paper-button on-click='FnSave'></paper-button>  
+         </div>
+         <div style="color:white;background-color:black;width:7%;margin-left:41%;border-radius:10px" id="z">
+            <paper-button on-click="FnSavez">Submit</paper-button>  
+           </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+   var getgradearr=[];
+   var getcategory=[];  
+   var passservicearr=[];
+    Polymer({
+      is: 'school-grade-to-subject-card',   
+     ready:function(){
+      this.$.z.hidden=true;
+       this.$.tbz1.hidden=true;
+     },
+       getgrade:function(arr1){
+         getgradearr=arr1;
+       //  alert(JSON.stringify(getgradearr));
+       },
+       getcategory:function(arr){
+       getcategory=arr;
+           //alert(JSON.stringify(getcategory));
+      },
+      getschootypename:function(arr){
+      this.schooltypename=arr;
+     
+     // alert(this.schooltypename);
+      },
+      fnapssgradedetails:function(arr){
+        passservicearr=arr;  
+      },
+      FnSavez:function(e){
+           alert('save');
+           //alert(JSON.stringify(passservicearr));
+           this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
+         //  passservicearr=[];
+           document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
+           document.querySelector('schoolcategory-type-item-card').fnschoolcategoryclean(); 
+           document.querySelector('school-type-item-card').fnschooltypeclaen(); 
+     
+       },
+    getschoolcategory:function(arr1){
+   //     alert('2');
+    this.schooltypesubjectid=arr1;
+   // alert(this.schooltypesubjectid);
+      },
+       Generate:function(){
+              var setarrr=[];
+                 for(var i=0;i<getgradearr.length;i++){
+                          var gradename=getgradearr[i].grade_name;
+                          
+                            var obj={"srtarr":""};
+                                obj.srtarr=gradename;
+                               setarrr.push(obj);
+                              // alert(JSON.stringify(obj));
+                          }
+               //  alert(JSON.stringify(setarrr));
+                   this.setsubjectarr=setarrr;
+
+          var generatearr=[];
+         var subarr=[];
+                for(var j=0;j<getcategory.length;j++){
+                     for(var i=0;i<getgradearr.length;i++){
+                   var subjectname=getcategory[j].subject_name;
+                    var subject_id=getcategory[j].subject_id;
+                         
+                         var obj={"Grade_name":"","subject_name":"","subject_id":"","grade_id":""}; 
+                           var gradename=getgradearr[i].grade_name;
+                          var grade_id=getgradearr[i].grade_id;
+                           obj.Grade_name=gradename;
+                           obj.subject_name=subjectname;
+                           obj.grade_id=grade_id;
+                           obj.subject_id=subject_id;
+                           generatearr.push(obj);
+                        }}//alert(JSON.stringify(generatearr));
+        var a=[];
+        var overall=[];
+       for(var k=0;k<generatearr.length;k++)
+       {       
+         var nameobj={"subject_name":"","subject_id":""};
+         nameobj.subject_name=generatearr[k].subject_name; 
+         nameobj.subject_id=generatearr[k].subject_id; 
+       
+         var obj={"Grade_name":"","grade_id":""};
+        // obj.Grade_name=generatearr[k].gradename;
+        obj.Grade_name=generatearr[k].Grade_name;
+        obj.grade_id=generatearr[k].grade_id;
+        obj.id=generatearr[k].subject_id+generatearr[k].grade_id;
+        a.push(obj);
+        for(var l=k+1;l<generatearr.length;l++)
+        {
+           if(generatearr[k].subject_name==generatearr[l].subject_name)
+           {
+             var obj1={"Grade_name":"","grade_id":""}
+             //obj1.Grade_name=generatearr[l].gradename;
+             obj1.Grade_name=generatearr[l].Grade_name;
+             obj1.grade_id=generatearr[l].grade_id;
+             obj1.id=generatearr[k].subject_id+generatearr[l].grade_id;
+
+             //alert('1');
+             //alert(JSON.stringify(obj1));
+             a.push(obj1);
+             //alert(JSON.stringify(a));
+             generatearr.splice(l,1);
+             l--;
+           // alert(JSON.stringify(generatearr));
+         }}
+           nameobj.subject=a;
+           overall.push(nameobj);
+          // alert(JSON.stringify(obj1));
+           a=[];
+
+       }
+   //  alert(JSON.stringify(overall));
+     // overall.splice(0,1);
+         this.bigarr=overall;
+          this.$.uiservice.fngetThefunction(this.schooltypename,this.schooltypesubjectid);
+         overall.splice();
+         generatearr=[];
+         this.$.z.hidden=false;
+         this.$.tbz1.hidden=false;
+    
+        } 
+
+    });
+  })();
+  </script>
+</dom-module>
