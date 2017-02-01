@@ -157,11 +157,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
   
   <div class="managementreport" hidden$="{{managementreport}}">
     <div class="inner1">
+    <div class="card" hidden$="{{GeneratemgmtReport}}" style="width: 60%;">
+       <paper-button on-click="FnGeneratemgmtReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+    </div>
+
     <div class="card" hidden$="{{ConsolidatedReport}}">
        <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
     </div>
+    
     </div>
     </div>
+
    </div>
 
    <!--  <div class="container1">
@@ -335,15 +341,16 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            <h4>Language Preferences</h4>
           </paper-button>
       </div>
-    </div>
 
-    <div class="container1">
-       <div class="card" hidden$="{{schooltyptograde}}">
+      <div class="card" hidden$="{{schooltyptograde}}">
             <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
                <h4>School type to Grade</h4>
             </paper-button>
        </div>
+    </div>
 
+    <div class="container1">
+       
        <div class="card" hidden$="{{gradetosubject}}">
           <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
             <h4>Grade To Subject Mapping</h4>
@@ -362,7 +369,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         </paper-button>
       </div>
        <div class="card" hidden$="{{sectioncreation}}">
-            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.png" height="180px" width="180px">
+            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.jpg" height="180px" width="180px">
                <h4>Section Creation</h4>
             </paper-button>
        </div>    
@@ -374,6 +381,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       
     </div>
  
+
     <div class="cdialog">      
       <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
          <paper-dropdown-menu id="academicyear" label="Select Academic Year" disabled="{{read}}" required>
@@ -396,7 +404,20 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-dropdown-menu>
       </paper-dialog>
     </div>
+    
+    <div class="dialog">      
+      <paper-dialog id="schooldialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+          <paper-dropdown-menu id="term" label="Select School" disabled="{{read}}" required>
+            <paper-menu id="schoolname" class="dropdown-content" on-iron-select="FnSelectSchool" attr-for-selected="value" selected="{{selectschool}}">
+              <template is="dom-repeat" items="{{schoolarr}}">
+                <paper-item value="{{item.id}}">{{item.name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+      </paper-dialog>
+    </div>
    
+
     </div>
     <term-assesment-service id="assesmentservice"></term-assesment-service>
     <beginner-assesment-service id="bassesmentservice"></beginner-assesment-service>
@@ -421,6 +442,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.createsubject=true;
         this.createrole=true;
         this.managementreport=true;
+
+        this.GeneratemgmtReport=true;
+
         this.schooltyptograde=true;
         this.createschoolz=true; 
         this.createcategory=true;
@@ -435,7 +459,30 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.subjecttostudent=true;
         this.sectioncreation=true;
         this.gradetosection=true;
+
        },
+
+       
+
+
+       //  this.Report=true;
+       //  this.GenerateReport=true;
+       //  this.Approve=true;       
+       //  this.BA=true;
+       //  this.TA=true;
+       //  this.Analysis=true;
+       //  this.ConsolidatedReport=true;
+       // // this.teach_obser=true;
+       //  this.comparison=true;
+       //  this.Approvalstatus=true;
+       //  this.editinfo=true;
+       //  this.createrole=true;
+       //  this.createemployee=true;
+       //  this.createsubject=true;
+       //  this.teach_obser=true;
+        // localStorage.setItem("curr_sess_page","teacherhome-card");
+      },
+
       FnSelectacademicyear:function(e){
         academicyear = e.target.selectedItem.textContent.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
@@ -508,6 +555,20 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         // localStorage.setItem('curr_sess_loggedassesmenttype','Term');
         // this.$.assesmentservice.callAcademicService();
       },
+      FnGeneratemgmtReportcard:function()
+      {
+        this.$.scorecardservice.callSchoolService();
+        this.$.schooldialog.toggle();        
+        // localStorage.setItem('curr_sess_report','1');
+        // localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        // this.$.assesmentservice.callAcademicService();
+      },
+      FnSelectSchool:function(e){
+        var schoolid = e.target.selectedItem.value.trim();
+        sessionStorage.setItem("curr_sess_loggedschoolid",schoolid);
+        this.$.schooldialog.toggle();
+        this.FnGenerateReportcard();
+      },
       FnToggle:function(){
         this.$.dialog.toggle();
       },
@@ -551,6 +612,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
+
+          this.GeneratemgmtReport=false;
+          // this.createrole=false;
+          // this.createemployee=false;  
+
+          // this.teach_obser=false;  
+
        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {

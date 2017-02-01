@@ -39,7 +39,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          apply(--layout-horizontal);
 
          margin-top: 5%;
-         margin-top: 4%;
          border-collapse: collapse;
          margin-left: 50%;
          border: 1px solid #dedede;
@@ -56,6 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #createemp
        {
+          position: fixed;
           border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;
@@ -76,13 +76,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }*/
       #updateempdetails
        {
-        float: left;
+        /*float: left;*/
+        position: fixed;
         border-radius: 10px;
         border:1px solid #6699ff;
         padding: 10px;
         margin-left:-4%;
         width: 50%;
+
         margin-top:10% !important;
+
         min-height: 200%; 
        }
        #focus{
@@ -116,9 +119,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3><b>EMPLOYEE CREATION</b></h3>
     </div>
     <span>
-    <div class="newtitle">
-      <h4>Current Employee Details</h4>
-    </div>
+    <div class="newempldiv" hidden$="{{hidenewempldiv}}">
+      <div class="newtitle">
+        <h4>Current Employee Details</h4>
+      </div>
     <div class="newcard col-sm-12">
       <table>
         <tr>
@@ -135,7 +139,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template> 
       </table>
     </div>
-
+    </div>
+    
     <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">    
@@ -278,7 +283,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      },  
      setschoolrolezz:function(arr){
           setrolearr=arr;   
-          alert(JSON.stringify(setrolearr));
+          //alert(JSON.stringify(setrolearr));
          },
   
     passetschooltype:function(arr)
@@ -331,7 +336,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
      passrole:function(arr1){
        passrolearr=arr1;
-       alert(JSON.stringify(passrolearr));   
+       //alert(JSON.stringify(passrolearr));   
       },
       passschooltype:function(arr)
       {
@@ -355,13 +360,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       FnSchooltypemap:function(arr)
       {
         this.selectmapschooltypearr1=arr;
-        alert(JSON.stringify(this.selectmapschooltypearr1));
+        //alert(JSON.stringify(this.selectmapschooltypearr1));
         this.hidecreateemp=true;
         this.hideupdateemp=false;   
       },
       FnSchoolrole:function(arr){
         this.selectschoolrolearr1=arr;
-    alert(JSON.stringify(this.selectschoolrolearr1));
+        //alert(JSON.stringify(this.selectschoolrolearr1));
         this.hidecreateemp=true;
         this.hideupdateemp=false;
       },
@@ -371,8 +376,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         //alert('2');  
         //alert(this.employeeid);
-       /* alert(JSON.stringify(passrolearr));
-        alert(JSON.stringify(passschooltypearr));*/
+        //alert(JSON.stringify(passrolearr));
+        //alert(JSON.stringify(passschooltypearr));
   
         this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
         this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
@@ -389,7 +394,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var id="updateempdetails";
         //alert(document.getElementById(id));
         document.getElementById(id).focus();
-       } 
+       },
+
+       /*employeeview:function()
+       {
+          this.hidenewempldiv=false;        
+       },
+       employeehide:function()
+       {
+         this.hidenewempldiv=true;
+       } */
 });
   })();
   </script>

@@ -109,8 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
     Polymer({
       is: 'working-days-card',
-      acdemic:function(){
-               this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
+      acdemic:function()
+      {
+        this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
      },
      
       
@@ -131,7 +132,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       FnSubmit:function(e){
             this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
             alert( this.acadamicyears);
-           if(this.termid11==""){
+           if(this.termid11=="")
+           {
             alert("select the current section");
            }
            else{

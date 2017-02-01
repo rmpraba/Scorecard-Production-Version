@@ -37,9 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          Polymer({   
       is: 'school-grade-mapping--item-card',
      fngradechage:function(e){
-           alert("1");
-           alert(this.schooltype);
-           alert(this.gradename+this.schooltype);
+           //alert("1");
+           //alert(this.schooltype);
+           //alert(this.gradename+this.schooltype);
           if(document.querySelector('#'+this.gradeid).checked==true){
               var obj={"school_id":"","schooltype":"","gradename":"","gradeid":""};
               obj.gradeid=this.gradeid;
@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
               obj.schooltype=this.schooltype;
                gradearrs.push(obj);
-               alert(JSON.stringify(gradearrs));
+               //alert(JSON.stringify(gradearrs));
            document.querySelector('master-school-type-creation-item-card').fnsetgrade(gradearrs);
         }
      

@@ -91,7 +91,7 @@
         obj.schooltypeid=this.schooltypeidzzzz;   
         v.push(obj);
         this.fnschooltypezparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
        // alert(JSON.stringify(v));
         this.$.fnschooltypezajax.generateRequest();
      },
@@ -101,7 +101,7 @@
         obj.schooltypeid=this.schooltypeidzzzz;
         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         this.fnschooltypegradmapzdbparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.fnschooltypegradmapzdbajax.generateRequest();
     
        },
@@ -129,13 +129,13 @@
       },
       fnschooltypegradmapzResponse(e){
       var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
       },  
       fnclean:function(){
-           alert('1b');
+           //alert('1b');
           for(var i=0;i<v.length;i++){
            var m=v[i].schooltypeid;
-           alert(m);
+           //alert(m);
             document.querySelector('#'+m).checked=false;
           
           }
@@ -144,12 +144,12 @@
       fnschooltypezResponse:function(e){
         var res=e.detail.response.returnval; 
          schooltypearrz=res;
-         alert(JSON.stringify(schooltypearrz));
+         //alert(JSON.stringify(schooltypearrz));
          
            },
         fnschooltypegradmapzdbResponse:function(e){
         var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     
       
          for(var j=0;j<schooltypearrz.length;j++){

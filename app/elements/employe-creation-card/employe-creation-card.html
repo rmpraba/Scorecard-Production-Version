@@ -53,8 +53,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'employe-creation-card',
      fnempsetsubject:function(e){
-      alert(this.employeesetidz+this.empnames+this.employeesetidz);
-        alert(this.id);
+      //alert(this.employeesetidz+this.empnames+this.employeesetidz);
+        //alert(this.id);
        if(document.querySelector('#'+this.id).checked==true){
             this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
             this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
@@ -67,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              empgetarr.push(obj);
              v.push(obj);
              
-              alert(JSON.stringify(empgetarr));
+              //alert(JSON.stringify(empgetarr));
             document.querySelector('employe-schooltype-to-category-card').passempgrade(empgetarr);        
            }
              else if(document.querySelector('#'+this.id).checked==false){
@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarr.push(obj);
-                         alert(JSON.stringify(obj));
+                         //alert(JSON.stringify(obj));
                         this.deletesubjectzparam=obj;
                        this.$.deletesubjectzajax.generateRequest();
                       empgetarr.splice(i,1);
@@ -91,10 +91,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  }
              }
       },
-     setempsubject:function(arr){
+     setempsubject:function(arr)
+     {
              empsubjectarr=arr;
-             alert(JSON.stringify(empsubjectarr));
-           for(var i=0;i<empsubjectarr.length;i++){
+             //alert(JSON.stringify(empsubjectarr));
+           for(var i=0;i<empsubjectarr.length;i++)
+           {
               
               var empid=empsubjectarr[i].emp_id;
               var emp_name=empsubjectarr[i].emp_name;
@@ -103,7 +105,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var getsubid=empsubjectarr[i].subjectid+empsubjectarr[i].emp_id;
           //  alert(getsubid)
            document.querySelector('#'+getsubid).checked=true;
-           if(document.querySelector('#'+getsubid).checked==true){
+           if(document.querySelector('#'+getsubid).checked==true)
+           {
               var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
               obj.empid=empid;
               obj.empname=emp_name;
@@ -112,21 +115,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
               empgetarr.push(obj);
               v.push(obj);
-         //     alert(JSON.stringify(empgetarr));
+              //alert(JSON.stringify(empgetarr));
            }
          
          }
          },
       deletesubjectzResponse:function(e){
      var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
     
       },
          Fnsubjectclean:function(e){
       //alert('1');
       for(var j=0;j<v.length;j++){
          var getsubidz=v[j].subjectid+v[j].empid;
-          alert(getsubidz);
+          //alert(getsubidz);
               document.querySelector('#'+getsubidz).checked=false;
               }
              v.splice(obj);

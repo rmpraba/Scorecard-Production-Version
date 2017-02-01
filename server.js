@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecardbatabase'
+   database : 'scorecarddatabase'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -375,7 +375,7 @@ app.post('/subject-service',  urlencodedParser,function (req, res)
     "(select subject_id from mp_grade_subject where "+
     "grade_id in('g1','g2','g3','g4'))";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select * from md_subject where subject_id in "+
     "(select subject_id from mp_grade_subject)";
@@ -5007,7 +5007,7 @@ app.post('/updatestudentinfo-service' ,  urlencodedParser,function (req, res)
 {    
  var qur="update md_student set student_name='"+req.query.name+"' where school_id='"+req.query.schoolid+"' and "+
  " id='"+req.query.enrno+"'";
- var qur1="update parent set parent_name='"+req.query.pname+"',alternate_mail='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
+ var qur1="update parent set parent_name='"+req.query.pname+"',alternate_mail='"+req.query.alternatemail+"',email='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'"; 
  var qur2=" select * from parent where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'";
@@ -5152,11 +5152,19 @@ app.post('/fetchrole-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': rows});
+      if(rows.length>0)
+      {
+       //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows}); 
+      }
+      else
+      {
+        res.status(200).json({'returnval': empty}); 
+      }
+      
     }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'Invalid'});
   });
 });
 
@@ -5289,11 +5297,19 @@ app.post('/fetchmastersubject-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      if(rows.length>0)
+      {
+        //console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
+      }
+      else
+      {
+       res.status(200).json({'returnval': empty}); 
+      }
+      
     }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'Invalid'});
   });
 });
 
@@ -5640,13 +5656,21 @@ app.post('/fnschoolcreation-service',  urlencodedParser,function (req,res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      if(rows.length>0)
+      {
       res.status(200).json({'returnval': rows});
+      }
+      else if(rows.length==0 || rows.length==null)
+      {
+        res.status(200).json({'returnval': empty});
+      }
     }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'invalid'});
   });
 });
+
+
  /*app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
 
 
@@ -5835,11 +5859,19 @@ app.post('/deletecategoryname-service' ,  urlencodedParser,function (req, res)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      if(rows.length>0)
+      {
+        //console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
+      }
+      else
+      {
+        res.status(200).json({'returnval': empty});
+      }
+      
     }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'Invalid'});
   });
 });
 
@@ -6050,11 +6082,19 @@ app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,re
     {
     if(!err)
     { 
-     // console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': rows});
+      if(rows.length>0)
+      {
+       // console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows}); 
+      }
+      else
+      {
+      res.status(200).json({'returnval': empty});
+      }
+     
     }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': 'Invalid'});
   });
 });
 app.post('/emppersonaldetails-service' ,  urlencodedParser,function (req, res)
@@ -6637,7 +6677,7 @@ app.post('/sectioncreategrade-service' ,urlencodedParser, function (req, res)
 
 app.post('/sectioncreategrade1-service' ,urlencodedParser, function (req, res)
     {  
-      var qur="SELECT s.grade_id,s.grade_name,p.section_id, p.class_id FROM scorecardbatabase.md_school_grade_mapping s join scorecardbatabase.mp_grade_section p  on s.grade_id=p.grade_id  where p.school_id='"+req.query.school_id+"' and s.school_id='"+req.query.school_id+"' and s.school_type='"+req.query.sectionschooltypeid+"'";
+      var qur="SELECT s.grade_id,s.grade_name,p.section_id, p.class_id FROM md_school_grade_mapping s join mp_grade_section p  on s.grade_id=p.grade_id  where p.school_id='"+req.query.school_id+"' and s.school_id='"+req.query.school_id+"' and s.school_type='"+req.query.sectionschooltypeid+"'";
       connection.query(qur,function(err, rows){
         if(!err){
 
@@ -7360,13 +7400,13 @@ app.post('/empgetsectionvalues-service',  urlencodedParser,function (req,res)
     console.log(qur);
 
     var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where section=s.section_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"' and flage='active'";
-    //console.log(qur);
+    console.log(qur);
 connection.query(qur,
     function(err, rows)
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
     else

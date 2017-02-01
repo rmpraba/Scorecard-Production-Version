@@ -35,7 +35,8 @@
       <paper-input readonly label="Enrollment No" value="{{enrno}}"></paper-input>
       <paper-input label="Student Name" value="{{studentname}}"></paper-input>
       <paper-input label="Parent Name" value="{{parentname}}"></paper-input>
-      <paper-input label="Parent Email" value="{{parentmail}}"></paper-input>
+      <paper-input label="Primary Email" value="{{parentmail}}"></paper-input>
+      <paper-input label="Alternate Email" value="{{alternatemail}}"></paper-input>
       </div>
       <div class='dialogbtncard'>
       <paper-button id="close" on-click="FnUpdate">Update</paper-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,7 +56,7 @@
         this.enrno=studid;
       },
       FnUpdate:function(){
-        this.$.assesmentservice.callUpdateStudentInfo(this.enrno,this.studentname,this.parentname,this.parentmail);
+        this.$.assesmentservice.callUpdateStudentInfo(this.enrno,this.studentname,this.parentname,this.parentmail,this.alternatemail);
       },
       FnRefresh:function(){
         this.enrno="";

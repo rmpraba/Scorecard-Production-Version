@@ -122,7 +122,8 @@
         var termsname1=localStorage.getItem("curr_sess_selectedtemsid");
         var assesmentid=localStorage.getItem("curr_sess_selectassesmetids");
      
-        if(thirdlang=="Hindi"&& seclang=="Hindi"||thirdlang=="Kannada"&& seclang=="Kannada") {
+        if(thirdlang=="Hindi"&& seclang=="Hindi"||thirdlang=="Kannada"&& seclang=="Kannada") 
+        {
           alert("select both are same language");
 
         }
@@ -130,7 +131,7 @@
       else if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4")
        {
       //  alert("hi1");
-      alert(schoolnames);
+      //alert(schoolnames);
      //   alert(this.studentid+this.studentname+schoolnames+termsname+gradenamesssss+Sectionnames+seclang11+Sectionnameseeee);
       this.$.uiservice.FnSecondLangSubjectToStudent(this.studentid,this.studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid);
                   /* alert("hi");

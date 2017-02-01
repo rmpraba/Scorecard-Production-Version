@@ -83,7 +83,7 @@
         border: 1px solid #6699ff;
         padding: 10px;
         margin-left: -3%;
-        margin-top: -15%;
+        margin-top: -15% !important;
         width: 27%;
       }
       .newcard
@@ -156,6 +156,7 @@
         //alert("test");
         this.$.service.FnFetchSchooltypename();
         this.$.hidenewschooltypecard=true;
+        this.FnRefresh();
         //this.hideoutnewcard=true;
 
       }, 
@@ -180,8 +181,8 @@
       {
         if(this.schooltypename==null || this.schooltypename=="")
         {   
-          this.$.schooltypename.validate();       
-          //alert("Please enter School Type Name before submit");
+          //this.$.schooltypename.validate();       
+          alert("Please enter School Type Name before submit");
         }
         else if(this.schooltypename!=null)
         {
