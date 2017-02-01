@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="new-employee-creation-card">
   <template>
-    <style>
+        <style>
      :host
      {
          margin-left: 10%;
@@ -37,8 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        table
       {
          apply(--layout-horizontal);
-
-         margin-top: 5%;
+         margin-top: 4%;
          border-collapse: collapse;
          margin-left: 50%;
          border: 1px solid #dedede;
@@ -55,12 +54,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #createemp
        {
-          position: fixed;
+        
           border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;
           min-height: 200%; 
-          margin-top: 20% !important;
+          margin-top: -196% !important;
           width: 50%;
           margin-left:-2%;
               
@@ -76,19 +75,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }*/
       #updateempdetails
        {
-        /*float: left;*/
-        position: fixed;
+        float: left;
         border-radius: 10px;
         border:1px solid #6699ff;
         padding: 10px;
         margin-left:-4%;
         width: 50%;
-
-        margin-top:10% !important;
-
+        margin-top: -194% !important;
         min-height: 200%; 
        }
-       #focus{
+       /*#focus{
            float: left;
         border-radius: 10px;
         border:1px solid #6699ff;
@@ -97,7 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 50%;
         margin-top: -194% !important;
         min-height: 200%;
-        }
+        }*/
        .subbutton
        {
          background-color: #363636;
@@ -341,7 +337,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       passschooltype:function(arr)
       {
        passschooltypearr=arr;
-       alert(JSON.stringify(passschooltypearr));
+       //alert(JSON.stringify(passschooltypearr));
       },
 
       funct1:function(employeeid,employeename,employeephone,employeemobile,employeemail,employeepassword,schoolid)
