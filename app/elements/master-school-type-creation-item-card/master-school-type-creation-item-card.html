@@ -21,8 +21,8 @@
       }
       
     </style>
-    
-      <paper-checkbox on-change="fnsetschooltypefun" id="{{schooltypeidzzzz}}">{{schooltypename}}</paper-checkbox>
+    <paper-input hidden>{{schooltypeidzzzz}}</paper-input>
+      <paper-checkbox on-change="fnsetschooltypefun" id="{{id}}">{{schooltypename}}</paper-checkbox>
   
       <paper-dialog id="schtypid" modal>  
              <h3>Select the Grade</h3>
@@ -75,7 +75,7 @@
       is: 'master-school-type-creation-item-card',
     fnsetschooltypefun:function()
     {
-        if(document.querySelector('#'+this.schooltypeidzzzz).checked==true){
+        if(document.querySelector('#'+this.id).checked==true){
         this.fz1();
         this.fz2();
    

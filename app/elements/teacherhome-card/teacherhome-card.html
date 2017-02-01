@@ -435,25 +435,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.subjecttostudent=true;
         this.sectioncreation=true;
         this.gradetosection=true;
-       
-
-       //  this.Report=true;
-       //  this.GenerateReport=true;
-       //  this.Approve=true;       
-       //  this.BA=true;
-       //  this.TA=true;
-       //  this.Analysis=true;
-       //  this.ConsolidatedReport=true;
-       // // this.teach_obser=true;
-       //  this.comparison=true;
-       //  this.Approvalstatus=true;
-       //  this.editinfo=true;
-       //  this.createrole=true;
-       //  this.createemployee=true;
-       //  this.createsubject=true;
-       //  this.teach_obser=true;
-        // localStorage.setItem("curr_sess_page","teacherhome-card");
-      },
+       },
       FnSelectacademicyear:function(e){
         academicyear = e.target.selectedItem.textContent.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
@@ -569,17 +551,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
-          // this.createrole=false;
-          // this.createemployee=false;  
-
-          // this.teach_obser=false;  
        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
-          // this.createrole=false;
-          // this.teach_obser=false; 
-         // this.createcategory=false;  
-        //  this.createschoolz=false; 
          this.createemployee=false;
          this.schooltyptograde=false;
           this.workingdats=false;
@@ -588,14 +562,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.categorytoschooltype=false;
           this.gradetosubject=false;
           this.subjecttostudent=false;
-           this.sectioncreation=false;
+          this.sectioncreation=false;
           this.gradetosection=false;
-       
-          //this.createschooltype=false;
-          //this.createsubject=false;
-         // this.createrole=false;
-       // this.teach_obser=false;        
-        }
+          }
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
         {
@@ -608,55 +577,21 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-         
-          //this.createemployee=false;
-          //this.workingdats=false;
-          //this.SchooltypettoGrade=false;
-          //this.employeetograde=false;
-          //this.emptocategory=false;
-          //this.categorytoschooltype=false;
-          //this.gradetosubject=false;
-          //this.subjecttostudent=false;
-          //this.teach_obser=false;        
-        }
+         }
      
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
           this.subjectteacher=false;
-          // this.BA=false;
-          // this.TA=false;
-          // this.GenerateReport=false;
-        }  
+           }  
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='class-teacher'){  
           this.classteacher=false;
-          // this.BA=false;        
-          // this.TA=false;
-          // this.GenerateReport=false;
-          // this.Report=false;
-          // this.comparison=false;
-          // this.editinfo=false;
-          // this.ConsolidatedReport=false;
-        }
+          }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
-          // this.BA=false;
-          // this.TA=false;
             this.highlevelcommon=false;
-          // this.ConsolidatedReport=false;
-          // this.Report=false;
-          // this.GenerateReport=false;
-          // this.teach_obser=false;
-          // this.comparison=false;
-          // this.Approvalstatus=false;
-          // this.Analysis=false;
           }
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
             this.coordinator=false;
-          // this.GenerateReport=false;
-          // this.Approve=false;
-          // this.Analysis=false;
-          // this.teach_obser=false;
-          // this.Approvalstatus=false;
           }
         
       },
@@ -836,9 +771,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('schooltype-to-grade-card','');
-       // document.querySelector('category-card').ready();
-      this.$.uiservice.selectschooltype1();
-      },
+        this.$.uiservice.selectschooltype1();
+       },
 
       FnFeeCollection:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');
