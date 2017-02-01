@@ -226,6 +226,7 @@
       fetchschoolResponse:function(e){
         // alert(JSON.stringify(e.detail.response.returnval))
         document.querySelector('consolidated-report-card').schoolarr=e.detail.response.returnval;
+        document.querySelector('teacherhome-card').schoolarr=e.detail.response.returnval;
       },
        callGradeService:function(){
         // alert('calling');

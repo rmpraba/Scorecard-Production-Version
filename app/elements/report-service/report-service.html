@@ -605,7 +605,7 @@ var i;
         this.$.fetchconsolidatedtermwiseajax.generateRequest();
     },
     fetchconsolidatedtermwiseResponse:function(e){
-       var overall=[];
+      var overall=[];
       var assesmentarr=[];
       var subarr=[];
       var titlearr=[];
@@ -650,12 +650,12 @@ var i;
             titlearr.push("Grade");
           }
         }    
-       // alert(JSON.stringify(subfinal));
-       // alert(JSON.stringify(overall));
+       alert(JSON.stringify(subfinal));
+       alert(JSON.stringify(overall));
         document.querySelector("consolidatedtermwise-report-card").subjectarr=subfinal;
         document.querySelector("consolidatedtermwise-report-card").titlearr=titlearr;
         document.querySelector("consolidatedtermwise-report-card").itemarr=overall;
-        subarr=[];
+        subfinal=[];
         overall=[];
         titlearr=[];
       }

@@ -375,7 +375,7 @@ app.post('/subject-service',  urlencodedParser,function (req, res)
     "(select subject_id from mp_grade_subject where "+
     "grade_id in('g1','g2','g3','g4'))";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn')
+   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select * from md_subject where subject_id in "+
     "(select subject_id from mp_grade_subject)";
@@ -5014,7 +5014,7 @@ app.post('/updatestudentinfo-service' ,  urlencodedParser,function (req, res)
 {    
  var qur="update md_student set student_name='"+req.query.name+"' where school_id='"+req.query.schoolid+"' and "+
  " id='"+req.query.enrno+"'";
- var qur1="update parent set parent_name='"+req.query.pname+"',alternate_mail='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
+ var qur1="update parent set parent_name='"+req.query.pname+"',alternate_mail='"+req.query.alternatemail+"',email='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'"; 
  var qur2=" select * from parent where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'";

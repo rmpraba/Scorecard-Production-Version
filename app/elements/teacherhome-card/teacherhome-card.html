@@ -148,56 +148,18 @@
 
     <div class="managementreport" hidden$="{{managementreport}}">
     <div class="inner1">
+    <div class="card" hidden$="{{GeneratemgmtReport}}" style="width: 60%;">
+       <paper-button on-click="FnGeneratemgmtReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
+    </div>
+
     <div class="card" hidden$="{{ConsolidatedReport}}">
        <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
     </div>
-    </div>
-    </div>
-     <!--  <div id="entry" class="card" hidden$="{{BA}}">    
-       <paper-button on-click="FnSelectPreEntryType" no ink><img src="../../images/pre-entry.png" height="180px" width="180px"></paper-button>
-      </div>
-      <div  class="card" hidden$="{{TA}}">
-       <paper-button on-click="FnSelectTermType" no ink><img src="../../images/term.png" height="180px" width="180px"></paper-button>
-      </div>
-      <div class="card" hidden$="{{Report}}">
-       <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
-      </div>  
-      <div class="card" hidden$="{{GenerateReport}}">
-       <paper-button on-click="FnGenerateReportcard" no ink><img src="../../images/report-icon.gif" height="180px" width="180px"></paper-button>
-      </div>
-      <div class="card" hidden$="{{Approve}}">
-       <paper-button on-click="FnApprovecard" no ink><img src="../../images/approve.jpg" height="180px" width="180px"></paper-button>
-      </div>
-      <div class="card" hidden$="{{Analysis}}">
-       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
-      </div>
-      <div class="card" hidden$="{{ConsolidatedReport}}">
-       <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
-      </div>
-      <div class="card" hidden$="{{Approvalstatus}}">
-       <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
-      </div>
-       <div class="card" hidden$="{{teach_obser}}">
-       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
-     </div>
-     <div class="card" hidden$="{{comparison}}">
-       <paper-button on-click="FnComparison" no ink><img src="../../images/portfolio.jpg" height="180px" width="180px"></paper-button>
-     </div>
-     <div class="card" hidden$="{{editinfo}}">
-       <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
-     </div>
-     <div class="card" hidden$="{{createemployee}}">
-       <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px"></paper-button>
-     </div>
-     <div class="card" hidden$="{{createrole}}">
-       <paper-button on-click="FnCreateRole" no ink><img src="../../images/role.png" height="180px" width="180px"></paper-button>
-     </div>
-      <div class="card" hidden$="{{createsubject}}">
-       <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px"></paper-button>
-     </div> -->
     
-    <!-- </center>   -->
     </div>
+    </div>
+     
+    
     <div class="cdialog">      
       <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
          <paper-dropdown-menu id="academicyear" label="Select Academic Year" disabled="{{read}}" required>
@@ -220,7 +182,20 @@
           </paper-dropdown-menu>
       </paper-dialog>
     </div>
+    
+    <div class="dialog">      
+      <paper-dialog id="schooldialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+          <paper-dropdown-menu id="term" label="Select School" disabled="{{read}}" required>
+            <paper-menu id="schoolname" class="dropdown-content" on-iron-select="FnSelectSchool" attr-for-selected="value" selected="{{selectschool}}">
+              <template is="dom-repeat" items="{{schoolarr}}">
+                <paper-item value="{{item.id}}">{{item.name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+      </paper-dialog>
+    </div>
    
+
     </div>
     <term-assesment-service id="assesmentservice"></term-assesment-service>
     <beginner-assesment-service id="bassesmentservice"></beginner-assesment-service>
@@ -239,6 +214,7 @@
         this.coordinator=true;
         this.highlevelcommon=true;
         this.managementreport=true;
+        this.GeneratemgmtReport=true;
        //  this.Report=true;
        //  this.GenerateReport=true;
        //  this.Approve=true;       
@@ -328,6 +304,20 @@
         // localStorage.setItem('curr_sess_loggedassesmenttype','Term');
         // this.$.assesmentservice.callAcademicService();
       },
+      FnGeneratemgmtReportcard:function()
+      {
+        this.$.scorecardservice.callSchoolService();
+        this.$.schooldialog.toggle();        
+        // localStorage.setItem('curr_sess_report','1');
+        // localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        // this.$.assesmentservice.callAcademicService();
+      },
+      FnSelectSchool:function(e){
+        var schoolid = e.target.selectedItem.value.trim();
+        sessionStorage.setItem("curr_sess_loggedschoolid",schoolid);
+        this.$.schooldialog.toggle();
+        this.FnGenerateReportcard();
+      },
       FnToggle:function(){
         this.$.dialog.toggle();
       },
@@ -370,6 +360,7 @@
       FnHideView:function(){ 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
+          this.GeneratemgmtReport=false;
           // this.createrole=false;
           // this.createemployee=false;  
           // this.teach_obser=false;        
