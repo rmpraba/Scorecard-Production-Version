@@ -317,16 +317,7 @@
         on-response="fetchsubjectseqResponse"
         debounce-duration="300"
     >
-     <iron-ajax                               
-        id="fetchsubjectnameajax"
-        url="{{fetchsubjectcnameurl}}"
-        params="{{fetchsubjectnameparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="fetchsubjectnameResponse"
-        debounce-duration="300"
-    >
+    
      <iron-ajax        
         id="deletesubjectnameajax"
         url="{{deletesubjectnameurl}}"
@@ -1013,7 +1004,52 @@
         method="post"
         on-response="deletesubjectz11Response"
         debounce-duration="300">
-    
+          <iron-ajax        
+        id="deletesubjectz11ajax"
+        url="{{deletesubjectz11url}}"
+        params="{{deletesubjectz11param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="deletesubjectz11Response"
+        debounce-duration="300">
+        <iron-ajax        
+        id="fngetstudentajax"
+        url="{{fngetstudenturl}}"
+        params="{{fngetstudentparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fngetstudentResponse"
+        debounce-duration="300">
+        <iron-ajax        
+        id="FngetStudentpasssectionajax"
+        url="{{FngetStudentpasssectionurl}}"
+        params="{{FngetStudentpasssectionparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="FngetStudentpasssectionResponse"
+        debounce-duration="300">
+         <iron-ajax        
+        id="fnsetstudentinfoajax"
+        url="{{fnsetstudentinfourl}}"
+        params="{{fnsetstudentinfoparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnsetstudentinfoResponse"
+        debounce-duration="300">
+         <iron-ajax        
+        id="fnsetstudentinfo1ajax"
+        url="{{fnsetstudentinfo1url}}"
+        params="{{fnsetstudentinfo1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnsetstudentinfo1Response"
+        debounce-duration="300">
+      
   </template>
 
   <script>
@@ -1023,6 +1059,86 @@
   
     Polymer({
       is: 'master-ui-service',
+    
+      fngetstudent:function(stugradeid,stugrade)
+      {
+      this.fngetstudenturl=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
+      var obj={"school_id":"","stugradeid":""};
+      obj.stugradeid=stugradeid;
+      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+      this.fngetstudentparam=obj;
+      this.$.fngetstudentajax.generateRequest();
+     },
+    fngetstudentResponse:function(e){
+      var res=e.detail.response.returnval; 
+      alert(JSON.stringify(res));
+        document.querySelector('Student-to-section-mapping-card').sectionarr=res;
+     },
+     fnsetstudentinfo:function(studeninfoarr,studentclassid,schooltype){
+     for(var i=0;i<studeninfoarr.length;i++){
+             var id=studeninfoarr[i].id;
+             var student_name=studeninfoarr[i].student_name;
+             var dob=studeninfoarr[i].dob;
+             var Gender=studeninfoarr[i].gender;
+    this.fnsetstudentinfourl=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfo-service";
+       var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","studentclassid":""};
+           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+           obj.student_name=student_name;
+           obj.id=id;
+           obj.school_type=schooltype;
+           obj.studentclassid=studentclassid;
+           obj.dob=dob;
+           obj.Gender=Gender;
+        //   obj.stugradeid=stugradeid;
+           this.fnsetstudentinfoparam=obj;
+           alert(JSON.stringify(obj));
+           this.$.fnsetstudentinfoajax.generateRequest();
+
+           this.fnsetstudentinfo1url=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfo1-service";
+       var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","studentclassid":"","flag":""};
+           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+           obj.student_name=student_name;
+           obj.id=id;
+           obj.school_type=schooltype;
+           obj.studentclassid=studentclassid;
+           obj.dob=dob;
+           obj.Gender=Gender;
+           obj.flag=0;
+        //   obj.stugradeid=stugradeid;
+           this.fnsetstudentinfo1param=obj;
+           alert(JSON.stringify(obj));
+           this.$.fnsetstudentinfo1ajax.generateRequest();
+    }
+    
+     },
+     fnsetstudentinfo1Response:function(e){
+          var res=e.detail.response.returnval; 
+       alert(JSON.stringify(res));
+       if(res=="Updated!"){
+           document.querySelector('Student-to-section-mapping-card').f1();
+       }
+    
+     },
+     fnsetstudentinfoResponse:function(e){   
+        var res=e.detail.response.returnval; 
+       alert(JSON.stringify(res));
+    
+       },
+      FngetStudentpasssection:function(stugradeid,stugrade)
+      {
+      this.FngetStudentpasssectionurl=sessionStorage.getItem("addrinfo")+"/FngetStudentpasssection-service";
+          var obj={"school_id":"","stugrade":"","flag":""};
+          obj.stugrade=stugrade;
+          obj.flag=1;
+          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+      this.FngetStudentpasssectionparam=obj;
+      this.$.FngetStudentpasssectionajax.generateRequest();
+     },
+  FngetStudentpasssectionResponse:function(e){
+      var res=e.detail.response.returnval; 
+      alert(JSON.stringify(res));
+      document.querySelector('Student-to-section-mapping-card').studentlistarr=res;
+    },
     
 
        fnempgenerateid:function()
@@ -1102,9 +1218,8 @@
     },
       studentsectiontypeResponse:function(e){
        var res=e.detail.response.returnval; 
-       //alert(JSON.stringify(res));
-      //  alert('1');
-    document.querySelector('Student-to-section-mapping-card').studentsectionarr=res;
+       alert(JSON.stringify(res));
+       document.querySelector('Student-to-section-mapping-card').studentsectionarr=res;
    
       },
       selectsectiongradeResponse:function(e){
@@ -1112,7 +1227,7 @@
        alert(JSON.stringify(res));
       // alert('1');
         document.querySelector('school-section-creation-card').schootypearrss=res;
-      },
+      },   
     
       tranfersection:function(setgradeid)
       {
@@ -1931,7 +2046,7 @@ insertschoolTypename:function(schooltypesarr)
              //  alert(JSON.stringify(res));
             if(res=="Deleted!")
             {
-                alert("Deleted !");
+                alert("Deleted!");
                 this.fnschoolcreation();
             }
             else
@@ -2630,7 +2745,7 @@ insertschoolTypename:function(schooltypesarr)
         }
         else
         {
-            document.querySelector('subject-card').subjecttview();
+           // document.querySelector('subject-card').subjecttview();
              //alert(JSON.stringify(e.detail.response.returnval));
         document.querySelector('subject-card').subarr=e.detail.response.returnval;  
         }
@@ -2655,7 +2770,7 @@ insertschoolTypename:function(schooltypesarr)
         }
         else
         {
-            document.querySelector('subject-card').subjectthide();     
+          //  document.querySelector('subject-card').subjectthide();     
         }
       },
 
