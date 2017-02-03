@@ -21,6 +21,16 @@
         on-response="empschooltypegetcategoryResponse"
         debounce-duration="300">
        </iron-ajax>
+           <iron-ajax        
+        id="emplangschooltypegetcategoryajax"
+        url="{{emplangschooltypegetcategoryurl}}"
+        params="{{emplangschooltypegetcategoryparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="emplangschooltypegetcategoryResponse"
+        debounce-duration="300">
+       </iron-ajax>
         
   </div>
   </template>
@@ -31,23 +41,53 @@
     Polymer({
       is: 'employee-category-item-card',
     FnsetGradename:function(e){
-       if(document.querySelector('#'+this.schooltypecategoryid).checked==true)
-       {
-            //alert(this.schooltypecategoryid);
-               sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
-              this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
-               var obj={"schoolcategoryid":""};
+       if(document.querySelector('#'+this.id).checked==true){
+               alert(this.id);
+              sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
+               document.querySelector('employe-schooltype-to-category-card').langprefere();
+             }
+          else if(document.querySelector('#'+this.id).checked==false){
+                 document.querySelector('employe-schooltype-to-category-card').clean();
+           }
+  },
+    fnsetemployeelanprefer:function(emplangprefernce){
+      var e=emplangprefernce;
+      alert(e);
+
+      if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
+ this.emplangschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywww-service";
+               var obj={"schoolcategoryid":"","langugage_pref":""};
                obj.schoolcategoryid=this.schooltypecategoryid;
+               obj.langugage_pref=emplangprefernce;
+               this.emplangschooltypegetcategoryparam=obj;
+               this.$.emplangschooltypegetcategoryajax.generateRequest();
+                    alert(JSON.stringify(obj)); 
+       
+      }
+     else{
+       this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
+               var obj={"schoolcategoryid":""};
+               obj.schoolcategoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                this.empschooltypegetcategoryparam=obj;
                this.$.empschooltypegetcategoryajax.generateRequest();
-             }
+                     alert(JSON.stringify(obj)); 
+   
+        
+     }
+
     },
     empschooltypegetcategoryResponse:function(e){
         var res=e.detail.response.returnval;
+              alert(JSON.stringify(res)); 
+          
          document.querySelector('employe-schooltype-to-category-card').getcategory(res);
-        
-
-          }
+        },
+        emplangschooltypegetcategoryResponse:function(e){
+           var res=e.detail.response.returnval;
+                alert(JSON.stringify(res)); 
+             document.querySelector('employe-schooltype-to-category-card').getcategory(res);
+    
+        },
 
     });
   })();

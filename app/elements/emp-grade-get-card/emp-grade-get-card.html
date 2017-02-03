@@ -66,11 +66,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      empsectionarr.push(obj);
                      v.push(obj);
                      //alert(JSON.stringify(obj));
-                 document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr); 
-
-                }   
+               document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr); }   
               else if(document.querySelector('#'+this.id).checked==false){
-                 for(var i=0;i<empsectionarr.length;i++){
+                alert('1');
                  this.empsectionclassurl=sessionStorage.getItem("addrinfo")+"/empsectionclass-service";
                  var obj={"school_id":"","employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -79,10 +77,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.empsubjectidz=this.empsubjectidz;
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
-                     //alert(JSON.stringify(obj));
+                     alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
                      this.$.empsectionclassajax.generateRequest();
-                    empsectionarr.splice(i,1);
+                    for(var i=0;i<empsectionarr.length;i++){
+             empsectionarr.splice(i,1);
           }
         }
       },
@@ -108,13 +107,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.empsubjectidz=this.empsubjectidz;
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
-                     alert(JSON.stringify(obj));
+                   //  alert(JSON.stringify(obj));
                      empsectionarr.splice(obj);
                      empdbsubjectarr.splice(obj);
     }, 
       empsctionmaping:function(arr)
       {
         empdbsubjectarr=arr;
+            alert(JSON.stringify(empdbsubjectarr));
+         
         for(var i=0;i<empdbsubjectarr.length;i++)
         {
              //var flag=0;
@@ -134,7 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              obj.empsubjectidz=empsubjectidz;
              obj.employeesectionnamez=employeesectionnamez;
              obj.employeesectionidz=cassidz;
-             empsectionarr.push(obj);
+          //   empsectionarr.push(obj);
              v.push(obj);
               //alert(JSON.stringify(empsectionarr));}}
             }

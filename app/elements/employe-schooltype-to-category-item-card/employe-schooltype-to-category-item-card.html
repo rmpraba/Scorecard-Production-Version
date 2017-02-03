@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="employe-schooltype-to-category-item-card">
   <template>
-    <style>
+    <style>   
       :host {
         display: block;
       }
@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fnschooltypeget11:function(e)
       {
         //alert(this.schooltypeidxx);
-       if(document.querySelector('#'+this.schooltypeidxx).checked==true)
+       if(document.querySelector('#'+this.id).checked==true)
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
           this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
