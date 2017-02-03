@@ -111,7 +111,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'working-days-card',
       acdemic:function()
       {
-        alert(this.academicyears);
+       // alert(this.academicyears);
+                  var a=localStorage.getItem("curr_sess_academicyear");
+        alert(a);
         this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
       },
      
