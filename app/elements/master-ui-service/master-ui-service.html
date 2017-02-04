@@ -1444,7 +1444,7 @@
     
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
-            //alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
          if(res=="Inserted!"){
           this.fnschoolemployeepersonal();
         }
@@ -1452,7 +1452,7 @@
 
       empschooltypemappingResponse:function(e){
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
        },
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
@@ -1507,7 +1507,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
  },
  fnsavesectionResponse:function(e){
      var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
 fnempsubjectdetails:function(getgradenames)
  {
@@ -1534,8 +1534,10 @@ fnempsubjectdetails:function(getgradenames)
        this.fnempsubjectdetailsparam=obj;
         this.$.fnempsubjectdetailsajax.generateRequest();}
     },
-  fnempsubjectdetailsResponse:function(e){
+  fnempsubjectdetailsResponse:function(e)
+  {
       var res=e.detail.response.returnval; 
+    alert(JSON.stringify(res));
  },
  fnrolesaveinfo:function(passrolearr){
     //alert(JSON.stringify(passrolearr));
@@ -1896,6 +1898,7 @@ insertschoolTypename:function(schooltypesarr)
      insertschoolTypenameResponse:function(e){
         var res=e.detail.response.returnval;
          alert(JSON.stringify(res));
+
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
@@ -1980,9 +1983,10 @@ insertschoolTypename:function(schooltypesarr)
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
           alert(JSON.stringify(res)); 
-          if(res=="Inserted!"){
+          if(res=="Inserted!")
+          {
           this.fnschoolcreation();
-        }
+          }
       },
       Fnsaveschoolinfo:function(school,schoolid1,telnum,MobileNumber,Emailid,Website,addr,addr1,addr2,addr3,affiliation,Boardselection)
       {

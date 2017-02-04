@@ -186,8 +186,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       alert(JSON.stringify(res));
     
       },
-      FnSubmit:function(e){
-      var obj={"school_id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
+      FnSubmit:function(e)
+      {
+         var obj={"school_id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid"); 
                          obj.empid=this.employeesetidz;
                          obj.empname=this.empnames;
@@ -199,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
              this.$.empremapid.close();
       
-                           },
+      },
 
          Fnsubjectclean:function(e){
       //alert('1');
