@@ -200,7 +200,7 @@ app.post('/grade-service',  urlencodedParser,function (req, res)
   var schoolid={school_id:req.query.schoolid};
   var loggedid={id:req.query.loggedid};
   var roleid={role_id:req.query.roleid};
-  // console.log(roleid);
+  console.log(roleid);
   // var qur="select grade_name from md_grade where grade_id in(select grade_id from mp_teacher_grade where id='"+loggedid+"')";
   if(req.query.roleid=='subject-teacher')
   {
