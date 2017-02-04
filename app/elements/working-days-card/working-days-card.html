@@ -111,11 +111,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'working-days-card',
       acdemic:function()
       {
-       // alert(this.academicyears);
-                  var a=localStorage.getItem("curr_sess_academicyear");
-        alert(a);
         this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
-      },
+     },
      
       
      /* Fnterm:function(e){
@@ -133,14 +130,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.termgrade=e.target.selectedItem.value;
       },
       FnSubmit:function(e){
-          this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
-            alert( this.acadamicyears);
-           if(this.termid11=="")
-           {
+            this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
+            //alert( this.acadamicyears);
+           if(this.termid11==""){
             alert("select the current section");
            }
            else{
-      this.$.uiservice.terminsert(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade,this.noofdays);
+    this.$.uiservice.terminsert(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade,this.noofdays);
        this.noofdays="";
       document.querySelector('#termid11').selected=-1;
       //document.querySelector('#grdj').selected=-1;
@@ -153,7 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        document.querySelector('#wgradeid').selected=-1;
       // document.querySelector('#wacadamicid').selected=-1;
        this.noofdays="";
-   }
+   },
 
  });
   })();

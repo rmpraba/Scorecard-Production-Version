@@ -484,7 +484,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       
 
       FnSelectacademicyear:function(e){
-        academicyear = e.target.selectedItem.textContent.trim();
+        /*academicyear = e.target.selectedItem.textContent.trim();*/
+        academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         this.$.assesmentservice.callTermService("Term");
@@ -776,7 +777,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.empschooltype();
     
       },
-      SubjectToStudent:function(e){
+      SubjectToStudent:function(e)
+      {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('student-to-subject-mapping-card','');
        document.querySelector('student-to-subject-mapping-card').fnsetreclear();
@@ -786,7 +788,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         //this.$.uiservice.TeachertoGradeSectionNames();
         this.$.uiservice.SelectSchoolgrades();
       },
-        FnCreateEmployee:function(e){
+        FnCreateEmployee:function(e)
+        {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('new-employee-creation-card','');
         //document.querySelector('schooltype-card').ready();
@@ -799,8 +802,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('working-days-card','');
-        //document.querySelector('working-days-card').rfclaen();
-        //document.querySelector('working-days-card').acdemic();
+        document.querySelector('working-days-card').rfclaen();
+        document.querySelector('working-days-card').acdemic();
         this.$.uiservice.SelectSchoolName();
         this.$.uiservice.fnsetgrademapping();
       },

@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer({
       is: 'employe-creation-card',
      fnempsetsubject:function(e){
-      alert(this.emplanpreff+"  "+this.employeesetidz+this.empnames+this.employeesetidz);
+      //alert(this.emplanpreff+"  "+this.employeesetidz+this.empnames+this.employeesetidz);
       //  alert(this.id);
          f=this.id;
      //  alert(document.querySelector('#'+this.id).checked);
@@ -102,7 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              obj.categoryid=this.categoryid;
              empgetarr.push(obj);
              v.push(obj);
-              alert(JSON.stringify(empgetarr));
+              //alert(JSON.stringify(empgetarr));
             document.querySelector('employe-schooltype-to-category-card').passempgrade(empgetarr); 
               
             } 
@@ -158,7 +158,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        },
      setempsubject:function(arr){
              empsubjectarr=arr;
-             alert(JSON.stringify(empsubjectarr));
+             //alert(JSON.stringify(empsubjectarr));
            for(var i=0;i<empsubjectarr.length;i++){
               
               var empid=empsubjectarr[i].emp_id;
@@ -195,7 +195,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarrdelarr.push(obj);
-                         alert(JSON.stringify(obj));
+                         //alert(JSON.stringify(obj));
              document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
              this.$.empremapid.close();
       

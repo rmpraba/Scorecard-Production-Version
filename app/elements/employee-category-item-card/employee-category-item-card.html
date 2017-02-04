@@ -42,7 +42,7 @@
       is: 'employee-category-item-card',
     FnsetGradename:function(e){
        if(document.querySelector('#'+this.id).checked==true){
-               alert(this.id);
+               //alert(this.id);
               sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
                document.querySelector('employe-schooltype-to-category-card').langprefere();
              }
@@ -52,7 +52,7 @@
   },
     fnsetemployeelanprefer:function(emplangprefernce){
       var e=emplangprefernce;
-      alert(e);
+      //alert(e);
 
       if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
  this.emplangschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywww-service";
@@ -61,7 +61,7 @@
                obj.langugage_pref=emplangprefernce;
                this.emplangschooltypegetcategoryparam=obj;
                this.$.emplangschooltypegetcategoryajax.generateRequest();
-                    alert(JSON.stringify(obj)); 
+                    //alert(JSON.stringify(obj)); 
        
       }
      else{
@@ -70,7 +70,7 @@
                obj.schoolcategoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                this.empschooltypegetcategoryparam=obj;
                this.$.empschooltypegetcategoryajax.generateRequest();
-                     alert(JSON.stringify(obj)); 
+                     //alert(JSON.stringify(obj)); 
    
         
      }
@@ -78,13 +78,13 @@
     },
     empschooltypegetcategoryResponse:function(e){
         var res=e.detail.response.returnval;
-              alert(JSON.stringify(res)); 
+              //alert(JSON.stringify(res)); 
           
          document.querySelector('employe-schooltype-to-category-card').getcategory(res);
         },
         emplangschooltypegetcategoryResponse:function(e){
            var res=e.detail.response.returnval;
-                alert(JSON.stringify(res)); 
+                //alert(JSON.stringify(res)); 
              document.querySelector('employe-schooltype-to-category-card').getcategory(res);
     
         },
