@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecardbatabase'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -5639,7 +5639,7 @@ app.post('/fnschoolcreation-service',  urlencodedParser,function (req,res)
       }
       else if(rows.length==0 || rows.length==null)
       {
-        res.status(200).json({'returnval': empty});
+        res.status(200).json({'returnval': "empty"});
       }
     }
     else
@@ -6507,8 +6507,8 @@ app.post('/fnrolesaveinfo-service' , urlencodedParser,function (req, res)
   });
 app.post('/Fnpersonalinfo-service' ,  urlencodedParser,function (req, res)
  {  
-  var qur="UPDATE  md_employee_creation SET emp_id='"+req.query.employeeid+"' where emp_name='"+req.query.employeename+"' and emp_phone='"+req.query.employeephone+"' and school_id='"+req.query.school_id+"' and emp_password='"+req.query.employeepassword+"' and emp_mobile='"+req.query.employeemobile+"'"; 
-    //console.log(qur);
+  var qur="UPDATE  md_employee_creation SET   emp_name='"+req.query.employeename+"' , emp_phone='"+req.query.employeephone+"' , emp_password='"+req.query.employeepassword+"' , emp_mobile='"+req.query.employeemobile+"' where emp_id='"+req.query.employeeid+"' and school_id='"+req.query.school_id+"'"; 
+    console.log(qur);
     connection.query(qur,function(err, rows)
     {
     if(!err)
@@ -8045,6 +8045,55 @@ app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
 
       });
     });
+app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, res)
+    {  
+      var e={id:req.query.school_id};
+      console.log(e);
+      var qur="select * from md_student where school_id='"+req.query.school_id+"' and class_id!='"+req.query.studentclassid+"' and id='"+req.query.id+"'";
+      connection.query(qur,function(err, rows){
+        if(!err){
+
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+        }
+
+        else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+
+      });
+    });
+app.post('/fnsetstudentinfohistory1-service',  urlencodedParser,function (req, res){
+
+
+  var response={  
+     school_id:req.query.school_id,
+     id:req.query.id,
+     student_name:req.query.student_name,
+     school_type:req.query.school_type,
+     dob:req.query.dob,
+     Gender:req.query.Gender,
+     classs_id:req.query.class_id, 
+     ageinmonth:req.query.ageinmonth,   
+    }
+   console.log(response);
+  connection.query("INSERT INTO md_student_history set ?",[response],
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': 'insert'});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'not insert'});
+    }  
+
+  });
+});
+
+
 app.post('/studentsectiontype-service' ,urlencodedParser, function (req, res)
     {  
       var e={id:req.query.school_id};
@@ -8147,7 +8196,7 @@ app.post('/fnsetstudentinfo-service' , urlencodedParser,function (req, res)
    var qur= "SELECT * FROM  md_student WHERE school_id='"+req.query.school_id+"' and id='"+req.query.id+"' and student_name='"+req.query.student_name+"'";
    
     
-    var qur1="update md_student set class_id='"+req.query.studentclassid+"' where school_id='"+req.query.school_id+"' and id='"+req.query.id+"' and student_name='"+req.query.student_name+"'";
+    var qur1="update md_student set class_id='"+req.query.studentclassid+"',school_type='"+req.query.school_type+"' where school_id='"+req.query.school_id+"' and id='"+req.query.id+"'";
 
     console.log(qur);
     console.log(qur1)

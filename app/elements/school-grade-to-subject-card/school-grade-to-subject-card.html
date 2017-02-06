@@ -91,13 +91,10 @@
             <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
           </template>
         </div>    
-
-
         <div class="subbcatt">
-          <div class="form-group-heading">
+          <div class="form-group-heading">   
             <h4> SUBJECT CATEGORY</h4>
           </div>
-              
           <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
             <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
             id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
@@ -143,8 +140,10 @@
         <div >
             <paper-button on-click='FnSave'></paper-button>  
          </div>
-         <div style="color:white;background-color:black;width:7%;margin-left:41%;border-radius:10px" id="z">
+    <div style="color:white;background-color:black;width:7%;margin-left:41%;border-radius:10px" id="z">
             <paper-button on-click="FnSavez">Submit</paper-button>  
+          <paper-button on-click="fndelete">Delete</paper-button>  
+    
            </div>
   </template>
   <script>
@@ -153,6 +152,7 @@
    var getgradearr=[];
    var getcategory=[];  
    var passservicearr=[];
+   var delpassservicearr=[];
     Polymer({
       is: 'school-grade-to-subject-card',   
      ready:function(){
@@ -175,6 +175,9 @@
       fnapssgradedetails:function(arr){
         passservicearr=arr;  
       },
+      fndelapssgradedetails:function(arr){
+         delpassservicearr=arr; 
+      },
       FnSavez:function(e){
            alert('save');
            //alert(JSON.stringify(passservicearr));
@@ -183,8 +186,12 @@
            document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
            document.querySelector('schoolcategory-type-item-card').fnschoolcategoryclean(); 
            document.querySelector('school-type-item-card').fnschooltypeclaen(); 
-     
-       },
+     },
+     fndelete:function(e){
+        this.$.uiservice.fndeletegradetosubmapping(delpassservicearr);
+     document.querySelector('school_grade-subject-item-card').Fngradeclean1(); 
+    
+     },
     getschoolcategory:function(arr1){
    //     alert('2');
     this.schooltypesubjectid=arr1;

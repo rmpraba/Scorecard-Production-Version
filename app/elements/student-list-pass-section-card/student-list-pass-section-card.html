@@ -27,25 +27,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() {
     'use strict';
   var paspstuinfo=[];
+  var spliceid;
     Polymer({
       is: 'student-list-pass-section-card',
       fnsudentGrade:function(e){
          alert(this.id);
          alert(document.querySelector('#'+this.id).checked);
-   /*if(document.querySelector('#'+this.admissinno).checked==true){
-*/
+   if(document.querySelector('#'+this.id).checked==true){
+
+        var obj={"id":"","student_name":"","dob":"","gender":"","":"enq_id"};
+            obj.id=this.admissinno;
+            obj.student_name=this.studentname;
+            obj.dob=this.dob;
+            obj.gender=this.gender;
+            obj.enq_id=this.id;
+            paspstuinfo.push(obj);
+            alert(JSON.stringify(obj));
+            document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);
+        }
+  
+       else if(document.querySelector('#'+this.id).checked==false){
+             for(var i=0;i<paspstuinfo.length;i++){
+               paspstuinfo.splice(i,1);
+            }
+              }
+      },
+        fnsplice:function(){
+        for(var i=0;i<paspstuinfo.length;i++){
+               spliceid=paspstuinfo[i].enq_id;
+              document.querySelector('#'+spliceid).checked=false;
+          }
         var obj={"id":"","student_name":"","dob":"","gender":""};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;
             obj.gender=this.gender;
-          
-            paspstuinfo.push(obj);
-            alert(JSON.stringify(obj));
-            document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);
-     
-         /*}*/
-       }
+            paspstuinfo.splice(obj);
+      
+        },
 
     });
   })();

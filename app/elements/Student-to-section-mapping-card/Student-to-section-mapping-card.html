@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div>
       <CENTER>
-        <h3><b>Student To Subject mMapping</b></h3>
+        <h3><b>Student To Section Mapping</b></h3>
       </CENTER>
     </div>
 
@@ -53,9 +53,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </paper-menu>
           </paper-dropdown-menu>
                   <template is="dom-repeat" items="{{studentlistarr}}" as="view">
-              <student-list-pass-section-card studentname="{{view.student_name}}" 
-               id="{{view.enquiry_no}}" admissinno="{{view.admission_no}}" gender="{{view.gender}}" dob="{{view.dob}}"></student-list-pass-section-card>
-            </template>
+                 <student-list-pass-section-card studentname="{{view.student_name}}" 
+                  id="{{view.enquiry_no}}" admissinno="{{view.admission_no}}" gender="{{view.gender}}" dob="{{view.dob}}"></student-list-pass-section-card>
+                 </template>
           </div>  
 
           </div>  
@@ -81,8 +81,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
    fnemployeename:function(e){
     this.studentclassid=e.target.selectedItem.value;
-    alert( this.studentclassid+schooltype);
-     this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.studentclassid,schooltype);
+    alert(this.studentclassid+schooltype);
+       this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.studentclassid,schooltype);
+       this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.studentclassid,schooltype);
+         document.querySelector('student-list-pass-section-card').fnsplice();
+  
 
     },
    fnselectgrade:function(e){
