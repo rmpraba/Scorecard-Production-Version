@@ -4,7 +4,7 @@
 <dom-module id="master-ui-service">
   <template>
     
-     <iron-ajax         
+     <iron-ajax            
         id="subjectcreationajax"
         url="{{subjectcreationurl}}"
         params="{{subjectcreationparam}}"
@@ -1257,7 +1257,7 @@
                          obj.subjectid=subjectid;
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                         alert(JSON.stringify(obj));
+                         //alert(JSON.stringify(obj));
                         this.deletesubjectzparam=obj;
                        this.$.deletesubjectzajax.generateRequest();
      this.deletesubjectz11url=sessionStorage.getItem("addrinfo")+"/deletesubjectz11-service";
@@ -1268,7 +1268,7 @@
                          obj.subjectid=subjectid;
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                         alert(JSON.stringify(obj));
+                         //alert(JSON.stringify(obj));
                         this.deletesubjectz11param=obj;
                        this.$.deletesubjectz11ajax.generateRequest();
       
@@ -1276,13 +1276,13 @@
  
         },
         deletesubjectz11Response:function(e){
-   var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+        var res=e.detail.response.returnval; 
+      //alert(JSON.stringify(res));
    
         },
              deletesubjectzResponse:function(e){
-     var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+            var res=e.detail.response.returnval; 
+      //alert(JSON.stringify(res));
     
       },
  
@@ -1314,7 +1314,7 @@
       },
       selectsectiongradeResponse:function(e){
        var res=e.detail.response.returnval; 
-       alert(JSON.stringify(res));
+       //alert(JSON.stringify(res));
       // alert('1');
         document.querySelector('school-section-creation-card').schootypearrss=res;
       },   
@@ -1534,7 +1534,7 @@
     
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
-            //alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
          if(res=="Inserted!"){
           this.fnschoolemployeepersonal();
         }
@@ -1542,7 +1542,7 @@
 
       empschooltypemappingResponse:function(e){
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
        },
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
@@ -1564,13 +1564,13 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
         obj.emp_schol_type=empschooltypeid;
         obj.flage='active';
         this.fnschooltypesaveinfoparam=obj;
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
         this.$.fnschooltypesaveinfoajax.generateRequest();
     }
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr){
      for(var i=0;i<empsectionarr.length;i++){
@@ -1590,14 +1590,14 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
         obj.rolename='subject-teacher';
         obj.flage='active';
         this.fnsavesectionparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.fnsavesectionajax.generateRequest();
     }
               
  },
  fnsavesectionResponse:function(e){
      var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
 fnempsubjectdetails:function(getgradenames)
  {
@@ -1624,8 +1624,10 @@ fnempsubjectdetails:function(getgradenames)
        this.fnempsubjectdetailsparam=obj;
         this.$.fnempsubjectdetailsajax.generateRequest();}
     },
-  fnempsubjectdetailsResponse:function(e){
+  fnempsubjectdetailsResponse:function(e)
+  {
       var res=e.detail.response.returnval; 
+    alert(JSON.stringify(res));
  },
  fnrolesaveinfo:function(passrolearr){
     //alert(JSON.stringify(passrolearr));
@@ -1823,7 +1825,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         alert(JSON.stringify(res));  
+         //alert(JSON.stringify(res));  
         document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
       },
    
@@ -1834,7 +1836,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      },
     selectrolenameResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         document.querySelector('new-employee-creation-card').selectrolearr=res; 
      },
    empsubjectTeacher:function(){
@@ -1909,7 +1911,7 @@ fnschoolemployeerole:function( employeeid,employeename){
       termrecoveryResponse:function(e)
       {
         var res=e.detail.response.returnval;
-         alert(JSON.stringify(res));
+         //alert(JSON.stringify(res));
          //alert(JSON.stringify(res[0].no_of_days));
          document.querySelector('working-days-card').noofdays=res[0].no_of_days;
       },
@@ -1986,6 +1988,7 @@ insertschoolTypename:function(schooltypesarr)
      insertschoolTypenameResponse:function(e){
         var res=e.detail.response.returnval;
          alert(JSON.stringify(res));
+
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
@@ -2070,9 +2073,10 @@ insertschoolTypename:function(schooltypesarr)
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
           alert(JSON.stringify(res)); 
-          if(res=="Inserted!"){
+          if(res=="Inserted!")
+          {
           this.fnschoolcreation();
-        }
+          }
       },
       Fnsaveschoolinfo:function(school,schoolid1,telnum,MobileNumber,Emailid,Website,addr,addr1,addr2,addr3,affiliation,Boardselection)
       {

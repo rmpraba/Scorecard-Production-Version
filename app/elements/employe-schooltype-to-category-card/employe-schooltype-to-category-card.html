@@ -278,7 +278,7 @@
        
        },
        Fndelte:function(e){
-       alert(JSON.stringify(deldbarrs));
+       //alert(JSON.stringify(deldbarrs));
         this.$.uiservice.fnemployeeedelfn(deldbarrs);
        document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
@@ -451,7 +451,7 @@ Fnselected:function(e)
           this.textvalue=e.target.selectedItem.textContent.trim();
           this.empname=e.target.selectedItem.value;
         //  alert(this.textvalue+this.empname);
-          alert(JSON.stringify(setspecificarr)); 
+          //alert(JSON.stringify(setspecificarr)); 
               var setsubarr=[]; 
                  for(var i=0;i<getcategory.length;i++){
                           var subject_name=getcategory[i].subject_name;
@@ -460,7 +460,7 @@ Fnselected:function(e)
                                 obj.subject=subject_name;
                                setsubarr.push(obj);
                           }
-                          alert(JSON.stringify(setsubarr));
+                          //alert(JSON.stringify(setsubarr));
                           this.setsubarrz=setsubarr;
           for(var i=0;i<setspecificarr.length;i++){
           if(this.empname==setspecificarr[i].emp_id){
@@ -475,7 +475,7 @@ Fnselected:function(e)
              }
           }
               this.bigarrzs=bigarrz;
-               alert(JSON.stringify(bigarrz));  
+               //alert(JSON.stringify(bigarrz));  
                this.$.dialogvaluezz.open();
               bigarrz=[];
           // bigarrz=[];

@@ -193,7 +193,7 @@
         }
       else  if(category=='category1') 
         {
-         alert(category+this.preflang);
+         //alert(category+this.preflang);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category,this.preflang);
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
@@ -201,7 +201,7 @@
       
        }
    else{
-        alert(category+this.preflang);
+        //alert(category+this.preflang);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
@@ -210,11 +210,11 @@
    }
 
        },
-      fnselectlanprefercence:function(e){
+      fnselectlanprefercence:function(e)
+      {
       this.preflang=e.target.selectedItem.textContent.trim(); 
-       alert(this.preflang);
-              
-   },
+       //alert(this.preflang);        
+      },
       FnSelectCategoryzzz:function(e)
       {      category=e.target.selectedItem.value;
              this.$.Languageprefernce.hidden=true;    
