@@ -72,14 +72,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     paspstuinfo.splice(i,1);
                    }
                 }
-              }  
-       document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
+              } 
+               if(paspstuinfo.length==0){
+                document.querySelector('student-list-pass-section-card').stupersonalinfo14();  
+              } 
+          document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
         }
   else if(document.querySelector('#'+this.id).checked==false){
              for(var i=0;i<paspstuinfo.length;i++){
                paspstuinfo.splice(i,1);
             }
-            }
+            }  
        },
         stupersonalinfo11:function(arr){
          //  alert(rr);
@@ -90,13 +93,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  alert(m);
            document.querySelector('#'+m).checked=false;
            }}},
+
+
         fnsplice:function(){
               var rnwn=paspstuinfo.length;
-               if(rnwn==0){
-                }
-             else{
+               if(rnwn>0){
 
-        for(var i=0;i<paspstuinfo.length;i++){
+                 for(var i=0;i<paspstuinfo.length;i++){
                spliceid=paspstuinfo[i].enq_id;
               document.querySelector('#'+spliceid).checked=false;
                }
@@ -107,30 +110,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.gender=this.gender;
             obj.enq_id=this.id;
             obj.classid=this.classid;
-          paspstuinfo.splice(obj);
-      }
+            paspstuinfo.splice(obj);
+      
+        }
+       
         },
         stupersonalinfo13:function(arr){
           //    var rnw=paspstuinfo.length; 
            alert(JSON.stringify(arr));
-      alert()
+
                 for(var k=0;k<arr.length;k++){
                       var  dbid=arr[k].dd;
                       alert(dbid);
                     document.querySelector('#'+dbid).checked=false;
-               
-            /* else{
-              for(var i=0;i<arr.length;i++){
-                for(var j=0;j<paspstuinfo.length;j++){
-                    var mm=paspstuinfo[j].classid+paspstuinfo[j].id;
-            if(arr[i].dd!=m){
-                 var mn=arr[i].dd;
-                     document.querySelector('#'+mn).checked=false;
-                   }
-             }
            }
-          }*/
-       }
      }
 
     });
