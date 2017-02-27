@@ -25,13 +25,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      }
     </style>
     <div class="outcard">
-    <paper-input  hidden>{{gender}}</paper-input>
-    <paper-input  hidden>{{dob}}</paper-input>
-    <paper-input  hidden>{{admissinno}}</paper-input>
-    <paper-input  hidden>{{admissinno1}}</paper-input>
-    <paper-input  hidden>{{classid}}</paper-input>
-    <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}"></paper-checkbox>
-    </div>
+       <div class="list-group col-sm-12 panel-body form-category">
+          <paper-input  hidden>{{gender}}</paper-input>
+          <paper-input  hidden>{{dob}}</paper-input>
+          <paper-input  hidden>{{admissinno}}</paper-input>
+          <paper-input  hidden>{{admissinno1}}</paper-input>
+          <paper-input  hidden>{{classid}}</paper-input>
+          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
+        </div>
+      </div>  
   </template>
   <script>
   (function() {
@@ -44,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'student-list-pass-section-card',
       fnsudentGrade:function(e){
         rr=this.admissinno;
-         alert(rr);
+        // alert(rr);
    // alert(document.querySelector('#'+this.id).checked);
        document.querySelector('Student-to-section-mapping-card').stupersonalinfo12(); 
         
@@ -87,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           for(var i=0;i<arr.length;i++){
             if(arr[i].admno==rr){
                  var m=arr[i].dd;
-                 alert(m);
+                // alert(m);
            document.querySelector('#'+m).checked=false;
            }}},
         fnsplice:function(){
@@ -112,11 +114,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         stupersonalinfo13:function(arr){
           //    var rnw=paspstuinfo.length; 
-           alert(JSON.stringify(arr));
-      alert()
+          // alert(JSON.stringify(arr));
+      //alert()
                 for(var k=0;k<arr.length;k++){
                       var  dbid=arr[k].dd;
-                      alert(dbid);
+                    //  alert(dbid);
                     document.querySelector('#'+dbid).checked=false;
                
             /* else{

@@ -20,7 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <div hidden>{{sectiongradeidzx}}</div>
     <div hidden>{{sectiongradenamezx}}</div>
- <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button>
+ <!-- <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button> -->
+      <paper-icon-button icon="add" on-click="fnsubmit"></paper-icon-button>
      <paper-dialog id="sectiongradeid" modal>
           <paper-input label="Enter The Section" value="{{section}}"></paper-input>
           <paper-button style="background-color:black;color:white" on-click="fnsetsubmit">submit</paper-button>

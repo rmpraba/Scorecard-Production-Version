@@ -27,9 +27,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #tb1{
           width:15%
         }
+        .newdropzzz
+        {
+          margin-top: 6%;
+        }
+        .newdivzzz
+        {
+          border-radius: 10px;
+          border: 1px solid #6699ff;
+          padding: 15px; 
+          width: 41%;
+          margin-left: 30%;
+          margin-top: 5% !important;
+          min-height: 200px; 
+        }
     
     </style>  
+
     <div>
+      <CENTER>
+        <h3><b>Student Section Allocation</b></h3>   
+      </CENTER>
+    </div>
+    
+    <div class="newdivzzz">
+          <div>  
+            <label>School Type</label>
+            <template is="dom-repeat" items="{{Sectionarrr}}" as="view">
+               <student-allow-item-card schooltypename="{{view.school_type_name}}" schootypeid="{{view.school_type_id}}" id="STTYPH{{view.school_type_id}}">
+                </student-allow-item-card>
+             </template>
+          </div>  
+
+    <div class="newdropzzz">
         <paper-dropdown-menu id="term" label="Select Acadamic year">
             <paper-menu id="rtermmm" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
                 <paper-item value="2015-2016">2015-2016</paper-item>     
@@ -39,28 +69,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-item value="2019-2020">2019-2020</paper-item>
             </paper-menu>
           </paper-dropdown-menu>
-  </div>
-  <div>  
-    <template is="dom-repeat" items="{{Sectionarrr}}" as="view">
-              <student-allow-item-card schooltypename="{{view.school_type_name}}" schootypeid="{{view.school_type_id}}" id="STTYPH{{view.school_type_id}}">
-               </student-allow-item-card>
-     </template>
-  </div>  
+    </div>
+   </div> 
    
- <table border="1" >    
-      <tr>
-      <th id="tb1">Grade</th>
-      <th id="tb1">no of Section</th>
-      <th id="tb1">no of Student</th>
-      <th id="tb1">Save</th> 
-     </tr>      
-      <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
-      <tr><td colspan="6">
-    <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  student="{{view.student}}" section="{{view.section}}"=></section-allocation-card>
-       </td>
-       </tr>
-      </template>  
+   <div class="newtabgrid" hidden$="{{hidenewtabgrid}}">
+      <table border="1" style="margin-left: 20%;margin-top: 3%;">    
+          <tr>
+          <th id="tb1">Grade</th>
+          <th id="tb1">no of Section</th>
+          <th id="tb1">no of Student</th>
+          <th id="tb1">Save</th> 
+         </tr>      
+          <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
+          <tr><td colspan="6">
+        <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  student="{{view.student}}" section="{{view.section}}"=></section-allocation-card>
+           </td>
+           </tr>
+          </template>  
       </table>
+    </div>  
+
 <!-- <template is="dom-repeat" items="{{scooltypgrid}}" as="view">
       <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}"></section-allocation-card>
     
@@ -74,12 +102,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      var gridschooltypearr=[]
     Polymer({
       is: 'student-allow-card',
-      Setsectionvalue:function(e){
+      ready:function()
+      {
+        this.$.term.hidden=true;
+        this.hidenewtabgrid=true;
+      },
+      showacademicyr:function()
+      {
+        this.$.term.hidden=false;
+      },
+      /*shownewgrid:function()
+      {
+        this.hidenewtabgrid=false;
+      },*/
+      Setsectionvalue:function(e)
+      {
       this.schootypidz=e;
     // alert(this.schootypidz);
       },
-      fnsetonacadamicsection:function(e){
+      fnsetonacadamicsection:function(e)
+      {
          this.acadamicyear=e.target.selectedItem.textContent.trim(); 
+         this.hidenewtabgrid=false;
       //  alert(this.acadamicyear);
           this.$.uiservice.fnsetpasssectinvalue(this.schootypidz);
            this.$.uiservice.fngetpasssectinvalue(this.schootypidz,this.acadamicyear);

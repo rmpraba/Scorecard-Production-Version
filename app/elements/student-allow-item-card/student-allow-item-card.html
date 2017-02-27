@@ -21,16 +21,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  
     </template>
   <script>
-  (function() {
+  (function() 
+  {
     'use strict';  
 
     Polymer({
       is: 'student-allow-item-card',
       fnsetsection:function(e){
-        if(document.querySelector('#'+this.id).checked==true){
+        if(document.querySelector('#'+this.id).checked==true)
+        {
+                document.querySelector('student-allow-card').showacademicyr();
+                //document.querySelector('student-allow-card').shownewgrid();
                 document.querySelector('student-allow-card').Setsectionvalue(this.schootypeid);
    
-           }
+        }
       },
  });
   })();

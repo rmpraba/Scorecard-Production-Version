@@ -6679,7 +6679,7 @@ app.post('/sectioncreategrade-service' ,urlencodedParser, function (req, res)
 
 app.post('/sectioncreategrade1-service' ,urlencodedParser, function (req, res)
     {  
-      var qur="SELECT s.grade_id,s.grade_name,p.section_id, p.class_id FROM md_school_grade_mapping s join mp_grade_section p  on s.grade_id=p.grade_id  where p.school_id='"+req.query.school_id+"' and s.school_id='"+req.query.school_id+"' and s.school_type='"+req.query.sectionschooltypeid+"'";
+     var qur="SELECT s.grade_id,s.grade_name,UPPER(p.section_id)as section_id, p.class_id FROM md_school_grade_mapping s join mp_grade_section p  on s.grade_id=p.grade_id  where p.school_id='"+req.query.school_id+"' and s.school_id='"+req.query.school_id+"' and s.school_type='"+req.query.sectionschooltypeid+"'";
       connection.query(qur,function(err, rows){
         if(!err){
 

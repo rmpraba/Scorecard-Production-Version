@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="Student-to-section-mapping-item-card">
   <template>    
     <style>
-      :host {
+      :host {  
         display: block;
       }
     </style>
@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <iron-ajax        
         id="studensectiongetgradeajax"
         url="{{studensectiongetgradeurl}}"
-        params="{{studensectiongetgradeparam}}"
+        params="{{studensectiongetgradeparam}}"   
         handle-as="json"
         content-type="application/json"
         method="post"
@@ -34,26 +34,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
   (function() {
     'use strict';
-
+    var scltypearr=[];
     Polymer({
       is: 'Student-to-section-mapping-item-card',
-      fnsudentGrade:function(e){
+      FnRefresh:function()
+      {
+        for(var i=0;i<scltypearr.length;i++)
+        {
+          var newscltype=scltypearr[i].id;
+          document.querySelector('#'+newscltype).checked=true;
+        }
+      },
+      fnsudentGrade:function(e)
+      {
          if(document.querySelector('#'+this.id).checked==true)
        {
 
       document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames);
       
       this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
-     var obj={"schooltypeid":"","school_id":""};
+     var obj={"schooltypeid":"","school_id":"","id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.empschoolnames;
+          obj.id=this.id;
+          scltypearr.push(obj);
           this.studensectiongetgradeparam=obj;
         //  alert(JSON.stringify(obj));
           this.$.studensectiongetgradeajax.generateRequest();
         }
 },
 
-         studensectiongetgradeResponse:function(e){
+         studensectiongetgradeResponse:function(e)
+         {
                var res=e.detail.response.returnval;
          // alert(JSON.stringify(res));
  
