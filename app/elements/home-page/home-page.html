@@ -183,12 +183,14 @@
          <section data-category="school-section-creation-card">
           <school-section-creation-card></school-section-creation-card>
         </section>
-     <section data-category="Student-to-section-mapping-card">
+        <section data-category="Student-to-section-mapping-card">
           <Student-to-section-mapping-card></Student-to-section-mapping-card>
-          </section>
+        </section>
         <section data-category="studentlistcard">
           <generate-studentlist-outcard></generate-studentlist-outcard>
-
+        </section>
+        <section data-category="consolidateddataanalysis">
+          <consolidated-data-analysis></consolidated-data-analysis>
         </section>
       </iron-pages>
     </div>    
@@ -612,8 +614,14 @@
     {      
        this.page="teacherhomecard";
        document.querySelector('role-card').FnRefresh();
-       document.querySelector('beginner-assesment-card').FnRefresh();
-       
+       document.querySelector('beginner-assesment-card').FnRefresh();  
+    }
+    if(localStorage.getItem("curr_sess_page")=="consolidateddataanalysis")
+    {      
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+       document.querySelector('consolidated-data-analysis').FnRefresh();
+       // document.querySelector('beginner-assesment-card').FnRefresh();  
     }
 
   },

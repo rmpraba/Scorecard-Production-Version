@@ -83,7 +83,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       </div> 
       <div class="card" hidden$="{{editinfo}}">
        <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
-     </div> 
+      </div> 
+
     </div>
     <div class="inner2">
       <div class="card" hidden$="{{comparison}}">
@@ -93,7 +94,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
      <div class="card" hidden$="{{ConsolidatedReport}}">
        <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
       </div>
+      <div class="card" hidden$="{{dataanalysis}}">
+       <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
+    </div> 
     </div>
+    
     </div>
 
     <div class="coordinator" hidden$="{{coordinator}}">
@@ -116,6 +121,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       <div class="card" hidden$="{{feecollection}}">
        <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
       </div>
+    </div>
+    <div class="inner2">
+      <div class="card" hidden$="{{dataanalysis}}">
+       <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
+    </div> 
     </div>
     </div>
 
@@ -148,7 +158,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
      <div class="card" hidden$="{{feecollection}}">
        <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
       </div>
-    
+    <div class="card" hidden$="{{dataanalysis}}">
+       <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
+    </div> 
   </div>
  </div>
    
@@ -164,7 +176,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <div class="card" hidden$="{{ConsolidatedReport}}">
        <paper-button on-click="FnConsolidatedReport" no ink><img src="../../images/consolidation.jpg" height="180px" width="180px"></paper-button>
     </div>
-    
+
+    <div class="card" hidden$="{{dataanalysis}}">
+       <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
+    </div> 
+
+    <div class="card" hidden$="{{Analysis}}">
+       <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
+      </div>
     </div>
     </div>
 
@@ -525,6 +544,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('scorecard','');
          }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Consolidateddataanalysis") 
+         {          
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('consolidateddataanalysis','');
+         }
       },
       FnSelectPreEntryType:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','PreEntry');
@@ -677,7 +701,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           // this.editinfo=false;
           // this.ConsolidatedReport=false;
         }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
           // this.BA=false;
           // this.TA=false;
             this.highlevelcommon=false;
@@ -706,13 +730,27 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          document.querySelector('#termtype').selected=-1;
       },
       FnAnalysiscard:function(){
-        localStorage.setItem('curr_sess_loggedassesmenttype','Analysis');        
+        localStorage.setItem('curr_sess_loggedassesmenttype','Analysis');   
+        document.querySelector('consolidated-report-card').FnHideSchool();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='management')
+        this.$.scorecardservice.callSchoolService();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='management')
         this.$.scorecardservice.callGradeService();
+        // this.$.scorecardservice.callGradeService();
         this.$.cdialog.toggle();
       },
       FnConsolidatedReport:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','Consolidatedreport');
         document.querySelector('consolidated-report-card').FnHideSchool();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='management')
+        this.$.scorecardservice.callSchoolService();
+        if(sessionStorage.getItem("curr_sess_loggedroleid")!='management')
+        this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();
+      },
+      FnConsolidatedDataAnalysis:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Consolidateddataanalysis');
+        document.querySelector('consolidated-data-analysis').FnHideSchool();
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management')
         this.$.scorecardservice.callSchoolService();
         if(sessionStorage.getItem("curr_sess_loggedroleid")!='management')

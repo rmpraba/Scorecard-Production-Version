@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecarddb'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -3066,8 +3066,8 @@ console.log(qur);
 app.post('/fetchbeginnermark-service' ,  urlencodedParser,function (req, res)
 {
   
-    var qur="select distinct(student_id),grade,subject_id from tr_beginner_assesment_marks where subject_id='"+req.query.subject+"' and school_id='"+req.query.schoolid+"' "+ 
-    "and academic_year='"+req.query.academicyear+"' and class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id='"+req.query.section+"') "+
+    var qur="select distinct(student_id),score,grade,subject_id from tr_beginner_assesment_marks where subject_id='"+req.query.subject+"' and school_id='"+req.query.schoolid+"' "+ 
+    "and academic_year='"+req.query.academicyear+"' and class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id='"+req.query.section+"' and school_id='"+req.query.schoolid+"') "+
     " order by student_id";
 
 //     var qur="select ta.term_name,ta.assesment_id,ta.student_id,(SELECT grade FROM md_grade_rating WHERE "+
@@ -3156,6 +3156,36 @@ app.post('/categorywisereport-service' ,  urlencodedParser,function (req, res)
       console.log(err);
 });
 });
+
+app.post('/categorywisereportfordataanalysis-service' ,  urlencodedParser,function (req, res)
+{  
+    var qur="select student_id,subject_id,category,sub_category,round(mark,1) as total,(SELECT grade FROM md_grade_rating WHERE "+
+    "lower_limit<=round(mark,1) and higher_limit>=round(mark,1)) as grade "+
+    "from tr_term_assesment_marks  where school_id='"+req.query.schoolid+"' and "+
+    "academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' "+
+    "and subject_id='"+req.query.subject+"' and grade='"+req.query.grade+"' and section='"+req.query.section+"' group by subject_id,category,sub_category,student_id order by CAST(sub_cat_sequence AS UNSIGNED)";
+    console.log('...............................categorywise..............................');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+});
+});
+
 
 app.post('/subjectwisereport-service' ,  urlencodedParser,function (req, res)
 {  
@@ -5384,6 +5414,35 @@ app.post('/fetchconsolidatedtermwise-service' ,  urlencodedParser,function (req,
 });
 });
 
+app.post('/consolidateddatanalysisreport-service' ,  urlencodedParser,function (req, res)
+{  
+    var qur="select student_id,subject_id,round(avg(rtotal),1) as total,(SELECT grade FROM md_grade_rating WHERE "+
+    "lower_limit<=round(avg(rtotal),1) and higher_limit>=round(avg(rtotal),1)) as grade "+
+    "from tr_term_assesment_overall_assesmentmarks  where school_id='"+req.query.schoolid+"' and "+
+    "academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' "+
+    "and grade='"+req.query.grade+"' and section='"+req.query.section+"' group by subject_id,student_id order by subject_id";
+    
+    console.log('......................consolidated analysis report..............................');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      //console.log(err);
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+});
+});
 
 app.post('/deletemarks-service' ,  urlencodedParser,function (req, res)
 {  
