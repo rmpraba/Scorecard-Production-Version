@@ -1,3 +1,4 @@
+
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
 <dom-module id="schoolcategory-type-item-card">
@@ -23,25 +24,39 @@
   </template>
 <script>
   (function() {
-    'use strict';      
+    'use strict';   
+    var sclcatarr=[], obj;   
      Polymer({
       is: 'schoolcategory-type-item-card',
-     FnsetGradename:function(e){
+      FnRefresh:function()
+      {
+        alert(11);
+        for(var i=0;i<sclcatarr.length;i++)
+        {
+          var subcatt=sclcatarr[i].id;
+          document.querySelector('#'+subcatt).checked=false;
+          sclcatarr.splice(obj);
+        }
+
+      },
+     FnsetGradename:function( e){
        if(document.querySelector('#'+this.schooltypecategoryid).checked==true){
         //alert(this.schooltypecategoryid+this.schooltypecategoryname);
        document.querySelector('school-grade-to-subject-card').getschoolcategory(this.schooltypecategoryid);
        this.schooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
-       var obj={"schoolcategoryid":"","schoolcategoryname":""};
+       var obj={"schoolcategoryid":"","schoolcategoryname":"","id":""};
           obj.schoolcategoryid=this.schooltypecategoryid;
           obj.schoolcategoryname=this.schooltypecategoryname;
-      //    alert(JSON.stringify(obj));
+          obj.id=this.id;
+          sclcatarr.push(obj);
+          alert(JSON.stringify(obj));
           this.schooltypegetcategoryparam=obj;
           this.$.schooltypegetcategoryajax.generateRequest();
         }
       },
       schooltypegetcategoryResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
         document.querySelector('school-grade-to-subject-card').getcategory(res);},
      fnschoolcategoryclean:function(e){
      document.querySelector('#'+this.schooltypecategoryid).checked=false;

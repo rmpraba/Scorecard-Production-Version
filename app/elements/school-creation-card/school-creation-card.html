@@ -69,13 +69,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        table
       {
          @apply(--layout-horizontal);
-         margin-top: 1% !important;
-         border-collapse: collapse;
-         margin-left: 52%;
+         /*border-collapse: collapse;
          border: 1px solid #dedede;
-         width: 60%;
-         padding: 6px;
-              
+         padding: 6px;*/
+         margin-left: 52%;
+         width: 52%;
+         margin-top: 5% !important;     
       }
       .outcard
        {
@@ -84,12 +83,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #creatediv
        {
-        position: fixed;
-          border-radius: 10px;
+        /*position: fixed;*/
+
+          /*border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;
-          min-height: 200px; 
-          margin-top: -29% !important;
+*/          min-height: 200px; 
+          margin-top: -44% !important;
           width: 49%;
           margin-left: 1%;
        }
@@ -101,12 +101,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
        #updatedetails
        {
-          position: fixed;
+          /*position: fixed;
           border-radius: 20px;
           border: 1px solid #6699ff;
-          padding: 10px;
+          padding: 10px;*/
           min-height: 600px; 
-          margin-top: -29% !important;
+          margin-top: -44% !important;
           width: 49%;
           margin-left: 1%;
        
@@ -129,10 +129,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .newtitle
       {
         width: 40%;
-        line-height: 3px;
-        margin-top: -1%;
+        line-height: 5px;
+        margin-top: 4%;
       }
-  </style>
+
+        .vertical-row
+        {
+           /*float: center;*/
+            border: 1px  solid #12A5F4;
+            width: 1px;
+            margin-left: 50%;
+            min-height: 630px;
+            margin-top: -35%;
+        }
+
+          </style>
 
   
     <div class="title">    
@@ -144,8 +155,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
       <table>
         <tr>
-          <th><label style="margin-left:10%">School ID</label></th>
-          <th><label style="margin-left:-16%">School Name</label></th>
+          <!-- <th><label style="margin-left:10%">School ID</label></th> -->
+          <th><label style="margin-left:10%">School Name</label></th>
+          <th></th>
           <th><paper-icon-button icon="add" on-click="getscldetails"></paper-icon-button></th>
         </tr>
         <template is="dom-repeat" items="{{schoolcreatarr}}" as="view">
@@ -157,6 +169,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>    
       </table>
     </div>
+
+      <div class="vertical-row"></div>
+
     <div class="col-sm-6" id="creatediv" hidden$="{{hidecreatediv}}">
     <div>
       <div class="form-group-heading">

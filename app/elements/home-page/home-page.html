@@ -26,7 +26,7 @@
   <style>
   .in
   {
-
+   
   float:right;
   font-size:12px;
   }
@@ -47,9 +47,9 @@
   }
   .card{
     @apply(--layout-vertical);
-    /*width: 105%;*/
-  }
-  label{
+    /*width: 105%;*/}
+
+    label{
     margin-left: 35%;
     /*font-size: 20px;*/
     /*font-weight: bold;*/
@@ -188,7 +188,9 @@
           </section>
         <section data-category="studentlistcard">
           <generate-studentlist-outcard></generate-studentlist-outcard>
-
+       </section>
+        <section data-category="student-allow-card">
+          <student-allow-card></student-allow-card>
         </section>
       </iron-pages>
     </div>    
@@ -212,20 +214,23 @@
    this.page=page;
    // this.title=title;
    localStorage.setItem("curr_sess_page",page);
-  },
+  },   
   signout:function()
   {
    window.location.href="../index.html";   
   },
-  FnHome:function(){    
-     // alert(localStorage.getItem("curr_sess_page"));
-
+  FnHome:function(){ 
+   if(localStorage.getItem("curr_sess_page")=="student-allow-card")
+      {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      }
     if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
     }
-        if(localStorage.getItem("curr_sess_page")=="Student-to-section-mapping-card")
+    if(localStorage.getItem("curr_sess_page")=="Student-to-section-mapping-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();

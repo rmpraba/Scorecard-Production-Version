@@ -9,14 +9,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
 <dom-module id="employe-category-creation-card">
   <template>
    <style>
       :host {
         display: block;
       }
-
+    
       .outercard
       {
         @apply(--layout-vertical);
@@ -34,13 +33,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
        .subbutton paper-button
       {
-        @apply(--layout-right);
+        /*@apply(--layout-right);*/
+        float: none;
         background-color: #363636;
         color: #ffffff;                
         width: 8%;
         margin-left: 60%;
         margin-top: 4%;
       }
+        .deltbutton paper-button
+      {
+        /*@apply(--layout-right);*/
+        float: left;
+        background-color: #363636;
+        color: #ffffff;                
+        width: 8%;
+        margin-left: 70%;
+        margin-top: -3%;
+      }
+        .subbutton1 paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 8%;
+        margin-left: 65%;
+        margin-top: 4%;
+      }
+     
       .newcard
       {
         @apply(--layout-horizontal);
@@ -86,15 +106,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>     
 
             <div class="newcard">
-              <paper-dropdown-menu  label="select the grade">
+              <paper-dropdown-menu  label="Select the Grade">
                 <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
-                  <template is="dom-repeat" items="{{empschoolgrads}}">
+                    <template is="dom-repeat" items="{{empschoolgrads}}">
                     <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
                   </template>    
                 </paper-menu>
               </paper-dropdown-menu>
             
-              <paper-dropdown-menu  label="select the employee">
+              <paper-dropdown-menu  label="Select the Employee">
                 <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
                   <template is="dom-repeat" items="{{empschoolnamesarr}}">
                     <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
@@ -107,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </table>
       </div>
    
-      <div id=sectionz>
+      <div id=sectionz hidden$="{{hidenewgrid}}">
         <table class="table table-bordered" style="margin-top:5%">
           <div class="container">
             <thead> 
@@ -144,9 +164,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>  
               <div class="subbutton" id="subx">
                 <paper-button on-click="fnsubmit">Submit</paper-button> 
-              </div>
+             </div>
 
-
+            <div class="deltbutton" id="subx1">
+                <paper-button on-click="fndelete">Delete</paper-button> 
+             </div>
+   
 <master-ui-service id="uiservice"></master-ui-service>
  
 <iron-ajax        
@@ -177,12 +200,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var empnamearrr=[];
   var sectionnamearr=[];
   var empsectionarr=[];
+  var empsectionarr1=[];
+  
     Polymer({
       is: 'employe-category-creation-card',
       ready:function(e){
      
         this.$.sectionz.hidden=true;
         this.$.subx.hidden=true;
+            this.$.subx1.hidden=true;
+    
+      },
+      FnRefresh:function()
+      {
+        document.querySelector('#empgradeid').selected=-1;
+        document.querySelector('#employeeidzzzzzz').selected=-1;
+        //document.querySelector('emp-category-get-card').FnRefresh();
+      },
+      fncleanbutton:function()
+      {
+        this.$.subx.hidden=true;
+        this.$.subx1.hidden=true;
       },
         fnschoolempnames:function(arr){
           this.empschoolnamesarr=arr;
@@ -191,7 +229,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.empschoolgrads=arr;
         },
         fnselectgrade:function(e){
-               this.setgradeid=e.target.selectedItem.textContent.trim();
+          this.setgradeid=e.target.selectedItem.textContent.trim();
          this.setgradeidz=e.target.selectedItem.value;
          this.fnselectgradezurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
           var obj={"setgradeid":"","school_id":""};
@@ -203,20 +241,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           document.querySelector('#employeeidzzzzzz').selected=-1;
       
       },
-          fnselectgradezResponse:function(e){
+      fnselectgradezResponse:function(e){
                sectionnamearr=e.detail.response.returnval;
-                // alert(JSON.stringify(sectionnamearr));
      },
      fnsubmit:function(e){
-      //alert(JSON.stringify(empsectionarr));
-      this.$.uiservice.fnsavesection(empsectionarr);
-   document.querySelector('emp-grade-get-card').Fngradecleansection(); 
-
+         this.$.uiservice.fnsavesection(empsectionarr);
+         document.querySelector('emp-grade-get-card').Fngradecleansection(); 
+         document.querySelector('emp-category-get-card').FnRefresh();
+         document.querySelector('employe-category-creation-card').FnRefresh();
+        },      
+     fndelete:function(e){ 
+      this.$.uiservice.fndelsectionz(empsectionarr1);
+      document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
+      
      },
      fnsetempsection:function(arr){
       empsectionarr=arr;
   //    alert(JSON.stringify(empsectionarr));
     },
+       fnsetempsection1:function(arr){
+      empsectionarr1=arr;
+  //    alert(JSON.stringify(empsectionarr));
+    },
+  
     fnemployeename:function(e){
          this.empselectid=e.target.selectedItem.value;
           this.fnemployeenamezurl=sessionStorage.getItem("addrinfo")+"/empmappingsubject-service";
@@ -278,7 +325,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            if(generatearr[k].subject_name==generatearr[l].subject_name)
            {
              var obj1={"section_id":"","section_name":""}
-             //obj1.Grade_name=generatearr[l].gradename;
              obj1.section_id=generatearr[l].section_id;
              obj1.section_name=generatearr[l].section_name;
              obj1.id=generatearr[k].subjectid+generatearr[l].section_id;
@@ -297,10 +343,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            a=[];
    }
 //    alert(JSON.stringify(overall));
-        this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
         this.allarrr=overall;
+        this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
+       
         this.$.sectionz.hidden=false;
         this.$.subx.hidden=false;
+        this.$.subx1.hidden=false;
    
      // overall.splice(0,1);
         /* this.bigarr=overall;

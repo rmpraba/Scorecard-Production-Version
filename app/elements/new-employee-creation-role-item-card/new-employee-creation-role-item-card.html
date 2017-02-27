@@ -38,28 +38,39 @@
    var getrolearrr=[];
    Polymer({
       is: 'new-employee-creation-role-item-card',
+      fnclean:function()
+      {
+        alert(222);
+        for(var i=0;getrolearrr.length;i++)
+        {
+          var emrole=getrolearrr[i].id;
+          document.querySelector('#'+emrole).checked=false;
+        }
+      },
       fnroleset:function(e){
         //alert(this.schoolroleidxx+this.schoolempgetname+this.schoolempgetid+this.emppsw);
         //alert(document.querySelector('#'+this.schoolroleidxx).checked)
          if(document.querySelector('#'+this.schoolroleidxx).checked==true)
          {
-              var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
+              var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":"","id":""};
                   obj.emp_id=this.schoolempgetid;
                   obj.emp_name=this.schoolempgetname;
                   obj.school_role_id=this.schoolroleidxx;
                   obj.emp_psw=this.emppsw;
+                  obj.id=this.id;
                   getrolearrr.push(obj);
                   //alert(JSON.stringify(getrolearrr));
                document.querySelector('new-employee-creation-card').passrole(getrolearrr);
            }
          else if(document.querySelector('#'+this.id).checked==false){
               this.getempschoolroleurl=sessionStorage.getItem("addrinfo")+"/getempschoolrole-service";
-               var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
+               var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":"","id":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempgetid;
                    obj.emp_name=this.schoolempgetname;
                    obj.school_role_id=this.schoolroleidxx;
                    obj.emp_psw=this.emppsw;
+                   obj.id=this.id;
                    this.getempschoolroleparam=obj;
                     //alert(JSON.stringify(obj));
                 
@@ -78,12 +89,13 @@
                         // alert("hi");
                          document.querySelector('#'+m).checked=false;
  }
-                   var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":""};
+                   var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":"","id":""};
                    obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                    obj.emp_id=this.schoolempgetid;
                    obj.emp_name=this.schoolempgetname;
                    obj.school_role_id=this.schoolroleidxx;
                    obj.emp_psw=this.emppsw;
+                   obj.id=this.id;
                 getrolearrr.splice(obj);
                 }
       

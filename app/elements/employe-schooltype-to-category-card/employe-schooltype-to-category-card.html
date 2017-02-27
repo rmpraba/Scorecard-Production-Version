@@ -16,7 +16,7 @@
         margin-top: 4%;
       }
       .card2{
-        margin-left:40%;
+        margin-left:40%;    
          margin-top:-17%;
       }
       .outcard{
@@ -151,7 +151,7 @@
  
       </div>
 
-     <div id="talhidn">
+     <div id="talhidn" hidden$="{{hidenewgridd}}">
         <div class="list-group col-sm-12 panel-body form-category">  
           <table class="table table-bordered">
             <div class="container">
@@ -189,13 +189,16 @@
             <paper-button on-click="FnSubmit" style="width:12%;height:5%">Submit</paper-button>
         
           </span> -->
-          <div class="buttons">
-    <paper-button on-click="Fndelte" style="color:white;background-color:black;margin-left:41%;border-radius:10px">delete</paper-button>
+    
+  <div id="subbutton1"> 
+   <paper-button ></paper-button>
+     </div>
+    <div id="subbutton1" style="color:white;background-color:black;width:7%;margin-left:41%;" >
+    <paper-button on-click="FnSubmit">Submit</paper-button>
     </div>
-    <div class="buttons"  id="subbutton1">
-  <paper-button on-click="FnSubmit" style="color:white;background-color:black;margin-left:41%;border-radius:10px">Submit</paper-button>
-        
-    <div>
+      <div id="empidz1" style="color:white;background-color:black;width:7%;margin-left:50%; margin-top:-3%;" >
+    <paper-button on-click="Fndelte">Delete</paper-button>
+   </div>
       
     
   <master-ui-service id="uiservice"></master-ui-service>      
@@ -215,9 +218,21 @@
       ready:function(){
         this.$.subbutton1.hidden=true;
         this.$.talhidn.hidden=true;
+        this.$.empidz1.hidden=true;
         this.$.empidz.hidden=true;
+     
         this.$.generateidz.hidden=true;
         this.$.empLanguageprefernce.hidden=true;
+    },
+    FnRefresh:function()
+    {
+      this.$.empLanguageprefernce.hidden=true;
+      //document.querySelector('#empLanguageprefernceid').selected=-1;
+    },
+    fnbuttonsclean:function()
+    {
+     this.$.empidz1.hidden=true; 
+     this.$.subbutton1.hidden=true;
     },
        getgrade:function(arr){
         empteacharr=arr;
@@ -274,7 +289,10 @@
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
-       document.querySelector('employe-creation-card').Fnsubjectclean();        
+       document.querySelector('employe-creation-card').Fnsubjectclean(); 
+       document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
+       document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
+       document.querySelector('employee-category-item-card').FnRefresh();      
        
        },
        Fndelte:function(e){
@@ -375,7 +393,7 @@
         // this.$.uiservice.fngetThefunction();
            this.$.subbutton1.hidden=false;
            this.$.talhidn.hidden=false;
-           this.$.empidz.hidden=false;
+           this.$.empidz1.hidden=false;
          //  this.$.generateidz.hidden=false;
   
          //  alert(JSON.stringify(emparr));

@@ -14,57 +14,124 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        display: block;
+        display: block;  
       }
+      .outcard{
+      /*@apply(--layout-horizontal);  
+      margin-left: 10%;*/
+       @apply(--layout-horizontal);
+      margin-left:4.0em;
+      width:100%
+     }
     </style>
+    <div class="outcard">
     <paper-input  hidden>{{gender}}</paper-input>
     <paper-input  hidden>{{dob}}</paper-input>
     <paper-input  hidden>{{admissinno}}</paper-input>
-    
-   <paper-checkbox  on-change="fnsudentGrade" id="{{id}}">{{studentname}}</paper-checkbox>
+    <paper-input  hidden>{{admissinno1}}</paper-input>
+    <paper-input  hidden>{{classid}}</paper-input>
+    <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}"></paper-checkbox>
+    </div>
   </template>
   <script>
   (function() {
     'use strict';
   var paspstuinfo=[];
   var spliceid;
+  var rr;
+  //var checkvalu=[];
     Polymer({
       is: 'student-list-pass-section-card',
       fnsudentGrade:function(e){
-         alert(this.id);
-         alert(document.querySelector('#'+this.id).checked);
-   if(document.querySelector('#'+this.id).checked==true){
+        rr=this.admissinno;
+         alert(rr);
+   // alert(document.querySelector('#'+this.id).checked);
+       document.querySelector('Student-to-section-mapping-card').stupersonalinfo12(); 
+        
+    
+ if(document.querySelector('#'+this.id).checked==true){
 
-        var obj={"id":"","student_name":"","dob":"","gender":"","":"enq_id"};
+        var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;
             obj.gender=this.gender;
             obj.enq_id=this.id;
+            obj.classid=this.classid;
             paspstuinfo.push(obj);
-            alert(JSON.stringify(obj));
-            document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);
+         for(var i=0;i<paspstuinfo.length;i++){
+                    if(paspstuinfo[i].id==this.admissinno){
+                            
+                   if(paspstuinfo[i].classid==this.classid){
+                  var m=paspstuinfo[i].enq_id;
+                  document.querySelector('#'+m).checked=true;
+                   }
+                  else if(paspstuinfo[i].classid!=this.classid){
+                   var s=paspstuinfo[i].enq_id;
+                  document.querySelector('#'+s).checked=false;
+                    paspstuinfo.splice(i,1);
+                   }
+                }
+              }  
+       document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
         }
-  
-       else if(document.querySelector('#'+this.id).checked==false){
+  else if(document.querySelector('#'+this.id).checked==false){
              for(var i=0;i<paspstuinfo.length;i++){
                paspstuinfo.splice(i,1);
             }
-              }
-      },
+            }
+       },
+        stupersonalinfo11:function(arr){
+         //  alert(rr);
+        //alert(this.admissinno);
+          for(var i=0;i<arr.length;i++){
+            if(arr[i].admno==rr){
+                 var m=arr[i].dd;
+                 alert(m);
+           document.querySelector('#'+m).checked=false;
+           }}},
         fnsplice:function(){
+              var rnwn=paspstuinfo.length;
+               if(rnwn==0){
+                }
+             else{
+
         for(var i=0;i<paspstuinfo.length;i++){
                spliceid=paspstuinfo[i].enq_id;
               document.querySelector('#'+spliceid).checked=false;
-          }
-        var obj={"id":"","student_name":"","dob":"","gender":""};
+               }
+          var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;
             obj.gender=this.gender;
-            paspstuinfo.splice(obj);
-      
+            obj.enq_id=this.id;
+            obj.classid=this.classid;
+          paspstuinfo.splice(obj);
+      }
         },
+        stupersonalinfo13:function(arr){
+          //    var rnw=paspstuinfo.length; 
+           alert(JSON.stringify(arr));
+      alert()
+                for(var k=0;k<arr.length;k++){
+                      var  dbid=arr[k].dd;
+                      alert(dbid);
+                    document.querySelector('#'+dbid).checked=false;
+               
+            /* else{
+              for(var i=0;i<arr.length;i++){
+                for(var j=0;j<paspstuinfo.length;j++){
+                    var mm=paspstuinfo[j].classid+paspstuinfo[j].id;
+            if(arr[i].dd!=m){
+                 var mn=arr[i].dd;
+                     document.querySelector('#'+mn).checked=false;
+                   }
+             }
+           }
+          }*/
+       }
+     }
 
     });
   })();

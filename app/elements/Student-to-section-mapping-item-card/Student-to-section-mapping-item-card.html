@@ -44,10 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames);
       
       this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
-
-          var obj={"schooltypename":"","school_id":""};
+     var obj={"schooltypeid":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-          obj.schooltypename=this.empschoolnames;
+          obj.schooltypeid=this.empschoolnames;
           this.studensectiongetgradeparam=obj;
         //  alert(JSON.stringify(obj));
           this.$.studensectiongetgradeajax.generateRequest();

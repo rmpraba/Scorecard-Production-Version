@@ -56,11 +56,11 @@
        table
        {
         @apply(--layout-horizontal);
-         border-collapse: collapse;
-        border: 1px solid #dedede;
-        width: 60%;
-        margin-left: 35%;
-        margin-top: 5%;
+        /* border-collapse: collapse;
+        border: 1px solid #dedede;*/
+        width: 50%;
+        margin-left: 39%;
+        margin-top: 4%;
       }
       /*.outcard
       {
@@ -73,12 +73,12 @@
 
       .creatediv
       {
-        position: fixed; 
-         border-radius: 10px;
+          
+        /* border-radius: 10px;
           border: 1px solid #6699ff;
-          padding: 10px; 
+          padding: 10px; */
           width: 28%;
-          margin-left: -5%;
+          margin-left: -4%;
           margin-top: -19% !important;
           min-height: 266px;
       }
@@ -86,8 +86,21 @@
       {
         line-height: 3px;
         margin-top: 15%;
+        margin-left: 24%;
       }
       
+      .vertical-row 
+      {
+            float: left;
+            position: absolute;
+            border: 1px  solid #12A5F4;
+            /*background-color: black;*/
+            height: 100px;
+            width: 1px;
+            margin-left: 26%;
+            min-height: 430px;
+            margin-top: -24%;
+      } 
     </style>
      
   <div class="title"> 
@@ -95,14 +108,15 @@
   </div>
 
   <div class="outcard" hidden$="{{hideoutcard}}">
+
     <div class="newcatcardddd" hidden$="{{hidenewcatcard}}">
     <div>
        <div class="newtitile" style="margin-left:50%">
-          <h4>Current Category Type Details</h4>
+          <h4>Current Category Type</h4>
         </div>
       <table>
           <tr>
-              <th><label style="margin-left:4%">Category ID</label></th>
+              <!-- <th><label style="margin-left:4%">Category ID</label></th> -->
               <th><label style="margin-left:2%">Category Name</label></th>
           </tr>
 
@@ -115,15 +129,20 @@
     </div>
     </div>
 
+    <div class="vertical-row" style="position: fixed;"></div>
+
     <div hidden>{{temphidden}}</div>
+
     
-    <div class="creatediv">
+    
+    <div class="creatediv" style="position: fixed;">
         <div class="card">
               <label><b>Create New Category</b></label>
               <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
               <paper-input label="Category Name" id="categoryname" required error-message="needs Category name!" value="{{categoryname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
         </div>  
+
 
         <div class="buttons">
               <paper-button  class="popup-btn" on-click="FnSubmit">Submit </paper-button>    

@@ -17,7 +17,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
   <template>
     <style>
       :host {
-        display: block;
+        display: block;   
       }
       paper-button{
         margin-left: 25%;
@@ -379,6 +379,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
             </paper-button>
        </div>    
       
+        <div class="card" hidden$="{{studentfixed}}">
+            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
+               <h4>Student Section Allocation</h4>
+            </paper-button>
+       </div>    
+      
     </div>
  
 
@@ -724,11 +730,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('category-card','');
         document.querySelector('category-card').ready();
-      },
-
+        document.querySelector('category-card').FnRefresh();
+        },  
+       StudentFixed:function(e){
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('student-allow-card','');
+        this.$.uiservice.fnsetfixdsection();
+       },  
       FnCreateRole:function(e)
       {
-
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('rolecard','');
         document.querySelector('role-card').ready();
@@ -767,15 +777,26 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('home-page').setPage('school-grade-to-subject-card','');  
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
+        document.querySelector('school-type-item-card').FnRefresh();
+        document.querySelector('schoolcategory-type-item-card').FnRefresh();
+        document.querySelector('school-grade-to-subject-card').fnbuttoncln();
+        document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
+        ;
+
       },
-      CategorytoSchooltype:function(e){
+      CategorytoSchooltype:function(e)
+      {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('employe-schooltype-to-category-card','');
         //this.$.uiservice.SelectTeacherinschootypetocategory();   
         this.$.uiservice.empsubjectTeacher();
         this.$.uiservice.empcategorye();
         this.$.uiservice.empschooltype();
-    
+       document.querySelector('employee-category-item-card').FnRefresh();
+       document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
+       document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
+       document.querySelector('employe-schooltype-to-category-card').fnbuttonsclean(); 
+       document.querySelector('employe-schooltype-to-category-card').hidenewgridd=true;
       },
       SubjectToStudent:function(e)
       {
@@ -797,6 +818,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.selectschooltype();
         this.$.uiservice.selectrolename();
         this.$.uiservice.fnschoolemployeepersonal();
+        document.querySelector('new-employee-creation-card').hidecreateemp=false;
+        document.querySelector('new-employee-creation-card').hideupdateemp=true;
+       
       },
        Workingdays:function(e)
       {
@@ -815,14 +839,22 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     EmployeeToGrade:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
-        document.querySelector('home-page').setPage('employe-category-creation-card','');  
-         this.$.uiservice.schoolemployeegrademapping()
+        document.querySelector('home-page').setPage('employe-category-creation-card',''); 
+        this.$.uiservice.schoolemployeegrademapping();
+        document.querySelector('employe-category-creation-card').FnRefresh(); 
+        document.querySelector('emp-category-get-card').FnRefresh();  
+        document.querySelector('employe-category-creation-card').fncleanbutton(); 
+        document.querySelector('employe-category-creation-card').hidenewgrid=true;
+         
         //document.querySelector('subject-card').ready();  
       },
      FnCreateschool:function(e)
       {    
       document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('school-creation-card','');
+        document.querySelector('school-creation-card').hidecreatediv=false;
+        document.querySelector('school-creation-card').hideupdatediv=true;
+        
      },
      FnCreatesubject:function(e)
       {

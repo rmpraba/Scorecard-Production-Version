@@ -35,7 +35,7 @@
     </style>
 
     <div class='itemcard'>
-          <paper-item>{{roleid}}</paper-item>
+          <paper-item hidden$"{{roleid}}"></paper-item>
           <paper-item hidden$="{{hiderolenameitem}}">{{rolename}}</paper-item>
           <paper-input value="{{rolename}}" hidden$="{{hiderolenameinput}}"></paper-input>
           <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hiderolenameitem}}"></paper-icon-button>
@@ -69,7 +69,11 @@
       },
       FnDelete:function()
       {
-        this.$.service.FnDeleteRole(this.roleid);
+        if (confirm("Are you sure?")) 
+        {
+          this.$.service.FnDeleteRole(this.roleid);
+        }
+        
       },
       FnEdit:function()
       {

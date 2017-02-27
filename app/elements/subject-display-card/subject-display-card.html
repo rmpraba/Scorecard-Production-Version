@@ -33,7 +33,7 @@
 
 
     <div class='itemcard'>
-          <paper-item>{{subjectid}}</paper-item>   
+          <paper-item hidden$="{{subjectid}}"></paper-item>   
           <paper-item hidden$="{{hidesubjectitem}}">{{subjectname}}</paper-item>
           <paper-input value="{{subjectname}}" hidden$="{{hidesubjectinput}}"></paper-input>
           <paper-item >{{subjectcategory}}</paper-item>
@@ -67,7 +67,11 @@
       },
       FnDelete:function()
       {
-        this.$.service.FnDeleteSubjectname(this.subjectid);
+        if (confirm("Are you sure?")) 
+        {
+          this.$.service.FnDeleteSubjectname(this.subjectid);
+        }
+        
       },
       FnEdit:function()
       {

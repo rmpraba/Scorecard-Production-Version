@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         @apply(--layout-horizontal);
         margin-left:30%;
-      } 
+      }    
 
        #createemp paper-button
       {
@@ -37,12 +37,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        table
       {
          apply(--layout-horizontal);
-         margin-top: 4%;
+         /*border: 1px solid #dedede;
          border-collapse: collapse;
+         padding: 10px;*/
          margin-left: 50%;
-         border: 1px solid #dedede;
          width: 530px;
-         padding: 10px;
+         margin-top: 1%;
               
       }
       .newcard
@@ -52,19 +52,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
        }
 
+      
       #createemp
        {
-        
-          border-radius: 10px;
+          position: absolute;
+          /*border-radius: 10px;
           border: 1px solid #6699ff;
-          padding: 10px;
-          min-height: 200%; 
-
-          margin-top: -196% !important;
-
-          width: 50%;
-          margin-left:-2%;
-              
+          padding: 10px;*/
+          width: 47%;
+          min-height: 200px; 
+          /*margin-top: -201% !important;*/
+          margin-left:-7%;      
        }
        .title
        {
@@ -77,15 +75,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }*/
       #updateempdetails
        {
-        float: left;
-        border-radius: 10px;
+        position: absolute;
+       /* border-radius: 10px;
         border:1px solid #6699ff;
-        padding: 10px;
-        margin-left:-4%;
-        width: 50%;
-        margin-top: -196% !important;
-        min-height: 200%; 
+        padding: 10px;*/
+        width: 47%;
+        min-height: 200px; 
+        margin-left:-7%;
+        margin-top: -141% !important;
        }
+
        /*#focus{
            float: left;
         border-radius: 10px;
@@ -110,6 +109,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 60%;
         line-height: 3px;
        }
+       .vertical-row
+       {
+            border: 1px  solid #12A5F4;
+            width: 1px;
+            margin-left: 49%;
+            min-height: 2000px;
+            margin-top: -4%;
+       }
 
     </style>
 
@@ -119,8 +126,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <span>
     <div class="newempldiv" hidden$="{{hidenewempldiv}}">
       <div class="newtitle">
-        <h4>Current Employee Details</h4>
+        <h4>Current Employees</h4>
       </div>
+
     <div class="newcard col-sm-12">
       <table>
         <tr>
@@ -139,6 +147,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     </div>
     
+    
+
+
     <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">    
@@ -179,7 +190,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          </template>
         </div>   
       </div>
-
+        
       <div class="list-group col-sm-12 panel-body form-category"> 
         <div class="form-group-heading">
           <h4>Employee Role Selection</h4>
@@ -195,6 +206,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      </div>
     </span>
 
+    <div class="vertical-row"></div>
 
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
@@ -289,7 +301,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        empschooltypearr=arr;
        //alert(JSON.stringify(empschooltypearr));
         },
-  FnRefresh:function()
+     FnRefresh:function()
       {    
        this.name="";
        this.Telephone="";
@@ -383,6 +395,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
        this.ready();
        },
+
 
        getfocus:function(e)
        {

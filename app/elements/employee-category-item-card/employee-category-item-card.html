@@ -21,7 +21,7 @@
         on-response="empschooltypegetcategoryResponse"
         debounce-duration="300">
        </iron-ajax>
-           <iron-ajax        
+           <iron-ajax                 
         id="emplangschooltypegetcategoryajax"
         url="{{emplangschooltypegetcategoryurl}}"
         params="{{emplangschooltypegetcategoryparam}}"
@@ -37,9 +37,19 @@
   <script>
   (function() {
     'use strict';
-
+    var cattypearr=[];   
     Polymer({
       is: 'employee-category-item-card',
+      FnRefresh:function()
+      {
+        alert(444);
+        for(var i=0;i<cattypearr.length;i++)
+        {   
+          var catype=cattypearr[i].id;
+          document.querySelector('#'+catype).checked=false;
+        }
+        cattypearr.splice();
+      },
     FnsetGradename:function(e){
        if(document.querySelector('#'+this.id).checked==true){
                //alert(this.id);
@@ -55,10 +65,13 @@
       //alert(e);
 
       if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
- this.emplangschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywww-service";
-               var obj={"schoolcategoryid":"","langugage_pref":""};
+      this.emplangschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywww-service";
+               var obj={"schoolcategoryid":"","langugage_pref":"","id":""};
                obj.schoolcategoryid=this.schooltypecategoryid;
                obj.langugage_pref=emplangprefernce;
+               obj.id=this.id;
+               cattypearr.push(obj);
+               //alert(JSON.stringify(obj));
                this.emplangschooltypegetcategoryparam=obj;
                this.$.emplangschooltypegetcategoryajax.generateRequest();
                     //alert(JSON.stringify(obj)); 
@@ -66,8 +79,10 @@
       }
      else{
        this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
-               var obj={"schoolcategoryid":""};
+               var obj={"schoolcategoryid":"","id":""};
                obj.schoolcategoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+               obj.id=this.id;
+               cattypearr.push(obj);
                this.empschooltypegetcategoryparam=obj;
                this.$.empschooltypegetcategoryajax.generateRequest();
                      //alert(JSON.stringify(obj)); 
@@ -87,7 +102,7 @@
                 //alert(JSON.stringify(res)); 
              document.querySelector('employe-schooltype-to-category-card').getcategory(res);
     
-        },
+        }
 
     });
   })();

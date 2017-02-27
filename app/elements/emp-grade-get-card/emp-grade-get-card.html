@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           .innercard{
          @apply(--layout-horizontal);    
       margin-left:7.0em;
-      width:100%
+      width:100%;
      }
 
   
@@ -31,57 +31,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input value="{{employeesectionidz}}" hidden></paper-input>
           <paper-checkbox value="{{employeesectionnamez}}" id="{{id}}" on-change="fnsetsection"></paper-checkbox>
     </div>
-     <iron-ajax        
-        id="empsectionclassajax"
-        url="{{empsectionclassurl}}"
-        params="{{empsectionclassparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="empsectionclassResponse"
-        debounce-duration="300">
-   </iron-ajax>
         
   </template>
   <script>
   (function() {
     'use strict';
   var empsectionarr=[];
+   var empsectionarr1=[];
+ 
    var empdbsubjectarr=[];
    var v=[];
     Polymer({
       is: 'emp-grade-get-card',
           fnsetsection:function(e){
-            //alert(this.id);
+           // alert(this.id);
             //alert(document.querySelector('#'+this.id).checked);
             if(document.querySelector('#'+this.id).checked==true)
             {
                     //alert(this.employeeidz+this.empgradeidz+this.empsubjectidz+this.employeesectionnamez);
-              var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
+                var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                     obj.employeeidz=this.employeeidz;
                     obj.empgradeidz=this.empgradeidz;
                     obj.empsubjectidz=this.empsubjectidz;
                     obj.employeesectionnamez=this.employeesectionnamez;
                     obj.employeesectionidz=this.employeesectionidz;
-                     empsectionarr.push(obj);
-                     v.push(obj);
-                     //alert(JSON.stringify(obj));
-               document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr); }   
+                    empsectionarr.push(obj);
+                    v.push(obj);   
+                    //alert(JSON.stringify(obj));
+               document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr);
+               }   
               else if(document.querySelector('#'+this.id).checked==false){
-                //alert('1');
-                 this.empsectionclassurl=sessionStorage.getItem("addrinfo")+"/empsectionclass-service";
-                 var obj={"school_id":"","employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
-                     obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-                     obj.employeeidz=this.employeeidz;
-                     obj.empgradeidz=this.empgradeidz;
-                     obj.empsubjectidz=this.empsubjectidz;
-                     obj.employeesectionnamez=this.employeesectionnamez;
-                     obj.employeesectionidz=this.employeesectionidz;
-                     //alert(JSON.stringify(obj));
+                 var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
+                      obj.employeeidz=this.employeeidz;
+                      obj.empgradeidz=this.empgradeidz;
+                      obj.empsubjectidz=this.empsubjectidz;
+                      obj.employeesectionnamez=this.employeesectionnamez;
+                      obj.employeesectionidz=this.employeesectionidz;
                      this.empsectionclassparam=obj;
-                     this.$.empsectionclassajax.generateRequest();
-                    for(var i=0;i<empsectionarr.length;i++){
-             empsectionarr.splice(i,1);
+                      empsectionarr1.push(obj);
+                document.querySelector('employe-category-creation-card').fnsetempsection1(empsectionarr1);
+        
+              
+                for(var i=0;i<empsectionarr.length;i++){
+                   empsectionarr.splice(i,1);
           }
         }
       },
@@ -111,10 +103,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      empsectionarr.splice(obj);
                      empdbsubjectarr.splice(obj);
     }, 
+    Fngradecleansection1:function(e){
+            var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
+                     obj.employeeidz=this.employeeidz;
+                     obj.empgradeidz=this.empgradeidz;
+                     obj.empsubjectidz=this.empsubjectidz;
+                     obj.employeesectionnamez=this.employeesectionnamez;
+                     obj.employeesectionidz=this.employeesectionidz;
+                   //  alert(JSON.stringify(obj));
+                     empsectionarr1.splice(obj);
+            
+    },
       empsctionmaping:function(arr)
       {
         empdbsubjectarr=arr;
-            //alert(JSON.stringify(empdbsubjectarr));
+           // alert(JSON.stringify(empdbsubjectarr));
          
         for(var i=0;i<empdbsubjectarr.length;i++)
         {
@@ -125,7 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var employeesectionnamez=empdbsubjectarr[i].section_id;
               var empdbsubject=empdbsubjectarr[i].subject_id+empdbsubjectarr[i].classid;
               var cassidz=empdbsubjectarr[i].classid;
-              //alert("empdbsubject");
+             // alert(empdbsubject);
              document.querySelector('#'+empdbsubject).checked=true; 
            if(document.querySelector('#'+empdbsubject).checked==true)
            {

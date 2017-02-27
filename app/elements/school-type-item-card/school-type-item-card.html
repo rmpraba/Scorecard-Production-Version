@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-    </style>
+    </style>   
     <div>
     <paper-input hidden>{{schooltypeidxx}}</paper-input>
     <paper-checkbox on-change="fnschooltypeget" id="{{id}}">{{schooltypenamexx}}</paper-checkbox></div>
@@ -36,30 +36,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
   (function() {
     'use strict';
-
+    var scarr=[];
     Polymer({
       is: 'school-type-item-card',
+      FnRefresh:function()
+      {
+        alert("hii");
+        for(var i=0;i<scarr.length;i++)
+        {
+          var sctype=scarr[i].id;
+          document.querySelector('#'+sctype).checked=false;
+        }
+      },
 
 fnschooltypeget:function(e){
         //alert(this.schooltypeidxx);
 if(document.querySelector('#'+this.id).checked==true)
      {
-       //alert(this.schooltypeidxx+this.schooltypenamexx);
-          document.querySelector('school-grade-to-subject-card').getschootypename(this.schooltypeidxx);
-    
-       this.getschooltypeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
-       var obj={"schooltypeid":"","schooltypename":"","school_id":""};
+      
+        document.querySelector('school-grade-to-subject-card').getschootypename(this.schooltypeidxx);
+         this.getschooltypeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
+       var obj={"schooltypeid":"","schooltypename":"","school_id":"","id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypeidxx;
           obj.schooltypename=this.schooltypenamexx;
+          obj.id=this.id;
+          scarr.push(obj);
           this.getschooltypeparam=obj;
-          //  alert(JSON.stringify(obj));
+           // alert(JSON.stringify(obj));
           this.$.getschooltypeajax.generateRequest();
         }  
       },
       getschooltypeResponse:function(e){
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
         document.querySelector('school-grade-to-subject-card').getgrade(res);
     },
     fnschooltypeclaen:function(e){
