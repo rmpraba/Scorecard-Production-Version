@@ -146,6 +146,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
    
+     <paper-dialog id="previousid" modal>
+       <h2> Please Click Previous Button</h2>
+       <paper-button dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
+   </paper-dialog>
+     <paper-dialog id="Nextid" modal>
+       <h2>Please Click Next Button</h2>
+            <paper-button dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
+   </paper-dialog>
       <master-ui-service id="uiservice"></master-ui-service>
    </template>
   <script>
@@ -328,24 +336,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
          this.sectionfullarr=k;  
        if(k.length!=0){
-      //    document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-        //   kn.splice(obj);
-
-        //  alert(JSON.stringify(obj));
-    
+      
        }
-        
-       //  document.querySelector('student-list-pass-section-card').fnsplice(); 
-     
-    
       },
+    /*  stupersonalinfo14:function(e){
+           document.querySelector('student-list-pass-section-card').fnsplice(); 
+         },
+   */
    stupersonalinfo12:function(){
      document.querySelector('student-list-pass-section-card').stupersonalinfo11(kn); 
     
     },
     fnnext:function(e){
-
-         document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+       document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
           kn.splice(obj);
     
        var k=[];
@@ -415,14 +418,15 @@ for(var j=0;j<k.length;j++){
      
    if(k.length!=0){
      this.sectionfullarr=k;
- 
-        //document.querySelector('student-list-pass-section-card').fnsplice(); 
+          
+          document.querySelector('student-list-pass-section-card').f11(); 
           document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
             kn.splice(obj);
 
             }
             else{
                kn.splice(obj);
+               this.$.previousid.open();
             }
 
       
@@ -430,6 +434,7 @@ for(var j=0;j<k.length;j++){
    },
 
     fnpriver:function(e){
+
                     document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
           kn.splice(obj);
    
@@ -517,13 +522,15 @@ for(var j=0;j<l.length;j++){
      if(l.length!=0){
       this.sectionfullarr=l;
    
-    // document.querySelector('student-list-pass-section-card').fnsplice(); 
-     document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+         document.querySelector('student-list-pass-section-card').f11(); 
+         document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
       kn.splice(obj);
         }
         else
         {
             kn.splice(obj);
+                    this.$.Nextid.open();
+       
         }   
        
       },

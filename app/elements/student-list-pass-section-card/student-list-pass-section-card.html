@@ -75,9 +75,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    }
                 }
               } 
-               if(paspstuinfo.length==0){
-                document.querySelector('student-list-pass-section-card').stupersonalinfo14();  
-              } 
           document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
         }
   else if(document.querySelector('#'+this.id).checked==false){
@@ -85,6 +82,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                paspstuinfo.splice(i,1);
             }
             }  
+       },
+       f11:function(e){
+         var c=paspstuinfo.length;
+        // alert(c);
+        alert()
+              if(paspstuinfo.length!=0){
+                this.fnsplice();
+              } 
+         
        },
         stupersonalinfo11:function(arr){
          //  alert(rr);
