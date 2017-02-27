@@ -2,7 +2,7 @@
 var express  = require("express");
  var mysql      = require('mysql');
  var email   = require("emailjs/email");
- var htmlToPdf = require('html-to-pdf');
+ //var htmlToPdf = require('html-to-pdf');
  var fs = require('fs');
  /*var helper = require('sendgrid').mail;
 var from_email = new helper.Email('test@example.com');
