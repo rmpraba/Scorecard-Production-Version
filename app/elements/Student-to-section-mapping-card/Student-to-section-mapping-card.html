@@ -295,7 +295,7 @@ for(var i=0;i<sectionarr.length;i++){
         this.sectionfullarr=k;   
        //  document.querySelector('student-list-pass-section-card').fnsplice(); 
        //document.querySelector('student-list-pass-section-card').stupersonalinfo11(kn); 
-     //   kn.splice(obj);
+        // kn.splice(obj);
     
       },
    stupersonalinfo12:function(){
@@ -303,6 +303,8 @@ for(var i=0;i<sectionarr.length;i++){
     
     },
     fnnext:function(e){
+    //       kn.splice(obj);
+    
        var k=[];
    for(var j=0;j<overall.length;j++){
          if(j<=10){
@@ -366,15 +368,20 @@ for(var j=0;j<k.length;j++){
 
             }
        }
-         alert(JSON.stringify(k));
+    // alert(JSON.stringify(k));
      
   this.sectionfullarr=k;
    if(k.length!=0){
-      // document.querySelector('student-list-pass-section-card').fnsplice(); 
+        //document.querySelector('student-list-pass-section-card').fnsplice(); 
        document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-       kn.splice(obj);
-
-  }
+             var obj={"dd":"","admno":""};
+                      obj.dd=rrn;
+                      obj.admno=admno;
+                      kn.splice(obj);
+            }
+            else{
+               kn.splice(obj);
+            }
 
       
 
@@ -460,13 +467,11 @@ for(var j=0;j<l.length;j++){
              }
             }
           }
-  
-  if(l.length!=0){
-     this.sectionfullarr=l;
+   this.sectionfullarr=l;
+     if(l.length!=0){
     // document.querySelector('student-list-pass-section-card').fnsplice(); 
      document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-  
-     // kn.splice(obj);
+      kn.splice(obj);
         }
         else{
             document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
