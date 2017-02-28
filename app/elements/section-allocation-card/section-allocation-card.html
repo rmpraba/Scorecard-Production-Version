@@ -1,0 +1,110 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="section-allocation-card">
+  <template>
+    <style>
+    :host {
+        display: block;
+      }
+    /*  .innercard{
+         @apply(--layout-horizontal);    
+      margin-left:4.0em;
+      width:100%
+     }*/
+ :host {
+        display: block;
+      }
+      table{
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .card{
+        height: 2%;
+      }
+      #tb1{
+        width:25%
+      }
+    </style>
+    <div class="card">
+        <table border="1">
+        <tr>
+         <td id="tb1" hidden>{{gradeid}}</td>
+         <td id="tb1" hidden>{{acadamicyears}}</td>
+         <td id="tb1" hidden>{{schootypids}}</td>
+         <td id="tb1">{{gradename}}</td>
+        <td id="tb1"><paper-input value="{{section}}" required error-message="needs Section Count!"   allowed-pattern="[0-9]" maxlength="2"></paper-input></td>
+         <td id="tb1"><paper-input value="{{student}}" required error-message="needs Student Count!" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="2"></paper-input></td>
+         <td id="tb1" ><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button></td>
+        </tr>
+        </table>
+         <iron-ajax        
+        id="fnsectiostudentpassvalueajax"
+        url="{{fnsectiostudentpassvalueurl}}"
+        params="{{fnsectiostudentpassvalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnsectiostudentpassvalueResponse"
+        debounce-duration="300">
+      </iron-ajax>
+      
+   
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+   
+    Polymer({ 
+      is: 'section-allocation-card',
+
+   /* fnsectioninfo:function(e){
+    
+    },*/
+    /* this.fnsetpasssectinvalueurl=sessionStorage.getItem("addrinfo")+"/fnsetpasssectinvalue-service";
+        var obj={"school_id":"","schooltype":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.schooltype=schooltype;
+       this.fnsetpasssectinvalueparam=obj;
+       this.$.fnsetpasssectinvalueajax.generateRequest();
+    */ 
+    FnSave:function(e){
+    if(this.student==""||this.section==""){
+     alert("Please insert the value");
+      }   
+    else
+    {
+  alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids);
+    this.fnsectiostudentpassvalueurl=sessionStorage.getItem("addrinfo")+"/fnsectiostudentpassvalue-service";
+ var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":""};
+                 obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+                 obj.student=this.student;
+                 obj.section=this.section;
+                 obj.acadamicyears=this.acadamicyears;
+                 obj.gradename=this.gradename;
+                 obj.gradeid=this.gradeid;
+                 obj.schootypids=this.schootypids;
+                 this.fnsectiostudentpassvalueparam=obj;
+                 alert(JSON.stringify(obj));
+                 this.$.fnsectiostudentpassvalueajax.generateRequest();
+               }
+    },
+    fnsectiostudentpassvalueResponse:function(e){
+         var res=e.detail.response.returnval; 
+          alert(JSON.stringify(res));
+ 
+    },
+ });
+  })();
+  </script>
+</dom-module>

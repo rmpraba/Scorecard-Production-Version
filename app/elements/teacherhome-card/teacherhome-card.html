@@ -16,8 +16,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <dom-module id="teacherhome-card">
   <template>
     <style>
-      :host {
-        display: block;
+      :host 
+      {
+        display: block;   
       }
       paper-button{
         margin-left: 25%;
@@ -36,7 +37,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       }
       .card{
         width: 33.3%;
-      }
+      }   
       .container-full{
         /*background-color: #fefefe;*/
       }
@@ -398,6 +399,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
             </paper-button>
        </div>    
       
+        <div class="card" hidden$="{{studentfixed}}">
+            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
+               <h4>Student Section Allocation</h4>
+            </paper-button>
+       </div>    
+      
     </div>
  
 
@@ -478,6 +485,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.subjecttostudent=true;
         this.sectioncreation=true;
         this.gradetosection=true;
+
+       },
+
        
 
 
@@ -497,9 +507,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        //  this.createsubject=true;
        //  this.teach_obser=true;
         // localStorage.setItem("curr_sess_page","teacherhome-card");
-      },
+      
+
       FnSelectacademicyear:function(e){
-        academicyear = e.target.selectedItem.textContent.trim();
+        /*academicyear = e.target.selectedItem.textContent.trim();*/
+        academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         this.$.assesmentservice.callTermService("Term");
@@ -632,18 +644,16 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
+
           this.GeneratemgmtReport=false;
           // this.createrole=false;
           // this.createemployee=false;  
 
           // this.teach_obser=false;  
+
        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
-          // this.createrole=false;
-          // this.teach_obser=false; 
-         // this.createcategory=false;  
-        //  this.createschoolz=false; 
          this.createemployee=false;
          this.schooltyptograde=false;
           this.workingdats=false;
@@ -652,14 +662,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.categorytoschooltype=false;
           this.gradetosubject=false;
           this.subjecttostudent=false;
-           this.sectioncreation=false;
+          this.sectioncreation=false;
           this.gradetosection=false;
-       
-          //this.createschooltype=false;
-          //this.createsubject=false;
-         // this.createrole=false;
-       // this.teach_obser=false;        
-        }
+          }
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
         {
@@ -672,27 +677,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-         
-          //this.createemployee=false;
-          //this.workingdats=false;
-          //this.SchooltypettoGrade=false;
-          //this.employeetograde=false;
-          //this.emptocategory=false;
-          //this.categorytoschooltype=false;
-          //this.gradetosubject=false;
-          //this.subjecttostudent=false;
-          //this.teach_obser=false;        
-        }
+         }
      
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
           this.subjectteacher=false;
-          // this.BA=false;
-          // this.TA=false;
-          // this.GenerateReport=false;
-        }  
+           }  
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='class-teacher'){  
           this.classteacher=false;
+
           // this.BA=false;        
           // this.TA=false;
           // this.GenerateReport=false;
@@ -704,23 +697,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
           // this.BA=false;
           // this.TA=false;
+          }
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
+
             this.highlevelcommon=false;
-          // this.ConsolidatedReport=false;
-          // this.Report=false;
-          // this.GenerateReport=false;
-          // this.teach_obser=false;
-          // this.comparison=false;
-          // this.Approvalstatus=false;
-          // this.Analysis=false;
           }
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
             this.coordinator=false;
-          // this.GenerateReport=false;
-          // this.Approve=false;
-          // this.Analysis=false;
-          // this.teach_obser=false;
-          // this.Approvalstatus=false;
           }
         
       },
@@ -798,11 +782,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('category-card','');
         document.querySelector('category-card').ready();
-      },
-
+        document.querySelector('category-card').FnRefresh();
+        },  
+       StudentFixed:function(e){
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('student-allow-card','');
+        this.$.uiservice.fnsetfixdsection();
+       },  
       FnCreateRole:function(e)
       {
-
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('rolecard','');
         document.querySelector('role-card').ready();
@@ -826,10 +814,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          document.querySelector('app-card').setPage('homepage','');
          document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
       this.$.uiservice.studentsectiontype();
+      document.querySelector('Student-to-section-mapping-card').fnrefresh();
+      document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
+      document.querySelector('Student-to-section-mapping-card').hidenewtabb=true;
      /*     this.$.uiservice.SchoolCategorytype();
-    */  },
+    */  },  
    
-      FnCreatesubject:function(e)
+      FnCreatesubject:function(e)   
       {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('subjectcard','');
@@ -841,17 +832,29 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('home-page').setPage('school-grade-to-subject-card','');  
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
+        document.querySelector('school-type-item-card').FnRefresh();
+        document.querySelector('schoolcategory-type-item-card').FnRefresh();
+        document.querySelector('school-grade-to-subject-card').fnbuttoncln();
+        document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
+        ;
+
       },
-      CategorytoSchooltype:function(e){
+      CategorytoSchooltype:function(e)
+      {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('employe-schooltype-to-category-card','');
         //this.$.uiservice.SelectTeacherinschootypetocategory();   
         this.$.uiservice.empsubjectTeacher();
         this.$.uiservice.empcategorye();
         this.$.uiservice.empschooltype();
-    
+       document.querySelector('employee-category-item-card').FnRefresh();
+       document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
+       document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
+       document.querySelector('employe-schooltype-to-category-card').fnbuttonsclean(); 
+       document.querySelector('employe-schooltype-to-category-card').hidenewgridd=true;
       },
-      SubjectToStudent:function(e){
+      SubjectToStudent:function(e)
+      {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('student-to-subject-mapping-card','');
        document.querySelector('student-to-subject-mapping-card').fnsetreclear();
@@ -861,7 +864,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         //this.$.uiservice.TeachertoGradeSectionNames();
         this.$.uiservice.SelectSchoolgrades();
       },
-        FnCreateEmployee:function(e){
+        FnCreateEmployee:function(e)
+        {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('new-employee-creation-card','');
         //document.querySelector('schooltype-card').ready();
@@ -869,6 +873,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.selectschooltype();
         this.$.uiservice.selectrolename();
         this.$.uiservice.fnschoolemployeepersonal();
+        document.querySelector('new-employee-creation-card').hidecreateemp=false;
+        document.querySelector('new-employee-creation-card').hideupdateemp=true;
+       
       },
        Workingdays:function(e)
       {
@@ -887,14 +894,22 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     EmployeeToGrade:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
-        document.querySelector('home-page').setPage('employe-category-creation-card','');  
-         this.$.uiservice.schoolemployeegrademapping()
+        document.querySelector('home-page').setPage('employe-category-creation-card',''); 
+        this.$.uiservice.schoolemployeegrademapping();
+        document.querySelector('employe-category-creation-card').FnRefresh(); 
+        document.querySelector('emp-category-get-card').FnRefresh();  
+        document.querySelector('employe-category-creation-card').fncleanbutton(); 
+        document.querySelector('employe-category-creation-card').hidenewgrid=true;
+         
         //document.querySelector('subject-card').ready();  
       },
      FnCreateschool:function(e)
       {    
       document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('school-creation-card','');
+        document.querySelector('school-creation-card').hidecreatediv=false;
+        document.querySelector('school-creation-card').hideupdatediv=true;
+        
      },
      FnCreatesubject:function(e)
       {
@@ -914,9 +929,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('schooltype-to-grade-card','');
-       // document.querySelector('category-card').ready();
-      this.$.uiservice.selectschooltype1();
-      },
+        this.$.uiservice.selectschooltype1();
+       },
 
       FnFeeCollection:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');

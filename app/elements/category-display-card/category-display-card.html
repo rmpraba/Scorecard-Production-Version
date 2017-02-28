@@ -32,7 +32,7 @@
     </style>
 
     <div class='itemcard'>
-            <paper-item>{{categoryid}}</paper-item>
+            <paper-item hidden$="{{categoryid}}"></paper-item>
             <paper-item hidden$="{{hidecategoryitem}}">{{categoryname}}</paper-item>
             <paper-input value="{{categoryname}}" hidden$="{{hidecategoryinput}}"></paper-input>
             <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hidecategoryitem}}"></paper-icon-button>
@@ -67,7 +67,11 @@
       FnDelete:function()
       {
         //alert("test");
-        this.$.catservice.FnDeleteCategoryname(this.categoryid);
+        if (confirm("Are you sure?")) 
+        {
+          this.$.catservice.FnDeleteCategoryname(this.categoryid);
+        }
+        
       },
       FnEdit:function()
       {

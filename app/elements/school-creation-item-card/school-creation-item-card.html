@@ -43,56 +43,40 @@
       {
         margin-left: 10%;
       }
-       #updatedetails
-       {
-        @apply(--layout-horizontal);
-
-              margin-left:30%;
-        } 
-
-
-       }
-       .updatediv
-       {
-        border-radius: 10px;
-        border: 1px solid #6699ff;
-        padding: 10px;
-        min-height: 510px;
-        margin-top: -5%;
-        width: 91%;
-       }
-
+      
       #updatedetails
        {
         @apply(--layout-horizontal);
          margin-left:30%;
         } 
-
-
-       }
        #updatedetails
        {
-        border-radius: 10px;
+        /*border-radius: 10px;
         border: 1px solid #6699ff;
-        padding: 10px;
+        padding: 10px;*/
         min-height: 510px;
         margin-top: -5%;
         width: 91%;
        }
        paper-item
        {
-        width: 170%;
+        width: 200%;
        }
+       /*paper-icon-button
+       {
+         margin-left: ;
+         width:5%;
+       }*/
 
     </style>       
     <div> 
     </table>   
    <div class="row">  
     <div class="itemcard col-sm-12">
-      <div class="sclid col-sm-3">
+      <!-- <div class="sclid col-sm-3">
         <paper-item>{{schoolid}}</paper-item>
-      </div>
-      <div class="sub col-sm-6">
+      </div> -->
+      <div class="sub col-sm-9">
         <paper-item>{{schoolname}}</paper-item>
       </div>
       <div class="clsbutton col-sm-3">
@@ -172,13 +156,18 @@
         },
         FnDelete:function()
         {
+          document.querySelector('school-creation-item-card').showupdetails();
+          if (confirm("Are you sure?")) 
+          {
+            
             this.$.uiservice.Fndeleteinfo(this.schoolid);
+          }
         },
 
         showupdetails:function()
         {  
           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
-          document.querySelector('school-creation-card').getfocus();
+         // document.querySelector('school-creation-card').getfocus();
         }
 
        /* FnSave:function()

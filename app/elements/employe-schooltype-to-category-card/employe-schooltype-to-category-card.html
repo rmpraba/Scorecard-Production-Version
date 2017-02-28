@@ -16,7 +16,7 @@
         margin-top: 4%;
       }
       .card2{
-        margin-left:40%;
+        margin-left:40%;    
          margin-top:-17%;
       }
       .outcard{
@@ -26,7 +26,7 @@
        .innercard{     
       @apply(--layout-horizontal);
        width:100%
-      margin-left:2.5em;
+      margin-left:5.5em;
      }
     
      .tt{
@@ -51,7 +51,7 @@
         margin-left: 80%;
         margin-top: 4%;
       }
-     .subcat1
+.subcat1
       {
         margin-left: 60%;
       }
@@ -73,6 +73,14 @@
                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
                 <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
               </template>
+             <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
+               <paper-menu id="empLanguageprefernceid" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
+                 <paper-item value="coresub">Core Subject</paper-item>
+                 <paper-item value="2language">Second Language</paper-item>
+                 <paper-item value="3language">Third Language</paper-item>
+             </paper-menu>
+          </paper-dropdown-menu>
+         
               </div>
           <div class="subcat1">
               <div class="form-group-heading">
@@ -143,7 +151,7 @@
  
       </div>
 
-     <div id="talhidn">
+     <div id="talhidn" hidden$="{{hidenewgridd}}">
         <div class="list-group col-sm-12 panel-body form-category">  
           <table class="table table-bordered">
             <div class="container">
@@ -152,7 +160,7 @@
                 <th></th>
                   <th class="innercard">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h5>{{view.srtarr}}</h5>
+                      <h4 style="margin-left:4%">{{view.srtarr}}</h4>
                     </template>
                   </th>   
                   <th></th>
@@ -166,7 +174,7 @@
                     </td>
                     <td class="innercard">
                       <template is="dom-repeat" items="{{view.employee}}" as="s">
-                        <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"></employe-creation-card>
+                        <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
                       </template>
                   </td>
                   <td></td>  
@@ -174,12 +182,25 @@
                 </template>
               </tbody>
             </div>
-          </table>
+          </table>   
         </div>   
         </div>  
-           <span id="subbutton1" style="color:white;background-color:black;margin-left:41%;border-radius:10px">
+          <!--  <span id="subbutton1" style="color:white;background-color:black;margin-left:41%;border-radius:10px">
             <paper-button on-click="FnSubmit" style="width:12%;height:5%">Submit</paper-button>
-          </span>
+        
+          </span> -->
+    
+  <div id="subbutton1"> 
+   <paper-button ></paper-button>
+     </div>
+    <div id="subbutton1" style="color:white;background-color:black;width:7%;margin-left:41%;" >
+    <paper-button on-click="FnSubmit">Submit</paper-button>
+    </div>
+      <div id="empidz1" style="color:white;background-color:black;width:7%;margin-left:50%; margin-top:-3%;" >
+    <paper-button on-click="Fndelte">Delete</paper-button>
+   </div>
+      
+    
   <master-ui-service id="uiservice"></master-ui-service>      
 </template>
           <script>
@@ -191,20 +212,51 @@
      var namearr=[];
      var setspecificarr=[];
      var bigarrz=[];
+     var deldbarrs=[];
     Polymer({
       is: 'employe-schooltype-to-category-card',
       ready:function(){
         this.$.subbutton1.hidden=true;
         this.$.talhidn.hidden=true;
+        this.$.empidz1.hidden=true;
         this.$.empidz.hidden=true;
+     
         this.$.generateidz.hidden=true;
+        this.$.empLanguageprefernce.hidden=true;
+    },
+    FnRefresh:function()
+    {
+      this.$.empLanguageprefernce.hidden=true;
+      //document.querySelector('#empLanguageprefernceid').selected=-1;
+    },
+    fnbuttonsclean:function()
+    {
+     this.$.empidz1.hidden=true; 
+     this.$.subbutton1.hidden=true;
     },
        getgrade:function(arr){
         empteacharr=arr;
         //emparr=arr;
         
        },
+       langprefere:function(e){
+        //   alert('1');
+          if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
+                  this.$.empLanguageprefernce.hidden=false;
+                }
+            else{
+
+              this.$.empLanguageprefernce.hidden=true;
+              var empty='empty';
+              document.querySelector('employee-category-item-card').fnsetemployeelanprefer(empty);
+   
+            }   
+             },
+        clean:function(e){
+        this.$.empLanguageprefernce.hidden=true;
+      },
        getcategory:function(arr){
+
        getcategory=arr;
        },
        getemployeegrade:function(arr){
@@ -216,6 +268,11 @@
       autocompletename:function(nameitem){
           namearr=nameitem;
       },
+      empfnselectlanprefercence:function(e){
+        this.emplangprefernce=e.target.selectedItem.textContent.trim();
+        document.querySelector('employee-category-item-card').fnsetemployeelanprefer(this.emplangprefernce);
+         
+      },
       fnsetemployee:function(e){
           if(document.querySelector('#'+e.target.id).checked==true){
                 this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
@@ -226,10 +283,22 @@
         this.$.generateidz.hidden=true;
       }
     },
+    deldbarr:function(arr){
+       deldbarrs=arr;
+    },
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
-       document.querySelector('employe-creation-card').Fnsubjectclean();        
+       document.querySelector('employe-creation-card').Fnsubjectclean(); 
+       document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
+       document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
+       document.querySelector('employee-category-item-card').FnRefresh();      
+       
+       },
+       Fndelte:function(e){
+       //alert(JSON.stringify(deldbarrs));
+        this.$.uiservice.fnemployeeedelfn(deldbarrs);
+       document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
        },
       /* Fnselected:function(e)
@@ -314,17 +383,17 @@
          }
          this.subjectbigarr=overall;
             setspecificarr=overall;
-        
+         
          this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
          this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
-         this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid);
-         
+         this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
+            
          overall.splice();
          generatearr=[];
         // this.$.uiservice.fngetThefunction();
            this.$.subbutton1.hidden=false;
            this.$.talhidn.hidden=false;
-           this.$.empidz.hidden=false;
+           this.$.empidz1.hidden=false;
          //  this.$.generateidz.hidden=false;
   
          //  alert(JSON.stringify(emparr));

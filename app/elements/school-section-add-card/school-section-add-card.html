@@ -20,12 +20,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <div hidden>{{sectiongradeidzx}}</div>
     <div hidden>{{sectiongradenamezx}}</div>
- <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button>
+ <!-- <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button> -->
+      <paper-icon-button icon="add" on-click="fnsubmit"></paper-icon-button>
      <paper-dialog id="sectiongradeid" modal>
           <paper-input label="Enter The Section" value="{{section}}"></paper-input>
           <paper-button style="background-color:black;color:white" on-click="fnsetsubmit">submit</paper-button>
             <paper-button dialog-confirm autofocus> close</paper-button>
    </paper-dialog>
+
+     <paper-dialog id="sectiongradeidss" modal>
+       <h2> please check Sectoin in Section Allocation </h2>
+            <paper-button dialog-confirm autofocus> close</paper-button>
+   </paper-dialog>
+ 
    <iron-ajax        
         id="sectioncreationmappingajax"
         url="{{sectioncreationmappingurl}}"
@@ -46,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="sectioncreationmapping1Response"
         debounce-duration="300"
         >
-    <iron-ajax        
+      <iron-ajax        
         id="sectioncreationmapping2ajax"
         url="{{sectioncreationmapping2url}}"
         params="{{sectioncreationmapping2param}}"
@@ -54,6 +61,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         content-type="application/json"
         method="post"
         on-response="sectioncreationmapping2Response"
+        debounce-duration="300"
+        >
+       
+         <iron-ajax        
+        id="checksctionvalueajax"
+        url="{{checksctionvalueurl}}"
+        params="{{checksctionvalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="checksctionvalueResponse"
+        debounce-duration="300"
+        >
+   
+     <iron-ajax        
+        id="countsectionvalueajax"
+        url="{{countsectionvalueurl}}"
+        params="{{countsectionvalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="countsectionvalueResponse"
         debounce-duration="300"
         >
    
@@ -67,10 +96,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'school-section-add-card',
      fnsubmit:function(){
-   //   alert(this.sectiongradeidzx);
-        this.$.sectiongradeid.open();
-   },
-       fnsetsubmit:function(e){
+     
+         this.setval1();
+         this.setval2();
+     //   this.$.sectiongradeid.open();
+     },
+setval1:function(e){
+        this.checksctionvalueurl=sessionStorage.getItem("addrinfo")+"/checksctionvalue-service";
+         var obj={"school_id":"","grade_id":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.grade_id=this.sectiongradeidzx;
+         this.checksctionvalueparam=obj;
+         this.$.checksctionvalueajax.generateRequest();
+ },
+  setval2:function(e){
+       this.countsectionvalueurl=sessionStorage.getItem("addrinfo")+"/countsectionvalue-service";
+         var obj={"school_id":"","grade_id":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.grade_id=this.sectiongradeidzx;
+         this.countsectionvalueparam=obj; 
+         this.$.countsectionvalueajax.generateRequest();
+      },
+checksctionvalueResponse:function(e){
+      var res=e.detail.response.returnval; 
+        alert(JSON.stringify(res));
+        this.checksection=res;
+  },
+countsectionvalueResponse:function(e){
+      var res=e.detail.response.returnval; 
+         var m=res[0].no_of_section;
+         var rs=this.checksection[0].section_id;
+         alert(m);
+         alert(rs);
+
+          if(m>rs){
+           this.$.sectiongradeid.open();
+           } 
+          else{
+            this.$.sectiongradeidss.open();
+          }
+        },
+ fnsetsubmit:function(e){
        //     var sectionname=this.section.
               sectionname=this.section.toUpperCase();
               sectionid=sectionname.toLowerCase();

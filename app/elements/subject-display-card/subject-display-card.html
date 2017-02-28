@@ -8,7 +8,7 @@
       :host 
       {
         display: block;
-      }
+      }   
       .card
       {
         /*margin-top: 4%;*/
@@ -25,15 +25,15 @@
       {
         width:5%;
       }
-      .itemcard
+      .itemcard  
       {
       @apply(--layout-horizontal); 
       }
-    </style>
+    </style>    
 
 
     <div class='itemcard'>
-          <paper-item>{{subjectid}}</paper-item>   
+          <paper-item hidden$="{{subjectid}}"></paper-item>   
           <paper-item hidden$="{{hidesubjectitem}}">{{subjectname}}</paper-item>
           <paper-input value="{{subjectname}}" hidden$="{{hidesubjectinput}}"></paper-input>
           <paper-item >{{subjectcategory}}</paper-item>
@@ -43,19 +43,6 @@
     </div>
 
 
-
-   <!--  <table class="card" id="card{{gradeid}}">
-      <tr width="200%">
-          <td width="20%">{{gradeid}}</td>
-          <td width="20%" hidden$="{{hidegradenameitem}}">{{gradename}}</td>
-          <td width="20%" hidden$="{{hidegradenameinput}}"><paper-input value="{{gradename}}"></paper-input></td>
-          <td width="5%" hidden$="{{hidegradenameitem}}"><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
-          </td>
-          <td width="5%" hidden$="{{hidegradenameinput}}"><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button>
-          </td>
-          <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
-      </tr>
-    </table> -->
     <master-ui-service id="service"></master-ui-service>
   </template>
   <script>
@@ -80,7 +67,11 @@
       },
       FnDelete:function()
       {
-        this.$.service.FnDeleteSubjectname(this.subjectid);
+        if (confirm("Are you sure?")) 
+        {
+          this.$.service.FnDeleteSubjectname(this.subjectid);
+        }
+        
       },
       FnEdit:function()
       {

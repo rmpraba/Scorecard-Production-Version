@@ -32,7 +32,7 @@
 
 
     <div class='itemcard'>
-          <paper-item>{{gradeid}}</paper-item>
+          <paper-item hidden$="{{gradeid}}"></paper-item>
           <paper-item hidden$="{{hidegradenameitem}}">{{gradename}}</paper-item>
           <paper-input value="{{gradename}}" hidden$="{{hidegradenameinput}}"></paper-input>
           <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hidegradenameitem}}"></paper-icon-button>
@@ -75,7 +75,11 @@
       },
       FnDelete:function()
       {
-        this.$.service.FnDeleteGrade(this.gradeid);
+        if (confirm("Are you sure?")) 
+        {
+          this.$.service.FnDeleteGrade(this.gradeid);
+        }
+        
       },
       FnEdit:function()
       {

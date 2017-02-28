@@ -17,10 +17,6 @@
 
       @apply(--layout-vertical);
       }
-      .title
-      {
-
-      }
     .creatediv
        {
         border-radius: 10px;
@@ -38,7 +34,8 @@
       </div>
       <div class="creatediv">
        <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
-              <master-school-type-creation-item-card schooltypeidzzzz="{{view.school_type_id}}" schooltypename="{{view.school_type_name}}"></master-school-type-creation-item-card>
+              <master-school-type-creation-item-card id="EO1{{view.school_type_id}}"
+              schooltypeidzzzz="{{view.school_type_id}}" schooltypename="{{view.school_type_name}}"></master-school-type-creation-item-card>
          
          </template>
          </div>
@@ -47,7 +44,7 @@
   <script>
   (function() 
   {
-    'use strict';
+    'use strict';   
      var getarr=[];   
     Polymer({
       is: 'schooltype-to-grade-card',

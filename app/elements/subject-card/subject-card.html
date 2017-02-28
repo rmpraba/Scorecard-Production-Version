@@ -10,7 +10,7 @@
 
 <dom-module id="subject-card">
   <template>
-    <style>
+    <style>   
       :host
       {
          margin-left: 10%;
@@ -27,14 +27,14 @@
       }
       .headdiv
       {
-        width: 200%;
+        width: 200%;  
       }
 
       .title
       {
         @apply(--layout-center);
         width: 255%;
-        margin-left: 35%; 
+        margin-left: 35%;     
       }
 
       .creatediv paper-button
@@ -63,11 +63,11 @@
       table
       {
         @apply(--layout-horizontal);
-         border-collapse: collapse;
-        border: 1px solid #dedede;
-        margin-left: 31%;
+         /*border-collapse: collapse;
+        border: 1px solid #dedede;*/
+        margin-left: 38%;
         margin-top: 3%;
-        width: 61%;
+        width: 58%;
       }
       /*.outcard
       {
@@ -76,9 +76,9 @@
 */
       .creatediv
       {
-         border-radius: 10px;
+          /*border-radius: 10px;
           border: 1px solid #6699ff;
-          padding: 10px; 
+          padding: 10px; */
           width: 28%;
           margin-top: -122% !important;
           margin-left: -3%;
@@ -89,6 +89,17 @@
         line-height: 4px;
         margin-top: 4%;
       }
+
+         .vertical-row 
+      {
+            float: left;
+            border: 1px  solid #12A5F4;
+            /*background-color: black;*/
+            width: 1px;
+            margin-left: 29%;
+            min-height: 430px;
+            margin-top: -122%;
+      } 
     </style>
 
 
@@ -97,16 +108,15 @@
     </div>
 
    <div class="outcard">
-   <div class="newsubcard" hidden$="{{hidenewsubcard}}">
-      <div class="newwwww" style="margin-left:49%">
-        <h4>Current Subject Details</h4>
+     <div class="newwwww" style="margin-left:49%">
+        <h4>Current Subjects</h4>
       </div>
     <div>
       <table>
         <tr>
-            <th> <label style="margin-left:1%">Subject ID</label></th>
+            <!-- <th> <label style="margin-left:1%">Subject ID</label></th> -->
             <th> <label style="margin-left:8%">Subject Name</label></th>
-            <th> <label style="margin-left:-1%">Category Type</label></th>
+            <th> <label style="margin-left:-1%">Category Type</label>
             <th></th>
         </tr>
 
@@ -117,10 +127,9 @@
             </tr>
         </template>
       </table>
-    </div> 
-   </div>
+    </div>
 
-     
+    <div class="vertical-row" style="position: fixed;"></div>
 
     <div class="creatediv">
         <div class="card">    
@@ -129,20 +138,25 @@
           </div>   
             
             <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
-            <paper-input label="Subject Name" id="subjectname" required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+            <paper-input label="Subject Name"  required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
             <paper-dropdown-menu id="subcat" label="Select Category Type" >
               <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategoryzzz">
                 <template is="dom-repeat" items="{{categoryarr}}" as="view">
-                  <paper-item value="{{view.category_type}}">{{view.category_name}}</paper-item>                        
+                  <paper-item value="{{view.category_type}}">{{view.category_name}}</paper-item>        
                 </template>
               </paper-menu>
             </paper-dropdown-menu> 
-        </div>   
-        
-
-            <div class="buttons">
-              <paper-button class="popup-btn" on-click="FnSubmit">Submit </paper-button>
+            <paper-dropdown-menu id="Languageprefernce" label="Select The language Type">
+            <paper-menu id="Languageprefernceid" class="dropdown-content" on-iron-select="fnselectlanprefercence" attr-for-selected="value" required>
+                 <paper-item value="coresub">Core Subject</paper-item>
+                 <paper-item value="2language">Second Language</paper-item>
+                 <paper-item value="3language">Third Language</paper-item>
+            </paper-menu>
+       </paper-dropdown-menu>
+                </div>   
+<div class="buttons">
+              <paper-button class="popup-btn" on-click="FnSubmit">Submit</paper-button>
             </div>
       </div>
     </div> 
@@ -164,54 +178,63 @@
         this.$.uiservice.category1();   
         this.$.uiservice.FnFetchSubjectSeq();
         this.$.uiservice.FnFetchSubjectname();
-        this.$.hidenewssubjectcard=true;     
+        this.$.hidenewssubjectcard=true; 
+        this.$.Languageprefernce.hidden=true;    
       },
       
       FnRefresh:function()
       {
        document.querySelector('#category').selected=-1;
        this.subjectname="";
+       document.querySelector('#Languageprefernceid').selected=-1;
+     
        //this.subjectid="";                  
       }, 
 
       fetchmastercategorynameResponse:function(e)
       {
+
         var arr=e.detail.response.returnval;
         //alert(JSON.stringify(arr));     
       },
 
        FnSubmit:function()
       {
-        if(this.subjectname==""|| category=="")
+        if(this.subjectname==null || this.subjectname=="")
         {
           this.$.subjectname.validate();
-          this.$.category.validate();
-          //alert("please enter Subjectname before Submit");
         }
-        else
+      else  if(category=='category1') 
         {
-         //alert(this.subjectname);
-         alert(category);
+         //alert(category+this.preflang);
+         this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category,this.preflang);
+         document.querySelector('subject-card').FnRefresh();
+          this.$.Languageprefernce.hidden=true;  
+         document.querySelector('#Languageprefernceid').selected=-1;
+      
+       }
+   else{
+        //alert(category+this.preflang);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
          document.querySelector('subject-card').FnRefresh();
-         //this.$.subjectdialog.toggle();
-        }
-       
+          this.$.Languageprefernce.hidden=true;  
+         document.querySelector('#Languageprefernceid').selected=-1;
+      
+   }
+
+       },
+      fnselectlanprefercence:function(e)
+      {
+      this.preflang=e.target.selectedItem.textContent.trim(); 
+       //alert(this.preflang);        
       },
       FnSelectCategoryzzz:function(e)
-      {
-        //alert('1');
-      category=e.target.selectedItem.value;
-      //alert(category);
-     },
-     subjecttview:function()
-     {
-      this.hidenewsubcard=false;
-     },
-     subjectthide:function()
-     {
-      this.hidenewsubcard=true;
-     }
+      {      category=e.target.selectedItem.value;
+             this.$.Languageprefernce.hidden=true;    
+            if(category=='category1'){
+              this.$.Languageprefernce.hidden=false;
+            }
+           }
 
     });
   })();  

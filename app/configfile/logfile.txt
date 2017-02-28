@@ -32,4 +32,21 @@ pdf mail sendin status:nullpdf write:success
 
 
 
-pdf mail sendin status:null
+pdf mail sendin status:nullpdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+
+pdf write:success
+

@@ -17,7 +17,7 @@
       {
         margin-left:40%;
          margin-top:-21%;
-      }
+      }   
       .outcard
       {
       width:25% 
@@ -39,8 +39,7 @@
      {      
       width:70%;
      }   
-
-      .outer1
+   .outer1
       {
         border-radius: 10px;
         border: 2px solid #6699ff;
@@ -87,18 +86,14 @@
           <div class="form-group-heading">
             <h4>SCHOOL TYPE</h4>
           </div>
-              
           <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
             <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
           </template>
-        </div>   
-
-
+        </div>    
         <div class="subbcatt">
-          <div class="form-group-heading">
+          <div class="form-group-heading">   
             <h4> SUBJECT CATEGORY</h4>
-          </div>
-              
+          </div>   
           <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
             <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
             id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
@@ -111,7 +106,7 @@
           
       </div>     
     </div>
-  <div id="tbz1">
+  <div id="tbz1" hidden$="{{hidenewsubcat}}">
     <div class="list-group col-sm-12 panel-body form-category">
       <table class="table table-bordered">
       <!-- <table border="1" class="tt"> -->
@@ -138,15 +133,20 @@
             </template>
         </tbody>    
       </table>  
-    </div>
+    </div>    
     </div>    
     <master-ui-service id="uiservice"></master-ui-service>
         <div >
             <paper-button on-click='FnSave'></paper-button>  
          </div>
-         <div style="color:white;background-color:black;width:7%;margin-left:41%;border-radius:10px" id="z">
+<div style="color:white;background-color:black;width:7%;margin-left:41%;" id="z">
             <paper-button on-click="FnSavez">Submit</paper-button>  
-           </div>
+        </div>
+    <div style="color:white;background-color:black;width:7%;margin-left:50%;margin-top:-3%;" id="z1">
+           <paper-button on-click="fndelete">Delete</paper-button>  
+    
+         </div>
+ 
   </template>
   <script>
   (function() {
@@ -154,11 +154,18 @@
    var getgradearr=[];
    var getcategory=[];  
    var passservicearr=[];
+   var delpassservicearr=[];
     Polymer({
       is: 'school-grade-to-subject-card',   
      ready:function(){
       this.$.z.hidden=true;
        this.$.tbz1.hidden=true;
+       this.$.z1.hidden=true;
+     },
+     fnbuttoncln:function()
+     {
+      this.$.z.hidden=true;
+      this.$.z1.hidden=true;
      },
        getgrade:function(arr1){
          getgradearr=arr1;
@@ -176,16 +183,25 @@
       fnapssgradedetails:function(arr){
         passservicearr=arr;  
       },
+      fndelapssgradedetails:function(arr){
+         delpassservicearr=arr; 
+      },
       FnSavez:function(e){
-           alert('save');
+           //alert('save');
            //alert(JSON.stringify(passservicearr));
            this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
          //  passservicearr=[];
            document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
            document.querySelector('schoolcategory-type-item-card').fnschoolcategoryclean(); 
            document.querySelector('school-type-item-card').fnschooltypeclaen(); 
-     
-       },
+           document.querySelector('school-type-item-card').FnRefresh();
+           document.querySelector('schoolcategory-type-item-card').FnRefresh();
+     },
+     fndelete:function(e){
+        this.$.uiservice.fndeletegradetosubmapping(delpassservicearr);
+     document.querySelector('school_grade-subject-item-card').Fngradeclean1(); 
+    
+     },
     getschoolcategory:function(arr1){
    //     alert('2');
     this.schooltypesubjectid=arr1;
@@ -203,9 +219,8 @@
                           }
                //  alert(JSON.stringify(setarrr));
                    this.setsubjectarr=setarrr;
-
-          var generatearr=[];
-         var subarr=[];
+                var generatearr=[];
+                var subarr=[];
                 for(var j=0;j<getcategory.length;j++){
                      for(var i=0;i<getgradearr.length;i++){
                    var subjectname=getcategory[j].subject_name;
@@ -265,6 +280,7 @@
          overall.splice();
          generatearr=[];
          this.$.z.hidden=false;
+         this.$.z1.hidden=false;
          this.$.tbz1.hidden=false;
     
         } 

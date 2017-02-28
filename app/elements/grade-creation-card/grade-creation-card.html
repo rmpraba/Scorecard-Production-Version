@@ -65,31 +65,46 @@
       table
       {
         @apply(--layout-horizontal);
-         border-collapse: collapse;
-        border: 1px solid #dedede;
+        /* border-collapse: collapse;
+        border: 1px solid #dedede;*/
         margin-top: 3%;
-        margin-left: 30%;
+        margin-left: 50%;
         width: 59%;
       }
+
      /* .outcard{
         @apply(--layout-horizontal);
       }*/
 
       .creatediv
       {
+         /*position: absolute;
          border-radius: 10px;
           border: 1px solid #6699ff;
-          padding: 10px; 
+          padding: 10px;*/ 
           width: 25%;
           margin-left: -4%;
-          margin-top: -54% !important;
-          min-height: 700%;
+          margin-top: -50% !important;
+          min-height: 200px;
       }
       .newtitle
       {
         margin-top: 4%;
+        margin-left: 30%;
       }
       
+       .vertical-row 
+      {
+            float: left;
+            position: absolute;
+            border: 1px  solid #12A5F4;
+            /*background-color: black;*/
+            height: 100px;
+            width: 1px;
+            margin-left: 29%;
+            min-height: 500px;
+            margin-top: -53%;
+      } 
     </style>
 
 
@@ -100,12 +115,12 @@
    <div class="outcard">
    <div class="newgradediv" hidden$="{{newgradediv}}">
     <div class="newtitle" style="margin-left:50%">
-        <h4>Current Grade Details</h4>
+        <h4>Current Grade</h4>
     </div>
     <div>     
       <table>
         <tr>
-            <th> <label>Grade ID</label></th>
+            <!-- <th> <label>Grade ID</label></th> -->
             <th> <label>Grade Name</label></th>
             <th></th>
         </tr>
@@ -118,6 +133,8 @@
       </table>
     </div>
     </div>
+
+    <div class="vertical-row"></div>
 
     <div class="creatediv">
         <div class="card">       

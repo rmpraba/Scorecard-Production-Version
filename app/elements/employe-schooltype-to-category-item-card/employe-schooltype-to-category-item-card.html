@@ -12,10 +12,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="employe-schooltype-to-category-item-card">
   <template>
-    <style>
+    <style>   
       :host {
         display: block;
-      }
+      }    
       .outcard{
       /*@apply(--layout-horizontal);  
       margin-left: 10%;*/
@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         params="{{empgetteacherschooltypeparam}}"
         handle-as="json"
         content-type="application/json"
-        method="post"
+        method="post" 
         on-response="empgetteacherschooltypeResponse"
         debounce-duration="300">
      </iron-ajax>
@@ -44,20 +44,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>   
   (function() {
     'use strict';
+    var scltypearr=[];
 
     Polymer({
       is: 'employe-schooltype-to-category-item-card',
+      fnrefresh:function()
+      {
+        for(var i=0;i<scltypearr.length;i++)
+        {
+          var stype=scltypearr[i].id;
+          document.querySelector('#'+stype).checked=false;
+        }
+      },
       fnschooltypeget11:function(e)
       {
         //alert(this.schooltypeidxx);
-       if(document.querySelector('#'+this.schooltypeidxx).checked==true)
+       if(document.querySelector('#'+this.id).checked==true)
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
           this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
-          var obj={"schooltypeid":"","school_id":""};
+          var obj={"schooltypeid":"","school_id":"","id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypenamexx;
-          this.empgetteacherschooltypeparam=obj;
+          obj.id=this.id;
+          scltypearr.push(obj);
+          this.empgetteacherschooltypeparam=obj;    
             //alert(JSON.stringify(obj));
           this.$.empgetteacherschooltypeajax.generateRequest();
         }
