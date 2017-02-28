@@ -90,14 +90,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if(paspstuinfo.length!=0){
                 this.fnsplice();
               } 
-         
-       },
+          },
         stupersonalinfo11:function(arr){
          //  alert(rr);
         //alert(this.admissinno);
           for(var i=0;i<arr.length;i++){
             if(arr[i].admno==rr){
-                 var m=arr[i].dd;
+               //  var m=arr[i].dd;
                 // alert(m);
            document.querySelector('#'+m).checked=false;
            }}},
@@ -110,8 +109,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  for(var i=0;i<paspstuinfo.length;i++){
                spliceid=paspstuinfo[i].enq_id;
               document.querySelector('#'+spliceid).checked=false;
-               }
-          var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
+             }
+             var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;
@@ -119,15 +118,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.enq_id=this.id;
             obj.classid=this.classid;
             paspstuinfo.splice(obj);
-      
-        }
-       
+           }
         },
         stupersonalinfo13:function(arr){
-          //    var rnw=paspstuinfo.length; 
           // alert(JSON.stringify(arr));
-      //alert()
-           alert(JSON.stringify(arr));
 
                 for(var k=0;k<arr.length;k++){
                       var  dbid=arr[k].dd;
