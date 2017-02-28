@@ -87,11 +87,7 @@
           margin-top: -50% !important;
           min-height: 200px;
       }
-      .newtitle
-      {
-        margin-top: 4%;
-        margin-left: 30%;
-      }
+      
       
        .vertical-row 
       {
@@ -102,9 +98,19 @@
             height: 100px;
             width: 1px;
             margin-left: 29%;
-            min-height: 500px;
+            min-height: 900px;
             margin-top: -53%;
       } 
+
+
+        .doubleUnderline 
+      { 
+        border-bottom: 3px double;
+        margin-left: 32%;
+        margin-top: 4%;
+        width: 20%;
+        line-height: 3px;
+       }
     </style>
 
 
@@ -114,7 +120,8 @@
 
    <div class="outcard">
    <div class="newgradediv" hidden$="{{newgradediv}}">
-    <div class="newtitle" style="margin-left:50%">
+
+    <div class="doubleUnderline" style="margin-left:50%">
         <h4>Current Grade</h4>
     </div>
     <div>     
@@ -122,6 +129,7 @@
         <tr>
             <!-- <th> <label>Grade ID</label></th> -->
             <th> <label>Grade Name</label></th>
+            <th><paper-icon-button icon="add" on-click="getgradename"></paper-icon-button></th>
             <th></th>
         </tr>
 
@@ -136,7 +144,7 @@
 
     <div class="vertical-row"></div>
 
-    <div class="creatediv">
+    <div class="creatediv" hidden$="{{hidegradename}}">
         <div class="card">       
             <label>Create New Grade</label>
             <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
@@ -181,6 +189,10 @@
         this.gradename="";
       },
 
+      getgradename:function()
+      {
+        this.hidegradename=false;
+      },
       FnSubmit:function()
       {
         if(this.gradename==null || this.gradename=="")

@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+   
 <dom-module id="school-creation-card">
   <template>
     <style>
@@ -70,10 +70,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
          @apply(--layout-horizontal);
          /*border-collapse: collapse;
-         border: 1px solid #dedede;
+         border: 3px solid #dedede;
          padding: 6px;*/
-         margin-left: 52%;
-         width: 52%;
+         margin-left: 49%;
+         width: 70%;
          margin-top: 5% !important;     
       }
       .outcard
@@ -88,10 +88,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           /*border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;
-*/          min-height: 200px; 
+*/        min-height: 200px; 
           margin-top: -44% !important;
-          width: 49%;
-          margin-left: 1%;
+          width: 47%;
+          margin-left: -1%;
        }
 
        /*#updatedetails
@@ -126,22 +126,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 100%;
         margin-left: 35%; 
       }
-      .newtitle
+      /*.newtitle
       {
         width: 40%;
         line-height: 5px;
         margin-top: 4%;
-      }
+      }*/
 
         .vertical-row
         {
            /*float: center;*/
             border: 1px  solid #12A5F4;
             width: 1px;
-            margin-left: 50%;
+            margin-left: 47%;
             min-height: 630px;
             margin-top: -35%;
         }
+
+         .doubleUnderline 
+      { 
+        border-bottom: 3px double;
+        margin-left: 62%;
+        margin-top: 7%;
+        width: 20%;
+        line-height: 3px;
+       }
 
           </style>
 
@@ -150,8 +159,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h3><b>SCHOOL CREATION</b></h3>
     </div>
     <div class="outcard" hidden$="{{hideschooldiv}}">
-       <div class="newtitle" style="margin-left:70%">
-        <h4>Current School Details</h4>
+       <div class="doubleUnderline">
+        <h4>Current School</h4>
       </div>
       <table>
         <tr>

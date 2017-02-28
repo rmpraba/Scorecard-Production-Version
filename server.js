@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecardbatabase'
+   database : 'scorecarddatabase'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -6099,6 +6099,7 @@ app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,re
       res.status(200).json({'returnval': 'Invalid'});
   });
 });
+
 app.post('/emppersonaldetails-service' ,  urlencodedParser,function (req, res)
 
 {  
@@ -6770,6 +6771,7 @@ var response={
             grade_name:req.query.gradename,
             no_of_section:req.query.section,
             no_of_student:req.query.student,
+            overall__count:req.query.overallcount,
             school_type:req.query.schootypids,
          }
      //var obj={"workingschoolid":"","acadamicyear":"","termids":"","termgrade":"","noofdays":""};
@@ -6778,7 +6780,7 @@ var response={
     //console.log(JSON.stringify(response));
     var qur="SELECT * FROM allow_student_section WHERE school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
 
-    var qur1="update allow_student_section set no_of_section='"+req.query.section+"',no_of_student='"+req.query.student+"' where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
+    var qur1="update allow_student_section set no_of_section='"+req.query.section+"',no_of_student='"+req.query.student+"' overall_count='"+req.query.overallcount+"' where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
 
    /* console.log(qur);
     console.log(qur1)*/

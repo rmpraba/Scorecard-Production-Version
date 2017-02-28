@@ -23,14 +23,14 @@
      </iron-ajax>
   </template>
 <script>
-  (function() {
+  (function() { 
     'use strict';   
     var sclcatarr=[], obj;   
      Polymer({
       is: 'schoolcategory-type-item-card',
       FnRefresh:function()
       {
-        alert(11);
+       // alert(11);
         for(var i=0;i<sclcatarr.length;i++)
         {
           var subcatt=sclcatarr[i].id;
@@ -49,7 +49,7 @@
           obj.schoolcategoryname=this.schooltypecategoryname;
           obj.id=this.id;
           sclcatarr.push(obj);
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.schooltypegetcategoryparam=obj;
           this.$.schooltypegetcategoryajax.generateRequest();
         }

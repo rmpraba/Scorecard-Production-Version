@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;       
          @apply(--layout-left);
      } 
-     .card
+     .card     
       {
         @apply(--layout-horizontal);
         margin-left:30%;
@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-left: 75%;
       margin-top: 3%;
       }
-
+ 
        table
       {
          apply(--layout-horizontal);
@@ -114,7 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             border: 1px  solid #12A5F4;
             width: 1px;
             margin-left: 49%;
-            min-height: 2000px;
+            min-height: 2900px;
             margin-top: -4%;
        }
 
@@ -128,12 +128,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="newtitle">
         <h4>Current Employees</h4>
       </div>
-
+   
     <div class="newcard col-sm-12">
       <table>
         <tr>
-          <th><label style="margin-left:12% ">Employee ID</label></th>
-          <th><label style="margin-left:-7%">Employee Name</label></th>
+          <!-- <th><label style="margin-left:12% ">Employee ID</label></th> -->
+          <th><label style="margin-left:3%">Employee Name</label></th>
           <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th>
         </tr>
         <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
@@ -268,7 +268,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
     </div>
           <div>
-            <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
+            <paper-button class="subbutton" on-click="FnpersonalSave">Save</paper-button>
           </div>
       </div>                  
     </div>    

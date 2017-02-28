@@ -19,8 +19,10 @@
       }
 
       .card{
-        @apply(--layout-horizontal);
-        border-bottom: 1px solid #dedede;   
+        @apply(--layout-center);
+        @apply(--layout-horizontal);     
+        border-bottom: 1px solid #dedede;
+        width: 200%; 
       }      
 
        .itemcard
@@ -76,11 +78,11 @@
       <!-- <div class="sclid col-sm-3">
         <paper-item>{{schoolid}}</paper-item>
       </div> -->
-      <div class="sub col-sm-9">
+      <div class="sub col-sm-8">
         <paper-item>{{schoolname}}</paper-item>
       </div>
-      <div class="clsbutton col-sm-3">
-          <paper-icon-button icon='create' on-click="showupdetails"></paper-icon-button>
+      <div class="clsbutton col-sm-4">
+          <paper-icon-button  icon='create' on-click="showupdetails"></paper-icon-button>
           <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
       </div>
     </div>

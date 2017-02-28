@@ -21,7 +21,7 @@
         on-response="empschooltypegetcategoryResponse"
         debounce-duration="300">
        </iron-ajax>
-           <iron-ajax                 
+           <iron-ajax                    
         id="emplangschooltypegetcategoryajax"
         url="{{emplangschooltypegetcategoryurl}}"
         params="{{emplangschooltypegetcategoryparam}}"
@@ -42,7 +42,7 @@
       is: 'employee-category-item-card',
       FnRefresh:function()
       {
-        alert(444);
+        //alert(444);
         for(var i=0;i<cattypearr.length;i++)
         {   
           var catype=cattypearr[i].id;

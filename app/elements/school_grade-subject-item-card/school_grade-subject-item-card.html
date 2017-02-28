@@ -18,7 +18,7 @@
     </style>
     <div>
       <table>
-        <tr>   
+        <tr>      
            <td class="innercard">
            <paper-input value={{getsubjectname}} hidden></paper-input>
            <paper-input value={{getname}} hidden></paper-input>
@@ -87,7 +87,7 @@
                      obj.categoryname=this.getschoolcategory;
                      obj.gradename=this.getgradename;
                      obj.subjectname=this.getsubjectname;
-                     alert(JSON.stringify(obj));
+                    // alert(JSON.stringify(obj));
                      delpassbigarr.push(obj);
             document.querySelector('school-grade-to-subject-card').fndelapssgradedetails(delpassbigarr);
   

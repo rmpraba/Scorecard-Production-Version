@@ -34,7 +34,7 @@
       background-color: #363636;
       color: #ffffff;
       width: 7%;
-      margin-left: 39%;
+      margin-left: 42%;
       margin-top: 3%;
       }
 
@@ -56,10 +56,10 @@
        table
        {
         @apply(--layout-horizontal);
-         border-collapse: collapse;
-        border: 1px solid #dedede;
-        width: 60%;
-        margin-left: 35%;
+        /* border-collapse: collapse;
+        border: 1px solid #dedede;*/
+        width: 59%;
+        margin-left: 45%;
         margin-top: 5%;
       }
       /*.outcard
@@ -74,9 +74,9 @@
       .creatediv
       {
         position: fixed; 
-         border-radius: 10px;
+         /*border-radius: 10px;
           border: 1px solid #6699ff;
-          padding: 10px; 
+          padding: 10px;*/ 
           width: 28%;
           margin-left: -5%;
           margin-top: -19% !important;
@@ -87,7 +87,28 @@
         line-height: 3px;
         margin-top: 15%;
       }
-      
+       .vertical-row 
+      {
+            float: left;
+            position: absolute;
+            border: 1px  solid #12A5F4;
+            /*background-color: black;*/
+            height: 100px;
+            width: 1px;
+            margin-left: 29%;
+            min-height: 430px;
+            margin-top: -25%;
+      } 
+       
+
+       .doubleUnderline 
+      { 
+        border-bottom: 3px double;
+        margin-left: 58%;
+        margin-top: 7%;
+        width: 20%;
+        line-height: 3px;
+       }
     </style>
      
   <div class="title"> 
@@ -97,14 +118,14 @@
   <div class="outcard" hidden$="{{hideoutcard}}">
     <div class="newcatcardddd" hidden$="{{hidenewcatcard}}">
     <div>
-       <div class="newtitile" style="margin-left:50%">
-          <h4>Current Category Type Details</h4>
+       <div class="doubleUnderline">
+          <h4>Current Category Type</h4>
         </div>
       <table>
           <tr>
-              <th><label style="margin-left:4%">Category ID</label></th>
+              <!-- <th><label style="margin-left:4%">Category ID</label></th> -->
               <th><label style="margin-left:2%">Category Name</label></th>
-              <th><paper-icon-button icon="add" on-click="getcattype"></paper-icon-button></th>
+              <th><paper-icon-button  style="margin-left: -78%;" icon="add" on-click="getcattype"></paper-icon-button></th>
           </tr>
 
           <template is="dom-repeat" items="{{catarr}}" as="ca">
@@ -117,6 +138,8 @@
     </div>
 
     <div hidden>{{temphidden}}</div>
+
+    <div class="vertical-row"></div>
     
     <div class="creatediv" hidden$="{{hidecategorytype}}">
         <div class="card">
@@ -149,7 +172,7 @@
        this.$.uiservice.FnFetchCategorySeq();
        this.$.uiservice.FnFetchCategoryname();
        this.$.hidenewcategorycard=true;
-       this.hidecategorytype=true;
+       //this.hidecategorytype=true;
       },
       getcattype:function()
       {

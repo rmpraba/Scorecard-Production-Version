@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            <paper-input hidden value="{{sectiongradeidzx}}"></paper-input>
            <paper-input hidden value="{{sectiongradenamezx}}"></paper-input>
      
-       <paper-checkbox style="padding-left:5%" on-change="fngetsectiongrade" checked id="{{id}}">{{sectiongradeid}}</paper-checkbox>    
+       <paper-checkbox style="padding-left:5%" on-change="fngetsectiongrade" checked id="{{id}}">{{sectiongradeid}}&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>    
             
 
           <iron-ajax        
@@ -51,7 +51,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
        fngetsectiongrade:function(e){
        // alert(this.id);
-         if(document.querySelector('#'+this.id).checked==false){
+         if(document.querySelector('#'+this.id).checked==false)
+         {
           //var obj={"sectiongradeid":"","school_id":""};
           var sectionid=this.sectiongradeid.toLowerCase();
           var sectionname=sectionid.toUpperCase();

@@ -51,9 +51,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
   (function() {
     'use strict';
-
+    var sectionarr=[];
     Polymer({
       is: 'school-grade-section-creation-card',
+      fnrefresh:function()
+      {
+        for(var i=0;i<sectionarr.length;i++)
+        {
+          var sectionname=sectionarr[i].sectionschooltypeid;
+          document.querySelector('#'+sectionname).checked=false;
+        }
+      },
     fnsetgrade:function(e){
      // alert("ss");
        sessionStorage.setItem("curr_sess_loggedsectionschooltypeid",this.sectionschooltypeid);
@@ -63,7 +71,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.f1();
           this.f2(); 
           document.querySelector('school-section-creation-card').fnnewtitle();
-          document.querySelector('school-section-creation-card').fndelete();
 
         }
     },
@@ -72,6 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var obj={"sectionschooltypeid":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
+          sectionarr.push(obj);
           this.sectioncreategradeparam=obj;
          // alert(JSON.stringify(obj));
           this.$.sectioncreategradeajax.generateRequest();
@@ -84,6 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var obj={"sectionschooltypeid":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
+          sectionarr.push(obj);
           this.sectioncreategrade1param=obj;
         //  alert(JSON.stringify(obj));
           this.$.sectioncreategrade1ajax.generateRequest();
@@ -103,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.querySelector('school-section-creation-card').setdbschooltype(res);
     
       
-    },
+    }
 
  });
   })();

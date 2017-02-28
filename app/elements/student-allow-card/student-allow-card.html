@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
       table{
-        width: 60%;
+        width: 60%;  
         border-collapse: collapse;                          
         margin-left: 1%;
       }              
@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div>
       <CENTER>
-        <h3><b>Student Section Allocation</b></h3>   
+        <h3><b>STUDENT SECTION ALLOCATION</b></h3>   
       </CENTER>
     </div>
     
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="newdropzzz">
         <paper-dropdown-menu id="term" label="Select Acadamic year">
-            <paper-menu id="rtermmm" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
+            <paper-menu id="rtermmmzzz" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
                 <paper-item value="2015-2016">2015-2016</paper-item>     
                 <paper-item value="2016-2017">2016-2017</paper-item>
                 <paper-item value="2017-2018">2017-2018</paper-item>
@@ -76,8 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <table border="1" style="margin-left: 20%;margin-top: 3%;">    
           <tr>
           <th id="tb1">Grade</th>
-          <th id="tb1">no of Section</th>
-          <th id="tb1">no of Student</th>
+          <th id="tb1">No of Section</th>
+          <th id="tb1">No of Student</th>
           <th id="tb1">Save</th> 
          </tr>      
           <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
@@ -106,6 +106,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         this.$.term.hidden=true;
         this.hidenewtabgrid=true;
+      },
+      FnRefresh:function()
+      {
+        document.querySelector('#rtermmmzzz').selected=-1;
       },
       showacademicyr:function()
       {
@@ -150,7 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                        }
                 }
               }
-               alert(JSON.stringify(gridschooltypearr));
+               //alert(JSON.stringify(gridschooltypearr));
       
                this.scooltypgrid=gridschooltypearr;
        

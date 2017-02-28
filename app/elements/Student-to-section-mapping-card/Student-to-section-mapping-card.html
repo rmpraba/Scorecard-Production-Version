@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <div class="newcard">
               <paper-dropdown-menu  label="select the grade">
-                <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
+                <paper-menu id="empgradeid" class="dropdown-content"  on-iron-select="fnselectgrade">
                   <template is="dom-repeat" items="{{setgrade}}">
                     <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
                   </template>    
@@ -173,7 +173,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       fnrefresh:function()
       {
-        this.empgradeid="";
+        document.querySelector('#empgradeid').selected=-1;
       },
     fnstudentgetgrade:function(arr){
      this.setgrade=arr;
@@ -487,7 +487,8 @@ for(var j=0;j<l.length;j++){
               var sss=mappingstudentarr[q].class_id;
          for(var t=0;t<l[j].subject.length;t++){
              
-           if(l[j].subject[t].class_id==sss){
+           if(l[j].subject[t].class_id==sss)
+           {
                       var rrn=l[j].subject[t].id;
                       var admno=l[j].enquiry_no;
                       l[j].subject[t].check=true;
@@ -528,7 +529,7 @@ for(var j=0;j<l.length;j++){
        
       },
 
-      
+
     studentlist:function(arr){
    studentlistarr=arr;
     },

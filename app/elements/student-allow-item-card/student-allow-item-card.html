@@ -24,9 +24,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() 
   {
     'use strict';  
-
+    var sctypearr=[];
     Polymer({
       is: 'student-allow-item-card',
+      FnRefresh:function()
+      {
+        document.querySelector('#'+this.id).checked=false;
+        /*for(var i=0;i<sctypearr.length;i++)
+        {
+          var sclnamezz=sctypearr[i].id;
+          document.querySelector('#'+sclnamezz).checked=false;
+        }*/
+      },
       fnsetsection:function(e){
         if(document.querySelector('#'+this.id).checked==true)
         {

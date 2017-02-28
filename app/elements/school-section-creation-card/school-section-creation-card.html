@@ -141,12 +141,20 @@
      var fnpasdelarr=[];
     Polymer({
       is: 'school-section-creation-card',
+
       ready:function()
       {
         this.hidenewgrade=true;
         this.hidenewopt=true;
       },
-setschooltype:function(e){  
+       FnRefresh:function()
+      {
+        this.hidenewgrade=true;
+        this.hidesectiongrid=true;
+        this.hidenewopt=true;
+      },
+setschooltype:function(e)
+{  
   secarr=e;
  //alert(JSON.stringify(this.secarr));
 
@@ -156,7 +164,7 @@ fndeletepass:function(arr){
 },
 fndelete:function(e){
  //  alert(JSON.stringify(fnpasdelarr))
-    this.hidenewopt=false;
+    
    this.$.uiservice.fndelsectiongrade(fnpasdelarr);
 },
 setdbschooltype:function(e){
@@ -246,6 +254,7 @@ setdbschooltype:function(e){
         fnnewtitle:function()
         {
           this.hidenewgrade=false;
+          this.hidenewopt=false;
         }
 
      });

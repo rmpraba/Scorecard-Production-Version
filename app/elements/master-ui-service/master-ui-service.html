@@ -1243,6 +1243,7 @@ empsectionclassResponse:function(e){
     
      },
      
+
      fnsetstudentinfoResponse:function(e){   
         var res=e.detail.response.returnval; 
        //alert(JSON.stringify(res));
@@ -1286,7 +1287,7 @@ empsectionclassResponse:function(e){
     },
     FngetcategoryandsubjectResponse:function(e){
        var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
      },
     fnempgenerateid:function()
        {
@@ -1306,7 +1307,7 @@ empsectionclassResponse:function(e){
            var res=e.detail.response.returnval; 
             document.querySelector('student-allow-card').Sectionarrr=res;
    
-          alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
        },
        fnretrivestudent:function(gradeid)
        {
@@ -1319,7 +1320,7 @@ empsectionclassResponse:function(e){
         },
     fnretrivestudentResponse:function(e){
            var res=e.detail.response.returnval; 
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
    
        },
@@ -1392,7 +1393,8 @@ empsectionclassResponse:function(e){
        this.fnsetpasssectinvalueparam=obj;
        this.$.fnsetpasssectinvalueajax.generateRequest();
      },
-     fnsetpasssectinvalueResponse:function(e){
+     fnsetpasssectinvalueResponse:function(e)
+     {
         var res=e.detail.response.returnval; 
         //alert(JSON.stringify(res));
        document.querySelector('student-allow-card').scooltypgridval(res)
@@ -1406,10 +1408,12 @@ empsectionclassResponse:function(e){
        this.fngetpasssectinvalueparam=obj;
        this.$.fngetpasssectinvalueajax.generateRequest();
      },
-     fngetpasssectinvalueResponse:function(e){
+     fngetpasssectinvalueResponse:function(e)
+     {
          var res=e.detail.response.returnval; 
-      //   alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
        document.querySelector('student-allow-card').scooltypgridval1(res);
+       document.querySelector('student-allow-card').updatecount(res);
      },
       studentsectiontype:function(){     
         this.studentsectiontypeurl=sessionStorage.getItem("addrinfo")+"/studentsectiontype-service";
@@ -1475,6 +1479,7 @@ empsectionclassResponse:function(e){
        //alert(JSON.stringify(res));
        document.querySelector('employe-creation-card').setempsubject(res);
       },
+
     insertgradeinfo:function(setgradeid,tranfersection,studentname){
       this.insertgradeinfourl=sessionStorage.getItem("addrinfo")+"/insertgradeinfo-service";
        var obj={"school_id":"","setgradeid":"","tranfersection":"","studentname":""};
@@ -1633,9 +1638,10 @@ empsectionclassResponse:function(e){
             document.querySelector('school-grade-section-creation-card').f2();
      }
       },
-      fndelsectiongrade1Response:function(e){
-    var res=e.detail.response.returnval;
-               //alert(JSON.stringify(res));
+      fndelsectiongrade1Response:function(e)
+      {
+            var res=e.detail.response.returnval;
+               alert(JSON.stringify(res));
     
       },
       fndelsectiongrade2esponse:function(e){
@@ -1709,7 +1715,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
  },
  fnsavesectionResponse:function(e){
      var res=e.detail.response.returnval; 
-     // alert(JSON.stringify(res)); 
+     alert(JSON.stringify(res)); 
  },
 fnempsubjectdetails:function(getgradenames)
  {
@@ -1895,9 +1901,10 @@ fnschoolemployeerole:function( employeeid,employeename){
       //alert(JSON.stringify(res));
        document.querySelector('new-employee-creation-item-card').setschoolrole(res);
     },
-    fnschoolemployeepersonalResponse:function(e){
+    fnschoolemployeepersonalResponse:function(e)
+    {
      var res=e.detail.response.returnval; 
-    // alert(JSON.stringify(res));
+    //alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
     

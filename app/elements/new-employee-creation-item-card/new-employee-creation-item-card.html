@@ -10,7 +10,7 @@
    <template>
    <style>
       :host {
-        display: block;    
+        display: block;       
       }
       .card{
         @apply(--layout-horizontal);
@@ -61,11 +61,11 @@
 
   <div>
      <div class="card col-sm-12">
-        <div class="eid col-sm-4">
+        <!-- <div class="eid col-sm-4">
           <paper-item>{{employeeid}}</paper-item>
-        </div>
+        </div> -->
           <paper-item hidden$="{{employeepassword}}"></paper-item>
-        <div class="ename col-sm-4">
+        <div class="ename col-sm-8">
           <paper-item width="60%">{{employeename}}</paper-item>
         </div>  
         <div class="clbutton col-sm-4">
