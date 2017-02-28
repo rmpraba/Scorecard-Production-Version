@@ -471,7 +471,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.managementreport=true;
 
         this.GeneratemgmtReport=true;
-
+         this.studentfixed=true;
         this.schooltyptograde=true;
         this.createschoolz=true; 
         this.createcategory=true;
@@ -662,6 +662,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.gradetosubject=false;
           this.sectioncreation=false;
           this.studentfixed=false;
+           this.workingdats=false;
+            this.emptocategory=false;
+            this.gradetosection=false;
+            this.subjecttostudent=false;
+         
           
           }
      
@@ -704,11 +709,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
             this.coordinator=false;
-            this.workingdats=false;
-            this.emptocategory=false;
-            this.gradetosection=false;
-            this.subjecttostudent=false;
-          }
+            }
         
       },
       FnRefresh:function()

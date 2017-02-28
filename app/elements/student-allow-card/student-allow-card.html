@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 30%;
       }
       #tb1{
-          width:15%
+          width:23.6%
         }
         .newdropzzz
         {
@@ -78,11 +78,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <th id="tb1">Grade</th>
           <th id="tb1">No of Section</th>
           <th id="tb1">No of Student</th>
-          <th id="tb1">Save</th> 
+          <th id="tb1">Capacity</th>
+           <th id="tb1">Save</th> 
          </tr>      
           <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
           <tr><td colspan="6">
-        <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  student="{{view.student}}" section="{{view.section}}"=></section-allocation-card>
+        <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  capacity="{{view.capacity}}" student="{{view.student}}" section="{{view.section}}"=></section-allocation-card>
            </td>
            </tr>
           </template>  
@@ -150,7 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                              //alert('1');
                              gridschooltypearr[i].section=dbschootypearr[j].no_of_section;
                              gridschooltypearr[i].student=dbschootypearr[j].no_of_student;
-                             
+                             gridschooltypearr[i].capacity=dbschootypearr[j].capacity;
+                       
                        }
                 }
               }
