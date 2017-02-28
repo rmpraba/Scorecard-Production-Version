@@ -74,10 +74,7 @@
     <div> 
     </table>   
    <div class="row">  
-    <div class="itemcard col-sm-12">
-      <!-- <div class="sclid col-sm-3">
-        <paper-item>{{schoolid}}</paper-item>
-      </div> -->
+<!--     <div class="itemcard col-sm-12">
       <div class="sub col-sm-8">
         <paper-item>{{schoolname}}</paper-item>
       </div>
@@ -85,7 +82,27 @@
           <paper-icon-button  icon='create' on-click="showupdetails"></paper-icon-button>
           <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
       </div>
+    </div> -->
+
+  <div>
+    <div class="itemcard col-sm-9">
+        <paper-item>{{schoolname}}</paper-item>
     </div>
+
+      <div class="newbuttons col-sm-3">
+          <paper-icon-button  icon='create' on-click="showupdetails"></paper-icon-button>         
+          <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
+      </div>
+   </div> 
+
+    <paper-dialog id="newdetails" modal>
+      <label>Are you sure want to delete?</label>
+      <div class="buttons">
+        <paper-button on-click="fnshow">Ok</paper-button>
+        <paper-button on-click="fnclose">Cancel</paper-button>
+      </div>
+    </paper-dialog>
+
     <div id="updatedetails" style="margin-top:-18%" hidden>
       <div class="updatediv"> 
         <div class="form-group-heading">
@@ -158,13 +175,20 @@
         },
         FnDelete:function()
         {
-          document.querySelector('school-creation-item-card').showupdetails();
-          if (confirm("Are you sure?")) 
-          {
-            
-            this.$.uiservice.Fndeleteinfo(this.schoolid);
-          }
+          this.$.newdetails.open();
+          this.fnclose();
         },
+
+        fnshow:function()
+        {
+          this.$.uiservice.Fndeleteinfo(this.schoolid);
+        },
+  
+        fnclose:function()
+        {
+           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
+        },
+        
 
         showupdetails:function()
         {  
