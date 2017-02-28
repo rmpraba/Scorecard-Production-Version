@@ -73,6 +73,15 @@
           <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
         </div>     
     </div>
+
+     <paper-dialog id="newempdetails" modal>
+      <label>Are you sure want to delete?</label>
+      <div class="buttons">
+        <paper-button on-click="fndelet">Ok</paper-button>
+        <paper-button on-click="fnclose">Cancel</paper-button>
+      </div>
+    </paper-dialog>
+
  <span>
    <div id="updateempdetails" hidden>
               
@@ -111,9 +120,22 @@
      
   Polymer({
       is: 'new-employee-creation-item-card',
-      FnDelete:function(){
+
+      FnDelete:function()
+      {
+        this.$.newempdetails.open();
+        this.FnEdit();
+     },
+     fndelet:function()
+     {
         this.$.uiservice.Fnempdeleteinfo(this.employeeid,this.employeename);
-       },
+        this.hidecreateemp=false;
+     },
+     fnclose:function()
+     {
+      this.$.newempdetails.close();
+     },
+      
     setschooltype:function(arr){
        schooltypearr=arr;
       },

@@ -18,7 +18,7 @@
         display: block;
       }
 
-      .card{
+      .card{  
         @apply(--layout-center);
         @apply(--layout-horizontal);     
         border-bottom: 1px solid #dedede;
@@ -175,18 +175,21 @@
         },
         FnDelete:function()
         {
+           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
           this.$.newdetails.open();
-          this.fnclose();
         },
 
         fnshow:function()
         {
           this.$.uiservice.Fndeleteinfo(this.schoolid);
+          this.hidecreatediv=false;  
+
         },
   
         fnclose:function()
         {
-           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
+          
+          this.$.newdetails.close();
         },
         
 
