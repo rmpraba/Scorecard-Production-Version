@@ -19,11 +19,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;       
          @apply(--layout-left);
      } 
-     .card     
-      {
+     .card
+      {    
         @apply(--layout-horizontal);
         margin-left:30%;
-      }    
+      } 
 
        #createemp paper-button
       {
@@ -33,36 +33,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-left: 75%;
       margin-top: 3%;
       }
- 
+
        table
       {
-         apply(--layout-horizontal);
-         /*border: 1px solid #dedede;
+         /*apply(--layout-horizontal);
          border-collapse: collapse;
          padding: 10px;*/
+         /*border: 1px solid #dedede;*/
          margin-left: 50%;
          width: 530px;
-         margin-top: 1%;
+         margin-top: 6%;
+
               
       }
       .newcard
        {
          /*@apply(--layout-horizontal);*/
          float: left;
-
        }
 
-      
       #createemp
        {
-          position: absolute;
-          /*border-radius: 10px;
+        
+         /* border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;*/
-          width: 47%;
-          min-height: 200px; 
-          /*margin-top: -201% !important;*/
-          margin-left:-7%;      
+          min-height: 200%; 
+          margin-top: -210% !important;
+          width: 50%;
+          margin-left:-6%;
+              
        }
        .title
        {
@@ -75,26 +75,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }*/
       #updateempdetails
        {
-        position: absolute;
-       /* border-radius: 10px;
+        float: left;
+        /*border-radius: 10px;
         border:1px solid #6699ff;
         padding: 10px;*/
-        width: 47%;
-        min-height: 200px; 
-        margin-left:-7%;
-        margin-top: -141% !important;
-       }
-
-       /*#focus{
-           float: left;
-        border-radius: 10px;
-        border:1px solid #6699ff;
-        padding: 10px;
-        margin-left:-4%;
+        margin-left:-6%;
         width: 50%;
-        margin-top: -194% !important;
-        min-height: 200%;
-        }*/
+        margin-top: -236% !important;
+        min-height: 200%; 
+       }
+       
        .subbutton
        {
          background-color: #363636;
@@ -105,10 +95,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
        .newtitle
        {
-        margin-top: 5%;
+        margin-top: 7%;
         margin-left: 60%;
         line-height: 3px;
        }
+
        .vertical-row
        {
             border: 1px  solid #12A5F4;
@@ -126,14 +117,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <span>
     <div class="newempldiv" hidden$="{{hidenewempldiv}}">
       <div class="newtitle">
-        <h4>Current Employees</h4>
+        <h4>Current Employee Details</h4>
       </div>
-   
     <div class="newcard col-sm-12">
       <table>
         <tr>
           <!-- <th><label style="margin-left:12% ">Employee ID</label></th> -->
-          <th><label style="margin-left:3%">Employee Name</label></th>
+          <th><label style="margin-left:10%">Employee Name</label></th>
           <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th>
         </tr>
         <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
@@ -147,9 +137,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     </div>
     
-    
-
-
     <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
         <div class="form-group-heading">    
@@ -190,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          </template>
         </div>   
       </div>
-        
+
       <div class="list-group col-sm-12 panel-body form-category"> 
         <div class="form-group-heading">
           <h4>Employee Role Selection</h4>
@@ -206,7 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      </div>
     </span>
 
-    <div class="vertical-row"></div>
+        <div class="vertical-row"></div>
 
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
@@ -233,7 +220,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <gold-email-input label="Email" value="{{employeemail}}"></gold-email-input>
           </div>
           <div class="col-sm-4">
-            <paper-input  readonly label="EmployeePassword"  type="password" value="{{employeepassword}}"></paper-input>
+            <paper-input  readonly label="EmployeePassword"  type="password" value="{{employeepassword}}" readonly></paper-input>
           </div>
         </div>
       <!-- </div> --> 
@@ -268,7 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
     </div>
           <div>
-            <paper-button class="subbutton" on-click="FnpersonalSave">Save</paper-button>
+            <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
           </div>
       </div>                  
     </div>    
@@ -301,7 +288,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        empschooltypearr=arr;
        //alert(JSON.stringify(empschooltypearr));
         },
-     FnRefresh:function()
+  FnRefresh:function()
       {    
        this.name="";
        this.Telephone="";
@@ -396,13 +383,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.ready();
        },
 
-
        getfocus:function(e)
        {
         //alert('1');
         var id="updateempdetails";
         //alert(document.getElementById(id));
-        document.getElementById(id).focus();
        },
 
        /*employeeview:function()
