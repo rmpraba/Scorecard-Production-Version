@@ -227,6 +227,8 @@
         // alert(JSON.stringify(e.detail.response.returnval))
         document.querySelector('consolidated-report-card').schoolarr=e.detail.response.returnval;
         document.querySelector('teacherhome-card').schoolarr=e.detail.response.returnval;
+        document.querySelector('consolidated-data-analysis').schoolarr=e.detail.response.returnval;
+        document.querySelector('beginner-term-analysis-card').schoolarr=e.detail.response.returnval;
       },
        callGradeService:function(){
         // alert('calling');
@@ -252,6 +254,8 @@
           document.querySelector('consolidated-report-card').gradearr=e.detail.response.returnval;
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Editinfo')
           document.querySelector('cce-generate-score-card').gradearr=e.detail.response.returnval;
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Consolidateddataanalysis')
+          document.querySelector('consolidated-data-analysis').gradearr=e.detail.response.returnval;
       },
       callSectionService:function(gradename){        
          this.sectionurl=sessionStorage.getItem("addrinfo")+"/section-service";
@@ -276,6 +280,8 @@
           document.querySelector('consolidated-report-card').sectionarr=e.detail.response.returnval; 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Editinfo')
           document.querySelector('cce-generate-score-card').sectionarr=e.detail.response.returnval;
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=='Consolidateddataanalysis')
+          document.querySelector('consolidated-data-analysis').sectionarr=e.detail.response.returnval;
       },
       callscorecardreadynessService:function(){
          this.scorecardreadynessurl=sessionStorage.getItem("addrinfo")+"/scorecardreadyness-service";

@@ -153,8 +153,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
        },
      setempsubject:function(arr){
+      alert('1');
              empsubjectarr=arr;
              //alert(JSON.stringify(empsubjectarr));
+
            for(var i=0;i<empsubjectarr.length;i++){
               
               var empid=empsubjectarr[i].emp_id;
@@ -162,7 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var subject_id=empsubjectarr[i].subjectid;
               var subject_name=empsubjectarr[i].subject_name;
               var getsubid=empsubjectarr[i].subjectid+empsubjectarr[i].emp_id;
-           //alert(getsubid)
+
            document.querySelector('#'+getsubid).checked=true;
            if(document.querySelector('#'+getsubid).checked==true){
               var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};

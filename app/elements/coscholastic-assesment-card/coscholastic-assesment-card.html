@@ -285,7 +285,7 @@
                
         }      
         else if(subject=="Life Skills"){
-        if(grad=="Grade-9"||grad=="Grade-10"){
+        if(gradename=="Grade-9"||gradename=="Grade-10"){
         document.querySelector('cs-life-skill-card').FnRefresh();  
         
         }
@@ -324,8 +324,8 @@
         document.querySelector('#sectionnam2').selected=-1;
         document.querySelector('#subjectnam2').selected=-1;
 
-         var subj=localStorage.getItem("curr_sess_subject");
-         var grad=localStorage.getItem("curr_sess_grade");
+         var subject=localStorage.getItem("curr_sess_subject");
+         var gradename=localStorage.getItem("curr_sess_grade");
          this.flag=0;
          this.FnRefresh();
       }

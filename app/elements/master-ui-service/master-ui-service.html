@@ -1141,9 +1141,9 @@
 
 
 fndelsectionz:function(emparrr){
+  //  alert(JSON.stringify(emparrr));
   for(var i=0;i<emparrr.length;i++){
    
-    var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
     var employeeidz=emparrr[i].employeeidz;
     var empgradeidz=emparrr[i].empgradeidz;
     var empsubjectidz=emparrr[i].empsubjectidz;
@@ -1153,12 +1153,12 @@ fndelsectionz:function(emparrr){
  this.empsectionclassurl=sessionStorage.getItem("addrinfo")+"/empsectionclass-service";
                  var obj={"school_id":"","employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-                     obj.employeeidz=this.employeeidz;
-                      obj.empgradeidz=this.empgradeidz;
-                     obj.empsubjectidz=this.empsubjectidz;
-                     obj.employeesectionnamez=this.employeesectionnamez;
-                     obj.employeesectionidz=this.employeesectionidz;
-                     //alert(JSON.stringify(obj));
+                     obj.employeeidz=employeeidz;
+                      obj.empgradeidz=empgradeidz;
+                     obj.empsubjectidz=empsubjectidz;
+                     obj.employeesectionnamez=employeesectionnamez;
+                     obj.employeesectionidz=employeesectionidz;
+                     alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
            this.$.empsectionclassajax.generateRequest();
                  }
