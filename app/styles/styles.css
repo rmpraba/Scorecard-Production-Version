@@ -830,4 +830,10 @@ margin-top: 6%;
     @apply(--layout-vertical-wrap);
 }
 
+paper-icon-button
+{
+    width: 5%;
+    margin-left: 15%;
+}
+
 </style>

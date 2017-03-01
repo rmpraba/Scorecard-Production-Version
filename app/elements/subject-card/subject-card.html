@@ -42,6 +42,7 @@
       background-color: #363636;
       color: #ffffff;
       width: 6%;
+      margin-left: 69%;
       margin-top: 3%;
       }
 
@@ -65,8 +66,8 @@
         @apply(--layout-horizontal);
          /*border-collapse: collapse;
         border: 1px solid #dedede;*/
-        margin-left: 38%;
-        margin-top: 3%;
+        margin-left: 40%;
+        margin-top: 1%;
         width: 58%;
       }
       /*.outcard
@@ -79,9 +80,14 @@
           /*border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px; */
+         /* width: 28%;
+          top: 24% !important;
+          margin-left: 4%;
+          max-height: 330px;*/
           width: 28%;
-          margin-top: -122% !important;
-          margin-left: -3%;
+          position: fixed;
+          top: 27% !important;
+          margin-left: 4%;
           max-height: 330px;
       }
       .newwwww
@@ -92,23 +98,16 @@
 
          .vertical-row 
       {
-            float: left;
-            border: 1px  solid #12A5F4;
-            /*background-color: black;*/
+             position: absolute;
+            border: 1px solid #12A5F4;
             width: 1px;
-            margin-left: 29%;
+            margin-left: 34%;
+            top: 24%;
             min-height: 1700px;
-            margin-top: -110%;
+          /* margin-top: -111% !important; */
       } 
+     
 
-         .doubleUnderline 
-      { 
-        border-bottom: 3px double;
-        margin-left: 49%;
-        margin-top: 4%;
-        width: 18%;
-        line-height: 3px;
-       }
     </style>
 
 
@@ -117,14 +116,12 @@
     </div>
 
    <div class="outcard">
-     <div class="doubleUnderline">
-        <h4>Current Subjects</h4>
-      </div>
+    
     <div>
       <table>
         <tr>
-            <!-- <th> <label style="margin-left:1%">Subject ID</label></th> -->
-            <th> <label style="margin-left:8%">Subject Name</label></th>
+           <h4> <label style="margin-left: 56%; line-height: 2px;"><b>Currently Available Subjects</label></b></label></h4>
+            <th><label style="margin-left:8%">Subject Names</label></h4></th>
             <th> <label style="margin-left:-1%">Category Type</label>
             <th><paper-icon-button icon="add" on-click="getsubjectname"></paper-icon-button></th>
             <th></th>
@@ -144,13 +141,13 @@
     <div class="creatediv" hidden$="{{hidenewsubjectzz}}">
         <div class="card">    
           <div class="headdiv">
-              <label><b>Create New Subject</b></label>
+              <h4><label><b>Create New Subject</b></label></h4>
           </div>   
             
             <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
             <paper-input label="Subject Name"  required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
-            <paper-dropdown-menu id="subcat" label="Select Category Type" >
+            <paper-dropdown-menu id="subcat" label="Select Category Type">
               <paper-menu  id="category" class="dropdown-content" on-iron-select="FnSelectCategoryzzz">
                 <template is="dom-repeat" items="{{categoryarr}}" as="view">
                   <paper-item value="{{view.category_type}}">{{view.category_name}}</paper-item>        
@@ -165,7 +162,7 @@
             </paper-menu>
        </paper-dropdown-menu>
                 </div>   
-<div class="buttons">
+        <div class="buttons">
               <paper-button class="popup-btn" on-click="FnSubmit">Submit</paper-button>
             </div>
       </div>

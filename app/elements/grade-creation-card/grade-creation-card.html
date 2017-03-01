@@ -67,50 +67,43 @@
         @apply(--layout-horizontal);
         /* border-collapse: collapse;
         border: 1px solid #dedede;*/
-        margin-top: 3%;
+        margin-top: 1%;
         margin-left: 50%;
         width: 59%;
       }
 
-     /* .outcard{
-        @apply(--layout-horizontal);
-      }*/
-
+     
       .creatediv
-      {
-         /*position: absolute;
-         border-radius: 10px;
-          border: 1px solid #6699ff;
-          padding: 10px;*/ 
+      { 
+          /*position: fixed;
           width: 25%;
-          margin-left: -4%;
-          margin-top: -50% !important;
-          min-height: 200px;
+          margin-left: -20%;
+          margin-top: -48% !important;
+          min-height: 200px;*/
+
+              /* position: fixed; */
+            width: 25%;
+            position: absolute;
+            margin-left: 6%;
+            /* margin-top: -48% !important; */
+            top: 28%;
+            min-height: 200px;
       }
       
       
        .vertical-row 
       {
-            float: left;
-            position: absolute;
-            border: 1px  solid #12A5F4;
-            /*background-color: black;*/
-            height: 100px;
-            width: 1px;
-            margin-left: 29%;
-            min-height: 900px;
-            margin-top: -53%;
+                /* float: left; */
+              position: absolute;
+              border: 1px solid #12A5F4;
+              height: 100px;
+              width: 1px;
+              margin-left: 36%;
+              min-height: 900px;
+              top: 27%;
+           /* margin-top: -48%; */
       } 
 
-
-        .doubleUnderline 
-      { 
-        border-bottom: 3px double;
-        margin-left: 32%;
-        margin-top: 4%;
-        width: 20%;
-        line-height: 3px;
-       }
     </style>
 
 
@@ -121,15 +114,12 @@
    <div class="outcard">
    <div class="newgradediv" hidden$="{{newgradediv}}">
 
-    <div class="doubleUnderline" style="margin-left:50%">
-        <h4>Current Grade</h4>
-    </div>
     <div>     
       <table>
         <tr>
             <!-- <th> <label>Grade ID</label></th> -->
-            <th> <label>Grade Name</label></th>
-            <th><paper-icon-button icon="add" on-click="getgradename"></paper-icon-button></th>
+            <th><h4><label>Currently Available Grades</label></h4></th>
+            <th><paper-icon-button style="margin-left: -199%;" icon="add" on-click="getgradename"></paper-icon-button></th>
             <th></th>
         </tr>
 
@@ -146,7 +136,7 @@
 
     <div class="creatediv" hidden$="{{hidegradename}}">
         <div class="card">       
-            <label>Create New Grade</label>
+            <h4><label>Create New Grade</label></h4>
             <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
              <paper-input label="Grade Name" id="gradename" required error-message="needs Grade name!" value="{{gradename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 

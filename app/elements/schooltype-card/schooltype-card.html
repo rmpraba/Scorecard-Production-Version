@@ -10,7 +10,7 @@
 <dom-module id="schooltype-card">
   <template>
     <style>
-      :host
+      :host  
       {
          margin-left: 10%;
          display: block;
@@ -53,7 +53,7 @@
       background-color: #363636;    
       color: #ffffff;
       width: 10%;
-      margin-left: 41%;
+      margin-left: 45%;
       margin-top: 9%;
       }
 
@@ -72,7 +72,7 @@
        {
         /* border-collapse: collapse;
         border: 1px solid #dedede;*/
-        width: 57%;
+        width: 65%;
         margin-left: 49%;
         margin-top: 2%;
       }
@@ -84,57 +84,34 @@
         border: 1px solid #6699ff;
         padding: 10px;*/
         margin-left: 4%;
-        margin-top: -13% !important;
+        top: 28% !important;
         width: 27%;
       }
-      .newcard
-      {
-        /*margin-left: -6%;*/
-      }
-      
-
+     
       .vertical-row 
       {
-        position: fixed;
-            float: left;
+            /*float: left;*/
             border: 1px  solid #12A5F4;
-            /*background-color: black;*/
             height: 100px;
             width: 1px;
-            margin-left: 38%;
+            margin-left: 35%;
             min-height: 430px;
-            margin-top: -17%;
+            top: 27% !important;
       } 
 
-      .doubleUnderline 
-      { 
-        border-bottom: 3px double;
-        margin-left: 58%;
-        margin-top: 7%;
-        width: 17%;
-        line-height: 3px;
-       }
-    </style>
-
+      </style>
 
     <div class="title"> 
         <h3><b>SCHOOL TYPE</b></h3>        
     </div>
 
-    <div class="doubleUnderline">
-      <!-- <u Style=”border-bottom:2px solid black;”> -->
-      <h4>Current School Type</h4>
-      <!-- </u> -->
-    </div>
-
-
+    
     <div class="outcardzzzzzzzz" hidden$="{{hideoutnewcard}}">
       <div class="newcard">
         <table>
           <tr>
-            <!-- <th><label style="margin-left:5%">School Type ID</label></th> -->
-            <th><label style="margin-left:11%">School Type Name</label></th>
-            <th><paper-icon-button  style="margin-left: -78%;" icon="add" on-click="getschoolname"></paper-icon-button></th>
+            <th><h4><label>Currently Available School Types</label></h4></th>
+            <th><paper-icon-button  style="margin-left: -240%;" icon="add" on-click="getschoolname"></paper-icon-button></th>
             <th></th>
           </tr>
           <template is="dom-repeat" items="{{schoolarr}}" as="s">
@@ -152,7 +129,7 @@
       <div class="creatediv" style="position:fixed;" hidden$="{{hideschooltype}}">
         <div class="card">
           <div class="headdiv">
-              <label><b>Create New School Type</b></label>
+              <h4><label><b>Create New School Type</b></label></h4>
            </div> 
            <paper-input label="School Type Name" id="schooltypename" required error-message="needs School Type name!" value="{{schooltypename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>

@@ -9,7 +9,7 @@
 
 <dom-module id="category-card">
   <template>
-    <style>  
+    <style>    
       :host  
       {
          margin-left: 10%;
@@ -17,7 +17,7 @@
          @apply(--layout-center);
         /*width: 40%;*/
       }
-      .card          
+      .card             
       {
          @apply(--layout-center);
         width: 55%;
@@ -60,7 +60,7 @@
         border: 1px solid #dedede;*/
         width: 59%;
         margin-left: 45%;
-        margin-top: 5%;
+        margin-top: 2%;
       }
       /*.outcard
       {
@@ -73,13 +73,13 @@
 
       .creatediv
       {
-        position: fixed; 
+         position: fixed;
          /*border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 10px;*/ 
           width: 28%;
-          margin-left: -5%;
-          margin-top: -19% !important;
+          margin-left: 3%;
+          top: 28% !important;
           min-height: 266px;
       }
       .newtitle
@@ -89,26 +89,17 @@
       }
        .vertical-row 
       {
-            float: left;
+            /*float: left;*/
             position: absolute;
             border: 1px  solid #12A5F4;
-            /*background-color: black;*/
             height: 100px;
             width: 1px;
-            margin-left: 29%;
+            margin-left: 32%;
             min-height: 430px;
-            margin-top: -25%;
+            margin-top: -22%;
       } 
        
 
-       .doubleUnderline 
-      { 
-        border-bottom: 3px double;
-        margin-left: 58%;
-        margin-top: 7%;
-        width: 20%;
-        line-height: 3px;
-       }
     </style>
      
   <div class="title"> 
@@ -118,14 +109,10 @@
   <div class="outcard" hidden$="{{hideoutcard}}">
     <div class="newcatcardddd" hidden$="{{hidenewcatcard}}">
     <div>
-       <div class="doubleUnderline">
-          <h4>Current Category Type</h4>
-        </div>
       <table>
           <tr>
-              <!-- <th><label style="margin-left:4%">Category ID</label></th> -->
-              <th><label style="margin-left:2%">Category Name</label></th>
-              <th><paper-icon-button  style="margin-left: -78%;" icon="add" on-click="getcattype"></paper-icon-button></th>
+              <th><h4><label style="margin-left:2%">Currently Available Categories</label></h4></th>
+              <th><paper-icon-button  style="margin-left: -222%;" icon="add" on-click="getcattype"></paper-icon-button></th>
           </tr>
 
           <template is="dom-repeat" items="{{catarr}}" as="ca">
@@ -143,7 +130,7 @@
     
     <div class="creatediv" hidden$="{{hidecategorytype}}">
         <div class="card">
-              <label><b>Create New Category</b></label>
+              <h4><label><b>Create New Category</b></label></h4>
               <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
               <paper-input label="Category Name" id="categoryname" required error-message="needs Category name!" value="{{categoryname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 

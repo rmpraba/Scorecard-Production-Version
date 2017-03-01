@@ -15,7 +15,7 @@
         @apply(--layout-horizontal);     
         border-bottom: 1px solid #dedede;
         width: 200%;
-      }
+      }  
       paper-item,paper-input
       {
         width:40%;
@@ -28,6 +28,14 @@
       {
       @apply(--layout-horizontal); 
       }
+
+      paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;
+        margin-top: 5%;
+      }
     </style>
 
 
@@ -38,19 +46,17 @@
           <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hidegradenameitem}}"></paper-icon-button>
           <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hidegradenameinput}}"></paper-icon-button>
           <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+
+          <paper-dialog id="newdeletebox" modal>
+          <label>Are you sure want to delete ?</label>
+          <div class="buttons">
+            <paper-button on-click="fnshow">Ok</paper-button>
+            <paper-button on-click="fnclose">Cancel</paper-button>
+          </div>
+        </paper-dialog>
+
     </div>
-   <!--  <table class="card" id="card{{gradeid}}">
-      <tr width="200%">
-          <td width="20%">{{gradeid}}</td>
-          <td width="20%" hidden$="{{hidegradenameitem}}">{{gradename}}</td>
-          <td width="20%" hidden$="{{hidegradenameinput}}"><paper-input value="{{gradename}}"></paper-input></td>
-          <td width="5%" hidden$="{{hidegradenameitem}}"><paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
-          </td>
-          <td width="5%" hidden$="{{hidegradenameinput}}"><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button>
-          </td>
-          <td width="5%"><paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button></td>
-      </tr>
-    </table> -->
+   
     <master-ui-service id="service"></master-ui-service>
   </template>
   <script>
@@ -75,11 +81,23 @@
       },
       FnDelete:function()
       {
-        if (confirm("Are you sure?")) 
-        {
-          this.$.service.FnDeleteGrade(this.gradeid);
-        }
+        this.$.newdeletebox.open();
+      },
+      
+      fnshow:function()
+      {
         
+          this.$.service.FnDeleteGrade(this.gradeid);
+          this.hidegradename=false;
+      },
+      fnclose:function()
+      {
+        this.$.newdeletebox.close();
+      },
+
+      fnclose:function()
+      {
+        this.$.newdeletebox.close();
       },
       FnEdit:function()
       {

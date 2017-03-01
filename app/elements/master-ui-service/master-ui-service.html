@@ -1653,7 +1653,7 @@ empsectionclassResponse:function(e){
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
       alert(JSON.stringify(res));
-         if(res=="Inserted!"){
+         if(res=='Inserted!'){
           this.fnschoolemployeepersonal();
         }
       },
@@ -1745,9 +1745,9 @@ fnempsubjectdetails:function(getgradenames)
   fnempsubjectdetailsResponse:function(e)
   {
       var res=e.detail.response.returnval; 
-    if(res="Inserted")
+    if(res='Inserted')
     {
-        alert("Inserted..");
+        alert('Inserted');
     }
  },
  fnrolesaveinfo:function(passrolearr){
@@ -2195,7 +2195,7 @@ insertschoolTypename:function(schooltypesarr)
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
          alert(JSON.stringify(res)); 
-          if(res=="Inserted!")
+          if(res=='Inserted!')
           {
           this.fnschoolcreation();
           }
@@ -2442,7 +2442,7 @@ insertschoolTypename:function(schooltypesarr)
       rolecreationResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Inserted!")
+        if(e.detail.response.returnval=='Inserted!')
         {
             //alert("Inserted");
           this.FnFetchRole();
@@ -2531,7 +2531,7 @@ insertschoolTypename:function(schooltypesarr)
       schooltypecreationResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Inserted!")
+        if(e.detail.response.returnval=='Inserted!')
         {
             //alert("Inserted");
           this.FnFetchSchooltypename();
@@ -2804,7 +2804,7 @@ insertschoolTypename:function(schooltypesarr)
       categorycreationResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Inserted!")
+        if(e.detail.response.returnval=='Inserted!')
         {
             //alert("Inserted");
           this.FnFetchCategoryname();
@@ -2907,7 +2907,7 @@ insertschoolTypename:function(schooltypesarr)
       subjectcreationResponse:function(e)
       {
         alert(JSON.stringify(e.detail.response.returnval));   
-        if(e.detail.response.returnval=="Inserted!")
+        if(e.detail.response.returnval=='Inserted!')
         {
           
             //alert("Inserted");
@@ -3151,7 +3151,7 @@ insertschoolTypename:function(schooltypesarr)
       {
         alert(e.detail.response.returnval);
        
-        if(e.detail.response.returnval=="Inserted!")
+        if(e.detail.response.returnval=='Inserted!')
         {
             //alert("Inserted");
           this.FnFetchGrade(); 
