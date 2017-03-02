@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-         .outcard{
+         .outcard{   
       width:25% 
      margin-left:2.0em;
       }
@@ -34,8 +34,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--layout-right);
         background-color: #363636;
         color: #ffffff;                
-        width: 10%;
-        margin-left: 74%;
+        width: 9%;
+        margin-left: 79%;
         margin-top: 4%;
       }
 
@@ -56,11 +56,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 44%;
       }
 
+      #subzz
+      {
+         color:white;
+         background-color:black;
+         width:7%;
+         margin-left:46%;
+         margin-top:-4%; 
+      }
+      
+
     </style>    
     
     <div>
       <CENTER>
-        <h3><b>Student To Section Mapping</b></h3>   
+        <h3><b>STUDENT TO SECTION MAPPING</b></h3>   
       </CENTER>
     </div>
 
@@ -100,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>  
        </div>  
       
-       <div class="subbutton">
+       <div class="subbutton" hidden$="{{hidegenerateopt}}">
             <paper-button on-click="Generate">Generate</paper-button>
         </div>
       
@@ -136,13 +146,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div>
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
-      <div style="margin-left:15%;margin-top:-3%;" id="z1">
-             <paper-icon-button icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
+      <div style="margin-left:15%;margin-top:-3%;width: 5%;" id="z1">
+             <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
+             <paper-tooltip style="background-color: #12A5F4;color: white;"  for="prebutton">Previous Page</paper-tooltip>
+
       </div>
-     <div style="margin-left:77%;margin-top:-4%" id="z">
-          <paper-icon-button icon='chevron-right' on-click='fnnext'></paper-icon-button>
+     <div style="margin-left:77%;margin-top:-4%;width: 5%;" id="z">
+          <paper-icon-button id="nextbutton" icon='chevron-right' on-click='fnnext'></paper-icon-button>
+        
+            <paper-tooltip  style="background-color: #12A5F4;color: white;;" for="nextbutton">Next Page</paper-tooltip>
       </div>
-        <div id="subzz" style="color:white;background-color:black;width:7%;margin-left:46%;margin-top:-4%" >
+        <div id="subzz">
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
    
@@ -152,7 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    </paper-dialog>
      <paper-dialog id="Nextid" modal>
        <h2>Please Click Next Button</h2>
-            <paper-button dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
+            <paper-button  dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
    </paper-dialog>
       <master-ui-service id="uiservice"></master-ui-service>
    </template>
@@ -178,6 +192,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.z.hidden=true;
         this.$.z1.hidden=true;
         this.hidenewtabb=true;
+        this.hidegenerateopt=true;
       },
       fnrefresh:function()
       {
@@ -200,8 +215,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         this.$.subzz.hidden=false;
         this.$.z.hidden=false;
-        this.$.z1.hidden=false;
+        this.$.z1.hidden=true;
         this.hidenewtabb=false;
+        this.$.prebutton.hidden=true;
+        this.$.nextbutton.hidden=false;
+
 
            var setarrr=[];
            var getgradearr=[];
@@ -449,7 +467,7 @@ for(var j=0;j<k.length;j++){
           }
      }
   
-         alert(JSON.stringify(k));
+         //alert(JSON.stringify(k));
      
    if(k.length!=0){
      this.sectionfullarr=k;
@@ -461,6 +479,9 @@ for(var j=0;j<k.length;j++){
             else{
                kn.splice(obj);
                this.$.previousid.open();
+               this.$.z1.hidden=false;
+               this.$.nextbutton.hidden=true;
+               this.$.prebutton.hidden=false;
 
     
             }
@@ -563,7 +584,7 @@ for(var j=0;j<l.length;j++){
  
      if(l.length!=0){
       this.sectionfullarr=l;
-    alert(JSON.stringify(this.sectionfullarr));
+   // alert(JSON.stringify(this.sectionfullarr));
          document.querySelector('student-list-pass-section-card').f11(); 
          document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
          kn.splice(obj);
@@ -574,9 +595,9 @@ for(var j=0;j<l.length;j++){
         {
             kn.splice(obj);
             this.$.Nextid.open();
-     
-    
-       
+            this.$.z.hidden=false;
+            this.$.nextbutton.hidden=false;
+            this.$.prebutton.hidden=true;
         } 
         this.f22();
      this.$.uiservice.fnretrivestudent(this.stugradeid);
@@ -631,7 +652,9 @@ FnSavez:function(e)
        this.fnrefresh();
    */
 },
-   fnselectgrade:function(e){
+   fnselectgrade:function(e)
+   {
+        this.hidegenerateopt=false;
         this.stugradevalue=e.target.selectedItem.textContent.trim(); 
         this.stugradeid=e.target.selectedItem.value;
         this.$.uiservice.fnretrivestudent(this.stugradeid);
