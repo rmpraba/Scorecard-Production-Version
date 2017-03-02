@@ -98,6 +98,12 @@
             min-height: 830px;
             top: 17% !important;
       } 
+      #btn2
+      {
+        float: right;
+        color: #dedede;
+        top: 1%;
+      }
 
       </style>
 
@@ -138,8 +144,15 @@
 
         <div class="buttons">
           <paper-button class="popup-btn" on-click="FnSubmit">Submit </paper-button>
-        </div>      
+        </div>     
       </div>
+
+            <paper-dialog id="newsubmitbox" modal>
+                  <label>Inserted Successfully !!!</label>
+                  <div class="buttons">
+                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
+                  </div>
+              </paper-dialog> 
    
       
     <master-ui-service id="service"></master-ui-service>    
@@ -199,7 +212,8 @@
           var schooltypeid = ((stypename).toLowerCase()).replace(' ','',' ');   
           //alert(schooltypeid);   
           //alert(stypename);
-          this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);        
+          this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);  
+          this.$.newsubmitbox.open();      
           document.querySelector('schooltype-card').FnRefresh();
         }
        
@@ -211,6 +225,11 @@
         this.$.schooldialog.toggle();
         }*/
       },
+      Fnclose:function()
+      {
+        this.$.newsubmitbox.close();
+      },
+
       toTitleCase:function(str)
       {
         

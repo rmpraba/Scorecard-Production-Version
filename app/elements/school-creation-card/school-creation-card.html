@@ -149,8 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           top: 17%;
         }
 
-      
-
+       
           </style>
 
   
@@ -323,6 +322,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() {
     'use strict';
     var gradearrr=[];
+    var sname="";
     Polymer({
       is: 'school-creation-card',
         ready:function(){
@@ -408,14 +408,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.$.District.validate();
                 this.$.Pincode.validate();
               }
-             else
+
+              else if(this.school!= null)
+              {
+                  sname=this.toTitleCase(this.school);
+                  this.$.uiservice.FnSetschoolInfo(sname,this.schoolid1,this.Telephone,this.MobileNumber,this.Emailid,this.Website,this.address,this.address1,this.address2,this.address3,this.affiliation,this.Board);
+                document.querySelector('#academicswww').selected=-1;
+                document.querySelector('school-creation-card').FnRefresh(); 
+
+              }
+             /*else
              {
                 this.$.uiservice.FnSetschoolInfo(this.school,this.schoolid1,this.Telephone,this.MobileNumber,this.Emailid,this.Website,this.address,this.address1,this.address2,this.address3,this.affiliation,this.Board);
                 document.querySelector('#academicswww').selected=-1;
                 document.querySelector('school-creation-card').FnRefresh(); 
                 //this.ready();
-             }    
+             }    */
           },
+
+
+          toTitleCase:function(str)
+          {
+            return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+          },
+
            FnSave:function()
           {
             /*alert(this.addr);
@@ -429,6 +445,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.ready();
           },
 
+          fnboxclose:function()
+          {
+            this.$.submitbox.close();
+          },
           getscldetails:function(e)
           {
            this.hideupdatediv=true;
