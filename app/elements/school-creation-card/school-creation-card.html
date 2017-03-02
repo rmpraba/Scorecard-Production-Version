@@ -92,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-height: 200px;
         position: absolute;
         /* margin-top: -45% !important; */
-        top: 27%;
+        top: 21%;
         width: 47%;
         margin-left: -1%;
        }
@@ -110,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            min-height: 600px;
           position: absolute;
           /* margin-top: -44% !important; */
-          top: 27%;
+          top: 26%;
           width: 45%;
           margin-left: 1%;
        
@@ -134,13 +134,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         .vertical-row
         {
-            border: 1px solid #12A5F4;
+            /*border: 1px solid #12A5F4;
             width: 1px;
             position: absolute;
             margin-left: 46%;
            min-height: 630px;
-                /* margin-top: -37%; */
-          top: 25%;
+          top: 22%;*/
+
+          border: 1px solid #12A5F4;
+          width: 1px;
+          position: fixed;
+          margin-left: 46%;
+          min-height: 630px;
+          top: 17%;
         }
 
       
@@ -157,7 +163,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!-- <th><label style="margin-left:10%">School ID</label></th> -->
           <th><h4><label style="margin-left:8%">Currently Available Schools</label></h4></th>
           <th></th>
-          <th><paper-icon-button icon="add" on-click="getscldetails"></paper-icon-button></th>
+          <th><paper-icon-button id="btn1" icon="icons:add" on-click="getscldetails"></paper-icon-button>
+          <paper-tooltip for="btn1">Create</paper-tooltip>
+          </th>
         </tr>
         <template is="dom-repeat" items="{{schoolcreatarr}}" as="view">
           <tr>

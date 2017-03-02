@@ -84,7 +84,7 @@
         border: 1px solid #6699ff;
         padding: 10px;*/
         margin-left: 4%;
-        top: 28% !important;
+        top: 23% !important;
         width: 27%;
       }
      
@@ -95,8 +95,8 @@
             height: 100px;
             width: 1px;
             margin-left: 35%;
-            min-height: 430px;
-            top: 27% !important;
+            min-height: 830px;
+            top: 17% !important;
       } 
 
       </style>
@@ -110,8 +110,10 @@
       <div class="newcard">
         <table>
           <tr>
-            <th><h4><label>Currently Available School Types</label></h4></th>
-            <th><paper-icon-button  style="margin-left: -240%;" icon="add" on-click="getschoolname"></paper-icon-button></th>
+            <th><h4><label style="margin-left: 4%;">Currently Available School Types</label></h4></th>
+            <th><paper-icon-button  id="btn1" style="margin-left: -240%;" icon="icons:add" on-click="getschoolname"></paper-icon-button>
+                <paper-tooltip for="btn1">Create</paper-tooltip>
+            </th>
             <th></th>
           </tr>
           <template is="dom-repeat" items="{{schoolarr}}" as="s">

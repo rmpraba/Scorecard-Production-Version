@@ -1640,10 +1640,11 @@ empsectionclassResponse:function(e){
       fndelsectiongradeResponse:function(e){
         var res=e.detail.response.returnval;
                //alert(JSON.stringify(res));
-         if(res=="Deleted!"){
+         if(res=='Deleted!')
+         {
             document.querySelector('school-grade-section-creation-card').f1();
             document.querySelector('school-grade-section-creation-card').f2();
-     }
+         }
       },
       fndelsectiongrade1Response:function(e)
       {
@@ -2201,9 +2202,10 @@ insertschoolTypename:function(schooltypesarr)
       },
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
-         alert(JSON.stringify(res)); 
+         //alert(JSON.stringify(res)); 
           if(res=='Inserted!')
           {
+            alert('Inserted')
           this.fnschoolcreation();
           }
       },
@@ -2234,9 +2236,9 @@ insertschoolTypename:function(schooltypesarr)
  
         var res=e.detail.response.returnval;
         //alert(JSON.stringify(res)); 
-          if(res=="Updated!")
+          if(res=='Updated!')
           {
-            alert("Updated");
+            alert('Updated');
           this.fnschoolcreation();
         }
       },
@@ -2267,10 +2269,10 @@ insertschoolTypename:function(schooltypesarr)
       FndeleteinfoResponse:function(e)
       {
            var res=e.detail.response.returnval;
-            alert(JSON.stringify(res));
-            if(res=="Deleted!")
+            //alert(JSON.stringify(res));
+            if(res=='Deleted!')
             {
-                alert("Deleted!");
+                alert('Deleted!');
                 this.fnschoolcreation();
             }
             else
@@ -2279,7 +2281,8 @@ insertschoolTypename:function(schooltypesarr)
             }
       },
    
-     fnschoolidgenerate:function(){
+     fnschoolidgenerate:function()
+     {
         this.fnschoolidgenerateurl=sessionStorage.getItem("addrinfo")+"/fnschoolidgenerate-service";
          this.$.fnschoolidgenerateajax.generateRequest();
        },
@@ -2456,7 +2459,7 @@ insertschoolTypename:function(schooltypesarr)
           document.querySelector('role-card').FnRefresh();
         }
 
-        else if(e.detail.response.returnval=="failed")
+        else if(e.detail.response.returnval=='failed')
         {
           alert('Already Exist!');
         }       
@@ -2493,7 +2496,7 @@ insertschoolTypename:function(schooltypesarr)
       deleteroleResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
         this.FnFetchRole();
@@ -2517,7 +2520,7 @@ insertschoolTypename:function(schooltypesarr)
       updateroleResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
+        if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
           this.FnFetchRole();
@@ -2545,7 +2548,7 @@ insertschoolTypename:function(schooltypesarr)
           document.querySelector('schooltype-card').FnRefresh();
         }
 
-        else if(e.detail.response.returnval=="failed")
+        else if(e.detail.response.returnval=='failed')
         {
           alert('Already Exist!');
         }
@@ -2587,7 +2590,7 @@ insertschoolTypename:function(schooltypesarr)
       deleteschooltypeResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
           this.FnFetchSchooltypename();
@@ -2650,9 +2653,9 @@ insertschoolTypename:function(schooltypesarr)
       FnempdeleteinfoResponse:function(e)
       {
         //alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="update!")
+        if(e.detail.response.returnval=='update!')
         {
-            alert("Deleted");
+            alert('Deleted');
           this.fnschoolemployeepersonal();
         }
       },
@@ -2758,9 +2761,9 @@ insertschoolTypename:function(schooltypesarr)
       deleteschooltypenameResponse:function(e)
       { 
           var res=e.detail.response.returnval;
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
-            alert("Deleted!");
+            alert('Deleted!');
           this.getschoolTypename();
         }
         else
@@ -2786,7 +2789,7 @@ insertschoolTypename:function(schooltypesarr)
       updateschooltypenameResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
+        if(e.detail.response.returnval=='Updated!')
         {
           this.FnFetchSchooltypename();
         }
@@ -2818,7 +2821,7 @@ insertschoolTypename:function(schooltypesarr)
           document.querySelector('category-card').FnRefresh();
         }
 
-        else if(e.detail.response.returnval=="failed")
+        else if(e.detail.response.returnval=='failed')
         {
           alert('Already Exist!');
         }
@@ -2868,7 +2871,7 @@ insertschoolTypename:function(schooltypesarr)
       deletecategorynameResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
           this.FnFetchCategoryname();
@@ -2892,7 +2895,7 @@ insertschoolTypename:function(schooltypesarr)
       updatecategorynameResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
+        if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
           this.FnFetchCategoryname();
@@ -2922,7 +2925,7 @@ insertschoolTypename:function(schooltypesarr)
           this.FnFetchSubjectSeq(); 
           document.querySelector('subject-card').FnRefresh();
         }
-        else if(e.detail.response.returnval=="failed")
+        else if(e.detail.response.returnval=='failed')
         {
           alert('Already Exist!');
         }
@@ -2988,7 +2991,7 @@ insertschoolTypename:function(schooltypesarr)
       deletesubjectnameResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
           this.FnFetchSubjectname();
@@ -3013,7 +3016,7 @@ insertschoolTypename:function(schooltypesarr)
       {
 
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
+        if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
           this.FnFetchSubjectname();
@@ -3165,7 +3168,7 @@ insertschoolTypename:function(schooltypesarr)
           this.FnFetchGradeSeq(); 
            //document.querySelector('grade-creation-card').FnRefresh();
         }
-        else if(e.detail.response.returnval=="failed")
+        else if(e.detail.response.returnval=='failed')
         {
           alert('Already Exist!');
         }     
@@ -3214,7 +3217,7 @@ insertschoolTypename:function(schooltypesarr)
       deletegradeResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Deleted!")
+        if(e.detail.response.returnval=='Deleted!')
         {
             //alert("deleted");
             this.FnFetchGrade();
@@ -3236,7 +3239,7 @@ insertschoolTypename:function(schooltypesarr)
       updategradeResponse:function(e)
       {
         alert(e.detail.response.returnval);
-        if(e.detail.response.returnval=="Updated!")
+        if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
           this.FnFetchGrade();
