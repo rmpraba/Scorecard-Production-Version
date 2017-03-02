@@ -8214,7 +8214,7 @@ app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, re
     {  
       var e={id:req.query.school_id};
       console.log(e);
-      var qur="select * from md_student where school_id='"+req.query.school_id+"' and class_id!='"+req.query.classid+"' and grade_id!='"+req.query.stugradeid+"' and id='"+req.query.id+"'";
+      var qur="select * from md_student where school_id='"+req.query.school_id+"' and grade_id!='"+req.query.classid+"' and id='"+req.query.id+"'";
       connection.query(qur,function(err, rows){
         if(!err){
 

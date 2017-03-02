@@ -96,14 +96,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //alert(this.admissinno);
           for(var i=0;i<arr.length;i++){
             if(arr[i].admno==rr){
-               //  var m=arr[i].dd;
-                // alert(m);
+                var m=arr[i].dd;
            document.querySelector('#'+m).checked=false;
+
            }}},
+
 
 
         fnsplice:function(){
               var rnwn=paspstuinfo.length;
+              alert(rnwn);
                if(rnwn>0){
 
                  for(var i=0;i<paspstuinfo.length;i++){
@@ -121,7 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            }
         },
         stupersonalinfo13:function(arr){
-          // alert(JSON.stringify(arr));
+           alert(JSON.stringify(arr));
 
                 for(var k=0;k<arr.length;k++){
                       var  dbid=arr[k].dd;

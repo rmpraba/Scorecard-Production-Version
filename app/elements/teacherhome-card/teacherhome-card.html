@@ -824,10 +824,10 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          document.querySelector('app-card').setPage('homepage','');
          document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
       this.$.uiservice.studentsectiontype();
-      document.querySelector('Student-to-section-mapping-card').fnrefresh();
+  /*    document.querySelector('Student-to-section-mapping-card').fnrefresh();
       document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
       document.querySelector('Student-to-section-mapping-card').hidenewtabb=true;
-     /*     this.$.uiservice.SchoolCategorytype();
+  */   /*     this.$.uiservice.SchoolCategorytype();
     */ },  
    
       FnCreatesubject:function(e)   
@@ -946,7 +946,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         localStorage.setItem('curr_sess_loggedassesmenttype','feecollectionupdate');
         // this.$.scorecardservice.callFetchstudentnameService();
         this.$.scorecardservice.callGradeService();
-        this.$.cdialog.toggle();        
+      //    this.$.cdialog.toggle();        
           this.$.uiservice.fnschoolcreation();   
           this.$.uiservice.fnschoolidgenerate();
           this.$.uiservice.SelectSchoolName();

@@ -297,6 +297,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       g.push(obj);
       }
       }
+       for(var i=0;i<overall.length;i++){
+
+            for(var s=0;s<k.length;s++){
+                if(overall[i].enquiry_no==k[s].enquiry_no){
+         overall.splice(i,1);
+
+                }
+            }   
+       }
+    
   for(var j=0;j<k.length;j++){
        var flag=0;
   for(var q=0;q<mappingstudentarr.length;q++){
@@ -314,10 +324,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       obj.dd=rrn;
                       obj.admno=admno;
                       kn.push(obj);
-
-               }
+            }
            } 
- }
+        }
          }
          if(flag==0){
           }
@@ -336,9 +345,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
          this.sectionfullarr=k;  
        if(k.length!=0){
-      
+         this.$.uiservice.fnretrivestudent(this.stugradeid);
+  
        }
-      },
+              },
     /*  stupersonalinfo14:function(e){
            document.querySelector('student-list-pass-section-card').fnsplice(); 
          },
@@ -347,10 +357,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      document.querySelector('student-list-pass-section-card').stupersonalinfo11(kn); 
     
     },
+    f33:function(e){
+      for(var j=0;j<g.length;j++){
+       var flag=0;
+     for(var q=0;q<mappingstudentarr.length;q++){
+       if(g[j].enquiry_no==mappingstudentarr[q].id){
+             flag=1;
+              var ddd=g[j].enquiry_no;
+              var sss=mappingstudentarr[q].class_id;
+         for(var t=0;t<g[j].subject.length;t++){
+             
+           if(g[j].subject[t].class_id==sss){
+                      g[j].subject[t].check=false;
+               }
+            } 
+         }
+         }
+         if(flag==0){
+          }
+     }
+  
+    },
     fnnext:function(e){
-       document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+     //   this.$.uiservice.fnretrivestudent(this.stugradeid);
+         document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
           kn.splice(obj);
-    
+             this.f33();     
+   
        var k=[];
    for(var j=0;j<overall.length;j++){
          if(j<=10){
@@ -362,7 +395,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    var dob=overall[j].dob;
                    var admission_no=overall[j].admission_no;
           
-                   var subject=overall[j].subject;
+                    var subject=overall[j].subject;
                            obj.class_for_admission=class_for_admission;
                            obj.enquiry_no=enquiry_no;
                            obj.student_name=student_name;
@@ -372,9 +405,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                            obj.subject=subject;
                      k.push(obj);
                      g.push(obj);
+                  
          }
       
 }
+ for(var i=0;i<overall.length;i++){
+    for(var m=0;m<k.length;m++){
+                if(overall[i].enquiry_no==k[m].enquiry_no){
+         overall.splice(i,1);
+
+                }
+
+            }
+       }
+
 
 for(var j=0;j<k.length;j++){
     //  var  t=0;
@@ -405,39 +449,35 @@ for(var j=0;j<k.length;j++){
           }
      }
   
-  for(var i=0;i<overall.length;i++){
-    for(var m=0;m<k.length;m++){
-                if(overall[i].enquiry_no==k[m].enquiry_no){
-         overall.splice(i,1);
-
-                }
-
-            }
-       }
-         //alert(JSON.stringify(k));
+         alert(JSON.stringify(k));
      
    if(k.length!=0){
      this.sectionfullarr=k;
-          
-          document.querySelector('student-list-pass-section-card').f11(); 
-          document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-            kn.splice(obj);
-
-            }
+             this.$.uiservice.fnretrivestudent(this.stugradeid);
+           document.querySelector('student-list-pass-section-card').f11(); 
+       document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+           kn.splice(obj);
+         }
             else{
                kn.splice(obj);
                this.$.previousid.open();
+
+    
             }
 
       
 
    },
+mappingstudent1:function(e){
 
+},
     fnpriver:function(e){
+            
 
-                    document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+              document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
           kn.splice(obj);
    
+
           var l=[];
    for(var j=0;j<g.length;j++){
          if(j<=10){
@@ -478,6 +518,16 @@ for(var j=0;j<k.length;j++){
                  }
                }
 */
+for(var i=0;i<g.length;i++){
+
+            for(var m=0;m<l.length;m++){
+                if(g[i].enquiry_no==l[m].enquiry_no){
+           g.splice(i,1);
+
+             }
+            }
+          }
+
 
 for(var j=0;j<l.length;j++){
     //  var  t=0;
@@ -510,32 +560,48 @@ for(var j=0;j<l.length;j++){
         }
      }
 
- for(var i=0;i<g.length;i++){
-
-            for(var m=0;m<l.length;m++){
-                if(g[i].enquiry_no==l[m].enquiry_no){
-           g.splice(i,1);
-
-             }
-            }
-          }
-
+ 
      if(l.length!=0){
       this.sectionfullarr=l;
-   
+    alert(JSON.stringify(this.sectionfullarr));
          document.querySelector('student-list-pass-section-card').f11(); 
          document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-      kn.splice(obj);
+         kn.splice(obj);
+     //  this.$.uiservice.fnretrivestudent(this.stugradeid);
+  
         }
         else
         {
             kn.splice(obj);
             this.$.Nextid.open();
+     
+    
        
-        }   
-       
-      },
-
+        } 
+        this.f22();
+     this.$.uiservice.fnretrivestudent(this.stugradeid);
+    },
+   f22:function(e){
+       for(var j=0;j<overall.length;j++){
+       var flag=0;
+     for(var q=0;q<mappingstudentarr.length;q++){
+       if(overall[j].enquiry_no==mappingstudentarr[q].id){
+             flag=1;
+              var ddd=overall[j].enquiry_no;
+              var sss=mappingstudentarr[q].class_id;
+         for(var t=0;t<overall[j].subject.length;t++){
+             
+           if(overall[j].subject[t].class_id==sss){
+                      overall[j].subject[t].check=false;
+               }
+            } 
+         }
+         }
+         if(flag==0){
+          }
+       }
+   
+   },
 
     studentlist:function(arr){
    studentlistarr=arr;
@@ -555,9 +621,15 @@ FnSavez:function(e)
 {
        this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
+       this.$.uiservice.fnretrivestudent(this.stugradeid);
+    /*   alert(JSON.stringify(kn));
+       var obj={"dd":"","admno":""};
+         kn.splice(obj);
+         alert(JSON.stringify(kn));
+          
        document.querySelector('Student-to-section-mapping-item-card-card').FnRefresh();
        this.fnrefresh();
-   
+   */
 },
    fnselectgrade:function(e){
         this.stugradevalue=e.target.selectedItem.textContent.trim(); 

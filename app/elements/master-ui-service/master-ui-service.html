@@ -1123,9 +1123,11 @@
              var dob=studeninfoarr[i].dob;
              var Gender=studeninfoarr[i].gender;
              var classid=studeninfoarr[i].classid;
+            var grade_id=studeninfoarr[i].grade_id;
+   
    
     this.fnsetstudentinfohistoryurl=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory-service";
-       var obj={"school_id":"","id":"","student_name":"","school_type":"","stugradeid":"","dob":"","Gender":"","classid":""};
+       var obj={"school_id":"","id":"","student_name":"","school_type":"","stugradeid":"","dob":"","Gender":"","classid":"","grade_id":""};
            obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
            obj.student_name=student_name;
            obj.id=id;
@@ -1134,6 +1136,7 @@
            obj.stugradeid=stugradeid;
            obj.Gender=Gender;
            obj.classid=classid;
+           obj.grade_id=grade_id;
            this.fnsetstudentinfohistoryparam=obj;
            this.$.fnsetstudentinfohistoryajax.generateRequest();
    }
@@ -1182,7 +1185,8 @@ empsectionclassResponse:function(e){
              var Gender=res[0].gender;
              var ageinmonth=res[0].ageinmonth;
              var grade_id=res[0].grade_id;
-        this.fnsetstudentinfohistory1url=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory1-service";
+             var class_id=res[0].class_id;
+  this.fnsetstudentinfohistory1url=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory1-service";
          var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","class_id":"","ageinmonth":"","grade_id":""};
            obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
            obj.student_name=student_name;
@@ -1193,6 +1197,8 @@ empsectionclassResponse:function(e){
            obj.Gender=Gender;
            obj.ageinmonth=ageinmonth;
            obj.grade_id=grade_id;
+          obj.class_id=class_id;
+        
            this.fnsetstudentinfohistory1param=obj;
            //alert(JSON.stringify(obj));
           this.$.fnsetstudentinfohistory1ajax.generateRequest();
@@ -1320,9 +1326,10 @@ empsectionclassResponse:function(e){
         },
     fnretrivestudentResponse:function(e){
            var res=e.detail.response.returnval; 
-           //alert(JSON.stringify(res));
+           alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
-   
+           document.querySelector('Student-to-section-mapping-card').mappingstudent1();
+           
        },
        tranfergradeinfo:function(e)
        {
