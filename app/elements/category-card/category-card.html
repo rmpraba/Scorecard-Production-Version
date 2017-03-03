@@ -97,8 +97,6 @@
             min-height: 830px;
             top:17%;
 
-
-
       } 
        
 
@@ -118,7 +116,7 @@
               <paper-tooltip for="btn1">Create</paper-tooltip>
               </th>
           </tr>
-
+   
           <template is="dom-repeat" items="{{catarr}}" as="ca">
               <tr><td colspan="3">
               <category-display-card  categoryname="{{ca.category_name}}" categoryid="{{ca.category_id}}"  categorytype="{{ca.category_type}}" hidecategoryinput="true" hidecategoryitem="false">  </category-display-card></td>
@@ -145,6 +143,15 @@
         </div>
     </div>
   </div>
+
+
+             <paper-dialog id="newsubmitbox" modal>
+                  <label>Inserted Successfully !!!</label>
+                  <div class="buttons">
+                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
+                  </div>
+              </paper-dialog> 
+   
     
     <master-ui-service id="uiservice"></master-ui-service>
 
@@ -189,9 +196,14 @@
           cname=this.toTitleCase(this.categoryname);
           var categoryid=((cname).toLowerCase()).replace(' ','');
           this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
+          this.$.newsubmitbox.open();
          document.querySelector('category-card').FnRefresh(); 
         }
         
+      },
+      Fnclose:function()
+      {
+        this.$.newsubmitbox.close();
       },
 
       toTitleCase:function(str)

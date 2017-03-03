@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      .tt{
       width:70%;
      }
-    .subbutton 
+    .subbutton paper-button
       {
         @apply(--layout-right);
         background-color: #363636;
@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 44%;
       }
 
-      #subzz
+      #subzz paper-button
       {
          color:white;
          background-color:black;
@@ -64,8 +64,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          margin-left:46%;
          margin-top:-4%; 
       }
-      
+      paper-tooltip 
+      {
+        background-color: #12A5F4;
+        color: white;
+        width: 200%;  
+      }
 
+      #z1
+      {
+           position: absolute;
+          margin-left: 15%;
+          margin-top: -1%;
+      }
+      
+      #z
+      {
+        position: absolute;
+        margin-left: 77%;
+        margin-top: -1%;
+      }
     </style>    
     
     <div>
@@ -87,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>  
 
             <div class="newcard">
-              <paper-dropdown-menu  label="select the grade">
+              <paper-dropdown-menu  label="Select the Grade">
                 <paper-menu id="empgradeid" class="dropdown-content"  on-iron-select="fnselectgrade">
                   <template is="dom-repeat" items="{{setgrade}}">
                     <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
@@ -146,15 +164,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div>
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
-      <div style="margin-left:15%;margin-top:-3%;width: 5%;" id="z1">
+      <div id="z1">
              <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
-             <paper-tooltip style="background-color: #12A5F4;color: white;"  for="prebutton">Previous Page</paper-tooltip>
+             <paper-tooltip for="prebutton">Previous Page</paper-tooltip>
 
       </div>
-     <div style="margin-left:77%;margin-top:-4%;width: 5%;" id="z">
+     <div id="z">
           <paper-icon-button id="nextbutton" icon='chevron-right' on-click='fnnext'></paper-icon-button>
         
-            <paper-tooltip  style="background-color: #12A5F4;color: white;;" for="nextbutton">Next Page</paper-tooltip>
+            <paper-tooltip  for="nextbutton">Next Page</paper-tooltip>
       </div>
         <div id="subzz">
            <paper-button on-click="FnSavez">Submit</paper-button>  

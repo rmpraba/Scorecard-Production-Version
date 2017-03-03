@@ -171,6 +171,14 @@
       </div>
     </div> 
 
+
+              <paper-dialog id="newsubmitbox" modal>
+                  <label>Inserted Successfully !!!</label>
+                  <div class="buttons">
+                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
+                  </div>
+              </paper-dialog> 
+
       <master-ui-service id="uiservice"></master-ui-service>
      
    </template>
@@ -232,6 +240,7 @@
    else{
         //alert(category+this.preflang);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
+         this.$.newsubmitbox.open();
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
          document.querySelector('#Languageprefernceid').selected=-1;
@@ -239,6 +248,7 @@
    }
 
        },
+
       fnselectlanprefercence:function(e)
       {
       this.preflang=e.target.selectedItem.textContent.trim(); 
@@ -247,10 +257,15 @@
       FnSelectCategoryzzz:function(e)
       {      category=e.target.selectedItem.value;
              this.$.Languageprefernce.hidden=true;    
-            if(category=='category1'){
+            if(category=='category1')
+            {
               this.$.Languageprefernce.hidden=false;
             }
-           }
+      },
+      Fnclose:function()
+      {
+        this.$.newsubmitbox.close();
+      }
 
     });
   })();  
