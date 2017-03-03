@@ -50,13 +50,7 @@
       margin-top: 6%;
       }
 
-      /*#gradedialog
-      {
-        width: 40%;
-        margin: 0 auto;
-        box-shadow: 0px 0px 14px -1px rgba(0,0,0,0.75);
-      }*/
-
+      
       .popup-btn
       {
         margin: 0 auto;
@@ -69,23 +63,16 @@
         border: 1px solid #dedede;*/
         margin-top: 1%;
         margin-left: 50%;
-        width: 59%;
+        width: 65%;
       }
 
      
       .creatediv
       { 
-          /*position: fixed;
-          width: 25%;
-          margin-left: -20%;
-          margin-top: -48% !important;
-          min-height: 200px;*/
-
               /* position: fixed; */
             width: 25%;
             position: absolute;
             margin-left: 6%;
-            /* margin-top: -48% !important; */
             top: 28%;
             min-height: 200px;
       }
@@ -93,15 +80,13 @@
       
        .vertical-row 
       {
-                /* float: left; */
-              position: absolute;
-              border: 1px solid #12A5F4;
-              height: 100px;
-              width: 1px;
-              margin-left: 36%;
-              min-height: 900px;
-              top: 27%;
-           /* margin-top: -48%; */
+        border: 1px solid #12A5F4;
+        position: fixed;
+        height: 100px;
+        width: 1px;
+        margin-left: 36%;
+        min-height: 900px;
+        top: 16%;
       } 
 
     </style>
@@ -119,7 +104,9 @@
         <tr>
             <!-- <th> <label>Grade ID</label></th> -->
             <th><h4><label>Currently Available Grades</label></h4></th>
-            <th><paper-icon-button style="margin-left: -199%;" icon="add" on-click="getgradename"></paper-icon-button></th>
+            <th><paper-icon-button id="btn1" style="margin-left: -199%;" icon="icons:add" on-click="getgradename"></paper-icon-button>
+            <paper-tooltip for="btn1">Create</paper-tooltip>
+            </th>
             <th></th>
         </tr>
 

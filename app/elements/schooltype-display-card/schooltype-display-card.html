@@ -44,9 +44,12 @@
         <paper-item hidden$="{{schooltypeid}}"></paper-item>
         <paper-item hidden$="{{hideschooltypenameitem}}">{{schooltypename}}</paper-item>
         <paper-input value="{{schooltypename}}" hidden$="{{hideschooltypenameinput}}"></paper-input>
-        <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
-        <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
-        <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+        <paper-icon-button  id="btn1" icon="icons:create" on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
+        <paper-tooltip for="btn1">Edit</paper-tooltip>
+        <paper-icon-button id="btn2" icon="icons:save" on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
+        <paper-tooltip for="btn2">Save</paper-tooltip>
+        <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
+        <paper-tooltip for="btn3">Delete</paper-tooltip>
 
         <paper-dialog id="newdeleteopt" modal>
           <label>Are you sure want to delete ?</label>

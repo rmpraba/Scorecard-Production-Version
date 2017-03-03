@@ -43,9 +43,12 @@
             <paper-item hidden$="{{categoryid}}"></paper-item>
             <paper-item hidden$="{{hidecategoryitem}}">{{categoryname}}</paper-item>
             <paper-input value="{{categoryname}}" hidden$="{{hidecategoryinput}}"></paper-input>
-            <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hidecategoryitem}}"></paper-icon-button>
-            <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hidecategoryinput}}"></paper-icon-button>
-            <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+            <paper-icon-button id="btn1" icon='create' on-click='FnEdit' hidden$="{{hidecategoryitem}}"></paper-icon-button>
+            <paper-tooltip for="btn1">Edit</paper-tooltip>
+            <paper-icon-button id="btn2" icon='save' on-click='FnSave' hidden$="{{hidecategoryinput}}"></paper-icon-button>
+            <paper-tooltip for="btn2">Save</paper-tooltip>
+            <paper-icon-button id="btn3" icon='close' on-click='FnDelete'></paper-icon-button>
+            <paper-tooltip for="btn3">Delete</paper-tooltip>
 
             <paper-dialog id="newdeleteoptt" modal>
               <label>Are you sure want to delete ?</label>

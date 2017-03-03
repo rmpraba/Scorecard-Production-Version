@@ -42,7 +42,7 @@
       background-color: #363636;
       color: #ffffff;
       width: 6%;
-      margin-left: 69%;
+      margin-left: 61%;
       margin-top: 3%;
       }
 
@@ -68,7 +68,7 @@
         border: 1px solid #dedede;*/
         margin-left: 40%;
         margin-top: 1%;
-        width: 58%;
+        width: 65%;
       }
       /*.outcard
       {
@@ -84,9 +84,10 @@
           top: 24% !important;
           margin-left: 4%;
           max-height: 330px;*/
+
           width: 28%;
           position: fixed;
-          top: 27% !important;
+          top: 24% !important;
           margin-left: 4%;
           max-height: 330px;
       }
@@ -102,7 +103,7 @@
             border: 1px solid #12A5F4;
             width: 1px;
             margin-left: 34%;
-            top: 24%;
+            top: 17%;
             min-height: 1700px;
           /* margin-top: -111% !important; */
       } 
@@ -123,7 +124,9 @@
            <h4> <label style="margin-left: 56%; line-height: 2px;"><b>Currently Available Subjects</label></b></label></h4>
             <th><label style="margin-left:8%">Subject Names</label></h4></th>
             <th> <label style="margin-left:-1%">Category Type</label>
-            <th><paper-icon-button icon="add" on-click="getsubjectname"></paper-icon-button></th>
+            <th><paper-icon-button id="btn1" icon="add" on-click="getsubjectname"></paper-icon-button>
+            <paper-tooltip for="btn1">Create</paper-tooltip>
+            </th>
             <th></th>
         </tr>
 

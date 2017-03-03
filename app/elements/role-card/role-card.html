@@ -14,7 +14,7 @@
       {
          margin-left: 10%;
          display: block;
-         @apply(--layout-left);
+         @apply(--layout-left);   
         /*width: 50%;*/
       }
       }
@@ -38,7 +38,7 @@
       background-color: #363636;
       color: #ffffff;
       width: 7%;
-      margin-left: 68%;
+      margin-left: 44%;
       margin-top: 3%;
       }
 
@@ -73,12 +73,9 @@
          padding: 10px;*/
          margin-top: 1%;
          margin-left: 33%;
-         width: 70%;
+         width: 75%;
       }
-      /*.outcard
-       {
-         @apply(--layout-horizontal);
-       }*/
+      
 
       .creatediv
        {
@@ -93,21 +90,17 @@
           min-height: 200px;
        }
 
-       /*.newtitle
-       {
-        line-height: 7px;
-        margin-top: 4%;       
-       }*/
+       
        .vertical-row 
       {
-            /*float: left;*/
-            position: absolute;
-            border: 1px  solid #12A5F4;
-            height: 300px;
-            width: 1px;
-            margin-left: 37%;
-            min-height: 740px;
-            margin-top: -42% !important;
+            position: fixed;
+          border: 1px solid #12A5F4;
+          height: 300px;
+          width: 1px;
+          margin-left: 37%;
+          min-height: 740px;
+          /* margin-top: -42% !important; */
+          top: 18%;
       } 
 
       
@@ -124,7 +117,9 @@
               <tr>
                 <!-- <th><label style="margin-left:1%">Role ID</label></th> -->
                 <th><h4><label style="margin-left:29%">Currently Available Roles</label></h4></th>
-                <th><paper-icon-button style="margin-left: -38%;"  icon="add" on-click="getrolename"></paper-icon-button></th>
+                <th><paper-icon-button id="btn1" style="margin-left: -38%;"  icon="add" on-click="getrolename"></paper-icon-button>
+                <paper-tooltip for="btn1">Create</paper-tooltip>
+                </th>
                 <th></th>
               </tr>
               <template is="dom-repeat" items="{{rolearr}}" as="r">  
@@ -142,7 +137,7 @@
           <div class="card">
               <h4><label><b>Create New Role</b></label></h4>
             <!-- <paper-input style="width:68%" value="{{}}" label="Role Name"></paper-input> -->
-            <paper-input label="Role Name" id="rolename" required error-message="needs Role name!" value="{{rolename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+            <paper-input  style="width: 70%;"  label="Role Name" id="rolename" required error-message="needs Role name!" value="{{rolename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
           </div>
 
            <div class="buttons">
