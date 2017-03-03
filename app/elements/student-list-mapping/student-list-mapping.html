@@ -42,17 +42,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #itemcard{
         width:100%;
       }
-    </style>   
-    <div>
-      <table>
-      </table>
-       <template is="dom-repeat" items="{{studentarr}}">
-         <div id='itemcard'>
-           <student-list-mapping-item hidethirdlang="{{hidethirdlang}}" studentid="{{item.id}}" studentname="{{item.student_name}}"></student-list-mapping-item>
-         </div>
-       </template>
-      </div>
-  </template>
+            .innercard{
+      @apply(--layout-horizontal);
+      margin-left:10.0em;
+      width:100%    
+     }
+   
+    </style>  
+       <div class="innercard">  
+        <paper-icon-button icon="save" style="color:red;" on-click="Fnsave"></paper-icon-button>
+       </div> 
+          
+     </template>
   <script>
   (function() {
     'use strict';

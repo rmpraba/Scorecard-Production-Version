@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecardbatabase'
 
  });
 var bodyParser = require('body-parser'); 
@@ -3429,8 +3429,8 @@ var schol={school_id:req.query.schoolid};
  var gradeid={grade_id:req.query.gradeid};
   if(req.query.roleid=="co-ordinator"||req.query.roleid=="headmistress")
  {
-  qur="select  distinct section_id from mp_teacher_grade where school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and role_id='subject-teacher'";
-}
+    qur="select  distinct section_id from mp_teacher_grade where school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and role_id='subject-teacher'";
+ }
 else if(req.query.roleid=="headofedn")
  {
   qur="select  distinct section_id from mp_teacher_grade where section_id in (select section from tr_teacher_observation_flag where name='"+req.query.id+"' and grade='"+req.query.gradeid+"' and flag='1') and school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and role_id='subject-teacher'";
@@ -7921,7 +7921,7 @@ app.post('/enablestudent-service',  urlencodedParser,function (req,res)
 app.post('/FnSubjecttostudentlanguage-service',  urlencodedParser,function (req, res)
 {
     
-  connection.query('SELECT * from md_language_type_master where subject_type="II Language"',
+  connection.query('SELECT * from md_subject where langugage_pref="Second Language"',
     function(err, rows)
     {
     if(!err)
@@ -7941,7 +7941,7 @@ app.post('/FnSubjecttostudentlanguage-service',  urlencodedParser,function (req,
 });
 app.post('/FnSubjecttostudentthirdlanguage-service',  urlencodedParser,function (req, res)
 {
-  connection.query('SELECT * from md_language_type_master where subject_type="IIILanguage"',
+connection.query("SELECT * from md_subject where langugage_pref !='Core subject' and subject_category='category1'",
     function(err, rows)
     {
     if(!err)

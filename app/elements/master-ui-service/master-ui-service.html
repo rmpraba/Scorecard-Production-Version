@@ -266,16 +266,7 @@
         on-response="FnselecttoSectionResponse"
         debounce-duration="300"
         >
-        <iron-ajax        
-        id="SbjecttoStudentmappingajax"
-        url="{{SbjecttoStudentmappingurl}}"
-        params="{{SbjecttoStudentmappingparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="SbjecttoStudentmappingResponse"
-        debounce-duration="300"
-        ><iron-ajax        
+     <iron-ajax        
         id="SelectSchoolNameajax"
         url="{{SelectSchoolNameurl}}"
         params="{{SelectSchoolNameparam}}"
@@ -1485,7 +1476,7 @@ empsectionclassResponse:function(e){
        var res=e.detail.response.returnval; 
        //alert(JSON.stringify(res));
        document.querySelector('employe-creation-card').setempsubject(res);
-      },
+      },   
 
     insertgradeinfo:function(setgradeid,tranfersection,studentname){
       this.insertgradeinfourl=sessionStorage.getItem("addrinfo")+"/insertgradeinfo-service";
@@ -3024,7 +3015,7 @@ insertschoolTypename:function(schooltypesarr)
         var obj={"studentid":"","studentname":"","schoolnames":"","termsname":"","gradenamesssss":"","Sectionnames":"","seclang11":"","Sectionnameseeee":"","termsname1":""};
         obj.studentid=studentid;
         obj.studentname=studentname;
-        obj.schoolnames=schoolnames;
+        obj.schoolnames=schoolnames; 
         obj.termsname=termsname;
         obj.gradenamesssss=gradenamesssss;
         obj.Sectionnames=Sectionnames;
@@ -3109,23 +3100,6 @@ insertschoolTypename:function(schooltypesarr)
         document.querySelector('student-to-subject-mapping-card').selectsectionarrr=arr;
        },
 
-      SbjecttoStudentmapping:function(FnStoSSectionid,subjectselectid,FnStoStermid,FnStosGradeid){
-        this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
-        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
-        obj.FnStoSSectionid=FnStoSSectionid;
-        obj.subjectselectid=subjectselectid;
-        obj.FnStoStermid=FnStoStermid;
-        obj.FnStosGradeid=FnStosGradeid;
-        this.SbjecttoStudentmappingparam=obj;
-       // alert(JSON.stringify(obj));
-        this.$.SbjecttoStudentmappingajax.generateRequest();
-      },
-       SbjecttoStudentmappingResponse:function(e){
-        var arr=e.detail.response.returnval;
-       //  alert(JSON.stringify(arr));
-      //  document.querySelector('cce-generate-score-card').FnHide();
-        document.querySelector('student-list-mapping').studentarr=arr;  
-        },
          SelectSchoolName:function(){
             this.SelectSchoolNameurl=sessionStorage.getItem("addrinfo")+"/SelectSchoolName-service";
             var obj={"school_id":""};
