@@ -15,7 +15,7 @@
         margin-left:5%;
         margin-top: 4%;
       }
-      .card2{
+      .card2{   
         margin-left:40%;    
          margin-top:-17%;
       }
@@ -38,8 +38,8 @@
         border: 2px solid #6699ff;
         padding: 0px;
         margin-top: 6%;
-        width: 50%;
-        margin-left: 25%;
+        width: 80%;
+        margin-left: 10%;
         min-height: 300px;
       }
        .subbutton paper-button
@@ -49,13 +49,19 @@
         color: #ffffff;                
         width: 17%;
         margin-left: 80%;
-        margin-top: 4%;
+        margin-top: 8%;
       }
-.subcat1
+    .subcat1
       {
-        margin-left: 60%;
+        margin-left: 36%;
       }
-   
+    .language
+    {
+      @apply(--layout-horizontal);
+          margin-left: 55%;
+          position: absolute;
+          top: 39%;
+    }
     </style>
    
       <div>
@@ -73,14 +79,6 @@
                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
                 <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
               </template>
-             <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
-               <paper-menu id="empLanguageprefernceid" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
-                 <paper-item value="coresub">Core Subject</paper-item>
-                 <paper-item value="2language">Second Language</paper-item>
-                 <paper-item value="3language">Third Language</paper-item>
-             </paper-menu>
-          </paper-dropdown-menu>
-         
               </div>
           <div class="subcat1">
               <div class="form-group-heading">
@@ -90,6 +88,17 @@
                 <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
               </template>
           </div>
+
+          <div class="language">
+            <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
+               <paper-menu id="empLanguageprefernceid" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
+                 <paper-item value="coresub">Core Subject</paper-item>
+                 <paper-item value="2language">Second Language</paper-item>
+                 <paper-item value="3language">Third Language</paper-item>
+             </paper-menu>
+          </paper-dropdown-menu>
+          </div>
+
            <div class="subbutton">
               <paper-button on-click="grnerate">Generate</paper-button>
            </div>

@@ -68,9 +68,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         background-color: #12A5F4;
         color: white;
-        width: 200%;  
+        width: 240%;  
       }
-
+      /*--paper-tooltip-background
+      {
+        background-color: #12A5F4;
+      }*/
       #z1
       {
            position: absolute;
@@ -180,11 +183,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
      <paper-dialog id="previousid" modal>
        <h2> Please Click Previous Button</h2>
-       <paper-button dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
+       <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
    </paper-dialog>
      <paper-dialog id="Nextid" modal>
        <h2>Please Click Next Button</h2>
-            <paper-button  dialog-confirm autofocus style="color:white;background-color:black;"> close</paper-button>
+            <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
    </paper-dialog>
       <master-ui-service id="uiservice"></master-ui-service>
    </template>
@@ -682,6 +685,8 @@ FnSavez:function(e)
         overall=[];
         g=[];
      },
+
+    
     /*f1:function(e){
       this.$.uiservice.FngetStudentpasssection(this.stugradeid,this.stugradevalue);
       } */

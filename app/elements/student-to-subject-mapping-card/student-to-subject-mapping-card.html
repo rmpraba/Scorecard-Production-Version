@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
        .card{
-      width: 100%;        
+      width: 100%;            
       @apply(--layout-vertical);
       }
       .inner{
@@ -42,20 +42,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .outcard
       {
-      width:25% 
+      width:29% 
       margin-left:5.0em;
       }
        .innercard
        {     
         @apply(--layout-horizontal);
-        width:100%
+        width:50%
         margin-left:2.5em;
        }
      .innercard1
      {
        @apply(--layout-horizontal);
-       width:100%
+       width:50%
       margin-left:5.0em;
+     }
+
+     table
+     {
+      width: 46%;
      }
     </style>
       <div class="title">
@@ -94,12 +99,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-menu>
           </paper-dropdown-menu>  
          </div>
-
-         <div id="tbz1" hidden$="{{hidenewsubcat}}">
-    <div class="list-group col-sm-12 panel-body form-category">
-      <table class="table table-bordered">
-      <!-- <table border="1" class="tt"> -->
-        <tbody>
+   
+          <div id="labelhide">
+            <div style="float: left;position: absolute;top: 37%;margin-left: 25%;" id="secondid">
+                <label><h4>Second Languages</h4></label>
+              </div>
+              <div style="display: inline-block;position: absolute;margin-left: 64%;top: 37%;" id="thirdid">
+                <label><h4>Third Languages</h4></label>
+            </div>
+          </div>  
+      <div id="tbz1" hidden$="{{hidenewsubcat}}">
+      <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
+        <table class="table table-bordered">
+        <!-- <table border="1" class="tt"> -->
+          <tbody>
           <tr>
             <td class="outcard"></td>
             <td class="innercard">
@@ -126,8 +139,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>    
     </div>    
      </div>
-      <div class="buttons">
-        <paper-button style="background-color:black;color:white" on-click="fnsubmit">submit</paper-button>
+      <div class="buttons" id="subid">
+        <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="fnsubmit">submit</paper-button>
       </div> 
      
      <iron-ajax  
@@ -171,6 +184,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({      
       is: 'student-to-subject-mapping-card',
 
+      ready:function()
+      {
+        this.hidenewsubcat=true;
+        this.$.subid.hidden=true;
+        this.$.labelhide.hidden=true;
+      },
+
     FnStoSterm:function(e)
      {
       this.FnStoStermid=e.target.selectedItem.textContent.trim(); 
@@ -207,7 +227,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         obj.FnStoStermid=this.FnStoStermid;
         obj.FnStosGradeid=this.FnStosGradeid;
         this.SbjecttoStudentmappingparam=obj;
-       alert(JSON.stringify(obj));   
+      // alert(JSON.stringify(obj));   
         this.$.SbjecttoStudentmappingajax.generateRequest();
       
         },
@@ -216,17 +236,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      {
             this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
             this.FnStoSSectionid1=e.target.selectedItem.value;
+            this.hidenewsubcat=false;
+            this.$.subid.hidden=false;
+            this.$.labelhide.hidden=false;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
             localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
        if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
          {
              this.fnstudent();
                   this.f13();
+                  this.$.secondid.hidden=false;
+             this.$.thirdid.hidden=false;
           
           }
          else{
              this.fnstudent(); 
                 this.f12();
+             this.$.secondid.hidden=false;
+             this.$.thirdid.hidden=true;   
             
        
          }
@@ -296,7 +323,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            a=[];
 
        }
-      alert(JSON.stringify(overall));
+     // alert(JSON.stringify(overall));
      this.bigarr=overall
      },
      FnSubjecttostudentthirdlanguageResponse:function(e){
@@ -361,14 +388,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
 
        }
-          alert(JSON.stringify(overall));
+         // alert(JSON.stringify(overall));
   
 this.bigarr=overall;
      },
       SbjecttoStudentmappingResponse:function(e){
           var res=e.detail.response.returnval;
           studentarr=res; 
-       alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
      },
       
      fnsetreclear:function(e){
