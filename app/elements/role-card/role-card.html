@@ -146,6 +146,16 @@
         </div>
     </div>  
 
+
+
+          <paper-dialog id="newsubmitbox" modal>
+                  <label>Inserted Successfully !!!</label>
+                  <div class="buttons">
+                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
+                  </div>
+              </paper-dialog> 
+
+
       <master-ui-service id="uiservice"></master-ui-service>  
 
  </template>
@@ -182,11 +192,13 @@
           var roleid=((rname).toLowerCase()).replace(' ','');
           //alert(roleid);
           this.$.uiservice.FnSetRoleInfo(rname,roleid);
-
+          this.$.newsubmitbox.open();
           document.querySelector('role-card').FnRefresh();
         }
-       
-        
+     },
+     Fnclose:function()
+     {
+      this.$.newsubmitbox.close();
      },
     toTitleCase:function(str)
     {

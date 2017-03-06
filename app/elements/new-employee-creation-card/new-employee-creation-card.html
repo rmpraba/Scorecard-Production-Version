@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
         <style>
      :host
-     {
+     {  
          margin-left: 10%;
         display: block;       
          @apply(--layout-left);
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          /*border: 1px solid #dedede;*/
          margin-left: 50%;
          width: 530px;
-         margin-top: 6%;
+         margin-top: -1%;
 
               
       }
@@ -55,17 +55,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #createemp
        {
         
-         /* border-radius: 10px;
-          border: 1px solid #6699ff;
-          padding: 10px;*/
-          min-height: 200%; 
+         
+          /*min-height: 200%; 
           margin-top: -210% !important;
           width: 50%;
-          margin-left:-6%;
+          margin-left:-6%;*/
+
+          position: fixed;
+          min-height: 200%;
+          width: 50%;
+          margin-left: -11%;
+          top: 15%;
               
        }
        .title
        {
+
         margin-left: 30%;
        }
       /* #updateempdetails
@@ -75,23 +80,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }*/
       #updateempdetails
        {
-        float: left;
-        /*border-radius: 10px;
-        border:1px solid #6699ff;
-        padding: 10px;*/
+       /*
         margin-left:-6%;
         width: 50%;
         margin-top: -236% !important;
-        min-height: 200%; 
+        min-height: 200%;*/ 
+
+        position: fixed;
+        margin-left: -9%;
+        width: 47%;
+        top: 15%;
+        /* margin-top: -236% !important; */
+        min-height: 200%;
+
        }
        
        .subbutton
        {
-         background-color: #363636;
-        color: #ffffff;
-        width: 7%;
-        margin-left: 70%;
-        margin-top: 3%;
+          background-color: #363636;
+          color: #ffffff;
+          width: 7%;
+          margin-left: 75%;
+          margin-top: -4%;
        }
        .newtitle
        {
@@ -102,12 +112,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
        .vertical-row
        {
-           position: fixed;
-            border: 1px  solid #12A5F4;
-            width: 1px;
-            margin-left: 42%;
-            min-height: 2900px;
-            margin-top: -4%;
+          position: fixed;
+          border: 1px solid #12A5F4;
+          width: 1px;
+          margin-left: 38%;
+          min-height: 2900px;
+          top: 18%;
        }
 
     </style>
@@ -117,15 +127,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     <span>
     <div class="newempldiv" hidden$="{{hidenewempldiv}}">
-      <div class="newtitle">
-        <h4>Current Employee Details</h4>
-      </div>
-    <div class="newcard col-sm-12">
+      <div class="newcard col-sm-12">
       <table>
         <tr>
           <!-- <th><label style="margin-left:12% ">Employee ID</label></th> -->
-          <th><label style="margin-left:10%">Employee Name</label></th>
-          <th><paper-icon-button icon="add" on-click="getempdetails"></paper-icon-button></th>
+          <th><h4><label style="margin-left:10%">Current Employee Names</label></h4></th>
+          <th><paper-icon-button  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
+          <paper-tooltip for="btn1">Create</paper-tooltip> 
+
+          </th>
         </tr>
         <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
           <tr>
@@ -140,6 +150,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
+        <div style="text-align: center;">
+          <label>
+            <h4><b>Create New Employee</b></h4>
+          </label>
+      </div>
         <div class="form-group-heading">    
           <h4>Employee Details</h4>
         </div>  
@@ -155,7 +170,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
 
         <div class="col-sm-4">
-          <paper-input label="Secondry Mobile Number" id="empMobile" required error-message="needs mobileno" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
+          <paper-input label="Secondry Mobile Number" id="empMobile" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
 
         <div class="col-sm-4">
@@ -198,6 +213,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
+          <div style="text-align: center;">
+              <label>
+                <h4><b>Update Employee Details</b></h4>
+              </label>
+          </div>
       <!-- <div hidden$="{{hideupdateemp}}"> -->
         <div class="form-group-heading">
           <h4>Employee Personal  Details</h4>
@@ -270,6 +290,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        var empschooltypearr=[];
        var passschooltypearr=[];
         var passrolearr=[];
+        var emplyname="";
     Polymer({
       is: 'new-employee-creation-card',
      ready:function()
@@ -288,8 +309,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     { 
        empschooltypearr=arr;
        //alert(JSON.stringify(empschooltypearr));
-        },
-  FnRefresh:function()
+    },
+    FnRefresh:function()
       {    
        this.name="";
        this.Telephone="";
@@ -299,25 +320,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },  
       FnSubmit:function()
       { 
-      if(this.name==""||this.Telephone==""||this.MobileNumber==""||this.password==""||this.mailid=="")
-      {
-              this.$.empname.validate();
-              this.$.empTelephone.validate();
-              this.$.empMobile.validate();  
-              this.$.emppassword.validate();
-              this.$.empmailid.validate();
-      }
-      else  
-      {
-             this.$.uiservice.fninsetschoolemployeeinfo(this.empid,this.name,this.Telephone,this.MobileNumber,this.password,this.mailid,empschooltypearr,setrolearr);
-             this.FnRefresh();
-             this.$.uiservice.selectschooltype();
-             this.$.uiservice.selectrolename();
-             this.$.uiservice.fnschoolemployeepersonal();
-             document.querySelector('employee-role-item-card').setschoolroleclean();
-             document.querySelector('employe-schooltype-creation-card').empschooltypesplice();
-             this.$.uiservice.fnempgenerateid();
-        }},  
+        if(this.name==""||this.Telephone==""||this.password==""||this.mailid=="")
+        {
+                this.$.empname.validate();
+                this.$.empTelephone.validate();
+                //this.$.empMobile.validate();  
+                this.$.emppassword.validate();
+                this.$.empmailid.validate();
+        }
+        else  
+        {
+
+              emplyname=this.toTitleCase(this.name);
+               this.$.uiservice.fninsetschoolemployeeinfo(this.empid,emplyname,this.Telephone,this.MobileNumber,this.password,this.mailid,empschooltypearr,setrolearr);
+               this.FnRefresh();
+               this.$.uiservice.selectschooltype();
+               this.$.uiservice.selectrolename();
+               this.$.uiservice.fnschoolemployeepersonal();
+               document.querySelector('employee-role-item-card').setschoolroleclean();
+               document.querySelector('employe-schooltype-creation-card').empschooltypesplice();
+               this.$.uiservice.fnempgenerateid();
+          }
+      },  
+
+
+          toTitleCase:function(str)
+          {
+            return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+          },
+
 
       getempdetails:function(e)
       {

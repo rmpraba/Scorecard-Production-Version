@@ -12,7 +12,7 @@
       :host {
         display: block;       
       }
-      .card{
+      .card{  
         @apply(--layout-horizontal);
         border-bottom: 1px solid #dedede;   
       } 
@@ -69,13 +69,15 @@
           <paper-item width="60%">{{employeename}}</paper-item>
         </div>  
         <div class="clbutton col-sm-4">
-          <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
-          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip> 
+          <paper-icon-button id="btn2"  icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </div>     
     </div>
 
      <paper-dialog id="newempdetails" modal>
-      <label>Are you sure want to delete?</label>
+      <label>Are you sure want to delete ?</label>
       <div class="buttons">
         <paper-button on-click="fndelet">Ok</paper-button>
         <paper-button on-click="fnclose">Cancel</paper-button>
@@ -127,9 +129,11 @@
         this.FnEdit();
      },
      fndelet:function()
+     
      {
         this.$.uiservice.Fnempdeleteinfo(this.employeeid,this.employeename);
-        this.hidecreateemp=false;
+        document.querySelector('new-employee-creation-card').hideupdateemp=true;
+        document.querySelector('new-employee-creation-card').hidecreateemp=false;
      },
      fnclose:function()
      {
