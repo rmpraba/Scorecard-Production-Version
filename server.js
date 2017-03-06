@@ -7939,6 +7939,29 @@ app.post('/FnSubjecttostudentlanguage-service',  urlencodedParser,function (req,
       console.log(err);
   });
 });
+app.post('/SbjecttoStudentmapping1-service',  urlencodedParser,function (req, res)
+{
+      var qur='SELECT * from tr_student_to_subject where school_id="'+req.query.subjectselectid+'"and academic_year="'+req.query.FnStoStermid+'" and grade="'+req.query.FnStosGradeid+'" and class_id="'+req.query.FnStoSSectionid+'"';
+      console.log(qur);
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
+
 app.post('/FnSubjecttostudentthirdlanguage-service',  urlencodedParser,function (req, res)
 {
 connection.query("SELECT * from md_subject where langugage_pref !='Core subject' and subject_category='category1'",
@@ -7962,30 +7985,25 @@ connection.query("SELECT * from md_subject where langugage_pref !='Core subject'
 app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (req, res)
 {  
     var response={
-
-     
       school_id:req.query.schoolnames,
       student_id:req.query.studentid,
-      academic_year:req.query.termsname,
-      grade:req.query.gradenamesssss,
-      section:req.query.Sectionnames,
-      subject_id:req.query.seclang11,
+      academic_year:req.query.Acadamicyear,
+      grade:req.query.gradeid,
+      section:req.query.sectionname,
+      subject_id:req.query.subjectid,
       student_name:req.query.studentname,
-      class_id:req.query.Sectionnameseeee
+      class_id:req.query.sectionid,
+      lang_pref:req.query.langugagepref,
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
 
-    //console.log(JSON.stringify(response));
-   var qur= "SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and section='"+req.query.Sectionnames+"' and  student_name='"+req.query.studentname+"'";
-     var qurr="SELECT subject_type FROM md_language_type_master where subject_id='"+req.query.seclang11+"'";
+   var qur= "SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and  student_id='"+req.query.studentid+"'and lang_pref='"+req.query.langugagepref+"'";
+
    
     
-    var qur1="update tr_student_to_subject set subject_id='"+req.query.seclang11+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and student_name='"+req.query.studentname+"' and class_id='"+req.query.Sectionnameseeee+"'";
+    var qur1="update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentname+"'and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
 
-   /* console.log(qur);
-    console.log(qur1)*/
-    connection.query(qurr,function(err, rows){
-    response.subject_type=rows[0].subject_type;
+   
    connection.query(qur,
     function(err, rows)
     {
@@ -8016,31 +8034,26 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
         } 
       });
     });
-});
+
 app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function (req, res)
 {  
     var response={
-
-     
       school_id:req.query.schoolnames,
       student_id:req.query.studentid,
-      academic_year:req.query.termsname,
-      grade:req.query.gradenamesssss,
-      section:req.query.Sectionnames,
-      subject_id:req.query.seclang11,
+      academic_year:req.query.Acadamicyear,
+      grade:req.query.gradeid,
+      section:req.query.sectionname,
+      subject_id:req.query.subjectid,
       student_name:req.query.studentname,
-      class_id:req.query.Sectionnameseeee
+      class_id:req.query.sectionid,
+      lang_pref:req.query.langugagepref
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
-    }; 
-//console.log(JSON.stringify(response));
-    var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and section='"+req.query.Sectionnames+"' and  student_name='"+req.query.studentname+"' and subject_type='II Language'";
-    var qurr="SELECT subject_type FROM md_language_type_master where subject_id='"+req.query.seclang11+"'";
-    
-    var qur1="update tr_student_to_subject set subject_id='"+req.query.seclang11+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and student_name='"+req.query.studentname+"' and class_id='"+req.query.Sectionnameseeee+"' and subject_type='II Language'";
+    };
 
-  
-   connection.query(qurr,function(err, rows){
-    response.subject_type=rows[0].subject_type;
+ var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and student_name='"+req.query.studentname+"' and lang_pref='"+req.query.langugagepref+"'";
+    
+    var qur1="update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentid+"' and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
+   
    connection.query(qur,function(err, rows)
     {
      if(rows.length==0){
@@ -8069,7 +8082,7 @@ app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function
         } 
       });
  });
-});
+
 app.post('/FnThirdLangSubjectToStudent-service' , urlencodedParser,function (req, res)
 {  
     var response={
@@ -8077,29 +8090,23 @@ app.post('/FnThirdLangSubjectToStudent-service' , urlencodedParser,function (req
      
       school_id:req.query.schoolnames,
       student_id:req.query.studentid,
-      academic_year:req.query.termsname,
-      grade:req.query.gradenamesssss,
-      section:req.query.Sectionnames,
-      subject_id:req.query.thirdlang11,
+      academic_year:req.query.Acadamicyear,
+      grade:req.query.gradeid,
+      section:req.query.sectionname,
+      subject_id:req.query.subjectid,
       student_name:req.query.studentname,
-      class_id:req.query.Sectionnameseeee
-      //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
+      class_id:req.query.sectionid,
+       lang_pref:req.query.langugagepref
+  
     }; 
 
     //console.log(JSON.stringify(response));
-    var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and section='"+req.query.Sectionnames+"' and  student_name='"+req.query.studentname+"'and subject_type='IIILanguage'";
+ var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and  student_name='"+req.query.studentname+"' and lang_pref='"+req.query.langugagepref+"'";
 
-    var qurr="SELECT subject_type FROM md_language_type_master where subject_id='"+req.query.thirdlang11+"'";
 
    
-    var qur1="update tr_student_to_subject set subject_id='"+req.query.thirdlang11+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.termsname+"' and grade='"+req.query.gradenamesssss+"' and student_name='"+req.query.studentname+"' and class_id='"+req.query.Sectionnameseeee+"'and subject_type='IIILanguage'";
+    var qur1="update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_name='"+req.query.studentname+"'and class_id='"+req.query.sectionid+"'and lang_pref='"+req.query.langugagepref+"'";
 
-    //console.log(qur);
-    //console.log(qur1);
-    //console.log(qurr);
-
-   connection.query(qurr,function(err, rows){
-    response.subject_type=rows[0].subject_type;
    connection.query(qur,function(err, rows)
     {
      if(rows.length==0){
@@ -8112,7 +8119,7 @@ app.post('/FnThirdLangSubjectToStudent-service' , urlencodedParser,function (req
     }
     else
     {
-      //console.log(err);
+      console.log(err);
       res.status(200).json({'returnval': 'Not Inserted!'});
     }
     });
@@ -8128,7 +8135,7 @@ app.post('/FnThirdLangSubjectToStudent-service' , urlencodedParser,function (req
         } 
       });
  });
-});
+
 app.post('/SelectSchoolName-service' ,urlencodedParser, function (req, res)
     {  
       var e={id:req.query.school_id};

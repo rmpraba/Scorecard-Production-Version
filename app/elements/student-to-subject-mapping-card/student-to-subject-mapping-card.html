@@ -116,7 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </td>
               <td class="innercard">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
-                <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}"></student-list-mapping-item>
+                <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
                </template>
                </td>
             </tr>
@@ -162,12 +162,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="SbjecttoStudentmappingResponse"
         debounce-duration="300"
         >
+          <iron-ajax        
+        id="SbjecttoStudentmapping1ajax"
+        url="{{SbjecttoStudentmapping1url}}"
+        params="{{SbjecttoStudentmapping1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="SbjecttoStudentmapping1Response"
+        debounce-duration="300"
+        >
   <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
   (function() {
     'use strict';
- var studentarr=[];
+   var studentarr=[];
+   var fnsecondlanginfoarr=[];
+   var fnthidlanginfoarr=[];
+   var fnthidlanginfo1arr=[];
+   var studbarr=[];
+   var kn=[];
     Polymer({      
       is: 'student-to-subject-mapping-card',
 
@@ -177,7 +192,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        localStorage.setItem("curr_sess_selectedTerms",this.FnStoStermid);
       //alert(this.FnStoStermid);
      },
-   
+   fnthidlanginfo:function(arr,arr1){
+         fnthidlanginfoarr=arr;
+         fnthidlanginfo1arr=arr1;
+  
+    },
+   fnsecondlanginfo:function(arr){
+   fnsecondlanginfoarr=arr;
+   },
      FnStosGrade:function(e)
      {     
          document.querySelector('#rsectionwww').selected=-1;
@@ -200,14 +222,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
         },
         fnstudent:function(e){
-              this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
+          this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
         var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
         obj.FnStoSSectionid=this.FnStoSSectionid;
         obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.FnStoStermid=this.FnStoStermid;
         obj.FnStosGradeid=this.FnStosGradeid;
         this.SbjecttoStudentmappingparam=obj;
-       alert(JSON.stringify(obj));   
+       //alert(JSON.stringify(obj));   
         this.$.SbjecttoStudentmappingajax.generateRequest();
       
         },
@@ -218,6 +240,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.FnStoSSectionid1=e.target.selectedItem.value;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
             localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
+            this.fnlangugageprefstudent();
        if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
          {
              this.fnstudent();
@@ -231,9 +254,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        
          }
      },
-     fnsubmit:function(e){
+       stupersonalinfo12:function(){
+     document.querySelector('student-list-mapping-item').stupersonalinfo11(kn); 
     
-     },
+    },
+ 
+ fnlangugageprefstudent:function(){
+      this.SbjecttoStudentmapping1url=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping1-service";
+        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
+        obj.FnStoSSectionid=this.FnStoSSectionid1;
+        obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.FnStoStermid=this.FnStoStermid;
+        obj.FnStosGradeid=this.FnStosGradeid2;
+        this.SbjecttoStudentmapping1param=obj; 
+       // alert(JSON.stringify(obj));   
+        this.$.SbjecttoStudentmapping1ajax.generateRequest();
+    
+
+   },
+
+SbjecttoStudentmapping1Response:function(e){
+     var res=e.detail.response.returnval;
+   //   alert(JSON.stringify(res));   
+     studbarr=res;
+ },
+ fnsubmit:function(e){
+    
+     if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
+         {
+           this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
+           this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
+            if(kn.length!=0){
+               document.querySelector('student-list-mapping-item').FnSecondLang1(kn);  
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      kn.splice(obj);
+           
+                }
+                document.querySelector('student-list-mapping-item').FnSecondLang(); 
+              
+        
+     
+          }
+         else{
+             this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
+                if(kn.length!=0){
+           document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+                var obj={"dd":"","admno":"","langugagepref":""};
+                     kn.splice(obj);
+           }
+          document.querySelector('student-list-mapping-item').FnSecondLang();
+             
+           
+         }
+              },
      FnSubjecttostudentlanguageResponse:function(e){
        var res=e.detail.response.returnval; 
           
@@ -254,40 +327,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      for(var i=0;i<res.length;i++){
                               var student_id=studentarr[j].id;
                               var student_name=studentarr[j].student_name;
-                         
-                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":""}; 
-                              var subject_name=res[i].subject_name;
+                       
+         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+                               var subject_name=res[i].subject_name;
                                var subject_id=res[i].subject_id;
+                               var langugage_pref=res[i].langugage_pref
                            obj.student_id=student_id;
                            obj.student_name=student_name;
-                           obj.subject_name=subject_name;
+                           obj.langugage_pref=langugage_pref;
                            obj.subject_id=subject_id;
                            generatearr.push(obj);
                         }}//alert(JSON.stringify(generatearr));
         var a=[];
         var overall=[];
-       for(var k=0;k<generatearr.length;k++)
+        for(var k=0;k<generatearr.length;k++)
        {       
          var nameobj={"student_id":"","student_name":""};
          nameobj.student_name=generatearr[k].student_name; 
          nameobj.student_id=generatearr[k].student_id; 
-       
-         var obj={"subject_name":"","subject_id":""};
+           
+         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
         // obj.Grade_name=generatearr[k].gradename;
         obj.subject_name=generatearr[k].subject_name;
         obj.subject_id=generatearr[k].subject_id;
-        obj.id=generatearr[k].subject_id+generatearr[k].student_id;
+        obj.langugage_pref=generatearr[k].langugage_pref;
+        var  id=generatearr[k].subject_id+generatearr[k].student_id;
+        id=id.replace(/[^\w\s]/gi, '');
+         obj.id=id;
+
         a.push(obj);
         for(var l=k+1;l<generatearr.length;l++)
         {
            if(generatearr[k].student_id==generatearr[l].student_id)
            {
-            var obj1={"subject_name":"","subject_id":""};
+            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
           //obj1.Grade_name=generatearr[l].gradename;
              obj1.subject_name=generatearr[l].subject_name;
              obj1.subject_id=generatearr[l].subject_id;
-             obj1.id=generatearr[l].subject_id+generatearr[l].student_id;
-           a.push(obj1);
+             obj1.langugage_pref=generatearr[l].langugage_pref;
+             var  id=generatearr[l].subject_id+generatearr[l].student_id;
+             id=id.replace(/[^\w\s]/gi, '');
+              obj1.id=id;
+              a.push(obj1);
              generatearr.splice(l,1);
              l--;
          }}
@@ -295,9 +376,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            overall.push(nameobj);
            a=[];
 
-       }
-      alert(JSON.stringify(overall));
-     this.bigarr=overall
+      }
+     // alert(JSON.stringify(overall));
+     
+
+      for(var j=0;j<overall.length;j++){
+       var flag=0;
+      for(var q=0;q<studbarr.length;q++){
+      if(overall[j].student_id==studbarr[q].student_id){
+             flag=1;
+             var ddd=overall[j].student_id;
+              var sss=studbarr[q].subject_id;
+               
+         for(var t=0;t<overall[j].subject.length;t++){
+             
+           if(overall[j].subject[t].subject_id==sss){
+
+                      overall[j].subject[t].check=true;
+                       var rrn=overall[j].subject[t].id;
+                        var admno=overall[j].student_id;
+                          var langugagepref=overall[j].subject[t].langugage_pref;
+                      
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      obj.dd=rrn;
+                      obj.admno=admno;
+                      obj.langugagepref=langugagepref;
+                      kn.push(obj);
+               }
+           } 
+        }
+         }
+         if(flag==0){
+          }
+     }
+  
+    // alert(JSON.stringify(overall));
+     this.bigarr=overall;
      },
      FnSubjecttostudentthirdlanguageResponse:function(e){
          var res=e.detail.response.returnval; 
@@ -318,14 +432,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      for(var i=0;i<res.length;i++){
                               var student_id=studentarr[j].id;
                               var student_name=studentarr[j].student_name;
-                         
-                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":""}; 
-                              var subject_name=res[i].subject_name;
+                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+                               var subject_name=res[i].subject_name;
                                var subject_id=res[i].subject_id;
+                               var langugage_pref=res[i].langugage_pref
+                       
                            obj.student_id=student_id;
                            obj.student_name=student_name;
                            obj.subject_name=subject_name;
                            obj.subject_id=subject_id;
+                            obj.langugage_pref=langugage_pref;
+                     
                            generatearr.push(obj);
                         }}//alert(JSON.stringify(generatearr));
         var a=[];
@@ -336,39 +453,76 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          nameobj.student_name=generatearr[k].student_name; 
          nameobj.student_id=generatearr[k].student_id; 
        
-         var obj={"subject_name":"","subject_id":""};
+         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
         // obj.Grade_name=generatearr[k].gradename;
         obj.subject_name=generatearr[k].subject_name;
         obj.subject_id=generatearr[k].subject_id;
-        obj.id=generatearr[k].subject_id+generatearr[k].student_id;
+        obj.langugage_pref=generatearr[k].langugage_pref;
+        var  id=generatearr[k].subject_id+generatearr[k].student_id;
+          id=id.replace(/[^\w\s]/gi, '');
+         obj.id=id;
+
         a.push(obj);
         for(var l=k+1;l<generatearr.length;l++)
         {
            if(generatearr[k].student_id==generatearr[l].student_id)
            {
-            var obj1={"subject_name":"","subject_id":""};
+            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
           //obj1.Grade_name=generatearr[l].gradename;
              obj1.subject_name=generatearr[l].subject_name;
              obj1.subject_id=generatearr[l].subject_id;
-             obj1.id=generatearr[l].subject_id+generatearr[l].student_id;
-           a.push(obj1);
+             obj1.langugage_pref=generatearr[l].langugage_pref;
+              var  id=generatearr[l].subject_id+generatearr[l].student_id;
+              id=id.replace(/[^\w\s]/gi, '');
+             obj1.id=id;
+
+             a.push(obj1);
              generatearr.splice(l,1);
              l--;
          }}
            nameobj.subject=a;
            overall.push(nameobj);
             a=[];
-   
-
        }
-          alert(JSON.stringify(overall));
+
+    for(var j=0;j<overall.length;j++){
+       var flag=0;
+      for(var q=0;q<studbarr.length;q++){
+      if(overall[j].student_id==studbarr[q].student_id){
+             flag=1;
+             var ddd=overall[j].student_id;
+              var sss=studbarr[q].subject_id;
+               
+         for(var t=0;t<overall[j].subject.length;t++){
+             
+           if(overall[j].subject[t].subject_id==sss){
+
+                      overall[j].subject[t].check=true;
+                       var rrn=overall[j].subject[t].id;
+                        var admno=overall[j].student_id;
+                          var langugagepref=overall[j].subject[t].langugage_pref;
+                      
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      obj.dd=rrn;
+                      obj.admno=admno;
+                      obj.langugagepref=langugagepref;
+                      kn.push(obj);
+               }
+           } 
+        }
+         }
+         if(flag==0){
+          }
+     }
   
-this.bigarr=overall;
+    
+    this.bigarr=overall;
+   
      },
       SbjecttoStudentmappingResponse:function(e){
           var res=e.detail.response.returnval;
           studentarr=res; 
-       alert(JSON.stringify(res));
+   //alert(JSON.stringify(res));
      },
       
      fnsetreclear:function(e){

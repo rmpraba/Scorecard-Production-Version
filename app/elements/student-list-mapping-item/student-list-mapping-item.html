@@ -46,8 +46,15 @@
            <paper-input value={{studentid}} hidden></paper-input>
            <paper-input value={{subjectname}} hidden></paper-input>
            <paper-input value={{subjectid}} hidden></paper-input>
-        <paper-checkbox on-change="fnsetgrade" id="{{id}}" value="{{studentid}}" on-change="Fnsave"></paper-checkbox>
-          </td>
+           <paper-input value={{langugagepref}} hidden></paper-input>
+           <paper-checkbox id="{{id}}" on-change="Fnsave" checked="{{check}}"></paper-checkbox>
+         </td>
+         
+           <paper-dialog id="samesubjectalertid" modal>
+          <h2> Select Both Are Same language </h2>
+            <paper-button dialog-confirm autofocus style="color:white;background-color:black"> close</paper-button>
+   </paper-dialog>
+ 
       </tr>
 
       </tr>
@@ -59,21 +66,28 @@
   <script>
   (function() {
     'use strict';           
-    var seclang="";
-    var thirdlang="";
-    var seclang11;
-    var thirdlang11;
-    var Languagearr=[];
     var paspstuinfo=[];
+     var paspstuinfo1=[];
+     var rr;
+     var rr1;
+
    Polymer({
       is: 'student-list-mapping-item',
-      ready:function(){
-  //    alert('hi');
-      },
      Fnsave:function(e){ 
-    if(document.querySelector('#'+this.id).checked==true){
+      alert(this.langugagepref);
+      alert(this.id);
+       rr1=this.langugagepref;
 
-        var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","subjectid":"","studentname":"","studentid":"","subjectid":""};
+      rr=this.studentid;
+      alert(document.querySelector('#'+this.id).checked);
+    
+    if(document.querySelector('#'+this.id).checked==true)
+    {
+            document.querySelector('student-to-subject-mapping-card').stupersonalinfo12(); 
+  
+     if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4") 
+        {
+        var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":"","subjectname":""};
            obj.id=this.id;
            obj.Acadamicyear=localStorage.getItem("curr_sess_selectedTerms");
            obj.gradename=localStorage.getItem("curr_sess_selectedgrade");
@@ -83,91 +97,175 @@
            obj.studentname=this.studentname;
            obj.studentid=this.studentid;
            obj.subjectid=this.subjectid;
+           obj.langugagepref=this.langugagepref;
+           obj.subjectname=this.subjectname;
+       
            paspstuinfo.push(obj);
+       //    alert(JSON.stringify(paspstuinfo));
 
          for(var i=0;i<paspstuinfo.length;i++){
-                    if(paspstuinfo[i].id==this.studentid){
+                    if(paspstuinfo[i].studentid==this.studentid){
                             
-                   if(paspstuinfo[i].classid==this.subjectid){
-                  var m=paspstuinfo[i].id;
+                   if(paspstuinfo[i].subjectid==this.subjectid){
+               var m=paspstuinfo[i].id;
                   document.querySelector('#'+m).checked=true;
                    }
-                  else if(paspstuinfo[i].classid!=this.subjectid){
+                  else if(paspstuinfo[i].subjectid!=this.subjectid){
                    var s=paspstuinfo[i].id;
                   document.querySelector('#'+s).checked=false;
                     paspstuinfo.splice(i,1);
                    }
-                }
+                 }
               } 
-          document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
-         }
+          document.querySelector('student-to-subject-mapping-card').fnsecondlanginfo(paspstuinfo);  
+     
+          }
+
+          else{
+               if(this.langugagepref=='Second Language'){
+           
+              
+            var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":"","subjectname":""};
+           obj.id=this.id;
+           obj.Acadamicyear=localStorage.getItem("curr_sess_selectedTerms");
+           obj.gradename=localStorage.getItem("curr_sess_selectedgrade");
+           obj.sectionname=localStorage.getItem("curr_sess_selectedSection");
+           obj.gradeid=localStorage.getItem("curr_sess_selectedgrade1");  
+           obj.sectionid=localStorage.getItem("curr_sess_selectedSectionvalue1");
+           obj.studentname=this.studentname;
+           obj.studentid=this.studentid;
+           obj.subjectid=this.subjectid;
+           obj.langugagepref=this.langugagepref;
+           obj.subjectname=this.subjectname;
+       
+              
+           paspstuinfo.push(obj);
+      //     alert(JSON.stringify(paspstuinfo));
+  
+         for(var i=0;i<paspstuinfo.length;i++){
+          if(paspstuinfo[i].studentid==this.studentid){
+                if(paspstuinfo[i].subjectid==this.subjectid){
+                   var m=paspstuinfo[i].id;
+                  document.querySelector('#'+m).checked=true;
+                   }
+                  else if(paspstuinfo[i].subjectid!=this.subjectid){
+                   var s=paspstuinfo[i].id;
+                  document.querySelector('#'+s).checked=false;
+                    paspstuinfo.splice(i,1);
+                    }
+                  }
+                  }
+
+                }
+        else if(this.langugagepref=='Third Language'){
+  
+     var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":""};
+           obj.id=this.id;
+           obj.Acadamicyear=localStorage.getItem("curr_sess_selectedTerms");
+           obj.gradename=localStorage.getItem("curr_sess_selectedgrade");
+           obj.sectionname=localStorage.getItem("curr_sess_selectedSection");
+           obj.gradeid=localStorage.getItem("curr_sess_selectedgrade1");  
+           obj.sectionid=localStorage.getItem("curr_sess_selectedSectionvalue1");
+           obj.studentname=this.studentname;
+           obj.studentid=this.studentid;
+           obj.subjectid=this.subjectid;
+           obj.langugagepref=this.langugagepref;
+           obj.subjectname=this.subjectname;
+           paspstuinfo1.push(obj);
+           //alert(JSON.stringify(paspstuinfo));
+           for(var i=0;i<paspstuinfo1.length;i++){
+               if(paspstuinfo1[i].studentid==this.studentid){
+                  if(paspstuinfo1[i].subjectid==this.subjectid){
+                   var m=paspstuinfo1[i].id;
+                  document.querySelector('#'+m).checked=true;
+                   }
+                  else if(paspstuinfo1[i].subjectid!=this.subjectid){
+                   var s=paspstuinfo1[i].id;
+                  document.querySelector('#'+s).checked=false;
+                    paspstuinfo1.splice(i,1);
+                    }}}
+         for(var j=0;j<paspstuinfo.length;j++){
+                //alert(paspstuinfo[j].studentid+"  "+this.studentid);
+                    if(paspstuinfo[j].studentid==this.studentid){
+                         var a=paspstuinfo[j].subjectname.trim();
+                         var b=this.subjectname.trim();
+                    if(a==b){
+                      this.$.samesubjectalertid.open();
+                     var m=paspstuinfo[j].id;
+                      document.querySelector('#'+m).checked=false;
+                          paspstuinfo.splice(j,1);
+
+                           }}}}}
+  document.querySelector('student-to-subject-mapping-card').fnthidlanginfo(paspstuinfo,paspstuinfo1);  
+   }
      else if(document.querySelector('#'+this.id).checked==false){
-             for(var i=0;i<paspstuinfo.length;i++){
+        /*     for(var i=0;i<paspstuinfo.length;i++){
                paspstuinfo.splice(i,1);
             }
+              for(var j=0;j<paspstuinfo1.length;j++){
+               paspstuinfo1.splice(j,1);
+            }
+           */
             }  
  
-
-
-
-
-
-
-/*
-
-
-           if(document.querySelector('#'+this.gradeid).checked==true){
-        var obj={"termsname":"","gradenames":""}
-     
-           document.querySelector('master-school-type-creation-item-card').fnsetgrade(gradearrs);
-        }
-     
-
-        var termsname=localStorage.getItem("curr_sess_selectedTerms");
-        var gradenames=localStorage.getItem("curr_sess_selectedgrade");
-        var Sectionnames=localStorage.getItem("curr_sess_selectedSection");
-        var gradenamesssss=localStorage.getItem("curr_sess_selectedgrade1");  
-        var Sectionnameseeee=localStorage.getItem("curr_sess_selectedSectionvalue1");
-     
-        if(thirdlang=="Hindi"&& seclang=="Hindi"||thirdlang=="Kannada"&& seclang=="Kannada") 
-        {
-          alert("select both are same language");
-
-        }  
-    else if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4")
-       {
-      this.$.uiservice.FnSecondLangSubjectToStudent(this.studentid,this.studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid);
-      }
-      else
-       {
-           this.$.uiservice.FnSecondLangSubjectToStudentsets(this.studentid,this.studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid);
-        this.$.uiservice.FnThirdLangSubjectToStudent(this.studentid,this.studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,thirdlang11,Sectionnameseeee,termsname1,assesmentid);
-         
-
-           }
-                 
-*/   
-
       },
-   FnSecondLang:function(e){
-      seclang=e.target.selectedItem.textContent.trim(); 
-      seclang11=e.target.selectedItem.value; 
-     // Languagearr
-      if(thirdlang=="Hindi"&& seclang=="Hindi"||thirdlang=="Kannada"&& seclang=="Kannada"){
-         // alert("already select on this Language");
-        // document.querySelector('#sectionidthirdnnn').selected=-1;
+         stupersonalinfo11:function(arr){
+        //  alert(JSON.stringify(arr));
+        //alert(this.admissinno);
+
+          for(var i=0;i<arr.length;i++){
+               if(arr[i].langugagepref==rr1)
+               {
+               if(arr[i].admno==rr){
+
+                    var m=arr[i].dd;
+                    document.querySelector('#'+m).checked=false;
+               }
+                 else if(arr[i].langugagepref==rr1){
+                     if(arr[i].admno==rr){
+                    var m1=arr[i].dd;
+                   // alert(m1);
+                    document.querySelector('#'+m1).checked=false;
+               }}}}
+         },
+         FnSecondLang1:function(arr){
+                for(var i=0;i<arr.length;i++){
+                   var m=arr[i].dd;
+                    document.querySelector('#'+m).checked=false;
+               }
            
-      }
-       
-     },
-     FnThirdLang:function(e){
-        thirdlang=e.target.selectedItem.textContent.trim();
-        thirdlang11=e.target.selectedItem.value;
-     if(thirdlang=="Hindi"&& seclang=="Hindi"||thirdlang=="Kannada"&& seclang=="Kannada"){
-        //alert("already select on this Language");
-        //document.querySelector('#sectionidsecondwww').selected=-1;
+         
+         },
+    FnSecondLang:function(e){
+
+         if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4"){
+           for(var i=0;i<paspstuinfo.length;i++){
+              var r=paspstuinfo[i].id;
+               document.querySelector('#'+r).checked=false;
+            }
+         
+            paspstuinfo.splice(obj);
+   
+           } 
+           else{
+                  for(var i=0;i<paspstuinfo1.length;i++){
+              var m1=paspstuinfo1[i].id;
+              alert(m1);
+               document.querySelector('#'+m1).checked=false;
+                  paspstuinfo1=[];
+        
+            }
+          for(var j=0;j<paspstuinfo.length;j++){
+               var m2=paspstuinfo[j].id;
+               alert(m2);
+                document.querySelector('#'+m2).checked=false;
+                     paspstuinfo=[];
+      
+             }
+          
         }
-      }
+      },
+      
     });
   })();
   </script>

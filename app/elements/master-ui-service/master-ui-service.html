@@ -3006,62 +3006,98 @@ insertschoolTypename:function(schooltypesarr)
           this.FnFetchSubjectname();
         }
       },
-   FnSecondLangSubjectToStudent:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid){
-        this.FnSecondLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnSecondLangSubjectToStudent-service";
-        var obj={"studentid":"","studentname":"","schoolnames":"","termsname":"","gradenamesssss":"","Sectionnames":"","seclang11":"","Sectionnameseeee":"","termsname1":""};
-        obj.studentid=studentid;
-        obj.studentname=studentname;
-        obj.schoolnames=schoolnames; 
-        obj.termsname=termsname;
-        obj.gradenamesssss=gradenamesssss;
-        obj.Sectionnames=Sectionnames;
-        obj.seclang11=seclang11;
-        obj.Sectionnameseeee=Sectionnameseeee;
-        obj.termsname1=termsname1;
-        this.FnSecondLangSubjectToStudentparam=obj;
-        //alert(JSON.stringify(obj));
+   FnSecondLangSubjectToStudent:function(fnsecondlanginfoarr){
+           for(var i=0;i<fnsecondlanginfoarr.length;i++){
+
+             var studentid=fnsecondlanginfoarr[i].studentid;
+             var studentname=fnsecondlanginfoarr[i].studentname;
+             var gradeid=fnsecondlanginfoarr[i].gradeid;
+             var gradename=fnsecondlanginfoarr[i].gradename;
+             var sectionid=fnsecondlanginfoarr[i].sectionid;
+             var sectionname=fnsecondlanginfoarr[i].sectionname;
+             var subjectid=fnsecondlanginfoarr[i].subjectid;
+             var Acadamicyear=fnsecondlanginfoarr[i].Acadamicyear;
+             var langugagepref=fnsecondlanginfoarr[i].langugagepref;
+ this.FnSecondLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnSecondLangSubjectToStudent-service"; 
+   var obj={"schoolnames":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","subjectid":"","langugagepref":""};
+             obj.studentid=studentid;
+             obj.studentname=studentname;
+             obj.gradeid=gradeid;
+             obj.gradename=gradename;
+             obj.sectionid=sectionid;
+             obj.sectionname=sectionname;
+             obj.subjectid=subjectid;
+             obj.Acadamicyear=Acadamicyear;
+             obj.langugagepref=langugagepref;
+             obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
+           this.FnSecondLangSubjectToStudentparam=obj;
+         alert(JSON.stringify(obj));
         this.$.FnSecondLangSubjectToStudentajax.generateRequest();
-     
+      }
       },
       FnSecondLangSubjectToStudentResponse:function(e){
              //alert(JSON.stringify(e.detail.response.returnval));
       },
-      FnSecondLangSubjectToStudentsets:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,Sectionnameseeee,termsname1,assesmentid){
+      FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
+           for(var i=0;i<fnthidlanginfoarr.length;i++){
+
+             var studentid=fnthidlanginfoarr[i].studentid;
+             var studentname=fnthidlanginfoarr[i].studentname;
+             var gradeid=fnthidlanginfoarr[i].gradeid;
+             var gradename=fnthidlanginfoarr[i].gradename;
+             var sectionid=fnthidlanginfoarr[i].sectionid;
+             var sectionname=fnthidlanginfoarr[i].sectionname;
+             var subjectid=fnthidlanginfoarr[i].subjectid;
+             var Acadamicyear=fnthidlanginfoarr[i].Acadamicyear;
+             var langugagepref=fnthidlanginfoarr[i].langugagepref;
+    
         this.FnSecondLangSubjectToStudentsetsurl=sessionStorage.getItem("addrinfo")+"/FnSecondLangSubjectToStudentsets-service";
-        var obj={"studentid":"","studentname":"","schoolnames":"","termsname":"","gradenamesssss":"","Sectionnames":"","seclang11":"","Sectionnameseeee":"","termsname1":""};
-        obj.studentid=studentid;
-        obj.studentname=studentname;
-        obj.schoolnames=schoolnames;
-        obj.termsname=termsname;
-        obj.gradenamesssss=gradenamesssss;
-        obj.Sectionnames=Sectionnames;
-        obj.seclang11=seclang11;
-        obj.Sectionnameseeee=Sectionnameseeee;
-        obj.termsname1=termsname1;
-        this.FnSecondLangSubjectToStudentsetsparam=obj;
-       // alert(JSON.stringify(obj));
+      var obj={"schoolnames":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","subjectid":"","langugagepref":""};
+             obj.studentid=studentid;
+             obj.studentname=studentname;
+             obj.gradeid=gradeid;
+             obj.gradename=gradename;
+             obj.sectionid=sectionid;
+             obj.sectionname=sectionname;
+             obj.subjectid=subjectid;
+             obj.Acadamicyear=Acadamicyear;
+             obj.langugagepref=langugagepref;
+             obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
+         this.FnSecondLangSubjectToStudentsetsparam=obj;
+        alert(JSON.stringify(obj));
         this.$.FnSecondLangSubjectToStudentsetsajax.generateRequest();
-        
+        }
       },
       FnSecondLangSubjectToStudentsetsResponse:function(e){
              //alert(JSON.stringify(e.detail.response.returnval));
       },
-       FnThirdLangSubjectToStudent:function(studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang11,thirdlang11,Sectionnameseeee,termsname1,assesmentid){
-        this.FnThirdLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnThirdLangSubjectToStudent-service";
-        var obj={"studentid":"","studentname":"","schoolnames":"","termsname":"","gradenamesssss":"","Sectionnames":"","seclang11":"","thirdlang11":"","Sectionnameseeee":"","termsname1":"","assesmentid":""};
-        obj.studentid=studentid;
-        obj.studentname=studentname;
-        obj.schoolnames=schoolnames;
-        obj.termsname=termsname;
-        obj.gradenamesssss=gradenamesssss;
-        obj.Sectionnames=Sectionnames;
-        obj.seclang11=seclang11;
-        obj.thirdlang11=thirdlang11;
-        obj.Sectionnameseeee=Sectionnameseeee;
-        obj.termsname1=termsname1; 
-        this.FnThirdLangSubjectToStudentparam=obj;
-      //  alert(JSON.stringify(obj));
+       FnThirdLangSubjectToStudent:function(fnthidlanginfo1arr){
+                   for(var i=0;i<fnthidlanginfo1arr.length;i++){
+             var studentid=fnthidlanginfo1arr[i].studentid;
+             var studentname=fnthidlanginfo1arr[i].studentname;
+             var gradeid=fnthidlanginfo1arr[i].gradeid;
+             var gradename=fnthidlanginfo1arr[i].gradename;
+             var sectionid=fnthidlanginfo1arr[i].sectionid;
+             var sectionname=fnthidlanginfo1arr[i].sectionname;
+             var subjectid=fnthidlanginfo1arr[i].subjectid;
+             var Acadamicyear=fnthidlanginfo1arr[i].Acadamicyear;
+             var langugagepref=fnthidlanginfo1arr[i].langugagepref;
+          this.FnThirdLangSubjectToStudenturl=sessionStorage.getItem("addrinfo")+"/FnThirdLangSubjectToStudent-service";
+           var obj={"schoolnames":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","subjectid":"","langugagepref":""};
+             obj.studentid=studentid;
+             obj.studentname=studentname;
+             obj.gradeid=gradeid;
+             obj.gradename=gradename;
+             obj.sectionid=sectionid;
+             obj.sectionname=sectionname;
+             obj.subjectid=subjectid;
+             obj.Acadamicyear=Acadamicyear;
+             obj.langugagepref=langugagepref;
+             obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
+          this.FnThirdLangSubjectToStudentparam=obj;
+         alert(JSON.stringify(obj));
         this.$.FnThirdLangSubjectToStudentajax.generateRequest();
+    }
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
