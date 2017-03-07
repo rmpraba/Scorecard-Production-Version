@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      .tt{
       width:70%;
      }
-    .subbutton paper-button
+    .subbutton paper-button  
       {
         @apply(--layout-right);
         background-color: #363636;
@@ -156,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <td class="innercard">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
                    <student-list-pass-section-card studentname="{{view.student_name}}" 
-                  id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" ></student-list-pass-section-card>
+                  id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
                </template></td>
             </tr>
             </template>  
@@ -189,13 +189,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <h2>Please Click Next Button</h2>
             <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
    </paper-dialog>
+      <iron-ajax        
+        id="counttypevalueajax"
+          url="{{counttypevalueurl}}"
+        params="{{counttypevalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="counttypevalueResponse"
+        debounce-duration="300">
+      </iron-ajax>
+     
       <master-ui-service id="uiservice"></master-ui-service>
    </template>
   <script>
   (function() {
     'use strict';
     var studeninfoarr=[];
-    var studentlistarr=[];
+    var studentlistarr=[];   
     var sectionarr=[];
     var schooltype;
     var Current=0;
@@ -208,13 +219,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    Polymer({
       is: 'Student-to-section-mapping-card',
       ready:function()
-      {
+       {
         this.$.subzz.hidden=true;
         this.$.z.hidden=true;
         this.$.z1.hidden=true;
         this.hidenewtabb=true;
         this.hidegenerateopt=true;
-      },
+       },
+         counttypevalue:function(e)
+       {
+         this.counttypevalueurl=sessionStorage.getItem("addrinfo")+"/counttypevalue-service";
+         var obj={"school_id":"","gradeid":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.gradeid=this.stugradeid;
+         this.counttypevalueparam=obj;
+         alert(JSON.stringify(obj));
+         this.$.counttypevalueajax.generateRequest();
+        },
+    counttypevalueResponse:function(e){
+           var res=e.detail.response.returnval; 
+           alert(JSON.stringify(res));
+           var m=res[0].no_of_student;
+           alert(m)
+           this.noofstudent=m;
+      //  document.querySelector('student-list-pass-section-card').noofstudent(m); 
+  
+
+     },
       fnrefresh:function()
       {
         document.querySelector('#empgradeid').selected=-1;
@@ -230,6 +261,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     mappingstudent:function(arr){
     mappingstudentarr=arr;
+
     },
     Generate:function(e)
     {
@@ -384,9 +416,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
          this.sectionfullarr=k;  
        if(k.length!=0){
+        
+
          this.$.uiservice.fnretrivestudent(this.stugradeid);
   
-       }
+           }
+   
               },
     /*  stupersonalinfo14:function(e){
            document.querySelector('student-list-pass-section-card').fnsplice(); 
@@ -422,7 +457,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
           kn.splice(obj);
              this.f33();     
-   
+      
        var k=[];
    for(var j=0;j<overall.length;j++){
          if(j<=10){
@@ -678,6 +713,7 @@ FnSavez:function(e)
         this.hidegenerateopt=false;
         this.stugradevalue=e.target.selectedItem.textContent.trim(); 
         this.stugradeid=e.target.selectedItem.value;
+        this.counttypevalue();
         this.$.uiservice.fnretrivestudent(this.stugradeid);
         this.$.uiservice.fngetstudent(this.stugradeid,this.stugradevalue);
         this.$.uiservice.FngetStudentpasssection(this.stugradeid,this.stugradevalue);

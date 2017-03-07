@@ -1313,6 +1313,8 @@ empsectionclassResponse:function(e){
            var res=e.detail.response.returnval; 
            //alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
+             document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
+  
    
        },
        tranfergradeinfo:function(e)
@@ -1816,21 +1818,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
 
-    /*fnschoolemployeepersonalResponse:function(e)
-    {
-       if(e.detail.response.returnval=="empty")
-       {
-        document.querySelector('new-employee-creation-card').employeehide();
-       }
-       else
-       {
-        document.querySelector('new-employee-creation-card').employeeview();
-        var res=e.detail.response.returnval; 
-        //setempsubjectsetempsubjealert(JSON.stringify(res));
-        document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
-       }
-     
-      }, */
+    
     getstudentname:function(gradeid){
      this.getstudentnameurl=sessionStorage.getItem("addrinfo")+"/getstudentname-service";
      var obj={"school_id":"","grade_id":""};
@@ -2247,7 +2235,7 @@ insertschoolTypename:function(schooltypesarr)
         var obj={"schoolid1":""};
         obj.schoolid1=schoolid1;
         this.Fndeleteinfoparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.Fndeleteinfoajax.generateRequest();
       },
       FndeleteinfoResponse:function(e)

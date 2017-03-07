@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'scorecardbatabase'
 
  });
 var bodyParser = require('body-parser'); 
@@ -5692,9 +5692,10 @@ app.post('/FnSetschoolInfo-service' , urlencodedParser,function (req, res)
 });
 app.post('/Fndeleteinfo-service' ,  urlencodedParser,function (req, res)
 {  
-   
-var qur="DELETE FROM  md_school where  id='"+req.query.schoolid1+"'";
-//console.log(qur);
+  var qur="DELETE FROM md_school WHERE id='"+req.query.schoolid1+"';DELETE FROM md_employee_creation WHERE school_id='"+req.query.schoolid1+"'";
+  console.log(qur);  
+ var qur1="DELETE FROM  md_school where  id='"+req.query.schoolid1+"'";
+console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -5795,6 +5796,23 @@ app.post('/fnschoolgradeset-service',  urlencodedParser,function (req,res)
      var e={school_id:req.query.schoolid};
     // console.log(e);
   var qur="SELECT * FROM md_grade";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
+app.post('/counttypevalue-service',  urlencodedParser,function (req,res)
+{  
+     var e={school_id:req.query.schoolid};
+    // console.log(e);
+  var qur="SELECT * FROM allow_student_section where school_id='"+req.query.school_id+"' and grade_id='"+req.query.gradeid+"'";
   connection.query(qur,
     function(err, rows)
     {
@@ -6144,16 +6162,9 @@ app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,re
     {
     if(!err)
     { 
-      if(rows.length>0)
-      {
-       // console.log(JSON.stringify(rows));   
+      
       res.status(200).json({'returnval': rows}); 
-      }
-      else
-      {
-      res.status(200).json({'returnval': empty});
-      }
-     
+      
     }
     else
       res.status(200).json({'returnval': 'Invalid'});
@@ -6831,7 +6842,6 @@ var response={
             grade_name:req.query.gradename,
             no_of_section:req.query.section,
             no_of_student:req.query.student,
-            overall__count:req.query.overallcount,
             school_type:req.query.schootypids,
             capacity:req.query.capacity,
          }
@@ -6841,7 +6851,7 @@ var response={
     //console.log(JSON.stringify(response));
     var qur="SELECT * FROM allow_student_section WHERE school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
 
-    var qur1="update allow_student_section set no_of_section='"+req.query.section+"',no_of_student='"+req.query.student+"' overall_count='"+req.query.overallcount+"',capacity='"+req.query.capacity+"'where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
+    var qur1="update allow_student_section set no_of_section='"+req.query.section+"',no_of_student='"+req.query.student+"',capacity='"+req.query.capacity+"'where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
 
    /* console.log(qur);
     console.log(qur1)*/
