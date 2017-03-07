@@ -256,10 +256,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
      },
-     fnsetempsection:function(arr){
+     fnsetempsection:function(arr)
+     {
       empsectionarr=arr;
   //    alert(JSON.stringify(empsectionarr));
-    },
+     },
        fnsetempsection1:function(arr){
       empsectionarr1=arr;
   //    alert(JSON.stringify(empsectionarr));
@@ -273,7 +274,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          //alert(JSON.stringify(obj));
+          alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
          },
      
