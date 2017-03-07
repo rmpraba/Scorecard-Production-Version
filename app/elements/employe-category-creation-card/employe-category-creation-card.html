@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <dom-module id="employe-category-creation-card">
   <template>
-   <style>
+   <style>    
       :host {
         display: block;
       }  
@@ -251,7 +251,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          document.querySelector('employe-category-creation-card').FnRefresh();
         },      
      fndelete:function(e){ 
-      alert(JSON.stringify(empsectionarr1));
+      //alert(JSON.stringify(empsectionarr1));
       this.$.uiservice.fndelsectionz(empsectionarr1);
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
@@ -265,7 +265,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   //    alert(JSON.stringify(empsectionarr));
     },
   
-    fnemployeename:function(e){
+    fnemployeename:function(e)
+    {
          this.empselectid=e.target.selectedItem.value;
           this.fnemployeenamezurl=sessionStorage.getItem("addrinfo")+"/empmappingsubject-service";
           var obj={"empselectid":"","school_id":""};
@@ -279,7 +280,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
          //alert(JSON.stringify(sectionnamearr));
-          //alert(JSON.stringify(empnamearrr));
+         // alert(JSON.stringify(empnamearrr));
        
   var setarr=[];
             for(var i=0;i<sectionnamearr.length;i++){
@@ -343,7 +344,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // alert(JSON.stringify(obj1));
            a=[];
    }
-//    alert(JSON.stringify(overall));
+        //alert(JSON.stringify(overall));
         this.allarrr=overall;
         this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
        
