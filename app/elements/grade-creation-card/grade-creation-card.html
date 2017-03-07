@@ -125,7 +125,7 @@
         <div class="card">       
             <h4><label>Create New Grade</label></h4>
             <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
-             <paper-input label="Grade Name" id="gradename" required error-message="needs Grade name!" value="{{gradename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+             <paper-input label="Grade Name" id="gradename" required error-message="needs Grade name!" value="{{gradename}}"></paper-input>
 
         </div>
 
@@ -149,9 +149,10 @@
    <script>
    (function() {
     'use strict';
+      var gradname;
+
      Polymer({
       is: 'grade-creation-card',
-
       properties: {
         foo: {
           type: String,
@@ -185,8 +186,9 @@
           this.$.gradename.validate();
          // alert("please enter Grade name before save");
         }
-        else
+        else if(this.gradename!=null)
         {  
+        gradname= toTitleCase(this.gradename);
         this.$.uiservice.FnSetGradeCreationInfo(this.gradeid,this.gradename);
         this.$.newsubmitbox.open();
         this.ready();
@@ -195,6 +197,12 @@
         }
         
       },
+
+      toTitleCase:function(str)
+     {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+     },
+
       Fnclose:function()
       {
         this.$.newsubmitbox.close();
