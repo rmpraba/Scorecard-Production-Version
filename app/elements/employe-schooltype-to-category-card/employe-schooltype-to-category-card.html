@@ -60,7 +60,7 @@
       @apply(--layout-horizontal);
           margin-left: 55%;
           position: absolute;
-          top: 61%;
+          top: 46%;
     }
     </style>
    
@@ -96,13 +96,13 @@
                  <paper-item value="2language">Second Language</paper-item>
                  <paper-item value="3language">Third Language</paper-item>
              </paper-menu>
-          </paper-dropdown-menu>
+            </paper-dropdown-menu>
           </div>
 
            <div class="subbutton">
               <paper-button on-click="grnerate">Generate</paper-button>
            </div>
-           <div >
+           <div>
              <paper-checkbox on-change="fnsetemployee" id="empidz">Select The Employee name</paper-checkbox>
           </div>
           <div id="generateidz">
@@ -126,7 +126,7 @@
               <thead> 
               <tr>
                 <th></th>
-                  <th class="innercard">
+                  <th class="innercard" style="width: 20%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h5>{{view.srtarr}}</h5>
                     </template>
@@ -169,7 +169,7 @@
                 <th></th>
                   <th class="innercard">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4 style="margin-left:4%">{{view.srtarr}}</h4>
+                      <h4 style="margin-left:0%">{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                     </template>
                   </th>   
                   <th></th>
@@ -222,6 +222,8 @@
      var setspecificarr=[];
      var bigarrz=[];
      var deldbarrs=[];
+     //var categoryidxn=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+     //var schooltypeidxn=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
     Polymer({
       is: 'employe-schooltype-to-category-card',
       ready:function(){
@@ -246,6 +248,7 @@
        getgrade:function(arr){
         empteacharr=arr;
         //emparr=arr;
+
         
        },
        langprefere:function(e){
@@ -322,17 +325,19 @@
          // this.$.uiservice.studentinfo(this.studentname);
           },*/
 
-        grnerate:function(e){
-      //      document.querySelector('employe-creation-card').Fnsubjectclean();        
-      
+        grnerate:function(e)
+        {
+          //document.querySelector('employe-creation-card').Fnsubjectclean();        
+         
             var setarrr=[];
-                 for(var i=0;i<getcategory.length;i++){
+                 for(var i=0;i<getcategory.length;i++)
+                 {
                           var subject_name=getcategory[i].subject_name;
                           
                             var obj={"srtarr":""};
                                 obj.srtarr=subject_name;
                                setarrr.push(obj);
-                          }
+                  }
 
                  /*for(var i=0;i<empteacharr.length;i++){
                           var emp_id=empteacharr[i].emp_id;
@@ -343,14 +348,16 @@
                                 obj.emp_name=emp_name;
                                emparr.push(obj);
                           }*/
-   this.setsubjectarr=setarrr;
+                   this.setsubjectarr=setarrr;
 
-          var generatearr=[];
-         var subarr=[];
-                for(var j=0;j<empteacharr.length;j++){
-                     for(var i=0;i<getcategory.length;i++){
-                   var emp_name=empteacharr[j].emp_name;
-                    var emp_id=empteacharr[j].emp_id;
+                  var generatearr=[];
+                 var subarr=[];
+                for(var j=0;j<empteacharr.length;j++)
+                {
+                     for(var i=0;i<getcategory.length;i++)
+                     {
+                        var emp_name=empteacharr[j].emp_name;
+                        var emp_id=empteacharr[j].emp_id;
                          
                          var obj={"emp_name":"","subject_name":"","subject_id":"","emp_id":""}; 
                            var subjectname=getcategory[i].subject_name;
@@ -360,55 +367,60 @@
                            obj.emp_name=emp_name;
                            obj.subject_id=subject_id;
                            generatearr.push(obj);
-                        }}
-        var a=[];
-        var overall=[];
-       for(var k=0;k<generatearr.length;k++)
-       {       
-         var nameobj={"emp_name":"","emp_id":""};
-         nameobj.emp_name=generatearr[k].emp_name; 
-         nameobj.emp_id=generatearr[k].emp_id; 
-       
-         var obj={"subject_name":"","subject_id":""};
-        obj.subject_name=generatearr[k].subject_name;
-        obj.subject_id=generatearr[k].subject_id;
-        obj.id=generatearr[k].subject_id+generatearr[k].emp_id;
-        a.push(obj);
-        for(var l=k+1;l<generatearr.length;l++)
-        {
-           if(generatearr[k].emp_id==generatearr[l].emp_id)
-           {
-             var obj1={"subject_name":"","subject_id":""}
-             obj1.subject_name=generatearr[l].subject_name;
-             obj1.subject_id=generatearr[l].subject_id;
-             obj1.id=generatearr[l].subject_id+generatearr[k].emp_id;
-             a.push(obj1);
-             generatearr.splice(l,1);
-             l--;
-         }}
-           nameobj.employee=a;
-           overall.push(nameobj);
-           a=[];
-         }
-         this.subjectbigarr=overall;
-            setspecificarr=overall;
-         
-         this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-         this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
-         this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
+                      }
+                }
+                  var a=[];
+                  var overall=[];
+               for(var k=0;k<generatearr.length;k++)
+               {       
+                 var nameobj={"emp_name":"","emp_id":""};
+                 nameobj.emp_name=generatearr[k].emp_name; 
+                 nameobj.emp_id=generatearr[k].emp_id; 
+               
+                     var obj={"subject_name":"","subject_id":""};
+                    obj.subject_name=generatearr[k].subject_name;
+                    obj.subject_id=generatearr[k].subject_id;
+                    obj.id=generatearr[k].subject_id+generatearr[k].emp_id;
+                    a.push(obj);
+                    for(var l=k+1;l<generatearr.length;l++)
+                    {
+                       if(generatearr[k].emp_id==generatearr[l].emp_id)
+                       {
+                         var obj1={"subject_name":"","subject_id":""}
+                         obj1.subject_name=generatearr[l].subject_name;
+                         obj1.subject_id=generatearr[l].subject_id;
+                         obj1.id=generatearr[l].subject_id+generatearr[k].emp_id;
+                         a.push(obj1);
+                         generatearr.splice(l,1);
+                         l--;
+                        }
+                    }
+                   nameobj.employee=a;
+                   overall.push(nameobj);
+                   a=[];
+                }
+                 this.subjectbigarr=overall;
+                    setspecificarr=overall;
+                 
+                this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+                this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
+                    
+                 overall.splice();
+                 generatearr=[];
+                // this.$.uiservice.fngetThefunction();
+                   this.$.subbutton1.hidden=false;
+                   this.$.talhidn.hidden=false;
+                   this.$.empidz1.hidden=false;
+                           
+          },
             
-         overall.splice();
-         generatearr=[];
-        // this.$.uiservice.fngetThefunction();
-           this.$.subbutton1.hidden=false;
-           this.$.talhidn.hidden=false;
-           this.$.empidz1.hidden=false;
          //  this.$.generateidz.hidden=false;
   
          //  alert(JSON.stringify(emparr));
-         },
+    
 
-FnInputChanged:function(e){
+    FnInputChanged:function(e){
           if(e.keyCode==13|| e.keyCode==40)
             this.querySelector('paper-listbox').focus();
           var arr=[];
@@ -471,7 +483,7 @@ FnInputChanged:function(e){
             }
           }
         },
-Fnselected:function(e)
+  Fnselected:function(e)
         {
           //alert('s');
           this.querySelector('paper-listbox').style.visibility='hidden';

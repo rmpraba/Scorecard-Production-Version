@@ -42,7 +42,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .outcard
       {
-      width:29% 
       margin-left:5.0em;
       }
        .innercard
@@ -57,11 +56,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        width:50%
       margin-left:5.0em;
      }
-
-     table
-     {
-      width: 46%;
-     }
+    .table table-bordered td
+    {
+      width: 50%;
+    }
     </style>
       <div class="title">
         <h3><b>LANGUAGE PREFERENCE</b></h3>
@@ -102,10 +100,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
           <div id="labelhide">
             <div style="float: left;position: absolute;top: 37%;margin-left: 25%;" id="secondid">
-                <label><h4>Second Languages</h4></label>
+                <label><h4><b>SECOND LANGUAGES</b></h4></label>
               </div>
               <div style="display: inline-block;position: absolute;margin-left: 64%;top: 37%;" id="thirdid">
-                <label><h4>Third Languages</h4></label>
+                <label><h4><b>THIRD LANGUAGES</b></h4></label>
             </div>
           </div>  
       <div id="tbz1" hidden$="{{hidenewsubcat}}">
@@ -114,10 +112,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- <table border="1" class="tt"> -->
           <tbody>
           <tr>
-            <td class="outcard"></td>
-            <td class="innercard">
+            <td class="outcard" style="width: 25%;"></td>
+            <td class="innercard" style="margin-left: 1%;">
               <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:22%; margin-left:5%;">{{view.srtarr}}</h4>   
+                <h4 style="width:20%;">{{view.srtarr}}</h4>   
               </template>
             </td>
             <td class="outcard"></td>
@@ -305,35 +303,36 @@ SbjecttoStudentmapping1Response:function(e){
    //   alert(JSON.stringify(res));   
      studbarr=res;
  },
- fnsubmit:function(e){
+ fnsubmit:function(e)
+ {
     
      if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
-         {
+      {
            this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
            this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
-            if(kn.length!=0){
+            if(kn.length!=0)
+            {
                document.querySelector('student-list-mapping-item').FnSecondLang1(kn);  
                       var obj={"dd":"","admno":"","langugagepref":""};
                       kn.splice(obj);
            
-                }
+            }
                 document.querySelector('student-list-mapping-item').FnSecondLang(); 
-              
-        
-     
-          }
-         else{
+        }
+         else
+         {
              this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
-                if(kn.length!=0){
-           document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
-                var obj={"dd":"","admno":"","langugagepref":""};
-                     kn.splice(obj);
-           }
-          document.querySelector('student-list-mapping-item').FnSecondLang();
-             
-           
-         }
-              },
+                if(kn.length!=0)
+                {
+                  document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+                  var obj={"dd":"","admno":"","langugagepref":""};
+                  kn.splice(obj);
+                }
+                  document.querySelector('student-list-mapping-item').FnSecondLang();             
+          }
+        document.querySelector('#rsectionwww').selected=-1;
+
+        },
      FnSubjecttostudentlanguageResponse:function(e){
        var res=e.detail.response.returnval; 
           

@@ -14,15 +14,16 @@
       }
        table{
         border-collapse: collapse;
-        width: 100%;
+        width: 90%;
       }
-      td{
+      td
+      {  
         width: 41%;        
       } 
          .innercard{
       @apply(--layout-horizontal);
-      margin-left:10.0em;
-      width:100%    
+      margin-left:6.0em;
+      width:70%    
      }
     
       p{
@@ -57,7 +58,6 @@
  
       </tr>
 
-      </tr>
      </table>
       
     </div>
@@ -74,12 +74,12 @@
    Polymer({
       is: 'student-list-mapping-item',
      Fnsave:function(e){ 
-      alert(this.langugagepref);
-      alert(this.id);
+     // alert(this.langugagepref);
+     // alert(this.id);
        rr1=this.langugagepref;
 
       rr=this.studentid;
-      alert(document.querySelector('#'+this.id).checked);
+     // alert(document.querySelector('#'+this.id).checked);
     
     if(document.querySelector('#'+this.id).checked==true)
     {
@@ -250,14 +250,14 @@
            else{
                   for(var i=0;i<paspstuinfo1.length;i++){
               var m1=paspstuinfo1[i].id;
-              alert(m1);
+             // alert(m1);
                document.querySelector('#'+m1).checked=false;
                   paspstuinfo1=[];
         
             }
           for(var j=0;j<paspstuinfo.length;j++){
                var m2=paspstuinfo[j].id;
-               alert(m2);
+              // alert(m2);
                 document.querySelector('#'+m2).checked=false;
                      paspstuinfo=[];
       
