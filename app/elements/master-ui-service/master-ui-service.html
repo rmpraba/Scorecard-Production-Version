@@ -3,7 +3,7 @@
 
 <dom-module id="master-ui-service">
   <template>
-    
+      
      <iron-ajax            
         id="subjectcreationajax"
         url="{{subjectcreationurl}}"
@@ -1151,7 +1151,7 @@ fndelsectionz:function(emparrr){
                      obj.empsubjectidz=empsubjectidz;
                      obj.employeesectionnamez=employeesectionnamez;
                      obj.employeesectionidz=employeesectionidz;
-                     alert(JSON.stringify(obj));
+                     //alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
            this.$.empsectionclassajax.generateRequest();
                  }
@@ -1160,12 +1160,12 @@ fndelsectionz:function(emparrr){
 },
 empsectionclassResponse:function(e){
     var res=e.detail.response.returnval; 
-                   alert(JSON.stringify(res));
+    //alert(JSON.stringify(res));
  
 },
     fnsetstudentinfohistoryResponse:function(e){
        var res=e.detail.response.returnval; 
-                   alert(JSON.stringify(res));
+            //alert(JSON.stringify(res));
 
              var id=res[0].id;
              var student_name=res[0].student_name;
@@ -1287,7 +1287,7 @@ empsectionclassResponse:function(e){
     },
     FngetcategoryandsubjectResponse:function(e){
        var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
      },
     fnempgenerateid:function()
        {
@@ -1416,7 +1416,7 @@ empsectionclassResponse:function(e){
      fngetpasssectinvalueResponse:function(e)
      {
          var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+     // alert(JSON.stringify(res));
        document.querySelector('student-allow-card').scooltypgridval1(res);
        document.querySelector('student-allow-card').updatecount(res);
      },
@@ -1705,7 +1705,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr)
    {
@@ -1735,7 +1735,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
  },
  fnsavesectionResponse:function(e){
      var res=e.detail.response.returnval; 
-     alert(JSON.stringify(res)); 
+     //alert(JSON.stringify(res)); 
  },
 fnempsubjectdetails:function(getgradenames)
  {
@@ -1767,11 +1767,8 @@ fnempsubjectdetails:function(getgradenames)
   fnempsubjectdetailsResponse:function(e)
   {
       var res=e.detail.response.returnval; 
-    if(res='Inserted')
-    {
-        alert('Inserted');
-    }
- },
+    
+  },
  fnrolesaveinfo:function(passrolearr){
     //alert(JSON.stringify(passrolearr));
     for(var j=0;j<passrolearr.length;j++){
@@ -2098,7 +2095,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnsubjecttocategorysavingResponse:function(e)
       {
         var res=e.detail.response.returnval;
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
      },
 
 insertschoolTypename:function(schooltypesarr)

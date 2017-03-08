@@ -1,6 +1,6 @@
 
 var express  = require("express");
- var mysql      = require('mysql');
+ var mysql      = require('mysql');   
  var email   = require("emailjs/email");
  //var htmlToPdf = require('html-to-pdf');
  var fs = require('fs');
@@ -24,7 +24,6 @@ var connection = mysql.createConnection({
    host     : 'localhost',
     user     : 'root',
    password : 'admin',
-   database : 'demoscorecard'
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
@@ -6335,6 +6334,7 @@ connection.query("SELECT * FROM md_class_section WHERE school_id='"+req.query.sc
     }
     });
   });
+
 
 app.post('/fnschooltypegradmapz-service' , urlencodedParser,function (req, res)
 {  

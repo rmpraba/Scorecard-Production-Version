@@ -59,11 +59,10 @@
       */
     </style>
 
-  <div>
-     <div class="card col-sm-12">
-        <!-- <div class="eid col-sm-4">
+     <!-- <div class="card col-sm-12">
+        <div class="eid col-sm-4">
           <paper-item>{{employeeid}}</paper-item>
-        </div> -->
+        </div>
           <paper-item hidden$="{{employeepassword}}"></paper-item>
         <div class="ename col-sm-8">
           <paper-item width="60%">{{employeename}}</paper-item>
@@ -74,7 +73,27 @@
           <paper-icon-button id="btn2"  icon='close' on-click='FnDelete'></paper-icon-button> 
           <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </div>     
+    </div> -->
+
+
+    <div class="card col-sm-12">
+        <div class="eid col-sm-2">
+          <paper-item style="margin-left: -59%;">{{employeeid}}</paper-item>
+        </div>
+          <paper-item hidden$="{{employeepassword}}"></paper-item>
+        <div class="ename col-sm-6">
+          <paper-item style="width: 120%;margin-left: 11%;">{{employeename}}</paper-item>
+        </div>  
+        <div class="clbutton col-sm-4">
+          <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip> 
+          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-tooltip for="btn2">Delete</paper-tooltip> 
+        </div>     
     </div>
+
+
+
 
      <paper-dialog id="newempdetails" modal>
       <label>Are you sure want to delete ?</label>
