@@ -63,12 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span class="inputelements">
               <paper-input value="{{workingschoolid}}" hidden></paper-input>
               <paper-input value="{{workingschoolname}}" hidden></paper-input>
-            </span>
+           </span>
 
-            <span class="inputelements">
-              <paper-input value="{{academicyears}}" label="Acadamic Year"></paper-input>
-            </span> 
-
+         
             <span class="inputelements">
               <paper-dropdown-menu label="Select Grade">
               <paper-menu id="wgradeid"  class="dropdown-content"  on-iron-select="SelectGradeid">   
@@ -109,11 +106,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
     Polymer({
       is: 'working-days-card',
-      acdemic:function()
-      {
-        this.academicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
-     },
-     
       
      /* Fnterm:function(e){
       this.$.fnworkingdialog.open();
@@ -121,22 +113,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
       fnterm:function(e){
         this.termids=e.target.selectedItem.textContent.trim();
-        this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
         this.noofdays="";
   
-        this.$.uiservice.termrecovery(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade);
+        this.$.uiservice.termrecovery(this.workingschoolid,this.termids,this.termgrade);
       },
      SelectGradeid:function(e){
        this.termgrade=e.target.selectedItem.value;
       },
       FnSubmit:function(e){
-            this.acadamicyears="AY-"+localStorage.getItem("curr_sess_academicyear");
             //alert( this.acadamicyears);
            if(this.termid11==""){
             alert("select the current section");
            }
            else{
-    this.$.uiservice.terminsert(this.workingschoolid,this.acadamicyears,this.termids,this.termgrade,this.noofdays);
+    this.$.uiservice.terminsert(this.workingschoolid,this.termids,this.termgrade,this.noofdays);
        this.noofdays="";
       document.querySelector('#termid11').selected=-1;
       //document.querySelector('#grdj').selected=-1;

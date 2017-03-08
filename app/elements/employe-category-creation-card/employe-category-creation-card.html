@@ -104,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
             </template>
           </div>     
-
+    
             <div class="newcard">
               <paper-dropdown-menu  label="Select the Grade">
                 <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
@@ -229,12 +229,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.empschoolgrads=arr;
         },
         fnselectgrade:function(e){
-          this.setgradeid=e.target.selectedItem.textContent.trim();
-         this.setgradeidz=e.target.selectedItem.value;
-         this.fnselectgradezurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
-          var obj={"setgradeid":"","school_id":""};
+                  this.setgradeid=e.target.selectedItem.textContent.trim();
+      this.setgradeidz=e.target.selectedItem.value;
+     this.fnselectgradezurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
+          var obj={"setgradeid":"","school_id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.setgradeid=this.setgradeid;
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear");
           this.fnselectgradezparam=obj;
           //alert(JSON.stringify(obj));
           this.$.fnselectgradezajax.generateRequest();
@@ -251,7 +252,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          document.querySelector('employe-category-creation-card').FnRefresh();
         },      
      fndelete:function(e){ 
-      alert(JSON.stringify(empsectionarr1));
+       //alert(JSON.stringify(empsectionarr1));
       this.$.uiservice.fndelsectionz(empsectionarr1);
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
@@ -346,7 +347,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //    alert(JSON.stringify(overall));
         this.allarrr=overall;
         this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
-       
         this.$.sectionz.hidden=false;
         this.$.subx.hidden=false;
         this.$.subx1.hidden=false;
