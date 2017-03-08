@@ -222,7 +222,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.subx.hidden=true;
         this.$.subx1.hidden=true;
       },
-        fnschoolempnames:function(arr){
+        fnschoolempnames:function(arr)
+        {
           this.empschoolnamesarr=arr;
         },  
         fnschoolempgrade:function(arr){
@@ -274,7 +275,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
          },
      

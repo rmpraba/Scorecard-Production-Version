@@ -27,7 +27,8 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   /*database : 'scorecarddatabase'*/
+   database : 'demoscorecard'
 
  });
 var bodyParser = require('body-parser'); 

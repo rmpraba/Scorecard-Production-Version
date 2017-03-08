@@ -1684,8 +1684,10 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
       var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res)); 
  },
-   fnsavesection:function(empsectionarr){
-     for(var i=0;i<empsectionarr.length;i++){
+   fnsavesection:function(empsectionarr)
+   {
+     for(var i=0;i<empsectionarr.length;i++)
+     {
 
          var empid=empsectionarr[i].employeeidz;
             var empgradeid=empsectionarr[i].empgradeidz;

@@ -187,9 +187,11 @@
   (function() {
     'use strict';
      var category;
+     var subname="";
     Polymer
     ({
       is: 'subject-card',
+
       ready:function()
       {
        // alert("hi");
@@ -237,9 +239,11 @@
          document.querySelector('#Languageprefernceid').selected=-1;
       
        }
-   else{
+   else if(this.subjectname!=null)
+   {
         //alert(category+this.preflang);
-         this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category);
+        subname=this.toTitleCase(this.subjectname);
+         this.$.uiservice.FnSetSubjectInfo(this.subjectid,subname,category);
          this.$.newsubmitbox.open();
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
@@ -247,7 +251,11 @@
       
    }
 
-       },
+    },
+     toTitleCase:function(str)
+    {
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    },
 
       fnselectlanprefercence:function(e)
       {
