@@ -25,6 +25,9 @@ var connection = mysql.createConnection({
     user     : 'root',
    password : 'admin',
    database : 'demoscorecard'
+   // port     : '58116',
+   // user     : 'adminTEZN77',
+   // password : 'pEbElHqKSxh2',
 
  });
 var bodyParser = require('body-parser'); 
