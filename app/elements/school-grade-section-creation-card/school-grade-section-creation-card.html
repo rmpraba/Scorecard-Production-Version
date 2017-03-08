@@ -23,7 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }    */
     </style>
       <div class="newgrade">  
-          <paper-checkbox on-change="fnsetgrade" id="{{sectionschooltypeid}}">{{sectionschooltypename}}</paper-checkbox>
+      <paper-input hidden>{{sectionschooltypeid}}</paper-input>
+          <paper-checkbox on-change="fnsetgrade" id="{{id}}">{{sectionschooltypename}}</paper-checkbox>
       </div>
 
       <iron-ajax        
@@ -54,18 +55,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var sectionarr=[];
     Polymer({
       is: 'school-grade-section-creation-card',
-      fnrefresh:function()
+     /* fnrefresh:function()
       {
         for(var i=0;i<sectionarr.length;i++)
         {
           var sectionname=sectionarr[i].sectionschooltypeid;
           document.querySelector('#'+sectionname).checked=false;
         }
-      },
+      },*/
     fnsetgrade:function(e){
      // alert("ss");
        sessionStorage.setItem("curr_sess_loggedsectionschooltypeid",this.sectionschooltypeid);
-      if(document.querySelector('#'+this.sectionschooltypeid).checked==true)
+      if(document.querySelector('#'+this.id).checked==true)
       {
 
           this.f1();
@@ -79,19 +80,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var obj={"sectionschooltypeid":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           sectionarr.push(obj);
           this.sectioncreategradeparam=obj;
          // alert(JSON.stringify(obj));
           this.$.sectioncreategradeajax.generateRequest();
           //alert(this.sectionschooltypeid+this.sectionschooltypename);
-
-    },
-
-    f2:function(e){
+       },
+     f2:function(e){
       this.sectioncreategrade1url=sessionStorage.getItem("addrinfo")+"/sectioncreategrade1-service";
-          var obj={"sectionschooltypeid":"","school_id":""};
+          var obj={"sectionschooltypeid":"","school_id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
+           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+     
           sectionarr.push(obj);
           this.sectioncreategrade1param=obj;
         //  alert(JSON.stringify(obj));

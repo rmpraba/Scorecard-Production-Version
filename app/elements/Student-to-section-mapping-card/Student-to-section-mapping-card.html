@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
     <div class="outercard">
-     
+       
           <div>   
         <div class="createdivv">
           <div class="catcard">
@@ -115,18 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </template>    
                 </paper-menu>
               </paper-dropdown-menu>
-<!-- 
-          <paper-dropdown-menu  label="select the Section">
-                <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
-                  <template is="dom-repeat" items="{{sectionarr}}">
-                    <paper-item value="{{item.class_id}}">{{item.section_id}}</paper-item>
-                  </template>    
-                </paper-menu>
-          </paper-dropdown-menu> -->
-  <!--   <template is="dom-repeat" items="{{studentlistarr}}" as="view">
-                 <student-list-pass-section-card studentname="{{view.student_name}}" 
-                  id="{{view.enquiry_no}}" admissinno="{{view.admission_no}}" gender="{{view.gender}}" dob="{{view.dob}}"></student-list-pass-section-card>
-                 </template> -->
+
           </div>  
         </div>  
        </div>  
@@ -229,9 +218,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          counttypevalue:function(e)
        {
          this.counttypevalueurl=sessionStorage.getItem("addrinfo")+"/counttypevalue-service";
-         var obj={"school_id":"","gradeid":""};
+         var obj={"school_id":"","gradeid":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.gradeid=this.stugradeid;
+         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+
          this.counttypevalueparam=obj;
          alert(JSON.stringify(obj));
          this.$.counttypevalueajax.generateRequest();
@@ -527,11 +518,12 @@ for(var j=0;j<k.length;j++){
      this.sectionfullarr=k;
              this.$.uiservice.fnretrivestudent(this.stugradeid);
              document.querySelector('student-list-pass-section-card').f11(); 
-             document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
+            document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
            kn.splice(obj);
          }
             else{
-               kn.splice(obj);
+              document.querySelector('student-list-pass-section-card').f11(); 
+                kn.splice(obj);
                this.$.previousid.open();
                this.$.z1.hidden=false;
                this.$.nextbutton.hidden=true;
@@ -647,7 +639,9 @@ for(var j=0;j<l.length;j++){
         }
         else
         {
-            kn.splice(obj);
+             kn.splice(obj);
+                document.querySelector('student-list-pass-section-card').f11(); 
+      
             this.$.Nextid.open();
             this.$.z.hidden=false;
             this.$.nextbutton.hidden=false;
@@ -694,10 +688,10 @@ for(var j=0;j<l.length;j++){
 },*/
 FnSavez:function(e)
 {
-       this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
+      this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
-    /*   alert(JSON.stringify(kn));
+/*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
          kn.splice(obj);
          alert(JSON.stringify(kn));

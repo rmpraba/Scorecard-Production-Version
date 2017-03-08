@@ -87,7 +87,7 @@
       </div>
       <template is="dom-repeat" items="{{schootypearrss}}" as="view">
            <!--  <p>{{view.school_type_id}}</p> -->
-            <school-grade-section-creation-card sectionschooltypeid="{{view.school_type_id}}" sectionschooltypename="{{view.school_type_name}}"></school-grade-section-creation-card>
+            <school-grade-section-creation-card  id="TYPSECT{{view.school_type_id}}" sectionschooltypeid="{{view.school_type_id}}" sectionschooltypename="{{view.school_type_name}}"></school-grade-section-creation-card>   
       </template>
     </div> 
      <!-- <div >
@@ -117,7 +117,7 @@
                        <school-section-creation-item-card sectiongradeid="{{s.section_id}}" classid="{{s.class_id}}" id="{{s.id}}" sectiongradeidzx="{{view.grade_id}}" sectiongradenamezx="{{view.grade_name}}"></school-section-creation-item-card>
                    </template>
                   </td>
-                  <td>
+                  <td>  
                    <!-- <p>{{view.grade_id}}</p> -->
                   <school-section-add-card sectiongradeidzx="{{view.grade_id}}" sectiongradenamezx="{{view.grade_name}}"></school-section-add-card>
                   </td>

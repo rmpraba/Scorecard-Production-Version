@@ -97,9 +97,10 @@
      },
       fz2:function(){
          this.fnschooltypegradmapzdburl=sessionStorage.getItem("addrinfo")+"/fnschooltypegradmapzdb-service";
-        var obj={"schooltypeid":"","school_id":""};
+        var obj={"schooltypeid":"","school_id":"","academic_year":""};
         obj.schooltypeid=this.schooltypeidzzzz;
-        obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         this.fnschooltypegradmapzdbparam=obj;
         //alert(JSON.stringify(obj));
         this.$.fnschooltypegradmapzdbajax.generateRequest();
@@ -113,12 +114,13 @@
           var gradename=getarr[i].gradename;
           var gradeid=getarr[i].gradeid;
         this.fnschooltypegradmapzurl=sessionStorage.getItem("addrinfo")+"/fnschooltypegradmapz-service";
-         var obj={"school_id":"","schooltype":"","gradename":"","gradeid":""};
+         var obj={"school_id":"","schooltype":"","gradename":"","gradeid":"","academic_year":""};
              obj.school_id=school_id;
              obj.schooltype=schooltype;
              obj.gradename=gradename;
              obj.gradeid=gradeid;
-           this.fnschooltypegradmapzparam=obj;
+             obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+            this.fnschooltypegradmapzparam=obj;
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();
         }

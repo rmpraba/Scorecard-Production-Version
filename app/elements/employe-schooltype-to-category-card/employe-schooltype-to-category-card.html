@@ -79,7 +79,7 @@
                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
                 <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
               </template>
-              </div>
+              </div>  
           <div class="subcat1" style="margin-top: 5%;">
               <div class="form-group-heading">
                 <h4>SUBJECT CATEGORY</h4>
@@ -287,10 +287,10 @@
       },
       fnsetemployee:function(e){
           if(document.querySelector('#'+e.target.id).checked==true){
-                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+              this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                 this.$.uiservice.dynamicinfo(this.schooltypeid);
                  this.$.generateidz.hidden=false;
-                     }
+                   }
           else if(document.querySelector('#'+e.target.id).checked==false){
         this.$.generateidz.hidden=true;
       }
