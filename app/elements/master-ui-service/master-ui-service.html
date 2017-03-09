@@ -2006,12 +2006,12 @@ fnschoolemployeerole:function( employeeid,employeename){
           //alert(JSON.stringify(res));
          document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;          
       },
- terminsert:function(workingschoolid,acadamicyear,termids,termgrade,noofdays)
+ terminsert:function(termids,termgrade,noofdays)
        {
           
         this.terminserturl=sessionStorage.getItem("addrinfo")+"/terminsert-service";
         var obj={"workingschoolid":"","acadamicyear":"","termids":"","termgrade":"","noofdays":""};
-        obj.workingschoolid=workingschoolid;
+        obj.workingschoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.acadamicyear=localStorage.getItem("curr_sess_academicyear");
         obj.termids=termids;
         obj.termgrade=termgrade;
@@ -2028,15 +2028,15 @@ fnschoolemployeerole:function( employeeid,employeename){
        //alert(JSON.stringify(res));
        
       },
-      termrecovery:function(workingschoolid,acadamicyear,termids,termgrade)
+      termrecovery:function(termids,termgrade)
        {
           
         this.termrecoveryurl=sessionStorage.getItem("addrinfo")+"/termrecovery-service";
         var obj={"workingschoolid":"","acadamicyear":"","termids":"","termgrade":""};
-        obj.workingschoolid=workingschoolid;
+        obj.workingschoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.acadamicyear=localStorage.getItem("curr_sess_academicyear");
         obj.termids=termids;
-          obj.termgrade=termgrade;
+        obj.termgrade=termgrade;
         //alert(JSON.stringify(obj));
         this.termrecoveryparam=obj;
         this.$.termrecoveryajax.generateRequest();

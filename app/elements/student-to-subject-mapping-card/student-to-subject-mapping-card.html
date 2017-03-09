@@ -9,6 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-styles/color.html">
+    <link rel="import" href="../paper-spinner-lite.html">
+    <link rel="import" href="../paper-spinner.html">
+
 <dom-module id="student-to-subject-mapping-card">
   <template>
     <style>
@@ -96,6 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </template>   
             </paper-menu>
           </paper-dropdown-menu>  
+       
+     
          </div>
    
           <div id="labelhide">
@@ -127,21 +134,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </td>
               <td class="innercard">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
-                <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
-               </template>
+                   <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
+            </template>
                </td>
             </tr>
-            </template>
+            </template>  
         </tbody>    
-      </table>  
+      </table>    
     </div>    
     </div>    
      </div>
-      <div class="buttons" id="subid">
-        <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="fnsubmit">submit</paper-button>
+        <div id="serveizzz">
+             <paper-spinner active></paper-spinner>
+        </div>
+     <div class="buttons" id="subid">
+    <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="fnsubmit">submit</paper-button>
+     <!--  <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="ho">toggle</paper-button>
+   -->
       </div> 
-     
-     <iron-ajax  
+       <iron-ajax  
         auto      
         id="FnSubjecttostudentlanguageajax"
         url="{{FnSubjecttostudentlanguageurl}}"
@@ -202,8 +213,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.hidenewsubcat=true;
         this.$.subid.hidden=true;
         this.$.labelhide.hidden=true;
+        this.$.serveizzz.hidden=true;
+        },
+    ho:function(e){
+      this.$.serveizzz.hidden=true;
       },
-
     FnStoSterm:function(e)
      {
       this.FnStoStermid=e.target.selectedItem.textContent.trim(); 
@@ -218,7 +232,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    fnsecondlanginfo:function(arr){
    fnsecondlanginfoarr=arr;
    },
-     FnStosGrade:function(e)
+     FnStosGrade:function(e)  
      {     
          document.querySelector('#rsectionwww').selected=-1;
          this.FnStosGradeid=e.target.selectedItem.textContent.trim();
@@ -230,10 +244,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       },  
         f12:function(e){
-                this.FnSubjecttostudentlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentlanguage-service";
-            this.$.FnSubjecttostudentlanguageajax.generateRequest();
-
-        },
+          this.FnSubjecttostudentlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentlanguage-service";
+          this.$.FnSubjecttostudentlanguageajax.generateRequest();
+     },
        f13:function(e){
               this.FnSubjecttostudentthirdlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentthirdlanguage-service";
             this.$.FnSubjecttostudentthirdlanguageajax.generateRequest();
@@ -241,27 +254,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         fnstudent:function(e){
           this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
-        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
+        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStosGradeid":"","academic_year":""};
         obj.FnStoSSectionid=this.FnStoSSectionid;
         obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
-        obj.FnStoStermid=this.FnStoStermid;
+        obj.academic_year=this.FnStoStermid;
         obj.FnStosGradeid=this.FnStosGradeid;
         this.SbjecttoStudentmappingparam=obj;
        //alert(JSON.stringify(obj));   
         this.$.SbjecttoStudentmappingajax.generateRequest();
       
-        },
+          },
 
      FnStoSSection:function(e)
      {
+            this.$.serveizzz.hidden=false;
+      
             this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
             this.FnStoSSectionid1=e.target.selectedItem.value;
-            this.hidenewsubcat=false;
+             this.hidenewsubcat=false;
             this.$.subid.hidden=false;
             this.$.labelhide.hidden=false;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
             localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
             this.fnlangugageprefstudent();
+         
        if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
          {
              this.fnstudent();
@@ -304,8 +320,9 @@ SbjecttoStudentmapping1Response:function(e){
      studbarr=res;
  },
  fnsubmit:function(e)
- {
-    
+ {   
+         this.$.serveizzz.hidden=false;
+   
      if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
       {
            this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
@@ -319,7 +336,7 @@ SbjecttoStudentmapping1Response:function(e){
             }
                 document.querySelector('student-list-mapping-item').FnSecondLang(); 
         }
-         else
+          else
          {
              this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
                 if(kn.length!=0)
@@ -441,10 +458,7 @@ SbjecttoStudentmapping1Response:function(e){
   
     // alert(JSON.stringify(overall));
      this.bigarr=overall;
-
-       
-     // alert(JSON.stringify(overall));
-     },
+              },
      FnSubjecttostudentthirdlanguageResponse:function(e){
          var res=e.detail.response.returnval; 
      var setarrr=[];
@@ -548,10 +562,9 @@ SbjecttoStudentmapping1Response:function(e){
           }
      }
   
-    
-    this.bigarr=overall;
-   
-     },
+  
+        this.bigarr=overall;
+          },
       SbjecttoStudentmappingResponse:function(e){
           var res=e.detail.response.returnval;
           studentarr=res; 

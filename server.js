@@ -7888,8 +7888,7 @@ app.post('/SbjecttoStudentmapping-service',  urlencodedParser,function (req,res)
   var schoolid={school_id:req.query.subjectselectid};
   var gradeid={grade_id:req.query.FnStosGradeid};
   var sectionid={section_id:req.query.FnStoSSectionid};
-  //console.log(schoolid);
- var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.FnStosGradeid+"') and section_id=(select section_id from md_section where section_name='"+req.query.FnStoSSectionid+"' and school_id='"+req.query.subjectselectid+"')) and school_id='"+req.query.subjectselectid+"'";
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.FnStosGradeid+"') and section_id=(select section_id from md_section where section_name='"+req.query.FnStoSSectionid+"' and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"')) and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"'";
   connection.query(qur,function(err, rows){
      if(!err){
 
@@ -7972,7 +7971,7 @@ app.post('/SbjecttoStudentmapping1-service',  urlencodedParser,function (req, re
 
 app.post('/FnSubjecttostudentthirdlanguage-service',  urlencodedParser,function (req, res)
 {
-connection.query("SELECT * from md_subject where langugage_pref !='Core subject' and subject_category='category1'",
+connection.query("SELECT * from md_subject where langugage_pref!='Core subject' and subject_category='category1'",
     function(err, rows)
     {
     if(!err)
