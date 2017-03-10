@@ -67,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Continuous Comprehensive Evaluation -AY-{{academicyear}}</h3>  
       <h4>Grade  &nbsp&nbsp&nbsp {{grade}} - Section&nbsp&nbsp&nbsp&nbsp&nbsp{{section}} &nbsp&nbsp Subject: {{subject}} </h4> 
       <table border="1" id="cocurricularMarkTable">    
-      <tr>
+      <tr hidden$="{{hidetopheader}}">
       <th id="tb1">SNo</th>
       <th id="tb1">Name</th>
       <th id="tb1">Literary and Creative Skills</th>
@@ -77,16 +77,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      <!-- <th id="tb1">Total</th>
       <th id="tb1">Grade</th>-->
       <th id="tb1"> </th>
+      </tr>    
+      <tr hidden$="{{hidesubtotal}}">
+      <th id="tb1">SNo</th>
+      <th id="tb1">Name</th>
+      <th id="tb1" colspan="2">Literary and Creative Skills</th>
+      <th id="tb1" colspan="2">Scientific Skills</th>
+      <th id="tb1" colspan="2">Information and Communication Technology (ICT) echnology (ICT)</th>
+      <th id="tb1" colspan="2">organisational and leadership skills</th>
+     <!-- <th id="tb1">Total</th>
+      <th id="tb1">Grade</th>-->
+      
+      </tr> 
+      <tr hidden$="{{hidesubtotal}}">
+        <th></th><th></th><th>Total</th><th>Grade</th><th>Total</th><th>Grade</th><th>Total</th><th>Grade</th><th>Total</th><th>Grade</th>
       </tr>  
       </div>
 <template is="dom-repeat" items="{{markarr}}">
 <tr>
  <td id="tb1"><paper-item>{{item.serialno}}</paper-item></td>
-        <td id="tb2"><paper-item>{{item.student_name}}</paper-item></td>
+       <td id="tb2"><paper-item>{{item.student_name}}</paper-item></td>
         <td id="tb1" ><paper-item>{{item.mark1}}</paper-item></td> 
+        <td id="tb1" ><paper-item>{{item.g1}}</paper-item></td> 
         <td id="tb1" ><paper-item>{{item.mark2}}</paper-item></td> 
+        <td id="tb1" ><paper-item>{{item.g2}}</paper-item></td> 
         <td id="tb1" ><paper-item>{{item.mark3}}</paper-item></td> 
+        <td id="tb1" ><paper-item>{{item.g3}}</paper-item></td> 
         <td id="tb1" ><paper-item>{{item.mark4}}</paper-item></td> 
+        <td id="tb1" ><paper-item>{{item.g4}}</paper-item></td>
         </tr>
 </template>
      <template is="dom-repeat" items="{{studarr}}">
@@ -185,7 +203,7 @@ var tableToExcel = (function() {
         this.section="";
         this.subject="";
          this.$.hidetop.hidden=true;;
-
+         this.hidesubtotal=true;
 
       },
       
