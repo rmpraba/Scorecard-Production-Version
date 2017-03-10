@@ -31,8 +31,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input  hidden>{{admissinno}}</paper-input>
           <paper-input  hidden>{{admissinno1}}</paper-input>
           <paper-input  hidden>{{classid}}</paper-input>
+          <paper-input  hidden>{{noofstudent}}</paper-input>
           <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
         </div>
+      
+       <paper-dialog id="noofstudent1" modal>
+       <h2>This Section is completed Please enter next Section</h2>
+            <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
+   </paper-dialog>
+   
       </div>  
   </template>
   <script>
@@ -41,19 +48,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var paspstuinfo=[];
   var spliceid;
   var rr;
+  var studentcheckinfoarr=[];
   //var checkvalu=[];
     Polymer({
       is: 'student-list-pass-section-card',
+      
+     
       fnsudentGrade:function(e){
+      //  alert(this.noofstudent);
         rr=this.admissinno;
         // alert(rr);
-   // alert(document.querySelector('#'+this.id).checked);
-       document.querySelector('Student-to-section-mapping-card').stupersonalinfo12(); 
+   //alert(document.querySelector('#'+this.id).checked);
         
-    
+  
  if(document.querySelector('#'+this.id).checked==true){
-
-        var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
+      
+      var count=0;
+         for(var i=0;i<studentcheckinfoarr.length;i++){
+      //   alert(studentcheckinfoarr[i].class_id+" "+this.classid);
+           if(studentcheckinfoarr[i].class_id==this.classid){
+            count++;
+          }
+        }
+   /*     alert(count+" "+paspstuinfo.length);
+     alert(count+paspstuinfo.length+" "+this.noofstudent);
+   */  
+      alert(count+" "+this.noofstudent);
+      if(count<this.noofstudent){
+    
+    var obj={"id1":"","id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
+            obj.id1=this.id;
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;
@@ -61,6 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.enq_id=this.id;
             obj.classid=this.classid;
             paspstuinfo.push(obj);
+          
          for(var i=0;i<paspstuinfo.length;i++){
                     if(paspstuinfo[i].id==this.admissinno){
                             
@@ -72,10 +97,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    var s=paspstuinfo[i].enq_id;
                   document.querySelector('#'+s).checked=false;
                     paspstuinfo.splice(i,1);
-                   }
+                   
                 }
               } 
-          document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
+             }  
+           }
+           else{
+             this.$.noofstudent1.open();
+             document.querySelector('#'+this.id).checked=false;
+                }
+                var c=0;
+          for(var k=0;k<paspstuinfo.length;k++){
+            if(paspstuinfo[k].classid==this.classid){
+             //  alert(k+count+"  "+this.noofstudent);
+                   if(k+count+1<this.noofstudent){
+               
+                   }else{
+                   var wrr=paspstuinfo[k].id1;
+                //   alert(wrr);
+                document.querySelector('#'+wrr).checked=false;
+                  //       alert("filll in the section");
+                  paspstuinfo.splice(k,1); 
+                  this.$.noofstudent1.open();
+                     this.f22();
+                   }
+             } 
+             c++;
+           }
+        //   alert(c+count+" "+this.noofstudent);
+           if(c+count!=this.noofstudent){
+             
+          document.querySelector('Student-to-section-mapping-card').stupersonalinfo12();
+        }
+        document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
         }
   else if(document.querySelector('#'+this.id).checked==false){
              for(var i=0;i<paspstuinfo.length;i++){
@@ -83,10 +137,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
             }  
        },
+       studentcheckinfo1:function(arr){
+      //  alert(JSON.stringify(arr));
+   studentcheckinfoarr=arr;
+       },
        f11:function(e){
          var c=paspstuinfo.length;
         // alert(c);
-        alert()
+        //alert()
               if(paspstuinfo.length!=0){
                 this.fnsplice();
               } 
@@ -95,15 +153,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          //  alert(rr);
         //alert(this.admissinno);
           for(var i=0;i<arr.length;i++){
+
             if(arr[i].admno==rr){
-               //  var m=arr[i].dd;
-                // alert(m);
+                var m=arr[i].dd;
            document.querySelector('#'+m).checked=false;
+
            }}},
-
-
-        fnsplice:function(){
+     f22:function(e){
+ 
+     },
+     fnsplice:function(){
               var rnwn=paspstuinfo.length;
+              //alert(rnwn);
                if(rnwn>0){
 
                  for(var i=0;i<paspstuinfo.length;i++){
@@ -121,7 +182,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            }
         },
         stupersonalinfo13:function(arr){
-          // alert(JSON.stringify(arr));
+           //alert(JSON.stringify(arr));
 
                 for(var k=0;k<arr.length;k++){
                       var  dbid=arr[k].dd;

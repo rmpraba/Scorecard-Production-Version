@@ -63,10 +63,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        {
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
           this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
-          var obj={"schooltypeid":"","school_id":"","id":""};
+          var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-          obj.schooltypeid=this.schooltypenamexx;
+          obj.schooltypeid=this.schooltypeidxx;
           obj.id=this.id;
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           scltypearr.push(obj);
           this.empgetteacherschooltypeparam=obj;    
             //alert(JSON.stringify(obj));

@@ -29,6 +29,15 @@
       {
       @apply(--layout-horizontal); 
       }
+
+       paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;
+        margin-top: 5%;
+      }
+
     </style>    
 
 
@@ -37,9 +46,22 @@
           <paper-item hidden$="{{hidesubjectitem}}">{{subjectname}}</paper-item>
           <paper-input value="{{subjectname}}" hidden$="{{hidesubjectinput}}"></paper-input>
           <paper-item >{{subjectcategory}}</paper-item>
-          <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hidesubjectitem}}"></paper-icon-button>
-          <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hidesubjectinput}}"></paper-icon-button>
-          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+          <paper-icon-button id="btn1" icon='create' on-click='FnEdit' hidden$="{{hidesubjectitem}}"></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip>
+          <paper-icon-button id="btn2" icon='save' on-click='FnSave' hidden$="{{hidesubjectinput}}"></paper-icon-button>
+          <paper-tooltip for="btn2">Save</paper-tooltip>
+          <paper-icon-button id="btn3" icon='close' on-click='FnDelete'></paper-icon-button>
+          <paper-tooltip for="btn3">Delete</paper-tooltip>
+
+
+            <paper-dialog id="newdeleteoptt" modal>
+              <label>Are you sure want to delete ?</label>
+              <div class="buttons">
+                  <paper-button on-click="fnshow">Ok</paper-button>
+                  <paper-button on-click="fnclose">Cancel</paper-button>
+              </div>
+            </paper-dialog>
+
     </div>
 
 
@@ -67,11 +89,18 @@
       },
       FnDelete:function()
       {
-        if (confirm("Are you sure?")) 
-        {
+
+        this.$.newdeleteoptt.open();
+      },
+      fnshow:function()
+      {  
+          
           this.$.service.FnDeleteSubjectname(this.subjectid);
-        }
-        
+          this.hidenewsubjectzz=false;
+      },
+      fnclose:function()
+      {
+       this.$.newdeleteoptt.close(); 
       },
       FnEdit:function()
       {

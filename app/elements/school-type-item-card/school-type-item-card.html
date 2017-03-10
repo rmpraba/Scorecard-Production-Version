@@ -56,10 +56,11 @@ if(document.querySelector('#'+this.id).checked==true)
       
         document.querySelector('school-grade-to-subject-card').getschootypename(this.schooltypeidxx);
          this.getschooltypeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
-       var obj={"schooltypeid":"","schooltypename":"","school_id":"","id":""};
+       var obj={"schooltypeid":"","schooltypename":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypeidxx;
           obj.schooltypename=this.schooltypenamexx;
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear");
           obj.id=this.id;
           scarr.push(obj);
           this.getschooltypeparam=obj;

@@ -90,7 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }   
     else
     {
-  alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids+this.capacity);
+  //alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids+this.capacity);
     this.fnsectiostudentpassvalueurl=sessionStorage.getItem("addrinfo")+"/fnsectiostudentpassvalue-service";
  var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":"","capacity":""};
                  obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     fnsectiostudentpassvalueResponse:function(e){
          var res=e.detail.response.returnval; 
-          alert(JSON.stringify(res));
+         // alert(JSON.stringify(res));
  
     },
  });

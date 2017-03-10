@@ -12,7 +12,7 @@
       :host {
         display: block;       
       }
-      .card{
+      .card{  
         @apply(--layout-horizontal);
         border-bottom: 1px solid #dedede;   
       } 
@@ -59,23 +59,44 @@
       */
     </style>
 
-  <div>
-     <div class="card col-sm-12">
-        <!-- <div class="eid col-sm-4">
+     <!-- <div class="card col-sm-12">
+        <div class="eid col-sm-4">
           <paper-item>{{employeeid}}</paper-item>
-        </div> -->
+        </div>
           <paper-item hidden$="{{employeepassword}}"></paper-item>
         <div class="ename col-sm-8">
           <paper-item width="60%">{{employeename}}</paper-item>
         </div>  
         <div class="clbutton col-sm-4">
+          <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip> 
+          <paper-icon-button id="btn2"  icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-tooltip for="btn2">Delete</paper-tooltip> 
+        </div>     
+    </div> -->
+
+
+    <div class="card col-sm-12">
+        <div class="eid col-sm-2">
+          <paper-item style="margin-left: -59%;">{{employeeid}}</paper-item>
+        </div>
+          <paper-item hidden$="{{employeepassword}}"></paper-item>
+        <div class="ename col-sm-6">
+          <paper-item style="width: 120%;margin-left: 11%;">{{employeename}}</paper-item>
+        </div>  
+        <div class="clbutton col-sm-4">
           <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip> 
           <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </div>     
     </div>
 
+
+
+
      <paper-dialog id="newempdetails" modal>
-      <label>Are you sure want to delete?</label>
+      <label>Are you sure want to delete ?</label>
       <div class="buttons">
         <paper-button on-click="fndelet">Ok</paper-button>
         <paper-button on-click="fnclose">Cancel</paper-button>
@@ -127,15 +148,17 @@
         this.FnEdit();
      },
      fndelet:function()
+     
      {
         this.$.uiservice.Fnempdeleteinfo(this.employeeid,this.employeename);
-        this.hidecreateemp=false;
+        document.querySelector('new-employee-creation-card').hideupdateemp=true;
+        document.querySelector('new-employee-creation-card').hidecreateemp=false;
      },
      fnclose:function()
      {
       this.$.newempdetails.close();
      },
-      
+        
     setschooltype:function(arr){
        schooltypearr=arr;
       },

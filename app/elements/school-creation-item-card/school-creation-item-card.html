@@ -18,7 +18,8 @@
         display: block;
       }
 
-      .card{  
+      .card
+      {  
         @apply(--layout-center);
         @apply(--layout-horizontal);     
         border-bottom: 1px solid #dedede;
@@ -66,7 +67,6 @@
        }
        /*paper-icon-button
        {
-         margin-left: ;
          width:5%;
        }*/
 
@@ -74,29 +74,21 @@
     <div> 
     </table>   
    <div class="row">  
-<!--     <div class="itemcard col-sm-12">
-      <div class="sub col-sm-8">
-        <paper-item>{{schoolname}}</paper-item>
-      </div>
-      <div class="clsbutton col-sm-4">
-          <paper-icon-button  icon='create' on-click="showupdetails"></paper-icon-button>
-          <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
-      </div>
-    </div> -->
-
   <div>
     <div class="itemcard col-sm-9">
         <paper-item>{{schoolname}}</paper-item>
     </div>
 
       <div class="newbuttons col-sm-3">
-          <paper-icon-button  icon='create' on-click="showupdetails"></paper-icon-button>         
-          <paper-icon-button icon='close' on-click="FnDelete"></paper-icon-button>
+          <paper-icon-button id="btn1" icon='create' on-click="showupdetails"></paper-icon-button>
+          <paper-tooltip for="btn1">Edit</paper-tooltip>       
+          <paper-icon-button id="btn2" icon='close' on-click="FnDelete"></paper-icon-button>
+          <paper-tooltip for="btn2">Delete</paper-tooltip>
       </div>
    </div> 
 
     <paper-dialog id="newdetails" modal>
-      <label>Are you sure want to delete?</label>
+      <label>Are you sure want to delete ?</label>
       <div class="buttons">
         <paper-button on-click="fnshow">Ok</paper-button>
         <paper-button on-click="fnclose">Cancel</paper-button>
@@ -182,8 +174,9 @@
         fnshow:function()
         {
           this.$.uiservice.Fndeleteinfo(this.schoolid);
-          this.hidecreatediv=false;  
-
+          document.querySelector('school-creation-card').hideupdatediv=true;
+          document.querySelector('school-creation-card').hidecreatediv=false;
+            
         },
   
         fnclose:function()

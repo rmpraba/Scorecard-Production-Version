@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
        .card{
-      width: 100%;        
+      width: 100%;            
       @apply(--layout-vertical);
       }
       .inner{
@@ -40,6 +40,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         margin-left: 40%;
       }
+      .outcard
+      {
+      margin-left:5.0em;
+      }
+       .innercard
+       {     
+        @apply(--layout-horizontal);
+        width:50%
+        margin-left:2.5em;
+       }
+     .innercard1
+     {
+       @apply(--layout-horizontal);
+       width:50%
+      margin-left:5.0em;
+     }
+    .table table-bordered td
+    {
+      width: 50%;
+    }
     </style>
       <div class="title">
         <h3><b>LANGUAGE PREFERENCE</b></h3>
@@ -60,22 +80,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </paper-menu>
           </paper-dropdown-menu>
            
-         <!--   <paper-dropdown-menu id="term" label="Select Term year">
-            <paper-menu id="rtermmm1" class="dropdown-content"   on-iron-select="FnStoSterms" attr-for-selected="value" required>
-                <paper-item value="term1">Term1</paper-item>     
-                <paper-item value="term2">Term2</paper-item>
-                <paper-item value="term3">Term3</paper-item>
-             </paper-menu>
-          </paper-dropdown-menu>
-
-           <paper-dropdown-menu id="term" label="Select Assesment year">
-            <paper-menu id="assesmentid" class="dropdown-content"   on-iron-select="fnassesmentname" attr-for-selected="value" required>
-                <paper-item value="Assesment1">Assesment1</paper-item>     
-                <paper-item value="Assesment2">Assesment2</paper-item>
-                <paper-item value="Assesment3">Assesment3</paper-item>
-             </paper-menu>
-          </paper-dropdown-menu>
- -->
+      
+     
            <paper-dropdown-menu id="grade" label="Select Grade">
             <paper-menu id="rgradewww" class="dropdown-content" on-iron-select="FnStosGrade">     
               <template is="dom-repeat" items="{{selectgradearr}}">
@@ -87,47 +93,131 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-menu  id="rsectionwww" class="dropdown-content"  on-iron-select="FnStoSSection">
               <template is="dom-repeat" items="{{selectsectionarrr}}">
                 <paper-item value="{{item.id}}">{{item.section}}</paper-item>
-              </template>
+              </template>   
             </paper-menu>
           </paper-dropdown-menu>  
          </div>
-         <div class="list" hidden$="{{hidecard}}">
-          <student-list-mapping hidethirdlang="{{hidethirdlang}}"></student-list-mapping>
-        </div>
-    </div>
-
+   
+          <div id="labelhide">
+            <div style="float: left;position: absolute;top: 37%;margin-left: 25%;" id="secondid">
+                <label><h4><b>SECOND LANGUAGES</b></h4></label>
+              </div>
+              <div style="display: inline-block;position: absolute;margin-left: 64%;top: 37%;" id="thirdid">
+                <label><h4><b>THIRD LANGUAGES</b></h4></label>
+            </div>
+          </div>  
+      <div id="tbz1" hidden$="{{hidenewsubcat}}">
+      <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
+        <table class="table table-bordered">
+        <!-- <table border="1" class="tt"> -->
+          <tbody>
+          <tr>
+            <td class="outcard" style="width: 25%;"></td>
+            <td class="innercard" style="margin-left: 1%;">
+              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                <h4 style="width:20%;">{{view.srtarr}}</h4>   
+              </template>
+            </td>
+            <td class="outcard"></td>
+          </tr>   
+            <template is="dom-repeat" items="{{bigarr}}" as="view">  
+            <tr>
+              <td class="outcard">
+                <h4>{{view.student_name}}</h4>
+              </td>
+              <td class="innercard">
+                <template is="dom-repeat" items="{{view.subject}}" as="s">
+                <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
+               </template>
+               </td>
+            </tr>
+            </template>
+        </tbody>    
+      </table>  
+    </div>    
+    </div>    
+     </div>
+      <div class="buttons" id="subid">
+        <paper-button style="background-color:black;color:white;margin-left: 48%;" on-click="fnsubmit">submit</paper-button>
+      </div> 
+     
+     <iron-ajax  
+        auto      
+        id="FnSubjecttostudentlanguageajax"
+        url="{{FnSubjecttostudentlanguageurl}}"
+        params="{{FnSubjecttostudentlanguageparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="FnSubjecttostudentlanguageResponse"
+        debounce-duration="300"
+        >
+         <iron-ajax 
+         auto       
+        id="FnSubjecttostudentthirdlanguageajax"
+        url="{{FnSubjecttostudentthirdlanguageurl}}"
+        params="{{FnSubjecttostudentthirdlanguageparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="FnSubjecttostudentthirdlanguageResponse"
+        debounce-duration="300"
+        >
+        <iron-ajax        
+        id="SbjecttoStudentmappingajax"
+        url="{{SbjecttoStudentmappingurl}}"
+        params="{{SbjecttoStudentmappingparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="SbjecttoStudentmappingResponse"
+        debounce-duration="300"
+        >
+          <iron-ajax        
+        id="SbjecttoStudentmapping1ajax"
+        url="{{SbjecttoStudentmapping1url}}"
+        params="{{SbjecttoStudentmapping1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="SbjecttoStudentmapping1Response"
+        debounce-duration="300"
+        >
   <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
   (function() {
     'use strict';
-
-    Polymer({   
+   var studentarr=[];
+   var fnsecondlanginfoarr=[];
+   var fnthidlanginfoarr=[];
+   var fnthidlanginfo1arr=[];
+   var studbarr=[];
+   var kn=[];
+    Polymer({      
       is: 'student-to-subject-mapping-card',
 
-    TeachertoGradeSelectSchoolid:function(e)
-     {
-             this.subjectselectid;
-             //this.eeeee=e.target.selectedItem.textContent.trim(); 
-           //  alert(this.subjectselectid+this.eeeee);
-             localStorage.setItem("curr_sess_selectedSchool",this.subjectselectid);
-            // alert(this.TtoGempid);
-             this.$.uiservice.TeachertoGradeSectionNames(this.subjectselectid);
+      ready:function()
+      {
+        this.hidenewsubcat=true;
+        this.$.subid.hidden=true;
+        this.$.labelhide.hidden=true;
       },
+
     FnStoSterm:function(e)
      {
       this.FnStoStermid=e.target.selectedItem.textContent.trim(); 
        localStorage.setItem("curr_sess_selectedTerms",this.FnStoStermid);
       //alert(this.FnStoStermid);
      },
-     FnStoSterms:function(e){
-       this.FnStoStermid1=e.target.selectedItem.textContent.trim();
-        localStorage.setItem("curr_sess_selectedtemsid",this.FnStoStermid1);
-      },
-      fnassesmentname:function(e){
-      this.fnassesmenid=e.target.selectedItem.textContent.trim();
-      localStorage.setItem("curr_sess_selectassesmetids",this.fnassesmenid);
-      },
+   fnthidlanginfo:function(arr,arr1){
+         fnthidlanginfoarr=arr;
+         fnthidlanginfo1arr=arr1;
+  
+    },
+   fnsecondlanginfo:function(arr){
+   fnsecondlanginfoarr=arr;
+   },
      FnStosGrade:function(e)
      {     
          document.querySelector('#rsectionwww').selected=-1;
@@ -138,21 +228,335 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // alert(this.FnStosGradeid);
          this.$.uiservice.FnselecttoSection(this.subjectselectid,this.FnStosGradeid);
     
-        if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
-          this.hidethirdlang=false;
-        else
-          this.hidethirdlang=true;
-      },
+      },  
+        f12:function(e){
+                this.FnSubjecttostudentlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentlanguage-service";
+            this.$.FnSubjecttostudentlanguageajax.generateRequest();
+
+        },
+       f13:function(e){
+              this.FnSubjecttostudentthirdlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentthirdlanguage-service";
+            this.$.FnSubjecttostudentthirdlanguageajax.generateRequest();
+   
+        },
+        fnstudent:function(e){
+          this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
+        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
+        obj.FnStoSSectionid=this.FnStoSSectionid;
+        obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.FnStoStermid=this.FnStoStermid;
+        obj.FnStosGradeid=this.FnStosGradeid;
+        this.SbjecttoStudentmappingparam=obj;
+       //alert(JSON.stringify(obj));   
+        this.$.SbjecttoStudentmappingajax.generateRequest();
+      
+        },
+
      FnStoSSection:function(e)
      {
-       this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
-       this.FnStoSSectionid1=e.target.selectedItem.value;
-      localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
-      localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
-     // alert(this.FnStoSSectionid+ this.FnStoSSectionid+ this.FnStoStermid+this.FnStosGradeid);
-      this.$.uiservice.SbjecttoStudentmapping(this.FnStoSSectionid,this.subjectselectid,this.FnStoStermid,this.FnStosGradeid);
-       //  alert(this.FnStoSSectionid+this.FnStoSSectionid1);
+            this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
+            this.FnStoSSectionid1=e.target.selectedItem.value;
+            this.hidenewsubcat=false;
+            this.$.subid.hidden=false;
+            this.$.labelhide.hidden=false;
+            localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
+            localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
+            this.fnlangugageprefstudent();
+       if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
+         {
+             this.fnstudent();
+                  this.f13();
+                  this.$.secondid.hidden=false;
+             this.$.thirdid.hidden=false;
+          
+          }
+         else{
+             this.fnstudent(); 
+                this.f12();
+             this.$.secondid.hidden=false;
+             this.$.thirdid.hidden=true;   
+            
+       
+         }
      },
+       stupersonalinfo12:function(){
+     document.querySelector('student-list-mapping-item').stupersonalinfo11(kn); 
+    
+    },
+ 
+ fnlangugageprefstudent:function(){
+      this.SbjecttoStudentmapping1url=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping1-service";
+        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
+        obj.FnStoSSectionid=this.FnStoSSectionid1;
+        obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.FnStoStermid=this.FnStoStermid;
+        obj.FnStosGradeid=this.FnStosGradeid2;
+        this.SbjecttoStudentmapping1param=obj; 
+       // alert(JSON.stringify(obj));   
+        this.$.SbjecttoStudentmapping1ajax.generateRequest();
+    
+
+   },
+
+SbjecttoStudentmapping1Response:function(e){
+     var res=e.detail.response.returnval;
+   //   alert(JSON.stringify(res));   
+     studbarr=res;
+ },
+ fnsubmit:function(e)
+ {
+    
+     if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
+      {
+           this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
+           this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
+            if(kn.length!=0)
+            {
+               document.querySelector('student-list-mapping-item').FnSecondLang1(kn);  
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      kn.splice(obj);
+           
+            }
+                document.querySelector('student-list-mapping-item').FnSecondLang(); 
+        }
+         else
+         {
+             this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
+                if(kn.length!=0)
+                {
+                  document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+                  var obj={"dd":"","admno":"","langugagepref":""};
+                  kn.splice(obj);
+                }
+                  document.querySelector('student-list-mapping-item').FnSecondLang();             
+          }
+        document.querySelector('#rsectionwww').selected=-1;
+
+        },
+     FnSubjecttostudentlanguageResponse:function(e){
+       var res=e.detail.response.returnval; 
+          
+         var setarrr=[];
+                 for(var i=0;i<res.length;i++){
+                          var subject_name=res[i].subject_name;
+                          
+                            var obj={"srtarr":""};
+                                obj.srtarr=subject_name;
+                               setarrr.push(obj);
+                              // alert(JSON.stringify(obj));
+                          }
+               //  alert(JSON.stringify(setarrr));
+                   this.setsubjectarr=setarrr;
+                var generatearr=[];
+                var subarr=[];
+                for(var j=0;j<studentarr.length;j++){
+                     for(var i=0;i<res.length;i++){
+                              var student_id=studentarr[j].id;
+                              var student_name=studentarr[j].student_name;
+                       
+         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+                               var subject_name=res[i].subject_name;
+                               var subject_id=res[i].subject_id;
+                               var langugage_pref=res[i].langugage_pref
+                           obj.student_id=student_id;
+                           obj.student_name=student_name;
+                           obj.langugage_pref=langugage_pref;
+                           obj.subject_id=subject_id;
+                           generatearr.push(obj);
+                        }}//alert(JSON.stringify(generatearr));
+        var a=[];
+        var overall=[];
+        for(var k=0;k<generatearr.length;k++)
+       {       
+         var nameobj={"student_id":"","student_name":""};
+         nameobj.student_name=generatearr[k].student_name; 
+         nameobj.student_id=generatearr[k].student_id; 
+           
+         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+        // obj.Grade_name=generatearr[k].gradename;
+        obj.subject_name=generatearr[k].subject_name;
+        obj.subject_id=generatearr[k].subject_id;
+        obj.langugage_pref=generatearr[k].langugage_pref;
+        var  id=generatearr[k].subject_id+generatearr[k].student_id;
+        id=id.replace(/[^\w\s]/gi, '');
+         obj.id=id;
+
+        a.push(obj);
+        for(var l=k+1;l<generatearr.length;l++)
+        {
+           if(generatearr[k].student_id==generatearr[l].student_id)
+           {
+            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+          //obj1.Grade_name=generatearr[l].gradename;
+             obj1.subject_name=generatearr[l].subject_name;
+             obj1.subject_id=generatearr[l].subject_id;
+             obj1.langugage_pref=generatearr[l].langugage_pref;
+             var  id=generatearr[l].subject_id+generatearr[l].student_id;
+             id=id.replace(/[^\w\s]/gi, '');
+              obj1.id=id;
+              a.push(obj1);
+             generatearr.splice(l,1);
+             l--;
+         }}
+           nameobj.subject=a;
+           overall.push(nameobj);
+           a=[];
+
+
+
+
+      }
+     // alert(JSON.stringify(overall));
+     
+
+      for(var j=0;j<overall.length;j++){
+       var flag=0;
+      for(var q=0;q<studbarr.length;q++){
+      if(overall[j].student_id==studbarr[q].student_id){
+             flag=1;
+             var ddd=overall[j].student_id;
+              var sss=studbarr[q].subject_id;
+               
+         for(var t=0;t<overall[j].subject.length;t++){
+             
+           if(overall[j].subject[t].subject_id==sss){
+
+                      overall[j].subject[t].check=true;
+                       var rrn=overall[j].subject[t].id;
+                        var admno=overall[j].student_id;
+                          var langugagepref=overall[j].subject[t].langugage_pref;
+                      
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      obj.dd=rrn;
+                      obj.admno=admno;
+                      obj.langugagepref=langugagepref;
+                      kn.push(obj);
+               }
+           } 
+        }
+         }
+         if(flag==0){
+          }
+     }
+  
+    // alert(JSON.stringify(overall));
+     this.bigarr=overall;
+
+       
+     // alert(JSON.stringify(overall));
+     },
+     FnSubjecttostudentthirdlanguageResponse:function(e){
+         var res=e.detail.response.returnval; 
+     var setarrr=[];
+                 for(var i=0;i<res.length;i++){
+                          var subject_name=res[i].subject_name;
+                          
+                            var obj={"srtarr":""};
+                                obj.srtarr=subject_name;
+                               setarrr.push(obj);
+                              // alert(JSON.stringify(obj));
+                          }
+               //  alert(JSON.stringify(setarrr));
+                   this.setsubjectarr=setarrr;
+                var generatearr=[];
+                var subarr=[];
+                for(var j=0;j<studentarr.length;j++){
+                     for(var i=0;i<res.length;i++){
+                              var student_id=studentarr[j].id;
+                              var student_name=studentarr[j].student_name;
+                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+                               var subject_name=res[i].subject_name;
+                               var subject_id=res[i].subject_id;
+                               var langugage_pref=res[i].langugage_pref
+                       
+                           obj.student_id=student_id;
+                           obj.student_name=student_name;
+                           obj.subject_name=subject_name;
+                           obj.subject_id=subject_id;
+                            obj.langugage_pref=langugage_pref;
+                     
+                           generatearr.push(obj);
+                        }}//alert(JSON.stringify(generatearr));
+        var a=[];
+        var overall=[];
+       for(var k=0;k<generatearr.length;k++)
+       {       
+         var nameobj={"student_id":"","student_name":""};
+         nameobj.student_name=generatearr[k].student_name; 
+         nameobj.student_id=generatearr[k].student_id; 
+       
+         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+        // obj.Grade_name=generatearr[k].gradename;
+        obj.subject_name=generatearr[k].subject_name;
+        obj.subject_id=generatearr[k].subject_id;
+        obj.langugage_pref=generatearr[k].langugage_pref;
+        var  id=generatearr[k].subject_id+generatearr[k].student_id;
+          id=id.replace(/[^\w\s]/gi, '');
+         obj.id=id;
+
+        a.push(obj);
+        for(var l=k+1;l<generatearr.length;l++)
+        {
+           if(generatearr[k].student_id==generatearr[l].student_id)
+           {
+            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+          //obj1.Grade_name=generatearr[l].gradename;
+             obj1.subject_name=generatearr[l].subject_name;
+             obj1.subject_id=generatearr[l].subject_id;
+             obj1.langugage_pref=generatearr[l].langugage_pref;
+              var  id=generatearr[l].subject_id+generatearr[l].student_id;
+              id=id.replace(/[^\w\s]/gi, '');
+             obj1.id=id;
+
+             a.push(obj1);
+             generatearr.splice(l,1);
+             l--;
+         }}
+           nameobj.subject=a;
+           overall.push(nameobj);
+            a=[];
+       }
+
+
+    for(var j=0;j<overall.length;j++){
+       var flag=0;
+      for(var q=0;q<studbarr.length;q++){
+      if(overall[j].student_id==studbarr[q].student_id){
+             flag=1;
+             var ddd=overall[j].student_id;
+              var sss=studbarr[q].subject_id;
+               
+         for(var t=0;t<overall[j].subject.length;t++){
+             
+           if(overall[j].subject[t].subject_id==sss){
+
+                      overall[j].subject[t].check=true;
+                       var rrn=overall[j].subject[t].id;
+                        var admno=overall[j].student_id;
+                          var langugagepref=overall[j].subject[t].langugage_pref;
+                      
+                      var obj={"dd":"","admno":"","langugagepref":""};
+                      obj.dd=rrn;
+                      obj.admno=admno;
+                      obj.langugagepref=langugagepref;
+                      kn.push(obj);
+               }
+           } 
+        }
+         }
+         if(flag==0){
+          }
+     }
+  
+    
+    this.bigarr=overall;
+   
+     },
+      SbjecttoStudentmappingResponse:function(e){
+          var res=e.detail.response.returnval;
+          studentarr=res; 
+     },
+      
      fnsetreclear:function(e){
      // alert("hi");
       document.querySelector('#rsectionwww').selected=-1;

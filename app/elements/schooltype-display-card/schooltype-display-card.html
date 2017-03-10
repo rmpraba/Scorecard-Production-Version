@@ -18,7 +18,7 @@
        paper-item,paper-input
       {
         width:40%;
-        margin-left: 8%;
+        margin-left: 2%;
       }
       paper-icon-button
       {
@@ -28,6 +28,15 @@
       {
       @apply(--layout-horizontal); 
       }
+
+      paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;
+        margin-top: 5%;
+      }
+      
     </style>   
     
     
@@ -35,9 +44,20 @@
         <paper-item hidden$="{{schooltypeid}}"></paper-item>
         <paper-item hidden$="{{hideschooltypenameitem}}">{{schooltypename}}</paper-item>
         <paper-input value="{{schooltypename}}" hidden$="{{hideschooltypenameinput}}"></paper-input>
-        <paper-icon-button icon='create' on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
-        <paper-icon-button icon='save' on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
-        <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button>
+        <paper-icon-button  id="btn1" icon="icons:create" on-click='FnEdit' hidden$="{{hideschooltypenameitem}}"></paper-icon-button>
+        <paper-tooltip for="btn1">Edit</paper-tooltip>
+        <paper-icon-button id="btn2" icon="icons:save" on-click='FnSave' hidden$="{{hideschooltypenameinput}}"></paper-icon-button>
+        <paper-tooltip for="btn2">Save</paper-tooltip>
+        <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
+        <paper-tooltip for="btn3">Delete</paper-tooltip>
+
+        <paper-dialog id="newdeleteopt" modal>
+          <label>Are you sure want to delete ?</label>
+          <div class="buttons">
+            <paper-button on-click="fnshow">Ok</paper-button>
+            <paper-button on-click="fnclose">Cancel</paper-button>
+          </div>
+        </paper-dialog>
     </div>
   
      <master-ui-service id="sclservice"></master-ui-service>
@@ -68,10 +88,24 @@
       {
         if (confirm("Are you sure?"))    
         {
-        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+        
         }
         //return false;
       },
+      FnDelete:function()
+      {
+        this.$.newdeleteopt.open();
+      },
+      fnshow:function()
+      {
+        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
+        this.hideschooltype=false;
+      },
+      fnclose:function()
+      {
+        this.$.newdeleteopt.close();
+      },
+
       FnEdit:function()
       {
         //alert("test");

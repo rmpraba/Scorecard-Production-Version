@@ -88,8 +88,8 @@
           </div>
           <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
             <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
-          </template>
-        </div>    
+          </template>  
+        </div>      
         <div class="subbcatt">
           <div class="form-group-heading">   
             <h4> SUBJECT CATEGORY</h4>
@@ -273,10 +273,8 @@
            a=[];
 
        }
-   //  alert(JSON.stringify(overall));
-     // overall.splice(0,1);
          this.bigarr=overall;
-          this.$.uiservice.fngetThefunction(this.schooltypename,this.schooltypesubjectid);
+         this.$.uiservice.fngetThefunction(this.schooltypename,this.schooltypesubjectid);
          overall.splice();
          generatearr=[];
          this.$.z.hidden=false;

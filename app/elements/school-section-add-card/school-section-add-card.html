@@ -103,17 +103,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      },
 setval1:function(e){
         this.checksctionvalueurl=sessionStorage.getItem("addrinfo")+"/checksctionvalue-service";
-         var obj={"school_id":"","grade_id":""};
+         var obj={"school_id":"","grade_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.grade_id=this.sectiongradeidzx;
+         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
          this.checksctionvalueparam=obj;
          this.$.checksctionvalueajax.generateRequest();
  },
   setval2:function(e){
        this.countsectionvalueurl=sessionStorage.getItem("addrinfo")+"/countsectionvalue-service";
-         var obj={"school_id":"","grade_id":""};
+         var obj={"school_id":"","grade_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.grade_id=this.sectiongradeidzx;
+         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
          this.countsectionvalueparam=obj; 
          this.$.countsectionvalueajax.generateRequest();
       },
@@ -124,6 +126,8 @@ checksctionvalueResponse:function(e){
   },
 countsectionvalueResponse:function(e){
       var res=e.detail.response.returnval; 
+              alert(JSON.stringify(res));
+
          var m=res[0].no_of_section;
          var rs=this.checksection[0].section_id;
          alert(m);
@@ -152,11 +156,13 @@ countsectionvalueResponse:function(e){
 
 section3:function(){
     this.sectioncreationmappingurl=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping-service";
-         var obj={"school_id":"","grade_id":"","sectionid":"","classid":""};
+         var obj={"school_id":"","grade_id":"","sectionid":"","classid":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.grade_id=this.sectiongradeidzx;
          obj.sectionid=sectionid;
          obj.classid=classid;
+         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+
         // alert(JSON.stringify(obj));
          this.sectioncreationmappingparam=obj;
          this.$.sectioncreationmappingajax.generateRequest();
@@ -165,9 +171,10 @@ section3:function(){
 },
 section2:function(){
    this.sectioncreationmapping1url=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping1-service";
-         var obj={"school_id":"","sectionname":"","sectionid":""};
+         var obj={"school_id":"","sectionname":"","sectionid":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.sectionname=sectionname;
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
          obj.sectionid=sectionid;
        //  alert(JSON.stringify(obj));
          this.sectioncreationmapping1param=obj;
@@ -176,11 +183,12 @@ section2:function(){
 },
 section1:function(){
   this.sectioncreationmapping2url=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping2-service";
-         var obj={"school_id":"","grade_name":"","sectionid":"","classid":""};
+         var obj={"school_id":"","grade_name":"","sectionid":"","classid":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.grade_name=this.sectiongradenamezx;
          obj.sectionid=sectionid;
-         obj.classid=classid;
+        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+        obj.classid=classid;
         //  alert(JSON.stringify(obj));
          this.sectioncreationmapping2param=obj;
          this.$.sectioncreationmapping2ajax.generateRequest();
