@@ -10,7 +10,7 @@
    <template>
    <style>
       :host {
-        display: block;       
+        display: block;         
       }
       .card{  
         @apply(--layout-horizontal);
@@ -187,6 +187,7 @@
           this.f1();
           this.f2();
 
+          document.querySelector('new-employee-creation-card').fnnedit();
         document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
    
      },

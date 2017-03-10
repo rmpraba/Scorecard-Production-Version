@@ -34,16 +34,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 3%;
       }
 
-       table
+      /* table
       {
-         /*apply(--layout-horizontal);
+         apply(--layout-horizontal);
          border-collapse: collapse;
-         padding: 10px;*/
-         /*border: 1px solid #dedede;*/
+         padding: 10px;
+         border: 1px solid #dedede;
          margin-left: 50%;
          width: 530px;
-         margin-top: 1%;            
-      }
+         margin-top: 7%;            
+      }*/
       .newcard
        {
          float: left;
@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           min-height: 200%;
           width: 50%;
           margin-left: -11%;
-          top: 18%;
+          top: 21%;
        }
        .title
        {
@@ -66,19 +66,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        {
        
         position: fixed;
-        margin-left: -9%;
+        min-height: 190%;
         width: 47%;
-        top: 20%;
-        min-height: 200%;
+        margin-left: -9%;
+        top: 22%;
        }
        
        .subbutton
        {
-          background-color: #363636;
+          /*background-color: #363636;
           color: #ffffff;
           width: 7%;
-          margin-left: 75%;
-          margin-top: -4%;
+          margin-left: 78%;
+          margin-top: -8%*/;
+
+              position: absolute;
+              background-color: #363636;
+              color: #ffffff;
+              width: 7%;
+              margin-left: -16%;
+              margin-top: 3%;
        }
        .newtitle
        {
@@ -90,25 +97,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        .vertical-row
        {
           position: fixed;
-          border: 1px solid #12A5F4;
+          border: 1px solid grey;
           width: 1px;
           margin-left: 38%;
           min-height: 2900px;
-          top: 19%;
+          top: 10%;
+       }
+
+        hr
+        {
+          position: fixed;
+          border: 0.5px solid grey;
+          width: 1500px;
+          margin-top: 4%;
+          margin-left: -14%;
+        }
+        .titlesdiv
+        {
+          position: fixed;
+        }
+
+        .newempldiv
+       {
+        position: fixed;
+        margin-left : 47%;
+        margin-top: 5%;
+        
        }
 
     </style>
 
-     <div class="title">
-      <h3><b>EMPLOYEE CREATION</b></h3>
+     <div class="titlesdiv" style="margin-top: -3%;">
+        <div class="tit1" style=" margin-left: 135%; width: 100%">
+          <h3><b>EMPLOYEE CREATION</b></h3>
+        </div>
+        <div id="tit2" style="float: right; margin-right: -225%;">
+          <h4><b>Current Employees</b></h4>
+        </div>
+        <div id="tit3" style="margin-top: 7%;margin-left: 12%;">
+          <h4><b>Create New Employees</b></h4>
+        </div>
+        <div id="tit4" style="margin-top: 7%;margin-left: 12%;">
+          <h4><b>Update Employee Details</b></h4>
+        </div>    
     </div>
+    <!-- <hr></hr> -->
     <span>
-    <div class="newempldiv" hidden$="{{hidenewempldiv}}">
+
+
+    <!-- <div class="newempldiv" hidden$="{{hidenewempldiv}}">
       <div class="newcard col-sm-12">
       <table>
         <tr>
           <th><h4><label style="margin-left:1% ">Employee ID</label></h4></th>
-          <th><h4><label style="margin-left:0%">Current Employee Names</label></h4></th>
+          <th><h4><label style="margin-left:0%">Employee Names</label></h4></th>
           <th><paper-icon-button  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
           <paper-tooltip for="btn1">Create</paper-tooltip> 
 
@@ -123,15 +165,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template> 
       </table>
     </div>
+    </div> -->
+
+    <div class="newempldiv" hidden$="{{hidenewempldiv}}">
+      <table cellspacing="0" cellpadding="1" border="0" width="560px">
+      <tr>
+        <td>
+          <table cellspacing="0" cellpadding="1" border="0" width="530px">
+            <tr>
+              <th><h4><label style="margin-left:1% ">Employee ID</label></h4></th>
+              <th><h4><label style="margin-left:0%">Current Employee Names</label></h4></th>
+              <th><paper-icon-button  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
+              <paper-tooltip for="btn1">Create</paper-tooltip></th>
+            </tr>   
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="newcard col-sm-12" style="width:550px; height:560px; overflow:auto;">
+            <table cellspacing="0" cellpadding="1" border="0" width="530px">
+              <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
+                <tr>
+                  <td colspan="6">
+                    <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>           
+                  </td>
+                </tr>
+              </template> 
+            </table>
+          </div>
+        </td> 
+      </tr>       
+    </table>
     </div>
+
     
     <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
       <div class="list-group col-sm-12 panel-body form-category form-dialog">
-        <div style="text-align: center;">
+        <!-- <div style="text-align: center;">
           <label>
             <h4><b>Create New Employee</b></h4>
           </label>
-      </div>
+      </div> -->
         <div class="form-group-heading">    
           <h4>Employee Details</h4>
         </div>  
@@ -190,11 +266,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
-          <div style="text-align: center;">
+          <!-- <div style="text-align: center;">
               <label>
                 <h4><b>Update Employee Details</b></h4>
               </label>
-          </div>
+          </div> -->
       <!-- <div hidden$="{{hideupdateemp}}"> -->
         <div class="form-group-heading">
           <h4>Employee Personal  Details</h4>
@@ -251,11 +327,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </template>
           </div>
         </div>
-    </div>
+      </div>
+    </div>   
+
           <div>
-            <paper-button class="subbutton" on-click="FnpersonalSave">Submit</paper-button>
-          </div>
-      </div>                  
+            <paper-button class="subbutton" on-click="FnpersonalSave">Save</paper-button>
+          </div>               
     </div>    
 
     <master-ui-service id="uiservice"></master-ui-service>
@@ -275,6 +352,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //alert("hiii");
       this.hidecreateemp=false;
       this.hideupdateemp=true;
+      this.$.tit4.hidden=true;
      
      },  
      setschoolrolezz:function(arr){
@@ -388,21 +466,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.ready();
        },
 
-       getfocus:function(e)
-       {
-        //alert('1');
-        var id="updateempdetails";
-        //alert(document.getElementById(id));
-       },
-
-       /*employeeview:function()
-       {
-          this.hidenewempldiv=false;        
-       },
-       employeehide:function()
-       {
-         this.hidenewempldiv=true;
-       } */
+      fnnedit:function()
+      {
+        this.$.tit4.hidden=false;
+        this.$.tit3.hidden=true;
+      }
 });
   })();
   </script>

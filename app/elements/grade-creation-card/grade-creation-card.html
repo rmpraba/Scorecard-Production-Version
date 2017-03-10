@@ -37,7 +37,7 @@
       background-color: #363636;
       color: #ffffff;
       width: 7%;
-      margin-left: 39%;
+      margin-left: 42%;
       margin-top: 3%;
       }
 
@@ -56,77 +56,140 @@
         margin: 0 auto;
       }
 
-      table
+     /* table
       {
         @apply(--layout-horizontal);
-        /* border-collapse: collapse;
-        border: 1px solid #dedede;*/
-        margin-top: 1%;
+         border-collapse: collapse;
+        border: 1px solid #dedede;
+        margin-top: 10%;
         margin-left: 50%;
         width: 65%;
-      }
+      }*/
 
      
       .creatediv
       { 
-              /* position: fixed; */
-            width: 25%;
-            position: absolute;
+           position: fixed; 
+            width: 28%;
             margin-left: 6%;
-            top: 28%;
+            top: 21%;
             min-height: 200px;
       }
       
       
        .vertical-row 
       {
-        border: 1px solid #12A5F4;
+        border: 1px solid grey;
         position: fixed;
         height: 100px;
         width: 1px;
         margin-left: 36%;
         min-height: 900px;
-        top: 16%;
+        top: 11% !important;
       } 
-
+      .titlesdiv
+      {
+        position: fixed;
+      }
+      h3
+      {
+        text-align: center;
+      }
+      .newgradediv
+      {   
+        /*@apply(--layout-horizontal);*/
+        position: fixed;
+        margin-left: 41%;
+        margin-top: 6%;
+      }
+      .newcard
+       {
+        overflow-y: scroll;
+        overflow-x: hidden;
+       }
+      
     </style>
 
 
-    <div class="title"> 
+    
+    <div class="titlesdiv" style="margin-top: -2%;">
+      <div class="tit1" style="text-align: center;margin-left: 14em">  
         <h3><b>GRADE</b></h3>
+      </div>     
+      <div id="tit2" style="width: 100%; margin-left: 47em;margin-top: 3%;">
+        <h4><b>Current Grades</b></h4>
+      </div>    
+      <div id="tit3" style="margin-left: 22%;margin-top: -4%;">
+        <h4><b>Create New Grade</b></h4>
+      </div>
     </div>
 
-   <div class="outcard">
-   <div class="newgradediv" hidden$="{{newgradediv}}">
 
-    <div>     
+    <div class="newgradediv" hidden$="{{newgradediv}}">
+      <table cellspacing="0" cellpadding="1" border="0" width="780px">
+        <tr>
+          <td>
+            <table cellspacing="0" cellpadding="1" border="0" width="750px">
+              <tr>
+                <th><h4><label>Grade Names</label></h4></th>
+                <th></th>
+                <th><paper-icon-button id="btn1" style="margin-left:20em;" icon="icons:add" on-click="getgradename"></paper-icon-button>
+                <paper-tooltip for="btn1">Create</paper-tooltip>
+                </th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div  class="newcard col-sm-12" style="width:510px; height:390px;">
+              <table cellspacing="0" cellpadding="1" border="0" width="500px">
+                <template is="dom-repeat" items="{{gradearr}}" as="g">
+                  <tr>
+                    <td colspan="2">
+                      <grade-display-card gradeid="{{g.grade_id}}" gradename="{{g.grade_name}}" hidegradenameinput="true" hidegradenameitem="false"> </grade-display-card>
+                    </td>
+                  </tr>
+                </template>
+              </table>
+            </div>
+          </td>
+        </tr>    
+      </table>
+    </div>
+
+
+   <!-- <div class="outcard">
+   <div class="newgradediv" hidden$="{{newgradediv}}">
       <table>
         <tr>
-            <!-- <th> <label>Grade ID</label></th> -->
-            <th><h4><label>Currently Available Grades</label></h4></th>
+            <th><h4><label>Grade Names</label></h4></th>
             <th><paper-icon-button id="btn1" style="margin-left: -199%;" icon="icons:add" on-click="getgradename"></paper-icon-button>
             <paper-tooltip for="btn1">Create</paper-tooltip>
             </th>
             <th></th>
         </tr>
-
+        <tr>
         <template is="dom-repeat" items="{{gradearr}}" as="g">
-            <tr><td colspan="3">
-            <grade-display-card gradeid="{{g.grade_id}}" gradename="{{g.grade_name}}" hidegradenameinput="true" hidegradenameitem="false"> </grade-display-card></td>
+            <tr>
+            <td colspan="3">
+            <grade-display-card gradeid="{{g.grade_id}}" gradename="{{g.grade_name}}" hidegradenameinput="true" hidegradenameitem="false"> </grade-display-card>
+            </td>
             </tr>
         </template>
       </table>
-    </div>
-    </div>
+    </div> -->
+
+
+    
 
     <div class="vertical-row"></div>
 
     <div class="creatediv" hidden$="{{hidegradename}}">
         <div class="card">       
-            <h4><label>Create New Grade</label></h4>
             <paper-input hidden value="{{gradeid}}" label="Grade ID"></paper-input>
              <paper-input label="Grade Name" id="gradename" required error-message="needs Grade name!" value="{{gradename}}"></paper-input>
-
         </div>
 
         <div class="buttons">

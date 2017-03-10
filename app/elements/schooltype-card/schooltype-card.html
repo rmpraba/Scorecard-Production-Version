@@ -72,9 +72,10 @@
        {
         /* border-collapse: collapse;
         border: 1px solid #dedede;*/
+        position: fixed;
         width: 65%;
-        margin-left: 49%;
-        margin-top: 2%;
+        margin-left: 40%;
+        margin-top: 7%;
       }
      
    
@@ -91,19 +92,28 @@
       .vertical-row 
       {
             /*float: left;*/
-            border: 1px  solid #12A5F4;
+            border: 1px  solid grey;
             height: 100px;
             width: 1px;
             margin-left: 35%;
             min-height: 830px;
-            top: 17% !important;
+            top: 13% !important;
       } 
       
 
       </style>
 
-    <div class="title"> 
+    
+    <div class="titlediv" style="position: fixed;margin-top: -3%;">
+      <div class="tit1" style="margin-left: 28em;"> 
         <h3><b>SCHOOL TYPE</b></h3>        
+      </div>
+      <div class="tit2" style="position: absolute;margin-left: 45em;width: 100%;"> 
+        <h4><b>Current School Types</b></h4>        
+      </div>
+      <div class="tit3" style="margin-left: 13%;margin-top: 4%;"> 
+        <h4><b>Create New School Type</b></h4>        
+      </div>
     </div>
 
     
@@ -111,8 +121,8 @@
       <div class="newcard">
         <table>
           <tr>
-            <th><h4><label style="margin-left: 4%;">Currently Available School Types</label></h4></th>
-            <th><paper-icon-button  id="btn1" style="margin-left: -240%;" icon="icons:add" on-click="getschoolname"></paper-icon-button>
+            <th><h4><label style="margin-left: 4%;">School Type</label></h4></th>
+            <th><paper-icon-button  id="btn1" style="margin-left: 9.6em" icon="icons:add" on-click="getschoolname"></paper-icon-button>
                 <paper-tooltip for="btn1">Create</paper-tooltip>
             </th>
             <th></th>
@@ -131,9 +141,6 @@
 
       <div class="creatediv" style="position:fixed;" hidden$="{{hideschooltype}}">
         <div class="card">
-          <div class="headdiv">
-              <h4><label><b>Create New School Type</b></label></h4>
-           </div> 
            <paper-input label="School Type Name" id="schooltypename" required error-message="needs School Type name!" value="{{schooltypename}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
 

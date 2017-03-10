@@ -63,28 +63,16 @@
 
       table
       {
-        @apply(--layout-horizontal);
-         /*border-collapse: collapse;
-        border: 1px solid #dedede;*/
+       /* @apply(--layout-horizontal);
+         border-collapse: collapse;
+        border: 1px solid #dedede;
         margin-left: 40%;
-        margin-top: 1%;
-        width: 65%;
+        margin-top: 7%;
+        width: 65%;*/
       }
-      /*.outcard
-      {
-        @apply(--layout-horizontal);
-      }
-*/
+      
       .creatediv
       {
-          /*border-radius: 10px;
-          border: 1px solid #6699ff;
-          padding: 10px; */
-         /* width: 28%;
-          top: 24% !important;
-          margin-left: 4%;
-          max-height: 330px;*/
-
           width: 28%;
           position: fixed;
           top: 24% !important;
@@ -100,28 +88,84 @@
          .vertical-row 
       {
              position: absolute;
-            border: 1px solid #12A5F4;
+            border: 1px solid grey;
             width: 1px;
             margin-left: 34%;
-            top: 17%;
+            top: 12%;
             min-height: 1700px;
-          /* margin-top: -111% !important; */
       } 
-     
+     .outcard
+     {
+      position: fixed;
+       margin-left: 37%;
+        margin-top: 7%;
+     }
+     .newcard
+     {
+      overflow-y: scroll;
+      overflow-x: hidden;
+     }
 
+      .paper-dropdown-menu
+      {
+        width: 146%;
+      }
     </style>
 
 
-    <div class="title"> 
+    <div class="titlediv" style="position: fixed;margin-top: -2%;">
+      <div class="tit1" style="margin-left: 28em;">
         <h3><b>SUBJECTS</b></h3>
+      </div>
+      <div class="tit2" style="margin-left: 47em;">
+        <h4><b>Current Subjects</b></h4>
+      </div>
+      <div class="tit3" style="margin-top: -4%;margin-left: 11%;">
+        <h4><b>Create New Subject</b></h4>
+      </div>
     </div>
+    
 
    <div class="outcard">
-    
-    <div>
-      <table>
+
+     <table cellspacing="0" cellpadding="1" border="0" width="780px">
         <tr>
-           <h4> <label style="margin-left: 56%; line-height: 2px;"><b>Currently Available Subjects</label></b></label></h4>
+          <td>
+            <table cellspacing="0" cellpadding="1" border="0" width="750px">
+              <tr>
+                <th><label style="margin-left:8%">Subject Names</label></h4></th>
+                <th> <label style="margin-left:-1%">Category Type</label>
+                <th><paper-icon-button id="btn1" icon="add" on-click="getsubjectname"></paper-icon-button>
+                <paper-tooltip for="btn1">Create</paper-tooltip>
+                </th>
+                <th></th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div  class="newcard col-sm-12" style="width:680px; height:420px;">
+              <table cellspacing="0" cellpadding="1" border="0" width="730px">
+                <template is="dom-repeat" items="{{subarr}}" as="sb">
+                <tr>
+                  <td colspan="4">
+                    <subject-display-card subjectid="{{sb.subject_id}}" subjectname="{{sb.subject_name}}" subjectcategory="{{sb.category}}" hidesubjectinput="true" hidesubjectitem="false">
+                    </subject-display-card>
+                  </td>
+                </tr>
+                </template>
+              </table>
+            </div>
+          </td>
+        </tr>    
+      </table>
+    </div>
+
+    
+      <!-- <table>
+        <tr>
             <th><label style="margin-left:8%">Subject Names</label></h4></th>
             <th> <label style="margin-left:-1%">Category Type</label>
             <th><paper-icon-button id="btn1" icon="add" on-click="getsubjectname"></paper-icon-button>
@@ -136,17 +180,12 @@
             </subject-display-card></td>
             </tr>
         </template>
-      </table>
-    </div>
+      </table> -->
 
     <div class="vertical-row" style="position: fixed;"></div>
 
     <div class="creatediv" hidden$="{{hidenewsubjectzz}}">
-        <div class="card">    
-          <div class="headdiv">
-              <h4><label><b>Create New Subject</b></label></h4>
-          </div>   
-            
+        <div class="card">      
             <paper-input hidden value="{{subjectid}}" label="Subject ID"></paper-input>
             <paper-input label="Subject Name"  required error-message="needs Subject name!" value="{{subjectname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
