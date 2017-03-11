@@ -18,7 +18,7 @@
          @apply(--layout-left);   
         /*width: 50%;*/
       }
-      
+       
 
       .card
       {
@@ -239,7 +239,18 @@
     roleehide:function()
     {
       this.hidenewrolecard=true;
+    },
+
+    fundelt:function()
+    {
+      this.$.mydialog.toggleDialog1();
+    },
+    funnupdate:function()
+    {
+      this.$.mydialog.toggleDialog2();
     }
+
+
     });
   })();
   </script>

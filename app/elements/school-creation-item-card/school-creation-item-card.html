@@ -8,12 +8,14 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <link rel="import" href="../delete-dialog-card/delete-dialog-card.html">
+   <link rel="import" href="../update-demo-card/update-demo-card.html">
 
 
 <dom-module id="school-creation-item-card">
   <template>
     <style>
-      :host 
+      :host    
       {
         display: block;
       }
@@ -87,13 +89,7 @@
       </div>
    </div> 
 
-    <paper-dialog id="newdetails" modal>
-      <label>Are you sure want to delete ?</label>
-      <div class="buttons">
-        <paper-button on-click="fnshow">Ok</paper-button>
-        <paper-button on-click="fnclose">Cancel</paper-button>
-      </div>
-    </paper-dialog>
+   
 
     <div id="updatedetails" style="margin-top:-18%" hidden>
       <div class="updatediv"> 
@@ -150,6 +146,7 @@
       </div>         
     </div>
     </div>
+
     <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
@@ -167,25 +164,12 @@
         },
         FnDelete:function()
         {
-           document.querySelector('school-creation-card').fn1(this.schoolid,this.schoolname,this.telnum,this.mobile,this.mailid,this.wesite,this.affiliationno,this.boardselection,this.addr,this.addr1,this.addr2,this.addr3);
-          this.$.newdetails.open();
-        },
+            this.$.uiservice.Fndeleteinfo(this.schoolid);
+           document.querySelector('school-creation-card').fundeltt();
 
-        fnshow:function()
-        {
-          this.$.uiservice.Fndeleteinfo(this.schoolid);
-          document.querySelector('school-creation-card').hideupdatediv=true;
-          document.querySelector('school-creation-card').hidecreatediv=false;
-            
-        },
-  
-        fnclose:function()
-        {
-          
-          this.$.newdetails.close();
         },
         
-
+        
         showupdetails:function()
         {  
           document.querySelector('school-creation-card').fnnedit();

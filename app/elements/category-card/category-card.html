@@ -94,7 +94,7 @@
             width: 1px;
             margin-left: 32%;
             min-height: 830px;
-            top:12% !important;
+            top:11.5% !important;
 
       } 
        
@@ -201,7 +201,7 @@
         }
         
       },
-      
+
 
       toTitleCase:function(str)
       {
@@ -215,7 +215,17 @@
       categoryyview:function()
       {
         this.hidenewcatcard=false;
-      }
+      },
+      f12p:function(e)
+      {
+          this.$.mydialog.toggleDialog1();    
+      },
+          
+      upfunct:function(e)
+      {
+        this.$.mydialog.toggleDialog2();
+      },
+          
             
     });
   })();

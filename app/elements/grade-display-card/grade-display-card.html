@@ -1,5 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../submit-demo-card/submit-demo-card.html">
+<link rel="import" href="../update-demo-card/update-demo-card.html">
 
 <dom-module id="grade-display-card">
   <template>
@@ -50,8 +52,7 @@
             <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
             <paper-tooltip for="btn3">Delete</paper-tooltip>
     </div>
-          
-        
+      
     <master-ui-service id="service"></master-ui-service>
   </template>
   <script>
@@ -77,6 +78,8 @@
       FnDelete:function()
       {
           this.$.service.FnDeleteGrade(this.gradeid);
+          document.querySelector('grade-creation-card').fundel1();
+
       },
       
       
@@ -88,6 +91,7 @@
       FnSave:function()
       {
         this.$.service.FnUpdateGrade(this.gradeid,this.gradename);
+          document.querySelector('grade-creation-card').funup1();
         this.hidegradenameinput=true;
         this.hidegradenameitem=false;
       }

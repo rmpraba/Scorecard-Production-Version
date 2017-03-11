@@ -1,5 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../submit-demo-card/submit-demo-card.html">
+<link rel="import" href="../update-demo-card/update-demo-card.html">
 
 <dom-module id="role-display-card">
   <template>
@@ -54,17 +56,7 @@
           <paper-icon-button id="btn3" icon='close' on-click='FnDelete'></paper-icon-button>
           <paper-tooltip for="btn3">Delete</paper-tooltip>
 
-
-            <paper-dialog id="newdeleteoptt" modal>
-              <label>Are you sure want to delete ?</label>
-              <div class="buttons">
-                  <paper-button on-click="fnshow">Ok</paper-button>
-                  <paper-button on-click="fnclose">Cancel</paper-button>
-              </div>
-            </paper-dialog>
-
     </div>
-
         <master-ui-service id="service"></master-ui-service>
   </template>
 
@@ -90,19 +82,12 @@
         this.hiderolenameitem=false;
       },
       FnDelete:function()
+
       {
-        this.$.newdeleteoptt.open();
-      },
-      fnshow:function()
-      {
-          
           this.$.service.FnDeleteRole(this.roleid);
-          this.hiderolenamezz=false;   
+          document.querySelector('role-card').fundelt();
       },
-      fnclose:function()
-      {
-        this.$.newdeleteoptt.close();
-      },
+     
       FnEdit:function()
       {
         localStorage.setItem('curr_sess_oldroleid',this.roleid);
@@ -115,6 +100,7 @@
         var roleid=(rolename.toLowerCase()).replace(' ','');
         //alert(rolename+"  "+roleid);
         this.$.service.FnUpdateRole(rolename,roleid);
+        document.querySelector('role-card').funnupdate();
         this.hiderolenameinput=true;
         this.hiderolenameitem=false;
       },

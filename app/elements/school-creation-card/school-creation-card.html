@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <link rel="import" href="../demosumbit-card/demosumbit-card.html">
+   <link rel="import" href="../update-demo-card/update-demo-card.html">
    
 <dom-module id="school-creation-card">
   <template>
@@ -411,6 +412,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             this.$.uiservice.Fnsaveschoolinfo(this.schoolname,this.schoolid,this.telnum,this.mobile,this.mailid,
               this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);
+            this.$.mydialog.toggleDialog2();
             /*document.querySelector('school-creation-item-card').toggle();*/
             this.ready();
           },
@@ -457,18 +459,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
           },
 
-           FnSave:function()
+          /* FnSave:function()
           {
-            /*alert(this.addr);
+            alert(this.addr);
             alert(this.addr1);
             alert(this.addr2);
-            alert(this.addr3);*/
+            alert(this.addr3);
 
             this.$.uiservice.Fnsaveschoolinfo(this.schoolname,this.schoolid,this.telnum,this.mobile,this.mailid,
               this.wesite,this.addr,this.addr1,this.addr2,this.addr3,this.affiliationno,this.boardselection);  
                            
             this.ready();
-          },
+          },*/
 
           fnboxclose:function()
           {
@@ -497,7 +499,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           {
             this.$.tit4.hidden=false;
             this.$.tit3.hidden=true;
+          },
+          fundeltt:function()
+          {
+            this.$.mydialog.toggleDialog1();
           }
+          
       });
   })();
   </script>

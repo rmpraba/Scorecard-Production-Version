@@ -1,6 +1,8 @@
 
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../submit-demo-card/submit-demo-card.html">
+<link rel="import" href="../update-demo-card/update-demo-card.html">
 
 <dom-module id="subject-display-card">
   <template>
@@ -52,18 +54,7 @@
           <paper-tooltip for="btn2">Save</paper-tooltip>
           <paper-icon-button id="btn3" icon='close' on-click='FnDelete'></paper-icon-button>
           <paper-tooltip for="btn3">Delete</paper-tooltip>
-
-
-            <paper-dialog id="newdeleteoptt" modal>
-              <label>Are you sure want to delete ?</label>
-              <div class="buttons">
-                  <paper-button on-click="fnshow">Ok</paper-button>
-                  <paper-button on-click="fnclose">Cancel</paper-button>
-              </div>
-            </paper-dialog>
-
     </div>
-
 
     <master-ui-service id="service"></master-ui-service>
   </template>
@@ -89,19 +80,10 @@
       },
       FnDelete:function()
       {
-
-        this.$.newdeleteoptt.open();
-      },
-      fnshow:function()
-      {  
-          
           this.$.service.FnDeleteSubjectname(this.subjectid);
-          this.hidenewsubjectzz=false;
+          document.querySelector('subject-card').fundeltt(); 
       },
-      fnclose:function()
-      {
-       this.$.newdeleteoptt.close(); 
-      },
+          
       FnEdit:function()
       {
         this.hidesubjectinput=false;
@@ -110,6 +92,7 @@
       FnSave:function()
       {
         this.$.service.FnUpdateSubjectname(this.subjectid,this.subjectname,this.subjectcategory);
+          document.querySelector('subject-card').funupdatee(); 
         this.hidesubjectinput=true;
         this.hidesubjectitem=false;
       }

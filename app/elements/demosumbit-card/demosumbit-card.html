@@ -24,12 +24,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      #labelid{
+      #labelid,#labelid1,#labelid2
+
+      {
             font-style: oblique;
             font-size: 1.3em;
 
       }
-      #newpopup{
+      #newpopup,#newpopup1,#newpopup2
+      {
            border-radius: 10px;
            width: 350px;
            height: 150px;
@@ -52,7 +55,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
       </paper-dialog>
     </div>
-    <master-ui-service id="service"></master-ui-service>
+     <div>
+       <paper-dialog id="newpopup1" modal>
+          <label  id="labelid1">Deleted Successfully!!!</label>
+            <div class="buttons">
+              <paper-button dialog-confirm autofocus>Ok</paper-button>
+             <!--  <paper-button  dialog-confirm autofocus on-click="fnclose">Cancel</paper-button> -->
+            </div>
+      </paper-dialog>
+    </div>
+
+    <div>
+       <paper-dialog id="newpopup2" modal>
+          <label  id="labelid2">Updated Successfully!!!</label>
+            <div class="buttons">
+              <paper-button dialog-confirm autofocus>Ok</paper-button>
+             <!--  <paper-button  dialog-confirm autofocus on-click="fnclose">Cancel</paper-button> -->
+            </div>
+      </paper-dialog>
+    </div>
+ 
   </template>
   <script>
   (function() {
@@ -64,6 +86,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         //alert("dialog");
         this.$.newpopup.toggle();
+      },
+      toggleDialog1:function()
+      {
+      this.$.newpopup1.toggle();
+     
+      },
+      toggleDialog2:function()
+      {
+      this.$.newpopup2.toggle();
+     
       },
      
     

@@ -1659,7 +1659,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       fndelsectiongrade1Response:function(e)
       {
             var res=e.detail.response.returnval;
-               alert(JSON.stringify(res));
+               //alert(JSON.stringify(res));
     
       },
       fndelsectiongrade2esponse:function(e){
@@ -2242,7 +2242,7 @@ insertschoolTypename:function(schooltypesarr)
         //alert(JSON.stringify(res)); 
           if(res=='Updated!')
           {
-            alert('Updated');
+            //alert('Updated');
           this.fnschoolcreation();
         }
       },
@@ -2267,7 +2267,7 @@ insertschoolTypename:function(schooltypesarr)
         var obj={"schoolid1":""};
         obj.schoolid1=schoolid1;
         this.Fndeleteinfoparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.Fndeleteinfoajax.generateRequest();
       },
       FndeleteinfoResponse:function(e)
@@ -2276,13 +2276,13 @@ insertschoolTypename:function(schooltypesarr)
             //alert(JSON.stringify(res));
             if(res=='Deleted!')
             {
-                alert('Deleted!');
+                //alert('Deleted!');
                 this.fnschoolcreation();
             }
-            else
+            /*else
             {
                 document.querySelector('school-creation-card').schoollhide();
-            }
+            }*/
       },
    
      fnschoolidgenerate:function()
@@ -2500,7 +2500,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deleteroleResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
@@ -2524,7 +2524,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updateroleResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+       // alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
@@ -2660,7 +2660,7 @@ insertschoolTypename:function(schooltypesarr)
         //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='update!')
         {
-            alert('Deleted');
+            //alert('Deleted');
           this.fnschoolemployeepersonal();
         }
       },
@@ -2768,7 +2768,7 @@ insertschoolTypename:function(schooltypesarr)
           var res=e.detail.response.returnval;
         if(e.detail.response.returnval=='Deleted!')
         {
-            alert('Deleted!');
+            //alert('Deleted!');
           this.getschoolTypename();
         }
         else
@@ -2793,7 +2793,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updateschooltypenameResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Updated!')
         {
           this.FnFetchSchooltypename();
@@ -2875,7 +2875,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletecategorynameResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
@@ -2899,7 +2899,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updatecategorynameResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
@@ -2995,7 +2995,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletesubjectnameResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");
@@ -3020,7 +3020,7 @@ insertschoolTypename:function(schooltypesarr)
         updatesubjectnameResponse:function(e)
       {
 
-        alert(e.detail.response.returnval);
+       // alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");
@@ -3240,7 +3240,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deletegradeResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Deleted!')
         {
             //alert("deleted");
@@ -3262,7 +3262,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       updategradeResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Updated!')
         {
             //alert("Updated");

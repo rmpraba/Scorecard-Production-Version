@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
    // port     : '58116',
    // user     : 'adminTEZN77',
    // password : 'pEbElHqKSxh2',
-   database : 'scorecarddatabase'
+   database : 'demoscorecard'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -5695,7 +5695,7 @@ app.post('/Fndeleteinfo-service' ,  urlencodedParser,function (req, res)
   console.log(qur);  
  var qur1="DELETE FROM  md_school where  id='"+req.query.schoolid1+"'";
 console.log(qur);
-  connection.query(qur,
+  connection.query(qur1,
     function(err, rows)
     {
     if(!err)

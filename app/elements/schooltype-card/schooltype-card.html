@@ -177,8 +177,7 @@
      
        FnRefresh:function()
       {
-         this.schooltypename="";
-            
+         this.schooltypename="";        
       },
      
       schooltypehide:function()
@@ -222,7 +221,16 @@
         
         return str.replace(/\w\S*/g, 
         function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+      },
+      fnndel:function()
+      {
+        this.$.mydialog.toggleDialog1();
+      },
+       fnnup1:function()
+      {
+        this.$.mydialog.toggleDialog2();
       }
+
 
     });
   })();

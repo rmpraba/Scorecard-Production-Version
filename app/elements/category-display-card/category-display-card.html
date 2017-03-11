@@ -1,5 +1,8 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../submit-demo-card/submit-demo-card.html">
+<link rel="import" href="../update-demo-card/update-demo-card.html">
+
 
 <dom-module id="category-display-card">
   <template>
@@ -50,16 +53,7 @@
             <paper-icon-button id="btn3" icon='close' on-click='FnDelete'></paper-icon-button>
             <paper-tooltip for="btn3">Delete</paper-tooltip>
 
-            <paper-dialog id="newdeleteoptt" modal>
-              <label>Are you sure want to delete ?</label>
-              <div class="buttons">
-                  <paper-button on-click="fnshow">Ok</paper-button>
-                  <paper-button on-click="fnclose">Cancel</paper-button>
-              </div>
-            </paper-dialog>
-
     </div>
-
     <master-ui-service id="catservice"></master-ui-service>
   </template>
 
@@ -69,15 +63,8 @@
     'use strict';
 
     Polymer({
-      is: 'category-display-card',
+      is: 'category-display-card',  
 
-      properties: {
-        foo: {
-          type: String,
-          value: 'category-display-card',
-          notify: true
-        }
-      },
       ready:function()
       {
         //alert("test");      
@@ -86,27 +73,10 @@
       },
       FnDelete:function()
       {
-        this.$.newdeleteoptt.open();
-      },
-      fnshow:function()
-      {
        this.$.catservice.FnDeleteCategoryname(this.categoryid);
-       this.hidecategorytype=false;
+       document.querySelector('category-card').f12p();
       },
-      fnclose:function()
-      {
-        this.$.newdeleteoptt.close();
-      },
-
-      /*FnDelete:function()
-      {
-        //alert("test");
-        if (confirm("Are you sure?")) 
-        {
-          
-        }
-        
-      },*/
+      
       FnEdit:function()
       {
         localStorage.setItem('curr_sess_oldcategoryid',this.categoryid);
@@ -120,6 +90,7 @@
         var categoryid=(categoryname.toLowerCase()).replace(' ','');
         //alert(categoryname+"  "+categoryid);
         this.$.catservice.FnUpdateCategoryname(this.categorytype,categoryid,categoryname);
+        document.querySelector('category-card').upfunct();
         this.hidecategoryinput=true;
         this.hidecategoryitem=false;
       },
