@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 
 <dom-module id="grade-creation-card">
@@ -85,7 +86,7 @@
         width: 1px;
         margin-left: 36%;
         min-height: 900px;
-        top: 11% !important;
+        top: 12% !important;
       } 
       .titlesdiv
       {
@@ -158,30 +159,6 @@
         </tr>    
       </table>
     </div>
-
-
-   <!-- <div class="outcard">
-   <div class="newgradediv" hidden$="{{newgradediv}}">
-      <table>
-        <tr>
-            <th><h4><label>Grade Names</label></h4></th>
-            <th><paper-icon-button id="btn1" style="margin-left: -199%;" icon="icons:add" on-click="getgradename"></paper-icon-button>
-            <paper-tooltip for="btn1">Create</paper-tooltip>
-            </th>
-            <th></th>
-        </tr>
-        <tr>
-        <template is="dom-repeat" items="{{gradearr}}" as="g">
-            <tr>
-            <td colspan="3">
-            <grade-display-card gradeid="{{g.grade_id}}" gradename="{{g.grade_name}}" hidegradenameinput="true" hidegradenameitem="false"> </grade-display-card>
-            </td>
-            </tr>
-        </template>
-      </table>
-    </div> -->
-
-
     
 
     <div class="vertical-row"></div>
@@ -198,14 +175,7 @@
     </div>
   </div> 
 
-
-              <paper-dialog id="newsubmitbox" modal>
-                  <label>Inserted Successfully !!!</label>
-                  <div class="buttons">
-                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
-                  </div>
-              </paper-dialog> 
-
+        <demosumbit-card id="mydialog"></demosumbit-card>
         <master-ui-service id="uiservice"></master-ui-service>
      
    </template>
@@ -216,13 +186,7 @@
 
      Polymer({
       is: 'grade-creation-card',
-      properties: {
-        foo: {
-          type: String,
-          value: 'grade-creation-card',
-          notify: true
-        }
-      },
+      
 
       ready:function()
       {
@@ -231,7 +195,7 @@
         this.$.uiservice.FnFetchGrade();
         this.$.uiservice.FnFetchGradeSeq();
         this.$.hidenewgradecreationcard=true;  
-        this.FnRefresh();
+        //this.FnRefresh();
       },
       FnRefresh:function()
       {
@@ -251,12 +215,11 @@
         }
         else if(this.gradename!=null)
         {  
-        gradname= toTitleCase(this.gradename);
-        this.$.uiservice.FnSetGradeCreationInfo(this.gradeid,this.gradename);
-        this.$.newsubmitbox.open();
+        gradname= this.toTitleCase(this.gradename);
+        this.$.uiservice.FnSetGradeCreationInfo(this.gradeid,gradname);
+        this.$.mydialog.toggleDialog();
         this.ready();
-        //document.querySelector('grade-creation-card').FnRefresh();
-        //this.$.gradedialog.toggle();8
+        document.querySelector('grade-creation-card').FnRefresh();
         }
         
       },
@@ -266,10 +229,6 @@
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
      },
 
-      Fnclose:function()
-      {
-        this.$.newsubmitbox.close();
-      },
       gradeeview:function()
       {
         this.newgradediv=false;

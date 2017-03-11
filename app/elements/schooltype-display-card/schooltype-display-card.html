@@ -1,5 +1,6 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="schooltype-display-card">
   <template>
@@ -8,7 +9,7 @@
       {
         display: block;
       }
-      .card
+      .card  
       {
         @apply(--layout-center);
         @apply(--layout-horizontal);
@@ -51,15 +52,16 @@
         <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
         <paper-tooltip for="btn3">Delete</paper-tooltip>
 
-        <paper-dialog id="newdeleteopt" modal>
+       <!--  <paper-dialog id="newdeleteopt" modal>
           <label>Are you sure want to delete ?</label>
           <div class="buttons">
             <paper-button on-click="fnshow">Ok</paper-button>
             <paper-button on-click="fnclose">Cancel</paper-button>
           </div>
         </paper-dialog>
-    </div>
-  
+    </div> -->
+    
+    <demosumbit-card id="mydialog"></demosumbit-card>
      <master-ui-service id="sclservice"></master-ui-service>
   </template>
 
@@ -84,26 +86,21 @@
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
       },
-      FnDelete:function()
-      {
-        if (confirm("Are you sure?"))    
-        {
-        
-        }
-        //return false;
-      },
-      FnDelete:function()
+      
+      /*FnDelete:function()
       {
         this.$.newdeleteopt.open();
-      },
-      fnshow:function()
+      },*/
+      /*fnshoww:function()
       {
         this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
-        this.hideschooltype=false;
+        //this.hideschooltype=false;
       },
-      fnclose:function()
+      */
+      FnDelete:function()
       {
-        this.$.newdeleteopt.close();
+        //alert("first");
+        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
       },
 
       FnEdit:function()

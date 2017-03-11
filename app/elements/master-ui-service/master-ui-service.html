@@ -1,5 +1,6 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="master-ui-service">
   <template>
@@ -2208,7 +2209,7 @@ insertschoolTypename:function(schooltypesarr)
          //alert(JSON.stringify(res)); 
           if(res=='Inserted!')
           {
-            alert('Inserted !')
+            //alert('Inserted !')
           this.fnschoolcreation();
           }
       },
@@ -2593,7 +2594,7 @@ insertschoolTypename:function(schooltypesarr)
       },
       deleteschooltypeResponse:function(e)
       {
-        alert(e.detail.response.returnval);
+        //alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='Deleted!')
         {
             //alert("Deleted");

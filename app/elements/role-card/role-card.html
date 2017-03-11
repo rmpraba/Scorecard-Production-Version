@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 
 <dom-module id="role-card">
@@ -22,7 +23,7 @@
       .card
       {
          @apply(--layout-center);
-        width: 150%;
+        width: 70%;
         margin-left: 10%;
       }
 
@@ -130,26 +131,7 @@
     </div>
 
     <div class="outcard">
-        <!-- <div class="newrolecard" hidden$="{{hidenewrolecard}}">
-          
-            <table>
-              <tr>
-                <th><h4><label style="margin-left:29%">Role Names</label></h4></th>
-                <th><paper-icon-button id="btn1" style="margin-left: -38%;"  icon="add" on-click="getrolename"></paper-icon-button>
-                <paper-tooltip for="btn1">Create</paper-tooltip>
-                </th>
-                <th></th>
-              </tr>
-              <template is="dom-repeat" items="{{rolearr}}" as="r">  
-                <tr><td colspan="3">
-                <role-display-card  rolename="{{r.role_name}}" roleid="{{r.id}}" hiderolenameinput="true" hiderolenameitem="false">
-                </role-display-card></td>
-                </tr>
-              </template>    
-            </table>
-        </div> -->
-
-
+        
       <div class="newrolecard" hidden$="{{hidenewrolecard}}">
       <table cellspacing="0" cellpadding="1" border="0" width="780px">
         <tr>
@@ -199,14 +181,8 @@
         </div>
     </div>  
 
-          <paper-dialog id="newsubmitbox" modal>
-            <label>Inserted Successfully !!!</label>
-              <div class="buttons">
-                <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
-              </div>
-          </paper-dialog> 
 
-
+      <demosumbit-card id="mydialog"></demosumbit-card>
       <master-ui-service id="uiservice"></master-ui-service>  
 
  </template>
@@ -243,14 +219,11 @@
           var roleid=((rname).toLowerCase()).replace(' ','');
           //alert(roleid);
           this.$.uiservice.FnSetRoleInfo(rname,roleid);
-          this.$.newsubmitbox.open();
+          this.$.mydialog.toggleDialog();
           document.querySelector('role-card').FnRefresh();
         }
      },
-     Fnclose:function()
-     {
-      this.$.newsubmitbox.close();
-     },
+     
     toTitleCase:function(str)
     {
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});

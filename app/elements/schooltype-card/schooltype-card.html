@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 
 <dom-module id="schooltype-card">
@@ -91,13 +92,13 @@
      
       .vertical-row 
       {
-            /*float: left;*/
+          position: fixed;
             border: 1px  solid grey;
             height: 100px;
             width: 1px;
             margin-left: 35%;
             min-height: 830px;
-            top: 13% !important;
+            top: 11% !important;
       } 
       
 
@@ -149,14 +150,8 @@
         </div>     
       </div>
 
-            <paper-dialog id="newsubmitbox" modal>
-                  <label>Inserted Successfully !!!</label>
-                  <div class="buttons">
-                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
-                  </div>
-              </paper-dialog> 
-   
-      
+            
+      <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="service"></master-ui-service>    
 
   </template>
@@ -214,23 +209,13 @@
           var schooltypeid = ((stypename).toLowerCase()).replace(' ','',' ');   
           //alert(schooltypeid);   
           //alert(stypename);
-          this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid);  
-          this.$.newsubmitbox.open();      
+          this.$.service.FnSetSchooltypeInfo(stypename,schooltypeid); 
+           this.$.mydialog.toggleDialog();
           document.querySelector('schooltype-card').FnRefresh();
         }
        
-        /*else
-          {  
-        var schooltypeid=(this.schooltypename.replace(" ","")).toLowerCase();
-         this.$.service.FnSetSchooltypeInfo(this.schooltypename,schooltypeid);        
-        document.querySelector('schooltype-card').FnRefresh();
-        this.$.schooldialog.toggle();
-        }*/
       },
-      Fnclose:function()
-      {
-        this.$.newsubmitbox.close();
-      },
+      
 
       toTitleCase:function(str)
       {

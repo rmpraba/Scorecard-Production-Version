@@ -51,16 +51,7 @@
             <paper-tooltip for="btn3">Delete</paper-tooltip>
     </div>
           
-
-          <paper-dialog id="newdeletebox" modal>
-          <label>Are you sure want to delete ?</label>
-          <div class="buttons">
-            <paper-button on-click="fnshow">Ok</paper-button>
-            <paper-button on-click="fnclose">Cancel</paper-button>
-          </div>
-        </paper-dialog>
-
-   
+        
     <master-ui-service id="service"></master-ui-service>
   </template>
   <script>
@@ -85,24 +76,10 @@
       },
       FnDelete:function()
       {
-        this.$.newdeletebox.open();
+          this.$.service.FnDeleteGrade(this.gradeid);
       },
       
-      fnshow:function()
-      {
-        
-          this.$.service.FnDeleteGrade(this.gradeid);
-          this.hidegradename=false;
-      },
-      fnclose:function()
-      {
-        this.$.newdeletebox.close();
-      },
-
-      fnclose:function()
-      {
-        this.$.newdeletebox.close();
-      },
+      
       FnEdit:function()
       {
         this.hidegradenameinput=false;

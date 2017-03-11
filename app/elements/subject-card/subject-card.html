@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 
 <dom-module id="subject-card">
@@ -163,25 +164,6 @@
       </table>
     </div>
 
-    
-      <!-- <table>
-        <tr>
-            <th><label style="margin-left:8%">Subject Names</label></h4></th>
-            <th> <label style="margin-left:-1%">Category Type</label>
-            <th><paper-icon-button id="btn1" icon="add" on-click="getsubjectname"></paper-icon-button>
-            <paper-tooltip for="btn1">Create</paper-tooltip>
-            </th>
-            <th></th>
-        </tr>
-
-        <template is="dom-repeat" items="{{subarr}}" as="sb">
-            <tr><td colspan="4">
-             <subject-display-card subjectid="{{sb.subject_id}}" subjectname="{{sb.subject_name}}" subjectcategory="{{sb.category}}" hidesubjectinput="true" hidesubjectitem="false">
-            </subject-display-card></td>
-            </tr>
-        </template>
-      </table> -->
-
     <div class="vertical-row" style="position: fixed;"></div>
 
     <div class="creatediv" hidden$="{{hidenewsubjectzz}}">
@@ -209,15 +191,8 @@
             </div>
       </div>
     </div> 
-
-
-              <paper-dialog id="newsubmitbox" modal>
-                  <label>Inserted Successfully !!!</label>
-                  <div class="buttons">
-                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
-                  </div>
-              </paper-dialog> 
-
+ 
+      <demosumbit-card id="mydialog"></demosumbit-card>
       <master-ui-service id="uiservice"></master-ui-service>
      
    </template>
@@ -283,7 +258,7 @@
         //alert(category+this.preflang);
         subname=this.toTitleCase(this.subjectname);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,subname,category);
-         this.$.newsubmitbox.open();
+         this.$.mydialog.toggleDialog();
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
          document.querySelector('#Languageprefernceid').selected=-1;
@@ -308,12 +283,8 @@
             {
               this.$.Languageprefernce.hidden=false;
             }
-      },
-      Fnclose:function()
-      {
-        this.$.newsubmitbox.close();
       }
-
+     
     });
   })();  
   </script>
