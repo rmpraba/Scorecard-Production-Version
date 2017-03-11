@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+  <link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
 
 <dom-module id="Student-to-section-mapping-card">  
   <template>
@@ -86,6 +88,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: absolute;
         margin-left: 77%;
         margin-top: -1%;
+      }
+
+      #previousid,#Nextid
+      {
+         border-radius: 10px;
+           width: 350px;
+           height: 150px;
+      }
+       #labelid
+
+      {
+            font-style: oblique;
+            font-size: 1.3em;
+
+      }
+
+      .buttons paper-button
+      {
+        @apply(--layout-right);
+      background-color: #363636;
+      color: #ffffff;
+      width: 10%;
+      margin-top: 4%;
       }
     </style>    
     
@@ -172,13 +197,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
    
      <paper-dialog id="previousid" modal>
-       <h2> Please Click Previous Button</h2>
-       <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
-   </paper-dialog>
+          <label  id="labelid">Please Click Previous Button</label>  
+          <div class="buttons">
+            <paper-button dialog-confirm autofocus> close</paper-button>
+          </div>    
+      </paper-dialog>
      <paper-dialog id="Nextid" modal>
-       <h2>Please Click Next Button</h2>
-            <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
-   </paper-dialog>
+        <label  id="labelid">Please Click Next Button</label>
+        <div class="buttons">
+          <paper-button  dialog-confirm autofocus> close</paper-button>
+        </div>      
+     </paper-dialog>
       <iron-ajax        
         id="counttypevalueajax"
           url="{{counttypevalueurl}}"
@@ -190,6 +219,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         debounce-duration="300">
       </iron-ajax>
      
+     <demosumbit-card id="mydialog"></demosumbit-card>  
       <master-ui-service id="uiservice"></master-ui-service>
    </template>
   <script>
@@ -692,6 +722,7 @@ FnSavez:function(e)
       this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
+       this.$.mydialog.toggleDialog();
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
          kn.splice(obj);

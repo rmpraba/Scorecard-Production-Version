@@ -21,6 +21,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-left:2.0em;
       width:100%
      }  
+    #empremapid
+    {
+        border-radius: 10px;
+        width: 350px;
+        height: 150px;
+    }
+
+    .buttons paper-button
+      {
+        @apply(--layout-right);
+      background-color: #363636;
+      color: #ffffff;
+      width: 10%;
+      margin-top: 4%;
+    }
+
+     #labelid
+
+      {
+            font-style: oblique;
+            font-size: 1.3em;
+
+      }
     </style>
     <div>
       <table>
@@ -35,17 +58,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </tr>
       </table>
       <paper-dialog id="empremapid" modal>
-          <center><h3>PREVIOUS MAPPING SECTION</h3></center>
+        <label  id="labelid">PREVIOUS MAPPIED SECTION</label>
              <template is="dom-repeat" items="{{dbsectionvalue}}" as="view">
                   <h4>{{view.section_id}}</h4>
            </template>
      <div class="buttons">
-       <paper-button on-click="FnSubmit" style="color:white;background-color:black;">Submit
-       </paper-button>
-       <paper-button dialog-confirm autofocus style="color:white;background-color:black;" on-click="fncancal">cancel
+       <paper-button on-click="FnSubmit">Submit</paper-button>
+       <paper-button dialog-confirm autofocus  on-click="fncancal">cancel
           </paper-button>
        </div>
-
      </paper-dialog>
 
           <iron-ajax        

@@ -9,13 +9,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
 <dom-module id="employe-category-creation-card">
   <template>
    <style>    
-      :host {
+      :host {  
         display: block;
       }  
-    
+       
       .outercard
       {
         @apply(--layout-vertical);
@@ -169,8 +171,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="deltbutton" id="subx1">
                 <paper-button on-click="fndelete">Delete</paper-button> 
              </div>
-   
-<master-ui-service id="uiservice"></master-ui-service>
+   <demosumbit-card id="mydialog"></demosumbit-card>
+    <master-ui-service id="uiservice"></master-ui-service>
  
 <iron-ajax        
         id="fnselectgradezajax"
@@ -248,12 +250,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      },
      fnsubmit:function(e){
          this.$.uiservice.fnsavesection(empsectionarr);
+         this.$.mydialog.toggleDialog();
          document.querySelector('emp-grade-get-card').Fngradecleansection(); 
          document.querySelector('emp-category-get-card').FnRefresh();
          document.querySelector('employe-category-creation-card').FnRefresh();
         },      
      fndelete:function(e){ 
       this.$.uiservice.fndelsectionz(empsectionarr1);
+      this.$.mydialog.toggleDialog1();
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
      },

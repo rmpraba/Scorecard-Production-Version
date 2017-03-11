@@ -1706,7 +1706,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
     },
   fnschooltypesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res)); 
+      //alert(JSON.stringify(res)); 
  },
    fnsavesection:function(empsectionarr)
    {
@@ -3052,12 +3052,12 @@ insertschoolTypename:function(schooltypesarr)
              obj.langugagepref=langugagepref;
              obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
            this.FnSecondLangSubjectToStudentparam=obj;
-         alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
         this.$.FnSecondLangSubjectToStudentajax.generateRequest();
       }
       },
       FnSecondLangSubjectToStudentResponse:function(e){
-            alert(JSON.stringify(e.detail.response.returnval));
+           // alert(JSON.stringify(e.detail.response.returnval));
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){
@@ -3090,7 +3090,7 @@ insertschoolTypename:function(schooltypesarr)
         }
       },
       FnSecondLangSubjectToStudentsetsResponse:function(e){
-            alert(JSON.stringify(e.detail.response.returnval));
+          //  alert(JSON.stringify(e.detail.response.returnval));
       },
        FnThirdLangSubjectToStudent:function(fnthidlanginfo1arr){
                    for(var i=0;i<fnthidlanginfo1arr.length;i++){
@@ -3122,7 +3122,7 @@ insertschoolTypename:function(schooltypesarr)
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
-        alert(JSON.stringify(e.detail.response.returnval));
+       // alert(JSON.stringify(e.detail.response.returnval));
       },
        SelectSchoolgrades:function()
        {

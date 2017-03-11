@@ -9,9 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="new-employee-creation-card">
-  <template>
+  <template>   
     <style>
      :host
      {  
@@ -104,14 +105,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           top: 10%;
        }
 
-        hr
+       /* hr
         {
           position: fixed;
           border: 0.5px solid grey;
           width: 1500px;
           margin-top: 4%;
           margin-left: -14%;
-        }
+        }*/
         .titlesdiv
         {
           position: fixed;
@@ -334,7 +335,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button class="subbutton" on-click="FnpersonalSave">Save</paper-button>
           </div>               
     </div>    
-
+    <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
@@ -388,6 +389,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               emplyname=this.toTitleCase(this.name);
                this.$.uiservice.fninsetschoolemployeeinfo(this.empid,emplyname,this.Telephone,this.MobileNumber,this.password,this.mailid,empschooltypearr,setrolearr);
+               this.$.mydialog.toggleDialog();
                this.FnRefresh();
                this.$.uiservice.selectschooltype();
                this.$.uiservice.selectrolename();
@@ -459,10 +461,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.uiservice.Fnpersonalinfo(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword);
         this.$.uiservice.fnschooltypesaveinfo(passschooltypearr);
         this.$.uiservice.fnrolesaveinfo(passrolearr);
+        this.$.mydialog.toggleDialog2();
         document.querySelector('new-employee-creation-role-item-card').typesplicerole();
          document.querySelector('new-employee-creation-schooltype-item-card').typesplice();
          this.$.uiservice.fnschoolemployeepersonal();
-        
        this.ready();
        },
 
@@ -470,7 +472,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         this.$.tit4.hidden=false;
         this.$.tit3.hidden=true;
-      }
+      },
+
+      fundelttt:function()
+      {
+        this.$.mydialog.toggleDialog1();
+      },
+
 });
   })();
   </script>

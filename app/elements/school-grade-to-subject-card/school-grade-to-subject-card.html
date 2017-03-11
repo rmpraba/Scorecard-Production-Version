@@ -3,6 +3,9 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+  <link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
+
    <dom-module id="school-grade-to-subject-card">
    <template>
     <style>
@@ -135,18 +138,22 @@
       </table>  
     </div>    
     </div>    
-    <master-ui-service id="uiservice"></master-ui-service>
         <div >
             <paper-button on-click='FnSave'></paper-button>  
          </div>
-<div style="color:white;background-color:black;width:7%;margin-left:41%;" id="z">
+        <div style="color:white;background-color:black;width:7%;margin-left:41%;" id="z">
             <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
-    <div style="color:white;background-color:black;width:7%;margin-left:50%;margin-top:-3%;" id="z1">
+       <div style="color:white;background-color:black;width:7%;margin-left:50%;margin-top:-3%;" id="z1">
            <paper-button on-click="fndelete">Delete</paper-button>  
-    
          </div>
  
+
+   <demosumbit-card id="mydialog"></demosumbit-card>  
+    <master-ui-service id="uiservice"></master-ui-service>
+
+
+
   </template>
   <script>
   (function() {
@@ -186,10 +193,12 @@
       fndelapssgradedetails:function(arr){
          delpassservicearr=arr; 
       },
-      FnSavez:function(e){
+      FnSavez:function(e)
+      {
            //alert('save');
            //alert(JSON.stringify(passservicearr));
            this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
+           this.$.mydialog.toggleDialog();
          //  passservicearr=[];
            document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
            document.querySelector('schoolcategory-type-item-card').fnschoolcategoryclean(); 
@@ -197,8 +206,10 @@
            document.querySelector('school-type-item-card').FnRefresh();
            document.querySelector('schoolcategory-type-item-card').FnRefresh();
      },
-     fndelete:function(e){
+     fndelete:function(e)
+     {
         this.$.uiservice.fndeletegradetosubmapping(delpassservicearr);
+        this.$.mydialog.toggleDialog1();
      document.querySelector('school_grade-subject-item-card').Fngradeclean1(); 
     
      },

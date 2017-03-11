@@ -339,7 +339,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
     <div class="container1">
       <div class="card" hidden$="{{createemployee}}">
-        <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px">
+        <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.jpg" height="180px" width="180px">
              <h4> Employee</h4>
         </paper-button>
       </div>
@@ -514,7 +514,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         /*academicyear = e.target.selectedItem.textContent.trim();*/
         academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
-        //  alert(academicyear);
+          //alert(academicyear);
           if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="CategorytoSchooltype")
           {
            document.querySelector('app-card').setPage('homepage','');
@@ -693,6 +693,19 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        }
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
+         this.createemployee=false;
+         this.schooltyptograde=false;
+          this.employeetograde=false;
+          this.categorytoschooltype=false;
+          this.gradetosubject=false;
+          this.sectioncreation=false;
+          this.studentfixed=false;
+           this.workingdats=false;
+            this.emptocategory=false;
+            this.gradetosection=false;
+            this.subjecttostudent=false;
+         
+          
           }
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
@@ -706,7 +719,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-          this.schooltyptograde=false;
          }
      
 
@@ -724,48 +736,18 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           // this.editinfo=false;
           // this.ConsolidatedReport=false;
         }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn")
-         {
-             this.createemployee=false;
-
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
           // this.BA=false;
           // this.TA=false;
           }
-          if(sessionStorage.getItem("curr_sess_loggedroleid")=="class-teacher"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
-          {
-                this.subjecttostudent=false;
-          }
-
-          if(sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress")
-          {
-              this.categorytoschooltype=false;
-              this.employeetograde=false;
-               this.workingdats=false;
-              this.sectioncreation=false;
-
-          }
-
-          if(sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
-          {
-                this.gradetosection=false;
-              this.studentfixed=false;
-          }
-
-
-          if(sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn")
-          {
-              this.gradetosubject=false;
-          }
-
         if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
 
             this.highlevelcommon=false;
           }
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
-            this.emptocategory=false;
             this.coordinator=false;
-          }
+            }
 
         
       },
@@ -871,9 +853,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
    
          this.$.uiservice.selectsectiongrade();
-     /*    document.querySelector('school-section-creation-card').FnRefresh();
+         document.querySelector('school-section-creation-card').FnRefresh();
          document.querySelector('school-grade-section-creation-card').fnrefresh();
-     */   //this.$.uiservice.SchoolCategorytype();
+        //this.$.uiservice.SchoolCategorytype();
              this.$.cdialog.toggle(); 
 
       },
@@ -900,9 +882,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        localStorage.setItem('curr_sess_loggedmasteracadamic','GradeToSubject');
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
-        document.querySelector('school-type-item-card').FnRefresh();
-        document.querySelector('schoolcategory-type-item-card').FnRefresh();
-        document.querySelector('school-grade-to-subject-card').fnbuttoncln();
+        //document.querySelector('school-type-item-card').FnRefresh();
+        //document.querySelector('schoolcategory-type-item-card').FnRefresh();
+        //document.querySelector('school-grade-to-subject-card').fnbuttoncln();
         document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
          this.$.cdialog.toggle(); 
    
@@ -936,7 +918,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         FnCreateEmployee:function(e)
 
         {
-        localStorage.setItem('curr_sess_loggedmasteracadamic','employeecreation');
+             localStorage.setItem('curr_sess_loggedmasteracadamic','employeecreation');
   
         //document.querySelector('schooltype-card').ready();
         this.$.uiservice.fnempgenerateid();

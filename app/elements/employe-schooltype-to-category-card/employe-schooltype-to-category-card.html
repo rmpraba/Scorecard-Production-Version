@@ -5,10 +5,13 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
+
 <dom-module id="employe-schooltype-to-category-card">
   <template>
     <style>
-      :host {
+      :host {  
         display: block;
       }
      .card1{
@@ -209,6 +212,7 @@
     <paper-button on-click="Fndelte">Delete</paper-button>
    </div>
       
+    <demosumbit-card id="mydialog"></demosumbit-card>
     
   <master-ui-service id="uiservice"></master-ui-service>      
 </template>
@@ -301,6 +305,7 @@
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
+        this.$.mydialog.toggleDialog();
        document.querySelector('employe-creation-card').Fnsubjectclean(); 
        document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
        document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
@@ -310,6 +315,7 @@
        Fndelte:function(e){
        //alert(JSON.stringify(deldbarrs));
         this.$.uiservice.fnemployeeedelfn(deldbarrs);
+        this.$.mydialog.toggleDialog1();
        document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
        },

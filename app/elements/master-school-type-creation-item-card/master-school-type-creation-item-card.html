@@ -1,5 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
 
 <dom-module id="master-school-type-creation-item-card">
   <template>
@@ -60,7 +62,9 @@
         method="post"
         on-response="fnschooltypegradmapzdbResponse"
         debounce-duration="300">
-   
+    
+    <demosumbit-card id="mydialog"></demosumbit-card>  
+
       <master-ui-service id="subservice"></master-ui-service>
  
   </template>
@@ -108,7 +112,8 @@
        },
 
       fnsubmit:function(e){
-       for(var i=0;i<getarr.length;i++){
+       for(var i=0;i<getarr.length;i++)
+       {
           var school_id=getarr[i].school_id;
           var schooltype=getarr[i].schooltype;
           var gradename=getarr[i].gradename;
@@ -124,9 +129,11 @@
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();
         }
+        this.$.mydialog.toggleDialog();
         // this.fnclean();
       },
-      close:function(e){
+      close:function(e)
+      {
          this.fnclean();
       },
       fnschooltypegradmapzResponse(e){
