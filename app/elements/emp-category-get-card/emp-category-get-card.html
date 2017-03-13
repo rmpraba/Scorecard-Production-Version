@@ -59,42 +59,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       fnschoolgrade:function(e)
       {
-        //alert(this.empschoolnames);
-        //alert(document.querySelector('#'+e.target.id).checked);
-      if(document.querySelector('#'+this.id).checked==true)
+    if(document.querySelector('#'+this.id).checked==true)
        {
-    this.empschoolgradezurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
+        sessionStorage.setItem("curr_sess_loggedschooltupes",this.empschoolnames);
+        this.f1();
+        this.f2();
+        }
+        },
+        f1:function(e){
+          this.empschoolgradezurl=sessionStorage.getItem("addrinfo")+"/getschooltypeas-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-          obj.schooltypeid=this.empschoolnames;
+          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
           obj.id=this.id;
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
             sclltypearr.push(obj);
           this.empschoolgradezparam=obj;
          // alert(JSON.stringify(obj));
         this.$.empschoolgradezajax.generateRequest();
-   this.empgetnameurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
+   
+        },
+        f2:function(e){
+    this.empgetnameurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":"     "};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-          obj.schooltypeid=this.empschoolnames;
+          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
           obj.id=this.id;
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           sclltypearr.push(obj);
           this.empgetnameparam=obj;
-          //alert(JSON.stringify(obj));
           this.$.empgetnameajax.generateRequest();
-        }
+   
         },
         empgetnameResponse:function(e){
            var res=e.detail.response.returnval;
-           //alert(JSON.stringify(res));
         document.querySelector('employe-category-creation-card').fnschoolempnames(res);
       },
       empschoolgradezResponse:function(e)
       {
        var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
-      document.querySelector('employe-category-creation-card').fnschoolempgrade(res);
+        document.querySelector('employe-category-creation-card').fnschoolempgrade(res);
               }
     });
  

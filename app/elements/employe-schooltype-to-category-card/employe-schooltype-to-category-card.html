@@ -74,7 +74,7 @@
        <div class="outercard">
             <div class="col-sm-4" style="margin-top: 4%;">
               <div class="form-group-heading">
-                <h4>SCHOOL TYPE</h4>   
+                <h4>SCHOOL TYPE</h4>    
               </div>
                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
                 <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
@@ -131,7 +131,6 @@
                       <h5>{{view.srtarr}}</h5>
                     </template>
                   </th>   
-                  <th></th>
               </tr>
               </thead>
               <tbody>
@@ -172,8 +171,9 @@
                       <h4 style="margin-left:0%">{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                     </template>
                   </th>   
-                  <th></th>
-              </tr>
+                    <th>Save</th>
+                    <th>Delete</th>
+               </tr>
               </thead>
               <tbody>
                 <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
@@ -184,9 +184,15 @@
                     <td class="innercard">
                       <template is="dom-repeat" items="{{view.employee}}" as="s">
                         <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
-                      </template>
+                      </template>   
                   </td>
-                  <td></td>  
+                  <td>
+                  <paper-icon-button icon="save" on-click="FnSubmit"></paper-icon-button>
+                 </td>
+                  <td>
+                  <paper-icon-button icon="close" on-click="Fndelte"></paper-icon-button>
+                 </td>  
+              
                 </tr>
                 </template>
               </tbody>
@@ -203,7 +209,7 @@
    <paper-button ></paper-button>
      </div>
     <div id="subbutton1" style="color:white;background-color:black;width:7%;margin-left:41%;" >
-    <paper-button on-click="FnSubmit">Submit</paper-button>
+    <paper-button style="color:white;background-color:black;width:7%;margin-left:41%;" on-click="FnSubmit">Submit</paper-button>
     </div>
       <div id="empidz1" style="color:white;background-color:black;width:7%;margin-left:50%; margin-top:-3%;" >
     <paper-button on-click="Fndelte">Delete</paper-button>
@@ -222,8 +228,8 @@
      var setspecificarr=[];
      var bigarrz=[];
      var deldbarrs=[];
-     //var categoryidxn=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-     //var schooltypeidxn=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+     var overall1=[];
+   
     Polymer({
       is: 'employe-schooltype-to-category-card',
       ready:function(){
@@ -261,8 +267,7 @@
               this.$.empLanguageprefernce.hidden=true;
               var empty='empty';
               document.querySelector('employee-category-item-card').fnsetemployeelanprefer(empty);
-   
-            }   
+               }   
              },
         clean:function(e){
         this.$.empLanguageprefernce.hidden=true;
@@ -295,20 +300,17 @@
         this.$.generateidz.hidden=true;
       }
     },
-    deldbarr:function(arr){
-       deldbarrs=arr;
+    deldbarr:function(arr){  
+       deldbarrs=arr;  
     },
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
        document.querySelector('employe-creation-card').Fnsubjectclean(); 
-       document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
-       document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
-       document.querySelector('employee-category-item-card').FnRefresh();      
        
        },
        Fndelte:function(e){
-       //alert(JSON.stringify(deldbarrs));
+       alert(JSON.stringify(deldbarrs));
         this.$.uiservice.fnemployeeedelfn(deldbarrs);
        document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
@@ -328,7 +330,11 @@
         grnerate:function(e)
         {
           //document.querySelector('employe-creation-card').Fnsubjectclean();        
-         
+            if(overall1!=0){
+              alert('1');
+          document.querySelector('employe-creation-card').Fnsubjectclean1();
+
+            }
             var setarrr=[];
                  for(var i=0;i<getcategory.length;i++)
                  {
@@ -397,13 +403,12 @@
                     }
                    nameobj.employee=a;
                    overall.push(nameobj);
+                   overall1.push(nameobj);
                    a=[];
                 }
                  this.subjectbigarr=overall;
-                    setspecificarr=overall;
+                  //  setspecificarr=overall;
                  
-                this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                 this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
                     
                  overall.splice();

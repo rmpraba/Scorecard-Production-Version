@@ -70,6 +70,7 @@
      var paspstuinfo1=[];
      var rr;
      var rr1;
+     var v=[];
 
    Polymer({
       is: 'student-list-mapping-item',
@@ -99,8 +100,8 @@
            obj.subjectid=this.subjectid;
            obj.langugagepref=this.langugagepref;
            obj.subjectname=this.subjectname;
-       
-           paspstuinfo.push(obj);
+            paspstuinfo.push(obj);
+            v.push(obj);
        //    alert(JSON.stringify(paspstuinfo));
 
          for(var i=0;i<paspstuinfo.length;i++){
@@ -137,9 +138,8 @@
            obj.subjectid=this.subjectid;
            obj.langugagepref=this.langugagepref;
            obj.subjectname=this.subjectname;
-       
-              
            paspstuinfo.push(obj);
+           v.push(obj);
       //     alert(JSON.stringify(paspstuinfo));
   
          for(var i=0;i<paspstuinfo.length;i++){
@@ -172,6 +172,7 @@
            obj.langugagepref=this.langugagepref;
            obj.subjectname=this.subjectname;
            paspstuinfo1.push(obj);
+            v.push(obj);
            //alert(JSON.stringify(paspstuinfo));
            for(var i=0;i<paspstuinfo1.length;i++){
                if(paspstuinfo1[i].studentid==this.studentid){
@@ -236,13 +237,36 @@
            
          
          },
-    FnSecondLang:function(e){
+         FnSecondLang11:function(e){
 
-         if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4"){
-           for(var i=0;i<paspstuinfo.length;i++){
-              var r=paspstuinfo[i].id;
+       for(var i=0;i<v.length;i++){
+         var r=v[i].id;
+         alert(r);
                document.querySelector('#'+r).checked=false;
             }
+           var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":"","subjectname":""};
+          v.splice(obj);
+      
+         },
+    FnSecondLang:function(e){
+
+       var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":"","subjectname":""};
+           obj.id=this.id;
+           obj.Acadamicyear=localStorage.getItem("curr_sess_selectedTerms");
+           obj.gradename=localStorage.getItem("curr_sess_selectedgrade");
+           obj.sectionname=localStorage.getItem("curr_sess_selectedSection");
+           obj.gradeid=localStorage.getItem("curr_sess_selectedgrade1");  
+           obj.sectionid=localStorage.getItem("curr_sess_selectedSectionvalue1");
+           obj.studentname=this.studentname;
+           obj.studentid=this.studentid;
+           obj.subjectid=this.subjectid;
+           obj.langugagepref=this.langugagepref;
+           obj.subjectname=this.subjectname;
+           paspstuinfo.splice(obj);
+           paspstuinfo.splice(obj);
+        
+
+        /* if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4"){
          
             paspstuinfo.splice(obj);
    
@@ -263,7 +287,7 @@
       
              }
           
-        }
+        }*/
       },
       
     });

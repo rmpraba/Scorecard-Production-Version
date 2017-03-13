@@ -85,6 +85,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-left:2.5em;
      }
      
+         .innercard1{     
+      @apply(--layout-horizontal);
+       width:100%
+      margin-left:5.0em;
+     }
+   
     </style>
 
 
@@ -102,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <label>School Type</label>
             <template is="dom-repeat" items="{{empschoolarr}}" as="view">
               <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
-            </template>
+            </template>   
           </div>     
     
             <div class="newcard">
@@ -122,47 +128,79 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </paper-menu>
               </paper-dropdown-menu>
             </div>  
-
+       
           </div>  
         </table>
       </div>
    
-      <div id=sectionz hidden$="{{hidenewgrid}}">
-        <table class="table table-bordered" style="margin-top:5%">
-          <div class="container">
-            <thead> 
-              <tr>
-                <th></th>
-                <th class="innercard">
-                  <template is="dom-repeat" items="{{setsectionname}}" as="view">
-                    <h4 style="margin-left:6.5%;">{{view.subjectarr}}</h4>
-                  </template>
-                </th>
-                <th></th>
-              </tr>   
-            </thead>
-
-            <tbody>
-              <template is="dom-repeat" items="{{allarrr}}" as="view">
+        <table class="table table-bordered">
+           <tbody>
                 <tr>
-                  <td class="outcard"> 
-                    <h4>{{view.subject_name}}</h4>
-                  </td>
-                  <td class="innercard">
-                    <template is="dom-repeat" items="{{view.subject}}" as="s">
-                      <emp-grade-get-card employeesectionidz="{{s.section_id}}" id="{{s.id}}" employeesubjectz="{{view.subject_name}}"  empsubjectidz="{{view.subjectid}}" employeesectionnamez="{{s.section_name}}" employeeidz="{{empselectid}}" empgradeidz="{{setgradeidz}}" >
-                      </emp-grade-get-card>
-                    </template>
-                  </td>
-                  <td></td>
+                          <th>Grade</th>
+                          <th>Subject</th>
+                          <th><center><h2>Section Name</h2></center></th>
+                          <th>Save</th>  
+                          <th>Delete</th>
+                 </tr>
+              
+              <template is="dom-repeat" items="{{allarrr}}" as="view">
+              
+                  <tr>
+                          <td></td>
+                          <td></td>
+                          <td class="innercard1">
+                            <template is="dom-repeat" items="{{view.head}}" as="s">
+                              <h4 style="margin-left:5%">{{s.section_id}}</h4>
+                            </template>
+                          </td>
+                          <td></td>  
+                          <td></td>
+                       </tr>
+              
+                  <template is="dom-repeat" items="{{view.busvalue}}" as="s">
+                  <tr>
+                      <td class="outcard"> 
+                  <h4>{{view.gradename1}}</h4>
+                    </td>
+                     <td class="outcard"> 
+                      <h4>{{s.subname}}</h4>
+                     </td>
+                     <td class="innercard">
+                       <template is="dom-repeat" items="{{s.subject}}" as="m">
+                        <emp-grade-get-card employeesectionidz="{{m.class_id}}" id="{{s.subname1}}{{m.class_id}}"   empsubjectidz="{{s.subname1}}" employeesectionnamez="{{m.section_id}}" employeeidz="{{empselectid}}" empgradeidz="{{view.gradename}}" >
+                          </emp-grade-get-card>
+                     </template>
+                   </td>
+                 
+
+                  <td><paper-icon-button  icon='save' on-click='fnsubmit'></paper-icon-button>
+                   </td>
+                 <td><paper-icon-button  icon='close' on-click='fndelete'></paper-icon-button>
+                   </td>
                 </tr>
+                   </template>
+              
               </template>
+
             </tbody>
-          </div>
         </table>
-      </div>           
-    </div>  
+  
+
+
+
+    <!--  <div>
+         <template is="dom-repeat" items="{{allarrr}}" as="view">
+         <p>{{view.subname}}</p>
+           <template is="dom-repeat" items="{{view.subject}}" as="s">
+
+             <paper-checkbox>{{s.section_id}}</paper-checkbox>
+           </template>
+          
+         </template>
+      </div>   -->
+     
               <div class="subbutton" id="subx">
+     
                 <paper-button on-click="fnsubmit">Submit</paper-button> 
              </div>
 
@@ -201,15 +239,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var sectionnamearr=[];
   var empsectionarr=[];
   var empsectionarr1=[];
+  var sectionnamearr1=[];
+  var overall11=[];
   
     Polymer({
       is: 'employe-category-creation-card',
       ready:function(e){
      
-        this.$.sectionz.hidden=true;
-        this.$.subx.hidden=true;
-            this.$.subx1.hidden=true;
-    
+       
       },
       FnRefresh:function()
       {
@@ -223,15 +260,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.subx1.hidden=true;
       },
         fnschoolempnames:function(arr){
-          this.empschoolnamesarr=arr;
-        },  
+           //  alert(JSON.stringify(arr));
+             this.empschoolnamesarr=arr;
+         //    alert("1");
+      },  
         fnschoolempgrade:function(arr){
-          this.empschoolgrads=arr;
-        },
+          //alert(JSON.stringify(arr));
+           sectionnamearr1=arr;
+            
+
+         },
         fnselectgrade:function(e){
-                  this.setgradeid=e.target.selectedItem.textContent.trim();
-      this.setgradeidz=e.target.selectedItem.value;
-     this.fnselectgradezurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
+      this.fnselectgradezurl=sessionStorage.getItem("addrinfo")+"/tranfersection-service";
           var obj={"setgradeid":"","school_id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.setgradeid=this.setgradeid;
@@ -246,12 +286,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                sectionnamearr=e.detail.response.returnval;
      },
      fnsubmit:function(e){
-         this.$.uiservice.fnsavesection(empsectionarr);
-         document.querySelector('emp-grade-get-card').Fngradecleansection(); 
-         document.querySelector('emp-category-get-card').FnRefresh();
-         document.querySelector('employe-category-creation-card').FnRefresh();
+          this.$.uiservice.fnsavesection(empsectionarr);
+          document.querySelector('emp-grade-get-card').Fngradecleansection(); 
+          document.querySelector('emp-category-get-card').FnRefresh();
+          document.querySelector('employe-category-creation-card').FnRefresh();
         },      
-     fndelete:function(e){ 
+       fndelete:function(e){ 
       this.$.uiservice.fndelsectionz(empsectionarr1);
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
@@ -259,16 +299,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      fnsetempsection:function(arr)
      {
       empsectionarr=arr;
-  //    alert(JSON.stringify(empsectionarr));
+     alert(JSON.stringify(empsectionarr));
      },
        fnsetempsection1:function(arr){
       empsectionarr1=arr;
   //    alert(JSON.stringify(empsectionarr));
     },
   
-    fnemployeename:function(e)
-    {
-         this.empselectid=e.target.selectedItem.value;
+       f11:function(e){
           this.fnemployeenamezurl=sessionStorage.getItem("addrinfo")+"/empmappingsubject-service";
           var obj={"empselectid":"","school_id":""};
           obj.empselectid=this.empselectid;
@@ -276,14 +314,145 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.fnemployeenamezparam=obj;
           alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
-         },
+       
+        },
+        f12:function(e){
+        document.querySelector('emp-category-get-card').f1(); 
+     },
+
+       
+    fnemployeename:function(e)
+    {  
+       this.empselectid=e.target.selectedItem.value;
+         this.f12();
+       this.f11();  
+        },
      
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
+      alert(JSON.stringify(sectionnamearr1));
+      alert(JSON.stringify(empnamearrr));
+   /*    var setarr=[];
+                 for(var i=0;i<sectionnamearr1.length;i++){
+                          var section_name=sectionnamearr1[i].section;
+                            var obj={"subjectarr":""};
+                                obj.subjectarr=section_name;
+                               setarr.push(obj);
+                          }
+                 this.setsectionname=setarr;
+
+   */  
+      if(overall11!=0){   
+     document.querySelector('emp-grade-get-card').Fngradecleansection2(); 
+       
+        }
+          var generatearr=[];
+        var a=[];
+        var overall=[];
+       for(var k=0;k<sectionnamearr1.length;k++)
+       {       
+         var nameobj={"grade_id":"","grade_name":""};
+         nameobj.grade_id=sectionnamearr1[k].grade_id; 
+         nameobj.grade_name=sectionnamearr1[k].grade_name; 
+          var obj={"section_id":"","class_id":""};
+        obj.section_id=sectionnamearr1[k].section_id;
+        obj.class_id=sectionnamearr1[k].class_id;
+        a.push(obj);
+        for(var l=k+1;l<sectionnamearr1.length;l++)
+        {
+           if(sectionnamearr1[k].grade_id==sectionnamearr1[l].grade_id)
+           {
+         var obj1={"section_id":"","class_id":""}
+             obj1.section_id=sectionnamearr1[l].section_id;
+             obj1.class_id=sectionnamearr1[l].class_id;
+             a.push(obj1);
+             sectionnamearr1.splice(l,1);
+             l--;
+         }}
+            nameobj.subject=a;
+            nameobj.head=a;
+         
+           overall.push(nameobj);
+          overall11.push(nameobj);
+     
+          a=[];
+       }
+        alert(JSON.stringify(overall));
+         var aoo=[];
+          for(var j=0;j<overall.length;j++){
+            for(var i=0;i<empnamearrr.length;i++){
+      
+              var obj={"gradename":"","gradename1":"","subname":"","subname1":"","subject":"","head":""};
+                  obj.subname=empnamearrr[i].subject;
+                   obj.subname1=empnamearrr[i].subjectid;
+            
+                  obj.gradename=overall[j].grade_id;
+                  obj.gradename1=overall[j].grade_name;
+                  obj.subject=overall[j].subject;
+                  obj.head=overall[j].head;
+                   aoo.push(obj);
+                
+               }
+
+       };
+              
+        var a1=[];
+        var overall1=[];
+       for(var k=0;k<aoo.length;k++)
+       {       
+         var nameobj={"gradename1":"","gradename":"","head":""};
+         nameobj.gradename=aoo[k].gradename; 
+         nameobj.gradename1=aoo[k].gradename1; 
+         nameobj.head=aoo[k].head; 
+      
+        var obj={"subname1":"","subname":"","subject":""};
+         obj.subname=aoo[k].subname;
+         obj.subject=aoo[k].subject;
+         obj.subname1=aoo[k].subname1;
+        a1.push(obj);
+        for(var l=k+1;l<aoo.length;l++)
+        {
+           if(aoo[k].gradename==aoo[l].gradename)
+           {
+         var obj1={"subname1":"","subname":"","subject":""}
+             obj1.subname1=aoo[l].subname1;
+             obj1.subname=aoo[l].subname;
+             obj1.subject=aoo[l].subject;
+             a1.push(obj1);
+             aoo.splice(l,1);
+             l--;
+         }}
+            nameobj.busvalue=a1;
+         
+           overall1.push(nameobj);
+          a1=[];
+        }
+        alert(JSON.stringify(overall1));
+        this.allarrr=overall1;
+        this.$.uiservice.empgetsectionvalues(this.empselectid);
+     /*   this.$.sectionz.hidden=false;
+        this.$.subx.hidden=false;
+        this.$.subx1.hidden=false;
+   */
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
          //alert(JSON.stringify(sectionnamearr));
          // alert(JSON.stringify(empnamearrr));
        
-  var setarr=[];
+  /*var setarr=[];
             for(var i=0;i<sectionnamearr.length;i++){
                           var section_name=sectionnamearr[i].section;
                             var obj={"subjectarr":""};
@@ -345,21 +514,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // alert(JSON.stringify(obj1));
            a=[];
    }
-        //alert(JSON.stringify(overall));
+        alert(JSON.stringify(overall));
         this.allarrr=overall;
         this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
         this.$.sectionz.hidden=false;
         this.$.subx.hidden=false;
         this.$.subx1.hidden=false;
    
-     // overall.splice(0,1);
+  */   // overall.splice(0,1);
         /* this.bigarr=overall;
          overall.splice();
          generatearr=[];
          this.$.uiservice.fngetThefunction();
         */
+      }
 
-}
        });
       
       })();
