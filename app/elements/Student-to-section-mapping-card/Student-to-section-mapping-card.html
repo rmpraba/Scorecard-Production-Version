@@ -197,6 +197,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
    
      <paper-dialog id="previousid" modal>
+
+       <h2> Please Click Previous Button</h2>
+       <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
+   </paper-dialog>
           <label  id="labelid">Please Click Previous Button</label>  
           <div class="buttons">
             <paper-button dialog-confirm autofocus> close</paper-button>
@@ -255,14 +259,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
 
          this.counttypevalueparam=obj;
-         alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
          this.$.counttypevalueajax.generateRequest();
         },
     counttypevalueResponse:function(e){
            var res=e.detail.response.returnval; 
-           alert(JSON.stringify(res));
+           //alert(JSON.stringify(res));
            var m=res[0].no_of_student;
-           alert(m)
+          // alert(m)
            this.noofstudent=m;
       //  document.querySelector('student-list-pass-section-card').noofstudent(m); 
   

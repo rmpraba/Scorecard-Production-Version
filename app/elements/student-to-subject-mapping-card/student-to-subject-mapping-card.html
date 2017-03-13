@@ -9,6 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-styles/color.html">
+    <link rel="import" href="../paper-spinner-lite.html">
+    <link rel="import" href="../paper-spinner.html">
+
 <dom-module id="student-to-subject-mapping-card">
   <template>
     <style>
@@ -126,6 +131,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </template>   
             </paper-menu>
           </paper-dropdown-menu>  
+       
+     
          </div>
         
         <div class="vertical-row" hidden$="{{hidenewline}}"></div>
@@ -144,7 +151,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 2%;">
           <table class="table table-bordered">
             <div class="container">
-            <!-- <table border="1" class="tt"> -->
               <thead>
                 <tr>
                   <!-- <td class="outcard"></td> -->
@@ -173,18 +179,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </table>  
         </div>    
       </div>
+  </div>    
 
-
-
-  </div>      
-
-
-      
+      <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
+        <table class="table table-bordered">
+        <!-- <table border="1" class="tt"> -->
+          <tbody>
+          <tr>
+            <td class="outcard" style="width: 25%;"></td>
+            <td class="innercard" style="margin-left: 1%;">
+              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                <h4 style="width:20%;">{{view.srtarr}}</h4>   
+              </template>
+            </td>
+            <td class="outcard">Save</td>
+          </tr>   
+          <template is="dom-repeat" items="{{bigarr}}" as="view">  
+            <tr>
+              <td class="outcard">
+                <h4>{{view.student_name}}</h4>
+              </td>
+              <td class="innercard">
+                <template is="dom-repeat" items="{{view.subject}}" as="s">
+                   <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
+                </template>
+              </td>
+              <td><paper-icon-button icon="save" on-click="fnsubmit"></paper-icon-button></td>
+            </tr>
+            </template>  
+        </tbody>    
+      </table>    
+    </div>    
+    </div>    
+     </div>
+       <!--       <div id="serveizzz">
+             <paper-spinner active></paper-spinner>
+        </div>
+   --> 
+   <!--  <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="fnsubmit">submit</paper-button>
+    -->  <!--  <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="ho">toggle</paper-button>
+   -->
       <div class="buttons" id="subid">
         <paper-button style="background-color:black;color:white;margin-left: 48%;" on-click="fnsubmit">submit</paper-button>
       </div> 
-     
-     <iron-ajax  
+       <iron-ajax  
         auto      
         id="FnSubjecttostudentlanguageajax"
         url="{{FnSubjecttostudentlanguageurl}}"
@@ -237,6 +275,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    var fnthidlanginfo1arr=[];
    var studbarr=[];
    var kn=[];
+   var overall1=[];
     Polymer({      
       is: 'student-to-subject-mapping-card',
 
@@ -262,7 +301,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    fnsecondlanginfo:function(arr){
    fnsecondlanginfoarr=arr;
    },
-     FnStosGrade:function(e)
+     FnStosGrade:function(e)  
      {     
          document.querySelector('#rsectionwww').selected=-1;
          this.FnStosGradeid=e.target.selectedItem.textContent.trim();
@@ -274,10 +313,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
       },  
         f12:function(e){
-                this.FnSubjecttostudentlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentlanguage-service";
-            this.$.FnSubjecttostudentlanguageajax.generateRequest();
-
-        },
+          this.FnSubjecttostudentlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentlanguage-service";
+          this.$.FnSubjecttostudentlanguageajax.generateRequest();
+     },
        f13:function(e){
               this.FnSubjecttostudentthirdlanguageurl=sessionStorage.getItem("addrinfo")+"/FnSubjecttostudentthirdlanguage-service";
             this.$.FnSubjecttostudentthirdlanguageajax.generateRequest();
@@ -285,28 +323,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         fnstudent:function(e){
           this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
-        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStoStermid":"","FnStosGradeid":""};
+        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStosGradeid":"","academic_year":""};
         obj.FnStoSSectionid=this.FnStoSSectionid;
         obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
-        obj.FnStoStermid=this.FnStoStermid;
+        obj.academic_year=this.FnStoStermid;
         obj.FnStosGradeid=this.FnStosGradeid;
         this.SbjecttoStudentmappingparam=obj;
        //alert(JSON.stringify(obj));   
         this.$.SbjecttoStudentmappingajax.generateRequest();
       
-        },
+          },
 
      FnStoSSection:function(e)
      {
+        
             this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
             this.FnStoSSectionid1=e.target.selectedItem.value;
-            this.hidenewsubcat=false;
+             this.hidenewsubcat=false;
             this.$.subid.hidden=false;
             this.$.labelhide.hidden=false;
             //this.hidenewline=false;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
             localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
             this.fnlangugageprefstudent();
+         
        if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
          {
              this.fnstudent();
@@ -347,33 +387,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 SbjecttoStudentmapping1Response:function(e){
      var res=e.detail.response.returnval;
-   //   alert(JSON.stringify(res));   
-     studbarr=res;
+      studbarr=res;
  },
  fnsubmit:function(e)
- {
-    
-     if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
+ {  if(this.FnStosGradeid=="Grade-5"||this.FnStosGradeid=="Grade-6"||this.FnStosGradeid=="Grade-7"||this.FnStosGradeid=="Grade-8"||this.FnStosGradeid=="Grade-9"||this.FnStosGradeid=="Grade-10")
       {
+       //  document.querySelector('student-list-mapping-item').FnSecondLang11();
            this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
            this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
             if(kn.length!=0)
             {
-               document.querySelector('student-list-mapping-item').FnSecondLang1(kn);  
-                      var obj={"dd":"","admno":"","langugagepref":""};
-                      kn.splice(obj);
            
             }
                 document.querySelector('student-list-mapping-item').FnSecondLang(); 
         }
-         else
+          else
          {
-             this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
-                if(kn.length!=0)
+              this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
+                if(kn.length!=0)  
                 {
-                  document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
-                  var obj={"dd":"","admno":"","langugagepref":""};
-                  kn.splice(obj);
+           //document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+           // var obj={"dd":"","admno":"","langugagepref":""};
+           //kn.splice(obj);
                 }
                   document.querySelector('student-list-mapping-item').FnSecondLang();             
           }
@@ -384,6 +419,13 @@ SbjecttoStudentmapping1Response:function(e){
        var res=e.detail.response.returnval; 
           
          var setarrr=[];
+            if(overall1!=0){
+              document.querySelector('student-list-mapping-item').FnSecondLang11();
+              document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+                     var obj={"dd":"","admno":"","langugagepref":""};
+                      kn.splice(obj);
+           
+             }
                  for(var i=0;i<res.length;i++){
                           var subject_name=res[i].subject_name;
                           
@@ -447,15 +489,10 @@ SbjecttoStudentmapping1Response:function(e){
          }}
            nameobj.subject=a;
            overall.push(nameobj);
+           overall1.push(nameobj);
+         
            a=[];
-
-
-
-
-      }
-     // alert(JSON.stringify(overall));
-     
-
+     }
       for(var j=0;j<overall.length;j++){
        var flag=0;
       for(var q=0;q<studbarr.length;q++){
@@ -471,7 +508,7 @@ SbjecttoStudentmapping1Response:function(e){
                       overall[j].subject[t].check=true;
                        var rrn=overall[j].subject[t].id;
                         var admno=overall[j].student_id;
-                          var langugagepref=overall[j].subject[t].langugage_pref;
+                        var langugagepref=overall[j].subject[t].langugage_pref;
                       
                       var obj={"dd":"","admno":"","langugagepref":""};
                       obj.dd=rrn;
@@ -488,13 +525,18 @@ SbjecttoStudentmapping1Response:function(e){
   
     // alert(JSON.stringify(overall));
      this.bigarr=overall;
-
-       
-     // alert(JSON.stringify(overall));
-     },
+              },
      FnSubjecttostudentthirdlanguageResponse:function(e){
          var res=e.detail.response.returnval; 
      var setarrr=[];
+         if(overall1!=0){
+              document.querySelector('student-list-mapping-item').FnSecondLang11();
+              document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
+                    var obj={"dd":"","admno":"","langugagepref":""};
+                    kn.splice(obj);
+          
+             }
+         
                  for(var i=0;i<res.length;i++){
                           var subject_name=res[i].subject_name;
                           
@@ -561,6 +603,8 @@ SbjecttoStudentmapping1Response:function(e){
          }}
            nameobj.subject=a;
            overall.push(nameobj);
+           overall1.push(nameobj);
+         
             a=[];
        }
 
@@ -595,10 +639,9 @@ SbjecttoStudentmapping1Response:function(e){
           }
      }
   
-    
-    this.bigarr=overall;
-   
-     },
+  
+        this.bigarr=overall;
+          },
       SbjecttoStudentmappingResponse:function(e){
           var res=e.detail.response.returnval;
           studentarr=res; 

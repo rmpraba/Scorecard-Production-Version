@@ -115,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.termids=e.target.selectedItem.textContent.trim();
         this.noofdays="";
   
-        this.$.uiservice.termrecovery(this.workingschoolid,this.termids,this.termgrade);
+        this.$.uiservice.termrecovery(this.termids,this.termgrade);
       },
      SelectGradeid:function(e){
        this.termgrade=e.target.selectedItem.value;
@@ -126,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             alert("select the current section");
            }
            else{
-    this.$.uiservice.terminsert(this.workingschoolid,this.termids,this.termgrade,this.noofdays);
+    this.$.uiservice.terminsert(this.termids,this.termgrade,this.noofdays);
        this.noofdays="";
       document.querySelector('#termid11').selected=-1;
       //document.querySelector('#grdj').selected=-1;

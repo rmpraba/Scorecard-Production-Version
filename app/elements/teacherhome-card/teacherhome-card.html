@@ -511,10 +511,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       
 
       FnSelectacademicyear:function(e){
-        /*academicyear = e.target.selectedItem.textContent.trim();*/
         academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
-          //alert(academicyear);
           if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="CategorytoSchooltype")
           {
            document.querySelector('app-card').setPage('homepage','');
@@ -853,6 +851,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
    
          this.$.uiservice.selectsectiongrade();
+
+          this.$.cdialog.toggle(); 
          document.querySelector('school-section-creation-card').FnRefresh();
          document.querySelector('school-grade-section-creation-card').fnrefresh();
         //this.$.uiservice.SchoolCategorytype();
@@ -882,6 +882,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        localStorage.setItem('curr_sess_loggedmasteracadamic','GradeToSubject');
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
+
         //document.querySelector('school-type-item-card').FnRefresh();
         //document.querySelector('schoolcategory-type-item-card').FnRefresh();
         //document.querySelector('school-grade-to-subject-card').fnbuttoncln();

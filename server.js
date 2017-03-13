@@ -7484,10 +7484,10 @@ app.post('/fetchstudnameforenable-service',  urlencodedParser,function (req,res)
 app.post('/deletesubjectz-service' ,  urlencodedParser,function (req, res)
 {  
    
-    var qur="DELETE FROM  md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empid+"' and emp_name='"+req.query.empname+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"' and and academic_year='"+req.query.academic_year+"'";
-  //console.log(qur);
+    var qur="DELETE FROM  md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empid+"' and emp_name='"+req.query.empname+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"'  and academic_year='"+req.query.academic_year+"'";
+  console.log(qur);
     connection.query(qur,function(err, rows)
-    {
+    {   
     if(!err)
     {
       res.status(200).json({'returnval': 'Deleted!'});
@@ -7615,10 +7615,10 @@ app.post('/fnsavesection-service' , urlencodedParser,function (req, res)
 {
   //   var obj={"school_id":"","empid":"","empgradeid":"","empsubjectid":"","empsectionid":""};
         
- var collection = {"school_id":req.query.school_id,"id":req.query.empid,"grade_id":req.query.empgradeid,"subject_id":req.query.empsubjectid,"section_id":req.query.empsectionid,"role_id":req.query.rolename,"flage":req.query.flage,"class_id":req.query.empsectionid1,"academic_year":req.query.academic_year};
+ var collection = {"school_id":req.query.school_id,"id":req.query.empid,"grade_id":req.query.empgradeid,"subject_id":req.query.empsubjectid,"section_id":req.query.empsectionid,"role_id":req.query.rolename,"flage":req.query.flage,"class_id":req.query.empsectionid1,"academic_year":req.query.academic_year,"school_type":req.query.schooltypeid};
    //console.log(JSON.stringify(collection));
 
-connection.query("SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"' and grade_id='"+req.query.empgradeid+"'and subject_id='"+req.query.empsubjectid+"'  and section_id='"+req.query.empsectionid+"' and role_id='"+req.query.rolename+"'  and class_id='"+req.query.empsectionid1+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
+connection.query("SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"' and grade_id='"+req.query.empgradeid+"'and subject_id='"+req.query.empsubjectid+"'  and section_id='"+req.query.empsectionid+"' and role_id='"+req.query.rolename+"'  and class_id='"+req.query.empsectionid1+"' and school_type='"+req.query.schooltypeid+"'  and academic_year='"+req.query.academic_year+"'",function(err, rows)
     {
     if(rows.length==0)
     {
@@ -7647,7 +7647,7 @@ connection.query("SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.sc
 app.post('/empgetsectionvalues-service',  urlencodedParser,function (req,res)
    {
     // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
-var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where id=s.class_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"'and s.role_id='subject-teacher' and s.academic_year='"+req.query.academic_year+"'and flage='active'";
+var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where id=s.class_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.role_id='subject-teacher' and s.academic_year='"+req.query.academic_year+"' and s.school_type='"+req.query.schooltypeid+"'and flage='active'";
     //console.log(qur);
     /*  var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where section=s.section_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"' and flage='active'";*/
     console.log(qur);
@@ -7667,11 +7667,32 @@ connection.query(qur,
 
   });
 });
+app.post('/getschooltypeas-service',  urlencodedParser,function (req,res)
+{  
+    var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
+   
+var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM demoscorecard.md_school_grade_mapping p join demoscorecard.mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
+
+   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
+  //console.log(qur);
+  connection.query(qurr,
+    function(err, rows)
+    {
+    if(!err)   
+    { 
+      //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
 app.post('/getschooltype-service',  urlencodedParser,function (req,res)
 {  
     var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
-   //console.log(e);
-  var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
+   
+
+   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
   //console.log(qur);
   connection.query(qur,
     function(err, rows)
@@ -7688,7 +7709,7 @@ app.post('/getschooltype-service',  urlencodedParser,function (req,res)
 app.post('/empsectionclass-service' ,  urlencodedParser,function (req, res)
 {  
  
-   var qur="DELETE FROM  mp_teacher_grade where school_id='"+req.query.school_id+"' and id='"+req.query.employeeidz+"' and grade_id='"+req.query.empgradeidz+"' and subject_id='"+req.query.empsubjectidz+"'and section_id='"+req.query.employeesectionnamez+"'";
+   var qur="DELETE FROM  mp_teacher_grade where school_id='"+req.query.school_id+"' and id='"+req.query.employeeidz+"' and grade_id='"+req.query.empgradeidz+"' and subject_id='"+req.query.empsubjectidz+"'and section_id='"+req.query.employeesectionnamez+"' and school_type='"+req.query.schooltypeid+"'";
     console.log(qur);
     connection.query(qur,function(err, rows)
     {
@@ -7769,7 +7790,7 @@ app.post('/SchoolCategorytype-service',  urlencodedParser,function (req,res)
     else
       res.status(200).json({'returnval': ''});
   });
-});
+});  
 app.post('/fnsubjecttocategorysaving-service' ,  urlencodedParser,function (req, res)
 {    
     var response={
@@ -7779,8 +7800,10 @@ app.post('/fnsubjecttocategorysaving-service' ,  urlencodedParser,function (req,
             subject_category:req.query.categoryname,
             school_type_id:req.query.schootypename,
             "academic_year":req.query.academic_year,
+            lengpref:req.query.emplanpreff
           }
-  connection.query("SELECT * FROM mp_grade_subject WHERE school_id='"+req.query.school_id+"' and grade_id='"+req.query.gradename+"' and subject_id='"+req.query.subjectid+"' and subject_category='"+req.query.categoryname+"'  and school_type_id='"+req.query.schootypename+"'and academic_year='"+req.query.academic_year+"'",function(err, rows){
+          console.log(response)
+  connection.query("SELECT * FROM mp_grade_subject WHERE school_id='"+req.query.school_id+"' and grade_id='"+req.query.gradename+"' and subject_id='"+req.query.subjectid+"' and subject_category='"+req.query.categoryname+"'  and school_type_id='"+req.query.schootypename+"'and academic_year='"+req.query.academic_year+"'and lengpref='"+req.query.emplanpreff+"'",function(err, rows){
     if(rows.length==0)
     {
       connection.query("INSERT INTO mp_grade_subject SET ? ",[response],
@@ -7808,7 +7831,17 @@ app.post('/fnsubjecttocategorysaving-service' ,  urlencodedParser,function (req,
   });
 app.post('/fngetThefunction-service',  urlencodedParser,function (req,res)
 {  
-   var qur="select * FROM  mp_grade_subject where  school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and subject_category='"+req.query.schooltypesubjectid+"' ";
+  var qur;
+
+     if(req.query.schooltypesubjectid=="category1"){
+
+    qur="select * FROM  mp_grade_subject where  school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and subject_category='"+req.query.schooltypesubjectid+"' and lengpref='"+req.query.lengpref+"' and academic_year='"+req.query.academic_year+"'";
+   }
+    else{
+     qur="select * FROM  mp_grade_subject where  school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and subject_category='"+req.query.schooltypesubjectid+"'and academic_year='"+req.query.academic_year+"'";
+
+ }
+ console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -7822,6 +7855,53 @@ app.post('/fngetThefunction-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+
+
+
+
+
+
+app.post('/fngetempsubject-service' ,  urlencodedParser,function (req, res)
+{ 
+ var qur;
+
+ if(req.query.categoryid=="category1")
+ {  
+  qur="SELECT * FROM md_employee_subject where school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"' and school_category_id='"+req.query.categoryid+"' and  langugage_pref='"+req.query.emplangprefernce+"' and academic_year='"+req.query.academic_year+"'and  flage='active'";
+ 
+}
+else 
+ {
+ qur="SELECT * FROM md_employee_subject where school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"' and academic_year='"+req.query.academic_year+"'and  flage='active'";
+ 
+
+}
+connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      // console.log(rows);
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+});
+});
+
+
+
+
+
+
 app.post('/Fngetcategoryandsubject-service' ,  urlencodedParser,function (req, res)
 {  
    
@@ -7888,8 +7968,7 @@ app.post('/SbjecttoStudentmapping-service',  urlencodedParser,function (req,res)
   var schoolid={school_id:req.query.subjectselectid};
   var gradeid={grade_id:req.query.FnStosGradeid};
   var sectionid={section_id:req.query.FnStoSSectionid};
-  //console.log(schoolid);
- var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.FnStosGradeid+"') and section_id=(select section_id from md_section where section_name='"+req.query.FnStoSSectionid+"' and school_id='"+req.query.subjectselectid+"')) and school_id='"+req.query.subjectselectid+"'";
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.FnStosGradeid+"') and section_id=(select section_id from md_section where section_name='"+req.query.FnStoSSectionid+"' and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"')) and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"'";
   connection.query(qur,function(err, rows){
      if(!err){
 
@@ -7972,7 +8051,7 @@ app.post('/SbjecttoStudentmapping1-service',  urlencodedParser,function (req, re
 
 app.post('/FnSubjecttostudentthirdlanguage-service',  urlencodedParser,function (req, res)
 {
-connection.query("SELECT * from md_subject where langugage_pref !='Core subject' and subject_category='category1'",
+connection.query("SELECT * from md_subject where langugage_pref!='Core subject' and subject_category='category1'",
     function(err, rows)
     {
     if(!err)
@@ -8004,13 +8083,15 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
       lang_pref:req.query.langugagepref,
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
+    
+    var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and student_name='"+req.query.studentname+"' and lang_pref='"+req.query.langugagepref+"'";
+ 
 
-   var qur= "SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and  student_id='"+req.query.studentid+"'and lang_pref='"+req.query.langugagepref+"'";
-
+ 
+  var qur1=  "update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentid+"' and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
    
     
-    var qur1="update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where student_id='"+req.query.studentid+"' and school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentname+"'and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
-
+   
    
    connection.query(qur,
     function(err, rows)
