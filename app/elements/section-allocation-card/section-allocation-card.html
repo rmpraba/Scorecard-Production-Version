@@ -85,14 +85,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.capacity=this.student*this.section;
     },
     FnSave:function(e){
-    if(this.student==""||this.section==""){
+    if(this.student==""||this.section=="")
+    {
      alert("Please insert the value");
-      }   
+    }   
     else
     {
   //alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids+this.capacity);
     this.fnsectiostudentpassvalueurl=sessionStorage.getItem("addrinfo")+"/fnsectiostudentpassvalue-service";
- var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":"","capacity":""};
+    var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":"","capacity":""};
                  obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                  obj.student=this.student;
                  obj.section=this.section;
@@ -104,10 +105,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  this.fnsectiostudentpassvalueparam=obj;
                  //alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalueajax.generateRequest();
-               }
+      }
     },
     fnsectiostudentpassvalueResponse:function(e){
          var res=e.detail.response.returnval; 
+         
          // alert(JSON.stringify(res));
  
     },

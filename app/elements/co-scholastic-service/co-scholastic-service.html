@@ -943,6 +943,7 @@ insertcosubcategorymarkResponse:function(e){
        obj.id=excelcoscholastic[i].student_id;
         obj.student_name=excelcoscholastic[i].student_name;
         obj.mark1=excelcoscholastic[i].mark;
+        obj.g1=excelcoscholastic[i].category_grade;
         sum=parseInt(sum)+parseInt(excelcoscholastic[i].mark);
        
         for(var j=i+1;j<excelcoscholastic.length;j++)
@@ -950,7 +951,8 @@ insertcosubcategorymarkResponse:function(e){
            if(excelcoscholastic[i].student_id==excelcoscholastic[j].student_id)
            {      
            sum=parseInt(sum)+parseInt(excelcoscholastic[j].mark);
-          obj['mark'+(k+1)]=excelcoscholastic[j].mark;     
+          obj['mark'+(k+1)]=excelcoscholastic[j].mark; 
+          obj['g'+(k+1)]=excelcoscholastic[i].category_grade;     
             //markarr.push(obj.mark1);
             excelcoscholastic.splice(j,1);
             j--;
@@ -969,6 +971,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_grade")=="Grade-9"||localStorage.getItem("curr_sess_grade")=="Grade-10")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-life-skill-card');
+        document.querySelector('cs-life-skill-card').hidetopheader=true;
+        document.querySelector('cs-life-skill-card').hidesubtotal=false;
         document.querySelector('cs-life-skill-card').setDefaultHeaders(); 
         document.querySelector('cs-life-skill-card').markarr=excelcoscholasticoverall;
         document.querySelector('cs-life-skill-card').FnSpinnerrActive(false);  
@@ -976,6 +980,8 @@ insertcosubcategorymarkResponse:function(e){
         else
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-life-skill-card');
+        document.querySelector('cs-life-skill-card').hidetopheader=true;
+        document.querySelector('cs-life-skill-card').hidesubtotal=false;
         document.querySelector('cs-life-skill-card').setDefaultHeaders(); 
         document.querySelector('cs-life-skill-card').markarr=excelcoscholasticoverall; 
         document.querySelector('cs-life-skill-card').FnSpinnerrActive(true); 
@@ -984,6 +990,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_subject")=="Work Education")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-education-card');
+        document.querySelector('cs-education-card').hidetopheader=true;
+        document.querySelector('cs-education-card').hidesubtotal=false;
         document.querySelector('cs-education-card').setDefaultHeaders(); 
         document.querySelector('cs-education-card').markarr=excelcoscholasticoverall;  
         document.querySelector('cs-education-card').FnSpinnerrActive(false);        
@@ -991,6 +999,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_subject")=="Visual & Performing Arts")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-visual-performing-card');
+        document.querySelector('cs-visual-performing-card').hidetopheader=true;
+        document.querySelector('cs-visual-performing-card').hidesubtotal=false;
         document.querySelector('cs-visual-performing-card').setDefaultHeaders(); 
         document.querySelector('cs-visual-performing-card').markarr=excelcoscholasticoverall; 
         document.querySelector('cs-visual-performing-card').FnSpinnerrActive(false);      
@@ -999,6 +1009,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_subject")=="Attitudes And values")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-attitudes-card');
+        document.querySelector('cs-attitudes-card').hidetopheader=true;
+        document.querySelector('cs-attitudes-card').hidesubtotal=false;
         document.querySelector('cs-attitudes-card').setDefaultHeaders(); 
         document.querySelector('cs-attitudes-card').markarr=excelcoscholasticoverall; 
         document.querySelector('cs-attitudes-card').FnSpinnerrActive(false);         
@@ -1006,6 +1018,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_subject")=="Co-Curricular Activities")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-co-curricular-card');
+        document.querySelector('cs-co-curricular-card').hidetopheader=true;
+        document.querySelector('cs-co-curricular-card').hidesubtotal=false;
         document.querySelector('cs-co-curricular-card').setDefaultHeaders(); 
         document.querySelector('cs-co-curricular-card').markarr=excelcoscholasticoverall; 
         document.querySelector('cs-co-curricular-card').FnSpinnerrActive(false);        
@@ -1013,6 +1027,8 @@ insertcosubcategorymarkResponse:function(e){
         if(localStorage.getItem("curr_sess_subject")=="Health and Physical Education")
         {
         document.querySelector('coscholastic-assesment-sheet-card').setPage('cs-health-physical-education-card');
+        document.querySelector('cs-health-physical-education-card').hidetopheader=true;
+        document.querySelector('cs-health-physical-education-card').hidesubtotal=false;
         document.querySelector('cs-health-physical-education-card').setDefaultHeaders(); 
         document.querySelector('cs-health-physical-education-card').markarr=excelcoscholasticoverall;        
         }

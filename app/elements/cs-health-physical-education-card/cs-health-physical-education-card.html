@@ -76,19 +76,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Continuous Comprehensive Evaluation -AY-{{academicyear}}</h3>  
       <h4>Grade  &nbsp&nbsp&nbsp {{grade}} - Section &nbsp&nbsp&nbsp&nbsp&nbsp{{section}} &nbsp&nbsp Subject: {{subject}} </h4> 
       <table border="1" id="physicalMarkTable">    
-      <tr>
+     <tr hidden$="{{hidetopheader}}">
       <th id="tb2">SNo</th>
       <th id="tb1">Name</th>
       <th id="tb2">Health and Physical Education</th>
       <th  id="tb2"></th>
-      </tr>  
+      </tr>    
+      <tr hidden$="{{hidesubtotal}}">
+      <th id="tb2">SNo</th>
+      <th id="tb1">Name</th>
+      <th id="tb2" colspan="2">Health and Physical Education</th>
+      
+      </tr> 
+      <tr hidden$="{{hidesubtotal}}">
+        <th></th><th></th><th>Total</th><th>Grade</th>
+      </tr>    
       </div>
 <template is="dom-repeat" items="{{markarr}}">
 <tr>
  <td id="tb1"><paper-item>{{item.serialno}}</paper-item></td>
         <td id="tb2"><paper-item>{{item.student_name}}</paper-item></td>
         <td id="tb1" ><paper-item>{{item.mark1}}</paper-item></td> 
-        
+        <td id="tb1" ><paper-item>{{item.g1}}</paper-item></td> 
         </tr>
 </template>
 
@@ -188,6 +197,7 @@ var tableToExcel = (function() {
         this.section="";
         this.subject="";
          this.$.hidetop.hidden=true;
+         this.hidesubtotal=true;
 
       },
       

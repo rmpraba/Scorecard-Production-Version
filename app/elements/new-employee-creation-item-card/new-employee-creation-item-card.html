@@ -10,7 +10,7 @@
    <template>
    <style>
       :host {
-        display: block;       
+        display: block;         
       }
       .card{  
         @apply(--layout-horizontal);
@@ -59,30 +59,21 @@
       */
     </style>
 
-  <div>
-     <div class="card col-sm-12">
-        <!-- <div class="eid col-sm-4">
-          <paper-item>{{employeeid}}</paper-item>
-        </div> -->
+    <div class="card col-sm-12">
+        <div class="eid col-sm-2">
+          <paper-item style="margin-left: -59%;">{{employeeid}}</paper-item>
+        </div>
           <paper-item hidden$="{{employeepassword}}"></paper-item>
-        <div class="ename col-sm-8">
-          <paper-item width="60%">{{employeename}}</paper-item>
+        <div class="ename col-sm-6">
+          <paper-item style="width: 120%;margin-left: 11%;">{{employeename}}</paper-item>
         </div>  
         <div class="clbutton col-sm-4">
-          <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
           <paper-tooltip for="btn1">Edit</paper-tooltip> 
-          <paper-icon-button id="btn2"  icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
           <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </div>     
     </div>
-
-     <paper-dialog id="newempdetails" modal>
-      <label>Are you sure want to delete ?</label>
-      <div class="buttons">
-        <paper-button on-click="fndelet">Ok</paper-button>
-        <paper-button on-click="fnclose">Cancel</paper-button>
-      </div>
-    </paper-dialog>
 
  <span>
    <div id="updateempdetails" hidden>
@@ -125,21 +116,12 @@
 
       FnDelete:function()
       {
-        this.$.newempdetails.open();
-        this.FnEdit();
-     },
-     fndelet:function()
-     
-     {
         this.$.uiservice.Fnempdeleteinfo(this.employeeid,this.employeename);
-        document.querySelector('new-employee-creation-card').hideupdateemp=true;
-        document.querySelector('new-employee-creation-card').hidecreateemp=false;
-     },
-     fnclose:function()
-     {
-      this.$.newempdetails.close();
-     },
+        document.querySelector('new-employee-creation-card').fundelttt();
         
+     },
+     
+     
     setschooltype:function(arr){
        schooltypearr=arr;
       },
@@ -168,6 +150,7 @@
           this.f1();
           this.f2();
 
+          document.querySelector('new-employee-creation-card').fnnedit();
         document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
    
      },

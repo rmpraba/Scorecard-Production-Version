@@ -9,13 +9,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
 <dom-module id="employe-category-creation-card">
   <template>
    <style>    
-      :host {
+      :host {  
         display: block;
       }  
-    
+       
       .outercard
       {
         @apply(--layout-vertical);
@@ -31,14 +33,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 20%;
         min-height: 300px;
       }
-       .subbutton paper-button
+      .subbutton paper-button
       {
         /*@apply(--layout-right);*/
         float: none;
         background-color: #363636;
         color: #ffffff;                
         width: 8%;
-        margin-left: 60%;
+        margin-left: 43%;
         margin-top: 4%;
       }
         .deltbutton paper-button
@@ -48,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #363636;
         color: #ffffff;                
         width: 8%;
-        margin-left: 70%;
+        margin-left: 52%;
         margin-top: -3%;
       }
         .subbutton1 paper-button
@@ -207,8 +209,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="deltbutton" id="subx1">
                 <paper-button on-click="fndelete">Delete</paper-button> 
              </div>
-   
-<master-ui-service id="uiservice"></master-ui-service>
+   <demosumbit-card id="mydialog"></demosumbit-card>
+    <master-ui-service id="uiservice"></master-ui-service>
  
 <iron-ajax        
         id="fnselectgradezajax"
@@ -264,6 +266,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              this.empschoolnamesarr=arr;
          //    alert("1");
       },  
+        fnschoolempnames:function(arr)
+        {
+          this.empschoolnamesarr=arr;
+        },  
         fnschoolempgrade:function(arr){
           //alert(JSON.stringify(arr));
            sectionnamearr1=arr;
@@ -286,13 +292,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                sectionnamearr=e.detail.response.returnval;
      },
      fnsubmit:function(e){
-          this.$.uiservice.fnsavesection(empsectionarr);
-          document.querySelector('emp-grade-get-card').Fngradecleansection(); 
-          document.querySelector('emp-category-get-card').FnRefresh();
-          document.querySelector('employe-category-creation-card').FnRefresh();
+     
+         this.$.uiservice.fnsavesection(empsectionarr);
+         this.$.mydialog.toggleDialog();
+         document.querySelector('emp-grade-get-card').Fngradecleansection(); 
+         document.querySelector('emp-category-get-card').FnRefresh();
+         document.querySelector('employe-category-creation-card').FnRefresh();
         },      
        fndelete:function(e){ 
       this.$.uiservice.fndelsectionz(empsectionarr1);
+      this.$.mydialog.toggleDialog1();
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
      },
@@ -312,7 +321,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
        
         },

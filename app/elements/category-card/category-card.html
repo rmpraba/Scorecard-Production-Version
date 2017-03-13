@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 
 <dom-module id="category-card">
@@ -56,16 +57,14 @@
        table
        {
         @apply(--layout-horizontal);
+        position: fixed;
         /* border-collapse: collapse;
         border: 1px solid #dedede;*/
         width: 65%;
         margin-left: 45%;
-        margin-top: 2%;
+        margin-top: 7%;
       }
-      /*.outcard
-      {
-        @apply(--layout-horizontal);
-      }*/
+      
       .newcatcardddd
       {
         margin-left: -2%;
@@ -90,29 +89,38 @@
        .vertical-row 
       {
             position: fixed;
-            border: 1px  solid #12A5F4;
+            border: 1px  solid grey;
             height: 100px;
             width: 1px;
             margin-left: 32%;
             min-height: 830px;
-            top:17%;
+            top:11.5% !important;
 
       } 
        
 
     </style>
      
-  <div class="title"> 
-        <h3><b>CATEGORY</b></h3>
-  </div>
+  
+      <div class="titlediv" style="position: fixed;margin-top: -2%;">
+        <div class="tit1" style="margin-left:27em;"> 
+          <h3><b>CATEGORY</b></h3>
+        </div>
+        <div class="tit2" style="margin-left: 48em;margin-top: 4%;width: 100%;"> 
+          <h4><b>Current Category</b></h4>
+        </div>
+        <div class="tit3" style="margin-left: 10%;margin-top: -4%;"> 
+          <h4><b>Create New Category</b></h4>
+        </div>
+      </div>
 
   <div class="outcard" hidden$="{{hideoutcard}}">
     <div class="newcatcardddd" hidden$="{{hidenewcatcard}}">
     <div>
       <table>
           <tr>
-              <th><h4><label style="margin-left:2%">Currently Available Categories</label></h4></th>
-              <th><paper-icon-button id="btn1" style="margin-left: -222%;" icon="add" on-click="getcattype"></paper-icon-button>
+              <th><h4><label style="margin-left:2%">Category Types</label></h4></th>
+              <th><paper-icon-button id="btn1" style="margin-left: 12.9em;" icon="add" on-click="getcattype"></paper-icon-button>
               <paper-tooltip for="btn1">Create</paper-tooltip>
               </th>
           </tr>
@@ -132,7 +140,6 @@
     
     <div class="creatediv" hidden$="{{hidecategorytype}}">
         <div class="card">
-              <h4><label><b>Create New Category</b></label></h4>
               <paper-input readonly  hidden value="{{categorytype}}" label="Category Type"></paper-input>
               <paper-input label="Category Name" id="categoryname" required error-message="needs Category name!" value="{{categoryname}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
 
@@ -144,15 +151,8 @@
     </div>
   </div>
 
-
-             <paper-dialog id="newsubmitbox" modal>
-                  <label>Inserted Successfully !!!</label>
-                  <div class="buttons">
-                    <paper-button dialog-confirm autofocus on-click="Fnclose">Close</paper-button>
-                  </div>
-              </paper-dialog> 
    
-    
+    <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="uiservice"></master-ui-service>
 
   </template>
@@ -196,15 +196,12 @@
           cname=this.toTitleCase(this.categoryname);
           var categoryid=((cname).toLowerCase()).replace(' ','');
           this.$.uiservice.FnSetCategoryInfo(this.categorytype,cname,categoryid,this.temphidden);
-          this.$.newsubmitbox.open();
+          this.$.mydialog.toggleDialog();
          document.querySelector('category-card').FnRefresh(); 
         }
         
       },
-      Fnclose:function()
-      {
-        this.$.newsubmitbox.close();
-      },
+
 
       toTitleCase:function(str)
       {
@@ -218,7 +215,17 @@
       categoryyview:function()
       {
         this.hidenewcatcard=false;
-      }
+      },
+      f12p:function(e)
+      {
+          this.$.mydialog.toggleDialog1();    
+      },
+          
+      upfunct:function(e)
+      {
+        this.$.mydialog.toggleDialog2();
+      },
+          
             
     });
   })();

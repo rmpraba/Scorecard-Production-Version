@@ -3,6 +3,9 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+  <link rel="import" href="../demosumbit-card/demosumbit-card.html">
+
+
    <dom-module id="school-grade-to-subject-card">
    <template>
     <style>
@@ -152,8 +155,13 @@
       </table>  
     </div>    
     </div>    
-    <master-ui-service id="uiservice"></master-ui-service>
      
+
+   <demosumbit-card id="mydialog"></demosumbit-card>  
+    <master-ui-service id="uiservice"></master-ui-service>
+
+
+
   </template>
   <script>
   (function() {
@@ -183,6 +191,7 @@
       fndelapssgradedetails:function(arr){
          delpassservicearr=arr; 
       },
+
  
           langprefere:function(e){
         //   alert('1');
@@ -204,16 +213,19 @@
         document.querySelector('schoolcategory-type-item-card').fnsetemployeelanprefer(this.emplangprefernce);
          
       },
-   
-      FnSavez:function(e){
+      FnSavez:function(e)
+      {
            //alert('save');
            //alert(JSON.stringify(passservicearr));
            this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
+           this.$.mydialog.toggleDialog();
          //  passservicearr=[];
            document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
      },
-     fndelete:function(e){
+     fndelete:function(e)
+     {
         this.$.uiservice.fndeletegradetosubmapping(delpassservicearr);
+        this.$.mydialog.toggleDialog1();
      document.querySelector('school_grade-subject-item-card').Fngradeclean1(); 
     
      },

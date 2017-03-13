@@ -1,6 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
+
 <dom-module id="schooltype-display-card">
   <template>
     <style>
@@ -8,7 +9,7 @@
       {
         display: block;
       }
-      .card
+      .card  
       {
         @apply(--layout-center);
         @apply(--layout-horizontal);
@@ -51,15 +52,7 @@
         <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
         <paper-tooltip for="btn3">Delete</paper-tooltip>
 
-        <paper-dialog id="newdeleteopt" modal>
-          <label>Are you sure want to delete ?</label>
-          <div class="buttons">
-            <paper-button on-click="fnshow">Ok</paper-button>
-            <paper-button on-click="fnclose">Cancel</paper-button>
-          </div>
-        </paper-dialog>
-    </div>
-  
+       
      <master-ui-service id="sclservice"></master-ui-service>
   </template>
 
@@ -84,26 +77,12 @@
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
       },
+      
       FnDelete:function()
       {
-        if (confirm("Are you sure?"))    
-        {
-        
-        }
-        //return false;
-      },
-      FnDelete:function()
-      {
-        this.$.newdeleteopt.open();
-      },
-      fnshow:function()
-      {
-        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid);
-        this.hideschooltype=false;
-      },
-      fnclose:function()
-      {
-        this.$.newdeleteopt.close();
+        //alert("first");
+        this.$.sclservice.FnDeleteSchooltype(this.schooltypeid); 
+        document.querySelector('schooltype-card').fnndel(); 
       },
 
       FnEdit:function()
@@ -121,6 +100,7 @@
         var schooltypeid=(schooltypename.toLowerCase()).replace(' ','',' ');
         //alert(schooltypename+"  "+schooltypeid);
         this.$.sclservice.FnUpdateSchooltypename(schooltypename,schooltypeid);
+        document.querySelector('schooltype-card').fnnup1(); 
         this.hideschooltypenameinput=true;
         this.hideschooltypenameitem=false;
       },

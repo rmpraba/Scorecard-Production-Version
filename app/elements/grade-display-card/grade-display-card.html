@@ -1,5 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../submit-demo-card/submit-demo-card.html">
+<link rel="import" href="../update-demo-card/update-demo-card.html">
 
 <dom-module id="grade-display-card">
   <template>
@@ -22,7 +24,7 @@
       }
       paper-icon-button
       {
-        width:5%;
+        width:7%;
       }
       .itemcard
       {
@@ -39,27 +41,18 @@
     </style>
 
 
-    <div class='itemcard'>
+    <div class='itemcard' col-sm-12>
           <paper-item hidden$="{{gradeid}}"></paper-item>
           <paper-item hidden$="{{hidegradenameitem}}">{{gradename}}</paper-item>
-          <paper-input value="{{gradename}}" hidden$="{{hidegradenameinput}}"></paper-input>
-          <paper-icon-button  id="btn1" icon="icons:create" on-click='FnEdit' hidden$="{{hidegradenameitem}}"></paper-icon-button>
-          <paper-tooltip for="btn1">Edit</paper-tooltip>
-          <paper-icon-button  id="btn2" icon="icons:save" on-click='FnSave' hidden$="{{hidegradenameinput}}"></paper-icon-button>
-          <paper-tooltip for="btn2">Save</paper-tooltip>
-          <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
-          <paper-tooltip for="btn3">Delete</paper-tooltip>
-
-          <paper-dialog id="newdeletebox" modal>
-          <label>Are you sure want to delete ?</label>
-          <div class="buttons">
-            <paper-button on-click="fnshow">Ok</paper-button>
-            <paper-button on-click="fnclose">Cancel</paper-button>
-          </div>
-        </paper-dialog>
-
+            <paper-input value="{{gradename}}" hidden$="{{hidegradenameinput}}"></paper-input>
+            <paper-icon-button  id="btn1" icon="icons:create" on-click='FnEdit' hidden$="{{hidegradenameitem}}"></paper-icon-button>
+            <paper-tooltip for="btn1">Edit</paper-tooltip>
+            <paper-icon-button  id="btn2" icon="icons:save" on-click='FnSave' hidden$="{{hidegradenameinput}}"></paper-icon-button>
+            <paper-tooltip for="btn2">Save</paper-tooltip>
+            <paper-icon-button id="btn3" icon="icons:close" on-click='FnDelete'></paper-icon-button>
+            <paper-tooltip for="btn3">Delete</paper-tooltip>
     </div>
-   
+      
     <master-ui-service id="service"></master-ui-service>
   </template>
   <script>
@@ -84,24 +77,12 @@
       },
       FnDelete:function()
       {
-        this.$.newdeletebox.open();
+          this.$.service.FnDeleteGrade(this.gradeid);
+          document.querySelector('grade-creation-card').fundel1();
+
       },
       
-      fnshow:function()
-      {
-        
-          this.$.service.FnDeleteGrade(this.gradeid);
-          this.hidegradename=false;
-      },
-      fnclose:function()
-      {
-        this.$.newdeletebox.close();
-      },
-
-      fnclose:function()
-      {
-        this.$.newdeletebox.close();
-      },
+      
       FnEdit:function()
       {
         this.hidegradenameinput=false;
@@ -110,6 +91,7 @@
       FnSave:function()
       {
         this.$.service.FnUpdateGrade(this.gradeid,this.gradename);
+          document.querySelector('grade-creation-card').funup1();
         this.hidegradenameinput=true;
         this.hidegradenameitem=false;
       }
