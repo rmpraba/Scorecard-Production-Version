@@ -4,7 +4,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-listbox/paperday-listbox.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
@@ -190,105 +190,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
    </div>
 
-   <!--  <div class="container1">
-  
-      <div  class="card" hidden$="{{createschoolz}}">
-        <paper-button on-click="FnCreateschool" no ink><img src="../../images/school.jpg" height="180px" width="180px">
-          <h4>School Creation</h4>
-        </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{createschooltype}}">
-        <paper-button on-click="FnCreateSchooltype" no ink><img src="../../images/schooltype.jpg" height="180px" width="180px">
-          <h4>School Type</h4>
-        </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{createcategory}}">
-        <paper-button on-click="FnCreateCategory" no ink><img src="../../images/category.jpg" height="180px" width="180px">
-          <h4>Category</h4>
-        </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{creategrade}}">
-        <paper-button on-click="FnCreategrade" no ink><img src="../../images/grade.jpg" height="180px" width="180px">
-          <h4>Grade</h4>
-        </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{createemployee}}">
-        <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.png" height="180px" width="180px">
-             <h4> Employee</h4>
-        </paper-button>
-      </div>
-    </div>
-
-
-    <div class="container1">
-
-      <div class="card" hidden$="{{createrole}}">
-        <paper-button on-click="FnCreateRole" no ink><img src="../../images/role.png" height="180px" width="180px">
-          <h4>Role</h4>
-        </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{createsubject}}">
-        <paper-button on-click="FnCreatesubject" no ink><img src="../../images/subject.jpg" height="180px" width="180px">
-          <h4>Subjects</h4>
-        </paper-button>
-      </div> 
-
-      <div class="card" hidden$="{{subjecttostudent}}">
-          <paper-button on-click="SubjectToStudent" no ink><img src="../../images/language.jpg" height="180px" width="180px">
-           <h4>Language Preferences</h4>
-          </paper-button>
-      </div>
-
-      <div class="card" hidden$="{{gradetosubject}}">
-          <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
-            <h4>Grade To Subject Mapping</h4>
-          </paper-button>
-      </div>  
-
-      <div class="card" hidden$="{{categorytoschooltype}}">
-          <paper-button on-click="CategorytoSchooltype" no ink><img src="../../images/categorytoschooltype.jpg" height="180px" width="180px">
-              <h4>EMPLOYEE TO SUBJECT MAPPING</h4>
-          </paper-button>
-      </div>    
-    </div>
-
-
-    <div class="container1">
-      
-      <div class="card" hidden$="{{workingdats}}">
-         <paper-button on-click="Workingdays" no ink><img src="../../images/workingdays.jpg" height="180px" width="180px">
-              <h4>Working Days</h4>
-        </paper-button>
-      </div>
-      <div class="card" hidden$="{{emptocategory}}">
-          <paper-button on-click="EmptoCategory" no ink><img src="../../images/emptocategory.jpg" height="180px" width="180px">
-              <h4>STUDENTS TRANSFER</h4>
-          </paper-button>
-      </div>
-      <div class="card" hidden$="{{SchooltypettoGrade}}">
-        <paper-button on-click="SchoolTypeToGrade" no ink><img src="../../images/schooltoschoolType.jpg" height="180px" width="180px">  <h4>School to School Type</h4>
-        </paper-button>
-      </div>s
-       <div class="card" hidden$="{{employeetograde}}">
-            <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">
-               <h4>Employee To Grade</h4>
-            </paper-button>
-      </div>
-        <div class="card" hidden$="{{schooltyptograde}}">
-            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
-               <h4>School type to Grade</h4>
-            </paper-button>
-       </div>    
-    </div> -->
-
-
-
-
      <div class="container1">
   
       <div  class="card" hidden$="{{createschoolz}}">
@@ -335,12 +236,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SchoolTypeToGrade" no ink><img src="../../images/schooltoschoolType.jpg" height="180px" width="180px">  <h4>School to School Type</h4>
         </paper-button>
       </div>
+       <div class="card" hidden$="{{SectionPreiods}}">
+        <paper-button on-click="SectionPreiodss" no ink><img src="../../images/sectionperiod.png" height="180px" width="180px">  <h4>Section Periods</h4>
+        </paper-button>
+      </div>
 
       <div class="card" hidden$="{{schooltyptograde}}">
             <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
                <h4>School type to Grade</h4>
             </paper-button>
        </div>
+
     </div>
 
     <div class="container1">
@@ -477,7 +383,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.createsubject=true;
         this.createrole=true;
         this.managementreport=true;
-
+        this.SectionPreiods=true;
         this.GeneratemgmtReport=true;
          this.studentfixed=true;
         this.schooltyptograde=true;
@@ -550,15 +456,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
                   }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="Workingdays"){
-           document.querySelector('app-card').setPage('homepage','');
-           document.querySelector('home-page').setPage('working-days-card','');
-          }
            if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="employeecreation"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('new-employee-creation-card','');
         }
-        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")   
             this.$.assesmentservice.callTermService("Term");
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="feecollectionupdate") 
          {
@@ -706,18 +608,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.gradetosubject=false;
           this.sectioncreation=false;
           this.studentfixed=false;
-           this.workingdats=false;
-            this.emptocategory=false;
-            this.gradetosection=false;
-            this.subjecttostudent=false;
-         
+          this.workingdats=false;
+          this.emptocategory=false;
+          this.gradetosection=false;
+          this.subjecttostudent=true;
+          this.SectionPreiods=false;
+      
           
           }
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
         {
-          // this.createrole=false;
-          // this.teach_obser=false; 
           this.createcategory=false;  
           this.createschoolz=false; 
           this.SchooltypettoGrade=false;
@@ -856,12 +757,20 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('grade-creation-card').ready();  
       },
          SectionCreation:function(e)
-      {  
+        {  
           localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
-         this.$.uiservice.selectsectiongrade();
-          this.$.cdialog.toggle(); 
 
-      },
+           this.$.uiservice.selectsectiongrade();
+            this.$.cdialog.toggle(); 
+        },
+       SectionPreiodss:function(e)
+        {  
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('section-period-itme-card',''); 
+          this.$.uiservice.fnsetfixdsection1(); 
+         this.$.uiservice.SchoolCategorytype1();
+  
+       },
       GradeToSection:function(e)
       { 
           localStorage.setItem('curr_sess_loggedmasteracadamic','StudentToSection');
@@ -924,10 +833,10 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
        Workingdays:function(e)
       {
-         localStorage.setItem('curr_sess_loggedmasteracadamic','Workingdays');
-         this.$.uiservice.SelectSchoolName();
-         this.$.uiservice.fnsetgrademapping();
-            this.$.cdialog.toggle(); 
+           document.querySelector('app-card').setPage('homepage','');
+           document.querySelector('home-page').setPage('working-days-card','');
+         //  this.$.uiservice.fnsetgrademapping();
+           this.$.uiservice.fnsetfixdsection();
 
       },
       EmptoCategory:function(e){

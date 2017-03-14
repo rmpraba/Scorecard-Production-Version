@@ -1,0 +1,97 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="workingday-terms-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    
+   table{
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .card{
+        height: 2%;
+      }
+      #tb1{
+        width:25%
+      }
+    </style>
+    <div class="card">
+        <table border="1">
+        <tr>
+         <td id="tb1" hidden>{{gradeid}}</td>
+         <td id="tb1" hidden>{{acadamicyears}}</td>
+         <td id="tb1" hidden>{{schootypids}}</td>
+         <td id="tb1">{{gradename}}</td>
+        <td id="tb1"><paper-input value="{{term1}}" required error-message="needs Term1 Count!"   allowed-pattern="[0-9]" maxlength="2"></paper-input></td>
+        <td id="tb1"><paper-input value="{{term2}}" required error-message="needs Term2 Count!" allowed-pattern="[0-9]" maxlength="2" ></paper-input></td>
+        <td id="tb1"><paper-input value="{{term3}}" required error-message="needs Term3 Count!" allowed-pattern="[0-9]" maxlength="2" ></paper-input></td>
+      
+          <td id="tb1" ><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button></td>
+       
+        </tr>
+        </table>
+
+        <iron-ajax        
+        id="fnsectiostudentpassvalue1ajax"
+        url="{{fnsectiostudentpassvalue1url}}"
+        params="{{fnsectiostudentpassvalue1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnsectiostudentpassvalue1Response"
+        debounce-duration="300">
+      </iron-ajax>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workingday-terms-card',
+
+       FnSave:function(e){
+    if(this.student==""||this.section==""||this.studentterm3==""){
+         alert("Please insert the value");
+      }   
+    else
+    {
+  //alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids+this.capacity);
+    this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
+ var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":"","studentterm3":""};
+                 obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+                 obj.student=this.term1;
+                 obj.section=this.term2;
+                 obj.acadamicyears=this.acadamicyears;
+                 obj.gradename=this.gradename;
+                 obj.gradeid=this.gradeid;
+                 obj.schootypids=this.schootypids;
+                 obj.studentterm3=this.term3;
+                 this.fnsectiostudentpassvalue1param=obj;
+                 alert(JSON.stringify(obj));
+                 this.$.fnsectiostudentpassvalue1ajax.generateRequest();
+               }
+    },
+    fnsectiostudentpassvalueResponse:function(e){
+         var res=e.detail.response.returnval; 
+         // alert(JSON.stringify(res));
+ 
+    }
+
+     
+    });
+  })();
+  </script>
+</dom-module>

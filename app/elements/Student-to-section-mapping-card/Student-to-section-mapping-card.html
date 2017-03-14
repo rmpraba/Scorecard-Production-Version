@@ -126,16 +126,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h3><b>STUDENT TO SECTION MAPPING</b></h3>   
       </CENTER>
     </div>
-
     <div class="outercard">
-        
           <div>   
         <div class="createdivv">
           <div class="catcard" style="margin-top: 12%;">
             <label>School Type</label>
             <template is="dom-repeat" items="{{studentsectionarr}}" as="view">
               <Student-to-section-mapping-item-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STTYP{{view.school_type_id}}">
-                </Student-to-section-mapping-item-card>
+                </Student-to-section-mapping-item-card>   
             </template>
           </div>  
 
@@ -208,8 +206,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      <paper-dialog id="previousid" modal>
        <label  id="labelid">Please Click Previous Button</label> 
        <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
-    </paper-dialog>
-            
+
+   </paper-dialog>
+           
      <paper-dialog id="Nextid" modal>
         <label  id="labelid">Please Click Next Button</label>
         <div class="buttons">

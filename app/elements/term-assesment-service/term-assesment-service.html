@@ -1196,7 +1196,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
             document.querySelector('cc-sa-fivetoten-card').studarr=arr;    
         }
         } 
-        if(localStorage.setItem("curr_sess_importflag")=="1")
+        if(localStorage.getItem("curr_sess_importflag")=="1")
           this.FnHideApprovalBtn();
         }
         else{
