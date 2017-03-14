@@ -1,33 +1,15 @@
 
-var express  = require("express");
+ var express  = require("express");
  var mysql      = require('mysql');   
  var email   = require("emailjs/email");
- //var htmlToPdf = require('html-to-pdf');
  var fs = require('fs');
- /*var helper = require('sendgrid').mail;
-var from_email = new helper.Email('test@example.com');
-var to_email = new helper.Email('test@example.com');
-var subject = 'Hello World from the SendGrid Node.js Library!';
-var content = new helper.Content('text/plain', 'Hello, Email!');
-var mail = new helper.Mail(from_email, subject, to_email, content);
- 
-var sg = require('sendgrid')(process.env.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);
-var request = sg.emptyRequest({
-  method: 'POST',
-  path: '/v3/mail/send',
-  body: mail.toJSON(),
-});
- 
-*/
+
 var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
    host     : 'localhost',
-    user     : 'root',
+   user     : 'root',
    password : 'admin',
-   // port     : '58116',
-   // user     : 'adminTEZN77',
-   // password : 'pEbElHqKSxh2',
-   database : 'demoscorecard'
+   database : 'scorecarddb'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
