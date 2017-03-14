@@ -116,7 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              obj.empid=this.employeesetidz;
              obj.empname=this.empnames;
              obj.subjectid=this.empsubjectname;
-             obj.schooltypeid=this.schooltypeid;
+             obj.schooltypeid=this.schooltypeid;   
              obj.categoryid=this.categoryid;
              empgetarr.push(obj);
              v.push(obj);
@@ -187,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var subject_id=empsubjectarr[i].subjectid;
               var subject_name=empsubjectarr[i].subject_name;
               var getsubid=empsubjectarr[i].subjectid+empsubjectarr[i].emp_id;
-
+ // alert(getsubid);
            document.querySelector('#'+getsubid).checked=true;
            if(document.querySelector('#'+getsubid).checked==true){
               var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};

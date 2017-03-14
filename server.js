@@ -7299,7 +7299,7 @@ app.post('/empschooltype-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
-app.post('/fngetempsubject-service' ,  urlencodedParser,function (req, res)
+/*app.post('/fngetempsubject-service' ,  urlencodedParser,function (req, res)
 { 
  var qur;
 
@@ -7333,7 +7333,7 @@ connection.query(qur,
     else
       console.log(err);
 });
-});
+});*/
 app.post('/emplangschooltypegetcategorywww-service',  urlencodedParser,function (req,res)
 {  
      var qur="SELECT * FROM md_subject where subject_category='"+req.query.schoolcategoryid+"' and langugage_pref='"+req.query.langugage_pref+"'";
@@ -7838,7 +7838,7 @@ app.post('/fngetThefunction-service',  urlencodedParser,function (req,res)
   });
 });
 
-
+  
 
 
 

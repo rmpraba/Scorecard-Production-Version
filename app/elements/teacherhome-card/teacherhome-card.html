@@ -611,7 +611,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.workingdats=false;
           this.emptocategory=false;
           this.gradetosection=false;
-          this.subjecttostudent=false;
+          this.subjecttostudent=true;
           this.SectionPreiods=false;
       
           
@@ -768,6 +768,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('section-period-itme-card',''); 
           this.$.uiservice.fnsetfixdsection1(); 
+         this.$.uiservice.SchoolCategorytype1();
+  
        },
       GradeToSection:function(e)
       { 

@@ -21,13 +21,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="catcard">
             <label>School Type</label>
             <template is="dom-repeat" items="{{sectionscooltypearr}}" as="view">
-            {{view.school_type_name}}
-                 <section-period-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STPPRD{{view.school_type_id}}">
-                </section-period-card>
+               <Grade-period-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STPPRD{{view.school_type_id}}">
+                </Grade-period-card>
             </template>
           </div>  
-    
-  </template>
+       <div class="catcard">
+            <label>School Type</label>
+            <template is="dom-repeat" items="{{sectionscooltypearr}}" as="view">
+               <Grade-period-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STPPRD{{view.school_type_id}}">
+                </Grade-period-card>
+            </template>
+          </div>  
+   
+  </template>   
   <script>
   (function() {  
     'use strict';

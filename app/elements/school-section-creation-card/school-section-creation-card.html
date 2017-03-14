@@ -128,10 +128,10 @@
           </table>
         </div>   
     </div>
-   <!--    <div class="delbutton" hidden$="{{hidenewopt}}">
+      <div class="delbutton" hidden$="{{hidenewopt}}">
         <paper-button style="background-color:black;color:white" on-click="fndelete">Delete</paper-button>
       </div> 
-    -->    
+       
       <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
@@ -164,10 +164,8 @@ fndeletepass:function(arr){
   fnpasdelarr=arr;
 },
 fndelete:function(e){
- //  alert(JSON.stringify(fnpasdelarr))
-    
    this.$.uiservice.fndelsectiongrade(fnpasdelarr);
-},
+ },
 setdbschooltype:function(e){
   secdbarr=e;
     var fullarr=[];
