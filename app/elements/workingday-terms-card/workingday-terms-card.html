@@ -39,7 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <td id="tb1"><paper-input value="{{term2}}" required error-message="needs Term2 Count!" allowed-pattern="[0-9]" maxlength="2" ></paper-input></td>
         <td id="tb1"><paper-input value="{{term3}}" required error-message="needs Term3 Count!" allowed-pattern="[0-9]" maxlength="2" ></paper-input></td>
       
-          <td id="tb1" ><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button></td>
+          <td id="tb1" ><paper-icon-button icon='save' on-click='FnSave'></paper-icon-button>
+          <paper-tooltip for="tb1">Save</paper-tooltip>
+          </td>
        
         </tr>
         </table>
@@ -80,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  obj.schootypids=this.schootypids;
                  obj.studentterm3=this.term3;
                  this.fnsectiostudentpassvalue1param=obj;
-                 alert(JSON.stringify(obj));
+                // alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalue1ajax.generateRequest();
                }
     },

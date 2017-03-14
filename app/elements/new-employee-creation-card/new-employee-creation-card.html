@@ -35,20 +35,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 3%;
       }
 
-      /* table
-      {
-         apply(--layout-horizontal);
-         border-collapse: collapse;
-         padding: 10px;
-         border: 1px solid #dedede;
-         margin-left: 50%;
-         width: 530px;
-         margin-top: 7%;            
-      }*/
-      .newcard
+    
+      .newcardd
        {
-         overflow-x: hidden;
          overflow-y: scroll;
+         overflow-x: hidden;
        }
 
       #createemp
@@ -84,12 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               margin-left: -16%;
               margin-top: 3%;
        }
-       .newtitle
-       {
-        margin-top: 7%;
-        margin-left: 60%;
-        line-height: 3px;
-       }
+      
 
        .vertical-row
        {
@@ -101,14 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           top: 11.5%;
        }
 
-       /* hr
-        {
-          position: fixed;
-          border: 0.5px solid grey;
-          width: 1500px;
-          margin-top: 4%;
-          margin-left: -14%;
-        }*/
+       
         .titlesdiv
         {
           position: fixed;
@@ -161,7 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <tr>
         <td>
-          <div class="newcard col-sm-12" style="width:550px; height:400px; overflow:auto;">
+          <div class="newcardd col-sm-12" style="width:510px; height:400px; ">
             <table cellspacing="0" cellpadding="1" border="0" width="530px">
               <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
                 <tr>
@@ -187,7 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input value={{empid}} hidden></paper-input>
 
         <div class="col-sm-4">
-          <paper-input label="Employee name" id="empname" required error-message="needs emplyoee name!" value="{{name}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+          <paper-input label="Employee name" id="empname" required error-message="needs employee name!" value="{{name}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
 
         <div class="col-sm-4">
@@ -198,8 +177,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input label="Secondary Mobile Number" id="empMobile" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
 
-        <div class="col-sm-4">
-          <paper-input label="Password" id="emppassword" type="password" required error-message="needs password!" value="{{password}}"></paper-input>
+        <div >
+          <paper-input  hidden label="Password" id="emppassword"  value="password"></paper-input>
         </div>
 
         <div class="col-sm-4">
@@ -238,12 +217,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
-          <!-- <div style="text-align: center;">
-              <label>
-                <h4><b>Update Employee Details</b></h4>
-              </label>
-          </div> -->
-      <!-- <div hidden$="{{hideupdateemp}}"> -->
+         
         <div class="form-group-heading">
           <h4>Employee Personal  Details</h4>
         </div>
@@ -266,7 +240,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <gold-email-input label="Email" value="{{employeemail}}"></gold-email-input>
           </div>
           <div class="col-sm-4">
-            <paper-input  readonly label="EmployeePassword"  type="password" value="{{employeepassword}}" readonly></paper-input>
+            <paper-input  hidden label="EmployeePassword"  type="password" value="{{employeepassword}}" readonly></paper-input>
           </div>
         </div>
       <!-- </div> --> 
@@ -325,6 +299,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.hidecreateemp=false;
       this.hideupdateemp=true;
       this.$.tit4.hidden=true;
+      this.$.tit3.hidden=false;
      
      },  
      setschoolrolezz:function(arr){
@@ -347,19 +322,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },  
       FnSubmit:function()
       { 
-        if(this.name==""||this.Telephone==""||this.password==""||this.mailid=="")
+        if(this.name==""||this.Telephone==""||this.mailid=="")
         {
                 this.$.empname.validate();
                 this.$.empTelephone.validate();
                 //this.$.empMobile.validate();  
-                this.$.emppassword.validate();
+                //this.$.emppassword.validate();
                 this.$.empmailid.validate();
         }
         else  
         {
 
               emplyname=this.toTitleCase(this.name);
-               this.$.uiservice.fninsetschoolemployeeinfo(this.empid,emplyname,this.Telephone,this.MobileNumber,this.password,this.mailid,empschooltypearr,setrolearr);
+               this.$.uiservice.fninsetschoolemployeeinfo(this.empid,emplyname,this.Telephone,this.MobileNumber,this.password="password",this.mailid,empschooltypearr,setrolearr);
                this.$.mydialog.toggleDialog();
                this.FnRefresh();
                this.$.uiservice.selectschooltype();

@@ -166,7 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
 
       this.schootypidz=e;
-      alert(JSON.stringify(this.schootypidz));
+     // alert(JSON.stringify(this.schootypidz));
     // alert(this.schootypidz);
       },
       fnsetonacadamicsectionzz:function(e)
@@ -184,7 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        },   
    scooltypgridval1:function(arr){
             dbschootypearr=arr;
-            alert('2');   
+            //alert('2');   
               //   alert(JSON.stringify(gridschooltypearr));
                 //  alert(JSON.stringify(dbschootypearr));
       
@@ -192,7 +192,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                // alert(1);
                 for(var j=0;j<dbschootypearr.length;j++){
                 //  alert(2);
-                    alert(dbschootypearr[j].grade_id+"  "+gridschooltypearr[i].grade_id);
+                  //  alert(dbschootypearr[j].grade_id+"  "+gridschooltypearr[i].grade_id);
                        if(dbschootypearr[j].grade_id==gridschooltypearr[i].grade_id){
                              //alert('1');
                              gridschooltypearr[i].term1=dbschootypearr[j].term1;
@@ -202,7 +202,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                        }
                 }
               }
-               alert(JSON.stringify(gridschooltypearr));
+              // alert(JSON.stringify(gridschooltypearr));
                this.scooltypgrid=gridschooltypearr;
            //   alert(this.scooltypgrid);
              }
@@ -213,141 +213,3 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </script>
 </dom-module>
 
-<!-- <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
-<dom-module id="working-days-card">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-      .inputelements
-      {
-        /*@apply(--layout-vertical);*/
-        @apply(--layout-center);
-        display: inline-block;
-        margin-left: 30%;
-        width: 50%;
-      
-      }
-      .outcard
-      {
-        @apply(--layout-vertical);
-      }
-      .outcard
-      {
-        border-radius: 10px;
-        border: 2px solid #6699ff;
-        padding: 20px;
-        margin-top: 6%;
-        width: 30%;
-        margin-left: 36%;
-        min-height: 300px;
-      }
-      #btn1 paper-button
-      {
-        @apply(--layout-right);
-        background-color: #363636;
-        color: #ffffff;                
-        width: 7%;
-        margin-left: 60%;
-        margin-top: 4%;
-      }
-    </style>
-
-    <div>
-
-        <div>
-          <CENTER>
-            <h3><b>WORKING DAYS</b></h3>
-          </CENTER>
-        </div>
-        
-        <div class="outcard">
-          <table>
-            <span class="inputelements">
-              <paper-input value="{{workingschoolid}}" hidden></paper-input>
-              <paper-input value="{{workingschoolname}}" hidden></paper-input>
-           </span>
-
-         
-            <span class="inputelements">
-              <paper-dropdown-menu label="Select Grade">
-              <paper-menu id="wgradeid"  class="dropdown-content"  on-iron-select="SelectGradeid">   
-                <template is="dom-repeat" items="{{workingarras}}" as="view">
-                  <paper-item value="{{view.grade_name}}">{{view.grade_name}}</paper-item>
-                </template>
-              </paper-menu>
-              </paper-dropdown-menu>
-            </span>
-
-            <span class="inputelements">
-              <paper-dropdown-menu label="Select Term">
-              <paper-menu  id="termid11" class="dropdown-content" on-iron-select="fnterm">   
-                <paper-item >Term1</paper-item>
-                <paper-item>Term2</paper-item>
-                <paper-item>Term3</paper-item>
-              </paper-menu>
-              </paper-dropdown-menu>
-            </span> 
-
-            <span class="inputelements">
-              <paper-input label="No of working Days" value="{{noofdays}}" allowed-pattern="[0-9]" maxlength="2"></paper-input>
-            </span>
-
-            <div id="btn1">
-              <paper-button on-click="FnSubmit" id="subid">Submit</paper-button> 
-            </div>
-          </table>
-        </div>
-    </div>
-
-
-      <master-ui-service id="uiservice"></master-ui-service>
-
-  </template>
-  <script>
-  (function() {
-    'use strict';
-    Polymer({
-      is: 'working-days-card',
-      
-     /* Fnterm:function(e){
-      this.$.fnworkingdialog.open();
-      },
-     */
-      fnterm:function(e){
-        this.termids=e.target.selectedItem.textContent.trim();
-        this.noofdays="";
-  
-        this.$.uiservice.termrecovery(this.termids,this.termgrade);
-      },
-     SelectGradeid:function(e){
-       this.termgrade=e.target.selectedItem.value;
-      },
-      FnSubmit:function(e){
-            //alert( this.acadamicyears);
-           if(this.termid11==""){
-            alert("select the current section");
-           }
-           else{
-    this.$.uiservice.terminsert(this.termids,this.termgrade,this.noofdays);
-       this.noofdays="";
-      document.querySelector('#termid11').selected=-1;
-      //document.querySelector('#grdj').selected=-1;
-   
-        // temarr.splice(obj);
-        }
-      },
-      rfclaen:function(e){
-       document.querySelector('#termid11').selected=-1;
-       document.querySelector('#wgradeid').selected=-1;
-      // document.querySelector('#wacadamicid').selected=-1;
-       this.noofdays="";
-   },
-
- });
-  })();
-  </script>
-</dom-module>
- -->
