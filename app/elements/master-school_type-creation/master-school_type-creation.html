@@ -3,6 +3,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+   <link rel="import" href="../demosumbit-card/demosumbit-card.html">
   
 <dom-module id="master-school_type-creation">
   <template>
@@ -148,7 +149,7 @@
          
         </paper-dialog>
     -->
-
+    <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="service"></master-ui-service>
   </template>
 
@@ -172,13 +173,15 @@
       {    
        //alert(JSON.stringify(schooltypesins));
       this.$.service.insertschoolTypename(schooltypesins);
+      this.$.mydialog.toggleDialog();
        document.querySelector('school-schooltypemapping-card').Fngradeclean(); 
         
 
       },
        Fndelete:function()
       {     
-         this.$.service.DelteschoolTypename(schooltypedel);  
+         this.$.service.DelteschoolTypename(schooltypedel); 
+         this.$.mydialog.toggleDialog1(); 
            document.querySelector('school-schooltypemapping-card').Fngradeclean1(); 
       
       },

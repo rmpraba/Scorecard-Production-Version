@@ -57,7 +57,16 @@
         width: 50%;
        }
       */
-    </style>
+
+
+       paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;
+        margin-top: 5%;
+      }
+    </style>  
 
     <div class="card col-sm-12">
         <div class="eid col-sm-2">
@@ -68,9 +77,9 @@
           <paper-item style="width: 120%;margin-left: 11%;">{{employeename}}</paper-item>
         </div>  
         <div class="clbutton col-sm-4">
-          <paper-icon-button icon='create' on-click='FnEdit'></paper-icon-button>
+          <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
           <paper-tooltip for="btn1">Edit</paper-tooltip> 
-          <paper-icon-button icon='close' on-click='FnDelete'></paper-icon-button> 
+          <paper-icon-button  id="btn2" icon='close' on-click='FnDelete'></paper-icon-button> 
           <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </div>     
     </div>

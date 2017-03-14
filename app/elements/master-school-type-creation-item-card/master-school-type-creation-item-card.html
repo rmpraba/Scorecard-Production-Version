@@ -18,7 +18,6 @@
       .innercard{
 
       @apply(--layout-vertical);
-         
         
       }
       
@@ -135,6 +134,7 @@
       close:function(e)
       {
          this.fnclean();
+         this.$.mydialog.toggleDialog1();
       },
       fnschooltypegradmapzResponse(e){
       var res=e.detail.response.returnval; 

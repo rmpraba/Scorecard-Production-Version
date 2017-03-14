@@ -130,7 +130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <table cellspacing="0" cellpadding="1" border="0" width="530px">
             <tr>
               <th><h4><label style="margin-left:1% ">Employee ID</label></h4></th>
-              <th><h4><label style="margin-left:0%">Current Employee Names</label></h4></th>
+              <th><h4><label style="margin-left:0%">Employee Names</label></h4></th>
               <th><paper-icon-button  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
               <paper-tooltip for="btn1">Create</paper-tooltip></th>
             </tr>   
@@ -360,6 +360,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.$.uiservice.selectrolename();
          this.hidecreateemp=false;
          this.hideupdateemp=true;
+         this.$.tit4.hidden=true;
          //alert(this.hidecreateemp);
          document.getElementById('#hidecreateemp');
       },

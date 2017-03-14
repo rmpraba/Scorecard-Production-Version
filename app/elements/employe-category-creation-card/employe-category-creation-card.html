@@ -294,7 +294,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
        
         },
@@ -314,7 +314,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
      // alert(JSON.stringify(sectionnamearr1));
-      alert(JSON.stringify(empnamearrr));
+     // alert(JSON.stringify(empnamearrr));
    /*    var setarr=[];
                  for(var i=0;i<sectionnamearr1.length;i++){
                           var section_name=sectionnamearr1[i].section;

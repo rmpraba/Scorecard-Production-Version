@@ -240,12 +240,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SectionPreiodss" no ink><img src="../../images/sectionperiod.png" height="180px" width="180px">  <h4>Section Periods</h4>
         </paper-button>
       </div>
-
+<!-- 
       <div class="card" hidden$="{{schooltyptograde}}">
             <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
                <h4>School type to Grade</h4>
             </paper-button>
-       </div>
+       </div> -->
 
     </div>
 
@@ -281,11 +281,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>  
 
-      <!-- <div class="card" hidden$="{{schooltyptograde}}">
+      <div class="card" hidden$="{{schooltyptograde}}">
             <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
                <h4>School type to Grade</h4>
             </paper-button>
-       </div> -->
+       </div>
     </div>
 
     <div class="container1">
@@ -602,7 +602,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
          this.createemployee=false;
-         //this.schooltyptograde=false;
+         this.schooltyptograde=false;
           this.employeetograde=false;
           this.categorytoschooltype=false;
           this.gradetosubject=false;
@@ -626,7 +626,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-          this.schooltyptograde=false;
+          //this.schooltyptograde=false;
          }
      
 
