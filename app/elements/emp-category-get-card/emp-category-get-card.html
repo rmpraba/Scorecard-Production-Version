@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="emp-category-get-card">
   <template>
     <style>   
-      :host {
+      :host {  
         display: block;
       }   
     </style>   
@@ -76,12 +76,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             sclltypearr.push(obj);
           this.empschoolgradezparam=obj;
         // alert(JSON.stringify(obj));
+
         this.$.empschoolgradezajax.generateRequest();
    
         },
-        f2:function(e){
+        f2:function(e)
+        {
          // alert('1');
-    this.empgetnameurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
+
+        this.empgetnameurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":"     "};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
@@ -89,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           sclltypearr.push(obj);
          // alert(JSON.stringify(obj));
- 
+
           this.empgetnameparam=obj;
           this.$.empgetnameajax.generateRequest();
    
@@ -97,13 +100,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         empgetnameResponse:function(e){
            var res=e.detail.response.returnval;
                // alert(JSON.stringify(res));
- 
+
         document.querySelector('employe-category-creation-card').fnschoolempnames(res);
       },
       empschoolgradezResponse:function(e)
       {
        var res=e.detail.response.returnval;
-               //alert(JSON.stringify(res));
+
+           //    alert(JSON.stringify(res));
  
         document.querySelector('employe-category-creation-card').fnschoolempgrade(res);
               }

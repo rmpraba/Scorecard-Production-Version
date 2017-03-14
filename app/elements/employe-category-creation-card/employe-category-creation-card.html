@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <table>
           <div>  
           <div class="catcard">   
-            <label>School Type</label>
+            <label>School Type</label>  
             <template is="dom-repeat" items="{{empschoolarr}}" as="view">
               <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
             </template>   
@@ -294,7 +294,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          //alert(JSON.stringify(obj));
+
+       //   alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
        
         },
@@ -315,6 +316,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       empnamearrr=e.detail.response.returnval;
      // alert(JSON.stringify(sectionnamearr1));
      // alert(JSON.stringify(empnamearrr));
+
    /*    var setarr=[];
                  for(var i=0;i<sectionnamearr1.length;i++){
                           var section_name=sectionnamearr1[i].section;

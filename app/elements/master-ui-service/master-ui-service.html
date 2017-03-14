@@ -1508,12 +1508,12 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
       this.empgetsectionvaluesparam=obj;
-       // alert(JSON.stringify(obj));
-      this.$.empgetsectionvaluesajax.generateRequest();
+      alert(JSON.stringify(obj));
+    this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
       var res=e.detail.response.returnval; 
-        //alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
       document.querySelector('emp-grade-get-card').empsctionmaping(res);
      },
      fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){     
@@ -1891,8 +1891,10 @@ fnschoolemployeerole:function( employeeid,employeename){
     },
  fnschoolemployeepersonal:function(){
      this.fnschoolemployeepersonalurl=sessionStorage.getItem("addrinfo")+"/fnschoolemployeepersonal-service";
-     var obj={"school_id":""};
+     var obj={"school_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+       alert(JSON.stringify(obj));
          this.fnschoolemployeepersonalparam=obj;
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
@@ -1960,13 +1962,13 @@ fnschoolemployeerole:function( employeeid,employeename){
     },
     fnschoolemployeeroleResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));  
        document.querySelector('new-employee-creation-item-card').setschoolrole(res);
     },
     fnschoolemployeepersonalResponse:function(e)
     {
      var res=e.detail.response.returnval; 
-    //alert(JSON.stringify(res));
+   // alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
     
@@ -2346,20 +2348,20 @@ insertschoolTypename:function(schooltypesarr)
 
        fngetThefunction:function(schooltypeid,schooltypesubjectid,lengpref){
         this.fngetThefunctionurl=sessionStorage.getItem("addrinfo")+"/fngetThefunction-service";
-        var obj={"school_id":"","schooltypename":"","schooltypesubjectid":"","academic_year":"","lengpref":""};
+        var obj={"school_id":"","schooltypesubjectid":"","academic_year":"","lengpref":""};
         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.schooltypeid=schooltypeid;
         obj.schooltypesubjectid=schooltypesubjectid;
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
         obj.lengpref=lengpref;
         this.fngetThefunctionparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
     
         this.$.fngetThefunctionajax.generateRequest();
       },
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
-           // alert(JSON.stringify(res));
+            alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },

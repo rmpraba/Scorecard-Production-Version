@@ -68,14 +68,14 @@
       var e=emplangprefernce;
       //alert(e);
  if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
-          this.schooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywww-service";
-           var obj={"schoolcategoryid":"","langugage_pref":"","id":""};
+          this.schooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/emplangschooltypegetcategorywwws-service";
+           var obj={"schoolcategoryid":"","langugage_pref":""};
                obj.schoolcategoryid=this.schooltypecategoryid;
                obj.langugage_pref=emplangprefernce;
                 this.schooltypegetcategoryparam=obj;
           this.$.schooltypegetcategoryajax.generateRequest();
         
-                    //alert(JSON.stringify(obj)); 
+                    alert(JSON.stringify(obj)); 
        }
          else if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")!='category1'){
        this.schooltypegetcategory1url=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
@@ -89,12 +89,12 @@
     },
       schooltypegetcategoryResponse:function(e){
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
         document.querySelector('school-grade-to-subject-card').getcategory(res);
       },
       schooltypegetcategory1Response:function(e){
        var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
         document.querySelector('school-grade-to-subject-card').getcategory(res);
     
       },

@@ -10,6 +10,7 @@ var connection = mysql.createConnection({
    user     : 'root',
    password : 'admin',
    database : 'scorecardproduction'
+
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -1355,7 +1356,6 @@ var response={
          sub_seq:req.query.sequence
   }  
    var q="select * from tr_coscholastic_assesment_marks where school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and student_id='"+req.query.studentid+"' and  subject_id='"+req.query.subject+"' and  sub_category='"+req.query.subcategory+"'";
-  //console.log(q);  
   connection.query(q,
  function(err, rows)
     {
@@ -6137,7 +6137,10 @@ app.post('/selectrolename-service',  urlencodedParser,function (req,res)
 });
 app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM md_employee_creation where school_id='"+req.query.school_id+"' and flage='active'";
+
+   var qur="SELECT * FROM md_employee_creation where school_id='"+req.query.school_id+"'  and academic_year='"+req.query.academic_year+"' and flage='active'";
+
+   //console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -7336,7 +7339,25 @@ connection.query(qur,
 });*/
 app.post('/emplangschooltypegetcategorywww-service',  urlencodedParser,function (req,res)
 {  
-     var qur="SELECT * FROM md_subject where subject_category='"+req.query.schoolcategoryid+"' and langugage_pref='"+req.query.langugage_pref+"'";
+     var qur="SELECT * FROM md_subject where subject_category='"+req.query.schoolcategoryid+"' and language_pref='"+req.query.language_pref+"'";
+     console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+
+    { 
+     // console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+    });
+});
+app.post('/emplangschooltypegetcategorywwws-service',  urlencodedParser,function (req,res)
+{  
+     var qur="SELECT * FROM md_subject where subject_category='"+req.query.schoolcategoryid+"' and language_pref='"+req.query.langugage_pref+"'";
+     console.log(qur);
     connection.query(qur,
     function(err, rows)
     {
