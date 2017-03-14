@@ -43,19 +43,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .createdivv
       {
-        border-radius: 10px;
-          border: 1px solid #6699ff;
-          padding: 15px; 
-          width: 50%;
-          margin-left: 30%;
-          margin-top: 5% !important;
-          min-height: 290px; 
+            border-radius: 10px;
+            border: 1px solid #6699ff;
+            padding: 15px;
+            width: 45%;
+            width: 45%;
+            margin-left: 30%;
+            margin-top: 3% !important;
+            min-height: 170px; 
       }
       .newcard
       {
         @apply(--layout-horizontal);
-        margin-top: -13%;
-        margin-left: 44%;
+        margin-top: -6%;
+        margin-left: 24%;
       }
 
       #subzz paper-button
@@ -112,6 +113,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 10%;
       margin-top: 4%;
       }
+
+      .newwwwcardd
+      {
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
     </style>    
     
     <div>
@@ -119,12 +126,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h3><b>STUDENT TO SECTION MAPPING</b></h3>   
       </CENTER>
     </div>
-
-    <div class="outercard">  
-       
+    <div class="outercard">
           <div>   
         <div class="createdivv">
-          <div class="catcard">
+          <div class="catcard" style="margin-top: 12%;">
             <label>School Type</label>
             <template is="dom-repeat" items="{{studentsectionarr}}" as="view">
               <Student-to-section-mapping-item-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STTYP{{view.school_type_id}}">
@@ -132,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
           </div>  
 
-            <div class="newcard">
+            <div class="newcard" style="position: absolute;">
               <paper-dropdown-menu  label="Select the Grade">
                 <paper-menu id="empgradeid" class="dropdown-content"  on-iron-select="fnselectgrade">
                   <template is="dom-repeat" items="{{setgrade}}">
@@ -150,30 +155,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        </div>  
       
        
-     <div class="list-group col-sm-12 panel-body form-category" hidden$="{{hidenewtabb}}">
+     <div class="newwwtabb" hidden$="{{hidenewtabb}}">
       <table class="table table-bordered">
-      <!-- <table border="1" class="tt"> -->
-        <tbody>    
+        <thead>    
           <tr>
-            <td class="outcard"></td>
-            <td class="innercard">
+            <th class="outcard"></th>
+            <th class="innercard" style="width: 700px;margin-left: -99%;">
               <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:22%; margin-left:5%;">{{view.srtarr}}</h4>   
+                <h4 style="width:22%;">{{view.srtarr}}</h4>   
               </template>
-            </td>
-            <td class="outcard"></td>
+            </th>
+            <!-- <th class="outcard"></th> -->
           </tr>   
+        </thead>
+        <tbody class="newwwwcardd col-sm-12" style="width: 950px;height: 350px;">  
             <template is="dom-repeat" items="{{sectionfullarr}}" as="view">  
-            <tr>
-              <td class="outcard">
-                <h4>{{view.student_name}}</h4>
-              </td>
-              <td class="innercard">
-                <template is="dom-repeat" items="{{view.subject}}" as="s">
-                   <student-list-pass-section-card studentname="{{view.student_name}}" 
-                  id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
-               </template></td>
-            </tr>
+              <tr>
+                <td class="outcard">
+                  <h4>{{view.student_name}}</h4>
+                </td>
+                <td class="innercard" style="width: 690px;">
+                  <template is="dom-repeat" items="{{view.subject}}" as="s">
+                    <student-list-pass-section-card studentname="{{view.student_name}}" 
+                    id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
+                  </template>
+                </td>
+              </tr>
             </template>  
         </tbody>    
       </table>    
@@ -197,18 +204,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
    
      <paper-dialog id="previousid" modal>
-
-       <h2> Please Click Previous Button</h2>
+       <label  id="labelid">Please Click Previous Button</label> 
        <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
+
    </paper-dialog>
            
-    
      <paper-dialog id="Nextid" modal>
         <label  id="labelid">Please Click Next Button</label>
         <div class="buttons">
           <paper-button  dialog-confirm autofocus> close</paper-button>
         </div>      
      </paper-dialog>
+     
       <iron-ajax        
         id="counttypevalueajax"
           url="{{counttypevalueurl}}"

@@ -240,7 +240,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SectionPreiodss" no ink><img src="../../images/sectionperiod.png" height="180px" width="180px">  <h4>Section Periods</h4>
         </paper-button>
       </div>
-    
+
+      <div class="card" hidden$="{{schooltyptograde}}">
+            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
+               <h4>School type to Grade</h4>
+            </paper-button>
+       </div>
+
     </div>
 
     <div class="container1">
@@ -269,20 +275,22 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>
 
-      <div class="card" hidden$="{{schooltyptograde}}">
-            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
-               <h4>School type to Grade</h4>
-            </paper-button>
-       </div>
-    </div>
-
-    <div class="container1">
-       
        <div class="card" hidden$="{{gradetosubject}}">
           <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
             <h4>Grade To Subject Mapping</h4>
           </paper-button>
       </div>  
+
+      <!-- <div class="card" hidden$="{{schooltyptograde}}">
+            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
+               <h4>School type to Grade</h4>
+            </paper-button>
+       </div> -->
+    </div>
+
+    <div class="container1">
+       
+      
 
        <div class="card" hidden$="{{emptocategory}}">
           <paper-button on-click="EmptoCategory" no ink><img src="../../images/emptocategory.jpg" height="180px" width="180px">
@@ -594,7 +602,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
          this.createemployee=false;
-         this.schooltyptograde=false;
+         //this.schooltyptograde=false;
           this.employeetograde=false;
           this.categorytoschooltype=false;
           this.gradetosubject=false;
@@ -618,6 +626,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
+          this.schooltyptograde=false;
          }
      
 
@@ -750,6 +759,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          SectionCreation:function(e)
         {  
           localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
+
            this.$.uiservice.selectsectiongrade();
             this.$.cdialog.toggle(); 
         },
@@ -759,17 +769,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('home-page').setPage('section-period-itme-card',''); 
           this.$.uiservice.fnsetfixdsection1(); 
        },
-       GradeToSection:function(e)
+      GradeToSection:function(e)
       { 
           localStorage.setItem('curr_sess_loggedmasteracadamic','StudentToSection');
       this.$.uiservice.studentsectiontype();
-  /*    document.querySelector('Student-to-section-mapping-card').fnrefresh();
-      document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
-      document.querySelector('Student-to-section-mapping-card').hidenewtabb=true;
-  */   /*     this.$.uiservice.SchoolCategorytype();
-    */
               this.$.cdialog.toggle(); 
- },  
+      },  
    
       FnCreatesubject:function(e)   
       {
@@ -782,7 +787,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        localStorage.setItem('curr_sess_loggedmasteracadamic','GradeToSubject');
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
-     document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
+        document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
          this.$.cdialog.toggle(); 
    
 
@@ -793,9 +798,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.empsubjectTeacher();
         this.$.uiservice.empcategorye();
         this.$.uiservice.empschooltype();
-      // document.querySelector('employee-category-item-card').FnRefresh();
        document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
-       //document.querySelector('employe-schooltype-to-category-item-card').fnrefresh();
        document.querySelector('employe-schooltype-to-category-card').fnbuttonsclean(); 
        document.querySelector('employe-schooltype-to-category-card').hidenewgridd=true;
           this.$.cdialog.toggle();
@@ -806,7 +809,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('student-to-subject-mapping-card','');
         //document.querySelector('student-to-subject-mapping-card').fnsetreclear();
-      
         //this.$.uiservice.fnreclear();
         this.$.uiservice.SelectSchoolName();
         //this.$.uiservice.TeachertoGradeSectionNames();

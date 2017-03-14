@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    </paper-dialog>
 
      <paper-dialog id="sectiongradeidss" modal>
-       <h2> please check Sectoin in Section Allocation </h2>
+       <h2>Cannot add more sections, Please make provision in Student Section Allocation first.</h2>
             <paper-button dialog-confirm autofocus> close</paper-button>
    </paper-dialog>
  
@@ -121,17 +121,17 @@ setval1:function(e){
       },
 checksctionvalueResponse:function(e){
       var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
         this.checksection=res;
   },
 countsectionvalueResponse:function(e){
       var res=e.detail.response.returnval; 
-              alert(JSON.stringify(res));
+             // alert(JSON.stringify(res));
 
          var m=res[0].no_of_section;
          var rs=this.checksection[0].section_id;
-         alert(m);
-         alert(rs);
+      //   alert(m);
+       //  alert(rs);
 
           if(m>rs){
            this.$.sectiongradeid.open();
@@ -196,7 +196,7 @@ section1:function(){
 },
 sectioncreationmappingResponse:function(e){
      var res=e.detail.response.returnval; 
-       alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
            document.querySelector('school-grade-section-creation-card').f1();
             document.querySelector('school-grade-section-creation-card').f2();
   
