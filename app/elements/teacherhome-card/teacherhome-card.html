@@ -604,7 +604,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
         {
          this.createemployee=false;
-         //this.schooltyptograde=false;
           this.employeetograde=false;
           this.categorytoschooltype=false;
           this.gradetosubject=false;
@@ -621,6 +620,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
+          this.schooltyptograde=false;
           this.createcategory=false;  
           this.createschoolz=false; 
           this.SchooltypettoGrade=false;
@@ -628,7 +628,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-          this.schooltyptograde=false;
+        //  this.schooltyptograde=false;
          }
      
 

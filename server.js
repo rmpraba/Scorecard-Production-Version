@@ -7353,6 +7353,23 @@ app.post('/emplangschooltypegetcategorywww-service',  urlencodedParser,function 
       res.status(200).json({'returnval': ''});
     });
 });
+app.post('/emplangschooltypegetcategorywwws-service',  urlencodedParser,function (req,res)
+{  
+     var qur="SELECT * FROM md_subject where subject_category='"+req.query.schoolcategoryid+"' and language_pref='"+req.query.langugage_pref+"'";
+     console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+
+    { 
+     // console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+    });
+});
 app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_id":req.query.school_id,"emp_id":req.query.emp_id,"emp_name":req.query.emp_name,
