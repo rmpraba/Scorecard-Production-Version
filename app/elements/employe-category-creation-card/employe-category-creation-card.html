@@ -29,8 +29,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border: 2px solid #6699ff;
         padding: 20px;
         margin-top: 6%;
-        width: 60%;
-        margin-left: 20%;
+        width: 48%;
+        margin-left: 28%;
         min-height: 300px;
       }
       .subbutton paper-button
@@ -67,7 +67,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         @apply(--layout-horizontal);
         width: 250%;
-        margin-top: -9%;
+        margin-left: 24%;
+        margin-top: -12%;
       }
        paper-dropdown-menu
        {
@@ -114,14 +115,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>     
     
             <div class="newcard">
-              <paper-dropdown-menu  label="Select the Grade">
-                <paper-menu id="empgradeid" class="dropdown-content"   on-iron-select="fnselectgrade">
-                    <template is="dom-repeat" items="{{empschoolgrads}}">
-                    <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
-                  </template>    
-                </paper-menu>
-              </paper-dropdown-menu>
-            
               <paper-dropdown-menu  label="Select the Employee">
                 <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
                   <template is="dom-repeat" items="{{empschoolnamesarr}}">
@@ -135,80 +128,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </table>
       </div>
    
+      <div id="newwgridd">
         <table class="table table-bordered">
-           <tbody>
+          <tbody>
+            <tr>
+              <th><h4><b>Grade</b></h4></th>
+              <th><h4><b>Subject</b></h4></th>
+              <th><center><h4><b>Select Section Name</b></h4></center></th>
+              <th><h4><b>Save</b></h4></th>  
+              <th><h4><b>Delete</b></h4></th>
+            </tr>
+              
+            <template is="dom-repeat" items="{{allarrr}}" as="view">
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="innercard1">
+                  <template is="dom-repeat" items="{{view.head}}" as="s">
+                    <h4 style="margin-left:6%">{{s.section_id}}</h4>
+                  </template>
+                </td>
+                <td></td>  
+                <td></td>
+              </tr>
+              
+              <template is="dom-repeat" items="{{view.busvalue}}" as="s">
                 <tr>
-                          <th>Grade</th>
-                          <th>Subject</th>
-                          <th><center><h2>Section Name</h2></center></th>
-                          <th>Save</th>  
-                          <th>Delete</th>
-                 </tr>
-              
-              <template is="dom-repeat" items="{{allarrr}}" as="view">
-              
-                  <tr>
-                          <td></td>
-                          <td></td>
-                          <td class="innercard1">
-                            <template is="dom-repeat" items="{{view.head}}" as="s">
-                              <h4 style="margin-left:5%">{{s.section_id}}</h4>
-                            </template>
-                          </td>
-                          <td></td>  
-                          <td></td>
-                       </tr>
-              
-                  <template is="dom-repeat" items="{{view.busvalue}}" as="s">
-                  <tr>
-                      <td class="outcard"> 
-                  <h4>{{view.gradename1}}</h4>
-                    </td>
-                     <td class="outcard"> 
-                      <h4>{{s.subname}}</h4>
-                     </td>
-                     <td class="innercard">
-                       <template is="dom-repeat" items="{{s.subject}}" as="m">
-                        <emp-grade-get-card employeesectionidz="{{m.class_id}}" id="{{s.subname1}}{{m.class_id}}"   empsubjectidz="{{s.subname1}}" employeesectionnamez="{{m.section_id}}" employeeidz="{{empselectid}}" empgradeidz="{{view.gradename}}" >
-                          </emp-grade-get-card>
-                     </template>
-                   </td>
+                  <td class="outcard"> 
+                    <h4>{{view.gradename1}}</h4>
+                  </td>
+                  <td class="outcard"> 
+                    <h4>{{s.subname}}</h4>
+                  </td>
+                  <td class="innercard">
+                    <template is="dom-repeat" items="{{s.subject}}" as="m">
+                      <emp-grade-get-card employeesectionidz="{{m.class_id}}" id="{{s.subname1}}{{m.class_id}}"   empsubjectidz="{{s.subname1}}" employeesectionnamez="{{m.section_id}}" employeeidz="{{empselectid}}" empgradeidz="{{view.gradename}}" >
+                      </emp-grade-get-card>
+                    </template>
+                  </td>
                  
-
-                  <td><paper-icon-button  icon='save' on-click='fnsubmit'></paper-icon-button>
-                   </td>
-                 <td><paper-icon-button  icon='close' on-click='fndelete'></paper-icon-button>
-                   </td>
+                  <td>
+                    <paper-icon-button id="btnn1" icon='save' on-click='fnsubmit'></paper-icon-button>
+                    <paper-tooltip for="btnn1">Save</paper-tooltip>
+                  </td>
+                  <td>
+                    <paper-icon-button id="btn2" icon='close' on-click='fndelete'></paper-icon-button>
+                    <paper-tooltip for="btn2">Delete</paper-tooltip>
+                  </td>
                 </tr>
-                   </template>
-              
               </template>
-
-            </tbody>
+              
+            </template>
+          </tbody>
         </table>
+      </div>
+        
   
-
-
-
-    <!--  <div>
-         <template is="dom-repeat" items="{{allarrr}}" as="view">
-         <p>{{view.subname}}</p>
-           <template is="dom-repeat" items="{{view.subject}}" as="s">
-
-             <paper-checkbox>{{s.section_id}}</paper-checkbox>
-           </template>
-          
-         </template>
-      </div>   -->
-     
-              <div class="subbutton" id="subx">
-     
-                <paper-button on-click="fnsubmit">Submit</paper-button> 
-             </div>
-
-            <div class="deltbutton" id="subx1">
-                <paper-button on-click="fndelete">Delete</paper-button> 
-             </div>
    <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="uiservice"></master-ui-service>
  
@@ -247,7 +222,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'employe-category-creation-card',
       ready:function(e){
-     
+     this.$.newwgridd.hidden=true;
        
       },
       FnRefresh:function()
@@ -258,8 +233,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       fncleanbutton:function()
       {
-        this.$.subx.hidden=true;
-        this.$.subx1.hidden=true;
+        //this.$.subx.hidden=true;
+        //this.$.subx1.hidden=true;
       },
         fnschoolempnames:function(arr){
            //  alert(JSON.stringify(arr));
@@ -308,7 +283,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      fnsetempsection:function(arr)
      {
       empsectionarr=arr;
-     alert(JSON.stringify(empsectionarr));
+     //alert(JSON.stringify(empsectionarr));
      },
        fnsetempsection1:function(arr){
       empsectionarr1=arr;
@@ -333,14 +308,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     fnemployeename:function(e)
     {  
        this.empselectid=e.target.selectedItem.value;
+       this.$.newwgridd.hidden=false;
          this.f12();
        this.f11();  
         },
      
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
-      alert(JSON.stringify(sectionnamearr1));
-      alert(JSON.stringify(empnamearrr));
+     // alert(JSON.stringify(sectionnamearr1));
+      //alert(JSON.stringify(empnamearrr));
    /*    var setarr=[];
                  for(var i=0;i<sectionnamearr1.length;i++){
                           var section_name=sectionnamearr1[i].section;
@@ -386,7 +362,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      
           a=[];
        }
-        alert(JSON.stringify(overall));
+       // alert(JSON.stringify(overall));
          var aoo=[];
           for(var j=0;j<overall.length;j++){
             for(var i=0;i<empnamearrr.length;i++){
@@ -436,106 +412,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            overall1.push(nameobj);
           a1=[];
         }
-        alert(JSON.stringify(overall1));
+       // alert(JSON.stringify(overall1));
         this.allarrr=overall1;
         this.$.uiservice.empgetsectionvalues(this.empselectid);
-     /*   this.$.sectionz.hidden=false;
-        this.$.subx.hidden=false;
-        this.$.subx1.hidden=false;
-   */
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-         //alert(JSON.stringify(sectionnamearr));
-         // alert(JSON.stringify(empnamearrr));
-       
-  /*var setarr=[];
-            for(var i=0;i<sectionnamearr.length;i++){
-                          var section_name=sectionnamearr[i].section;
-                            var obj={"subjectarr":""};
-                                obj.subjectarr=section_name;
-                               setarr.push(obj);
-                              // alert(JSON.stringify(obj));
-                          }
-               //    alert(JSON.stringify(setarr));
-                   this.setsectionname=setarr;
-
-          var generatearr=[];
-         var subarr=[];
-                for(var j=0;j<empnamearrr.length;j++){
-                     for(var i=0;i<sectionnamearr.length;i++){
-                    var subjectid=empnamearrr[j].subjectid;
-                     var subject_name=empnamearrr[j].subject;
-                         
-                         var obj={"subjectid":"","subject_name":"","section_id":"","section_name":""}; 
-                           var section_id=sectionnamearr[i].id;
-                          var section_name=sectionnamearr[i].section;
-                           obj.section_name=section_name;
-                           obj.subject_name=subject_name;
-                           obj.section_id=section_id;
-                           obj.subjectid=subjectid;
-                           generatearr.push(obj);
-                        }}//alert(JSON.stringify(generatearr));
-        var a=[];
-        var overall=[];
-       for(var k=0;k<generatearr.length;k++)
-       {       
-         var nameobj={"subjectid":"","subject_name":""};
-         nameobj.subjectid=generatearr[k].subjectid; 
-         nameobj.subject_name=generatearr[k].subject_name; 
-         var obj={"section_id":"","section_name":""};
-        // obj.Grade_name=generatearr[k].gradename;
-        obj.section_id=generatearr[k].section_id;
-        obj.section_name=generatearr[k].section_name;
-        obj.id=generatearr[k].subjectid+generatearr[k].section_id;
-        a.push(obj);
-        for(var l=k+1;l<generatearr.length;l++)
-        {
-           if(generatearr[k].subject_name==generatearr[l].subject_name)
-           {
-             var obj1={"section_id":"","section_name":""}
-             obj1.section_id=generatearr[l].section_id;
-             obj1.section_name=generatearr[l].section_name;
-             obj1.id=generatearr[k].subjectid+generatearr[l].section_id;
-
-             //alert('1');
-           //  alert(JSON.stringify(obj1));
-             a.push(obj1);
-             //alert(JSON.stringify(a));
-             generatearr.splice(l,1);
-             l--;
-           // alert(JSON.stringify(generatearr));
-         }}
-           nameobj.subject=a;
-           overall.push(nameobj);
-          // alert(JSON.stringify(obj1));
-           a=[];
-   }
-        alert(JSON.stringify(overall));
-        this.allarrr=overall;
-        this.$.uiservice.empgetsectionvalues(this.setgradeidz,this.empselectid);
-        this.$.sectionz.hidden=false;
-        this.$.subx.hidden=false;
-        this.$.subx1.hidden=false;
-   
-  */   // overall.splice(0,1);
-        /* this.bigarr=overall;
-         overall.splice();
-         generatearr=[];
-         this.$.uiservice.fngetThefunction();
-        */
       }
 
        });

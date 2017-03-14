@@ -1155,7 +1155,7 @@ fndelsectionz:function(emparrr){
 
                      obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
     
-                     alert(JSON.stringify(obj));
+                    // alert(JSON.stringify(obj));
                      //alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
            this.$.empsectionclassajax.generateRequest();
@@ -1354,7 +1354,7 @@ empsectionclassResponse:function(e){
                          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                         alert(JSON.stringify(obj));
+                        // alert(JSON.stringify(obj));
                         this.deletesubjectzparam=obj;
                        this.$.deletesubjectzajax.generateRequest();
      this.deletesubjectz11url=sessionStorage.getItem("addrinfo")+"/deletesubjectz11-service";
@@ -1674,7 +1674,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
     
       emppersonaldetailsResponse:function(e){
         var res=e.detail.response.returnval;
-      alert(JSON.stringify(res));
+     // alert(JSON.stringify(res));
          if(res=='Inserted!'){
           this.fnschoolemployeepersonal();
         }
@@ -1735,7 +1735,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
     
          obj.flage='active';
-         alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
          this.fnsavesectionparam=obj;
          this.$.fnsavesectionajax.generateRequest();
     }
@@ -2098,7 +2098,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         obj.categoryname=categoryname;
         obj.emplanpreff=emplanpreff;
          obj.academic_year= localStorage.getItem("curr_sess_academicyear"); 
-         alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
        this.fnsubjecttocategorysavingparam=obj;
       this.$.fnsubjecttocategorysavingajax.generateRequest();
     } 
@@ -2310,13 +2310,13 @@ insertschoolTypename:function(schooltypesarr)
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
         obj.lengpref=lengpref;
         this.fngetThefunctionparam=obj;
-        alert(JSON.stringify(obj));
+       // alert(JSON.stringify(obj));
     
         this.$.fngetThefunctionajax.generateRequest();
       },
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
-            alert(JSON.stringify(res));
+           // alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },

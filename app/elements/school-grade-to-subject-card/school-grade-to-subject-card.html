@@ -8,7 +8,7 @@
 
    <dom-module id="school-grade-to-subject-card">
    <template>
-    <style>
+    <style>  
       :host {
         display: block;
       }   
@@ -47,9 +47,9 @@
         border-radius: 10px;
         border: 2px solid #6699ff;
         padding: 0px;
-        margin-top: 6%;
-        width: 50%;
-        margin-left: 25%;
+        margin-top: 4%;
+        width: 60%;
+        margin-left: 19%;
         min-height: 300px;
       }
 
@@ -58,9 +58,9 @@
         @apply(--layout-right);
         background-color: #363636;
         color: #ffffff;                
-        width: 17%;
+        width: 15%;
         margin-left: 80%;
-        margin-top: 4%;
+        margin-top: 7%;
       }
       .sbutton
       {
@@ -72,12 +72,18 @@
       }
       .subbcatt
       {
-        margin-left: 50%;
+        margin-left: 36%;
       }
       .newwwwcardd
     {
       overflow-y: scroll;
       overflow-x: hidden;
+    }
+    .language
+    {
+       margin-left: 39%;
+      margin-top: -7%;
+      position: absolute;
     }
     </style>
 
@@ -137,26 +143,28 @@
             </td>
           </tr> 
         </thead> 
-        <tbody class="newwwwcardd col-sm-12" style="width: 700px;height: 800px;"> 
+        <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 400px;"> 
           <template is="dom-repeat" items="{{bigarr}}" as="view"> 
-            <tr> 
+            <!-- <tr> 
               <td>Save</td>
               <td>Delete</td>
-            </tr>   
+            </tr>   --> 
             <tr>
               <td class="outcard">
                 <h4 style="width: 203px;">{{view.subject_name}}</h4>
               </td>
-              <td class="innercard">
+              <td class="innercard" style="width: 700px;">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
                 <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypename}}" getschoolcategory="{{schooltypesubjectid}}"></school_grade-subject-item-card>
                </template>
               </td>
               <td>
-                <paper-icon-button icon="save" on-click="FnSavez"></paper-icon-button>
+                <paper-icon-button  id="btn1" icon="save" on-click="FnSavez"></paper-icon-button>
+                <paper-tooltip for="btn1">Save</paper-tooltip>
               </td>
               <td>
-                <paper-icon-button icon="close"  on-click="fndelete"></paper-icon-button>
+                <paper-icon-button  id="btn2" icon="close"  on-click="fndelete"></paper-icon-button>
+                <paper-tooltip for="btn2">Delete</paper-tooltip>
               </td>
             </tr>
           </template>
@@ -185,6 +193,7 @@
       is: 'school-grade-to-subject-card',   
        ready:function(){
        this.$.tbz1.hidden=true;
+       this.$.empLanguageprefernce1.hidden=true;
       },
        getgrade:function(arr1){
          getgradearr=arr1;
@@ -244,7 +253,7 @@
 
          this.schooltypesubjectid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
         this.schooltypename=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-        alert(this.schooltypesubjectid+this.schooltypename);
+       // alert(this.schooltypesubjectid+this.schooltypename);
     
         if(overall1!=0){
                  document.querySelector('school_grade-subject-item-card').Fngradeclean11(); 

@@ -26,8 +26,9 @@
       width:25% 
      margin-left:2.0em;
       }
-       .innercard{     
-      @apply(--layout-horizontal);
+       .innercard
+       {     
+        @apply(--layout-horizontal);
        width:100%
       margin-left:5.5em;
      }
@@ -69,6 +70,10 @@
     {
       overflow-y: scroll;
       overflow-x: hidden;
+    }
+    #talhidn
+    {
+      margin-top: 2%;
     }
     </style>
    
@@ -128,8 +133,10 @@
      <div id="dialog">
       <paper-dialog id="dialogvaluezz" modal>
            
-          <div class="list-group col-sm-12 panel-body form-category">  
+          <!-- <div class="list-group col-sm-12 panel-body form-category">  --> 
+          <div>
           <table class="table table-bordered">
+          <table>
             <div class="container">
               <thead> 
               <tr>
@@ -168,39 +175,44 @@
       </div>
 
      <div id="talhidn" hidden$="{{hidenewgridd}}">
-        <div class="list-group col-sm-12 panel-body form-category">  
+        <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
+        <div>
           <table class="table table-bordered">
-            <div class="container">
+            <!-- <div class="container"> -->
+            <div>
               <thead> 
               <tr>
-                <th></th>
-                  <th class="innercard" style="width: 770px;margin-left: -97%;">
+                  <th class="innercard" style="width: 770px;margin-left: 13%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                     </template>
-                  </th>   
+                  </th>
+                  <!-- <th class="icheadd">
                     <th>Save</th>
                     <th>Delete</th>
+                  </th>  -->  
+                    
                </tr>
               </thead>
-              <tbody class="newwwwcardd col-sm-12" style="width: 1000px;height: 800px;">
+              <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 350px;">
                 <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
                 <tr>
                   <td class="outcard"> 
                     <h4>{{view.emp_name}}</h4>   
                     </td>
-                    <td class="innercard">
+                    <td class="innercard" style="width: 770px;">
                       <template is="dom-repeat" items="{{view.employee}}" as="s">
                         <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
                       </template>   
                   </td>
                   <td>
-                  <paper-icon-button icon="save" on-click="FnSubmit"></paper-icon-button>
+                    <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
+                    <paper-tooltip for="btn1">Save</paper-tooltip>
                  </td>
                   <td>
-                  <paper-icon-button icon="close" on-click="Fndelte"></paper-icon-button>
-                 </td>  
-              
+                    <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
+                    <paper-tooltip for="btn2">Delete</paper-tooltip>
+                 </td>          
                 </tr>
                 </template>
               </tbody>
@@ -208,20 +220,7 @@
           </table>   
         </div>   
         </div>  
-          <!--  <span id="subbutton1" style="color:white;background-color:black;margin-left:41%;border-radius:10px">
-            <paper-button on-click="FnSubmit" style="width:12%;height:5%">Submit</paper-button>
         
-          </span> -->
-    
-  <div id="subbutton1"> 
-   <paper-button ></paper-button>
-     </div>
-    <div id="subbutton1" style="color:white;background-color:black;width:7%;margin-left:41%;" >
-    <paper-button style="color:white;background-color:black;width:7%;margin-left:41%;" on-click="FnSubmit">Submit</paper-button>
-    </div>
-      <div id="empidz1" style="color:white;background-color:black;width:7%;margin-left:50%; margin-top:-3%;" >
-    <paper-button on-click="Fndelte">Delete</paper-button>
-   </div>
       
     <demosumbit-card id="mydialog"></demosumbit-card>
     
@@ -242,9 +241,9 @@
     Polymer({
       is: 'employe-schooltype-to-category-card',
       ready:function(){
-        this.$.subbutton1.hidden=true;
+        //this.$.subbutton1.hidden=true;
         this.$.talhidn.hidden=true;
-        this.$.empidz1.hidden=true;
+        //this.$.empidz1.hidden=true;
         this.$.empidz.hidden=true;
      
         this.$.generateidz.hidden=true;
@@ -257,8 +256,8 @@
     },
     fnbuttonsclean:function()
     {
-     this.$.empidz1.hidden=true; 
-     this.$.subbutton1.hidden=true;
+     //this.$.empidz1.hidden=true; 
+     //this.$.subbutton1.hidden=true;
     },
        getgrade:function(arr){
         empteacharr=arr;
@@ -320,29 +319,19 @@
        
        },
        Fndelte:function(e){
-       alert(JSON.stringify(deldbarrs));
+      // alert(JSON.stringify(deldbarrs));
         this.$.uiservice.fnemployeeedelfn(deldbarrs);
         this.$.mydialog.toggleDialog1();
        document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
        },
-      /* Fnselected:function(e)
-        {
-          //alert('s');
-          this.querySelector('paper-listbox').style.visibility='hidden';
-         // this.textvalue=e.target.selectedItem.textContent.trim();
-          //this.studentname=e.target.selectedItem.value;
-          //alert(this.textvalue+this.textvalue1);
-          this.itemArray=[];
-          //document.querySelector('#itemlist11www').selected=-1;
-         // this.$.uiservice.studentinfo(this.studentname);
-          },*/
+      
 
         grnerate:function(e)
         {
           //document.querySelector('employe-creation-card').Fnsubjectclean();        
             if(overall1!=0){
-              alert('1');
+             // alert('1');
           document.querySelector('employe-creation-card').Fnsubjectclean1();
 
             }
@@ -356,15 +345,7 @@
                                setarrr.push(obj);
                   }
 
-                 /*for(var i=0;i<empteacharr.length;i++){
-                          var emp_id=empteacharr[i].emp_id;
-                          var emp_name=empteacharr[i].emp_name;
-                          
-                            var obj={"emp_id":"","emp_name":""};
-                                obj.emp_id=emp_id;
-                                obj.emp_name=emp_name;
-                               emparr.push(obj);
-                          }*/
+                 
                    this.setsubjectarr=setarrr;
 
                   var generatearr=[];
@@ -425,16 +406,12 @@
                  overall.splice();
                  generatearr=[];
                 // this.$.uiservice.fngetThefunction();
-                   this.$.subbutton1.hidden=false;
+                   //this.$.subbutton1.hidden=false;
                    this.$.talhidn.hidden=false;
-                   this.$.empidz1.hidden=false;
+                   //this.$.empidz1.hidden=false;
                            
           },
-            
-         //  this.$.generateidz.hidden=false;
-  
-         //  alert(JSON.stringify(emparr));
-    
+          
 
     FnInputChanged:function(e){
           if(e.keyCode==13|| e.keyCode==40)

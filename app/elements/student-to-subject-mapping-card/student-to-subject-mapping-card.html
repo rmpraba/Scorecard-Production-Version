@@ -75,9 +75,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid grey;
           height: 100px;
           width: 1px;
-          margin-left: 45%;
-          min-height: 830px;
-          top: 40% !important;
+          margin-left: 46%;
+          min-height: 389px;
+          top: 32% !important;
       } 
       .newwwwcardd
       {
@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #tbz1
       {
-          margin-top: 3%;
+          margin-top: 1%;
           margin-left: 5%;
       }
         
@@ -131,46 +131,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </template>   
             </paper-menu>
           </paper-dropdown-menu>  
-       
-     
          </div>
         
         <div class="vertical-row" hidden$="{{hidenewline}}"></div>
           
           <div id="labelhide">
-            <div style="float: left;position: absolute;top: 33%;margin-left: 25%;" id="secondid">
+            <div style="float: left;position: absolute;top: 27%;margin-left: 25%;" id="secondid">
                 <label><h4><b>SECOND LANGUAGES</b></h4></label>
               </div>
-              <div style="display: inline-block;position: absolute;margin-left:49%;top: 33%;" id="thirdid">
+              <div style="display: inline-block;position: absolute;margin-left:49%;top: 27%;" id="thirdid">
                 <label><h4><b>THIRD LANGUAGES</b></h4></label>
             </div>
           </div>  
   
 
       <div id="tbz1" hidden$="{{hidenewsubcat}}">
-        <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 2%;">
+        <div class="list-group col-sm-12 panel-body form-category">
           <table class="table table-bordered">
             <div class="container">
               <thead>
                 <tr>
-                  <!-- <td class="outcard"></td> -->
-                  <td class="innercard" style="margin-left: 16%;width: 730px">
+                <!-- <td class="outcard" style="width: 25%;"></td> -->
+                  <th></th>
+                  <th class="innercard" style="margin-left: -100%;width: 790px">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
+                      <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
                     </template>
-                  </td>
+                  </th>
+                   <!-- <th>Save</th> -->
                 </tr>  
               </thead>   
-              <tbody  class="newwwwcardd col-sm-12" style="width: 1000px;height: 800px;">
+              <tbody  class="newwwwcardd col-sm-12" style="width: 1020px;height: 340px;">
                 <template is="dom-repeat" items="{{bigarr}}" as="view">  
                   <tr>
                     <td class="outcard">
                       <h4 style="width: 24%">{{view.student_name}}</h4>
                     </td>
-                    <td class="innercard" style="width: 990px;">
+                    <td class="innercard" style="width: 750px;">
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
                       </template>
+                    </td>
+                    <td>
+                      <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
+                      <paper-tooltip for="btn1">Save</paper-tooltip>
                     </td>
                   </tr>
                 </template>
@@ -181,9 +185,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
   </div>    
 
-      <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
+      <!-- <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
         <table class="table table-bordered">
-        <!-- <table border="1" class="tt"> -->
           <tbody>
           <tr>
             <td class="outcard" style="width: 25%;"></td>
@@ -211,17 +214,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>    
     </div>    
     </div>    
-     </div>
-       <!--       <div id="serveizzz">
-             <paper-spinner active></paper-spinner>
-        </div>
-   --> 
-   <!--  <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="fnsubmit">submit</paper-button>
-    -->  <!--  <paper-button style="background-color:black;color:white;margin-left: 45%;" on-click="ho">toggle</paper-button>
-   -->
-      <div class="buttons" id="subid">
+     </div> -->
+
+
+      <!-- <div class="buttons" id="subid">
         <paper-button style="background-color:black;color:white;margin-left: 48%;" on-click="fnsubmit">submit</paper-button>
-      </div> 
+      </div> --> 
+
        <iron-ajax  
         auto      
         id="FnSubjecttostudentlanguageajax"
@@ -282,7 +281,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready:function()
       {
         this.hidenewsubcat=true;
-        this.$.subid.hidden=true;
+       // this.$.subid.hidden=true;
         this.$.labelhide.hidden=true;
         this.hidenewline=true;
       },
@@ -340,7 +339,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.FnStoSSectionid=e.target.selectedItem.textContent.trim();
             this.FnStoSSectionid1=e.target.selectedItem.value;
              this.hidenewsubcat=false;
-            this.$.subid.hidden=false;
+            //this.$.subid.hidden=false;
             this.$.labelhide.hidden=false;
             //this.hidenewline=false;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
