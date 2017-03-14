@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecarddb'
+   database : 'demoscorecard'
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -6493,7 +6493,7 @@ app.post('/getempschooltype-service' ,  urlencodedParser,function (req, res)
     {
       res.status(200).json({'returnval': 'Deleted!'});
     }
-    else
+    else  
     {
       //console.log(err);
       res.status(200).json({'returnval': 'Not Deleted!'});
@@ -6502,9 +6502,9 @@ app.post('/getempschooltype-service' ,  urlencodedParser,function (req, res)
   });
 app.post('/fnschooltypesaveinfo-service' , urlencodedParser,function (req, res)
 {
- var collection = {"school_id":req.query.school_id,"emp_id":req.query.emp_id,"emp_name":req.query.emp_name,"school_type":req.query.emp_schol_type,"flage":req.query.flage};
+ var collection = {"school_id":req.query.school_id,"emp_id":req.query.emp_id,"emp_name":req.query.emp_name,"school_type":req.query.emp_schol_type,"flage":req.query.flage,"academic_year":req.query.academic_year,};
    //console.log(JSON.stringify(collection));
-connection.query("SELECT * FROM employee_to_school_type_category_mapping WHERE school_id='"+req.query.school_id+"' and emp_id='"+req.query.emp_id+"' and emp_name='"+req.query.emp_name+"'  and school_type='"+req.query.emp_schol_type+"'",function(err, rows)
+connection.query("SELECT * FROM employee_to_school_type_category_mapping WHERE school_id='"+req.query.school_id+"' and emp_id='"+req.query.emp_id+"' and emp_name='"+req.query.emp_name+"'  and school_type='"+req.query.emp_schol_type+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
     {
     if(rows.length==0)
     {
@@ -6533,9 +6533,9 @@ connection.query("SELECT * FROM employee_to_school_type_category_mapping WHERE s
 app.post('/fnrolesaveinfo-service' , urlencodedParser,function (req, res)
 {  
        
-  var collection = {"school_id":req.query.school_id,"id":req.query.emp_id,"name":req.query.emp_name,"role_id":req.query.emp_role_id,"password":req.query.password,"flage":req.query.flage};
-   //console.log(JSON.stringify(collection));
- connection.query("SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.emp_id+"' and name='"+req.query.emp_name+"' and  role_id='"+req.query.emp_role_id+"' and password='"+req.query.password+"'",function(err, rows)
+  var collection = {"school_id":req.query.school_id,"id":req.query.emp_id,"name":req.query.emp_name,"role_id":req.query.emp_role_id,"password":req.query.password,"flage":req.query.flage,"academic_year":req.query.academic_year};
+   console.log(JSON.stringify(collection));
+ connection.query("SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.emp_id+"' and name='"+req.query.emp_name+"' and  role_id='"+req.query.emp_role_id+"' and password='"+req.query.password+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
     {
     if(rows.length==0)
     {
@@ -6563,7 +6563,7 @@ app.post('/fnrolesaveinfo-service' , urlencodedParser,function (req, res)
   });
 app.post('/Fnpersonalinfo-service' ,  urlencodedParser,function (req, res)
  {  
-  var qur="UPDATE  md_employee_creation SET   emp_name='"+req.query.employeename+"' , emp_phone='"+req.query.employeephone+"' , emp_password='"+req.query.employeepassword+"' , emp_mobile='"+req.query.employeemobile+"' where emp_id='"+req.query.employeeid+"' and school_id='"+req.query.school_id+"'"; 
+  var qur="UPDATE  md_employee_creation SET   emp_name='"+req.query.employeename+"' , emp_phone='"+req.query.employeephone+"' , emp_password='"+req.query.employeepassword+"' , emp_mobile='"+req.query.employeemobile+"' where emp_id='"+req.query.employeeid+"' and school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"'"; 
     console.log(qur);
     connection.query(qur,function(err, rows)
     {
@@ -7577,7 +7577,7 @@ app.post('/tranfersection-service', urlencodedParser,function (req,res)
 });
 app.post('/empmappingsubject-service',urlencodedParser,function (req,res)
 {  
-  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active'";
+  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active' ";
 
 
    //console.log(qur);

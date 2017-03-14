@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="outercard">
         <table>
           <div>  
-          <div class="catcard">
+          <div class="catcard">   
             <label>School Type</label>
             <template is="dom-repeat" items="{{empschoolarr}}" as="view">
               <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
@@ -271,8 +271,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.$.uiservice.fnsavesection(empsectionarr);
          this.$.mydialog.toggleDialog();
          document.querySelector('emp-grade-get-card').Fngradecleansection(); 
-         document.querySelector('emp-category-get-card').FnRefresh();
-         document.querySelector('employe-category-creation-card').FnRefresh();
         },      
        fndelete:function(e){ 
       this.$.uiservice.fndelsectionz(empsectionarr1);
@@ -296,27 +294,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           this.fnemployeenamezparam=obj;
-          //alert(JSON.stringify(obj));
+          alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
        
         },
         f12:function(e){
         document.querySelector('emp-category-get-card').f1(); 
      },
-
+  
        
     fnemployeename:function(e)
     {  
        this.empselectid=e.target.selectedItem.value;
        this.$.newwgridd.hidden=false;
-         this.f12();
-       this.f11();  
+       this.f12();
+        this.f11();  
         },
      
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
      // alert(JSON.stringify(sectionnamearr1));
-      //alert(JSON.stringify(empnamearrr));
+      alert(JSON.stringify(empnamearrr));
    /*    var setarr=[];
                  for(var i=0;i<sectionnamearr1.length;i++){
                           var section_name=sectionnamearr1[i].section;
@@ -358,8 +356,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             nameobj.head=a;
          
            overall.push(nameobj);
-          overall11.push(nameobj);
-     
+          
           a=[];
        }
        // alert(JSON.stringify(overall));
@@ -410,6 +407,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             nameobj.busvalue=a1;
          
            overall1.push(nameobj);
+           overall11.push(nameobj);
           a1=[];
         }
        // alert(JSON.stringify(overall1));

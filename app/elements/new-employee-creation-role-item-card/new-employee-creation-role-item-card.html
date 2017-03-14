@@ -48,9 +48,10 @@
         }
       },
       fnroleset:function(e){
+        alert('1');
         //alert(this.schoolroleidxx+this.schoolempgetname+this.schoolempgetid+this.emppsw);
         //alert(document.querySelector('#'+this.schoolroleidxx).checked)
-         if(document.querySelector('#'+this.schoolroleidxx).checked==true)
+         if(document.querySelector('#'+this.id).checked==true)
          {
               var obj={"emp_id":"","emp_name":"","school_role_id":"","emp_psw":"","id":""};
                   obj.emp_id=this.schoolempgetid;
@@ -59,7 +60,7 @@
                   obj.emp_psw=this.emppsw;
                   obj.id=this.id;
                   getrolearrr.push(obj);
-                  //alert(JSON.stringify(getrolearrr));
+               //   alert(JSON.stringify(getrolearrr));
                document.querySelector('new-employee-creation-card').passrole(getrolearrr);
            }
          else if(document.querySelector('#'+this.id).checked==false){

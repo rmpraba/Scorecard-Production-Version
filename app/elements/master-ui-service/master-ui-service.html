@@ -1736,11 +1736,13 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
             var empschooltypeid=selectmapschooltypearr[i].emp_schol_type;
        //alert(empschooltypeid);
         this.fnschooltypesaveinfowwurl=sessionStorage.getItem("addrinfo")+"/fnschooltypesaveinfo-service";
-        var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":"","flage":""};
+        var obj={"school_id":"","emp_id":"","emp_name":"","emp_schol_type":"","flage":"","academic_year":""};
         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.emp_id=empid;
         obj.emp_name=empname;
         obj.emp_schol_type=empschooltypeid;
+        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+  
         obj.flage='active';
         this.fnschooltypesaveinfoparam=obj;
          //alert(JSON.stringify(obj));
@@ -1825,25 +1827,27 @@ fnempsubjectdetails:function(getgradenames)
           var emproleid1=passrolearr[j].school_role_id;
           var emppsw1=passrolearr[j].emp_psw;
     this.fnrolesaveinfourl=sessionStorage.getItem("addrinfo")+"/fnrolesaveinfo-service";
-       var obj={"school_id":"","emp_id":"","emp_name":"","emp_role_id":"","password":"","flage":""};
+       var obj={"school_id":"","emp_id":"","emp_name":"","emp_role_id":"","password":"","flage":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.emp_id=empid1;
         obj.emp_name=empname1;
         obj.emp_role_id=emproleid1;
         obj.password=emppsw1;
         obj.flage='active';
+        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+     
        this.fnrolesaveinfoparam=obj;
-     //alert(JSON.stringify(obj));
+     alert(JSON.stringify(obj));
        this.$.fnrolesaveinfoajax.generateRequest();
     }
  },
  fnrolesaveinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res)); 
+      alert(JSON.stringify(res)); 
  },
 Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,employeemail,employeepassword){
    this.Fnpersonalinfourl=sessionStorage.getItem("addrinfo")+"/Fnpersonalinfo-service";
-     var obj={"school_id":"","employeeid":"","employeename":"","employeephone":"","employeemobile":"","employeemail":"","employeepassword":""};
+     var obj={"school_id":"","employeeid":"","employeename":"","employeephone":"","employeemobile":"","employeemail":"","employeepassword":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.employeeid=employeeid;
          obj.employeename=employeename;
@@ -1851,6 +1855,7 @@ Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,emp
          obj.employeemobile=employeemobile;
          obj.employeemail=employeemail;
          obj.employeepassword=employeepassword;
+    obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
          this.Fnpersonalinfoparam=obj;
      // alert(JSON.stringify(obj));
         this.$.Fnpersonalinfoajax.generateRequest();
@@ -1865,8 +1870,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         obj.employeeid=employeeid;
         obj.employeename=employeename
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+   obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          this.fnschoolemployeeroleparam=obj;
         // alert(JSON.stringify(obj));
         this.$.fnschoolemployeeroleajax.generateRequest();

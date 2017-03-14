@@ -28,11 +28,12 @@
        fnsetrole:function(e){
          //alert(this.emproleid);
          if(document.querySelector('#'+this.emproleid).checked==true){
-          // alert(this.emprolename); 
+           alert(this.emprolename); 
             var obj={"role_id":""};
             obj.role_id=this.emproleid;
             setrolearr1.push(obj);
-            document.querySelector('new-employee-creation-card').setschoolrolezz(setrolearr1);
+              //alert(JSON.stringify(setrolearr));
+       document.querySelector('new-employee-creation-card').setschoolrolezz(setrolearr1);
            //alert(this.emprolename);
           }else if(document.querySelector('#'+this.emproleid).checked==false){
            for(var i=0;i<setrolearr1.length;i++){
