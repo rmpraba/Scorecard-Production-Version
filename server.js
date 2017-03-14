@@ -6786,20 +6786,20 @@ app.post('/termrecovery-service',urlencodedParser,function (req,res)
 app.post('/terminsert-service' , urlencodedParser,function (req, res)
 {  
     var response={
+      school_id:req.query.school_id,
+      acadamic_year:req.query.acadamicyears,
+      school_type:req.query.schootypids,
+      grade_id:req.query.gradeid,
+      grade_name:req.query.gradename,
+      term1:req.query.student,
+      term2:req.query.section,
+      term3:req.query.studentterm3
+  };
+   
 
-      school_id:req.query.workingschoolid,
-      academic_year:req.query.acadamicyear,
-      term_name:req.query.termids,
-      type:req.query.termgrade,
-      no_of_days:req.query.noofdays
-    };
-    //var obj={"workingschoolid":"","acadamicyear":"","termids":"","termgrade":"","noofdays":""};
-        
+    var qur="SELECT * FROM dummy_working_days WHERE school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'";
 
-    //console.log(JSON.stringify(response));
-    var qur="SELECT * FROM md_workingdays WHERE school_id='"+req.query.workingschoolid+"' and academic_year='"+req.query.acadamicyear+"' and term_name='"+req.query.termids+"' and type='"+req.query.termgrade+"'";
-
-    var qur1="update md_workingdays set no_of_days='"+req.query.noofdays+"' where school_id='"+req.query.workingschoolid+"' and academic_year='"+req.query.acadamicyear+"' and  term_name='"+req.query.termids+"' and type='"+req.query.termgrade+"'";
+    var qur1="update dummy_working_days set term1='"+req.query.student+"',term2='"+req.query.section+"' ,term3='"+req.query.studentterm3+"' where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'";
 
    /* console.log(qur);
     console.log(qur1)*/
@@ -6807,7 +6807,7 @@ app.post('/terminsert-service' , urlencodedParser,function (req, res)
     function(err, rows)
     {
      if(rows.length==0){
-     connection.query("INSERT INTO md_workingdays SET ?",[response],
+     connection.query("INSERT INTO dummy_working_days SET ?",[response],
     function(err, rows)
     {
     if(!err)
@@ -7130,7 +7130,7 @@ app.post('/fnsetpasssectinvalue-service',  urlencodedParser,function (req,res)
    var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'";
   connection.query(qur,
     function(err, rows)
-    {
+    {   
     if(!err)
     { 
      // console.log(JSON.stringify(rows));   
@@ -7671,7 +7671,7 @@ app.post('/getschooltypeas-service',  urlencodedParser,function (req,res)
 {  
     var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
    
-var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM demoscorecard.md_school_grade_mapping p join demoscorecard.mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
+var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM md_school_grade_mapping p join mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
 
    var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
   //console.log(qur);
@@ -8505,11 +8505,29 @@ app.post('/fnsetstudentinfo-service' , urlencodedParser,function (req, res)
         res.status(200).json({'returnval': 'updated successfully'});
         else
         res.status(200).json({'returnval': 'not updated'});
-        });
+        });   
         } 
       });
 });
 
+
+app.post('/fngetpasssectinvaluezzz-service',  urlencodedParser,function (req,res)
+  {  
+    /* var obj={"school_id":"","schooltype":"","acadamicyear":""};
+*/  var qur="SELECT * FROM dummy_working_days where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"' and acadamic_year='"+req.query.acadamicyear+"'";
+    //console.log(qur);
+     connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+     res.status(200).json({'returnval': ''}); 
+  });
+});
 
 
 var server = app.listen(5000, function () {

@@ -180,9 +180,15 @@
          <section data-category="schooltype-to-grade-card">
           <schooltype-to-grade-card></schooltype-to-grade-card>
         </section>
+
          <section data-category="school-section-creation-card">
           <school-section-creation-card></school-section-creation-card>
         </section>
+
+         <section data-category="section-period-itme-card">
+          <section-period-itme-card></section-period-itme-card>
+        </section>
+     
         <section data-category="Student-to-section-mapping-card">
           <Student-to-section-mapping-card></Student-to-section-mapping-card>
         </section>
@@ -195,7 +201,7 @@
         <section data-category="student-allow-card">
           <student-allow-card></student-allow-card>
         </section>
-      </iron-pages>
+        </iron-pages>
     </div>    
 
     <div class="footer"></div>
@@ -228,7 +234,12 @@
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
       }
-    if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
+  if(localStorage.getItem("curr_sess_page")=="section-period-itme-card")
+       {
+       this.page="teacherhomecard";
+       document.querySelector('teacherhome-card').FnRefresh();
+      }
+  if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();

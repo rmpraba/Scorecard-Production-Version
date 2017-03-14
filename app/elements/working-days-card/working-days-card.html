@@ -16,6 +16,211 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+
+
+     table{
+        width: 60%;  
+        border-collapse: collapse;                          
+        margin-left: 1%;
+      }              
+      .studname{
+        width: 30%;
+      }
+      #tb1{
+          width:23.6%
+        }
+        .newdropzzz
+        {
+          margin-top: 6%;
+        }
+        .newdivzzz
+        {      
+          border-radius: 10px;
+          border: 1px solid #6699ff;
+          padding: 15px; 
+          width: 41%;
+          margin-left: 30%;
+          margin-top: 5% !important;
+          min-height: 200px; 
+        }
+    
+    </style>  
+
+      <!-- /*.inputelements
+      {
+       
+        @apply(--layout-center);
+        display: inline-block;
+        margin-left: 30%;
+        width: 50%;
+      
+      }
+      .outcard
+      {
+        @apply(--layout-vertical);
+      }
+      .outcard
+      {
+        border-radius: 10px;
+        border: 2px solid #6699ff;
+        padding: 20px;
+        margin-top: 6%;
+        width: 30%;
+        margin-left: 36%;
+        min-height: 300px;
+      }
+      #btn1 paper-button
+      {
+        @apply(--layout-right);
+        background-color: #363636;
+        color: #ffffff;                
+        width: 7%;
+        margin-left: 60%;
+        margin-top: 4%;
+      }
+    </style> -->
+   
+   
+
+    <div>
+      <CENTER>
+        <h3><b>WORKING DAYS</b></h3>   
+      </CENTER>
+    </div>
+    
+    <div class="newdivzzz">
+          <div>  
+            <label>School Type</label>
+            <template is="dom-repeat" items="{{Sectiongradearrr}}" as="view">
+               <workingday-creation-item-card schooltypename="{{view.school_type_name}}" schootypeid="{{view.school_type_id}}" id="WDAYPH{{view.school_type_id}}">
+                </workingday-creation-item-card>  
+             </template>
+          </div>  
+   
+    <div class="newdropzzz">
+        <paper-dropdown-menu id="term" label="Select Acadamic year">
+            <paper-menu id="rtermmmzzz" class="dropdown-content"   on-iron-select="fnsetonacadamicsectionzz" attr-for-selected="value" required>
+                <paper-item value="2015-2016">2015-2016</paper-item>     
+                <paper-item value="2016-2017">2016-2017</paper-item>
+                <paper-item value="2017-2018">2017-2018</paper-item>
+                <paper-item value="2018-2019">2018-2019</paper-item>
+                <paper-item value="2019-2020">2019-2020</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+    </div>
+   </div> 
+      
+   <div class="newtabgrid" hidden$="{{hidenewtabgrid}}">
+      <table border="1" style="margin-left: 20%;margin-top: 3%;">    
+          <tr>
+          <th id="tb1">Grade</th>
+          <th id="tb1">Term1</th>
+          <th id="tb1">Term2</th>
+          <th id="tb1">Term3</th>
+           <th id="tb1">Save</th> 
+         </tr>      
+          <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
+          <tr>
+          <td colspan="6">
+        <workingday-terms-card  gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  term1="{{view.term1}}" term2="{{view.term2}}" term3="{{view.term3}}"></workingday-terms-card >
+
+
+           </td>   
+           </tr>
+          </template>  
+      </table>
+    </div>  
+
+      <master-ui-service id="uiservice"></master-ui-service>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    var dbschootypearr=[];
+     var gridschooltypearr=[];
+    Polymer({
+      is: 'working-days-card',
+  
+    
+        ready:function()
+      {
+         this.$.term.hidden=true;
+         this.hidenewtabgrid=true;
+
+      },
+      FnRefresh:function()
+      {
+        document.querySelector('#rtermmmzzz').selected=-1;
+      },
+      showacademicyr:function()
+      {
+        this.$.term.hidden=false;
+      },
+      /*shownewgrid:function()
+      {
+        this.hidenewtabgrid=false;
+      },*/
+      Setsectionvalue:function(e)
+      {
+
+      this.schootypidz=e;
+      alert(JSON.stringify(this.schootypidz));
+    // alert(this.schootypidz);
+      },
+      fnsetonacadamicsectionzz:function(e)
+      {
+         this.acadamicyear=e.target.selectedItem.textContent.trim(); 
+         this.hidenewtabgrid=false;
+      //  alert(this.acadamicyear);
+          this.$.uiservice.fnsetpasssectinvalue(this.schootypidz);
+           this.$.uiservice.fngetpasssectinvaluezz(this.schootypidz,this.acadamicyear);
+  
+      },
+         scooltypgridvalzzz:function(arr){
+        //  alert(JSON.stringify(arr));
+         gridschooltypearr=arr;
+       },   
+   scooltypgridval1:function(arr){
+            dbschootypearr=arr;
+            alert('2');   
+              //   alert(JSON.stringify(gridschooltypearr));
+                //  alert(JSON.stringify(dbschootypearr));
+      
+              for(var i=0;i<gridschooltypearr.length;i++){
+               // alert(1);
+                for(var j=0;j<dbschootypearr.length;j++){
+                //  alert(2);
+                    alert(dbschootypearr[j].grade_id+"  "+gridschooltypearr[i].grade_id);
+                       if(dbschootypearr[j].grade_id==gridschooltypearr[i].grade_id){
+                             //alert('1');
+                             gridschooltypearr[i].term1=dbschootypearr[j].term1;
+                             gridschooltypearr[i].term2=dbschootypearr[j].term2;
+                             gridschooltypearr[i].term3=dbschootypearr[j].term3;
+                       
+                       }
+                }
+              }
+               alert(JSON.stringify(gridschooltypearr));
+               this.scooltypgrid=gridschooltypearr;
+           //   alert(this.scooltypgrid);
+             }
+         
+
+ });
+  })();
+  </script>
+</dom-module>
+
+<!-- <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="working-days-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
       .inputelements
       {
         /*@apply(--layout-vertical);*/
@@ -145,3 +350,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   })();
   </script>
 </dom-module>
+ -->

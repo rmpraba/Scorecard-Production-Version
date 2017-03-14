@@ -1099,8 +1099,28 @@
         on-response="fngetpasssectinvalueResponse"
         debounce-duration="300">
       </iron-ajax>
+       <iron-ajax        
+           id="fngetpasssectintermvalueajax"
+          url="{{fngetpasssectintermvalueurl}}"
+        params="{{fngetpasssectintermvalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fngetpasssectintermvalueResponse"
+        debounce-duration="300">
+      </iron-ajax>
+       <iron-ajax        
+           id="fnsetfixdsection1ajax"
+          url="{{fnsetfixdsection1url}}"
+        params="{{fnsetfixdsection1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnsetfixdsection1Response"
+        debounce-duration="300">
+      </iron-ajax>
+      
       </template>
-
   <script>
   (function() {
     'use strict';
@@ -1311,9 +1331,27 @@ empsectionclassResponse:function(e){
        fnsetfixdsectionResponse:function(e){
            var res=e.detail.response.returnval; 
             document.querySelector('student-allow-card').Sectionarrr=res;
+             document.querySelector('working-days-card').Sectiongradearrr=res;
    
         //alert(JSON.stringify(res));
        },
+         fnsetfixdsection1:function()
+       {
+         this.fnsetfixdsection1url=sessionStorage.getItem("addrinfo")+"/selectschooltype-service";
+         var obj={"school_id":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         this.fnsetfixdsection1param=obj;
+         alert(JSON.stringify(obj));
+         this.$.fnsetfixdsection1ajax.generateRequest();
+       },
+       fnsetfixdsection1Response:function(e){
+           var res=e.detail.response.returnval; 
+            alert(JSON.stringify(res));
+   
+            document.querySelector('section-period-itme-card').sectionscooltypearr=res;
+   
+       },
+     
        fnretrivestudent:function(gradeid)
        {
          this.fnretrivestudenturl=sessionStorage.getItem("addrinfo")+"/fnretrivestudent-service";
@@ -1380,7 +1418,7 @@ empsectionclassResponse:function(e){
              deletesubjectzResponse:function(e){
             var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res));
-    
+      
       },
  
       tranfergradeinfoResponse:function(e)
@@ -1407,7 +1445,8 @@ empsectionclassResponse:function(e){
      {
         var res=e.detail.response.returnval; 
         //alert(JSON.stringify(res));
-       document.querySelector('student-allow-card').scooltypgridval(res)
+       document.querySelector('student-allow-card').scooltypgridval(res);
+       document.querySelector('working-days-card').scooltypgridvalzzz(res);
       },
        fngetpasssectinvalue:function(schooltype,acadamicyear){     
        this.fngetpasssectinvalueurl=sessionStorage.getItem("addrinfo")+"/fngetpasssectinvalue-service";
@@ -1423,7 +1462,7 @@ empsectionclassResponse:function(e){
          var res=e.detail.response.returnval; 
      // alert(JSON.stringify(res));
        document.querySelector('student-allow-card').scooltypgridval1(res);
-       document.querySelector('student-allow-card').updatecount(res);
+    //   document.querySelector('student-allow-card').updatecount(res);
      },
       studentsectiontype:function(){     
         this.studentsectiontypeurl=sessionStorage.getItem("addrinfo")+"/studentsectiontype-service";
@@ -3280,6 +3319,21 @@ insertschoolTypename:function(schooltypesarr)
             //alert("Updated");
           this.FnFetchGrade();
         }
+      },
+       fngetpasssectinvaluezz:function(schooltype,acadamicyear){     
+       this.fngetpasssectintermvalueurl=sessionStorage.getItem("addrinfo")+"/fngetpasssectinvaluezzz-service";
+        var obj={"school_id":"","schooltype":"","acadamicyear":""};
+         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.schooltype=schooltype;
+         obj.acadamicyear=acadamicyear; 
+      this.fngetpasssectintermvalueparam=obj;
+       this.$.fngetpasssectintermvalueajax.generateRequest();
+     },
+     fngetpasssectintermvalueResponse:function(e)
+     {
+         var res=e.detail.response.returnval; 
+      alert(JSON.stringify(res));
+       document.querySelector('working-days-card').scooltypgridval1(res);
       }
       
     });
