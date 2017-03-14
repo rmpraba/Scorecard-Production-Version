@@ -459,6 +459,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="employeecreation"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('new-employee-creation-card','');
+               this.$.uiservice.fnschoolemployeepersonal();
+   
         }
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")   
             this.$.assesmentservice.callTermService("Term");
@@ -825,7 +827,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.fnempgenerateid();
         this.$.uiservice.selectschooltype();
         this.$.uiservice.selectrolename();
-        this.$.uiservice.fnschoolemployeepersonal();
         document.querySelector('new-employee-creation-card').hidecreateemp=false;
         document.querySelector('new-employee-creation-card').hideupdateemp=true;
              this.$.cdialog.toggle();

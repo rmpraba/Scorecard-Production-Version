@@ -86,7 +86,7 @@
       <div>
         <CENTER>
           <h3><b>EMPLOYEE TO SUBJECT MAPPING</b></h3>
-        </CENTER>
+        </CENTER>  
       </div>      
      
      <div>   
@@ -101,12 +101,12 @@
               </div>  
           <div class="subcat1" style="margin-top: 5%;">
               <div class="form-group-heading">  
-                <h4>SUBJECT CATEGORY</h4>
+                <h4>SUBJECT CATEGORY</h4>  
               </div>
               <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
                 <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
               </template>
-          </div>
+          </div>   
 
           <div class="language">
             <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
@@ -147,7 +147,14 @@
                     
                </tr>
               </thead>
-              <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 350px;">
+                <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 350px;">
+               <tr>
+                 <td></td>
+                 <td></td>
+                 <td>Save</td>
+                 <td>Delete</td>
+         
+               </tr>
                 <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
                 <tr>
                   <td class="outcard"> 
@@ -279,6 +286,8 @@
           document.querySelector('employe-creation-card').Fnsubjectclean1();
 
             }
+            alert(JSON.stringify(getcategory));
+            alert(JSON.stringify(empteacharr));
             var setarrr=[];
                  for(var i=0;i<getcategory.length;i++)
                  {
