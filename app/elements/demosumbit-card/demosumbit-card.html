@@ -46,39 +46,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .buttons paper-button
       {
-        @apply(--layout-center);
+        @apply(--layout-left);
       background-color: #363636;
       color: #ffffff;
       width: 10%;
-      margin-top: 4%;
+      margin-left: 6%;
+      margin-top: 10%;
       }
+      /*.buttons paper-button
+      {
+        height:20px; 
+         background-color: #363636;
+        color: #ffffff;
+        width:100px; 
+        margin: -20px -50px; 
+        position:relative;
+        top:50%; 
+        left:50%;
+      }*/
+
     </style>
     <div>
        <paper-dialog id="newpopup" modal>
-          <label  id="labelid">Inserted Successfully!!!</label>
+          <center><label  id="labelid">Inserted Successfully!!!</label></center>
             <div class="buttons">
-              <paper-button dialog-confirm autofocus>Ok</paper-button>
-             <!--  <paper-button  dialog-confirm autofocus on-click="fnclose">Cancel</paper-button> -->
             </div>
+                  <center><paper-button style="background-color: #363636;color: #ffffff;" dialog-confirm autofocus>Ok</paper-button></center>
+        
       </paper-dialog>
     </div>
+
      <div>
        <paper-dialog id="newpopup1" modal>
-          <label  id="labelid1">Deleted Successfully!!!</label>
+          <center><label  id="labelid1">Deleted Successfully!!!</label></center>
             <div class="buttons">
-              <paper-button dialog-confirm autofocus>Ok</paper-button>
-             <!--  <paper-button  dialog-confirm autofocus on-click="fnclose">Cancel</paper-button> -->
             </div>
+              <center><paper-button style="background-color: #363636;color: #ffffff;" dialog-confirm autofocus>Ok</paper-button></center>
       </paper-dialog>
     </div>
 
     <div>
        <paper-dialog id="newpopup2" modal>
-          <label  id="labelid2">Updated Successfully!!!</label>
-            <div class="buttons">
-              <paper-button dialog-confirm autofocus>Ok</paper-button>
-             <!--  <paper-button  dialog-confirm autofocus on-click="fnclose">Cancel</paper-button> -->
+          <center><label  id="labelid2">Updated Successfully!!!</label></center>
+            <div class="buttons">         
             </div>
+            <center><paper-button style="background-color: #363636;color: #ffffff;" dialog-confirm autofocus>Ok</paper-button></center>
       </paper-dialog>
     </div>
  

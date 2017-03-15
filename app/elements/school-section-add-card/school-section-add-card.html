@@ -26,12 +26,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      <paper-dialog id="sectiongradeid" modal>
           <paper-input label="Enter The Section" value="{{section}}"></paper-input>
           <paper-button style="background-color:black;color:white" on-click="fnsetsubmit">submit</paper-button>
-            <paper-button dialog-confirm autofocus> close</paper-button>
+            <paper-button style="background-color:black;color:white" dialog-confirm autofocus>close</paper-button>
    </paper-dialog>
 
      <paper-dialog id="sectiongradeidss" modal>
        <h2>Cannot add more sections, Please make provision in Student Section Allocation first.</h2>
-            <paper-button dialog-confirm autofocus> close</paper-button>
+     <center>
+        <paper-button style="background-color:black;color:white" dialog-confirm autofocus> close</paper-button>
+     </center>
+
    </paper-dialog>
  
    <iron-ajax        

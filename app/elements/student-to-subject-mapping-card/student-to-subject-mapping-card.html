@@ -116,7 +116,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-dropdown-menu>
            
       
-     
            <paper-dropdown-menu id="grade" label="Select Grade">
             <paper-menu id="rgradewww" class="dropdown-content" on-iron-select="FnStosGrade">     
               <template is="dom-repeat" items="{{selectgradearr}}">
@@ -185,42 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
   </div>    
 
-      <!-- <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
-        <table class="table table-bordered">
-          <tbody>
-          <tr>
-            <td class="outcard" style="width: 25%;"></td>
-            <td class="innercard" style="margin-left: 1%;">
-              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:20%;">{{view.srtarr}}</h4>   
-              </template>
-            </td>
-            <td class="outcard">Save</td>
-          </tr>   
-          <template is="dom-repeat" items="{{bigarr}}" as="view">  
-            <tr>
-              <td class="outcard">
-                <h4>{{view.student_name}}</h4>
-              </td>
-              <td class="innercard">
-                <template is="dom-repeat" items="{{view.subject}}" as="s">
-                   <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
-                </template>
-              </td>
-              <td><paper-icon-button icon="save" on-click="fnsubmit"></paper-icon-button></td>
-            </tr>
-            </template>  
-        </tbody>    
-      </table>    
-    </div>    
-    </div>    
-     </div> -->
-
-
-      <!-- <div class="buttons" id="subid">
-        <paper-button style="background-color:black;color:white;margin-left: 48%;" on-click="fnsubmit">submit</paper-button>
-      </div> --> 
-
+     
        <iron-ajax  
         auto      
         id="FnSubjecttostudentlanguageajax"

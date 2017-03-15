@@ -1,5 +1,7 @@
 
 
+
+
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -12,7 +14,7 @@
 <dom-module id="subject-card">
   <template>
     <style>   
-      :host
+      :host  
       {
          margin-left: 10%;
         display: block;
@@ -92,12 +94,12 @@
             border: 1px solid grey;
             width: 1px;
             margin-left: 34%;
-            top: 12%;
+            top: 12.5%;
             min-height: 1700px;
       } 
      .outcard
      {
-      position: fixed;
+        position: fixed;
        margin-left: 37%;
         margin-top: 7%;
      }
@@ -181,8 +183,8 @@
             <paper-dropdown-menu id="Languageprefernce" label="Select The language Type">
             <paper-menu id="Languageprefernceid" class="dropdown-content" on-iron-select="fnselectlanprefercence" attr-for-selected="value" required>
                  <paper-item value="coresub">Core Subject</paper-item>
-                 <paper-item value="2language">Language Type</paper-item>
-                 <!-- <paper-item value="3language">Third Language</paper-item> -->
+                 <paper-item value="2language">Second Language </paper-item>
+                 <paper-item value="3language">Third Language</paper-item>
             </paper-menu>
        </paper-dropdown-menu>
                 </div>   
@@ -212,7 +214,6 @@
         this.$.uiservice.category1();   
         this.$.uiservice.FnFetchSubjectSeq();
         this.$.uiservice.FnFetchSubjectname();
-        this.$.hidenewssubjectcard=true; 
         this.$.Languageprefernce.hidden=true;    
       },
       
@@ -240,31 +241,31 @@
 
        FnSubmit:function()
       {
-        if(this.subjectname==null || this.subjectname=="")
+           subname=this.toTitleCase(this.subjectname);
+           if(this.subjectname==null)
         {
           this.$.subjectname.validate();
         }
-      else  if(category=='category1') 
+       else if(category=='category1') 
         {
          //alert(category+this.preflang);
-         this.$.uiservice.FnSetSubjectInfo(this.subjectid,this.subjectname,category,this.preflang);
+
+         this.$.uiservice.FnSetSubjectInfo(this.subjectid,subname,category,this.preflang);
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
          document.querySelector('#Languageprefernceid').selected=-1;
       
        }
-   else if(this.subjectname!=null)
-   {
-        //alert(category+this.preflang);
-        subname=this.toTitleCase(this.subjectname);
+        else
+       {
+
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,subname,category);
-         this.$.mydialog.toggleDialog();
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
-         document.querySelector('#Languageprefernceid').selected=-1;
-      
-   }
-
+         document.querySelector('#Languageprefernceid').selected=-1;   
+      }
+      this.$.mydialog.toggleDialog();
+  
     },
      toTitleCase:function(str)
     {
@@ -299,4 +300,5 @@
   })();  
   </script>
 </dom-module>
+
 

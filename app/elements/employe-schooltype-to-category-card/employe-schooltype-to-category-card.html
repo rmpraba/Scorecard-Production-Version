@@ -79,6 +79,7 @@
     table
     {
       width: 70%;
+      margin-left: 4%;
     }
 
     </style>
@@ -135,24 +136,19 @@
             <div>
               <thead> 
               <tr>
-                  <th class="innercard" style="width: 700px;margin-left: 15%;">
+                  <th class="innercard" style="width: 850px;margin-left: 20%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                      <h4 style="width: 18%">{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                     </template>
-                  </th>
-                  <!-- <th class="icheadd">
-                    <th>Save</th>
-                    <th>Delete</th>
-                  </th>  -->  
-                    
+                  </th>   
                </tr>
               </thead>
-                <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 350px;">
+                <tbody class="newwwwcardd col-sm-12" style="width: 1190px;height: 350px;">
                <tr>
                  <td></td>
                  <td></td>
-                 <td>Save</td>
-                 <td>Delete</td>
+              <!--    <td>Save</td>
+                 <td>Delete</td> -->
          
                </tr>
                 <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
@@ -160,7 +156,7 @@
                   <td class="outcard"> 
                     <h4>{{view.emp_name}}</h4>   
                     </td>
-                    <td class="innercard" style="width: 770px;">
+                    <td class="innercard" style="width: 800px;">
                       <template is="dom-repeat" items="{{view.employee}}" as="s">
                         <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
                       </template>   
@@ -286,8 +282,8 @@
           document.querySelector('employe-creation-card').Fnsubjectclean1();
 
             }
-            alert(JSON.stringify(getcategory));
-            alert(JSON.stringify(empteacharr));
+           // alert(JSON.stringify(getcategory));
+            //alert(JSON.stringify(empteacharr));
             var setarrr=[];
                  for(var i=0;i<getcategory.length;i++)
                  {

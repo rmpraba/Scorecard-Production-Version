@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'scorecardproduction'
 
  });
 var bodyParser = require('body-parser'); 
@@ -5221,7 +5221,7 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
 
 {  
     var response={"subject_id":req.query.subjectid,
-    "subject_name":req.query.subjectname,"subject_category":req.query.category,"langugage_pref":req.query.preflang}; 
+    "subject_name":req.query.subjectname,"subject_category":req.query.category,"language_pref":req.query.preflang}; 
 
     //console.log(JSON.stringify(response));
 
