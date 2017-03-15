@@ -5250,7 +5250,7 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
     }
     else
     {
-      res.status(200).json({'returnval': 'failed'});
+      res.status(200).json({'returnval': 'Already Exit'});
     }
   });
 });

@@ -5,16 +5,8 @@
 <dom-module id="master-ui-service">
   <template>
       
-     <iron-ajax            
-        id="subjectcreationajax"
-        url="{{subjectcreationurl}}"
-        params="{{subjectcreationparam}}"
-        handle-as="json"
-        content-type="application/json"   
-        method="post"
-        on-response="subjectcreationResponse"
-        debounce-duration="300"
-    ><iron-ajax        
+    
+    <iron-ajax        
         id="rolecreationajax"
         url="{{rolecreationurl}}"
         params="{{rolecreationparam}}"
@@ -574,7 +566,6 @@
         id="subjectcreationajax"
         url="{{subjectcreationurl}}"
         params="{{subjectcreationparam}}"
-
         handle-as="json"
         content-type="application/json"
         method="post"
@@ -2974,13 +2965,14 @@ insertschoolTypename:function(schooltypesarr)
         obj.subjectname=subjectname;
         obj.category=category;
         obj.preflang=preflang;
+        //obj.academic_year=localStorage.getItem("curr_sess_academicyear");
         this.subjectcreationparam=obj;
-      //  alert(JSON.stringify(obj)); 
+        alert(JSON.stringify(obj)); 
         this.$.subjectcreationajax.generateRequest();
       },
       subjectcreationResponse:function(e)
       {
-        //alert(JSON.stringify(e.detail.response.returnval));   
+        alert(JSON.stringify(e.detail.response.returnval));   
         if(e.detail.response.returnval=='Inserted!')
         {
           
@@ -2989,10 +2981,7 @@ insertschoolTypename:function(schooltypesarr)
           this.FnFetchSubjectSeq(); 
           document.querySelector('subject-card').FnRefresh();
         }
-        else if(e.detail.response.returnval=='failed')
-        {
-          alert('Already Exist!');
-        }
+        
         
       },
        category1:function()
@@ -3027,20 +3016,13 @@ insertschoolTypename:function(schooltypesarr)
         //alert('1');      
 
         this.fetchsubjectcnameurl=sessionStorage.getItem("addrinfo")+"/fetchmastersubject-service";
+       
         this.$.fetchsubjectnameajax.generateRequest();
       },
       fetchsubjectnameResponse:function(e)
       {
-        if(e.detail.response.returnval=="empty")
-        {
-            document.querySelector('subject-card').subjectthide();
-        }
-        else
-        {
-           // document.querySelector('subject-card').subjecttview();
-             //alert(JSON.stringify(e.detail.response.returnval));
         document.querySelector('subject-card').subarr=e.detail.response.returnval;  
-        }
+        
             
       }, 
       FnDeleteSubjectname:function(subjectid)

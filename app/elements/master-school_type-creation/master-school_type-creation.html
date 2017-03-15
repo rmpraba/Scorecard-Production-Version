@@ -9,10 +9,10 @@
   <template>
     <style>
       :host 
-      {
+      {  
         display: block;
       }
-     .outercard
+     /*.outercard
       {
         border-radius: 10px;
         border: 1px solid #6699ff;
@@ -22,7 +22,7 @@
         width: 50%;  
         margin-left: 25%;
         }
-      .cbutton
+*/      .cbutton
       {
         background-color: #363636;
         color: #ffffff;
@@ -83,13 +83,14 @@
       <!-- <table border="1" class="tt"> -->
         <tbody>
           <tr>
-            <td class="outcard"></td>
+            <td class="outcard" style="width: 27%;"></td>
             <td class="innercard">
               <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:22%; margin-left:5%;padding-left:14%">{{view.schooltype}}</h4>   
+                <h4 style="width:12%;margin-left: 2%;">{{view.schooltype}}</h4>   
               </template>
             </td>
-            <td class="outcard"></td>
+            <td></td>
+            <td></td>
           </tr>   
             <template is="dom-repeat" items="{{overall}}" as="view">  
             <tr>
@@ -98,8 +99,17 @@
               </td>
               <td class="innercard">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
-    <school-schooltypemapping-card id="{{s.id}}" schoolname="{{view.name}}" schooltypename="{{s.school_type_name}}" schooltypeid="{{s.school_type_id}}" schoolid="{{view.id}}"></school-schooltypemapping-card>
-               </template></td>
+                  <school-schooltypemapping-card id="{{s.id}}" schoolname="{{view.name}}" schooltypename="{{s.school_type_name}}" schooltypeid="{{s.school_type_id}}" schoolid="{{view.id}}"></school-schooltypemapping-card>
+                </template>
+              </td>
+              <td>
+                <paper-icon-button id="btn1" icon='save' on-click="FnSubmit"></paper-icon-button>
+                <paper-tooltip for="btn1">Save</paper-tooltip>
+              </td>
+              <td>
+                <paper-icon-button id="btn2" icon='close' on-click="Fndelete"></paper-icon-button>
+                <paper-tooltip for="btn2">Delete</paper-tooltip>
+              </td>
             </tr>
             </template>
         </tbody>    
@@ -107,14 +117,14 @@
     </div>
     </div>
 
-    <div class="newbuttons col-sm-6"> 
+   <!--  <div class="newbuttons col-sm-6"> 
       <div class="button1"> 
         <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
       </div>
       <div class="button2" style="margin-top:-13%">
         <paper-button autofocus on-click="Fndelete">Delete</paper-button>
       </div>
-    </div>  
+    </div>  --> 
   </div>
 
     
