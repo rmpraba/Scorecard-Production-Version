@@ -7804,8 +7804,9 @@ app.post('/fnsubjecttocategorysaving-service' ,  urlencodedParser,function (req,
             school_type_id:req.query.schootypename,
             "academic_year":req.query.academic_year,
             lengpref:req.query.emplanpreff
-          }
-          console.log(response)
+          };
+          
+        console.log(response);
   connection.query("SELECT * FROM mp_grade_subject WHERE school_id='"+req.query.school_id+"' and grade_id='"+req.query.gradename+"' and subject_id='"+req.query.subjectid+"' and subject_category='"+req.query.categoryname+"'  and school_type_id='"+req.query.schootypename+"'and academic_year='"+req.query.academic_year+"'and lengpref='"+req.query.emplanpreff+"'",function(err, rows){
     if(rows.length==0)
     {

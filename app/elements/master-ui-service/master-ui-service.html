@@ -2143,7 +2143,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         obj.categoryname=categoryname;
         obj.emplanpreff=emplanpreff;
          obj.academic_year= localStorage.getItem("curr_sess_academicyear"); 
-        // alert(JSON.stringify(obj));
+         alert(JSON.stringify(obj));
        this.fnsubjecttocategorysavingparam=obj;
       this.$.fnsubjecttocategorysavingajax.generateRequest();
     } 
@@ -2151,7 +2151,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnsubjecttocategorysavingResponse:function(e)
       {
         var res=e.detail.response.returnval;
-      //alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
      },
 
 insertschoolTypename:function(schooltypesarr)
@@ -2356,11 +2356,11 @@ insertschoolTypename:function(schooltypesarr)
         obj.lengpref=lengpref;
         this.fngetThefunctionparam=obj;
         alert(JSON.stringify(obj));
-    
         this.$.fngetThefunctionajax.generateRequest();
       },
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
+           alert('hi');
             alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
