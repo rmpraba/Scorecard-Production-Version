@@ -1601,7 +1601,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
          this.emppersonaldetailsurl=sessionStorage.getItem("addrinfo")+"/emppersonaldetails-service";
-         var obj={"school_id":"","empid":"","name":"","Telephone":"","password":"","MobileNumber":"","mailid":"","flage":""};
+         var obj={"school_id":"","empid":"","name":"","Telephone":"","password":"","MobileNumber":"","mailid":"","flage":"","academic_year":""};
              obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
              obj.empid=empid;
              obj.name=name;
@@ -1610,8 +1610,9 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
              obj.password=password;
              obj.mailid=mailid;
              obj.flage='active';
-        
-             //alert(JSON.stringify(obj));
+             obj.academic_year=localStorage.getItem("curr_sess_academicyear");
+    
+           alert(JSON.stringify(obj));
           this.emppersonaldetailsparam=obj;
           this.$.emppersonaldetailsajax.generateRequest();
 
@@ -1894,7 +1895,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      var obj={"school_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-       //alert(JSON.stringify(obj));
+       alert(JSON.stringify(obj));
          this.fnschoolemployeepersonalparam=obj;
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
@@ -1968,7 +1969,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnschoolemployeepersonalResponse:function(e)
     {
      var res=e.detail.response.returnval; 
-   // alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
     

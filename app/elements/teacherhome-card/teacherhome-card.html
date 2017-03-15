@@ -459,7 +459,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="employeecreation"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('new-employee-creation-card','');
-               this.$.uiservice.fnschoolemployeepersonal();
+              this.$.uiservice.fnschoolemployeepersonal();
    
         }
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")   
@@ -826,7 +826,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         {
              localStorage.setItem('curr_sess_loggedmasteracadamic','employeecreation');
   
-        //document.querySelector('schooltype-card').ready();
         this.$.uiservice.fnempgenerateid();
         this.$.uiservice.selectschooltype();
         this.$.uiservice.selectrolename();

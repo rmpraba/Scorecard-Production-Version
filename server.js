@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecardproduction'
+   database : 'demo1'
 
  });
 var bodyParser = require('body-parser'); 
@@ -6140,7 +6140,7 @@ app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,re
 
    var qur="SELECT * FROM md_employee_creation where school_id='"+req.query.school_id+"'  and academic_year='"+req.query.academic_year+"' and flage='active'";
 
-   //console.log(qur);
+console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -6159,11 +6159,11 @@ app.post('/emppersonaldetails-service' ,  urlencodedParser,function (req, res)
 
 {  
     var response={"emp_id":req.query.empid,
-    "emp_name":req.query.name,"school_id":req.query.school_id,"emp_phone":req.query.Telephone,"emp_password":req.query.password,"emp_mobile":req.query.MobileNumber,"emp_mail":req.query.mailid,"flage":req.query.flage}; 
+    "emp_name":req.query.name,"school_id":req.query.school_id,"emp_phone":req.query.Telephone,"emp_password":req.query.password,"emp_mobile":req.query.MobileNumber,"emp_mail":req.query.mailid,"flage":req.query.flage,academic_year:req.query.academic_year}; 
 
     console.log(JSON.stringify(response));
 
-    connection.query("SELECT * FROM md_employee_creation WHERE emp_id='"+req.query.empid+"' or emp_name='"+req.query.name+"' and school_id='"+req.query.school_id+"' and emp_phone='"+req.query.Telephone+"' and  emp_password='"+req.query.password+"'",function(err, rows)
+connection.query("SELECT * FROM md_employee_creation WHERE emp_id='"+req.query.empid+"'and school_id='"+req.query.school_id+"' and emp_phone='"+req.query.Telephone+"'and academic_year='"+req.query.academic_year+"'",function(err, rows)
     {
     if(rows.length==0)
     {
