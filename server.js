@@ -6161,7 +6161,7 @@ app.post('/emppersonaldetails-service' ,  urlencodedParser,function (req, res)
     var response={"emp_id":req.query.empid,
     "emp_name":req.query.name,"school_id":req.query.school_id,"emp_phone":req.query.Telephone,"emp_password":req.query.password,"emp_mobile":req.query.MobileNumber,"emp_mail":req.query.mailid,"flage":req.query.flage}; 
 
-    //console.log(JSON.stringify(response));
+    console.log(JSON.stringify(response));
 
     connection.query("SELECT * FROM md_employee_creation WHERE emp_id='"+req.query.empid+"' or emp_name='"+req.query.name+"' and school_id='"+req.query.school_id+"' and emp_phone='"+req.query.Telephone+"' and  emp_password='"+req.query.password+"'",function(err, rows)
     {

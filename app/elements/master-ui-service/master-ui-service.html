@@ -1894,7 +1894,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      var obj={"school_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-       alert(JSON.stringify(obj));
+       //alert(JSON.stringify(obj));
          this.fnschoolemployeepersonalparam=obj;
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
