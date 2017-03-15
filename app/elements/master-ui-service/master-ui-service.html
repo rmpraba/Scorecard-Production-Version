@@ -1499,7 +1499,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
       this.empgetsectionvaluesparam=obj;
-      alert(JSON.stringify(obj));
+     // alert(JSON.stringify(obj));
     this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
@@ -1603,7 +1603,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
              obj.flage='active';
              obj.academic_year=localStorage.getItem("curr_sess_academicyear");
     
-           alert(JSON.stringify(obj));
+          // alert(JSON.stringify(obj));
           this.emppersonaldetailsparam=obj;
           this.$.emppersonaldetailsajax.generateRequest();
 
@@ -1886,7 +1886,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      var obj={"school_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-       alert(JSON.stringify(obj));
+      // alert(JSON.stringify(obj));
          this.fnschoolemployeepersonalparam=obj;
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
@@ -1960,7 +1960,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnschoolemployeepersonalResponse:function(e)
     {
      var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
     
@@ -2135,7 +2135,7 @@ fnschoolemployeerole:function( employeeid,employeename){
         obj.categoryname=categoryname;
         obj.emplanpreff=emplanpreff;
          obj.academic_year= localStorage.getItem("curr_sess_academicyear"); 
-         alert(JSON.stringify(obj));
+         //alert(JSON.stringify(obj));
        this.fnsubjecttocategorysavingparam=obj;
       this.$.fnsubjecttocategorysavingajax.generateRequest();
     } 
@@ -2143,7 +2143,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnsubjecttocategorysavingResponse:function(e)
       {
         var res=e.detail.response.returnval;
-      alert(JSON.stringify(res));
+     // alert(JSON.stringify(res));
      },
 
 insertschoolTypename:function(schooltypesarr)
@@ -2347,13 +2347,13 @@ insertschoolTypename:function(schooltypesarr)
         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
         obj.lengpref=lengpref;
         this.fngetThefunctionparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.fngetThefunctionajax.generateRequest();
       },
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
-           alert('hi');
-            alert(JSON.stringify(res));
+           //alert('hi');
+           // alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },
@@ -2967,12 +2967,12 @@ insertschoolTypename:function(schooltypesarr)
         obj.preflang=preflang;
         //obj.academic_year=localStorage.getItem("curr_sess_academicyear");
         this.subjectcreationparam=obj;
-        alert(JSON.stringify(obj)); 
+       // alert(JSON.stringify(obj)); 
         this.$.subjectcreationajax.generateRequest();
       },
       subjectcreationResponse:function(e)
       {
-        alert(JSON.stringify(e.detail.response.returnval));   
+        //alert(JSON.stringify(e.detail.response.returnval));   
         if(e.detail.response.returnval=='Inserted!')
         {
           
