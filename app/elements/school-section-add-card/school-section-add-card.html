@@ -20,13 +20,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     <div hidden>{{sectiongradeidzx}}</div>
     <div hidden>{{sectiongradenamezx}}</div>
+     <div hidden>{{classsectionid}}</div>
+   
+       
  <!-- <paper-button  style="background-color:black;color:white" on-click="fnsubmit">add</paper-button> -->
       <paper-icon-button id="btn" icon="add" on-click="fnsubmit"></paper-icon-button>
       <paper-tooltip for="btn">Create</paper-tooltip>
      <paper-dialog id="sectiongradeid" modal>
           <paper-input label="Enter The Section" value="{{section}}"></paper-input>
+
           <paper-button style="background-color:black;color:white" on-click="fnsetsubmit">submit</paper-button>
       </paper-dialog>
+         <center><paper-button style="background-color:black;color:white" on-click="fnsetsubmit" dialog-confirm autofocus>Submit</paper-button></center>
+   </paper-dialog>
 
      <paper-dialog id="sectiongradeidss" modal>
        <h2>Cannot add more sections, Please make provision in Student Section Allocation first.</h2>
@@ -87,9 +93,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         method="post"
         on-response="countsectionvalueResponse"
         debounce-duration="300"
-        >
-   
-   </template>
+        
+        >            <master-ui-service id="uiservice"></master-ui-service> 
+</template>
   <script>
   (function() {
     'use strict';
@@ -139,23 +145,24 @@ countsectionvalueResponse:function(e){
           if(m>rs){
            this.$.sectiongradeid.open();
            } 
-          else{
+          else{   
             this.$.sectiongradeidss.open();
           }
         },
- fnsetsubmit:function(e){
-       //     var sectionname=this.section.
+    fnsetsubmit:function(e){
+     //   alert(this.classsectionid);
+            //     var sectionname=this.section.
               sectionname=this.section.toUpperCase();
               sectionid=sectionname.toLowerCase();
-              classid="ClS-0"+sectionname.charAt(0);
+              classid=this.classsectionid;
              //alert(sectionname+" "+sectionid+" "+this.sectiongradeidzx+" "+classid+" "+this.sectiongradenamezx);
           this.section1();
           this.section2();
           this.section3();
-
+       this.section="";
        
-         
-      },
+     },
+    
 
 section3:function(){
     this.sectioncreationmappingurl=sessionStorage.getItem("addrinfo")+"/sectioncreationmapping-service";
@@ -169,7 +176,7 @@ section3:function(){
         // alert(JSON.stringify(obj));
          this.sectioncreationmappingparam=obj;
          this.$.sectioncreationmappingajax.generateRequest();
-        
+            
      
 },
 section2:function(){
@@ -199,11 +206,11 @@ section1:function(){
 },
 sectioncreationmappingResponse:function(e){
      var res=e.detail.response.returnval; 
-      // alert(JSON.stringify(res));
            document.querySelector('school-grade-section-creation-card').f1();
-            document.querySelector('school-grade-section-creation-card').f2();
-  
-},
+           document.querySelector('school-grade-section-creation-card').f2();
+          this.$.uiservice.Generatesectionid();
+      
+},  
 sectioncreationmapping1Response:function(e){
  var res=e.detail.response.returnval; 
      //  alert(JSON.stringify(res));

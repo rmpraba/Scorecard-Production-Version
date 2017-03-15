@@ -112,7 +112,7 @@
                   </td>
                   <td>  
                    <!-- <p>{{view.grade_id}}</p> -->
-                  <school-section-add-card sectiongradeidzx="{{view.grade_id}}" sectiongradenamezx="{{view.grade_name}}"></school-section-add-card>
+                  <school-section-add-card sectiongradeidzx="{{view.grade_id}}" sectiongradenamezx="{{view.grade_name}}" classsectionid="{{classsectionid}}"></school-section-add-card>
                   </td>
                 </tr>
                 </template>
@@ -147,6 +147,12 @@
         this.hidesectiongrid=true;
         this.hidenewopt=true;
       },
+       fnclasssection:function(e){
+        this.classsectionid=e;
+       // alert(hi);
+       // alert(this.classsectionid);
+      },
+   
 setschooltype:function(e)
 {  
   secarr=e;

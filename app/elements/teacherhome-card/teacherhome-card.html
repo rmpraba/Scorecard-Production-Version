@@ -613,7 +613,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.workingdats=false;
           this.emptocategory=false;
           this.gradetosection=false;
-          this.subjecttostudent=true;
+          this.subjecttostudent=false;
           this.schooltyptograde=false;
        
          // this.SectionPreiods=false;
@@ -765,9 +765,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          SectionCreation:function(e)
         {  
           localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
-
+           this.$.uiservice.Generatesectionid();
            this.$.uiservice.selectsectiongrade();
-            this.$.cdialog.toggle(); 
+           this.$.cdialog.toggle(); 
         },
        SectionPreiodss:function(e)
         {  
