@@ -529,6 +529,7 @@
         on-response="fnempgenerateidResponse"
         debounce-duration="300"
 
+        
         ><iron-ajax        
         id="fnschoolemployeeroleajax"
         url="{{fnschoolemployeeroleurl}}"
@@ -1110,6 +1111,16 @@
         on-response="fnsetfixdsection1Response"
         debounce-duration="300">
       </iron-ajax>
+        <iron-ajax        
+           id="Generatesectionidajax"
+          url="{{Generatesectionidurl}}"
+        params="{{Generatesectionidparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="GeneratesectionidResponse"
+        debounce-duration="300">
+      </iron-ajax>
       
       </template>
   <script>
@@ -1138,12 +1149,26 @@
            obj.Gender=Gender;
            obj.classid=classid;
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-
-           this.fnsetstudentinfohistoryparam=obj;
+          this.fnsetstudentinfohistoryparam=obj;
            this.$.fnsetstudentinfohistoryajax.generateRequest();
-   }
+              }
 },
+Generatesectionid:function()
+       {
+        alert('1');
+        this.Generatesectionidurl=sessionStorage.getItem("addrinfo")+"/Generatesectionid-service";
+       this.$.Generatesectionidajax.generateRequest();
+       },
 
+   GeneratesectionidResponse:function(e)
+    {
+      var res=e.detail.response.returnval;  
+         alert(JSON.stringify(res));
+         var m=(res[0].sec_prefix+res[0].sec_sequence);
+         alert(m);
+        document.querySelector('school-section-creation-card').fnclasssection(m);
+      },
+ 
 
 fndelsectionz:function(emparrr){
   //  alert(JSON.stringify(emparrr));
@@ -1424,11 +1449,13 @@ empsectionclassResponse:function(e){
        this.selectsectiongradeparam=obj;
        this.$.selectsectiongradeajax.generateRequest();
      },
-      fnsetpasssectinvalue:function(schooltype){     
+      fnsetpasssectinvalue:function(schooltype,acadamicyear){     
        this.fnsetpasssectinvalueurl=sessionStorage.getItem("addrinfo")+"/fnsetpasssectinvalue-service";
-        var obj={"school_id":"","schooltype":""};
+        var obj={"school_id":"","schooltype":"","acadamicyear":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.schooltype=schooltype;
+         obj.acadamicyear=acadamicyear;
+      
        this.fnsetpasssectinvalueparam=obj;
        this.$.fnsetpasssectinvalueajax.generateRequest();
      },
@@ -1588,7 +1615,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
     {
       var res=e.detail.response.returnval;  
          //  alert(JSON.stringify(res));
-        document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res  [0].emp_sequence;
+        document.querySelector('new-employee-creation-card').empid=res[0].emp_prefix+res[0].emp_sequence;
       },
      fninsetschoolemployeeinfo:function(empid,name,Telephone,MobileNumber,password,mailid,empschooltypearr,setrolearr){
          this.emppersonaldetailsurl=sessionStorage.getItem("addrinfo")+"/emppersonaldetails-service";

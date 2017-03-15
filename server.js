@@ -6073,6 +6073,22 @@ app.post('/fnempgenerateid-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
+app.post('/Generatesectionid-service',  urlencodedParser,function (req,res)
+{  
+   var qur="SELECT * FROM sequence";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+     // console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows});
+    }
+    else
+      res.status(200).json({'returnval': ''});
+  });
+});
+
 app.post('/tranfergradeinfo-service', urlencodedParser,function (req,res)
 {      
      
@@ -6231,22 +6247,26 @@ connection.query("SELECT * FROM mp_grade_section WHERE school_id='"+req.query.sc
     {
     if(rows.length==0)
     {
-      connection.query("INSERT INTO mp_grade_section SET ? ",[collection],
-      function(err, rows)
-      {
+  
+     connection.query("INSERT INTO mp_grade_section SET ?",[collection],
+            function(err, rows)
+            {
+            if(!err)
+            {
+              var tempseq=parseInt((req.query.classid).substring(3))+1;
 
-      if(!err)
-       {
-        console.log(rows);
-        res.status(200).json({'returnval': 'Inserted!'});
-        }
-      else 
-      {
-        console.log(err);
-        res.status(200).json({'returnval': 'Not Inserted!'});
-      }
-    });
-    }
+                      connection.query("UPDATE sequence SET sec_sequence='"+tempseq+"'", function (err,result){
+                        if(result.affectedRows>0)
+                      res.status(200).json({'returnval': 'Inserted!'});
+                    });
+            }
+            else
+            {
+              //console.log(err);
+              res.status(200).json({'returnval': 'Not Inserted!'});
+            }
+            });
+         }
     else
     {
       res.status(200).json({'returnval': 'Already Exit'});
@@ -6717,7 +6737,7 @@ app.post('/SelectSchoolName-service' ,urlencodedParser, function (req, res)
    });
     });
 app.post('/sectioncreategrade-service' ,urlencodedParser, function (req, res)
-    {  
+    {    
       //var e={id:req.query.school_id};
     //  console.log(e);
       var qur="select * from md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.sectionschooltypeid+"' and academic_year='"+req.query.academic_year+"'";
@@ -6833,7 +6853,7 @@ var response={
      //var obj={"workingschoolid":"","acadamicyear":"","termids":"","termgrade":"","noofdays":""};
         
 
-    //console.log(JSON.stringify(response));
+    console.log(JSON.stringify(response));
     var qur="SELECT * FROM allow_student_section WHERE school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
 
     var qur1="update allow_student_section set no_of_section='"+req.query.section+"',no_of_student='"+req.query.student+"',capacity='"+req.query.capacity+"'where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and grade_id='"+req.query.gradeid+"' and school_type='"+req.query.schootypids+"'";
@@ -7112,7 +7132,7 @@ app.post('/selectsectiongrade-service',  urlencodedParser,function (req,res)
 });
 app.post('/fnsetpasssectinvalue-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'";
+   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'  and academic_year='"+req.query.acadamicyear+"'";
   connection.query(qur,
     function(err, rows)
     {   

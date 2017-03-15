@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          </tr>      
           <template is="dom-repeat" items="{{scooltypgrid}}" as ="view">
           <tr><td colspan="6">
-        <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  capacity="{{view.capacity}}" student="{{view.student}}" section="{{view.section}}"=></section-allocation-card>
+        <section-allocation-card gradeid="{{view.grade_id}}" gradename="{{view.grade_name}}" acadamicyears="{{acadamicyear}}" schootypids="{{schootypidz}}"  capacity="{{view.capacity}}" student="{{view.student}}" section="{{view.section}}" classsectionid1="{{classsectionid}}"></section-allocation-card>
            </td>
            </tr>  
           </template>  
@@ -130,10 +130,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.acadamicyear=e.target.selectedItem.textContent.trim(); 
          this.hidenewtabgrid=false;
       //  alert(this.acadamicyear);
-          this.$.uiservice.fnsetpasssectinvalue(this.schootypidz);
+          this.$.uiservice.fnsetpasssectinvalue(this.schootypidz,this.acadamicyear);
            this.$.uiservice.fngetpasssectinvalue(this.schootypidz,this.acadamicyear);
    
       },
+       
          scooltypgridval:function(arr){
          gridschooltypearr=arr;
        },
