@@ -17,7 +17,7 @@
         debounce-duration="300"
     ><iron-ajax        
         id="fetchroleajax"    
-        url="{{fetchroleurl}}"
+        url="{{fetchroleurl}}"  
         params="{{fetchroleparam}}"
         handle-as="json"
         content-type="application/json"
@@ -2275,12 +2275,12 @@ insertschoolTypename:function(schooltypesarr)
         obj.affiliation=affiliation;
         obj.Board=Board;
         this.FnSetschoolInfoparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.FnSetschoolInfoajax.generateRequest();
       },
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
-         //alert(JSON.stringify(res)); 
+           alert(JSON.stringify(res)); 
           if(res=='Inserted!')
           {
             //alert('Inserted !')
@@ -2306,7 +2306,7 @@ insertschoolTypename:function(schooltypesarr)
         obj.affiliation=affiliation;
         obj.Boardselection=Boardselection;
         this.Fnsaveschoolinfoparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.Fnsaveschoolinfoajax.generateRequest();
       },
        FnsaveschoolinfoResponse:function(e)
@@ -2322,15 +2322,18 @@ insertschoolTypename:function(schooltypesarr)
       },
 
        FnSchoolidseq:function()
-      {        
+      {   
+     // alert(11);     
         this.fetchsclidsequrl=sessionStorage.getItem("addrinfo")+"/fetchsclidseq-service";
         this.$.fetchsclidseqajax.generateRequest();
       },
       fetchsclidseqResponse:function(e)
       {
+       // alert(1);
        var arr= e.detail.response.returnval;
-       //alert(JSON.stringify(arr));       
-       document.querySelector('school-creation-card').schoolid1=arr[0].school_prefix+arr[0].school_seq;
+      // alert(JSON.stringify(arr));
+       var m=arr[0].school_prefix+arr[0].school_seq;       
+    document.querySelector('school-creation-card').fnschoolidzzzzzzzz(m);
       
       },
 
@@ -2992,9 +2995,8 @@ insertschoolTypename:function(schooltypesarr)
         obj.subjectname=subjectname;
         obj.category=category;
         obj.preflang=preflang;
-        //obj.academic_year=localStorage.getItem("curr_sess_academicyear");
         this.subjectcreationparam=obj;
-   // alert(JSON.stringify(obj)); 
+        //alert(JSON.stringify(obj)); 
         this.$.subjectcreationajax.generateRequest();
       },
       subjectcreationResponse:function(e)

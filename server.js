@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    user     : 'root',
    password : 'admin',
    database : 'scorecardproduction'
-
+  
  });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -5225,7 +5225,7 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
 
     //console.log(JSON.stringify(response));
 
-    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"' or subject_name='"+req.query.subjectname+"'",
+    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"'",
     function(err, rows)
     {
     if(rows.length==0)
@@ -5613,17 +5613,17 @@ app.post('/Fnsaveschoolinfo-service' ,  urlencodedParser,function (req, res)
 app.post('/FnSetschoolInfo-service' , urlencodedParser,function (req, res)
 {  
     var response={ 
-      id:req.query.schoolid1,     
       name:req.query.school,
-      mobile_no:req.query.MobileNumber,
+      id:req.query.schoolid1,     
       telno:req.query.Telephone,
+      mobile_no:req.query.MobileNumber,
       email_id:req.query.Emailid,
+      website:req.query.Website,
       address:req.query.address,
       address1:req.query.address1,
       address2:req.query.address2,
       address3:req.query.address3,
       affiliation_no:req.query.affiliation,
-      website:req.query.Website,
       Board:req.query.Board
       
     };   
@@ -5632,7 +5632,7 @@ app.post('/FnSetschoolInfo-service' , urlencodedParser,function (req, res)
     var qur="SELECT * FROM  md_school WHERE id='"+req.query.schoolid1+"'";
    // var qurr="SELECT subject_type FROM md_language_type_master where subject_id='"+req.query.seclang11+"'";
     var qur1="update md_school set name='"+req.query.school+"',address='"+req.query.address+"',address1='"+req.query.address1+"',address2='"+req.query.address2+"',address3='"+req.query.address3+"',telno='"+req.query.Telephone+"',mobile_no='"+req.query.MobileNumber+"',affiliation_no='"+req.query.affiliation+"',email_id='"+req.query.Emailid+"',Board='"+req.query.Board+"',website='"+req.query.website+"'where id='"+req.query.schoolid1+"'";
-
+       
     connection.query(qur,function(err, rows)
     {
      if(rows.length==0){

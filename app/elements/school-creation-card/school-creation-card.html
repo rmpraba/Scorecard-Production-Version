@@ -193,7 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <tr>
           <td>
-            <div  class="newcard col-sm-12" style="width:640px; height:300px;">
+            <div  class="newcard col-sm-12" style="width:700px; height:250px;">
               <table cellspacing="0" cellpadding="1" border="0" width="730px">
                 <template is="dom-repeat" items="{{schoolcreatarr}}" as="view">
                   <tr>
@@ -216,7 +216,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="col-sm-6" id="creatediv" hidden$="{{hidecreatediv}}">
       
   <div class="list-group col-sm-12 panel-body form-category">
-        <paper-input value={{schoolid1}} hidden></paper-input>
         <div class="col-sm-6">
           <paper-input label="School Name" id="School" required error-message="needs Schoolname!" value="{{school}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
@@ -283,7 +282,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h4>School Details</h4>
         </div> -->
         <div class="list-group col-sm-12 panel-body form-category">
-          <paper-input value={{schoolid}} hidden></paper-input>
           <div class="col-sm-6">
             <paper-input label="School Name"  value="{{schoolname}}" ></paper-input>
           </div>
@@ -351,10 +349,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         ready:function(){
           this.hideupdatediv=true;
           this.hidecreatediv=false;  
-          this.$.uiservice.FnSchoolidseq();
           this.$.uiservice.fnschoolcreation();
+
           this.FnRefresh();
           this.$.tit4.hidden=true;
+          this.$.tit3.hidden=false;
           //this.$.uiservice.fnschoolcreation();
         },
           
@@ -414,11 +413,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             /*document.querySelector('school-creation-item-card').toggle();*/
             this.ready();
           },
+          fnschoolidzzzzzzzz:function(e){
+            this.schoolidzzzzzzzz=e;
+           // alert(this.schoolidzzzzzzzz);
+          },
 
          FnSubmit:function()
-          {    
+          {  
+         // alert('1');  
              //alert(JSON.stringify(gradearrr));
-
+             sname=this.toTitleCase(this.school);
             if(this.school==""||this.MobileNumber==""||this.Website==""||this.address==""||this.address1==""||this.address2==""||this.address3==""||this.Emailid=="")
               {
                 this.$.School.validate();
@@ -431,16 +435,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.$.State.validate();
                 this.$.District.validate();
                 this.$.Pincode.validate();
-              }
+              }   
 
-              else if(this.school!= null)
+              else 
               {
-                  sname=this.toTitleCase(this.school);
-                  this.$.uiservice.FnSetschoolInfo(sname,this.schoolid1,this.Telephone,this.MobileNumber,this.Emailid,this.Website,this.address,this.address1,this.address2,this.address3,this.affiliation,this.Board);
+             // alert(this.schoolidzzzzzzzz);
+                  
+    this.$.uiservice.FnSetschoolInfo(sname,this.schoolidzzzzzzzz,this.Telephone,this.MobileNumber,this.Emailid,this.Website,this.address,this.address1,this.address2,this.address3,this.affiliation,this.Board);
                   this.$.mydialog.toggleDialog();
                 document.querySelector('#academicswww').selected=-1;
                 document.querySelector('school-creation-card').FnRefresh(); 
-
+                    this.$.uiservice.FnSchoolidseq();
+     
               }
              /*else
              {
@@ -449,6 +455,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 document.querySelector('school-creation-card').FnRefresh(); 
                 //this.ready();
              }    */
+
           },
 
 
@@ -476,6 +483,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           getscldetails:function(e)
           {
+           this.$.uiservice.FnSchoolidseq();
+     
            this.hideupdatediv=true;
            this.hidecreatediv=false;
            //document.querySelector('school-creation-card').fn2();

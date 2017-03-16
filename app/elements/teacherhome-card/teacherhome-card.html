@@ -867,6 +867,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('home-page').setPage('school-creation-card','');
         document.querySelector('school-creation-card').hidecreatediv=false;
         document.querySelector('school-creation-card').hideupdatediv=true;
+         this.$.uiservice.FnSchoolidseq();
+     
         
      },
      FnCreatesubject:function(e)
@@ -880,7 +882,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('schooltypecard','');
-        document.querySelector('schooltype-card').ready();
+      //  document.querySelector('schooltype-card').ready();
+      
    
       },
        SchooltypToGrade:function(e)
