@@ -5221,11 +5221,12 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
 
 {  
     var response={"subject_id":req.query.subjectid,
-    "subject_name":req.query.subjectname,"subject_category":req.query.category,"langugage_pref":req.query.preflang}; 
+    "subject_name":req.query.subjectname,"subject_category":req.query.category,"language_pref":req.query.preflang}; 
+  var qqq="SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"' or subject_name='"+req.query.subjectname+"'";
+     //console.log(qqq);
+    //console.log(response);
 
-    //console.log(JSON.stringify(response));
-
-    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"' or subject_name='"+req.query.subjectname+"'",
+    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"'",
     function(err, rows)
     {
     if(rows.length==0)

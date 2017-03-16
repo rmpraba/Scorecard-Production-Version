@@ -2994,12 +2994,12 @@ insertschoolTypename:function(schooltypesarr)
         obj.category=category;
         obj.preflang=preflang;
         this.subjectcreationparam=obj;
-        //alert(JSON.stringify(obj)); 
+       // alert(JSON.stringify(obj)); 
         this.$.subjectcreationajax.generateRequest();
       },
       subjectcreationResponse:function(e)
       {
-        //alert(JSON.stringify(e.detail.response.returnval));   
+       // alert(JSON.stringify(e.detail.response.returnval));   
         if(e.detail.response.returnval=='Inserted!')
         {
           
@@ -3026,14 +3026,16 @@ insertschoolTypename:function(schooltypesarr)
       
 
       FnFetchSubjectSeq:function()
-      {        
+      {     
+     // alert("seq");   
         this.fetchsubjectsequrl=sessionStorage.getItem("addrinfo")+"/fetchsubjectseq-service";
         this.$.fetchsubjectseqajax.generateRequest();
       },
       fetchsubjectseqResponse:function(e)
       {
+
        var arr= e.detail.response.returnval;
-      // alert(JSON.stringify(arr));
+     // alert(JSON.stringify(arr));
        document.querySelector('subject-card').subjectid=arr[0].subject_prefix+arr[0].subject_seq;
        
       },

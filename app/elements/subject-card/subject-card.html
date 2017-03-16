@@ -91,7 +91,7 @@
             border: 1px solid grey;
             width: 1px;
             margin-left: 34%;
-            top: 13%;
+            top: 13.5%;
             min-height: 1700px;
       } 
      .outcard
@@ -255,7 +255,7 @@
        }
         else
        {
-
+       // alert(this.subjectid);
          this.$.uiservice.FnSetSubjectInfo(this.subjectid,subname,category);
          document.querySelector('subject-card').FnRefresh();
           this.$.Languageprefernce.hidden=true;  
