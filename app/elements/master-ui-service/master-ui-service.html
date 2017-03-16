@@ -1162,7 +1162,7 @@ Generatesectionid:function()
    GeneratesectionidResponse:function(e)
     {
       var res=e.detail.response.returnval;  
-         alert(JSON.stringify(res));
+       //  alert(JSON.stringify(res));
          var m=(res[0].sec_prefix+res[0].sec_sequence);
         document.querySelector('school-section-creation-card').fnclasssection(m);
       },
@@ -3118,12 +3118,12 @@ insertschoolTypename:function(schooltypesarr)
              obj.langugagepref=langugagepref;
              obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
            this.FnSecondLangSubjectToStudentparam=obj;
-         alert(JSON.stringify(obj));
+       //  alert(JSON.stringify(obj));
         this.$.FnSecondLangSubjectToStudentajax.generateRequest();
       }
       },
       FnSecondLangSubjectToStudentResponse:function(e){
-           alert(JSON.stringify(e.detail.response.returnval));
+          // alert(JSON.stringify(e.detail.response.returnval));
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){
@@ -3210,7 +3210,7 @@ insertschoolTypename:function(schooltypesarr)
        obj.FnStosGradeid=FnStosGradeid;
        obj.acadamicyear=acadamicyear;
         this.FnselecttoSectionparam=obj;
-        alert(JSON.stringify(obj));
+      //  alert(JSON.stringify(obj));
         this.$.FnselecttoSectionajax.generateRequest();
       },
       FnselecttoSectionResponse:function(e)
