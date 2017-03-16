@@ -7973,7 +7973,7 @@ app.post('/FnselecttoSection-service' ,urlencodedParser,
   function (req, res)
 
 {  
-  var qur="select * from md_class_section where school_id='"+req.query.subjectselectid+"' and class='"+req.query.FnStosGradeid+"'";
+  var qur="select * from md_class_section where school_id='"+req.query.subjectselectid+"' and class='"+req.query.FnStosGradeid+"' and academic_year='"+req.query.acadamicyear+"'";
   connection.query(qur,function(err, rows){
     if(!err){
 
@@ -7992,13 +7992,13 @@ app.post('/SbjecttoStudentmapping-service',  urlencodedParser,function (req,res)
   var schoolid={school_id:req.query.subjectselectid};
   var gradeid={grade_id:req.query.FnStosGradeid};
   var sectionid={section_id:req.query.FnStoSSectionid};
-  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.FnStosGradeid+"') and section_id=(select section_id from md_section where section_name='"+req.query.FnStoSSectionid+"' and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"')) and school_id='"+req.query.subjectselectid+"' and academic_year='"+req.query.academic_year+"'";
-  connection.query(qur,function(err, rows){
+  
+     var quer="SELECT * FROM md_student where  school_id='"+req.query.school_id+"' and academic_year='"+req.query.academic_year+"' and grade_id='"+req.query.grade_id+"' and class_id='"+req.query.class_id+"'";
+  connection.query(quer,function(err, rows){
      if(!err){
 
       res.status(200).json({'returnval': rows});
-       //console.log(rows);
-    }
+         }
 
     else
       res.status(200).json({'returnval': 'Fail!'});
@@ -8032,7 +8032,7 @@ app.post('/enablestudent-service',  urlencodedParser,function (req,res)
 app.post('/FnSubjecttostudentlanguage-service',  urlencodedParser,function (req, res)
 {
     
-  connection.query('SELECT * from md_subject where langugage_pref="Second Language"',
+  connection.query('SELECT * from md_subject where language_pref="Second Language"',
     function(err, rows)
     {
     if(!err)
@@ -8075,11 +8075,11 @@ app.post('/SbjecttoStudentmapping1-service',  urlencodedParser,function (req, re
 
 app.post('/FnSubjecttostudentthirdlanguage-service',  urlencodedParser,function (req, res)
 {
-connection.query("SELECT * from md_subject where langugage_pref!='Core subject' and subject_category='category1'",
+connection.query("SELECT * from md_subject where language_pref!='Core subject' and subject_category='category1'",
     function(err, rows)
     {
     if(!err)
-    {
+    {   
     if(rows.length>0)
     {
       res.status(200).json({'returnval': rows});
@@ -8104,18 +8104,19 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
       subject_id:req.query.subjectid,
       student_name:req.query.studentname,
       class_id:req.query.sectionid,
-      lang_pref:req.query.langugagepref,
+     lang_pref:req.query.langugagepref,
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
-    
-    var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and student_name='"+req.query.studentname+"' and lang_pref='"+req.query.langugagepref+"'";
+      console.log(response);
+
+var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and  class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
  
 
  
   var qur1=  "update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentid+"' and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
    
-    
-   
+    console.log(qur);
+    console.log(qur1);
    
    connection.query(qur,
     function(err, rows)
@@ -8150,7 +8151,8 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
 
 app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function (req, res)
 {  
-    var response={
+  
+  var response={
       school_id:req.query.schoolnames,
       student_id:req.query.studentid,
       academic_year:req.query.Acadamicyear,
@@ -8159,15 +8161,22 @@ app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function
       subject_id:req.query.subjectid,
       student_name:req.query.studentname,
       class_id:req.query.sectionid,
-      lang_pref:req.query.langugagepref
+     lang_pref:req.query.langugagepref,
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
-    };
+    }; 
+      console.log(response);
 
- var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionname+"' and student_name='"+req.query.studentname+"' and lang_pref='"+req.query.langugagepref+"'";
-    
-    var qur1="update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentid+"' and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
+var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and  class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
+ 
+
+ 
+  var qur1=  "update tr_student_to_subject set subject_id='"+req.query.subjectid+"' where school_id='"+req.query.schoolnames+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and student_id='"+req.query.studentid+"' and class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
    
-   connection.query(qur,function(err, rows)
+    console.log(qur);
+    console.log(qur1);
+   
+  
+     connection.query(qur,function(err, rows)
     {
      if(rows.length==0){
      connection.query("INSERT INTO tr_student_to_subject SET ?",[response],

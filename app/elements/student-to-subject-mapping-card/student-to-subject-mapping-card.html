@@ -169,10 +169,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </td>
                     <td class="innercard" style="width: 750px;">
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
-                        <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
+                        <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.language_pref}}" check="{{s.check}}"></student-list-mapping-item>
                       </template>
                     </td>
-                    <td>
+                    <td>    
                       <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
                       <paper-tooltip for="btn1">Save</paper-tooltip>
                     </td>
@@ -183,43 +183,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </table>  
         </div>    
       </div>
-  </div>    
-
-      <!-- <div class="list-group col-sm-12 panel-body form-category" style="margin-top: 5%;">
-        <table class="table table-bordered">
-          <tbody>
-          <tr>
-            <td class="outcard" style="width: 25%;"></td>
-            <td class="innercard" style="margin-left: 1%;">
-              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:20%;">{{view.srtarr}}</h4>   
-              </template>
-            </td>
-            <td class="outcard">Save</td>
-          </tr>   
-          <template is="dom-repeat" items="{{bigarr}}" as="view">  
-            <tr>
-              <td class="outcard">
-                <h4>{{view.student_name}}</h4>
-              </td>
-              <td class="innercard">
-                <template is="dom-repeat" items="{{view.subject}}" as="s">
-                   <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.langugage_pref}}" check="{{s.check}}"></student-list-mapping-item>
-                </template>
-              </td>
-              <td><paper-icon-button icon="save" on-click="fnsubmit"></paper-icon-button></td>
-            </tr>
-            </template>  
-        </tbody>    
-      </table>    
-    </div>    
-    </div>    
-     </div> -->
-
-
-      <!-- <div class="buttons" id="subid">
-        <paper-button style="background-color:black;color:white;margin-left: 48%;" on-click="fnsubmit">submit</paper-button>
-      </div> --> 
+   </div>    
 
        <iron-ajax  
         auto      
@@ -308,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          localStorage.setItem("curr_sess_selectedgrade",this.FnStosGradeid);
          localStorage.setItem("curr_sess_selectedgrade1",this.FnStosGradeid2);
         // alert(this.FnStosGradeid);
-         this.$.uiservice.FnselecttoSection(this.subjectselectid,this.FnStosGradeid);
+  this.$.uiservice.FnselecttoSection(this.subjectselectid,this.FnStosGradeid,this.FnStoStermid);
     
       },  
         f12:function(e){
@@ -322,13 +286,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         fnstudent:function(e){
           this.SbjecttoStudentmappingurl=sessionStorage.getItem("addrinfo")+"/SbjecttoStudentmapping-service";
-        var obj={"FnStoSSectionid":"","subjectselectid":"","FnStosGradeid":"","academic_year":""};
-        obj.FnStoSSectionid=this.FnStoSSectionid;
-        obj.subjectselectid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        var obj={"school_id":"","section_id":"","class_id":"","academic_year":"","grade_name":"","grade_id":""};
+        obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.section_id=this.FnStoSSectionid;
+        obj.class_id=this.FnStoSSectionid1
         obj.academic_year=this.FnStoStermid;
-        obj.FnStosGradeid=this.FnStosGradeid;
+        obj.grade_name=this.FnStosGradeid;
+        obj.grade_id=this.FnStosGradeid2;
+  
         this.SbjecttoStudentmappingparam=obj;
-       //alert(JSON.stringify(obj));   
+      // alert(JSON.stringify(obj));   
         this.$.SbjecttoStudentmappingajax.generateRequest();
       
           },
@@ -422,7 +389,7 @@ SbjecttoStudentmapping1Response:function(e){
               document.querySelector('student-list-mapping-item').FnSecondLang11();
               document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
                      var obj={"dd":"","admno":"","langugagepref":""};
-                      kn.splice(obj);
+                    kn.splice(obj);
            
              }
                  for(var i=0;i<res.length;i++){
@@ -442,14 +409,16 @@ SbjecttoStudentmapping1Response:function(e){
                               var student_id=studentarr[j].id;
                               var student_name=studentarr[j].student_name;
                        
-         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+      var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","language_pref":""}; 
                                var subject_name=res[i].subject_name;
                                var subject_id=res[i].subject_id;
-                               var langugage_pref=res[i].langugage_pref
+                               var language_pref=res[i].language_pref
                            obj.student_id=student_id;
                            obj.student_name=student_name;
-                           obj.langugage_pref=langugage_pref;
+                           obj.language_pref=language_pref;
                            obj.subject_id=subject_id;
+                             obj.subject_name=subject_name;
+                        
                            generatearr.push(obj);
                         }}//alert(JSON.stringify(generatearr));
         var a=[];
@@ -460,11 +429,11 @@ SbjecttoStudentmapping1Response:function(e){
          nameobj.student_name=generatearr[k].student_name; 
          nameobj.student_id=generatearr[k].student_id; 
            
-         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+         var obj={"subject_name":"","subject_id":"","language_pref":"","id":""};
         // obj.Grade_name=generatearr[k].gradename;
         obj.subject_name=generatearr[k].subject_name;
         obj.subject_id=generatearr[k].subject_id;
-        obj.langugage_pref=generatearr[k].langugage_pref;
+        obj.language_pref=generatearr[k].language_pref;
         var  id=generatearr[k].subject_id+generatearr[k].student_id;
         id=id.replace(/[^\w\s]/gi, '');
          obj.id=id;
@@ -474,11 +443,11 @@ SbjecttoStudentmapping1Response:function(e){
         {
            if(generatearr[k].student_id==generatearr[l].student_id)
            {
-            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+            var obj1={"subject_name":"","subject_id":"","language_pref":"","id":""};
           //obj1.Grade_name=generatearr[l].gradename;
              obj1.subject_name=generatearr[l].subject_name;
              obj1.subject_id=generatearr[l].subject_id;
-             obj1.langugage_pref=generatearr[l].langugage_pref;
+             obj1.language_pref=generatearr[l].language_pref;
              var  id=generatearr[l].subject_id+generatearr[l].student_id;
              id=id.replace(/[^\w\s]/gi, '');
               obj1.id=id;
@@ -507,7 +476,7 @@ SbjecttoStudentmapping1Response:function(e){
                       overall[j].subject[t].check=true;
                        var rrn=overall[j].subject[t].id;
                         var admno=overall[j].student_id;
-                        var langugagepref=overall[j].subject[t].langugage_pref;
+                        var langugagepref=overall[j].subject[t].language_pref;
                       
                       var obj={"dd":"","admno":"","langugagepref":""};
                       obj.dd=rrn;
@@ -522,7 +491,6 @@ SbjecttoStudentmapping1Response:function(e){
           }
      }
   
-    // alert(JSON.stringify(overall));
      this.bigarr=overall;
               },
      FnSubjecttostudentthirdlanguageResponse:function(e){
@@ -552,16 +520,16 @@ SbjecttoStudentmapping1Response:function(e){
                      for(var i=0;i<res.length;i++){
                               var student_id=studentarr[j].id;
                               var student_name=studentarr[j].student_name;
-                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","langugage_pref":""}; 
+                         var obj={"student_id":"","student_name":"","subject_id":"","subject_name":"","language_pref":""}; 
                                var subject_name=res[i].subject_name;
                                var subject_id=res[i].subject_id;
-                               var langugage_pref=res[i].langugage_pref
+                               var language_pref=res[i].language_pref
                        
                            obj.student_id=student_id;
                            obj.student_name=student_name;
                            obj.subject_name=subject_name;
                            obj.subject_id=subject_id;
-                            obj.langugage_pref=langugage_pref;
+                            obj.language_pref=language_pref;
                      
                            generatearr.push(obj);
                         }}//alert(JSON.stringify(generatearr));
@@ -572,12 +540,11 @@ SbjecttoStudentmapping1Response:function(e){
          var nameobj={"student_id":"","student_name":""};
          nameobj.student_name=generatearr[k].student_name; 
          nameobj.student_id=generatearr[k].student_id; 
-       
-         var obj={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+      var obj={"subject_name":"","subject_id":"","language_pref":"","id":""};
         // obj.Grade_name=generatearr[k].gradename;
         obj.subject_name=generatearr[k].subject_name;
         obj.subject_id=generatearr[k].subject_id;
-        obj.langugage_pref=generatearr[k].langugage_pref;
+        obj.language_pref=generatearr[k].language_pref;
         var  id=generatearr[k].subject_id+generatearr[k].student_id;
           id=id.replace(/[^\w\s]/gi, '');
          obj.id=id;
@@ -587,11 +554,11 @@ SbjecttoStudentmapping1Response:function(e){
         {
            if(generatearr[k].student_id==generatearr[l].student_id)
            {
-            var obj1={"subject_name":"","subject_id":"","langugage_pref":"","id":""};
+            var obj1={"subject_name":"","subject_id":"","language_pref":"","id":""};
           //obj1.Grade_name=generatearr[l].gradename;
              obj1.subject_name=generatearr[l].subject_name;
              obj1.subject_id=generatearr[l].subject_id;
-             obj1.langugage_pref=generatearr[l].langugage_pref;
+             obj1.language_pref=generatearr[l].language_pref;
               var  id=generatearr[l].subject_id+generatearr[l].student_id;
               id=id.replace(/[^\w\s]/gi, '');
              obj1.id=id;
@@ -623,7 +590,7 @@ SbjecttoStudentmapping1Response:function(e){
                       overall[j].subject[t].check=true;
                        var rrn=overall[j].subject[t].id;
                         var admno=overall[j].student_id;
-                          var langugagepref=overall[j].subject[t].langugage_pref;
+                          var langugagepref=overall[j].subject[t].language_pref;
                       
                       var obj={"dd":"","admno":"","langugagepref":""};
                       obj.dd=rrn;
@@ -641,8 +608,9 @@ SbjecttoStudentmapping1Response:function(e){
   
         this.bigarr=overall;
           },
-      SbjecttoStudentmappingResponse:function(e){
-          var res=e.detail.response.returnval;
+     SbjecttoStudentmappingResponse:function(e){
+     var res=e.detail.response.returnval;
+        //  alert(JSON.stringify(res));
           studentarr=res; 
      },
       
