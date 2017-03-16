@@ -127,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       empsctionmaping:function(arr)
       {
         empdbsubjectarr=arr;
-         alert(JSON.stringify(empdbsubjectarr));
+         //alert(JSON.stringify(empdbsubjectarr));
         for(var i=0;i<empdbsubjectarr.length;i++)
         {
               var employeeidz=empdbsubjectarr[i].id;
@@ -136,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               var employeesectionnamez=empdbsubjectarr[i].section_id;
               var empdbsubject=empdbsubjectarr[i].subject_id+empdbsubjectarr[i].classid;
               var cassidz=empdbsubjectarr[i].classid;
-             alert(empdbsubject);
+            // alert(empdbsubject);
              document.querySelector('#'+empdbsubject).checked=true; 
            if(document.querySelector('#'+empdbsubject).checked==true)
            {

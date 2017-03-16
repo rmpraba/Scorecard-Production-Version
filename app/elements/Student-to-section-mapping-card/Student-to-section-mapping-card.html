@@ -47,7 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             border: 1px solid #6699ff;
             padding: 15px;
             width: 45%;
-            width: 45%;
             margin-left: 30%;
             margin-top: 3% !important;
             min-height: 170px; 
@@ -119,6 +118,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         overflow-x: hidden;
         overflow-y: scroll;
       }
+      table
+      {
+        width: 75%;
+        margin-left: 7%;
+      }
     </style>    
     
     <div>
@@ -129,7 +133,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="outercard">
           <div>   
         <div class="createdivv">
-          <div class="catcard" style="margin-top: 12%;">
+          <div class="catcard" style="margin-top: 2%;">
             <label>School Type</label>
             <template is="dom-repeat" items="{{studentsectionarr}}" as="view">
               <Student-to-section-mapping-item-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STTYP{{view.school_type_id}}">
@@ -205,15 +209,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
      <paper-dialog id="previousid" modal>
        <label  id="labelid">Please Click Previous Button</label> 
-       <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
-
-   </paper-dialog>
+       <center>
+         <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
+       </center>
+    </paper-dialog>
            
      <paper-dialog id="Nextid" modal>
         <label  id="labelid">Please Click Next Button</label>
         <div class="buttons">
-          <paper-button  dialog-confirm autofocus> close</paper-button>
-        </div>      
+        </div>  
+        <center>
+          <paper-button style="color:white;background-color:black;margin-left: 63%;" dialog-confirm autofocus> close</paper-button>
+        </center>    
      </paper-dialog>
      
       <iron-ajax        

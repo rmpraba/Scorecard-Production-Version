@@ -136,14 +136,14 @@
       <div class="container">
         <thead>
           <tr>
-            <td class="innercard" style="width: 560px;margin-left: 20%;">
+            <td class="innercard" style="width: 760px;margin-left: 21%;">
               <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                 <h4 style="width:22%;">{{view.srtarr}}</h4>   
               </template>
             </td>
           </tr> 
         </thead> 
-        <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 400px;"> 
+        <tbody class="newwwwcardd col-sm-12" style="width: 1190px;height: 400px;"> 
           <template is="dom-repeat" items="{{bigarr}}" as="view"> 
             <!-- <tr> 
               <td>Save</td>
@@ -153,7 +153,7 @@
               <td class="outcard">
                 <h4 style="width: 203px;">{{view.subject_name}}</h4>
               </td>
-              <td class="innercard" style="width: 700px;">
+              <td class="innercard" style="width: 800px;">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
                 <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypesubjectid}}" getschoolcategory="{{schooltypename}}" emplanpreff="{{emplangprefernce}}"></school_grade-subject-item-card>
                </template>

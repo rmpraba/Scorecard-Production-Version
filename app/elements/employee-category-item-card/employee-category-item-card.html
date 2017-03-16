@@ -71,10 +71,10 @@
                var obj={"schoolcategoryid":"","language_pref":""};
                obj.schoolcategoryid=this.schooltypecategoryid;
                obj.language_pref=emplangprefernce;
-               alert(JSON.stringify(obj));
+               //alert(JSON.stringify(obj));
                this.emplangschooltypegetcategoryparam=obj;
                this.$.emplangschooltypegetcategoryajax.generateRequest();
-                    alert(JSON.stringify(obj)); 
+                   // alert(JSON.stringify(obj)); 
           }
          else if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")!='category1'){
        this.empschooltypegetcategoryurl=sessionStorage.getItem("addrinfo")+"/schooltypegetcategorywww-service";
@@ -82,20 +82,20 @@
                obj.schoolcategoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                this.empschooltypegetcategoryparam=obj;
                this.$.empschooltypegetcategoryajax.generateRequest();
-                     alert(JSON.stringify(obj)); 
+                    // alert(JSON.stringify(obj)); 
       }
     
 
     },
     empschooltypegetcategoryResponse:function(e){
         var res=e.detail.response.returnval;
-              alert(JSON.stringify(res)); 
+              //alert(JSON.stringify(res)); 
           
          document.querySelector('employe-schooltype-to-category-card').getcategory(res);
         },
         emplangschooltypegetcategoryResponse:function(e){
            var res=e.detail.response.returnval;
-                alert(JSON.stringify(res)); 
+               // alert(JSON.stringify(res)); 
              document.querySelector('employe-schooltype-to-category-card').getcategory(res);
     
         }
