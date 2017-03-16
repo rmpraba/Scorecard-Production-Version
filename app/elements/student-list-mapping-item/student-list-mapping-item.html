@@ -80,7 +80,7 @@
      // alert(this.langugagepref);
      // alert(this.id);
        rr1=this.langugagepref;
-
+    //  alert(this.langugagepref);
       rr=this.studentid;
      // alert(document.querySelector('#'+this.id).checked);
     
@@ -104,7 +104,7 @@
            obj.subjectname=this.subjectname;
             paspstuinfo.push(obj);
             v.push(obj);
-       //    alert(JSON.stringify(paspstuinfo));
+        // alert(JSON.stringify(paspstuinfo));
 
          for(var i=0;i<paspstuinfo.length;i++){
                     if(paspstuinfo[i].studentid==this.studentid){
@@ -155,7 +155,7 @@
                   document.querySelector('#'+s).checked=false;
                     paspstuinfo.splice(i,1);
                     }
-                  }
+                    }
                   }
 
                 }
@@ -243,7 +243,7 @@
 
        for(var i=0;i<v.length;i++){
          var r=v[i].id;
-         alert(r);
+        // alert(r);
                document.querySelector('#'+r).checked=false;
             }
            var obj={"id":"","Acadamicyear":"","gradename":"","sectionname":"","gradeid":"","sectionid":"","studentname":"","studentid":"","langugagepref":"","subjectid":"","subjectname":""};
@@ -267,29 +267,6 @@
            paspstuinfo.splice(obj);
            paspstuinfo.splice(obj);
         
-
-        /* if(localStorage.getItem("curr_sess_selectedgrade")=="U.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="L.K.G"||localStorage.getItem("curr_sess_selectedgrade")=="PRE-K.G"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-1"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-2"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-3"||localStorage.getItem("curr_sess_selectedgrade")=="Grade-4"){
-         
-            paspstuinfo.splice(obj);
-   
-           } 
-           else{
-                  for(var i=0;i<paspstuinfo1.length;i++){
-              var m1=paspstuinfo1[i].id;
-             // alert(m1);
-               document.querySelector('#'+m1).checked=false;
-                  paspstuinfo1=[];
-        
-            }
-          for(var j=0;j<paspstuinfo.length;j++){
-               var m2=paspstuinfo[j].id;
-              // alert(m2);
-                document.querySelector('#'+m2).checked=false;
-                     paspstuinfo=[];
-      
-             }
-          
-        }*/
       },
       
     });
