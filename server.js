@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecardproduction'
+   database : 'demo1'
 
  });
 var bodyParser = require('body-parser'); 
@@ -7695,10 +7695,10 @@ app.post('/getschooltypeas-service',  urlencodedParser,function (req,res)
 {  
     var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
    
-var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM md_school_grade_mapping p join mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
+var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM md_school_grade_mapping p join mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"'  and p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
 
    var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
-  //console.log(qur);
+  console.log(qurr);
   connection.query(qurr,
     function(err, rows)
     {
