@@ -463,7 +463,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
               this.$.uiservice.fnschoolemployeepersonal();
    
         }
-        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")   
+        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
+        {   
             this.$.assesmentservice.callTermService("Term");
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="feecollectionupdate") 
          {
@@ -511,6 +512,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('consolidateddataanalysis','');
          }
+       }
       },
       FnSelectPreEntryType:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','PreEntry');
