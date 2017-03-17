@@ -225,18 +225,22 @@
 
         
        },
-       langprefere:function(e){
+       langprefere:function(e)
+       {
         //   alert('1');
-          if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
+          if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1')
+          {
                   this.$.empLanguageprefernce.hidden=false;
-                }
-            else{
+          }
+          else
+          {
 
               this.$.empLanguageprefernce.hidden=true;
               var empty='empty';
               document.querySelector('employee-category-item-card').fnsetemployeelanprefer(empty);
-               }   
-             },
+              document.querySelector('#empLanguageprefernceid').selected=-1;
+          }   
+        },
         clean:function(e){
         this.$.empLanguageprefernce.hidden=true;
       },
@@ -281,7 +285,7 @@
         grnerate:function(e)
         {
           //document.querySelector('employe-creation-card').Fnsubjectclean(); 
-          document.querySelector('#empLanguageprefernceid').selected=-1;       
+          //document.querySelector('#empLanguageprefernceid').selected=-1;       
             if(overall1!=0){
              // alert('1');
           document.querySelector('employe-creation-card').Fnsubjectclean1();

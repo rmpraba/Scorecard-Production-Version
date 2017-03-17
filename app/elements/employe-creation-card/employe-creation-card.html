@@ -21,7 +21,7 @@
 
     .buttons paper-button
       {
-        @apply(--layout-right);
+        @apply(--layout-right);  
       background-color: #363636;
       color: #ffffff;
       width: 10%;
@@ -84,7 +84,8 @@
       is: 'employe-creation-card',
      fnempsetsubject:function(e){
         f=this.id;
-        if(document.querySelector('#'+this.id).checked==true){  
+        if(document.querySelector('#'+this.id).checked==true)
+        {  
                this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                
