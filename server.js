@@ -8333,7 +8333,7 @@ app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
           res.status(200).json({'returnval': rows});
           console.log(rows);
         }
-
+   
         else
           //console.log(err);
           res.status(200).json({'returnval': 'invalid'});
@@ -8344,13 +8344,22 @@ app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, re
     {  
       var e={id:req.query.school_id};
       console.log(e);
-      var qur="select * from md_student where school_id='"+req.query.school_id+"' and grade_id!='"+req.query.classid+"' and id='"+req.query.id+"' and     academic_year!='"+req.query.academic_year+"'";
+
+      var qur="select * from md_student where school_id='"+req.query.school_id+"' and id='"+req.query.id+"' and grade_id!='"+req.query.stugradeid+"' and  academic_year!='"+req.query.academic_year+"'";
       connection.query(qur,function(err, rows){
         if(!err){
 
+          if(rows.length>0)  
+           { 
+          //console.log(JSON.stringify(rows));   
           res.status(200).json({'returnval': rows});
-          console.log(rows);
-        }
+          }
+       else if(rows.length==0|| row.length==null)
+         { 
+          //console.log(JSON.stringify(rows));  
+          res.status(200).json({'returnval': 'empty'});
+         }
+       }
 
         else
           //console.log(err);
@@ -8370,7 +8379,8 @@ app.post('/fnsetstudentinfohistory1-service',  urlencodedParser,function (req, r
      Gender:req.query.Gender,
      classs_id:req.query.class_id, 
      ageinmonth:req.query.ageinmonth, 
-     grade_id:req.query.grade_id,   
+     grade_id:req.query.grade_id, 
+     academic_year:req.query.academic_year  
     }
    console.log(response);
   connection.query("INSERT INTO md_student_history set ?",[response],

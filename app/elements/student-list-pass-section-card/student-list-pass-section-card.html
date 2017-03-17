@@ -49,6 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var spliceid;
   var rr;
   var studentcheckinfoarr=[];
+  var v=[];
   //var checkvalu=[];
     Polymer({
       is: 'student-list-pass-section-card',
@@ -85,6 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.enq_id=this.id;
             obj.classid=this.classid;
             paspstuinfo.push(obj);
+            v.push(obj);
           
          for(var i=0;i<paspstuinfo.length;i++){
                     if(paspstuinfo[i].id==this.admissinno){
@@ -151,7 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
         stupersonalinfo11:function(arr){
          //  alert(rr);
-        //alert(this.admissinno);
+        //alert(this.admissinno);  
           for(var i=0;i<arr.length;i++){
 
             if(arr[i].admno==rr){
@@ -160,11 +162,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
            }}},
    overallinfo:function(e){
-      for(var i=0;i<paspstuinfo.length;i++){
-               spliceid=paspstuinfo[i].enq_id;
-              document.querySelector('#'+spliceid).checked=false;           
+      for(var i=0;i<v.length;i++){
+               var empty=v[i].enq_id;
+              document.querySelector('#'+empty).checked=false;           
              }
-           }
+              var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
+            obj.id=this.admissinno;
+            obj.student_name=this.studentname;
+            obj.dob=this.dob;
+            obj.gender=this.gender;
+            obj.enq_id=this.id;
+            obj.classid=this.classid;
+            v.splice(obj);
+           
+           },
          fnsplice:function(){
               var rnwn=paspstuinfo.length;
               //alert(rnwn);
