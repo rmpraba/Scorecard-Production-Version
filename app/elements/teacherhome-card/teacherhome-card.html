@@ -428,36 +428,36 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       FnSelectacademicyear:function(e){
         academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="CategorytoSchooltype")
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="CategorytoSchooltype")
           {
            document.querySelector('app-card').setPage('homepage','');
            document.querySelector('home-page').setPage('employe-schooltype-to-category-card','');
           }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="EmployeeToGrade"){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="EmployeeToGrade"){
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('employe-category-creation-card',''); 
           }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="SchooltypToGrade"){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="SchooltypToGrade"){
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('schooltype-to-grade-card','');
           }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="GradeToSubject"){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="GradeToSubject"){
             document.querySelector('app-card').setPage('homepage','');
              document.querySelector('home-page').setPage('school-grade-to-subject-card','');  
            }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="StudentTranfer"){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="StudentTranfer"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('student-transfer-grade','');
            }  
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=='SectionCreation'){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=='SectionCreation'){
                document.querySelector('app-card').setPage('homepage','');
                document.querySelector('home-page').setPage('school-section-creation-card','');  
                 }
-          if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="StudentToSection"){
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="StudentToSection"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
                   }
-           if(localStorage.getItem('curr_sess_loggedmasteracadamic')=="employeecreation"){
+           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('new-employee-creation-card','');
               this.$.uiservice.fnschoolemployeepersonal();
@@ -766,7 +766,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
          SectionCreation:function(e)
         {  
-          localStorage.setItem('curr_sess_loggedmasteracadamic','SectionCreation');
+          localStorage.setItem('curr_sess_loggedassesmenttype','SectionCreation');
            this.$.uiservice.Generatesectionid();
            this.$.uiservice.selectsectiongrade();
            this.$.cdialog.toggle(); 
@@ -781,7 +781,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        },
       GradeToSection:function(e)
       { 
-          localStorage.setItem('curr_sess_loggedmasteracadamic','StudentToSection');
+          localStorage.setItem('curr_sess_loggedassesmenttype','StudentToSection');
       this.$.uiservice.studentsectiontype();
               this.$.cdialog.toggle(); 
       },  
@@ -794,7 +794,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
         GradeToSubject:function(e)
       {
-       localStorage.setItem('curr_sess_loggedmasteracadamic','GradeToSubject');
+       localStorage.setItem('curr_sess_loggedassesmenttype','GradeToSubject');
         this.$.uiservice.schoolGradetype();
         this.$.uiservice.SchoolCategorytype();
         document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
@@ -804,7 +804,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
       CategorytoSchooltype:function(e)
       {
-       localStorage.setItem('curr_sess_loggedmasteracadamic','CategorytoSchooltype');
+       localStorage.setItem('curr_sess_loggedassesmenttype','CategorytoSchooltype');
         this.$.uiservice.empsubjectTeacher();
         this.$.uiservice.empcategorye();
         this.$.uiservice.empschooltype();
@@ -827,7 +827,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         FnCreateEmployee:function(e)
 
         {
-             localStorage.setItem('curr_sess_loggedmasteracadamic','employeecreation');
+             localStorage.setItem('curr_sess_loggedassesmenttype','employeecreation');
   
         this.$.uiservice.fnempgenerateid();
         this.$.uiservice.selectschooltype();
@@ -846,14 +846,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
       },
       EmptoCategory:function(e){
-        localStorage.setItem('curr_sess_loggedmasteracadamic','StudentTranfer');
+        localStorage.setItem('curr_sess_loggedassesmenttype','StudentTranfer');
               this.$.uiservice.tranfergradeinfo();
              this.$.cdialog.toggle();
    
     },
     EmployeeToGrade:function(e)
       {
-        localStorage.setItem('curr_sess_loggedmasteracadamic','EmployeeToGrade');
+        localStorage.setItem('curr_sess_loggedassesmenttype','EmployeeToGrade');
         this.$.uiservice.schoolemployeegrademapping();
         //document.querySelector('employe-category-creation-card').FnRefresh(); 
         //document.querySelector('emp-category-get-card').FnRefresh();  
@@ -890,7 +890,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
        SchooltypToGrade:function(e)
        {
-       localStorage.setItem('curr_sess_loggedmasteracadamic','SchooltypToGrade');
+       localStorage.setItem('curr_sess_loggedassesmenttype','SchooltypToGrade');
             this.$.uiservice.selectschooltype1();
           this.$.cdialog.toggle();
     
