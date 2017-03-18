@@ -1684,6 +1684,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
     {
       var approvearr=e.detail.response.returnval;
       // alert(JSON.stringify(approvearr));
+      if(approvearr!='invalid')
       document.querySelector('approve-one-to-four-card').approvearr=approvearr;
 
     },

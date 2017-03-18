@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'scorecarddb'
 
  });
 var bodyParser = require('body-parser'); 
@@ -5462,7 +5462,10 @@ var qur="DELETE FROM tr_term_assesment_marks WHERE  school_id LIKE  '"+req.query
 
 app.post('/revertsubmittedmark-service' ,  urlencodedParser,function (req, res)
 {  
+  if(req.query.grade=="Grade-1"||req.query.grade=="Grade-2"||req.query.grade=="Grade-3"||req.query.grade=="Grade-4")
   var qur="DELETE FROM tr_term_assesment_import_marks WHERE school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and assesment_id='"+req.query.assesmentid+"' and grade='"+req.query.grade+"' and section='"+req.query.section+"' and subject='"+req.query.subject+"' and flag='0'";
+  else
+  var qur="DELETE FROM tr_term_fa_assesment_import_marks WHERE school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and assesment_id='"+req.query.assesmentid+"' and grade='"+req.query.grade+"' and section='"+req.query.section+"' and subject='"+req.query.subject+"' and flag='0'";
    console.log('-----------------------');
    console.log(qur);
    connection.query(qur,function(err, result)
@@ -8333,7 +8336,7 @@ app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
           res.status(200).json({'returnval': rows});
           console.log(rows);
         }
-
+   
         else
           //console.log(err);
           res.status(200).json({'returnval': 'invalid'});
@@ -8344,13 +8347,22 @@ app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, re
     {  
       var e={id:req.query.school_id};
       console.log(e);
-      var qur="select * from md_student where school_id='"+req.query.school_id+"' and grade_id!='"+req.query.classid+"' and id='"+req.query.id+"' and     academic_year!='"+req.query.academic_year+"'";
+
+      var qur="select * from md_student where school_id='"+req.query.school_id+"' and id='"+req.query.id+"' and grade_id!='"+req.query.stugradeid+"' and  academic_year!='"+req.query.academic_year+"'";
       connection.query(qur,function(err, rows){
         if(!err){
 
+          if(rows.length>0)  
+           { 
+          //console.log(JSON.stringify(rows));   
           res.status(200).json({'returnval': rows});
-          console.log(rows);
-        }
+          }
+       else if(rows.length==0|| row.length==null)
+         { 
+          //console.log(JSON.stringify(rows));  
+          res.status(200).json({'returnval': 'empty'});
+         }
+       }
 
         else
           //console.log(err);
@@ -8370,7 +8382,8 @@ app.post('/fnsetstudentinfohistory1-service',  urlencodedParser,function (req, r
      Gender:req.query.Gender,
      classs_id:req.query.class_id, 
      ageinmonth:req.query.ageinmonth, 
-     grade_id:req.query.grade_id,   
+     grade_id:req.query.grade_id, 
+     academic_year:req.query.academic_year  
     }
    console.log(response);
   connection.query("INSERT INTO md_student_history set ?",[response],

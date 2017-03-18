@@ -1194,30 +1194,27 @@ fndelsectionz:function(emparrr){
                     // alert(JSON.stringify(obj));
                      //alert(JSON.stringify(obj));
                      this.empsectionclassparam=obj;
-           this.$.empsectionclassajax.generateRequest();
-                 }
+                     this.$.empsectionclassajax.generateRequest();
+                   }
+           },
 
-              
-},
-empsectionclassResponse:function(e){
+ empsectionclassResponse:function(e){
     var res=e.detail.response.returnval; 
-    //alert(JSON.stringify(res));
- 
 },
-    fnsetstudentinfohistoryResponse:function(e){
+ fnsetstudentinfohistoryResponse:function(e){
        var res=e.detail.response.returnval; 
-            //alert(JSON.stringify(res));
-
+         if(res!='empty'){
              var id=res[0].id;
              var student_name=res[0].student_name;
-             var class_id=res[0].class_id;
              var school_type=res[0].school_type;
              var dob=res[0].dob;
              var Gender=res[0].gender;
              var ageinmonth=res[0].ageinmonth;
              var grade_id=res[0].grade_id;
+           var academic_year=res[0].academic_year;
+     
         this.fnsetstudentinfohistory1url=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory1-service";
-         var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","class_id":"","ageinmonth":"","grade_id":""};
+         var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","class_id":"","ageinmonth":"","grade_id":"","academic_year":""};
            obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
            obj.student_name=student_name;
            obj.id=id;
@@ -1227,9 +1224,11 @@ empsectionclassResponse:function(e){
            obj.Gender=Gender;
            obj.ageinmonth=ageinmonth;
            obj.grade_id=grade_id;
+           obj.academic_year=academic_year;
            this.fnsetstudentinfohistory1param=obj;
            //alert(JSON.stringify(obj));
           this.$.fnsetstudentinfohistory1ajax.generateRequest();
+      }
     },
     fnsetstudentinfohistory1Response:function(e){
       var res=e.detail.response.returnval; 
@@ -1268,7 +1267,6 @@ empsectionclassResponse:function(e){
            obj.classid=classid;
            obj.dob=dob;
            obj.Gender=Gender;
-           obj.classid=classid;
            obj.stugradeid=stugradeid;
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
 

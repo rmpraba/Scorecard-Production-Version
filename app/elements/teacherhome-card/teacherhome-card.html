@@ -404,28 +404,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.sectioncreation=true;
         this.gradetosection=true;
 
-       },
-
-       
-
-
-       //  this.Report=true;
-       //  this.GenerateReport=true;
-       //  this.Approve=true;       
-       //  this.BA=true;
-       //  this.TA=true;
-       //  this.Analysis=true;
-       //  this.ConsolidatedReport=true;
-       // // this.teach_obser=true;
-       //  this.comparison=true;
-       //  this.Approvalstatus=true;
-       //  this.editinfo=true;
-       //  this.createrole=true;
-       //  this.createemployee=true;
-       //  this.createsubject=true;
-       //  this.teach_obser=true;
-        // localStorage.setItem("curr_sess_page","teacherhome-card");
-      
+       }, 
 
       FnSelectacademicyear:function(e){
         academicyear = e.target.selectedItem.value.trim();
@@ -658,15 +637,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           // this.BA=false;
           // this.TA=false;
           }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator"){
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
 
             this.highlevelcommon=false;
           }
           if(sessionStorage.getItem("curr_sess_loggedroleid")=="co-ordinator")
           {
             this.coordinator=false;
-            }
-
+          }
         
       },
       FnRefresh:function()
