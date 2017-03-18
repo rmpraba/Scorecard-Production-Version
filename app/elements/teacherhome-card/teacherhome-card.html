@@ -250,6 +250,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     </div>
 
     <div class="container1">
+
+      <div class="card" hidden$="{{schooltyptograde}}">
+            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
+               <h4>School type to Grade</h4>
+            </paper-button>
+       </div>
+
+       
       <div class="card" hidden$="{{createemployee}}">
         <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.jpg" height="180px" width="180px">
              <h4> Employee</h4>
@@ -262,12 +270,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>
 
-      
-      <div class="card" hidden$="{{schooltyptograde}}">
-            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
-               <h4>School type to Grade</h4>
-            </paper-button>
-       </div>
 
       <div class="card" hidden$="{{employeetograde}}">
             <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">

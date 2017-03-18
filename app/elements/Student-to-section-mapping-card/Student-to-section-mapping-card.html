@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="Student-to-section-mapping-card">  
   <template>
-    <style>
+    <style>  
       :host {
         display: block;
       }
@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .newcard
       {
         @apply(--layout-horizontal);
-        margin-top: -6%;
+        margin-top: -4%;
         margin-left: 24%;
       }
 
@@ -113,16 +113,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 4%;
       }
 
-      .newwwwcardd
+      .newcarddzz
       {
         overflow-x: hidden;
         overflow-y: scroll;
       }
-      table
+      .newwwtabb
       {
-        width: 75%;
-        margin-left: 7%;
+        margin-top: 3%;
       }
+      table
+    {
+      width: 70%;
+      margin-left: 9%;
+    }
     </style>    
     
     <div>
@@ -158,39 +162,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>  
        </div>  
       
-       
-     <div class="newwwtabb" hidden$="{{hidenewtabb}}">
-      <table class="table table-bordered">
-        <thead>    
-          <tr>
-            <th class="outcard"></th>
-            <th class="innercard" style="width: 700px;margin-left: -99%;">
-              <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                <h4 style="width:22%;">{{view.srtarr}}</h4>   
-              </template>
-            </th>
-            <!-- <th class="outcard"></th> -->
-          </tr>   
-        </thead>
-        <tbody class="newwwwcardd col-sm-12" style="width: 950px;height: 350px;">  
-            <template is="dom-repeat" items="{{sectionfullarr}}" as="view">  
+      
+
+   <div class="newwwtabb" hidden$="{{hidenewtabb}}">
+        <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
+      <div>
+        <table class="table table-bordered">
+            <!-- <div class="container"> -->
+          <div>
+            <thead> 
               <tr>
-                <td class="outcard">
-                  <h4>{{view.student_name}}</h4>
-                </td>
-                <td class="innercard" style="width: 690px;">
-                  <template is="dom-repeat" items="{{view.subject}}" as="s">
-                    <student-list-pass-section-card studentname="{{view.student_name}}" 
-                    id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
+                <th class="innercard" style="width: 750px;margin-left: 23%;">
+                  <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                    <h4 style="width:22%;">{{view.srtarr}}</h4>   
                   </template>
-                </td>
+                  </th>
+                </th>   
               </tr>
-            </template>  
-        </tbody>    
-      </table>    
-    </div>    
-  </div>
-  <div>
+              </thead>
+              <tbody class="newcarddzz col-sm-12" style="width: 1070px;height: 350px;">
+                
+                <template is="dom-repeat" items="{{sectionfullarr}}" as="view">
+                  <tr>
+                    <td class="outcard">
+                      <h4>{{view.student_name}}</h4>
+                    </td>
+                    <td class="innercard" style="width: 800px;">
+                      <template is="dom-repeat" items="{{view.subject}}" as="s">
+                        <student-list-pass-section-card studentname="{{view.student_name}}" 
+                        id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
+                      </template>  
+                    </td>         
+                  </tr>
+                </template>
+              </tbody>
+            </div>
+          </table>   
+        </div>   
+        </div>  
+        
+
+
+
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
       <div id="z1">
@@ -328,9 +341,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             var obj={"srtarr":""};
                                 obj.srtarr=section_id;
                                setarrr.push(obj);
-                              // alert(JSON.stringify(obj));
+                             // alert(JSON.stringify(obj));
                           }
-              //  alert(JSON.stringify(setarrr));
+             // alert(JSON.stringify(setarrr));
                    this.setsubjectarr=setarrr;
                 var generatearr=[];
                 var subarr=[];
