@@ -3131,12 +3131,15 @@ insertschoolTypename:function(schooltypesarr)
         /*alert(111);
         if(e.detail.response.returnval=='Inserted')
         {
-            this.$.service1.newpopup.open();
+            alert("open");
+            this.$.service1.toggleDialog();
         }
         else if(e.detail.response.returnval=='updated successfully')
         {
-            this.$.service1.newpopup2.open();
+            alert("update");
+            this.$.service1.toggleDialog2();
         }*/
+        alert(JSON.stringify(e.detail.response.returnval));
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){
@@ -3169,7 +3172,7 @@ insertschoolTypename:function(schooltypesarr)
         }
       },
       FnSecondLangSubjectToStudentsetsResponse:function(e){
-          //  alert(JSON.stringify(e.detail.response.returnval));
+          alert(JSON.stringify(e.detail.response.returnval));
       },
        FnThirdLangSubjectToStudent:function(fnthidlanginfo1arr){
                    for(var i=0;i<fnthidlanginfo1arr.length;i++){
@@ -3201,7 +3204,7 @@ insertschoolTypename:function(schooltypesarr)
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
-       // alert(JSON.stringify(e.detail.response.returnval));
+       alert(JSON.stringify(e.detail.response.returnval));
       },
        SelectSchoolgrades:function()
        {
