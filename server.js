@@ -6793,30 +6793,27 @@ app.post('/terminsert-service' , urlencodedParser,function (req, res)
 {  
     var response={
       school_id:req.query.school_id,
-      acadamic_year:req.query.acadamicyears,
+      academic_year:req.query.acadamicyears,
       school_type:req.query.schootypids,
-      grade_id:req.query.gradeid,
-      grade_name:req.query.gradename,
-      term1:req.query.student,
-      term2:req.query.section,
-      term3:req.query.studentterm3
-  };
-   
+      type:req.query.gradename,
+      no_of_days:req.query.termvalue,
+      term_name:req.query.termid,
 
-    var qur="SELECT * FROM dummy_working_days WHERE school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'";
+      };
+  var qur="SELECT * FROM md_workingdays WHERE school_id='"+req.query.school_id+"' and academic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and type='"+req.query.gradename+"' and term_name='"+req.query.termid+"'";
 
-    var qur1="update dummy_working_days set term1='"+req.query.student+"',term2='"+req.query.section+"' ,term3='"+req.query.studentterm3+"' where school_id='"+req.query.school_id+"' and acadamic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'";
+    var qur1="update md_workingdays set no_of_days='"+req.query.termvalue+"' where school_id='"+req.query.school_id+"' and academic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and term_name='"+req.query.termid+"'and type='"+req.query.gradename+"'";
 
-   /* console.log(qur);
-    console.log(qur1)*/
+    console.log(qur);
+    console.log(qur1)
    connection.query(qur,
     function(err, rows)
     {
      if(rows.length==0){
-     connection.query("INSERT INTO dummy_working_days SET ?",[response],
+     connection.query("INSERT INTO md_workingdays SET ?",[response],
     function(err, rows)
     {
-    if(!err)
+    if(!err)   
     {
       res.status(200).json({'returnval': 'Inserted!'});
     }
@@ -7115,7 +7112,7 @@ app.post('/getschoolTypename-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': ''});
   });
 });
-
+  
 app.post('/selectsectiongrade-service',  urlencodedParser,function (req,res)
 {  
    var qur="SELECT * FROM master_school_type where school_id='"+req.query.school_id+"'";
@@ -7133,17 +7130,17 @@ app.post('/selectsectiongrade-service',  urlencodedParser,function (req,res)
 });
 app.post('/fnsetpasssectinvalue-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'  and academic_year='"+req.query.acadamicyear+"'";
+  var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'  and academic_year='"+req.query.acadamicyear+"'";
+  console.log(qur);
   connection.query(qur,
     function(err, rows)
     {   
-    if(!err)
-    { 
-     // console.log(JSON.stringify(rows));   
-      res.status(200).json({'returnval': rows});
-    }
+    if(!err)      
+     { 
+       res.status(200).json({'returnval': rows});
+      }
     else
-      res.status(200).json({'returnval': ''});
+      res.status(200).json({'returnval': ''});  
   });
 });
 app.post('/SchooltypetoGrademapping-service',  urlencodedParser,function (req,res)
@@ -8558,8 +8555,8 @@ app.post('/fnsetstudentinfo-service' , urlencodedParser,function (req, res)
 app.post('/fngetpasssectinvaluezzz-service',  urlencodedParser,function (req,res)
   {  
     /* var obj={"school_id":"","schooltype":"","acadamicyear":""};
-*/  var qur="SELECT * FROM dummy_working_days where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"' and acadamic_year='"+req.query.acadamicyear+"'";
-    //console.log(qur);
+*/  var qur="SELECT * FROM md_workingdays where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"' and academic_year='"+req.query.acadamicyear+"'";
+    console.log(qur);
      connection.query(qur,
     function(err, rows)
     {
