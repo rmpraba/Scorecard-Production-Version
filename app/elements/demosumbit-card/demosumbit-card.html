@@ -25,6 +25,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../Student-to-section-mapping-card/Student-to-section-mapping-card.html">
 <link rel="import" href="../master-school_type-creation/master-school_type-creation.html">
 <dom-module id="demosumbit-card">
+<link rel="import" href="../master-ui-service/master-ui-service.html">
+<dom-module id="demosumbit-card">
   <template>
     <style>
       :host {
@@ -103,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'demosumbit-card',
       toggleDialog:function()
       {
-        //alert("dialog");
+        alert("dialog");
         this.$.newpopup.toggle();
       },
       toggleDialog1:function()

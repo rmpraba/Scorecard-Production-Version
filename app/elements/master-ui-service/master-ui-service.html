@@ -1121,6 +1121,8 @@
         on-response="GeneratesectionidResponse"
         debounce-duration="300">
       </iron-ajax>
+
+      <demosumbit-card id="service1"></demosumbit-card>
       
       </template>
   <script>
@@ -3124,8 +3126,17 @@ insertschoolTypename:function(schooltypesarr)
         this.$.FnSecondLangSubjectToStudentajax.generateRequest();
       }
       },
-      FnSecondLangSubjectToStudentResponse:function(e){
-          // alert(JSON.stringify(e.detail.response.returnval));
+      FnSecondLangSubjectToStudentResponse:function(e)
+      {
+        /*alert(111);
+        if(e.detail.response.returnval=='Inserted')
+        {
+            this.$.service1.newpopup.open();
+        }
+        else if(e.detail.response.returnval=='updated successfully')
+        {
+            this.$.service1.newpopup2.open();
+        }*/
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){

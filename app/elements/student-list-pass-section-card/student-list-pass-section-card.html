@@ -140,8 +140,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }  
        },
        studentcheckinfo1:function(arr){
-      //  alert(JSON.stringify(arr));
-   studentcheckinfoarr=arr;
+     // alert(JSON.stringify(arr));
+        studentcheckinfoarr=arr;
        },
        f11:function(e){
          var c=paspstuinfo.length;
@@ -166,6 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                var empty=v[i].enq_id;
               document.querySelector('#'+empty).checked=false;           
              }
+
               var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
@@ -174,8 +175,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.enq_id=this.id;
             obj.classid=this.classid;
             v.splice(obj);
-           
-           },
+          },
          fnsplice:function(){
               var rnwn=paspstuinfo.length;
               //alert(rnwn);

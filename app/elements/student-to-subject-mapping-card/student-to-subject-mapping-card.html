@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../../paper-styles/color.html">
     <link rel="import" href="../paper-spinner-lite.html">
     <link rel="import" href="../paper-spinner.html">
+    <link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="student-to-subject-mapping-card">
   <template>
@@ -55,17 +56,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width:50%
         margin-left:2.5em;
        }
-     .innercard1
-     {
-       @apply(--layout-horizontal);
-       width:50%
-      margin-left:5.0em;
-     }
-    .table table-bordered td
-    {
-      width: 50%;
-    }
-    .border-right 
+     
+        .border-right 
     {
       border-right: 1px solid black;
     }
@@ -75,29 +67,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid grey;
           height: 100px;
           width: 1px;
-          margin-left: 47%;
-          min-height: 389px;
-          top: 37.9% !important;
+          margin-left: 55%;
+          min-height: 395px;
+          top: 36% !important;
       } 
-      .newwwwcardd
+      .newwwwcarddd
       {
         overflow-x: hidden;
         overflow-y: scroll;
       }
-      #tbz1
+      #tablhiddn
       {
-          margin-top: 4%;
-          margin-left: 7%;
+        margin-top: 3%;
       }
-        
-      .outcard
-      {
-        width: 30%;
-      }    
-      .table
-      {
-        width: 75%;
-      }
+      table
+    {
+      width: 70%; 
+      margin-left: 9%; 
+    }
+     
     </style>
 
       <div class="title">
@@ -139,53 +127,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="vertical-row" hidden$="{{hidenewline}}"></div>
           
           <div id="labelhide">
-            <div style="float: left;position: absolute;top: 29%;margin-left: 25%;" id="secondid">
+            <div style="float: left;position: absolute;top: 29%;margin-left: 29%;" id="secondid">
                 <label><h4><b>SECOND LANGUAGES</b></h4></label>
               </div>
-              <div style="display: inline-block;position: absolute;margin-left:49%;top: 29%;" id="thirdid">
+              <div style="display: inline-block;position: absolute;margin-left:59%;top: 29%;" id="thirdid">
                 <label><h4><b>THIRD LANGUAGES</b></h4></label>
             </div>
           </div>  
-  
 
-      <div id="tbz1" hidden$="{{hidenewsubcat}}">
+
+      <div id="tablhiddn" hidden$="{{hidenewsubcat}}">
+        <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
         <div>
-          <table class="table table-bordered" style="width: 70%;">
-            <div class="container">
-              <thead>
-                <tr>
-                <!-- <td class="outcard" style="width: 25%;"></td> -->
-                  <th></th>
-                  <th class="innercard" style="margin-left: -100%;width: 790px">
+          <table class="table table-bordered">
+            <!-- <div class="container"> -->
+            <div>
+              <thead> 
+              <tr>
+                  <th class="innercard" style="width: 780px;margin-left: 23%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
+                      <h4 style="width: 18%;">{{view.srtarr}}</h4>   
                     </template>
-                  </th>
-                   <!-- <th>Save</th> -->
-                </tr>  
-              </thead>   
-              <tbody  class="newwwwcardd col-sm-12" style="width: 1020px;height: 340px;">
-                <template is="dom-repeat" items="{{bigarr}}" as="view">  
-                  <tr>
-                    <td class="outcard">
-                      <h4 style="width: 24%">{{view.student_name}}</h4>
-                    </td>
-                    <td class="innercard" style="width: 750px;">
-                      <template is="dom-repeat" items="{{view.subject}}" as="s">
-                        <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.language_pref}}" check="{{s.check}}"></student-list-mapping-item>
-                      </template>
-                    </td>
-                    <td>    
-                      <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
-                      <paper-tooltip for="btn1">Save</paper-tooltip>
-                    </td>
-                  </tr>
-                </template>
-              </tbody>  
-            </div>  
-          </table>  
-        </div>    
-      </div>
+                  </th>  
+               </tr>
+              </thead>
+                <tbody class="newwwwcarddd col-sm-12" style="width: 1070px;height: 320px;">
+                  <!-- <tr>
+                    <td></td>
+                    <td></td>
+                  </tr> -->
+                  <template is="dom-repeat" items="{{bigarr}}" as="view">
+                    <tr>
+                      <td class="outcard">
+                        <h4 style="width: 24%">{{view.student_name}}</h4>
+                      </td>
+                      <td class="innercard" style="width: 770px;">
+                        <template is="dom-repeat" items="{{view.subject}}" as="s">
+                          <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.language_pref}}" check="{{s.check}}"></student-list-mapping-item>
+                        </template>  
+                      </td>
+                      <td>    
+                        <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
+                        <paper-tooltip for="btn1">Save</paper-tooltip>
+                      </td>         
+                    </tr>
+                  </template>
+                </tbody>
+            </div>
+          </table>   
+        </div>   
+        </div>  
 
        <iron-ajax  
         auto         
@@ -229,6 +220,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="SbjecttoStudentmapping1Response"
         debounce-duration="300"
         >
+
+        <demosumbit-card id="mydialog"></demosumbit-card>
   <master-ui-service id="uiservice"></master-ui-service>
   </template>
   <script>
@@ -368,6 +361,7 @@ SbjecttoStudentmapping1Response:function(e){
            
             }
                 document.querySelector('student-list-mapping-item').FnSecondLang(); 
+                //this.$.mydialog.toggleDialog();
         }
           else
          {
@@ -380,7 +374,7 @@ SbjecttoStudentmapping1Response:function(e){
                 }
                   document.querySelector('student-list-mapping-item').FnSecondLang();             
           }
-        document.querySelector('#rsectionwww').selected=-1;
+        //document.querySelector('#rsectionwww').selected=-1;
 
         },
      FnSubjecttostudentlanguageResponse:function(e){
