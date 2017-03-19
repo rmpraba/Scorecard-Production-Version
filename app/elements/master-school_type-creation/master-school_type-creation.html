@@ -116,49 +116,8 @@
       </table>  
     </div>
     </div>
-
-   <!--  <div class="newbuttons col-sm-6"> 
-      <div class="button1"> 
-        <paper-button autofocus on-click="FnSubmit">Submit</paper-button>
-      </div>
-      <div class="button2" style="margin-top:-13%">
-        <paper-button autofocus on-click="Fndelete">Delete</paper-button>
-      </div>
-    </div>  --> 
   </div>
 
-    
-<!-- <div>
-          <div class="cbutton">
-            <CENTER>
-              <paper-button on-click="Fncreate">School Type Mapping</paper-button>
-            </CENTER>
-          </div>
-
-          <div class="school">
-            <template is="dom-repeat" items="{{setschooltypeinfoarr}}" as="s">
-              <master-school-type-creation-item-card  schoolid="{{s.school_id}}" schooltypename="{{s.school_type_name}}" schooltypeid="{{s.school_type_id}}" hideschooltypenameinput="true" hideschooltypenameitem="false">     
-              </master-school-type-creation-item-card>
-            </template>    
-          </div>
-        </div>
-
-
-        <paper-dialog id="schooldialog" modal>
-          <div class="card">                                                    
-            <paper-input value="{{schoolname}}" label="Schooltype name"></paper-input>  
-              <paper-dropdown-menu  label="Select School Type">
-                <paper-menu id="schooltypename" class="dropdown-content"   on-iron-select="schoolTypeName">
-                  <template is="dom-repeat" items="{{SchoolToschoolTypearr}}">
-                  <paper-item value="{{item.school_type_id}}">{{item.school_type_name}}</paper-item>
-                  </template>       
-                </paper-menu>
-              </paper-dropdown-menu>
-          </div>
-
-         
-        </paper-dialog>
-    -->
     <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="service"></master-ui-service>
   </template>
@@ -170,16 +129,7 @@
    var schooltypedel=[];
     Polymer({
       is: 'master-school_type-creation',
-      /*ready:function()
-      {
-       this.$.hidenewschooltypecard=true;   
-      }, */
-   /*  schoolTypeName:function(e)
-      {  
-        this.schooltypeid=e.target.selectedItem.value;
-        this.schooltypes=e.target.selectedItem.textContent.trim();
-      },
-   */ FnSubmit:function()
+    FnSubmit:function()
       {    
        //alert(JSON.stringify(schooltypesins));
       this.$.service.insertschoolTypename(schooltypesins);
