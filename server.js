@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'demoscdb'
 
  });
 var bodyParser = require('body-parser'); 
@@ -7542,11 +7542,11 @@ app.post('/deletesubjectz11-service' ,  urlencodedParser,function (req, res)
     }
     });
     });
-app.post('/DelteschoolTypename-service' ,  urlencodedParser,function (req, res)
-{  
+ app.post('/DelteschoolTypename-service' ,  urlencodedParser,function (req, res)
+ {  
      // var obj={"schooltypes":"","schooltypeid":"","schoolid":""};
   var qur="DELETE FROM  master_school_type where school_id='"+req.query.schoolid+"' and school_type_id='"+req.query.schooltypeid+"'";
-    //console.log(qur);
+    console.log(qur);
     connection.query(qur,function(err, rows)
     {
     if(!err)

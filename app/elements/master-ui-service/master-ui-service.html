@@ -2221,7 +2221,7 @@ insertschoolTypename:function(schooltypesarr)
      DelteschoolTypenameResponse:function(e)
      {
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+     // alert(JSON.stringify(res));
        /*if(res=="Inserted!"){
          this.getschoolTypename();
            }
@@ -2273,12 +2273,12 @@ insertschoolTypename:function(schooltypesarr)
         obj.affiliation=affiliation;
         obj.Board=Board;
         this.FnSetschoolInfoparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.FnSetschoolInfoajax.generateRequest();
       },
       FnSetschoolInfoResponse(e){
           var res=e.detail.response.returnval;
-           //alert(JSON.stringify(res)); 
+           alert(JSON.stringify(res)); 
           if(res=='Inserted!')
           {
             //alert('Inserted !')
@@ -2304,7 +2304,7 @@ insertschoolTypename:function(schooltypesarr)
         obj.affiliation=affiliation;
         obj.Boardselection=Boardselection;
         this.Fnsaveschoolinfoparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.Fnsaveschoolinfoajax.generateRequest();
       },
        FnsaveschoolinfoResponse:function(e)
