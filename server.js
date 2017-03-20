@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'scorecarddb'
 
  });
 var bodyParser = require('body-parser'); 
@@ -6158,7 +6158,7 @@ app.post('/selectrolename-service',  urlencodedParser,function (req,res)
 app.post('/fnschoolemployeepersonal-service',  urlencodedParser,function (req,res)
 {  
 
-   var qur="SELECT * FROM md_employee_creation where school_id='"+req.query.school_id+"'  and academic_year='"+req.query.academic_year+"' and flage='active'";
+var qur="SELECT * FROM md_employee_creation where school_id='"+req.query.school_id+"'  and academic_year='"+req.query.academic_year+"' and flage='active'";
 
 console.log(qur);
   connection.query(qur,
