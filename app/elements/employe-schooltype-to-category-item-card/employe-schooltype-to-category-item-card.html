@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width:100%
      }
     </style>
-    <div>
+    <div>   
      <div> 
       <paper-input hidden>{{schooltypeidxx}}</paper-input> 
     <paper-checkbox on-change="fnschooltypeget11" id="{{id}}">{{schooltypenamexx}}</paper-checkbox>
@@ -71,9 +71,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              document.querySelector('#'+stype).checked=false;
             scltypearr.splice(i,1);
         }
-   
+
     
-      }, 
+      },
+        FnRefresh:function(e){
+
+             if(scltypearr!=0){
+            //  alert('1');
+                for(var i=0;i<scltypearr.length;i++){
+                    var stype=scltypearr[i].id;  
+                  document.querySelector('#'+stype).checked=false;
+                scltypearr.splice(i,1);
+ 
+                }
+        
+             }
+        },
+    
       empgetteacherschooltypeResponse:function(e)
       {
         var res=e.detail.response.returnval;
