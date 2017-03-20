@@ -153,7 +153,7 @@
       close:function(e)
       {
          this.fnclean();
-         this.$.mydialog.toggleDialog1();
+         document.querySelector('schooltype-to-grade-card').FnRefresh();
       },
       fnschooltypegradmapzResponse(e){
       var res=e.detail.response.returnval; 
