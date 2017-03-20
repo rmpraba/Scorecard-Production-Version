@@ -51,10 +51,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'emp-category-get-card',
       FnRefresh:function()
       {
-        for(var i=0;i<sclltypearr.length;i++)
+        if(sclltypearr!=0){
+          for(var i=0;i<sclltypearr.length;i++)
         {
-          var schltype=sclltypearr[i].id;
-          document.querySelector('#'+schltype).checked=false;
+               var stype=sclltypearr[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               sclltypearr.splice(i,1);
+  
+        } 
         }
       },
       fnschoolgrade:function(e)
@@ -62,18 +66,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     if(document.querySelector('#'+this.id).checked==true)
        {
         sessionStorage.setItem("curr_sess_loggedschooltupes",this.empschoolnames);
+            var obj={"id":""};
+                obj.id=this.id;
+                sclltypearr.push(obj);
+     
         this.f1();
         this.f2();
         }
-        },
+         for(var i=0;i<sclltypearr.length;i++)
+            
+        { 
+          if(sclltypearr[i].id!=this.id)
+          {
+             var stype=sclltypearr[i].id;  
+             document.querySelector('#'+stype).checked=false;
+            sclltypearr.splice(i,1);
+          }
+        }
+       },
         f1:function(e){
           this.empschoolgradezurl=sessionStorage.getItem("addrinfo")+"/getschooltypeas-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
-          obj.id=this.id;
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-            sclltypearr.push(obj);
           this.empschoolgradezparam=obj;
         // alert(JSON.stringify(obj));
 
@@ -88,11 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":"     "};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
-          obj.id=this.id;
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-          sclltypearr.push(obj);
-         // alert(JSON.stringify(obj));
-
           this.empgetnameparam=obj;
           this.$.empgetnameajax.generateRequest();
    
