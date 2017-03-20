@@ -45,7 +45,7 @@
         sessionStorage.setItem("curr_sess_loggedschoolcategory_id",this.schooltypecategoryid);
                 var obj={"id":""};
                   obj.id=this.id;
-                sclcatarr1.push(obj);
+                 sclcatarr1.push(obj);
              document.querySelector('school-grade-to-subject-card').langprefere();
          }
            else if(document.querySelector('#'+this.id).checked==false){
@@ -61,7 +61,19 @@
         }
         }
       },
-
+     FnRefresh:function()
+      {
+        if(sclcatarr1!=0){
+          for(var i=0;i<sclcatarr1.length;i++)
+        {
+               var stype=sclcatarr1[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               sclcatarr1.splice(i,1);
+  
+        } 
+        }
+      },
+ 
 
 
         fnsetemployeelanprefer:function(emplangprefernce){
