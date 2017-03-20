@@ -221,18 +221,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     Polymer({
       is: 'employe-category-creation-card',
-
-      /*ready:function(e){
-     this.$.newwgridd.hidden=true;
-       
-      },*/
-      FnRefresh:function()
-      {
-        document.querySelector('#empgradeid').selected=-1;
-        document.querySelector('#employeeidzzzzzz').selected=-1;
-        //document.querySelector('emp-category-get-card').FnRefresh();
-      },
-      fncleanbutton:function()
+      fnnempgrade:function(e){
+        this.$.newwgridd.hidden=true;
+        },
+     fncleanbutton:function()
       {
         //this.$.subx.hidden=true;
         //this.$.subx1.hidden=true;
@@ -261,7 +253,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.fnselectgradezparam=obj;
           //alert(JSON.stringify(obj));
           this.$.fnselectgradezajax.generateRequest();
-          document.querySelector('#employeeidzzzzzz').selected=-1;
+       //   document.querySelector('#employeeidzzzzzz').selected=-1;
       
       },
       fnselectgradezResponse:function(e){
@@ -311,9 +303,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.empselectid=e.target.selectedItem.value;
        this.$.newwgridd.hidden=false;
        this.f12();
-        this.f11();  
-        },
-     
+        this.f11();
+      //  document.querySelector('#employeeidzzzzzz').selected=-1;  
+      },
+     FnRefresh:function(e){
+if(document.querySelector('#employeeidzzzzzz').selected!=-1){
+      document.querySelector('#employeeidzzzzzz').selected=-1;  
+  
+   }
+     },
       fnemployeenamezResponse:function(e){
       empnamearrr=e.detail.response.returnval;
      // alert(JSON.stringify(sectionnamearr1));
@@ -425,9 +423,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //document.querySelector('#employeeidzzzzzz').selected=-1;
       }
 
-
-
-       });  
+       });
+      
       })();
   </script>
 </dom-module>
