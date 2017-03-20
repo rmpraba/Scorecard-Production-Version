@@ -8320,7 +8320,7 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
     else
       res.status(200).json({'returnval': 'invalid'});
     });
-
+    
 });
 app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
     {  
