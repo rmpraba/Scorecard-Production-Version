@@ -8316,7 +8316,7 @@ app.post('/fetchschooltypename-service',  urlencodedParser,function (req,res)
           res.status(200).json({'returnval': 'empty'});
         }
     }
-        
+          
     else
       res.status(200).json({'returnval': 'invalid'});
     });
@@ -8340,6 +8340,24 @@ app.post('/selectschooltype1-service' ,urlencodedParser, function (req, res)
 
       });
     });
+
+app.post('/selectschoolnames-service' ,urlencodedParser, function (req, res)
+    {  
+      var qur="select * from md_school";
+      connection.query(qur,function(err, rows){
+        if(!err){
+
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+        }
+   
+        else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+
+      });
+    });
+
 app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, res)
     {  
       var e={id:req.query.school_id};

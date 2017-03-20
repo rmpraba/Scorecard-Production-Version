@@ -23,7 +23,7 @@
           border: 1px solid #6699ff;
           padding: 15px; 
           width: 30%;
-          margin-top:5%;
+          margin-top:5%;  
           max-height: 200px;
           /*height: 150px; */
           margin-left:37%
@@ -33,12 +33,30 @@
          <h3><CENTER>School Type To Grade</CENTER></h3>        
       </div>
       <div class="creatediv">
+       <paper-dropdown-menu  label="Select the Grade">
+                <paper-menu id="empgradeid" class="dropdown-content"  on-iron-select="fnselectgrade">
+                  <template is="dom-repeat" items="{{schoolarr}}">
+                    <paper-item value="{{item.id}}">{{item.name}}</paper-item>
+                  </template>    
+                </paper-menu>
+        </paper-dropdown-menu>
+          <paper-dropdown-menu id="term" label="Select Acadamic year">
+         <paper-menu class="dropdown-content"   on-iron-select="fnacadamic" attr-for-selected="value" required>
+                <paper-item value="2015-2016">2015-2016</paper-item>     
+                <paper-item value="2016-2017">2016-2017</paper-item>
+                <paper-item value="2017-2018">2017-2018</paper-item>
+                <paper-item value="2018-2019">2018-2019</paper-item>
+                <paper-item value="2019-2020">2019-2020</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+           
+     
+         
        <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
               <master-school-type-creation-item-card id="EO1{{view.school_type_id}}"
-              schooltypeidzzzz="{{view.school_type_id}}" schooltypename="{{view.school_type_name}}"></master-school-type-creation-item-card>
-         
+               schooltypeidzzzz="{{view.school_type_id}}" schoolid="{{schoolid}}" acadamicyear="{{acadamicyear}}" schooltypename="{{view.school_type_name}}"></master-school-type-creation-item-card>
          </template>
-         </div>
+       </div>
   <master-ui-service id="subservice"></master-ui-service>
   </template>
   <script>
@@ -48,6 +66,17 @@
      var getarr=[];   
     Polymer({
       is: 'schooltype-to-grade-card',
+
+fnselectgrade:function(e){
+        this.schoolid=e.target.selectedItem.value;
+        this.$.subservice.selectschooltype1(this.schoolid);
+   
+ },
+ fnacadamic:function(e){
+     this.acadamicyear=e.target.selectedItem.textContent.trim();
+   
+ },
+
       });
   })();
   </script>

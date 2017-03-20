@@ -34,7 +34,7 @@
                <paper-button style="color:white;background-color:black;" dialog-confirm autofocus on-click="close">close</paper-button>
   
       </paper-dialog>
-      <iron-ajax        
+      <iron-ajax             
         id="fnschooltypezajax"
         url="{{fnschooltypezurl}}"   
         params="{{fnschooltypezparam}}"
@@ -87,7 +87,7 @@
       },
       fnsetgrade:function(arr){
          getarr=arr;
-      },
+      },   
        fz1:function(){
        this.fnschooltypezurl=sessionStorage.getItem("addrinfo")+"/fnschooltypez-service";
          var obj={"schooltypeid":""};
@@ -100,10 +100,10 @@
      },
       fz2:function(){
          this.fnschooltypegradmapzdburl=sessionStorage.getItem("addrinfo")+"/fnschooltypegradmapzdb-service";
-        var obj={"schooltypeid":"","school_id":"","academic_year":""};
+        var obj={"schooltypeid":"","schoolid":"","academic_year":""};
         obj.schooltypeid=this.schooltypeidzzzz;
-        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.academic_year=this.acadamicyear; 
+         obj.school_id=this.schoolid;
         this.fnschooltypegradmapzdbparam=obj;
         //alert(JSON.stringify(obj));
         this.$.fnschooltypegradmapzdbajax.generateRequest();
@@ -113,17 +113,16 @@
       fnsubmit:function(e){
        for(var i=0;i<getarr.length;i++)
        {
-          var school_id=getarr[i].school_id;
           var schooltype=getarr[i].schooltype;
           var gradename=getarr[i].gradename;
           var gradeid=getarr[i].gradeid;
         this.fnschooltypegradmapzurl=sessionStorage.getItem("addrinfo")+"/fnschooltypegradmapz-service";
          var obj={"school_id":"","schooltype":"","gradename":"","gradeid":"","academic_year":""};
-             obj.school_id=school_id;
+             obj.school_id=this.schoolid;
              obj.schooltype=schooltype;
              obj.gradename=gradename;
              obj.gradeid=gradeid;
-             obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+             obj.academic_year=this.acadamicyear; 
             this.fnschooltypegradmapzparam=obj;
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();

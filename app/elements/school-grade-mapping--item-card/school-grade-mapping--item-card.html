@@ -41,13 +41,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            //alert(this.schooltype);
            //alert(this.gradename+this.schooltype);
           if(document.querySelector('#'+this.gradeid).checked==true){
-              var obj={"school_id":"","schooltype":"","gradename":"","gradeid":""};
+              var obj={"schooltype":"","gradename":"","gradeid":""};
               obj.gradeid=this.gradeid;
               obj.gradename=this.gradename;
-              obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
               obj.schooltype=this.schooltype;
-               gradearrs.push(obj);
-               //alert(JSON.stringify(gradearrs));
+              gradearrs.push(obj);
            document.querySelector('master-school-type-creation-item-card').fnsetgrade(gradearrs);
         }
      

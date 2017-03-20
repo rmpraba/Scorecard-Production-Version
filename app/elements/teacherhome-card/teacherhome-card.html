@@ -406,7 +406,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
        }, 
 
-      FnSelectacademicyear:function(e){
+      FnSelectacademicyear:function(e){  
         academicyear = e.target.selectedItem.value.trim();
         localStorage.setItem("curr_sess_academicyear",academicyear); 
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="CategorytoSchooltype")
@@ -417,10 +417,6 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="EmployeeToGrade"){
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('employe-category-creation-card',''); 
-          }
-          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="SchooltypToGrade"){
-              document.querySelector('app-card').setPage('homepage','');
-              document.querySelector('home-page').setPage('schooltype-to-grade-card','');
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="GradeToSubject"){
             document.querySelector('app-card').setPage('homepage','');
@@ -597,8 +593,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.emptocategory=false;
           this.gradetosection=false;
           this.subjecttostudent=false;
-          this.schooltyptograde=false;
-       
+        
          // this.SectionPreiods=false;
       
           
@@ -606,6 +601,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
      
          if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
         {
+
+          this.schooltyptograde=false;
           this.createcategory=false;  
           this.createschoolz=false; 
           this.SchooltypettoGrade=false;
@@ -867,10 +864,10 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
        SchooltypToGrade:function(e)
        {
-            localStorage.setItem('curr_sess_loggedassesmenttype','SchooltypToGrade');
-             this.$.uiservice.selectschooltype1();
-           this.$.cdialog.toggle();
-    
+              document.querySelector('app-card').setPage('homepage','');
+              document.querySelector('home-page').setPage('schooltype-to-grade-card','');
+             this.$.uiservice.selectschoolnames();
+      
        },
 
       FnFeeCollection:function(){

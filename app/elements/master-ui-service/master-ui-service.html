@@ -1121,6 +1121,16 @@
         on-response="GeneratesectionidResponse"
         debounce-duration="300">
       </iron-ajax>
+       <iron-ajax        
+           id="selectschoolnamesajax"
+          url="{{selectschoolnamesurl}}"
+        params="{{selectschoolnamesparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="selectschoolnamesResponse"
+        debounce-duration="300">
+      </iron-ajax>
 
       <demosumbit-card id="service1"></demosumbit-card>
       
@@ -2016,13 +2026,12 @@ fnschoolemployeerole:function( employeeid,employeename){
          document.querySelector('new-employee-creation-card').selectschooltypearr=res;
          //document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
      },
-       selectschooltype1:function(){
+       selectschooltype1:function(schoolid){
          //alert('1');
          this.selectschooltype1url=sessionStorage.getItem("addrinfo")+"/selectschooltype1-service";
          var obj={"school_id":""};
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+         obj.school_id=schoolid;
          this.selectschooltype1param=obj;
-         //alert(JSON.stringify(obj));
          this.$.selectschooltype1ajax.generateRequest();
      },
      selectschooltype1Response:function(e)
@@ -2031,7 +2040,17 @@ fnschoolemployeerole:function( employeeid,employeename){
          //alert(JSON.stringify(res));  
         document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
       },
-   
+   selectschoolnames:function(){
+         //alert('1');
+         this.selectschoolnamesurl=sessionStorage.getItem("addrinfo")+"/selectschoolnames-service";
+         this.$.selectschoolnamesajax.generateRequest();
+     },
+     selectschoolnamesResponse:function(e)
+     {
+         var res=e.detail.response.returnval; 
+         //alert(JSON.stringify(res));  
+        document.querySelector('schooltype-to-grade-card').schoolarr=res; 
+      },
       selectrolename:function()
       {
         this.selectrolenameurl=sessionStorage.getItem("addrinfo")+"/selectrolename-service";
