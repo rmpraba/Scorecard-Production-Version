@@ -299,11 +299,13 @@
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('new-employee-creation-card').fnemprefresh();
     }
     if(localStorage.getItem("curr_sess_page")=="grade-creation-card")
     {
       this.page="teacherhomecard";
-      document.querySelector('teacherhome-card').FnRefresh();
+      //document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('grade-creation-card').FnRefresh();
     }
     
     if(localStorage.getItem("curr_sess_page")=="cc-eng-onetofour-card")
@@ -610,7 +612,9 @@
      /* document.querySelector('teacherhome-card').FnRefresh();
       document.querySelector('term-assesment-card').FnRefreshcard();
       document.querySelector('cc-eng-onetofour-card').FnRefresh();      
-   */ }
+   */ 
+      document.querySelector('school-creation-card').fnnrefresh();
+      }
 
 
      if(localStorage.getItem("curr_sess_page")=="schooltypecard")
