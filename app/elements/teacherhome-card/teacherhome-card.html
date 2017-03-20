@@ -420,7 +420,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="GradeToSubject"){
             document.querySelector('app-card').setPage('homepage','');
-             document.querySelector('home-page').setPage('school-grade-to-subject-card','');  
+             document.querySelector('home-page').setPage('school-grade-to-subject-card',''); 
+             document.querySelector('school-grade-to-subject-card').fnngrades(); 
            }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="StudentTranfer"){
           document.querySelector('app-card').setPage('homepage','');
@@ -429,15 +430,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=='SectionCreation'){
                document.querySelector('app-card').setPage('homepage','');
                document.querySelector('home-page').setPage('school-section-creation-card','');  
-                }
+          }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="StudentToSection"){
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
                   }
-          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation"){
-          document.querySelector('app-card').setPage('homepage','');
-          document.querySelector('home-page').setPage('new-employee-creation-card','');
-          this.$.uiservice.fnschoolemployeepersonal();
+          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
+          {
+              document.querySelector('app-card').setPage('homepage','');
+              document.querySelector('home-page').setPage('new-employee-creation-card','');
+              this.$.uiservice.fnschoolemployeepersonal();
+              document.querySelector('new-employee-creation-card').fnemprefresh();
    
         }
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
@@ -789,12 +792,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        document.querySelector('employe-schooltype-to-category-card').fnsclsubject();
           this.$.cdialog.toggle();
     
-      },
+      }, 
       SubjectToStudent:function(e)
       {
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('student-to-subject-mapping-card','');
-        //document.querySelector('student-to-subject-mapping-card').fnsetreclear();
+        document.querySelector('student-to-subject-mapping-card').fnlang();
+        
         //this.$.uiservice.fnreclear();
         this.$.uiservice.SelectSchoolName();
         //this.$.uiservice.TeachertoGradeSectionNames();
@@ -806,8 +810,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.fnempgenerateid();
         this.$.uiservice.selectschooltype();
         this.$.uiservice.selectrolename();
-        document.querySelector('new-employee-creation-card').hidecreateemp=false;
-        document.querySelector('new-employee-creation-card').hideupdateemp=true;
+        document.querySelector('new-employee-creation-card').fnnempgrade();
         this.$.cdialog.toggle();   
       },
        Workingdays:function(e)
@@ -827,21 +830,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     EmployeeToGrade:function(e)
       {
         localStorage.setItem('curr_sess_loggedassesmenttype','EmployeeToGrade');
-        this.$.uiservice.schoolemployeegrademapping();
-        //document.querySelector('employe-category-creation-card').FnRefresh(); 
-        //document.querySelector('emp-category-get-card').FnRefresh();  
-        document.querySelector('employe-category-creation-card').fncleanbutton(); 
-        document.querySelector('employe-category-creation-card').hidenewgrid=true;
+        this.$.uiservice.schoolemployeegrademapping();   
+      //document.querySelector('employe-category-creation-card').fncleanbutton(); 
+        document.querySelector('employe-category-creation-card').fnnempgrade();
               this.$.cdialog.toggle();
      
-        //document.querySelector('subject-card').ready();  
       },
      FnCreateschool:function(e)
       {    
       document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('school-creation-card','');
-        document.querySelector('school-creation-card').hidecreatediv=false;
-        document.querySelector('school-creation-card').hideupdatediv=true;
+        document.querySelector('school-creation-card').fnnrefresh();
          this.$.uiservice.FnSchoolidseq();
      
         
