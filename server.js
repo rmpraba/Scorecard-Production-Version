@@ -5657,7 +5657,7 @@ app.post('/FnSetschoolInfo-service' , urlencodedParser,function (req, res)
     }
     else
     {
-      //console.log(err);
+      console.log(err);
       res.status(200).json({'returnval': 'Not Inserted!'});
     }
     });
@@ -6180,7 +6180,7 @@ app.post('/emppersonaldetails-service' ,  urlencodedParser,function (req, res)
 {  
     var response={"emp_id":req.query.empid,
     "emp_name":req.query.name,"school_id":req.query.school_id,"emp_phone":req.query.Telephone,"emp_password":req.query.password,"emp_mobile":req.query.MobileNumber,"emp_mail":req.query.mailid,"flage":req.query.flage,academic_year:req.query.academic_year}; 
-
+    console.log('-----------personal detail creation--------');
     console.log(JSON.stringify(response));
 
 connection.query("SELECT * FROM md_employee_creation WHERE emp_id='"+req.query.empid+"'and school_id='"+req.query.school_id+"' and emp_phone='"+req.query.Telephone+"'and academic_year='"+req.query.academic_year+"'",function(err, rows)
@@ -6215,6 +6215,7 @@ app.post('/empschooltypemapping-service' , urlencodedParser,function (req, res)
 {  
   var collection = {"school_id":req.query.school_id,"emp_id":req.query.empid,"school_type":req.query.schooltypeid,"emp_name":req.query.name,"flage":req.query.flage,"academic_year":req.query.academic_year};
    //console.log(JSON.stringify(collection));
+
 connection.query("SELECT * FROM employee_to_school_type_category_mapping WHERE emp_id='"+req.query.empid+"' and school_type='"+req.query.schooltypeid+"'and school_id='"+req.query.school_id+"'and emp_name='"+req.query.name+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
     {
     if(rows.length==0)
@@ -6246,8 +6247,9 @@ app.post('/sectioncreationmapping-service' , urlencodedParser,function (req, res
   var collection = {"school_id":req.query.school_id,"grade_id":req.query.grade_id,"section_id":req.query.sectionid,"class_id":req.query.classid, "academic_year":req.query.academic_year};
    //console.log(JSON.stringify(collection));
      // var obj={"school_id":"","grade_id":"","sectionid":"","classid":""};
-      
-connection.query("SELECT * FROM mp_grade_section WHERE school_id='"+req.query.school_id+"' and grade_id='"+req.query.grade_id+"'and section_id='"+req.query.sectionid+"' and  academic_year='"+req.query.academic_year+"'",function(err, rows)
+    console.log('-----------emp creation role creation-------');  
+    var qur="SELECT * FROM mp_grade_section WHERE school_id='"+req.query.school_id+"' and grade_id='"+req.query.grade_id+"'and section_id='"+req.query.sectionid+"' and  academic_year='"+req.query.academic_year+"'";
+    connection.query(qur,function(err, rows)
     {
     if(rows.length==0)
     {
@@ -6258,7 +6260,7 @@ connection.query("SELECT * FROM mp_grade_section WHERE school_id='"+req.query.sc
             if(!err)
             {
               var tempseq=parseInt((req.query.classid).substring(3))+1;
-
+              console.log('-----tempseq------');
                       connection.query("UPDATE sequence SET sec_sequence='"+tempseq+"'", function (err,result){
                         if(result.affectedRows>0)
                       res.status(200).json({'returnval': 'Inserted!'});
@@ -6411,7 +6413,12 @@ connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.q
 {  
   var collection = {"school_id":req.query.school_id,"id":req.query.empid,"role_id":req.query.roleid,"password":req.query.password,"name":req.query.name,"flage":req.query.flage,"academic_year":req.query.academic_year};
    //console.log(JSON.stringify(collection));
-    connection.query("SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"'  and role_id='"+req.query.roleid+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
+    var qur="SELECT * FROM md_employee WHERE school_id='"+req.query.school_id+"' and id='"+req.query.empid+"'  and role_id='"+req.query.roleid+"' and academic_year='"+req.query.academic_year+"'";
+    console.log('--------emp role creation---------');
+    console.log(qur);
+    console.log(JSON.stringify(collection));
+    console.log('----------------------------------');
+    connection.query(qur,function(err, rows)
     {
     if(rows.length==0)
     {
@@ -6426,7 +6433,9 @@ connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.q
         }
       else 
       {
-        //console.log(err);
+        console.log('--------------error--------------');
+        console.log(err);
+        console.log('----------------------------');
         res.status(200).json({'returnval': 'Not Inserted!'});
       }
     });
@@ -7785,7 +7794,7 @@ app.post('/fngetstudent-service',  urlencodedParser,function (req,res)
 app.post('/FngetStudentpasssection-service',  urlencodedParser,function (req,res)
 {  
    var e={school_id:req.query.schoolid};
-    var qur="SELECT * FROM md_admission where school_id='"+req.query.school_id+"' and class_for_admission='"+req.query.stugrade+"' and academic_year='"+req.query.academic_year+"'";
+  var qur="SELECT * FROM md_admission where school_id='"+req.query.school_id+"' and class_for_admission='"+req.query.stugrade+"' and academic_year='"+req.query.academic_year+"'";
   connection.query(qur,
     function(err, rows)
     {

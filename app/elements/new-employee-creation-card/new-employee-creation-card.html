@@ -345,6 +345,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {
 
               emplyname=this.toTitleCase(this.name);
+              // alert(JSON.stringify(empschooltypearr));
+              // alert(JSON.stringify(setrolearr));
                this.$.uiservice.fninsetschoolemployeeinfo(this.empid,emplyname,this.Telephone,this.MobileNumber,this.password="password",this.mailid,empschooltypearr,setrolearr);
                this.$.mydialog.toggleDialog();
                this.FnRefresh();
