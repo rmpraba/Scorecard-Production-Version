@@ -1669,7 +1669,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
          obj.roleid=roleid;
          obj.academic_year=localStorage.getItem("curr_sess_academicyear");
          obj.flage='active';
-         //alert(JSON.stringify(obj));
+         alert(JSON.stringify(obj));
         this.emprolemappingparam=obj;
          this.$.emprolemappingajax.generateRequest();
          }
@@ -1752,7 +1752,6 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        },
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
-        // alert(JSON.stringify(res));
     },
 fnschooltypesaveinfo:function(selectmapschooltypearr)
 { 
