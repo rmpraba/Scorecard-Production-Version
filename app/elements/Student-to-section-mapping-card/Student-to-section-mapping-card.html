@@ -147,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <div class="newcard" style="position: absolute;">
               <paper-dropdown-menu  label="Select the Grade">
-                <paper-menu id="empgradeid" class="dropdown-content"  on-iron-select="fnselectgrade">
+                <paper-menu id="empgradeiddd" class="dropdown-content"  on-iron-select="fnselectgrade">
                   <template is="dom-repeat" items="{{setgrade}}">
                     <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
                   </template>    
@@ -266,14 +266,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
    Polymer({
       is: 'Student-to-section-mapping-card',
-      ready:function()
+      funnstudent:function()
        {
         this.$.subzz.hidden=true;
         this.$.z.hidden=true;
         this.$.z1.hidden=true;
         this.hidenewtabb=true;
         this.hidegenerateopt=true;
+
+         if(document.querySelector('#empgradeiddd').selected!=-1)
+        {
+         document.querySelector('#empgradeiddd').selected=-1; 
+        }
        },
+
         counttypevalue:function(e)
        {
          this.counttypevalueurl=sessionStorage.getItem("addrinfo")+"/counttypevalue-service";
@@ -296,10 +302,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
 
      },
-      fnrefresh:function()
-      {
-        document.querySelector('#empgradeid').selected=-1;
-      },
+
     fnstudentgetgrade:function(arr){
      this.setgrade=arr;
     },

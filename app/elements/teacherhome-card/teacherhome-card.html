@@ -429,12 +429,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            }  
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=='SectionCreation'){
                document.querySelector('app-card').setPage('homepage','');
-               document.querySelector('home-page').setPage('school-section-creation-card','');  
+               document.querySelector('home-page').setPage('school-section-creation-card','');
+               document.querySelector('school-section-creation-card').fnnsection();  
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="StudentToSection"){
           document.querySelector('app-card').setPage('homepage','');
-          document.querySelector('home-page').setPage('Student-to-section-mapping-card','');  
-                  }
+          document.querySelector('home-page').setPage('Student-to-section-mapping-card','');
+          document.querySelector('Student-to-section-mapping-card').funnstudent(); 
+          document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
+          }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
           {
               document.querySelector('app-card').setPage('homepage','');

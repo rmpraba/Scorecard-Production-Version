@@ -136,10 +136,11 @@
     Polymer({
       is: 'school-section-creation-card',
 
-      ready:function()
+      fnnsection:function()
       {
         this.hidenewgrade=true;
         this.hidenewopt=true;
+        this.$.talhidn.hidden=true;
       },
        FnRefresh:function()
       {
@@ -253,7 +254,9 @@ setdbschooltype:function(e){
         {
           this.hidenewgrade=false;
           this.hidenewopt=false;
-        }
+          this.$.talhidn.hidden=false;
+        },
+
 
      });
   })();

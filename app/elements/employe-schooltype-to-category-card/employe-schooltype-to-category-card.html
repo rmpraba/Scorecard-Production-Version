@@ -210,7 +210,11 @@
     FnRefresh:function()
     {
       this.$.empLanguageprefernce.hidden=true;
-      //document.querySelector('#empLanguageprefernceid').selected=-1;
+      if(document.querySelector('#empLanguageprefernceid').selected!=-1)
+
+      {
+        document.querySelector('#empLanguageprefernceid').selected=-1;
+      }
     },
     fnbuttonsclean:function()
     {
@@ -372,6 +376,7 @@
           fnsclsubject:function()
           {
             this.$.talhidn.hidden=true;
+            //document.querySelector('#empLanguageprefernceid').selected=-1;
           }
     
 
