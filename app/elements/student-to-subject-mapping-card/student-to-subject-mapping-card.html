@@ -236,13 +236,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({      
       is: 'student-to-subject-mapping-card',
 
-      ready:function()
+      /*ready:function()
       {
         this.hidenewsubcat=true;
        // this.$.subid.hidden=true;
         this.$.labelhide.hidden=true;
         this.hidenewline=true;
-      },
+      },*/
 
     FnStoSterm:function(e)
      {
@@ -615,8 +615,13 @@ SbjecttoStudentmapping1Response:function(e){
       document.querySelector('#rtermmm').selected=-1;
       document.querySelector('#rgradewww').selected=-1;
    //   document.querySelector('#rtermmm1').selected=-1;
-     
-        
+            
+     },
+     fnlang:function()
+     {
+      this.hidenewsubcat=true;
+      this.$.labelhide.hidden=true;
+        this.hidenewline=true;
      } 
     });
   })();   

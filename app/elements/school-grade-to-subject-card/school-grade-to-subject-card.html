@@ -191,11 +191,11 @@
     var overall1=[];
     Polymer({
       is: 'school-grade-to-subject-card',   
-       ready:function(){
+       /*ready:function(){
        this.$.tbz1.hidden=true;
        this.$.empLanguageprefernce1.hidden=true;
       },
-       getgrade:function(arr1){
+*/       getgrade:function(arr1){
          getgradearr=arr1;
        //  alert(JSON.stringify(getgradearr));
        },
@@ -335,6 +335,12 @@
          generatearr=[];
          this.$.tbz1.hidden=false;
     
+        },
+
+        fnngrades:function()
+        {
+           this.$.tbz1.hidden=true;
+           document.querySelector('#empLanguageprefernce1id').selected=-1;
         } 
 
     });

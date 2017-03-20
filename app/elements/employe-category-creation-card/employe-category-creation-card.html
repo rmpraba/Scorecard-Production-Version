@@ -221,10 +221,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     Polymer({
       is: 'employe-category-creation-card',
-      ready:function(e){
+
+      /*ready:function(e){
      this.$.newwgridd.hidden=true;
        
-      },
+      },*/
       FnRefresh:function()
       {
         document.querySelector('#empgradeid').selected=-1;
@@ -416,10 +417,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        // alert(JSON.stringify(overall1));
         this.allarrr=overall1;
         this.$.uiservice.empgetsectionvalues(this.empselectid);
+      },
+
+      fnnempgrade:function()
+      {
+        this.$.newwgridd.hidden=true;
+        document.querySelector('#employeeidzzzzzz').selected=-1;
       }
 
-       });
-      
+
+
+       });  
       })();
   </script>
 </dom-module>
