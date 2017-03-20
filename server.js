@@ -6892,7 +6892,7 @@ var response={
        connection.query(qur1,function(err, rows){  
           console.log('update');
         if(!err)
-        res.status(200).json({'returnval': 'updated successfully'});
+        res.status(200).json({'returnval': 'Updated'});
         else
         res.status(200).json({'returnval': 'not updated'});
         });

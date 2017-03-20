@@ -730,9 +730,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('student-allow-card','');
         this.$.uiservice.fnsetfixdsection();
-        document.querySelector('student-allow-card').FnRefresh();
-        //document.querySelector('student-allow-item-card').FnRefresh();
-        document.querySelector('student-allow-card').hidenewtabgrid=true;
+        document.querySelector('student-allow-card').fnstudentrefresh();
        },  
       FnCreateRole:function(e)
       {

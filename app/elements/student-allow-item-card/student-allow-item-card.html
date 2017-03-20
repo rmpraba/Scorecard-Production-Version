@@ -20,8 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-checkbox value="{{schootypeid}}" id="{{id}}" on-change="fnsetsection">{{schooltypename}}</paper-checkbox>
  
     </template>
-  <script>
-  (function() 
+  <script>  
+  (function()   
   {
     'use strict';  
     var sctypearr=[];
@@ -29,20 +29,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'student-allow-item-card',
       FnRefresh:function()
       {
-        document.querySelector('#'+this.id).checked=false;
-        /*for(var i=0;i<sctypearr.length;i++)
+         if(sctypearr!=0){
+          for(var i=0;i<sctypearr.length;i++)
         {
-          var sclnamezz=sctypearr[i].id;
-          document.querySelector('#'+sclnamezz).checked=false;
-        }*/
+               var stype=sctypearr[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               sctypearr.splice(i,1);
+  
+        } 
+        }
       }, 
       fnsetsection:function(e){
         if(document.querySelector('#'+this.id).checked==true)
+
         {
+            var obj={"id":""};
+            obj.id=this.id;
+            sctypearr.push(obj);
                 document.querySelector('student-allow-card').showacademicyr();
                 //document.querySelector('student-allow-card').shownewgrid();
                 document.querySelector('student-allow-card').Setsectionvalue(this.schootypeid);
    
+        }
+         for(var i=0;i<sctypearr.length;i++)
+        {
+             if(sctypearr[i].id!=this.id){
+               var sctype=sctypearr[i].id;
+               document.querySelector('#'+sctype).checked=false;
+                sctypearr.splice(i,1); 
+        }
         }
       },
  });   
