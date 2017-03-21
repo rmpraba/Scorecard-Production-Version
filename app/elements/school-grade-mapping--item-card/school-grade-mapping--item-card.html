@@ -39,9 +39,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          Polymer({   
       is: 'school-grade-mapping--item-card',
      fngradechage:function(e){
-           //alert("1");
-           //alert(this.schooltype);
-           //alert(this.gradename+this.schooltype);
           if(document.querySelector('#'+this.gradeid).checked==true){
               var obj={"schooltype":"","gradename":"","gradeid":""};
               obj.gradeid=this.gradeid;
@@ -55,31 +52,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               obj.gradeid=this.gradeid;
               obj.gradename=this.gradename;
               obj.schooltype=this.schooltype;
-              gradearrs.push(obj);
+              delgradearrs.push(obj);
            document.querySelector('master-school-type-creation-item-card').fnsetgrade1(delgradearrs);
         }
      
-     }
-      /*// alert(JSON.stringify(this.schoolgraddidz));
-       alert(document.querySelector('#'+this.schoolgraddidz));
-        alert(document.querySelector('#'+this.schoolgraddidz).checked);
-      
-        if(document.querySelector('#'+this.schoolgraddidz).checked==true){
-              var obj={"gradeid":"","gradename":""};
-              obj.gradeid=this.gradeidzzzw;
-              obj.gradename=this.gradenamezzzw;
-              gradearrs.push(obj);
-              document.querySelector('master-school-type-creation-item-card').fnsetpassgrade(gradearrs);
-        }
-       },
-       fnsetclean:function(e){
-        // alert('11');
-        // alert(this.gradeidzzzw);
-          document.querySelector('#'+this.schoolgraddidz).checked=false;
-           var obj={"gradeid":"","gradename":""}
-                gradearrs.splice(obj);
-        }
-*/     });
+     },
+     clear:function(){
+           var obj={"schooltype":"","gradename":"","gradeid":""};
+              obj.gradeid=this.gradeid;
+              obj.gradename=this.gradename;
+              obj.schooltype=this.schooltype;
+              delgradearrs.splice(obj);
+              gradearrs.splice(obj);
+       
+      },
+       });
   })();
   </script>
 </dom-module>

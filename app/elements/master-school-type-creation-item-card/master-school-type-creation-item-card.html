@@ -30,7 +30,7 @@
      
        .buttons paper-button
       {
-        @apply(--layout-left);
+        @apply(--layout-left);   
       background-color: #363636;
       color: #ffffff;
       width: 10%;
@@ -102,7 +102,8 @@
   {
     'use strict';
      var getarr=[]; 
-    var getarr1=[];   
+    var getarr1=[]; 
+    var styparr=[];  
     
         var delschtype=[];
         var schooltypearrz=[];
@@ -111,12 +112,43 @@
     fnsetschooltypefun:function()
     {
         if(document.querySelector('#'+this.id).checked==true){
+            var obj={"id":""};
+                obj.id=this.id;
+                styparr.push(obj);
+
         this.fz1();
         this.fz2();
-   
-         this.$.schtypid.open();
+        this.$.schtypid.open();
        }
+       for(var i=0;i<styparr.length;i++)
+        {
+          if(styparr[i].id!=this.id){
+          var subcatt=styparr[i].id;
+          document.querySelector('#'+subcatt).checked=false;
+          styparr.splice(i,1);
+        }
+        }
+      
       },
+        FnRefresh:function()
+      {
+        if(styparr!=0){
+          for(var i=0;i<styparr.length;i++)
+        {
+               var stype=styparr[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               styparr.splice(i,1);
+  
+        } 
+        }
+      },
+ 
+
+      close:function(e){
+         document.querySelector('school-grade-mapping--item-card').clear();
+         this.FnRefresh();
+      },
+
       fnsetgrade:function(arr){
          getarr=arr;
       },
@@ -160,7 +192,7 @@
              obj.gradeid=gradeid;
              obj.academic_year=this.acadamicyear; 
             this.fnschooltypegradmapzparam=obj;
-              //alert(JSON.stringify(obj));
+          ///    alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();
         }
          for(var i=0;i<getarr1.length;i++)
@@ -179,17 +211,10 @@
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapz1ajax.generateRequest();
         }
-
-
-        // this.fnclean();
-      },
-      close:function(e)
-      {
-         document.querySelector('schooltype-to-grade-card').FnRefresh();
-      },
+   },
       fnschooltypegradmapzResponse(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+    //  alert(JSON.stringify(res));
       },  
       fnschooltypezResponse:function(e){
         var res=e.detail.response.returnval; 
@@ -198,8 +223,8 @@
            },
         fnschooltypegradmapzdbResponse:function(e){
         var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
-      alert(JSON.stringify(schooltypearrz));
+     // alert(JSON.stringify(res));
+      //alert(JSON.stringify(schooltypearrz));
        
       
          for(var j=0;j<schooltypearrz.length;j++){
