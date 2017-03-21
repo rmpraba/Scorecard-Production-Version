@@ -187,8 +187,10 @@
       {
          document.querySelector('schooltype-to-grade-card').FnRefresh();
       },
-      fnschooltypegradmapzResponse(e){
+      fnschooltypegradmapzResponse(e)
+      {
       var res=e.detail.response.returnval; 
+     
       //alert(JSON.stringify(res));
       },  
       fnschooltypezResponse:function(e){
@@ -198,8 +200,8 @@
            },
         fnschooltypegradmapzdbResponse:function(e){
         var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
-      alert(JSON.stringify(schooltypearrz));
+      //alert(JSON.stringify(res));
+      //alert(JSON.stringify(schooltypearrz));
        
       
          for(var j=0;j<schooltypearrz.length;j++){
