@@ -51,7 +51,7 @@
               <paper-button style="background-color: #363636;color: #ffffff;margin-left: 32%;" on-click="fnsubmit">Submit</paper-button>
                <paper-button style="background-color: #363636;color: #ffffff;margin-left: 3%;" dialog-confirm autofocus on-click="close">close</paper-button>
             </div>
-              
+                
   
       </paper-dialog>
       <iron-ajax             
@@ -72,6 +72,16 @@
         method="post"
         on-response="fnschooltypegradmapzResponse"
         debounce-duration="300">
+        <iron-ajax        
+        id="fnschooltypegradmapz1ajax"
+        url="{{fnschooltypegradmapz1url}}"
+        params="{{fnschooltypegradmapz1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fnschooltypegradmapz1Response"
+        debounce-duration="300">
+     
       <iron-ajax        
         id="fnschooltypegradmapzdbajax"
         url="{{fnschooltypegradmapzdburl}}"
@@ -91,7 +101,9 @@
   (function() 
   {
     'use strict';
-     var getarr=[];   
+     var getarr=[]; 
+    var getarr1=[];   
+    
         var delschtype=[];
         var schooltypearrz=[];
     Polymer({
@@ -107,7 +119,11 @@
       },
       fnsetgrade:function(arr){
          getarr=arr;
+      },
+       fnsetgrade1:function(arr){
+         getarr1=arr;
       },   
+       
        fz1:function(){
        this.fnschooltypezurl=sessionStorage.getItem("addrinfo")+"/fnschooltypez-service";
          var obj={"schooltypeid":""};
@@ -147,41 +163,44 @@
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();
         }
+         for(var i=0;i<getarr1.length;i++)
+       {
+          var schooltype=getarr1[i].schooltype;
+          var gradename=getarr1[i].gradename;
+          var gradeid=getarr1[i].gradeid;
+        this.fnschooltypegradmapz1url=sessionStorage.getItem("addrinfo")+"/fnschooltypegradmapz1-service";
+         var obj={"school_id":"","schooltype":"","gradename":"","gradeid":"","academic_year":""};
+             obj.school_id=this.schoolid;
+             obj.schooltype=schooltype;
+             obj.gradename=gradename;
+             obj.gradeid=gradeid;
+             obj.academic_year=this.acadamicyear; 
+            this.fnschooltypegradmapz1param=obj;
+              //alert(JSON.stringify(obj));
+            this.$.fnschooltypegradmapz1ajax.generateRequest();
+        }
+
 
         // this.fnclean();
       },
       close:function(e)
       {
-         this.fnclean();
          document.querySelector('schooltype-to-grade-card').FnRefresh();
       },
       fnschooltypegradmapzResponse(e){
       var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res));
       },  
-      fnclean:function(){
-                //alert(JSON.stringify(delschtype));
-  
-          for(var i=0;i<delschtype.length;i++){
-           var m='EO1'+delschtype[i].schooltypeid;
-           //alert(m);
-            document.querySelector('#'+m).checked=false;
-          
-          }
-          var obj={"schooltypeid":""};
-            obj.schooltypeid=this.schooltypeidzzzz;   
-              v.splice(obj);
-      },
       fnschooltypezResponse:function(e){
         var res=e.detail.response.returnval; 
          schooltypearrz=res;
-         //alert(JSON.stringify(schooltypearrz));
          
            },
         fnschooltypegradmapzdbResponse:function(e){
         var res=e.detail.response.returnval; 
-      // alert(JSON.stringify(res));
-    
+      alert(JSON.stringify(res));
+      alert(JSON.stringify(schooltypearrz));
+       
       
          for(var j=0;j<schooltypearrz.length;j++){
             var flag=0;

@@ -5915,6 +5915,24 @@ app.post('/deletecategoryname-service' ,  urlencodedParser,function (req, res)
     }
     });
     });
+app.post('/fnschooltypegradmapz1-service' ,  urlencodedParser,function (req, res)
+{  
+   
+    var qur="DELETE FROM md_school_grade_mapping WHERE school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'and academic_year='"+req.query.academic_year+"'";
+    //console.log(qur);
+    connection.query(qur,function(err, rows)
+    {
+    if(!err)
+    {
+      res.status(200).json({'returnval': 'Deleted!'});
+    }
+    else
+    {
+      //console.log(err);
+      res.status(200).json({'returnval': 'Not Deleted!'});
+    }
+    });
+    });
  app.post('/masterfetchgrade-service',  urlencodedParser,function (req,res)
 {  
   // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
@@ -6345,38 +6363,6 @@ connection.query("SELECT * FROM md_class_section WHERE school_id='"+req.query.sc
   });
 
 
-app.post('/fnschooltypegradmapz-service' , urlencodedParser,function (req, res)
-{  
- //    var obj={"school_id":"","schooltype":"","gradename":""};
-      
-  var collection = {"school_id":req.query.school_id,"school_type":req.query.schooltype,"grade_id":req.query.gradeid,"grade_name":req.query.gradename,"academic_year":req.query.academic_year};
-   //console.log(JSON.stringify(collection));
-  connection.query("SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'and grade_id='"+req.query.gradeid+"'and grade_name='"+req.query.gradename+"'and academic_year='"+req.query.academic_year+"'",function(err, rows)
-    {
-    if(rows.length==0)
-    {
-      connection.query("INSERT INTO md_school_grade_mapping SET ? ",[collection],
-      function(err, rows)
-      {
-
-      if(!err)
-       {
-        //console.log(rows);
-        res.status(200).json({'returnval': 'Inserted!'});
-        }
-      else 
-      {
-        //console.log(err);
-        res.status(200).json({'returnval': 'Not Inserted!'});
-      }
-    });
-    }
-    else
-    {
-      res.status(200).json({'returnval': 'Already Exit'});
-    }
-    });
-  });
 app.post('/fnschooltypegradmapz-service' , urlencodedParser,function (req, res)
 {  
      var obj={"school_id":"","schooltype":"","gradename":""};

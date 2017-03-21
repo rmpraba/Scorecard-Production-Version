@@ -33,6 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() {
     'use strict';
    var gradearrs=[];
+   var delgradearrs=[];
+   
      //gradearr=[];     
          Polymer({   
       is: 'school-grade-mapping--item-card',
@@ -47,6 +49,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               obj.schooltype=this.schooltype;
               gradearrs.push(obj);
            document.querySelector('master-school-type-creation-item-card').fnsetgrade(gradearrs);
+        }
+        else if(document.querySelector('#'+this.gradeid).checked==false){
+              var obj={"schooltype":"","gradename":"","gradeid":""};
+              obj.gradeid=this.gradeid;
+              obj.gradename=this.gradename;
+              obj.schooltype=this.schooltype;
+              gradearrs.push(obj);
+           document.querySelector('master-school-type-creation-item-card').fnsetgrade1(delgradearrs);
         }
      
      }
