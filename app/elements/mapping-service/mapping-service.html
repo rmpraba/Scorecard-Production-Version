@@ -1,0 +1,112 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="mapping-service">
+  <template>
+    <iron-ajax        
+        id="fetchschooltypesforgradetorolemapajax"
+        url="{{fetchschooltypesforgradetorolemapurl}}"
+        params="{{fetchschooltypesforgradetorolemapparam}}"
+        handle-as="json"   
+        content-type="application/json"
+        method="post"
+        on-response="fetchschooltypesforgradetorolemapResponse"
+        debounce-duration="300">
+    <iron-ajax        
+        id="fetchgradesforgradetorolemapajax"
+        url="{{fetchgradesforgradetorolemapurl}}"
+        params="{{fetchgradesforgradetorolemapparam}}"
+        handle-as="json"   
+        content-type="application/json"
+        method="post"
+        on-response="fetchgradesforgradetorolemapResponse"
+        debounce-duration="300">
+    <iron-ajax        
+        id="fetchrolesforgradetorolemapajax"
+        url="{{fetchrolesforgradetorolemapurl}}"
+        params="{{fetchrolesforgradetorolemapparam}}"
+        handle-as="json"   
+        content-type="application/json"
+        method="post"
+        on-response="fetchrolesforgradetorolemapResponse"
+        debounce-duration="300">
+    <iron-ajax        
+        id="generateroletogrademappinginfoajax"
+        url="{{generateroletogrademappinginfourl}}"
+        params="{{generateroletogrademappinginfoparam}}"
+        handle-as="json"   
+        content-type="application/json"
+        method="post"
+        on-response="generateroletogrademappinginfoResponse"
+        debounce-duration="300">
+        
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'mapping-service',
+      fetchschooltypesforgradetorolemapService:function(){
+        this.fetchschooltypesforgradetorolemapurl=sessionStorage.getItem("addrinfo")+"/fetchschooltypesforgradetorolemap-service";
+        var obj={};
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid"); 
+        this.fetchschooltypesforgradetorolemapparam=obj;
+        this.$.fetchschooltypesforgradetorolemapajax.generateRequest();
+      },
+      fetchschooltypesforgradetorolemapResponse:function(e){
+        var arr=e.detail.response.returnval;
+        if(arr!='no rows')
+        document.querySelector('school-grade-to-role-mapping').schooltypearr=arr;
+      },
+      fetchgradesforgradetorolemapService:function(type){
+        this.fetchgradesforgradetorolemapurl=sessionStorage.getItem("addrinfo")+"/fetchgradesforgradetorolemap-service";
+        var obj={};
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid"); 
+        obj.academicyear=localStorage.getItem("curr_sess_academicyear"); 
+        obj.type=type;
+        this.fetchgradesforgradetorolemapparam=obj;
+        this.$.fetchgradesforgradetorolemapajax.generateRequest();
+      },
+      fetchgradesforgradetorolemapResponse:function(e){
+        var arr=e.detail.response.returnval;
+        if(arr!='no rows')
+        document.querySelector('school-grade-to-role-mapping').gradearr=arr;
+      },
+      fetchrolesforgradetorolemapService:function(){
+        this.fetchrolesforgradetorolemapurl=sessionStorage.getItem("addrinfo")+"/fetchrolesforgradetorolemap-service";
+        var obj={};
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid"); 
+        this.fetchrolesforgradetorolemapparam=obj;
+        this.$.fetchrolesforgradetorolemapajax.generateRequest();
+      },
+      fetchrolesforgradetorolemapResponse:function(e){
+        var arr=e.detail.response.returnval;
+        if(arr!='no rows')
+        document.querySelector('school-grade-to-role-mapping').rolesarr=arr;
+      },
+      FnGenerateMappingInfo:function(type,gradeid,gradename,roleid){
+        this.generateroletogrademappinginfourl=sessionStorage.getItem("addrinfo")+"/generateroletogrademappinginfo-service";
+        var obj={};
+        obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.academicyear=localStorage.getItem("curr_sess_academicyear");
+        obj.type=type;
+        obj.gradeid=gradeid;
+        obj.gradename=gradename;
+        obj.roleid=roleid;
+        this.generateroletogrademappinginfoparam=obj;
+        this.$.generateroletogrademappinginfoajax.generateRequest();
+      },
+      generateroletogrademappinginfoResponse:function(e){
+        var maparr=e.detail.response.maparr;
+        var secarr=e.detail.response.secarr;
+        var emparr=e.detail.response.emparr;
+
+        // alert(JSON.stringify(secarr));
+        // alert(JSON.stringify(emparr));
+        document.querySelector('school-grade-to-role-mapping').emparr=emparr;
+        document.querySelector('school-grade-to-role-mapping').secarr=secarr;
+      }
+    });
+  })();
+  </script>
+</dom-module>

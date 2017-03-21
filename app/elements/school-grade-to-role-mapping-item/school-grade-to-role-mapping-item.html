@@ -1,0 +1,42 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="school-grade-to-role-mapping-item">
+  <template>
+    <style>
+    </style>
+    <div>
+      <paper-input hidden>{{name}}</paper-input>
+       <paper-checkbox  on-change="FnSelectRole" id="{{id}}">{{name}}</paper-checkbox>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var selected="";
+    Polymer({
+      is: 'school-grade-to-role-mapping-item',
+      ready:function(){
+
+      },
+      FnSelectRole:function(e){
+        if(selected==""){          
+        if(document.querySelector('#gtor'+(this.id).replace(' ','')).checked==true){
+          selected=this.id;
+        }
+        }
+        else{
+          if(selected!=this.id){
+            document.querySelector('#gtor'+(selected).replace(' ','')).checked=false;
+            selected=this.id;
+          }
+          else{
+            selected="";
+          }
+        } 
+        document.querySelector('school-grade-to-role-mapping').FnSetRole(selected);
+      }
+    });
+  })();
+  </script>
+</dom-module>

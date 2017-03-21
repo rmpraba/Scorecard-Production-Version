@@ -201,6 +201,9 @@
         <section data-category="student-allow-card">
           <student-allow-card></student-allow-card>
         </section>
+        <section data-category="school-grade-to-role-mapping">
+          <school-grade-to-role-mapping></school-grade-to-role-mapping>
+        </section>
         </iron-pages>
     </div>    
 
@@ -643,6 +646,11 @@
        document.querySelector('teacherhome-card').FnRefresh();
        document.querySelector('consolidated-data-analysis').FnRefresh();
        // document.querySelector('beginner-assesment-card').FnRefresh();  
+    }
+    if(localStorage.getItem("curr_sess_page")=="school-grade-to-role-mapping")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('school-grade-to-role-mapping').FnRefresh();
     }
 
   },

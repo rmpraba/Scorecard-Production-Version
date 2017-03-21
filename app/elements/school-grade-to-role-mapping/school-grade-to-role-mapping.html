@@ -1,0 +1,88 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="school-grade-to-role-mapping">
+  <template>
+    <style>
+    </style>
+    <div>
+      <CENTER>
+        <h3><b>EMPLOYEE TO GRADE SECTION MAPPING</b></h3>
+      </CENTER>
+    </div>
+    <div>
+      <table>
+      <tr>
+      <td>
+        <paper-dropdown-menu  label="Select Type">
+            <paper-menu id="gradetoroleschooltype" class="dropdown-content"   on-iron-select="FnSelectType">
+              <template is="dom-repeat" items="{{schooltypearr}}">
+                <paper-item value="{{item.school_type_id}}">{{item.school_type_name}}</paper-item>
+              </template>    
+            </paper-menu>
+        </paper-dropdown-menu>
+      </td>
+      <td></td>
+      <td>
+        <paper-dropdown-menu  label="Select Grade">
+            <paper-menu id="gradetorolegrade" class="dropdown-content"   on-iron-select="FnSelectGrade">
+              <template is="dom-repeat" items="{{gradearr}}">
+                <paper-item value="{{item.grade_id}}">{{item.grade_name}}
+                </paper-item>
+              </template>    
+            </paper-menu>
+        </paper-dropdown-menu>
+      </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <template is="dom-repeat" items="{{rolesarr}}">
+          <role-to-grade-roles-card id="{{item.id}}" name="{{item.role_name}}"></role-to-grade-roles-card>
+          </template>
+        </td>
+        <td><paper-button on-click="FnGenerate">Generate</paper-button></td>
+      </tr>
+      </table>
+    </div>
+    <div>
+    <table>
+    <template is="dom-repeat" items="{{emparr}}">
+    <tr>
+    <template is="dom-repeat" items="{{secarr}}">
+    <td>
+    <school-grade-to-role-mapping-item></school-grade-to-role-mapping-item>
+    </td>
+    </template>
+    </tr>
+    </template>
+    </table>
+    </div>
+    <mapping-service id="mappingservice"></mapping-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var gradeid,type,roleid,gradename;    
+    Polymer({
+      is: 'school-grade-to-role-mapping',
+      FnSelectType:function(e){
+        type=e.target.selectedItem.value;
+        this.$.mappingservice.fetchgradesforgradetorolemapService(type);
+      },
+      FnSelectGrade:function(e){
+        gradeid=e.target.selectedItem.value;
+        gradename=(e.target.selectedItem.textContent).trim();
+      },
+      FnSetRole:function(selectedrole){
+        roleid=selectedrole;
+      },
+      FnGenerate:function(){
+        this.$.mappingservice.FnGenerateMappingInfo(type,gradeid,gradename,roleid);
+      },
+      FnRefresh:function(){
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -321,7 +321,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
             <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
                <h4>Student Section Allocation</h4>
             </paper-button>
-       </div>    
+       </div>  
+
+        <div class="card" hidden$="{{roletogrademapping}}">
+            <paper-button on-click="FnRoleToGradeMapping" no ink><img src="../../images/rolemap.png" height="180px" width="180px">
+               <h4>Role To Grade Mapping</h4>
+            </paper-button>
+       </div> 
       
     </div>
  
@@ -368,7 +374,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <scorecard-service id="scorecardservice"></scorecard-service>
     <teacher-observation_service id="observerservice"></teacher-observation_service>
     <master-ui-service id="uiservice"></master-ui-service> 
-
+    <mapping-service id="mappingservice"></mapping-service>
 
   </template>
   <script>
@@ -403,11 +409,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.subjecttostudent=true;
         this.sectioncreation=true;
         this.gradetosection=true;
-
+        this.roletogrademapping=true;
        }, 
 
       FnSelectacademicyear:function(e){  
         academicyear = e.target.selectedItem.value.trim();
+        // alert(localStorage.getItem('curr_sess_loggedassesmenttype'));
         localStorage.setItem("curr_sess_academicyear",academicyear); 
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="CategorytoSchooltype")
           {
@@ -443,13 +450,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         {   
             this.$.assesmentservice.callTermService("Term");
+          }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="feecollectionupdate") 
          {
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('studentlistcard','');
          } 
-        if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard") 
+        if(localStorage.getItem('curr_sess_loggedassesmenttype').trim()=="Scorecard") 
          {
+          // alert('in');
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('scorecard','');
          }  
@@ -489,7 +498,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('consolidateddataanalysis','');
          }
-       }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="roletogrademapping") 
+         {          
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('school-grade-to-role-mapping','');
+          this.$.mappingservice.fetchschooltypesforgradetorolemapService();
+          this.$.mappingservice.fetchrolesforgradetorolemapService();
+         }       
       },
       FnSelectPreEntryType:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','PreEntry');
@@ -593,7 +608,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.emptocategory=false;
           this.gradetosection=false;
           this.subjecttostudent=false;
-        
+          // this.roletogrademapping=false;
          // this.SectionPreiods=false;
       
           
@@ -879,6 +894,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.$.uiservice.SelectSchoolName();
           this.$.uiservice.fnsetgrademapping();
             //this.$.uiservice.fnschoolcreation();
+      },
+      FnRoleToGradeMapping:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','roletogrademapping');
+        // this.$.scorecardservice.callGradeService();
+        this.$.cdialog.toggle();
       }
 
     });

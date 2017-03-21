@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'scorecarddb'
 
  });
 var bodyParser = require('body-parser'); 
@@ -8600,6 +8600,99 @@ app.post('/fngetpasssectinvaluezzz-service',  urlencodedParser,function (req,res
   });
 });
 
+
+app.post('/fetchschooltypesforgradetorolemap-service',  urlencodedParser,function (req,res)
+  {  
+    var qur="SELECT * FROM master_school_type where school_id='"+req.query.schoolid+"' ";
+    console.log('------------school type-------------');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': rows});
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+app.post('/fetchgradesforgradetorolemap-service',  urlencodedParser,function (req,res)
+  {  
+    var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.schoolid+"' and school_type='"+req.query.type+"' and academic_year='"+req.query.academicyear+"'";
+    console.log('------------school grade-------------');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': rows});
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+app.post('/fetchrolesforgradetorolemap-service',  urlencodedParser,function (req,res)
+  {  
+    var qur="SELECT * FROM md_role where priority='1'";
+    console.log('------------school role-------------');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': rows});
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+
+app.post('/generateroletogrademappinginfo-service',  urlencodedParser,function (req,res)
+  {  
+    var qur1="SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.schoolid+"' and grade_id='"+req.query.gradeid+"' and role_id='"+req.query.roleid+"' and academic_year='"+req.query.academicyear+"'";
+    var qur2="SELECT * FROM md_class_section WHERE school_id='"+req.query.schoolid+"' and class='"+req.query.gradename+"' and academic_year='"+req.query.academicyear+"'";
+    var qur3="select * from employee_to_school_type_category_mapping m join md_employee e "+
+             "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
+             "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
+             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"'";
+    console.log('------------school role-------------');
+    console.log(qur1);
+    console.log('------------------------------------');
+    console.log(qur2);
+    console.log('------------------------------------');
+    console.log(qur3);
+    console.log('------------------------------------');
+    var maparr=[];
+    var secarr=[];
+    var emparr=[];
+    connection.query(qur1,function(err, rows){
+    if(!err)
+    {  
+    maparr=rows;
+    connection.query(qur2,function(err, rows){
+    if(!err)
+    {  
+    secarr=rows;
+    connection.query(qur3,function(err, rows){
+    if(!err)
+    { 
+    emparr=rows;
+      res.status(200).json({'maparr': maparr,'secarr':secarr,'emparr':emparr});
+    }
+    });
+    }
+    });
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
 
 var server = app.listen(5000, function () {
 var host = server.address().address
