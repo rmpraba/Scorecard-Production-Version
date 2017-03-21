@@ -68,20 +68,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        sessionStorage.setItem("curr_sess_loggedsectionschooltypeid",this.sectionschooltypeid);
       if(document.querySelector('#'+this.id).checked==true)
       {
-
+             var obj={"id":""};
+                 obj.id=this.id;
+                 sectionarr.push(obj);
           this.f1();
           this.f2();   
           document.querySelector('school-section-creation-card').fnnewtitle();
 
         }
+            for(var i=0;i<sectionarr.length;i++)
+            
+        { 
+          if(sectionarr[i].id!=this.id)
+          {
+             var stype=sectionarr[i].id;  
+             document.querySelector('#'+stype).checked=false;
+            sectionarr.splice(i,1);
+          }
+        }
+     
     },
+      FnRefresh:function()
+      {
+        if(sectionarr!=0){
+          for(var i=0;i<sectionarr.length;i++)
+        {
+               var stype=sectionarr[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               sectionarr.splice(i,1);
+  
+        } 
+        }
+      },
+    
     f1:function(e){
          this.sectioncreategradeurl=sessionStorage.getItem("addrinfo")+"/sectioncreategrade-service";
           var obj={"sectionschooltypeid":"","school_id":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-          sectionarr.push(obj);
+      //    sectionarr.push(obj);
           this.sectioncreategradeparam=obj;
          // alert(JSON.stringify(obj));
           this.$.sectioncreategradeajax.generateRequest();
@@ -94,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.sectionschooltypeid=sessionStorage.getItem("curr_sess_loggedsectionschooltypeid");
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
      
-          sectionarr.push(obj);
+          //sectionarr.push(obj);
           this.sectioncreategrade1param=obj;
         //  alert(JSON.stringify(obj));
           this.$.sectioncreategrade1ajax.generateRequest();

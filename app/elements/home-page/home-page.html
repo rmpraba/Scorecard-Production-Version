@@ -50,13 +50,13 @@
     /*width: 105%;*/}
 
     label{
-    margin-left: 28%;
+    margin-left: 26%;
     /*font-size: 20px;*/
     /*font-weight: bold;*/
     
   }
   b{
-    font-size: 20px;
+    font-size: 18.4px;
   }
   i{
     margin-left: 5%;
@@ -236,6 +236,8 @@
       {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('student-allow-item-card').FnRefresh();
+
       }
   if(localStorage.getItem("curr_sess_page")=="section-period-itme-card")
        {
@@ -245,22 +247,30 @@
   if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
     {
       this.page="teacherhomecard";
-      document.querySelector('teacherhome-card').FnRefresh();
+          document.querySelector('teacherhome-card').FnRefresh();
+          document.querySelector('employe-schooltype-to-category-item-card').FnRefresh();
+          document.querySelector('employee-category-item-card').FnRefresh();
+ 
+ 
     }
     if(localStorage.getItem("curr_sess_page")=="Student-to-section-mapping-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
-    }
+      document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
+   }
     if(localStorage.getItem("curr_sess_page")=="school-section-creation-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('school-grade-section-creation-card').FnRefresh();
+   
     }
     if(localStorage.getItem("curr_sess_page")=="schooltype-to-grade-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      //document.querySelector('schooltype-to-grade-card').Fnnrefresh();
     }
      if(localStorage.getItem("curr_sess_page")=="student-to-subject-mapping-card")
     {
@@ -271,11 +281,17 @@
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('schoolcategory-type-item-card').FnRefresh();
+      document.querySelector('school-type-item-card').FnRefresh();
+   
     }
       if(localStorage.getItem("curr_sess_page")=="employe-category-creation-card")
-    {
+   {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('emp-category-get-card').FnRefresh();
+      document.querySelector('employe-category-creation-card').FnRefresh();
+   
     }
     if(localStorage.getItem("curr_sess_page")=="category-card")
     {
@@ -302,7 +318,7 @@
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
-      document.querySelector('new-employee-creation-card').fnemprefresh();
+      
     }
     if(localStorage.getItem("curr_sess_page")=="grade-creation-card")
     {
@@ -616,7 +632,7 @@
       document.querySelector('term-assesment-card').FnRefreshcard();
       document.querySelector('cc-eng-onetofour-card').FnRefresh();      
    */ 
-      document.querySelector('school-creation-card').fnnrefresh();
+      
       }
 
 

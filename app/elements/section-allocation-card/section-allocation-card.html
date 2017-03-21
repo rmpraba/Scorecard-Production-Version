@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="section-allocation-card">
   <template>
@@ -60,9 +61,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="fnsectiostudentpassvalueResponse"
         debounce-duration="300">
       </iron-ajax>
-      
-   
     </div>
+    
   </template>
   <script>
   (function() {
@@ -107,12 +107,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  this.$.fnsectiostudentpassvalueajax.generateRequest();
       }
     },
-    fnsectiostudentpassvalueResponse:function(e){
-         var res=e.detail.response.returnval; 
-         
-         // alert(JSON.stringify(res));
- 
-    },
+    fnsectiostudentpassvalueResponse:function(e)
+    {
+      //alert(11);   
+         var res=e.detail.response.returnval;
+         alert(JSON.stringify(res));
+            if(res=='Updated')
+            {
+              //this.$.newid.toggleDialog2();
+              //alert(333);
+              document.querySelector('student-allow-card').fnnewsave(); 
+            } 
+            else if(res=='Inserted!')
+            {
+              document.querySelector('student-allow-card').fnnsubmit();
+            }
+
+                 // alert(JSON.stringify(res));
+
+    }
+
  });
   })();
   </script>

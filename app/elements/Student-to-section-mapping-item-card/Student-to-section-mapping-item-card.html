@@ -35,6 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   (function() {
     'use strict';
     var scltypearr=[];
+
     Polymer({
       is: 'Student-to-section-mapping-item-card',
       FnRefresh:function()
@@ -42,7 +43,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         for(var i=0;i<scltypearr.length;i++)
         {
           var newscltype=scltypearr[i].id;
-          document.querySelector('#'+newscltype).checked=true;
+          document.querySelector('#'+newscltype).checked=false;
+             scltypearr.splice(i,1); 
+       
         }
       },
       fnsudentGrade:function(e)
@@ -63,6 +66,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.studensectiongetgradeparam=obj;
         //  alert(JSON.stringify(obj));
           this.$.studensectiongetgradeajax.generateRequest();
+        }
+          for(var i=0;i<scltypearr.length;i++)
+        {
+             if(scltypearr[i].id!=this.id){
+               var sctype=scltypearr[i].id;
+               document.querySelector('#'+sctype).checked=false;
+                scltypearr.splice(i,1); 
+        }
         }
 },
 

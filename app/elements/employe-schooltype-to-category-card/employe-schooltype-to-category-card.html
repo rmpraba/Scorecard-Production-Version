@@ -10,14 +10,14 @@
 
 <dom-module id="employe-schooltype-to-category-card">
   <template>
-    <style>  
+    <style>   
       :host {  
         display: block;
       }
      .card1{
         margin-left:5%;
         margin-top: 4%;
-      }
+      }   
       .card2{     
         margin-left:40%;    
          margin-top:-17%;
@@ -89,7 +89,7 @@
           <h3><b>EMPLOYEE TO SUBJECT MAPPING</b></h3>
         </CENTER>  
       </div>      
-     
+        
      <div>   
        <div class="outercard">
             <div class="col-sm-4" style="margin-top: 4%;">
@@ -136,7 +136,7 @@
             <div>
               <thead> 
               <tr>
-                  <th class="innercard" style="width: 700px;margin-left: 15%;">
+                  <th class="innercard" style="width: 700px;margin-left: 18%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
                     </template>
@@ -210,13 +210,13 @@
     FnRefresh:function()
     {
       this.$.empLanguageprefernce.hidden=true;
-      //document.querySelector('#empLanguageprefernceid').selected=-1;
+      if(document.querySelector('#empLanguageprefernceid').selected!=-1)
+
+      {
+        document.querySelector('#empLanguageprefernceid').selected=-1;
+      }
     },
-    fnbuttonsclean:function()
-    {
-     //this.$.empidz1.hidden=true; 
-     //this.$.subbutton1.hidden=true;
-    },
+    
        getgrade:function(arr){
         empteacharr=arr;
         //emparr=arr;
@@ -372,6 +372,7 @@
           fnsclsubject:function()
           {
             this.$.talhidn.hidden=true;
+            //document.querySelector('#empLanguageprefernceid').selected=-1;
           }
     
 

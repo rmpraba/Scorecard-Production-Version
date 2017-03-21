@@ -3146,18 +3146,19 @@ insertschoolTypename:function(schooltypesarr)
       },
       FnSecondLangSubjectToStudentResponse:function(e)
       {
-        /*alert(111);
-        if(e.detail.response.returnval=='Inserted')
+        var res=e.detail.response.returnval
+        alert(JSON.stringify(res));
+        /*if(res=='Inserted!')
         {
             alert("open");
-            this.$.service1.toggleDialog();
-        }
-        else if(e.detail.response.returnval=='updated successfully')
+            document.querySelector('student-to-subject-mapping-card').fnsave2lang();
+        }*/
+        /*else if(res=='updated successfully')
         {
             alert("update");
             this.$.service1.toggleDialog2();
         }*/
-        alert(JSON.stringify(e.detail.response.returnval));
+        
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){

@@ -15,14 +15,14 @@
        table{
         border-collapse: collapse;
         width: 70%;
-      } 
+      }   
       td
       {  
         width: 41%;        
       } 
          .innercard{
       @apply(--layout-horizontal);
-      margin-left:4.8em;
+      margin-left:3.0em;
       width:100%    
      }
     
@@ -48,7 +48,7 @@
            <paper-input value={{subjectname}} hidden></paper-input>
            <paper-input value={{subjectid}} hidden></paper-input>
            <paper-input value={{langugagepref}} hidden></paper-input>
-           <paper-checkbox id="{{id}}" on-change="Fnsave" checked="{{check}}"></paper-checkbox>
+           <paper-checkbox id="{{id}}" on-change="Fnsave" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
          </td>
          
            <paper-dialog id="samesubjectalertid" modal>

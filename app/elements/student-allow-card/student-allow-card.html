@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="student-allow-card">
   <template>
@@ -61,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="newdropzzz">
         <paper-dropdown-menu id="term" label="Select Acadamic year">
-            <paper-menu id="rtermmmzzz" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
+            <paper-menu id="rtermmmzzzz" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
                 <paper-item value="2015-2016">2015-2016</paper-item>     
                 <paper-item value="2016-2017">2016-2017</paper-item>
                 <paper-item value="2017-2018">2017-2018</paper-item>
@@ -90,8 +91,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>
     </div>  
 
-
-  <master-ui-service id="uiservice"></master-ui-service>
+    <demosumbit-card id="newid"></demosumbit-card> 
+    <master-ui-service id="uiservice"></master-ui-service>
  </template>
   <script>
   (function() {
@@ -100,15 +101,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      var gridschooltypearr=[]
     Polymer({
       is: 'student-allow-card',
-      ready:function()
+      fnstudentrefresh:function()
       {
         this.$.term.hidden=true;
         this.hidenewtabgrid=true;
+        if(document.querySelector('#rtermmmzzzz').selected!=-1)
+        {
+         document.querySelector('#rtermmmzzzz').selected=-1;     
+        }
       },
-      FnRefresh:function()
+     /* FnRefresh:function()
       {
         document.querySelector('#rtermmmzzz').selected=-1;
-      },
+      },*/
       showacademicyr:function()
       {
         this.$.term.hidden=false;
@@ -159,6 +164,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                this.scooltypgrid=gridschooltypearr;
        
              },
+
+            fnnewsave:function()
+            {
+               //alert("ww");
+              this.$.newid.toggleDialog2();
+            },
+
+            fnnsubmit:function()
+            {
+              //alert("wwwww");
+              this.$.newid.toggleDialog();
+            }
      });
   })();
   </script>

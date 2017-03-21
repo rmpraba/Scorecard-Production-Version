@@ -1,4 +1,4 @@
-
+    
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <dom-module id="employee-category-item-card">
   <template>
@@ -61,6 +61,16 @@
           cattypearr.splice(i,1);
         }
       }
+  },
+  FnRefresh:function(e){
+   if(cattypearr!=0){
+     for(var i=0;i<cattypearr.length;i++)
+          {   
+          var catype=cattypearr[i].id;
+          document.querySelector('#'+catype).checked=false;
+          cattypearr.splice(i,1);
+       }
+    } 
   },
     fnsetemployeelanprefer:function(emplangprefernce){
       var e=emplangprefernce;

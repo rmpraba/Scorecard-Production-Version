@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-      }
+      }    
     </style>   
     <div>
     <paper-input hidden>{{schooltypeidxx}}</paper-input>
@@ -70,6 +70,19 @@ if(document.querySelector('#'+this.id).checked==true)
         }
      
       },
+           FnRefresh:function()
+      {
+        if(scarr!=0){
+          for(var i=0;i<scarr.length;i++)
+        {
+               var stype=scarr[i].id;  
+               document.querySelector('#'+stype).checked=false;
+               scarr.splice(i,1);
+  
+        } 
+        }
+      },
+ 
       getschooltypeResponse:function(e){
         var res=e.detail.response.returnval;
        // alert(JSON.stringify(res));
