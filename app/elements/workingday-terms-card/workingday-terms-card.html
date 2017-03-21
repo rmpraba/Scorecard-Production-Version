@@ -122,7 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }   
     else
     {
-        alert(JSON.stringify(term));
+       // alert(JSON.stringify(term));
           
    for(var i=0;i<term.length;i++){
 
@@ -138,7 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  obj.schootypids=term[i].schootypids;
                  obj.gradeid=term[i].gradeid;
                this.fnsectiostudentpassvalue1param=obj;
-                 alert(JSON.stringify(obj));
+                 //alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalue1ajax.generateRequest();
                }
           term.splice(obj);
@@ -148,7 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     fnsectiostudentpassvalue1Response:function(e){
          var res=e.detail.response.returnval; 
-          alert(JSON.stringify(res));
+         // alert(JSON.stringify(res));
  
     }
 
