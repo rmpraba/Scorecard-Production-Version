@@ -236,26 +236,28 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SchoolTypeToGrade" no ink><img src="../../images/schooltoschoolType.jpg" height="180px" width="180px">  <h4>School to School Type</h4>
         </paper-button>
       </div>
+
+       <div class="card" hidden$="{{schooltyptograde}}">
+            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
+               <h4>School type to Grade</h4>
+            </paper-button>
+       </div>
+
        <div class="card" hidden$="{{SectionPreiods}}">
         <paper-button on-click="SectionPreiodss" no ink><img src="../../images/sectionperiod.png" height="180px" width="180px">  <h4>Section Periods</h4>
         </paper-button>
       </div>
-<!-- 
-      <div class="card" hidden$="{{schooltyptograde}}">
-            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
-               <h4>School type to Grade</h4>
-            </paper-button>
-       </div> -->
+
 
     </div>
 
     <div class="container1">
 
-      <div class="card" hidden$="{{schooltyptograde}}">
+      <!-- <div class="card" hidden$="{{schooltyptograde}}">
             <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
                <h4>School type to Grade</h4>
             </paper-button>
-       </div>
+       </div> -->
 
        
       <div class="card" hidden$="{{createemployee}}">
@@ -436,7 +438,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');
           document.querySelector('Student-to-section-mapping-card').funnstudent(); 
-          document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
+          //document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
           {
@@ -866,6 +868,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('schooltype-to-grade-card','');
              this.$.uiservice.selectschoolnames();
+             document.querySelector('schooltype-to-grade-card').fnschoolgrade();
       
        },
 

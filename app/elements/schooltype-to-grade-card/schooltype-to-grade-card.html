@@ -30,7 +30,7 @@
        }
     </style>
       <div class="title">
-         <h3><CENTER>School Type To Grade</CENTER></h3>        
+         <h3><CENTER><b>School Type To Grade</b></CENTER></h3>        
       </div>
       <div class="creatediv">
        <paper-dropdown-menu  label="Select School">
@@ -41,7 +41,7 @@
                 </paper-menu>
         </paper-dropdown-menu>
           <paper-dropdown-menu id="term" label="Select Acadamic year">
-         <paper-menu id="academicyr" class="dropdown-content"   on-iron-select="fnacadamic" attr-for-selected="value" required>
+         <paper-menu id="academicyrr" class="dropdown-content"   on-iron-select="fnacadamic" attr-for-selected="value" required>
                 <paper-item value="2015-2016">2015-2016</paper-item>     
                 <paper-item value="2016-2017">2016-2017</paper-item>
                 <paper-item value="2017-2018">2017-2018</paper-item>
@@ -69,10 +69,22 @@
      var getarr=[];   
     Polymer({
       is: 'schooltype-to-grade-card',
-      ready:function()
+      fnschoolgrade:function()
       {
         this.$.schltype1.hidden=true;
+        
       },
+      /*Fnnrefresh:function()
+      {
+        if(document.querySelector('#empgradeid').selected!=-1)
+        {
+          document.querySelector('#empgradeid').selected=-1;
+        }
+        else if(document.querySelector('#academicyrr').selected!=-1)
+        {
+          document.querySelector('#academicyrr').selected=-1;
+        }
+      },*/
 
     fnselectgrade:function(e){
             this.schoolid=e.target.selectedItem.value;
@@ -84,13 +96,6 @@
          this.acadamicyear=e.target.selectedItem.textContent.trim();
         this.$.schltype1.hidden=false;
      },
-
-     FnRefresh:function()
-     {
-      document.querySelector('#empgradeid').selected=-1;
-      document.querySelector('#academicyr').selected=-1;
-     }
-
 
       });
   })();
