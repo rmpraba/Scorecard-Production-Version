@@ -67,9 +67,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: 1px solid grey;
           height: 100px;
           width: 1px;
-          margin-left: 49%;
+          margin-left: 46%;
           min-height: 440px;
-          top: 38% !important;
+          top: 34% !important;
       } 
       .newwwwcarddd
       {
@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       table
     {
       width: 70%; 
-      margin-left: 3%; 
+      margin-left: 5%; 
     }
      #button1
      {
@@ -155,7 +155,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div>
               <thead> 
               <tr>
-                  <th class="innercard" style="width: 750px;margin-left: 27%;">
+                  <th class="innercard" style="width: 750px;margin-left: 23%;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
                     </template>
@@ -177,7 +177,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                           <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.language_pref}}" check="{{s.check}}"></student-list-mapping-item>
                         </template>  
                       </td>        
-                    </tr>
+                    <td>    
+                        <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
+                        <paper-tooltip for="btn1">Save</paper-tooltip>
+                      </td>
+                      </tr>
                   </template>
                 </tbody>
             </div>
@@ -186,11 +190,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>  
 
 
-     
+       
 
-        <div id="button1">
+        <!-- <div id="button1">
           <paper-button  on-click="fnsubmit">Submit</paper-button>
-        </div>
+        </div> -->
 
        <iron-ajax  
         auto         
@@ -251,14 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({      
       is: 'student-to-subject-mapping-card',
 
-      /*ready:function()
-      {
-        this.hidenewsubcat=true;
-       // this.$.subid.hidden=true;
-        this.$.labelhide.hidden=true;
-        this.hidenewline=true;
-      },*/
-
+     
     FnStoSterm:function(e)
      {
       this.FnStoStermid=e.target.selectedItem.textContent.trim(); 
@@ -316,7 +313,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.FnStoSSectionid1=e.target.selectedItem.value;
              this.hidenewsubcat=false;
             this.$.labelhide.hidden=false;
-            this.$.button1.hidden=false;
+            //this.$.button1.hidden=false;
             //this.hidenewline=false;
             localStorage.setItem("curr_sess_selectedSection",this.FnStoSSectionid);
             localStorage.setItem("curr_sess_selectedSectionvalue1",this.FnStoSSectionid1);
@@ -370,6 +367,9 @@ SbjecttoStudentmapping1Response:function(e){
        //  document.querySelector('student-list-mapping-item').FnSecondLang11();
            this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
            this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
+           alert("Inserted Successfully");
+           //this.$.newwalerttt.toggleDialog();
+
             if(kn.length!=0)
             {
            
@@ -380,6 +380,8 @@ SbjecttoStudentmapping1Response:function(e){
           else
          {
               this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
+              //this.$.newwalerttt.toggleDialog();
+              alert("Inserted Successfully");
                 if(kn.length!=0)  
                 {
            //document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
@@ -637,14 +639,10 @@ SbjecttoStudentmapping1Response:function(e){
       this.hidenewsubcat=true;
       this.$.labelhide.hidden=true;
         this.hidenewline=true;
-        this.$.button1.hidden=true;
-     },
-
-     fnsave2lang:function()
-     {
-      alert(1111);
-      this.$.newwalerttt.toggleDialog();
+        //this.$.button1.hidden=true;
      }
+
+    
     });
   })();   
   </script>

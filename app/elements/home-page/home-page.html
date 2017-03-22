@@ -270,12 +270,14 @@
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
-      //document.querySelector('schooltype-to-grade-card').Fnnrefresh();
+      document.querySelector('schooltype-to-grade-card').Fnnrefresh();
     }
      if(localStorage.getItem("curr_sess_page")=="student-to-subject-mapping-card")
     {
       this.page="teacherhomecard";
       document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('student-to-subject-mapping-card').fnsetreclear();
+ 
     }
     if(localStorage.getItem("curr_sess_page")=="school-grade-to-subject-card")
     {
