@@ -8656,7 +8656,7 @@ app.post('/fetchrolesforgradetorolemap-service',  urlencodedParser,function (req
 app.post('/generateroletogrademappinginfo-service',  urlencodedParser,function (req,res)
   {  
     var qur1="SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.schoolid+"' and grade_id='"+req.query.gradeid+"' and role_id='"+req.query.roleid+"' and academic_year='"+req.query.academicyear+"'";
-    var qur2="SELECT * FROM md_class_section WHERE school_id='"+req.query.schoolid+"' and class='"+req.query.gradename+"' and academic_year='"+req.query.academicyear+"'";
+    var qur2="SELECT *,g.grade_id FROM md_class_section c join md_grade g on (g.grade_name=class) WHERE school_id='"+req.query.schoolid+"' and class='"+req.query.gradename+"' and academic_year='"+req.query.academicyear+"'";
     var qur3="select * from employee_to_school_type_category_mapping m join md_employee e "+
              "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
              "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+

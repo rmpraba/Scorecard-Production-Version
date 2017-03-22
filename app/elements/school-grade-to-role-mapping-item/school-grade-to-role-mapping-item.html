@@ -6,35 +6,62 @@
     <style>
     </style>
     <div>
-      <paper-input hidden>{{name}}</paper-input>
-       <paper-checkbox  on-change="FnSelectRole" id="{{id}}">{{name}}</paper-checkbox>
+       <div hidden>{{class}}{{section}}{{empid}}{{empname}}{{flage}}{{academicyear}}{{roleid}}{{schooltype}}</div>
+       <div hidden$="{{flag}}">{{compid}}</div>
+       <paper-checkbox hidden$="{{flagg}}" checked="{{check}}" on-change="FnSelectRole" id="{{compid}}"></paper-checkbox>
     </div>
   </template>
   <script>
   (function() {
     'use strict';
     var selected="";
+    var arr=[];
     Polymer({
       is: 'school-grade-to-role-mapping-item',
       ready:function(){
 
       },
       FnSelectRole:function(e){
-        if(selected==""){          
-        if(document.querySelector('#gtor'+(this.id).replace(' ','')).checked==true){
-          selected=this.id;
-        }
+        // alert(this.section);
+        if(selected==""){
+          if(document.querySelector('#'+this.compid).checked==true)
+          {
+          selected=this.compid;
+          var obj={};
+          obj.compid=this.id;
+          obj.class=this.class;
+          obj.section=this.section;
+          obj.empid=this.empid;
+          obj.empname=this.empname;
+          obj.flage=this.flage;
+          obj.academicyear=this.academicyear;
+          obj.schooltype=this.schooltype;
+          obj.roleid=this.roleid;
+          }
+          arr.push(obj);
         }
         else{
-          if(selected!=this.id){
-            document.querySelector('#gtor'+(selected).replace(' ','')).checked=false;
-            selected=this.id;
+          var f=0;
+          var obj={};
+          obj.compid=this.id;
+          obj.class=this.class;
+          obj.section=this.section;
+          obj.empid=this.empid;
+          obj.empname=this.empname;
+          obj.flage=this.flage;
+          obj.academicyear=this.academicyear;
+          obj.schooltype=this.schooltype;
+          obj.roleid=this.roleid;
+          for(var i=0;i<arr.length;i++){
+          if(this.compid==arr[i].compid){
+            f=1
+            arr.splice(i,1);
           }
-          else{
-            selected="";
           }
-        } 
-        document.querySelector('school-grade-to-role-mapping').FnSetRole(selected);
+          if(f==0)
+            arr.push(obj);
+        }
+        alert(JSON.stringify(arr));
       }
     });
   })();

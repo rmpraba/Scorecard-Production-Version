@@ -103,8 +103,54 @@
 
         // alert(JSON.stringify(secarr));
         // alert(JSON.stringify(emparr));
-        document.querySelector('school-grade-to-role-mapping').emparr=emparr;
-        document.querySelector('school-grade-to-role-mapping').secarr=secarr;
+        var final=[];
+        var temp=[];
+        var obj={"section":"","flag":""};
+        obj.compid="";
+        obj.flag=false;
+        obj.flagg=true;
+        obj.checked=false;
+        temp.push(obj);
+        for(var i=0;i<secarr.length;i++){
+          var obj={"section":"","flag":""};
+          obj.compid=secarr[i].section;
+          obj.flag=false;
+          obj.flagg=true;
+          obj.checked=false;
+          temp.push(obj);
+        }
+        final.push(temp);
+        var temp=[];
+        for(var i=0;i<emparr.length;i++){
+          var obj={};
+          obj.compid=emparr[i].emp_name;
+          obj.flag=false;
+          obj.flagg=true;
+          obj.checked=false;
+          temp.push(obj);
+          for(var j=0;j<secarr.length;j++){
+          var obj={};
+          obj.compid=emparr[i].id+secarr[j].id;
+          obj.class=secarr[j].grade_id;
+          obj.section=secarr[j].section;
+          obj.empid=emparr[i].emp_id;
+          obj.empname=emparr[i].emp_name;
+          obj.flage=emparr[i].flage;
+          obj.academicyear=emparr[i].academic_year;
+          obj.schooltype=emparr[i].school_type;
+          obj.roleid=emparr[i].role_id;
+          obj.flag=true;
+          obj.flagg=false;
+          obj.checked=false;
+          temp.push(obj);
+          }
+          final.push(temp);
+          temp=[];
+        }
+        alert(JSON.stringify(final));
+        document.querySelector('school-grade-to-role-mapping').maparr=final;
+        // document.querySelector('school-grade-to-role-mapping').emparr=emparr;
+        // document.querySelector('school-grade-to-role-mapping').secarr=secarr;
       }
     });
   })();

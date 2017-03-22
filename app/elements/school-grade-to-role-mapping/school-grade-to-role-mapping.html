@@ -46,12 +46,19 @@
     </div>
     <div>
     <table>
-    <template is="dom-repeat" items="{{emparr}}">
+    <!-- <template is="dom-repeat" items="{{emparr}}">
     <tr>
     <template is="dom-repeat" items="{{secarr}}">
     <td>
     <school-grade-to-role-mapping-item></school-grade-to-role-mapping-item>
     </td>
+    </template>
+    </tr>
+    </template> -->
+    <template is="dom-repeat" items="{{maparr}}">
+    <tr>
+    <template is="dom-repeat" items="{{item}}" as="i">
+    <td><school-grade-to-role-mapping-item compid="{{i.compid}}" flag="{{i.flag}}" flagg="{{i.flagg}}" check="{{i.checked}}" class="{{i.class}}" section="{{i.section}}" empid="{{i.empid}}" empname="{{i.empname}}" flage="{{i.flage}}" schooltype="{{i.schooltype}}" academicyear="{{i.academicyear}}" roleid="{{i.roleid}}"></school-grade-to-role-mapping-item></td>
     </template>
     </tr>
     </template>
