@@ -251,13 +251,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
     </div>
 
-    <div class="container1">
+     <div class="container1">
 
-      <!-- <div class="card" hidden$="{{schooltyptograde}}">
-            <paper-button on-click="SchooltypToGrade" no ink><img src="../../images/schooltyptograde.jpg" height="180px" width="180px">
-               <h4>School type to Grade</h4>
-            </paper-button>
-       </div> -->
 
        
       <div class="card" hidden$="{{createemployee}}">
@@ -272,29 +267,39 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>
 
+      <div class="card" hidden$="{{studentfixed}}">
+            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
+               <h4>Student Section Allocation</h4>
+            </paper-button>
+       </div>  
 
-      <div class="card" hidden$="{{employeetograde}}">
+        <div class="card" hidden$="{{sectioncreation}}">
+            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.jpg" height="180px" width="180px">
+               <h4>Section Creation</h4>
+            </paper-button>
+       </div>   
+
+       <div class="card" hidden$="{{employeetograde}}">
             <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">
                <h4>Employee To Grade Section Mapping</h4>
             </paper-button>
-      </div>
-
-    
-       <div class="card" hidden$="{{subjecttostudent}}">
-          <paper-button on-click="SubjectToStudent" no ink><img src="../../images/language.jpg" height="180px" width="180px">
-           <h4>Language Preferences</h4>
-          </paper-button>
-      </div>
-
-       <div class="card" hidden$="{{gradetosubject}}">
-          <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
-            <h4>Grade To Subject Mapping</h4>
-          </paper-button>
-      </div>  
+      </div> 
     </div>
 
     <div class="container1">
        
+       <div class="card" hidden$="{{gradetosubject}}">
+          <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
+            <h4>Grade To Subject Mapping</h4>
+          </paper-button>
+      </div>
+
+
+      <div class="card" hidden$="{{subjecttostudent}}">
+          <paper-button on-click="SubjectToStudent" no ink><img src="../../images/language.jpg" height="180px" width="180px">
+           <h4>Language Preferences</h4>
+          </paper-button>
+      </div>
       
 
        <div class="card" hidden$="{{emptocategory}}">
@@ -303,28 +308,21 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>
 
-       <div class="card" hidden$="{{workingdats}}">
-         <paper-button on-click="Workingdays" no ink><img src="../../images/workingdays.jpg" height="180px" width="180px">
-              <h4>Working Days</h4>
-        </paper-button>
-      </div>
-       <div class="card" hidden$="{{sectioncreation}}">
-            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.jpg" height="180px" width="180px">
-               <h4>Section Creation</h4>
-            </paper-button>
-       </div>    
+      
+      
       <div class="card" hidden$="{{gradetosection}}">
             <paper-button on-click="GradeToSection" no ink><img src="../../images/gradetosection.jpg" height="180px" width="180px">
                <h4>Student to Section mapping</h4>
             </paper-button>
-       </div>    
-      
-        <div class="card" hidden$="{{studentfixed}}">
-            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
-               <h4>Student Section Allocation</h4>
-            </paper-button>
-       </div>  
+       </div> 
 
+        <div class="card" hidden$="{{workingdats}}">
+         <paper-button on-click="Workingdays" no ink><img src="../../images/workingdays.jpg" height="180px" width="180px">
+              <h4>Working Days</h4>
+        </paper-button>
+      </div>   
+      
+        
         <div class="card" hidden$="{{roletogrademapping}}">
             <paper-button on-click="FnRoleToGradeMapping" no ink><img src="../../images/rolemap.png" height="180px" width="180px">
                <h4>Role To Grade Mapping</h4>
@@ -332,6 +330,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        </div> 
       
     </div>
+ 
  
 
     <div class="cdialog">      
