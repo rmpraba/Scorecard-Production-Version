@@ -334,7 +334,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
  
 
     <div class="cdialog">      
-      <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+      <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" modal>
          <paper-dropdown-menu id="academicyear" label="Select Academic Year" disabled="{{read}}" required>
             <paper-menu id="academicyr" class="dropdown-content"  on-iron-select="FnSelectacademicyear"  attr-for-selected="value" required>  
               <template is="dom-repeat" items="{{academicarr}}">
@@ -511,7 +511,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('home-page').setPage('school-grade-to-role-mapping','');
           this.$.mappingservice.fetchschooltypesforgradetorolemapService();
           this.$.mappingservice.fetchrolesforgradetorolemapService();
-         }       
+         }  
+             this.$.cdialog.close();
+         
       },
       FnSelectPreEntryType:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','PreEntry');

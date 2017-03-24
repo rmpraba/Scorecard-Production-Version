@@ -32,15 +32,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input  hidden>{{admissinno1}}</paper-input>
           <paper-input  hidden>{{classid}}</paper-input>
           <paper-input  hidden>{{noofstudent}}</paper-input>
-          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
+          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </paper-checkbox>
         </div>
-      
-       <paper-dialog id="noofstudent1" modal>
-       <h2>Cannot add more students to the section.</h2>
+         <paper-dialog id="noofstudent1" modal>
+           <h2>Cannot add more students to the section.</h2>
             <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
-   </paper-dialog>
-   
-      </div>  
+        </paper-dialog>
+   </div>  
   </template>
   <script>
   (function() {
