@@ -162,8 +162,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
            }}},
    overallinfo:function(e){
-      for(var i=0;i<v.length;i++){
-               var empty=v[i].enq_id;
+      for(var i=0;i<paspstuinfo.length;i++){
+               var empty=paspstuinfo[i].enq_id;
               document.querySelector('#'+empty).checked=false;           
              }
 
@@ -174,7 +174,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj.gender=this.gender;
             obj.enq_id=this.id;
             obj.classid=this.classid;
-            v.splice(obj);
+            paspstuinfo.splice(obj);
           },
          fnsplice:function(){
               var rnwn=paspstuinfo.length;
