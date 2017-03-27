@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </tr>
         </table>
          <iron-ajax        
-        id="fnsectiostudentpassvalueajax"
+        id="fnsectiostudentpassvalueajax" 
         url="{{fnsectiostudentpassvalueurl}}"
         params="{{fnsectiostudentpassvalueparam}}"
         handle-as="json"
@@ -111,8 +111,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {
       //alert(11);   
          var res=e.detail.response.returnval;
-         alert(JSON.stringify(res));
-            if(res=='Updated')
+         //alert(JSON.stringify(res));
+            if(res=='updated successfully')
             {
               //this.$.newid.toggleDialog2();
               //alert(333);

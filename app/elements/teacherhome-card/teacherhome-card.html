@@ -269,7 +269,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
       <div class="card" hidden$="{{studentfixed}}">
             <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
-               <h4>Student Section Allocation</h4>
+               <h4>Capacity Allocation</h4>
             </paper-button>
        </div>  
 
@@ -861,6 +861,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       document.querySelector('app-card').setPage('homepage','');
         document.querySelector('home-page').setPage('school-creation-card','');
         document.querySelector('school-creation-card').fnnrefresh();
+        document.querySelector('school-creation-card').newrefresh();
          this.$.uiservice.FnSchoolidseq();
      
         

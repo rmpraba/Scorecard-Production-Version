@@ -2029,15 +2029,18 @@ fnschoolemployeerole:function( employeeid,employeename){
          //alert('1');
          this.selectschooltype1url=sessionStorage.getItem("addrinfo")+"/selectschooltype1-service";
          var obj={"school_id":""};
-         obj.school_id=schoolid;
+         obj.school_id=schoolid; 
          this.selectschooltype1param=obj;
          this.$.selectschooltype1ajax.generateRequest();
      },
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         //alert(JSON.stringify(res));  
-        document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
+         //alert(JSON.stringify(res)); 
+         
+            document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
+         
+          
       },
    selectschoolnames:function(){
          //alert('1');

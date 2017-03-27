@@ -79,15 +79,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #z1
       {
            position: absolute;
+           color:  #0000ff;
           margin-left: 15%;
-          margin-top: -1%;
+          margin-top: 4%;
       }
       
       #z
       {
         position: absolute;
+        color:  #0000ff;
         margin-left: 77%;
-        margin-top: -1%;
+        margin-top: 4%;
       }
 
       #previousid,#Nextid
@@ -103,14 +105,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             font-size: 1.3em;
 
       }
-
-      .buttons paper-button
+    .buttons paper-button
       {
-        @apply(--layout-right);
+        @apply(--layout-left);
       background-color: #363636;
       color: #ffffff;
       width: 10%;
-      margin-top: 4%;
+      margin-left: 6%;
+      margin-top: 10%;
       }
 
       /*.newcarddzz
@@ -120,13 +122,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 */      .newwwtabb
       {
-        margin-top: 3%;
+        margin-top: 6%;
       }
       table
     {
       width: 70%;
-      margin-left: 9%;
+      margin-left: 12%;
     }
+
+   
     </style>    
     
     <div>
@@ -160,7 +164,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        
         </div>  
        </div>  
+
+        <div id="z1">
+             <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
+              -->
+             <paper-buuton  id="prebutton" on-click="fnpriver">
+             <u><b style="font-size: 19px;font-style: oblique;">Previous</b></u>
+             </paper-buuton>
+      </div>
       
+      <div id="z">
+          <!-- <paper-icon-button id="nextbutton" icon='chevron-right' on-click='fnnext'></paper-icon-button> -->
+
+           <paper-buuton  id="nextbutton" on-click="fnnext">
+             <u><b style="font-size: 19px;font-style: oblique;">Next</b></u>
+             </paper-buuton>
+          
+      </div>
       
 
    <div class="newwwtabb" hidden$="{{hidenewtabb}}">
@@ -199,25 +219,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
 
-
-      <div id="z1">
-             <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
-             <paper-tooltip for="prebutton">Previous Page</paper-tooltip>
-
-      </div>
-     <div id="z">
-          <paper-icon-button id="nextbutton" icon='chevron-right' on-click='fnnext'></paper-icon-button>
-        
-            <paper-tooltip  for="nextbutton">Next Page</paper-tooltip>
-      </div>
         <div id="subzz">
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
    
      <paper-dialog id="previousid" modal>
        <label  id="labelid">Please Click Previous Button</label> 
+       <div class="buttons">
+        </div> 
        <center>
-         <paper-button dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;">close</paper-button>
+         <paper-button  style="color:white;background-color:black;"  dialog-confirm autofocus>close</paper-button>
        </center>
     </paper-dialog>
            
@@ -226,7 +237,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="buttons">
         </div>  
         <center>
-          <paper-button style="color:white;background-color:black;margin-left: 63%;" dialog-confirm autofocus> close</paper-button>
+          <paper-button style="color:white;background-color:black;" dialog-confirm autofocus> close</paper-button>
         </center>    
      </paper-dialog>
      
@@ -318,7 +329,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.z.hidden=false;   
         this.$.z1.hidden=true;
         this.hidenewtabb=false;
-        this.$.prebutton.hidden=true;
+        //this.$.prebutton.hidden=true;
         this.$.nextbutton.hidden=false;
 
     if(overall12!=0){
