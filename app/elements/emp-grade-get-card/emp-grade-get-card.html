@@ -150,6 +150,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               //alert(JSON.stringify(empsectionarr));}}
             }
           } 
+        },
+
+
+        fnnsaveinput:function()
+        {
+          if(empsectionarr.length!=0)
+          {
+            document.querySelector('employe-category-creation-card').fnnsavezz();
+          }
+          else
+          {
+            document.querySelector('employe-category-creation-card').fnninputzz();
+          }
         }   
      });
   })();

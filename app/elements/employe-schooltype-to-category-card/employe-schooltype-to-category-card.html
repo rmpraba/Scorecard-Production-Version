@@ -267,7 +267,8 @@
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
-        this.$.mydialog.toggleDialog();
+        document.querySelector('employe-creation-card').fnnewsave();
+        //this.$.mydialog.toggleDialog();
        document.querySelector('employe-creation-card').Fnsubjectclean(); 
        
        },
@@ -373,7 +374,18 @@
           {
             this.$.talhidn.hidden=true;
             //document.querySelector('#empLanguageprefernceid').selected=-1;
+          },
+           fnndialogg:function()
+          {
+            //alert("saveee");
+            this.$.mydialog.toggleDialog();
+          },
+          fnninput:function()
+          {
+            //alert("no input");
+            this.$.mydialog.toggleDialog3();
           }
+    
     
 
      });

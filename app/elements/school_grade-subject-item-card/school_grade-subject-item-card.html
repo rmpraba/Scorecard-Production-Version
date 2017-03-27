@@ -18,7 +18,7 @@
     </style>
     <div>
       <table>
-        <tr>      
+        <tr>       
            <td class="innercard">
            <paper-input value={{getsubjectname}} hidden></paper-input>
           <paper-input value={{emplanpreff}} hidden></paper-input>
@@ -148,6 +148,18 @@ Fngradeclean:function(e){
                      obj.subjectname=this.getsubjectname;
                      delpassbigarr.splice(obj);
                   
+             },
+
+             fnnsaveinputzz:function()
+             {
+              if(v.length!=0)
+              {
+                document.querySelector('school-grade-to-subject-card').saveinputzz();
+              }
+              else
+              {
+                document.querySelector('school-grade-to-subject-card').noinputmsg();
+              }
              }
            });
 

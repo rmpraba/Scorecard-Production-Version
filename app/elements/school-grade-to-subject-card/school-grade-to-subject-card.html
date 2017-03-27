@@ -239,7 +239,8 @@
            //alert('save');
            //alert(JSON.stringify(passservicearr));
            this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
-           this.$.mydialog.toggleDialog();
+           document.querySelector('school_grade-subject-item-card').fnnsaveinputzz();
+           //this.$.mydialog.toggleDialog();
          //  passservicearr=[];
            document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
      },
@@ -347,7 +348,15 @@
            {
             document.querySelector('#empLanguageprefernce1id').selected=-1;
            }
-        } 
+        },
+        saveinputzz:function()
+        {
+          this.$.mydialog.toggleDialog();
+        },
+      noinputmsg:function()
+      {
+        this.$.mydialog.toggleDialog3();
+      }
 
     });
   })();

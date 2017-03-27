@@ -113,12 +113,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 4%;
       }
 
-      .newcarddzz
+      /*.newcarddzz
       {
         overflow-x: hidden;
         overflow-y: scroll;
       }
-      .newwwtabb
+*/      .newwwtabb
       {
         margin-top: 3%;
       }
@@ -164,22 +164,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
 
    <div class="newwwtabb" hidden$="{{hidenewtabb}}">
-        <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
       <div>
         <table class="table table-bordered">
-            <!-- <div class="container"> -->
-          <div>
             <thead> 
               <tr>
-                <th class="innercard" style="width: 750px;margin-left: 23%;">
+                <th class="innercard" style="width: 776px;margin-left: 17%;">
                   <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                    <h4 style="width:22%;">{{view.srtarr}}</h4>   
+                    <h4 style="width:17%;">{{view.srtarr}}</h4>   
                   </template>
-                  </th>
-                </th>   
+                </th>
               </tr>
-              </thead>
-              <tbody class="newcarddzz col-sm-12" style="width: 1070px;height: 350px;">
+            </thead>
+            
+              <tbody class="newcarddzz col-sm-12">
                 
                 <template is="dom-repeat" items="{{sectionfullarr}}" as="view">
                   <tr>
@@ -195,16 +192,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </tr>
                 </template>
               </tbody>
-            </div>
           </table>   
         </div>   
         </div>  
-        
-
-
 
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
+
+
       <div id="z1">
              <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
              <paper-tooltip for="prebutton">Previous Page</paper-tooltip>
