@@ -1753,7 +1753,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
     },
-fnschooltypesaveinfo:function(selectmapschooltypearr)
+fnschooltypesaveinfo:function(selectmapschooltypearr,empname)
 { 
       //alert(JSON.stringify(selectmapschooltypearr));
     for(var i=0;i<selectmapschooltypearr.length;i++){
@@ -1779,7 +1779,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
       var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res)); 
  },
-   fnsavesection:function(empsectionarr)
+   fnsavesection:function(empsectionarr,empname)
    {
      for(var i=0;i<empsectionarr.length;i++)
      {
@@ -1878,7 +1878,7 @@ Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,emp
          obj.employeeid=employeeid;
          obj.employeename=employeename;
          obj.employeephone=employeephone;
-         obj.employeemobile=employeemobile;
+         obj.employeemobile=employeemobile;   
          obj.employeemail=employeemail;
          obj.employeepassword=employeepassword;
     obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 

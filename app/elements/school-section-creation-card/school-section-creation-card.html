@@ -215,7 +215,7 @@ setdbschooltype:function(e){
         // obj.Grade_name=generatearr[k].gradename;
         obj.section_id=overall[k].section_id;
         obj.class_id=overall[k].class_id;
-       obj.id=overall[k].section_id+overall[k].grade_id;
+       obj.id=overall[k].class_id+overall[k].grade_id;
         a.push(obj);
         for(var l=k+1;l<overall.length;l++)
         {
@@ -225,7 +225,7 @@ setdbschooltype:function(e){
              //obj1.Grade_name=generatearr[l].gradename;
              obj1.section_id=overall[l].section_id;
              obj1.class_id=overall[l].class_id;
-             obj1.id=overall[l].section_id+overall[l].grade_id;
+             obj1.id=overall[l].class_id+overall[l].grade_id;
 
              a.push(obj1);
              //alert(JSON.stringify(a));

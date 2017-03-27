@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          <td id="tb1" hidden>{{acadamicyears}}</td>
          <td id="tb1" hidden>{{schootypids}}</td>
          <td id="tb1">{{gradename}}</td>
-        <td id="tb1"><paper-input value="{{section}}" required error-message="needs Section Count!"   allowed-pattern="[0-9]" maxlength="2"></paper-input></td>
+        <td id="tb1"><paper-input value="{{section}}" required error-message="needs Section Count!"   allowed-pattern="[0-9]" maxlength="2" on-change="fnsetvel" ></paper-input></td>
         <td id="tb1"><paper-input value="{{student}}" required error-message="needs Student Count!" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="2" on-change="fnsetvel"></paper-input></td>
             <td id="tb1">{{capacity}}</td>
       
@@ -85,7 +85,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.capacity=this.student*this.section;
     },
     FnSave:function(e){
-    if(this.student==""||this.section=="")
+      //alert("1");
+      //alert(this.student+" "+this.section+" "+this.capacity);
+    if(this.student==""||this.student==null||this.section==""
+      ||this.section==null)
     {
      alert("Please insert the value");
     }   
