@@ -267,7 +267,8 @@
       FnSubmit:function(e){
       //  alert(JSON.stringify(getgradenames));
         this.$.uiservice.fnempsubjectdetails(getgradenames);
-        this.$.mydialog.toggleDialog();
+        document.querySelector('employe-creation-card').fnnewsave();
+        //this.$.mydialog.toggleDialog();
        document.querySelector('employe-creation-card').Fnsubjectclean(); 
        
        },
@@ -283,7 +284,8 @@
         grnerate:function(e)
         {
           //document.querySelector('employe-creation-card').Fnsubjectclean(); 
-          //document.querySelector('#empLanguageprefernceid').selected=-1;       
+          //document.querySelector('#empLanguageprefernceid').selected=-1;   
+         
             if(overall1!=0){
              // alert('1');
           document.querySelector('employe-creation-card').Fnsubjectclean1();
@@ -373,7 +375,18 @@
           {
             this.$.talhidn.hidden=true;
             //document.querySelector('#empLanguageprefernceid').selected=-1;
+          },
+           fnndialogg:function()
+          {
+            //alert("saveee");
+            this.$.mydialog.toggleDialog();
+          },
+          fnninput:function()
+          {
+            //alert("no input");
+            this.$.mydialog.toggleDialog3();
           }
+    
     
 
      });

@@ -1,4 +1,4 @@
-<!--
+ <!--
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -145,7 +145,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <td></td>
                 <td class="innercard1">
                   <template is="dom-repeat" items="{{view.head}}" as="s">
-                   <h4 style="margin-left:6%; width: 10%;">{{s.section_id}}&nbsp;&nbsp;</h4>
+                   <h4 style="margin-left:7%; width: 12%;">{{s.section_id}}</h4>
                   </template>
                 </td>
                 <td></td>  
@@ -258,7 +258,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      fnsubmit:function(e){
      
          this.$.uiservice.fnsavesection(empsectionarr);
-         this.$.mydialog.toggleDialog();
+         document.querySelector('emp-grade-get-card').fnnsaveinput();
+         //this.$.mydialog.toggleDialog();
          document.querySelector('emp-grade-get-card').Fngradecleansection(); 
         },      
        fndelete:function(e){ 
@@ -412,6 +413,16 @@ if(document.querySelector('#employeeidzzzzzz').selected!=-1){
         this.allarrr=overall1;
         this.$.uiservice.empgetsectionvalues(this.empselectid);
       },
+
+
+      fnnsavezz:function()
+      {
+        this.$.mydialog.toggleDialog();
+      },
+      fnninputzz:function()
+      {
+        this.$.mydialog.toggleDialog3();
+      }
 
        });
       

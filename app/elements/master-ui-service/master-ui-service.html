@@ -3,8 +3,7 @@
 <link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="master-ui-service">
-  <template>
-      
+  <template>  
     
     <iron-ajax        
         id="rolecreationajax"
@@ -1753,7 +1752,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
     emprolemappingResponse:function(e){
         var res=e.detail.response.returnval;
     },
-fnschooltypesaveinfo:function(selectmapschooltypearr)
+fnschooltypesaveinfo:function(selectmapschooltypearr,empname)
 { 
       //alert(JSON.stringify(selectmapschooltypearr));
     for(var i=0;i<selectmapschooltypearr.length;i++){
@@ -1779,7 +1778,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr)
       var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res)); 
  },
-   fnsavesection:function(empsectionarr)
+   fnsavesection:function(empsectionarr,empname)
    {
      for(var i=0;i<empsectionarr.length;i++)
      {
@@ -1878,7 +1877,7 @@ Fnpersonalinfo:function(employeeid,employeename,employeephone,employeemobile,emp
          obj.employeeid=employeeid;
          obj.employeename=employeename;
          obj.employeephone=employeephone;
-         obj.employeemobile=employeemobile;
+         obj.employeemobile=employeemobile;   
          obj.employeemail=employeemail;
          obj.employeepassword=employeepassword;
     obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
@@ -2029,15 +2028,18 @@ fnschoolemployeerole:function( employeeid,employeename){
          //alert('1');
          this.selectschooltype1url=sessionStorage.getItem("addrinfo")+"/selectschooltype1-service";
          var obj={"school_id":""};
-         obj.school_id=schoolid;
+         obj.school_id=schoolid; 
          this.selectschooltype1param=obj;
          this.$.selectschooltype1ajax.generateRequest();
      },
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         //alert(JSON.stringify(res));  
-        document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
+         //alert(JSON.stringify(res)); 
+         
+            document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
+         
+          
       },
    selectschoolnames:function(){
          //alert('1');
@@ -3377,17 +3379,14 @@ insertschoolTypename:function(schooltypesarr)
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.schooltype=schooltype;
          obj.acadamicyear=acadamicyear;
-         // alert(JSON.stringify(obj)); 
-      this.fngetpasssectintermvalueparam=obj;
+       this.fngetpasssectintermvalueparam=obj;
        this.$.fngetpasssectintermvalueajax.generateRequest();
      },
      fngetpasssectintermvalueResponse:function(e)
      {
         var res=e.detail.response.returnval; 
-        // alert(JSON.stringify(res));
-         document.querySelector('working-days-card').scooltypgridval1(res);
-      }
-      
+        document.querySelector('working-days-card').scooltypgridval1(res);
+     }      
     });
   })();
   </script>

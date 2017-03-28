@@ -347,14 +347,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'school-creation-card',
         ready:function(){
-          this.hideupdatediv=true;
-          this.hidecreatediv=false;  
+          
+        },
+        newrefresh:function()
+        {
           this.$.uiservice.fnschoolcreation();
-
-          this.FnRefresh();
+          this.hideupdatediv=true;
+          this.hidecreatediv=false; 
           this.$.tit4.hidden=true;
           this.$.tit3.hidden=false;
-          //this.$.uiservice.fnschoolcreation();
         },
           
        fn1:function(schoolid,schoolname,telnum,mobile,mailid,wesite,affiliationno,boardselection,addr,addr1,addr2,addr3)

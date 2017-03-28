@@ -38,14 +38,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      #labelid,#labelid1,#labelid2
+      #labelid,#labelid1,#labelid2,#labelid3
+
 
       {
             font-style: oblique;
             font-size: 1.3em;
 
       }
-      #newpopup,#newpopup1,#newpopup2
+      #newpopup,#newpopup1,#newpopup2,#newpopup3
       {
            border-radius: 10px;
            width: 350px;
@@ -100,6 +101,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <center><paper-button style="background-color: #363636;color: #ffffff;" dialog-confirm autofocus>Ok</paper-button></center>
       </paper-dialog>
     </div>
+
+    <div>
+       <paper-dialog id="newpopup3" modal>
+          <label  id="labelid3">Please Check whether input is given or not.</label>
+            <div class="buttons">         
+            </div>
+            <center><paper-button style="background-color: #363636;color: #ffffff;" dialog-confirm autofocus>Close</paper-button></center>
+      </paper-dialog>
+    </div>
+
   </template>
   <script>
   (function() {
@@ -109,7 +120,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'demosumbit-card',
       toggleDialog:function()
       {
-        // alert("dialog");
         this.$.newpopup.toggle();
       },
       toggleDialog1:function()
@@ -121,8 +131,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
       this.$.newpopup2.toggle();
      
-      }
-     
+      },
+      toggleDialog3:function()
+      {
+        this.$.newpopup3.toggle();
+      }   
     
     });
   })();

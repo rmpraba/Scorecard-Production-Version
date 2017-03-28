@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    </paper-dialog>
 
      <paper-dialog id="sectiongradeidss" modal>
-       <h2>Cannot add more sections, Please make provision in Student Section Allocation first.</h2>
+       <h2>Cannot add more sections, Please make provision in Capacity Allocation first.</h2>
      <center>
         <paper-button style="background-color:black;color:white" dialog-confirm autofocus> close</paper-button>
      </center>
@@ -151,16 +151,19 @@ countsectionvalueResponse:function(e){
     fnsetsubmit:function(e){
      //   alert(this.classsectionid);
             //     var sectionname=this.section.
+             if(this.section==""){
+              alert("Please Enter the Section");
+             }
+           else{  
               sectionname=this.section.toUpperCase();
               sectionid=sectionname.toLowerCase();
               classid=this.classsectionid;
-             //alert(sectionname+" "+sectionid+" "+this.sectiongradeidzx+" "+classid+" "+this.sectiongradenamezx);
           this.section1();
           this.section2();
           this.section3();
        this.section="";
        
-       
+       }
      },
     
 
