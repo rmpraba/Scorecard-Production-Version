@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'demo1'
+   database : 'scorecarddb'
 
  });
 var bodyParser = require('body-parser'); 
@@ -8675,6 +8675,100 @@ app.post('/generateroletogrademappinginfo-service',  urlencodedParser,function (
     });
     }
     });
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+app.post('/generateroletogrademappinginfo-service1',  urlencodedParser,function (req,res)
+  {  
+    var qur1="SELECT * FROM mp_teacher_grade WHERE school_id='"+req.query.schoolid+"' and role_id='"+req.query.roleid+"' and academic_year='"+req.query.academicyear+"'";
+    var qur2="SELECT * FROM md_school_grade_mapping WHERE school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and school_type='"+req.query.type+"'";
+    var qur3="select * from employee_to_school_type_category_mapping m join md_employee e "+
+             "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
+             "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
+             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"'";
+    console.log('------------school role-------------');
+    console.log(qur1);
+    console.log('------------------------------------');
+    console.log(qur2);
+    console.log('------------------------------------');
+    console.log(qur3);
+    console.log('------------------------------------');
+    var maparr=[];
+    var secarr=[];
+    var emparr=[];
+    connection.query(qur1,function(err, rows){
+    if(!err)
+    {  
+    maparr=rows;
+    connection.query(qur2,function(err, rows){
+    if(!err)
+    {  
+    secarr=rows;
+    connection.query(qur3,function(err, rows){
+    if(!err)
+    { 
+    emparr=rows;
+      res.status(200).json({'maparr': maparr,'secarr':secarr,'emparr':emparr});
+    }
+    });
+    }
+    });
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+app.post('/deletegraddeleteetorolemapping-service',  urlencodedParser,function (req,res)
+  {  
+    if(req.query.roleid=='class-teacher')
+    var qur="DELETE FROM mp_teacher_grade WHERE school_id='"+req.query.schoolid+"' and "+
+    " academic_year='"+req.query.academicyear+"' and grade_id='"+req.query.class+"' "+
+    " and school_type='"+req.query.schooltype+"' and role_id='"+req.query.roleid+"'";
+    if(req.query.roleid=='co-ordinator'||req.query.roleid=='headmistress')
+    var qur="DELETE FROM mp_teacher_grade WHERE school_id='"+req.query.schoolid+"' and "+
+    " academic_year='"+req.query.academicyear+"' "+
+    " and school_type='"+req.query.schooltype+"' and role_id='"+req.query.roleid+"'";
+    console.log('------------school role-------------');
+    console.log(qur);
+    connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': 'Deleted!'});
+    }
+    else
+     res.status(200).json({'returnval': 'no rows'}); 
+  });
+});
+
+app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
+  {  
+    var qur="INSERT INTO mp_teacher_grade SET ?";
+    var response={
+      school_id:req.query.schoolid,
+      id:req.query.empid,
+      grade_id:req.query.class,
+      subject_id:"",
+      role_id:req.query.roleid,
+      section_id:req.query.section,
+      flage:req.query.flage,
+      class_id:req.query.classid,
+      academic_year:req.query.academicyear,
+      school_type:req.query.schooltype
+    };
+    console.log('------------school role-------------');
+    console.log(qur);
+    connection.query(qur,[response],
+    function(err, rows)
+    {
+    if(!err)
+    {    
+      res.status(200).json({'returnval': rows});
     }
     else
      res.status(200).json({'returnval': 'no rows'}); 

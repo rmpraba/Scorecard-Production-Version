@@ -3377,14 +3377,14 @@ insertschoolTypename:function(schooltypesarr)
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.schooltype=schooltype;
          obj.acadamicyear=acadamicyear;
-         alert(JSON.stringify(obj)); 
+         // alert(JSON.stringify(obj)); 
       this.fngetpasssectintermvalueparam=obj;
        this.$.fngetpasssectintermvalueajax.generateRequest();
      },
      fngetpasssectintermvalueResponse:function(e)
      {
         var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));
+        // alert(JSON.stringify(res));
          document.querySelector('working-days-card').scooltypgridval1(res);
       }
       
