@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecarddb'
+   database : 'scdemo'
 
  });
 var bodyParser = require('body-parser'); 
@@ -5226,7 +5226,7 @@ app.post('/subjectcreation-service' ,  urlencodedParser,function (req, res)
      //console.log(qqq);
     //console.log(response);
 
-    connection.query("SELECT * FROM md_subject WHERE subject_id='"+req.query.subjectid+"'",
+    connection.query(qqq,
     function(err, rows)
     {
     if(rows.length==0)
