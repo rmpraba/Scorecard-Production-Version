@@ -1521,10 +1521,10 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       this.$.tranfersectionajax.generateRequest();
      },  
      tranfersectionResponse:function(e){
-      var res=e.detail.response.returnval; 
+      var res=e.detail.response.returnval;   
       //alert(JSON.stringify(res));
         document.querySelector('student-transfer-grade').tranfersectionarr=res;
-     },
+     },     
      empgetsectionvalues:function(empselectid){
       this.empgetsectionvaluesurl=sessionStorage.getItem("addrinfo")+"/empgetsectionvalues-service";
       var obj={"school_id":"","empselectid":"","academic_year":"","schooltypeid":""};
@@ -1533,12 +1533,12 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
       this.empgetsectionvaluesparam=obj;
-     // alert(JSON.stringify(obj));
+     //   alert(JSON.stringify(obj));
     this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
       var res=e.detail.response.returnval; 
-       // alert(JSON.stringify(res));
+     //   alert(JSON.stringify(res));
       document.querySelector('emp-grade-get-card').empsctionmaping(res);
      },
      fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){     

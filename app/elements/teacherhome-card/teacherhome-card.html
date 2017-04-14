@@ -597,35 +597,24 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='management'){
           this.managementreport=false;
-
           this.GeneratemgmtReport=false;
-          // this.createrole=false;
-          // this.createemployee=false;  
-
-          // this.teach_obser=false;  
-
-       }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
-        {
-         this.createemployee=false;
-          this.employeetograde=false;
-          this.categorytoschooltype=false;
-          this.gradetosubject=false;
-          this.sectioncreation=false;
-          this.studentfixed=false;
-          this.workingdats=false;
-          this.emptocategory=false;
-          this.gradetosection=false;
-          this.subjecttostudent=false;
-          this.roletogrademapping=false;
-         // this.SectionPreiods=false;
-      
-          
           }
-     
-         if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
-        {
-
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=='schooladmin')
+          {
+           this.createemployee=false;
+           this.employeetograde=false;
+           this.categorytoschooltype=false;
+           this.gradetosubject=false;
+           this.sectioncreation=false;
+           this.studentfixed=false;
+           this.workingdats=false;
+           this.emptocategory=false;
+           this.gradetosection=false;
+           this.subjecttostudent=false;
+           this.roletogrademapping=false;
+           }
+       if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
+          {
           this.schooltyptograde=false;
           this.createcategory=false;  
           this.createschoolz=false; 
@@ -634,10 +623,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.createsubject=false;
           this.createrole=false;
           this.creategrade=false;
-
-        //  this.schooltyptograde=false;
-
-         }
+          }
      
 
         if(sessionStorage.getItem("curr_sess_loggedroleid")=='subject-teacher'){
