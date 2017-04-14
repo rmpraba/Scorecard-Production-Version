@@ -354,10 +354,20 @@
         document.querySelector('fivetotencomparisonreport-card').grade=localStorage.getItem("curr_sess_grade");
         document.querySelector('fivetotencomparisonreport-card').studentid=arr[0].student_id;
         document.querySelector('fivetotencomparisonreport-card').studentname=arr[0].student_name;
+        if(arr[0].mother_name==null||arr[0].mother_name==""){}
+        else
         document.querySelector('fivetotencomparisonreport-card').mothername=arr[0].mother_name;
+        if(arr[0].dob==null||arr[0].dob==""){}
+        else
         document.querySelector('fivetotencomparisonreport-card').dob=arr[0].dob;
+        if(arr[0].parent_name==null||arr[0].parent_name==""){}
+        else
         document.querySelector('fivetotencomparisonreport-card').fathername=arr[0].parent_name;
+        if(arr[0].address1==null||arr[0].address1==""||arr[0].address2==null||arr[0].address2==""||arr[0].address3==null||arr[0].address3==""||arr[0].city==null||arr[0].city==""||arr[0].pincode==null||arr[0].pincode==""){}
+        else
         document.querySelector('fivetotencomparisonreport-card').address=arr[0].address1+" "+arr[0].address2+" "+arr[0].address3+" "+arr[0].city+" "+arr[0].pincode;
+        if(arr[0].mobile==null||arr[0].mobile==""){}
+        else
         document.querySelector('fivetotencomparisonreport-card').mobileno=arr[0].mobile; 
         }
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard")
@@ -365,11 +375,23 @@
         document.querySelector('cce-fivetoten-score-card').grade=localStorage.getItem("curr_sess_grade");
         document.querySelector('cce-fivetoten-score-card').studentid=arr[0].student_id;
         document.querySelector('cce-fivetoten-score-card').studentname=arr[0].student_name;
+        if(arr[0].mother_name==null||arr[0].mother_name==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').mothername=arr[0].mother_name;
+        if(arr[0].dob==null||arr[0].dob==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').dob=arr[0].dob;
+        if(arr[0].parent_name==null||arr[0].parent_name==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').fathername=arr[0].parent_name;
+        if(arr[0].address1==null||arr[0].address1==""||arr[0].address2==null||arr[0].address2==""||arr[0].address3==null||arr[0].address3==""||arr[0].city==null||arr[0].city==""||arr[0].pincode==null||arr[0].pincode==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').address=arr[0].address1+" "+arr[0].address2+" "+arr[0].address3+" "+arr[0].city+" "+arr[0].pincode;
+        if(arr[0].mobile==null||arr[0].mobile==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').mobileno=arr[0].mobile; 
+        if(arr[0].email==null||arr[0].email==""){}
+        else
         document.querySelector('cce-fivetoten-score-card').parentemail=arr[0].email;
         document.querySelector('cce-fivetoten-score-card').secemail=arr[0].alternate_mail;
       }
@@ -385,7 +407,7 @@
       },
       fetchhealthattendanceinfoResponse:function(e){        
         var arr=e.detail.response.returnval;
-        //alert('s'+JSON.stringify(arr));
+        alert('s'+JSON.stringify(arr));
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard")
         {
         document.querySelector('cce-fivetoten-score-card').term1attendance=arr[0].attendance;
@@ -499,7 +521,29 @@
                 obj.tot1='E1';
               if(t1>=0&&t1<=2)
                 obj.tot1='E2';
-              var fatot=parseFloat((parseFloat(this.m1)+parseFloat(this.m2))/2).toFixed(1);
+
+              var t2=parseFloat(((parseFloat(this.m3)+parseFloat(this.m4)+(3*parseFloat(this.sm2)))*2)/10).toFixed(1);
+             // alert(t1);
+              if(t2>=9.1&&t2<=10)
+                obj.tot2='A1';
+              if(t2>=8.1&&t2<=9)
+                obj.tot2='A2';
+              if(t2>=7.1&&t2<=8)
+                obj.tot2='B1';
+              if(t2>=6.1&&t2<=7)
+                obj.tot2='B2';
+              if(t2>=5.1&&t2<=6)
+                obj.tot2='C1';
+              if(t2>=4.1&&t2<=5)
+                obj.tot2='C2';
+              if(t2>=3.3&&t2<=4)
+                obj.tot2='D';
+              if(t2>=2.1&&t2<=3.2)
+                obj.tot2='E1';
+              if(t2>=0&&t2<=2)
+                obj.tot2='E2';
+
+              var fatot=parseFloat((parseFloat(this.m1)+parseFloat(this.m2)+parseFloat(this.m3)+parseFloat(this.m4))/4).toFixed(1);
               // alert(fatot);
               if(fatot>=9.1&&fatot<=10)
                 obj.FA='A1';
@@ -519,7 +563,9 @@
                 obj.FA='E1';
               if(fatot>=0&&fatot<=2)
                 obj.FA='E2';
-              var satot=parseFloat(this.sm1).toFixed(1);
+
+              var satot=parseFloat(parseFloat(parseFloat(this.sm1)+parseFloat(this.sm2))/2).toFixed(1);
+              // alert(satot);
               if(satot>=9.1&&satot<=10)
                 obj.SA='A1';
               if(satot>=8.1&&satot<=9)
@@ -538,7 +584,8 @@
                 obj.SA='E1';
               if(satot>=0&&satot<=2)
                 obj.SA='E2';
-              var grand=parseFloat(((parseFloat(this.m1)+parseFloat(this.m2)+(3*parseFloat(this.sm1)))*2)/10).toFixed(1);
+              var grand=parseFloat(((parseFloat(fatot)+(3*(parseFloat(satot))))*2)/10).toFixed(1);
+              // alert(grade);
               if(grand>=9.1&&grand<=10){
                 obj.grade='A1';
                 obj.point='10.0';
@@ -666,14 +713,47 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // lsarr.push(obj);
+            if(lsarr.length==0)
             lsarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<lsarr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(lsarr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            lsarr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            lsarr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            lsarr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            lsarr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            lsarr.push(obj);  
+            }
+            }
           }
            if(submarks[i].subject_name=="Work Education"){
            
@@ -681,14 +761,47 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // wkarr.push(obj);
+            if(wkarr.length==0)
             wkarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<wkarr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(wkarr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            wkarr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            wkarr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            wkarr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            wkarr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            wkarr.push(obj);  
+            }
+            }
           }
            if(submarks[i].subject_name=="Visual & Performing Arts"){
             // alert('yes');
@@ -696,14 +809,47 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // vparr.push(obj);
+            if(vparr.length==0)
             vparr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<vparr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(vparr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            vparr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            vparr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            vparr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            vparr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            vparr.push(obj);  
+            }
+            }
           }
            if(submarks[i].subject_name=="Attitudes And values"){
             // alert('yes');
@@ -711,14 +857,47 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // avarr.push(obj);
+            if(avarr.length==0)
             avarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<avarr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(avarr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            avarr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            avarr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            avarr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            avarr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            avarr.push(obj);  
+            }
+            }
           }
            if(submarks[i].subject_name=="Co-Curricular Activities"){
             // alert('yes');
@@ -726,14 +905,47 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // ccarr.push(obj);
+            if(ccarr.length==0)
             ccarr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<ccarr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(ccarr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            ccarr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            ccarr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            ccarr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            ccarr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            ccarr.push(obj);  
+            }
+            }
           }
            if(submarks[i].subject_name=="Health and Physical Education"){
             // alert('yes');
@@ -741,17 +953,51 @@
             // obj.catcheck=submarks[i].category;
             obj.category=submarks[i].category;
             obj.comment=submarks[i].description;
-            obj.grade=submarks[i].category_grade;
+            // obj.grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term1")
             obj.t1grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term2")
             obj.t2grade=submarks[i].category_grade;
             if(submarks[i].term_name=="term3")
             obj.t3grade=submarks[i].category_grade;    
+            // hparr.push(obj);
+            if(hparr.length==0)
             hparr.push(obj);
+            else{
+            var flag=0;
+            for(var j=0;j<hparr.length;j++)
+            {            
+            // alert(engarr[j].category+"   "+scholasticarr[i].category);
+            if(hparr[j].category==submarks[i].category)
+            {
+            flag=1;
+            // alert('yes');
+            if(submarks[i].term_name=="term1"){
+            hparr[j].t1grade=submarks[i].category_grade;
+            // alert("Term1: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term2")
+            {
+            hparr[j].t2grade=submarks[i].category_grade;
+            // alert("Term2: "+obj.t1grade);
+            }
+            if(submarks[i].term_name=="term3"){
+            hparr[j].t3grade=submarks[i].category_grade;    
+            }
+            if((localStorage.getItem("curr_sess_termname")).toUpperCase()==(submarks[i].term_name).toUpperCase()){
+            hparr[j].comment=submarks[i].description;
+            }
+            }  
+            }
+            if(flag==0){
+            // alert(JSON.stringify(obj));
+            hparr.push(obj);  
+            }
+            }
           }
         }
        
+       // alert(JSON.stringify(lsarr));
          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Comparisonreport")
          {
         document.querySelector('fivetotencomparisonreport-card').lsArray=lsarr;

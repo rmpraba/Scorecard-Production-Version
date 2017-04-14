@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecarddb'
+   database : 'scorecardmaster'
 
  });
 var bodyParser = require('body-parser'); 
@@ -1588,13 +1588,13 @@ app.post('/scorecardreadyness-service',  urlencodedParser,function (req,res)
 {   
 var n=0;
 console.log('--------------------'+req.query.termname+'-----------');
-if(req.query.grade=="Grade-1"||req.query.grade=="Grade-2"||req.query.grade=="Grade-3"||req.query.grade=="Grade-4"){
 if(req.query.termname=='Term1')
 n=1;
 if(req.query.termname=='Term2')
 n=2;
 if(req.query.termname=='Term3')
 n=3;
+if(req.query.grade=="Grade-1"||req.query.grade=="Grade-2"||req.query.grade=="Grade-3"||req.query.grade=="Grade-4"){
 var qur="select * from md_grade_subject_count where no_of_subjects=(( "+
 "(select count(distinct(subject_id)) from tr_term_assesment_overall_assesmentmarks where "+
 "school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and "+
@@ -1607,9 +1607,9 @@ var qur="select * from md_grade_subject_count where no_of_subjects=(( "+
 else
 {
 var qur="select * from md_grade_subject_count where no_of_subjects=(( "+
-"select count(distinct(subject_id)) from tr_term_overallfa_assesment_marks where "+
+"(select count(distinct(subject_id)) from tr_term_overallfa_assesment_marks where "+
 "school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and "+
-"grade='"+req.query.grade+"' and section='"+req.query.section+"')/"+
+"grade='"+req.query.grade+"' and section='"+req.query.section+"')*("+n+"))/"+
 "(select count(distinct(term_name)) from tr_term_overallfa_assesment_marks where "+
 "school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and "+
 "grade='"+req.query.grade+"' and section='"+req.query.section+"')) and school_id='"+req.query.schoolid+"' and "+

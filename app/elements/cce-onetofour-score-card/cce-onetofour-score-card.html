@@ -13,7 +13,7 @@
     width: 800px;
     border: 1px solid black;
     margin-left: 1%;
-    margin-top: 5%;
+    margin-top: 2%;
   }
   .logo{
     width:100%;
@@ -231,7 +231,7 @@
       <td rowspan="2" align="right"><div class="fab">{{pterm3}}</div></td></tr>
       <tr style="height: 10px;"><th colspan="7"></th></tr>
       <tr><td style="width: 25%;">Total Working Days</td><td align="right" style="width: 13%;">{{wdterm1}}</td>
-      <td colspan="2" align="right" style="width: 13%;">{{wdterm2}}</td><td align="right" style="width: 13%;">{{wdterm3}}</td></tr>
+      <td colspan="2" align="right" style="width: 13%;">{{wdterm2}}</td><td align="right" colspan="2" style="width: 13%;">{{wdterm3}}</td></tr>
   </table>
   <br><br><br>
   <table  class="general">
@@ -249,7 +249,7 @@
     <tr><th>Class Teacher</th><th></th><th>Principal</th><th></th><th>Parent</th><th></th></tr>
   </table>
 
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br>
   <div id="footer"></div>
 
   <table class="subject">    
@@ -356,7 +356,7 @@
    <div id="footer"></div>
 </div>
 
-<div class="buttoncard">
+<div class="buttoncard" hidden$="{{hidebtn}}">
 <paper-button  id='print' class="button" on-click='print'>Print</paper-button>
 <paper-button  id='email' class="button" on-click='email'>Email</paper-button>
 </div>
@@ -380,7 +380,19 @@
 
 <onetofour-scorecard-service id="ss"></onetofour-scorecard-service>
 </template>
+<script type="text/javascript">
+  document.onkeydown = keydown;
+
+function keydown(evt){
+  if (!evt) evt = event;
+  if (evt.ctrlKey && evt.keyCode==80){ 
+    document.querySelector('home-page').FnHideView(true);
+  }  
+}
+</script>
+
 <script>
+
   (function() {
     'use strict';
     Polymer({
@@ -508,6 +520,7 @@
         this.personalityArray=[];
         
       }
+
     });
   })();
 </script>
