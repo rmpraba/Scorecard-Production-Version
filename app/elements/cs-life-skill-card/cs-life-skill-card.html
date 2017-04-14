@@ -201,12 +201,14 @@ var tableToExcel = (function() {
         }
         if(localStorage.getItem('curr_sess_report')=='0')
         {
+        this.hidesubtotal=true;
         this.$.submit.hidden=false; 
         // this.$.save.hidden=false;
         this.$.btn3.hidden=true;
         }
         if(localStorage.getItem('curr_sess_report')=='2')
         {
+        this.hidesubtotal=true;
         this.$.submit.hidden=false; 
         // this.$.save.hidden=true;
         this.$.btn3.hidden=true;
