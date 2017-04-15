@@ -249,7 +249,7 @@
     <tr><th>Class Teacher</th><th></th><th>Principal</th><th></th><th>Parent</th><th></th></tr>
   </table>
 
-  <br><br><br><br><br>
+  <br><br><br><br><br><br>
   <div id="footer"></div>
 
   <table class="subject">    
@@ -356,7 +356,7 @@
    <div id="footer"></div>
 </div>
 
-<div class="buttoncard" hidden$="{{hidebtn}}">
+<div class="buttoncard">
 <paper-button  id='print' class="button" on-click='print'>Print</paper-button>
 <paper-button  id='email' class="button" on-click='email'>Email</paper-button>
 </div>
@@ -380,19 +380,7 @@
 
 <onetofour-scorecard-service id="ss"></onetofour-scorecard-service>
 </template>
-<script type="text/javascript">
-  document.onkeydown = keydown;
-
-function keydown(evt){
-  if (!evt) evt = event;
-  if (evt.ctrlKey && evt.keyCode==80){ 
-    document.querySelector('home-page').FnHideView(true);
-  }  
-}
-</script>
-
 <script>
-
   (function() {
     'use strict';
     Polymer({
@@ -404,9 +392,9 @@ function keydown(evt){
         this.section=localStorage.getItem("curr_sess_section");
         this.subject=localStorage.getItem("curr_sess_subject");
         document.querySelector('#pimg1').src="../../images/"+sessionStorage.getItem("curr_sess_loggedid")+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
-        if(sessionStorage.getItem("curr_sess_loggedschoolid")=="SCH003")
-          document.querySelector('#pimg2').src="../../images/Principal"+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
-        else
+        // if(sessionStorage.getItem("curr_sess_loggedschoolid")=="SCH003")
+        //   document.querySelector('#pimg2').src="../../images/Principal"+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
+        // else
         document.querySelector('#pimg2').src="../../images/principal"+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
       },
        print:function(){
@@ -520,7 +508,6 @@ function keydown(evt){
         this.personalityArray=[];
         
       }
-
     });
   })();
 </script>

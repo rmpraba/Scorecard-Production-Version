@@ -95,8 +95,8 @@ table{
     width: 900px;
     height: 1210px;
     border: 20px solid green;
-    top:90px;
-    left: 100px;
+    top:10px;
+    left: 10px;
 }
 .bbbox{
 
@@ -104,8 +104,8 @@ table{
     width: 900px;
     height: auto;
     border: 20px solid green;
-    top:250px;
-    left: 100px
+    top:220px;
+    left: 10px
 }
 
 .buttoncard{
@@ -135,6 +135,9 @@ table{
      width: 750px;
      left: 50px;
       border: 1px solid black;
+  }
+  th{
+    font-size: 16px;
   }
 
 </style>
@@ -366,19 +369,19 @@ table{
            <th colspan="16"><h4>Result: Qualified/Eligible For Improvement of performance(EIOP)</h4></th>
      </tr>
       <tr>
-           <th colspan="16"><h4>Self Awareness:</h4></th>
+           <th colspan="16"><h4>Self Awareness:</h4><br><br></th>
      </tr>
      <tr>
-           <th colspan="16"><h4>My Goals:</h4></th>
+           <th colspan="16"><h4>My Goals:</h4><br><br></th>
      </tr>
      <tr>
-           <th colspan="16"><h4>My Strengths:</h4></th>
+           <th colspan="16"><h4>My Strengths:</h4><br><br></th>
      </tr>
      <tr>
-           <th colspan="16"><h4>My Interests and Hobbies</h4></th>
+           <th colspan="16"><h4>My Interests and Hobbies</h4><br><br></th>
      </tr>
      <tr>
-           <th colspan="16"><h4>Responsibilities Discharged/Exceptional Achievements</h4></th>
+           <th colspan="16"><h4>Responsibilities Discharged/Exceptional Achievements</h4><br><br></th>
      </tr>
  
 
@@ -441,6 +444,15 @@ table{
           document.querySelector('#img2').src="../../images/Principal"+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
         else
         document.querySelector('#img2').src="../../images/principal"+sessionStorage.getItem("curr_sess_loggedschoolid")+".jpg";
+         this.schoolname=sessionStorage.getItem("curr_sess_loggedschoolname");
+        this.schooladdress=sessionStorage.getItem("curr_sess_loggedschooladdress");
+        this.academicyear=localStorage.getItem("curr_sess_academicyear");
+        this.section=localStorage.getItem("curr_sess_section");
+
+        this.affno=sessionStorage.getItem("curr_sess_loggedaffliationid");
+        this.email=sessionStorage.getItem("curr_sess_emailid");
+        this.website=sessionStorage.getItem("curr_sess_website");
+        this.phno=sessionStorage.getItem("curr_sess_telno");
       },
       print:function(){
 
@@ -496,7 +508,9 @@ table{
         this.avArray="";
         this.ccArray="";
         this.hpArray="";
-
+        this.mothername="";
+        this.section="";
+        this.grade="";
       }
     });
   })();

@@ -2142,7 +2142,7 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
       }
       document.querySelector('approvalstatus-card').approvalarr=e.detail.response.returnval;
     },
-    callUpdateStudentInfo:function(id,name,pname,pmail,alternatemail){
+    callUpdateStudentInfo:function(id,name,pname,pmail,alternatemail,mothername,address){
       var obj={"schoolid":"","academicyear":"","enrno":"","name":"","pname":"","pmail":"","grade":"","section":""};
         obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.academicyear=localStorage.getItem("curr_sess_academicyear"); 
@@ -2152,6 +2152,8 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
          obj.name=name;    
          obj.pname=pname;
          obj.pmail=pmail;
+         obj.mothername=mothername;
+         obj.address=address;
          obj.alternatemail=alternatemail;
         // obj.termname=localStorage.getItem("curr_sess_termname");
         this.updatestudentinfourl=sessionStorage.getItem("addrinfo")+"/updatestudentinfo-service";
@@ -2190,6 +2192,8 @@ this.fetchfastudentreporturl=sessionStorage.getItem("addrinfo")+"/fetchfastudent
     studentparentinfoResponse:function(e){
       if(e.detail.response.returnval!="invalid"){
       document.querySelector('studentinfoedit-card').parentname=e.detail.response.returnval[0].parent_name;
+      document.querySelector('studentinfoedit-card').mothername=e.detail.response.returnval[0].mother_name;
+      document.querySelector('studentinfoedit-card').address=e.detail.response.returnval[0].address1;
       document.querySelector('studentinfoedit-card').parentmail=e.detail.response.returnval[0].email;
       document.querySelector('studentinfoedit-card').alternatemail=e.detail.response.returnval[0].alternate_mail;
       }

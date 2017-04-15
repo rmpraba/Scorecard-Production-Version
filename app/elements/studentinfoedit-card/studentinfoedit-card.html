@@ -34,7 +34,9 @@
       <div class='input'>
       <paper-input readonly label="Enrollment No" value="{{enrno}}"></paper-input>
       <paper-input label="Student Name" value="{{studentname}}"></paper-input>
-      <paper-input label="Parent Name" value="{{parentname}}"></paper-input>
+      <paper-input label="Father Name" value="{{parentname}}"></paper-input>
+      <paper-input label="Mother Name" value="{{mothername}}"></paper-input>
+      <paper-input label="Address" value="{{address}}"></paper-input>
       <paper-input label="Primary Email" value="{{parentmail}}"></paper-input>
       <paper-input label="Alternate Email" value="{{alternatemail}}"></paper-input>
       </div>
@@ -56,13 +58,15 @@
         this.enrno=studid;
       },
       FnUpdate:function(){
-        this.$.assesmentservice.callUpdateStudentInfo(this.enrno,this.studentname,this.parentname,this.parentmail,this.alternatemail);
+        this.$.assesmentservice.callUpdateStudentInfo(this.enrno,this.studentname,this.parentname,this.parentmail,this.alternatemail,this.mothername,this.address);
       },
       FnRefresh:function(){
         this.enrno="";
         this.studentname="";
         this.parentname="";
         this.parentmail="";
+        this.mothername="";
+        this.address="";
       }
     });
   })();

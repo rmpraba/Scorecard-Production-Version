@@ -1587,8 +1587,12 @@ app.post('/overallinsertcocurricularmark-service',  urlencodedParser,function (r
 //fetching student names
 app.post('/scorecardreadyness-service',  urlencodedParser,function (req,res)
 {   
+console.log('-------------------------------');
+console.log(req.query.termname);
+console.log('-------------------------------');
 var n=0;
 console.log('--------------------'+req.query.termname+'-----------');
+
 if(req.query.termname=='Term1')
 n=1;
 if(req.query.termname=='Term2')
@@ -1637,7 +1641,6 @@ console.log(qur);
 
   });
 });
-
 //fetching student names
 app.post('/fetchstudname-service',  urlencodedParser,function (req,res)
 {   
@@ -5013,11 +5016,11 @@ app.post('/updatestudentinfo-service' ,  urlencodedParser,function (req, res)
 {    
  var qur="update md_student set student_name='"+req.query.name+"' where school_id='"+req.query.schoolid+"' and "+
  " id='"+req.query.enrno+"'";
- var qur1="update parent set parent_name='"+req.query.pname+"',alternate_mail='"+req.query.alternatemail+"',email='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
+ var qur1="update parent set mother_name='"+req.query.mothername+"',address1='"+req.query.address+"',parent_name='"+req.query.pname+"',alternate_mail='"+req.query.alternatemail+"',email='"+req.query.pmail+"' where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'"; 
  var qur2=" select * from parent where school_id='"+req.query.schoolid+"' and "+
  " student_id='"+req.query.enrno+"'";
- var qur3="insert into parent values('"+req.query.schoolid+"','"+req.query.enrno+"','"+req.query.pname+"','"+req.query.pmail+"','','','','','',0,'')";  
+ var qur3="insert into parent values('"+req.query.schoolid+"','"+req.query.enrno+"','"+req.query.pname+"','"+req.query.pmail+"','','"+req.query.address+"','','','',0,'','"+req.query.mothername+"')";  
  console.log('--------------updateinfo status------------------');
  console.log(qur);
  console.log(qur1);
@@ -5052,6 +5055,7 @@ app.post('/updatestudentinfo-service' ,  urlencodedParser,function (req, res)
       res.status(200).json({'returnval': 'no rows'});
   });
 });
+
 
 
 app.post('/studentinfo-service' ,  urlencodedParser,function (req, res)

@@ -375,7 +375,9 @@
         document.querySelector('cce-fivetoten-score-card').grade=localStorage.getItem("curr_sess_grade");
         document.querySelector('cce-fivetoten-score-card').studentid=arr[0].student_id;
         document.querySelector('cce-fivetoten-score-card').studentname=arr[0].student_name;
-        if(arr[0].mother_name==null||arr[0].mother_name==""){}
+        if(arr[0].mother_name==null||arr[0].mother_name==""){
+          document.querySelector('cce-fivetoten-score-card').mothername="";
+        }
         else
         document.querySelector('cce-fivetoten-score-card').mothername=arr[0].mother_name;
         if(arr[0].dob==null||arr[0].dob==""){}
@@ -407,7 +409,7 @@
       },
       fetchhealthattendanceinfoResponse:function(e){        
         var arr=e.detail.response.returnval;
-        alert('s'+JSON.stringify(arr));
+        //alert('s'+JSON.stringify(arr));
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Scorecard")
         {
         document.querySelector('cce-fivetoten-score-card').term1attendance=arr[0].attendance;
@@ -584,7 +586,7 @@
                 obj.SA='E1';
               if(satot>=0&&satot<=2)
                 obj.SA='E2';
-              var grand=parseFloat(((parseFloat(fatot)+(3*(parseFloat(satot))))*2)/10).toFixed(1);
+              var grand=parseFloat(((parseFloat(parseFloat(fatot)*2)+(3*(parseFloat(satot))))*2)/10).toFixed(1);
               // alert(grade);
               if(grand>=9.1&&grand<=10){
                 obj.grade='A1';
