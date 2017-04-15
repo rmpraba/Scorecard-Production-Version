@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecardmaster'
+   database : 'reportcardmaster'
 });
 var bodyParser = require('body-parser'); 
 var app = express();
@@ -223,7 +223,7 @@ app.post('/grade-service',  urlencodedParser,function (req, res)
     "in(select grade_id from mp_teacher_grade where "+
     "school_id='"+req.query.schoolid+"')";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
+   else if(req.query.roleid=='principal'||req.query.roleid=='viceprincipal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select grade_name from md_grade where grade_id "+
     "in(select grade_id from mp_teacher_grade where "+
@@ -292,7 +292,7 @@ app.post('/section-service',  urlencodedParser,function (req, res)
     "where grade_name='"+req.query.gradename+"') and "+
     "school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"'";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
+   else if(req.query.roleid=='principal'||req.query.roleid=='viceprincipal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     //console.log('5');
     var qur="select * from md_section where section_id in "+
@@ -360,7 +360,7 @@ app.post('/subject-service',  urlencodedParser,function (req, res)
     "(select subject_id from mp_grade_subject where "+
     "grade_id in('g1','g2','g3','g4'))";
   }
-   else if(req.query.roleid=='principal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
+   else if(req.query.roleid=='principal'||req.query.roleid=='viceprincipal'||req.query.roleid=='headofedn'||req.query.roleid=='management')
   {
     var qur="select * from md_subject where subject_id in "+
     "(select subject_id from mp_grade_subject)";
@@ -3272,7 +3272,7 @@ app.post('/teacherid-service' ,  urlencodedParser,function (req, res)
  {
   qur="select DISTINCT id,name,password from md_employee where id!='"+req.query.id+"' and id in(select name from tr_teacher_observation_flag where flag='1') and school_id='"+req.query.schoolid+"'  and role_id='subject-teacher'";
  }
-  else  if(req.query.roleid=="principal")
+  else  if(req.query.roleid=="principal"||req.query.roleid=="viceprincipal")
  {
   qur="select DISTINCT id,name,password from md_employee where id!='"+req.query.id+"' and id in(select name from tr_teacher_observation_flag where flag='0') and school_id='"+req.query.schoolid+"'  and role_id='subject-teacher'";
  }
@@ -3373,7 +3373,7 @@ else  if(req.query.roleid=="headofedn")
   qur="select  distinct grade_id as gid,(select grade_name from md_grade where grade_id=gid) as gradename from mp_teacher_grade where grade_id in(select grade from tr_teacher_observation_flag where flag='1' and name='"+req.query.id+"') and school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and role_id='subject-teacher'"
 
 }
-else  if(req.query.roleid=="principal")
+else  if(req.query.roleid=="principal"||req.query.roleid=="viceprincipal")
  {
   qur="select  distinct grade_id as gid,(select grade_name from md_grade where grade_id=gid) as gradename from mp_teacher_grade where grade_id in(select grade from tr_teacher_observation_flag where flag='0' and name='"+req.query.id+"') and school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and role_id='subject-teacher'"
 
@@ -3415,7 +3415,7 @@ else if(req.query.roleid=="headofedn")
  {
   qur="select  distinct section_id from mp_teacher_grade where section_id in (select section from tr_teacher_observation_flag where name='"+req.query.id+"' and grade='"+req.query.gradeid+"' and flag='1') and school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and role_id='subject-teacher'";
 }
-else if(req.query.roleid=="principal")
+else if(req.query.roleid=="principal"||req.query.roleid=="viceprincipal")
  {
   qur="select  distinct section_id from mp_teacher_grade where section_id in (select section from tr_teacher_observation_flag where name='"+req.query.id+"' and grade='"+req.query.gradeid+"' and flag='0') and school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and role_id='subject-teacher'";
 }
@@ -3458,7 +3458,7 @@ else if(req.query.roleid=="headofedn")
  {
 qur= "select DISTINCT subject_id as sid,(select subject_name from md_subject where subject_id= sid) as subjectname from mp_teacher_grade where  subject_id in (select subject from tr_teacher_observation_flag where flag='1' and name='"+req.query.id+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionid+"') and  school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and section_id='"+req.query.sectionid+"' and role_id='subject-teacher'";
 }
-else if(req.query.roleid=="principal")
+else if(req.query.roleid=="principal"||req.query.roleid=="viceprincipal")
  {
 qur= "select DISTINCT subject_id as sid,(select subject_name from md_subject where subject_id= sid) as subjectname from mp_teacher_grade where  subject_id in(select subject from tr_teacher_observation_flag where flag='0' and name='"+req.query.id+"' and grade='"+req.query.gradeid+"' and section='"+req.query.sectionid+"') and  school_id='"+req.query.schoolid+"' and id='"+req.query.id+"' and grade_id='"+req.query.gradeid+"' and section_id='"+req.query.sectionid+"' and role_id='subject-teacher'";
 }
@@ -4981,7 +4981,7 @@ app.post('/fetchapprovalstatus-service' ,  urlencodedParser,function (req, res)
  var qur1="select * from tr_term_assesment_import_marks where school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and grade in(SELECT grade_name from md_grade where grade_id in(SELECT grade_id FROM mp_teacher_grade where id='"+req.query.loggedid+"' and role_id='"+req.query.roleid+"')) and subject!='attendance'";
  var qur2="select * from tr_term_fa_assesment_import_marks where school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and grade in(SELECT grade_name from md_grade where grade_id in(SELECT grade_id FROM mp_teacher_grade where id='"+req.query.loggedid+"' and role_id='"+req.query.roleid+"')) and subject!='attendance'";
  }
- else if(req.query.roleid=='principal'){
+ else if(req.query.roleid=='principal'||req.query.roleid=='viceprincipal'){
  var qur1="select * from tr_term_assesment_import_marks where school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and subject!='attendance'";
  var qur2="select * from tr_term_fa_assesment_import_marks where school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"' and term_name='"+req.query.termname+"' and subject!='attendance'";
  }
@@ -7780,6 +7780,9 @@ app.post('/FngetStudentpasssection-service',  urlencodedParser,function (req,res
 {  
    var e={school_id:req.query.schoolid};
   var qur="SELECT * FROM md_admission where school_id='"+req.query.school_id+"' and class_for_admission='"+req.query.stugrade+"' and academic_year='"+req.query.academic_year+"'";
+  console.log('--------------Admission---------------------');
+  console.log(qur);
+  console.log('--------------------------------------------');
   connection.query(qur,
     function(err, rows)
     {
@@ -8435,6 +8438,7 @@ app.post('/fnretrivestudent-service' ,urlencodedParser, function (req, res)
       var e={id:req.query.school_id};
       ///console.log(e);
       var qur="select * from md_student where school_id='"+req.query.school_id+"' and grade_id='"+req.query.gradeid+"' and academic_year='"+req.query.academic_year+"'";
+      console.log(qur);
       connection.query(qur,function(err, rows){
         if(!err){
 
@@ -8646,7 +8650,7 @@ app.post('/generateroletogrademappinginfo-service',  urlencodedParser,function (
     var qur3="select * from employee_to_school_type_category_mapping m join md_employee e "+
              "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
              "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
-             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"'";
+             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"' and m.flage='active'";
     console.log('------------school role-------------');
     console.log(qur1);
     console.log('------------------------------------');
@@ -8687,7 +8691,7 @@ app.post('/generateroletogrademappinginfo-service1',  urlencodedParser,function 
     var qur3="select * from employee_to_school_type_category_mapping m join md_employee e "+
              "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
              "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
-             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"'";
+             "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"' and m.flage='active'";
     console.log('------------school role-------------');
     console.log(qur1);
     console.log('------------------------------------');
