@@ -1554,7 +1554,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        },
       fngetempsubjectResponse:function(e){
        var res=e.detail.response.returnval; 
-      // alert(JSON.stringify(res));
+      //alert(JSON.stringify(res));
 
         if(res!='invalid'){
           //  alert('1');
@@ -2039,7 +2039,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         //alert(JSON.stringify(res)); 
+         alert(JSON.stringify(res)); 
          
             document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
          
@@ -3153,18 +3153,17 @@ insertschoolTypename:function(schooltypesarr)
       FnSecondLangSubjectToStudentResponse:function(e)
       {
         var res=e.detail.response.returnval
-        //alert(JSON.stringify(res));
-        /*if(res=='Inserted!')
-        {
-            alert("open");
-            document.querySelector('student-to-subject-mapping-card').fnsave2lang();
-        }*/
-        /*else if(res=='updated successfully')
-        {
-            alert("update");
-            this.$.service1.toggleDialog2();
-        }*/
         
+         if(res=='Inserted!')
+         {
+            document.querySelector('student-to-subject-mapping-card').fninsert();
+
+         }
+         else if(res=='updated successfully')
+         {
+            document.querySelector('student-to-subject-mapping-card').fnupdate();
+         }
+
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){
@@ -3196,8 +3195,20 @@ insertschoolTypename:function(schooltypesarr)
         this.$.FnSecondLangSubjectToStudentsetsajax.generateRequest();
         }
       },
-      FnSecondLangSubjectToStudentsetsResponse:function(e){
-         // alert(JSON.stringify(e.detail.response.returnval));
+      FnSecondLangSubjectToStudentsetsResponse:function(e)
+      {
+        var res=e.detail.response.returnval;
+         //alert(JSON.stringify(e.detail.response.returnval));
+         if(res=='Inserted!')
+         {
+            document.querySelector('student-to-subject-mapping-card').fninsert();
+
+         }
+         else if(res=='updated successfully')
+         {
+            document.querySelector('student-to-subject-mapping-card').fnupdate();
+         }
+
       },
        FnThirdLangSubjectToStudent:function(fnthidlanginfo1arr){
                    for(var i=0;i<fnthidlanginfo1arr.length;i++){

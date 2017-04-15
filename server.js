@@ -5720,6 +5720,7 @@ app.post('/fnschoolcreation-service',  urlencodedParser,function (req,res)
 });
 
 
+
  /*app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
 
 
@@ -7420,7 +7421,7 @@ app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
     });
   });
 
-app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
+app.post('/empgetschooltype111-service',  urlencodedParser,function (req,res)
 
 
     // app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
@@ -7428,7 +7429,7 @@ app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
     {    
   // var e={school_id:req.query.school_id,school_type:req.query.schooltypeid};
      //   console.log(e);
-      var qur="SELECT distinct emp_name,emp_id FROM md_employee_subject where school_id='"+req.query.school_id+"'and school_type_id='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
+      var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
       connection.query(qur,
         function(err, rows)
         {
@@ -7441,6 +7442,7 @@ app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
           res.status(200).json({'returnval': ''});
       });
     });
+
 app.post('/dynamicinfo-service',  urlencodedParser,function (req,res)
 
 
@@ -8199,9 +8201,15 @@ var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoo
        connection.query(qur1,function(err, rows){  
           //console.log('update');
         if(!err)
-        res.status(200).json({'returnval': 'updated successfully'});
+        {
+         res.status(200).json({'returnval': 'updated successfully'}); 
+        }  
+        
         else
-        res.status(200).json({'returnval': 'not updated'});
+        {
+          res.status(200).json({'returnval': 'not updated'});
+        }
+        
         });
         } 
       });

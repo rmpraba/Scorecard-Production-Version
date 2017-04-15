@@ -212,18 +212,26 @@
             this.$.fnschooltypegradmapz1ajax.generateRequest();
         }
    },
-      fnschooltypegradmapzResponse(e){
-      var res=e.detail.response.returnval; 
-    //  alert(JSON.stringify(res));
-
-
+      fnschooltypegradmapz1Response(e)
+      {
+        //alert(11);
+        var res=e.detail.response.returnval; 
+          //alert(JSON.stringify(res));
         // this.fnclean();
+          if(res=='Deleted!')
+          {
+            alert("Deleted Successfully");
+          }
       },
+
       fnschooltypegradmapzResponse(e)
       {
-      var res=e.detail.response.returnval; 
-     
-      //alert(JSON.stringify(res));
+        //alert(22);
+        var res=e.detail.response.returnval;
+          if(res=='Inserted!')
+          {
+            alert("Inserted Successfully");
+          }
       },  
       fnschooltypezResponse:function(e){
         var res=e.detail.response.returnval; 
