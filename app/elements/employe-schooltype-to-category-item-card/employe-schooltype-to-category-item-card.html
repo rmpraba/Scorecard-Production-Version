@@ -54,14 +54,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          {  
 
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypeidxx);
-          this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype11-service";
+          this.empgetteacherschooltypeurl=sessionStorage.getItem("addrinfo")+"/empgetschooltype111-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypeidxx;
           obj.id=this.id;
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           scltypearr.push(obj);
-          this.empgetteacherschooltypeparam=obj;    
+         // alert(JSON.stringify(obj));
+          
+          this.empgetteacherschooltypeparam=obj;
+
           this.$.empgetteacherschooltypeajax.generateRequest();
         }
 
@@ -86,12 +89,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
         
              }
-        },
+         },
     
       empgetteacherschooltypeResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       // alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
         document.querySelector('employe-schooltype-to-category-card').getgrade(res);
       }
       

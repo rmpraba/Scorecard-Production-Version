@@ -4,7 +4,7 @@
 
 <dom-module id="term-assesment-service">
   <template>
-  <iron-ajax        
+  <iron-ajax           
         id="academicajax"
         url="../../configfile/academicconfig.json"
         params="{{academicparam}}"
@@ -12,7 +12,7 @@
         content-type="application/json"
         on-response="academicResponse"
         debounce-duration="300"
-    >
+        >
   <iron-ajax
         method="post"
         id="assesmentajax"
@@ -482,7 +482,7 @@
     Polymer({
       is: 'term-assesment-service',
       ready:function(){ 
-        this.studarrlength=0;
+        this.studarrlength=0;  
         // localStorage.setItem("curr_sess_fetchstudent",'0');       
       },
       callAcademicService:function(){
@@ -490,8 +490,7 @@
       },
       academicResponse:function(e){
         document.querySelector('teacherhome-card').academicarr=e.detail.response; 
-        document.querySelector('teacherhome-card').FnYearToggle();             
-        // document.querySelector('term-assesment-card').academicarr=e.detail.response;
+        document.querySelector('teacherhome-card').FnYearToggle();
       },
       callTermService:function(termtype){
          this.termurl=sessionStorage.getItem("addrinfo")+"/term-service";
