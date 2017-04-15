@@ -7787,6 +7787,7 @@ app.post('/FngetStudentpasssection-service',  urlencodedParser,function (req,res
 {  
    var e={school_id:req.query.schoolid};
   var qur="SELECT * FROM md_admission where school_id='"+req.query.school_id+"' and class_for_admission='"+req.query.stugrade+"' and academic_year='"+req.query.academic_year+"'";
+  console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -8107,7 +8108,6 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
       student_name:req.query.studentname,
       class_id:req.query.sectionid,
      lang_pref:req.query.langugagepref,
-      //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
       console.log(response);
 
