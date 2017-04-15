@@ -367,21 +367,18 @@ SbjecttoStudentmapping1Response:function(e){
        //  document.querySelector('student-list-mapping-item').FnSecondLang11();
            this.$.uiservice.FnSecondLangSubjectToStudentsets(fnthidlanginfoarr);
            this.$.uiservice.FnThirdLangSubjectToStudent(fnthidlanginfo1arr);
-           alert("Inserted Successfully");
-           //this.$.newwalerttt.toggleDialog();
+           //alert("Inserted Successfully");
 
             if(kn.length!=0)
             {
            
             }
                 document.querySelector('student-list-mapping-item').FnSecondLang(); 
-                //this.$.mydialog.toggleDialog();
         }
           else
          {
               this.$.uiservice.FnSecondLangSubjectToStudent(fnsecondlanginfoarr);
-              //this.$.newwalerttt.toggleDialog();
-              alert("Inserted Successfully");
+              //alert("Inserted Successfully");
                 if(kn.length!=0)  
                 {
            //document.querySelector('student-list-mapping-item').FnSecondLang1(kn);
@@ -640,6 +637,14 @@ SbjecttoStudentmapping1Response:function(e){
       this.$.labelhide.hidden=true;
         this.hidenewline=true;
         //this.$.button1.hidden=true;
+     },
+     fnupdate:function(e)
+     {
+      alert("Updated Successfully");
+     },
+     fninsert:function(e)
+     {
+      alert("Inserted Successfully");
      }
 
     

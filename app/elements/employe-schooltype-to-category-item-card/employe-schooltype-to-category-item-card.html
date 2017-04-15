@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.id=this.id;
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           scltypearr.push(obj);
-          // alert(JSON.stringify(obj));
+         // alert(JSON.stringify(obj));
           
           this.empgetteacherschooltypeparam=obj;
 
@@ -94,7 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       empgetteacherschooltypeResponse:function(e)
       {
         var res=e.detail.response.returnval;
-       //alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
         document.querySelector('employe-schooltype-to-category-card').getgrade(res);
       }
       

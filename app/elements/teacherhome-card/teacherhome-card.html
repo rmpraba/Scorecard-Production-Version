@@ -81,11 +81,10 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       </div>
       <div class="card" hidden$="{{Report}}">
        <paper-button on-click="FnGenerateScorecard" no ink><img src="../../images/scorelogo.jpg" height="180px" width="180px"></paper-button>
-      </div> 
+      </div>
       <div class="card" hidden$="{{editinfo}}">
        <paper-button on-click="FnEditInfo" no ink><img src="../../images/edit.jpg" height="180px" width="180px"></paper-button>
-      </div> 
-
+      </div>  
     </div>
     <div class="inner2">
       <div class="card" hidden$="{{comparison}}">
@@ -98,8 +97,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       <div class="card" hidden$="{{dataanalysis}}">
        <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
     </div> 
+     <div class="card" hidden$="{{subjecttostudentt}}">
+          <paper-button on-click="SubjectToStudent" no ink><img src="../../images/language.jpg" height="180px" width="180px">
+           <h4>Language Preferences</h4>
+          </paper-button>
+      </div>
+      <div class="card" hidden$="{{emptocategoryy}}">
+          <paper-button on-click="EmptoCategory" no ink><img src="../../images/emptocategory.jpg" height="180px" width="180px">
+              <h4>STUDENTS TRANSFER</h4>
+          </paper-button>
+      </div>
     </div>
-    
     </div>
 
     <div class="coordinator" hidden$="{{coordinator}}">
@@ -112,21 +120,71 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       </div>
       <div class="card" hidden$="{{Approvalstatus}}">
        <paper-button on-click="FnApprovalStatus" no ink><img src="../../images/approvalstatus.jpg" height="180px" width="180px"></paper-button>
-      </div>
-       <div class="card" hidden$="{{teach_obser}}">
-       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
-       </div>
+      </div>       
       <div class="card" hidden$="{{Analysis}}">
        <paper-button on-click="FnAnalysiscard" no ink><img src="../../images/analysis.jpg" height="180px" width="180px"></paper-button>
       </div>
+    </div>
+    <div class="inner2">
       <div class="card" hidden$="{{feecollection}}">
        <paper-button on-click="FnFeeCollection" no ink><img src="../../images/feecollection.jpg" height="180px" width="180px"></paper-button>
       </div>
-    </div>
-    <div class="inner2">
       <div class="card" hidden$="{{dataanalysis}}">
        <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
-    </div> 
+      </div>
+      <div class="card" hidden$="{{teach_obser}}">
+       <paper-button on-click="FnTeacherbserver" no ink><img src="../../images/teacherobservation.png" height="180px" width="180px"></paper-button>
+       </div>
+      <div class="card" hidden$="{{subjecttostudentt}}">
+          <paper-button on-click="SubjectToStudent" no ink><img src="../../images/language.jpg" height="180px" width="180px">
+           <h4>Language Preferences</h4>
+          </paper-button>
+      </div>
+    </div>
+    <div class="inner1">
+      <div class="card" hidden$="{{studentfixedd}}">
+            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
+               <h4>Capacity Allocation</h4>
+            </paper-button>
+       </div>  
+
+        <div class="card" hidden$="{{sectioncreationn}}">
+            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.jpg" height="180px" width="180px">
+               <h4>Section Creation</h4>
+            </paper-button>
+       </div>
+       <div class="card" hidden$="{{gradetosectionn}}">
+            <paper-button on-click="GradeToSection" no ink><img src="../../images/gradetosection.jpg" height="180px" width="180px">
+               <h4>Student to Section mapping</h4>
+            </paper-button>
+       </div> 
+       <div class="card" hidden$="{{emptocategoryy}}">
+          <paper-button on-click="EmptoCategory" no ink><img src="../../images/emptocategory.jpg" height="180px" width="180px">
+              <h4>STUDENTS TRANSFER</h4>
+          </paper-button>
+      </div>
+    </div>
+    <div class="inner1">
+      <div class="card" hidden$="{{roletogrademappingg}}">
+            <paper-button on-click="FnRoleToGradeMapping" no ink><img src="../../images/rolemap.png" height="180px" width="180px">
+               <h4>Role To Grade Mapping</h4>
+            </paper-button>
+      </div> 
+      <div class="card" hidden$="{{categorytoschooltypee}}">
+          <paper-button on-click="CategorytoSchooltype" no ink><img src="../../images/categorytoschooltype.jpg" height="180px" width="180px">
+              <h4>EMPLOYEE TO SUBJECT MAPPING</h4>
+          </paper-button>
+      </div>
+      <div class="card" hidden$="{{employeetogradee}}">
+            <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">
+               <h4>Employee To Grade Section Mapping</h4>
+            </paper-button>
+      </div>
+      <div class="card" hidden$="{{workingdatss}}">
+         <paper-button on-click="Workingdays" no ink><img src="../../images/workingdays.jpg" height="180px" width="180px">
+              <h4>Working Days</h4>
+        </paper-button>
+        </div>
     </div>
     </div>
 
@@ -162,6 +220,57 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <div class="card" hidden$="{{dataanalysis}}">
        <paper-button on-click="FnConsolidatedDataAnalysis" no ink><img src="../../images/dataanalysis.jpg" height="180px" width="180px"></paper-button>
     </div> 
+  </div>
+  <div class="inner1">
+     <div class="card" hidden$="{{createemployeee}}">
+        <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.jpg" height="180px" width="180px">
+             <h4> Employee</h4>
+        </paper-button>
+      </div>
+      <div class="card" hidden$="{{categorytoschooltypee}}">
+          <paper-button on-click="CategorytoSchooltype" no ink><img src="../../images/categorytoschooltype.jpg" height="180px" width="180px">
+              <h4>EMPLOYEE TO SUBJECT MAPPING</h4>
+          </paper-button>
+      </div>
+      <div class="card" hidden$="{{employeetogradee}}">
+            <paper-button on-click="EmployeeToGrade" no ink><img src="../../images/emptograde.jpg" height="180px" width="180px">
+               <h4>Employee To Grade Section Mapping</h4>
+            </paper-button>
+      </div> 
+      <div class="card" hidden$="{{roletogrademappingg}}">
+            <paper-button on-click="FnRoleToGradeMapping" no ink><img src="../../images/rolemap.png" height="180px" width="180px">
+               <h4>Role To Grade Mapping</h4>
+            </paper-button>
+       </div>
+       <div class="card" hidden$="{{gradetosubjectt}}">
+          <paper-button on-click="GradeToSubject" no ink><img src="../../images/gadetosubject.jpg" height="180px" width="180px">
+            <h4>Grade To Subject Mapping</h4>
+          </paper-button>
+      </div>
+
+  </div>
+  <div class="inner1">
+      <div class="card" hidden$="{{studentfixedd}}">
+            <paper-button on-click="StudentFixed" no ink><img src="../../images/studentfixed.jpg" height="180px" width="180px">
+               <h4>Capacity Allocation</h4>
+            </paper-button>
+       </div> 
+       <div class="card" hidden$="{{sectioncreationn}}">
+            <paper-button on-click="SectionCreation" no ink><img src="../../images/sectioncreation.jpg" height="180px" width="180px">
+               <h4>Section Creation</h4>
+            </paper-button>
+       </div> 
+       <div class="card" hidden$="{{gradetosectionn}}">
+            <paper-button on-click="GradeToSection" no ink><img src="../../images/gradetosection.jpg" height="180px" width="180px">
+               <h4>Student to Section mapping</h4>
+            </paper-button>
+       </div>
+       <div class="card" hidden$="{{workingdatss}}">
+         <paper-button on-click="Workingdays" no ink><img src="../../images/workingdays.jpg" height="180px" width="180px">
+              <h4>Working Days</h4>
+        </paper-button>
+      </div>
+
   </div>
  </div>
    
@@ -247,14 +356,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         <paper-button on-click="SectionPreiodss" no ink><img src="../../images/sectionperiod.png" height="180px" width="180px">  <h4>Section Periods</h4>
         </paper-button>
       </div>
-
-
     </div>
 
-     <div class="container1">
-
-
-       
+     <div class="container1">       
       <div class="card" hidden$="{{createemployee}}">
         <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.jpg" height="180px" width="180px">
              <h4> Employee</h4>
@@ -640,11 +744,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           // this.editinfo=false;
           // this.ConsolidatedReport=false;
         }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="viceprincipal"){
           // this.BA=false;
           // this.TA=false;
           }
-        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"){
+        if(sessionStorage.getItem("curr_sess_loggedroleid")=="principal"||sessionStorage.getItem("curr_sess_loggedroleid")=="headofedn"||sessionStorage.getItem("curr_sess_loggedroleid")=="headmistress"||sessionStorage.getItem("curr_sess_loggedroleid")=="viceprincipal"){
 
             this.highlevelcommon=false;
           }
