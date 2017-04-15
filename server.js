@@ -7420,7 +7420,7 @@ app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
     });
   });
 
-app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
+app.post('/empgetschooltype111-service',  urlencodedParser,function (req,res)
 
 
     // app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
@@ -7441,6 +7441,28 @@ app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
           res.status(200).json({'returnval': ''});
       });
     });
+app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
+
+
+    // app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
+
+    {    
+  // var e={school_id:req.query.school_id,school_type:req.query.schooltypeid};
+     //   console.log(e);
+    var qur="SELECT distinct emp_name,emp_id FROM employee_to_school_type_category_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
+      connection.query(qur,
+        function(err, rows)
+        {
+        if(!err)  
+        { 
+          //console.log(JSON.stringify(rows));   
+          res.status(200).json({'returnval': rows});
+        }
+        else
+          res.status(200).json({'returnval': ''});
+      });
+    });
+
 app.post('/dynamicinfo-service',  urlencodedParser,function (req,res)
 
 
