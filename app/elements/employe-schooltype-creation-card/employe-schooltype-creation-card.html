@@ -9,11 +9,18 @@
       :host {
         display: block;
       }
+      .sclcheck
+      {
+        @apply(--layout-horizontal);
+        float: left;
+      }
     </style>
-     <div>
-
-       <paper-checkbox class="col-md-3" on-change="setempschooltype" id="{{empschooltype}}">{{empschooltypename}}</paper-checkbox>
-
+     <div class="sclcheck">
+     <table>
+         <td colspan="3">
+           <paper-checkbox class="col-md-3" on-change="setempschooltype" id="{{empschooltype}}">{{empschooltypename}}</paper-checkbox>
+         </td>
+     </table>
     </div>
   </template>
   <script>

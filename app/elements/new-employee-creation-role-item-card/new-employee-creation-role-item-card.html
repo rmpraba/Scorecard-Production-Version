@@ -19,6 +19,11 @@
         background-color: #363636;
         color: #ffffff;
         margin-top: 5%;
+      }
+      .roleupdate
+      {
+        @apply(--layout-vertical);
+        float: left;
       } 
     </style>
     <div>
@@ -26,7 +31,9 @@
         <paper-input hidden value={{schoolempgetname}}></paper-input>
         <paper-input hidden value={{emppsw}}></paper-input>
         <paper-input hidden value={{schoolroleidxx}}></paper-input>
-        <paper-checkbox class="col-md-4" id="{{id}}" on-change="fnroleset" checked="{{check}}">{{schoolroleids}}</paper-checkbox>
+    </div>
+    <div class="roleupdate">    
+        <paper-checkbox id="{{id}}" on-change="fnroleset" checked="{{check}}">{{schoolroleids}}</paper-checkbox>
     </div>
     <iron-ajax        
         id="getempschoolroleajax"

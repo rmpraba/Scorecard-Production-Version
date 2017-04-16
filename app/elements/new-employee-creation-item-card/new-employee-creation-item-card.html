@@ -64,24 +64,35 @@
         color: #ffffff;
         margin-top: 5%;
       }
+      .horizontalframes
+      {
+        @apply(--layout-horizontal);
+      }
     </style>  
+<table>
+<tr>
+ <div class="horizontalframes">
+  <td>
 
-    <div class="card col-sm-12">
-        <div class="eid col-sm-2">
-          <paper-item style="margin-left: -59%;">{{employeeid}}</paper-item>
-        </div>
-          <paper-item hidden$="{{employeepassword}}"></paper-item>
-        <div class="ename col-sm-6">
-          <paper-item style="width: 120%;margin-left: 11%;">{{employeename}}</paper-item>
-        </div>  
-        <div class="clbutton col-sm-4">
+          <paper-item>{{employeeid}}</paper-item>
+    </td>
+    <td> 
+         <paper-item hidden$="{{employeepassword}}"></paper-item>
+          <paper-item>{{employeename}}</paper-item>
+        </td>
+            <td>    
+      
           <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
           <paper-tooltip for="btn1">Edit</paper-tooltip> 
+             </td> 
+                <td> 
           <paper-icon-button  id="btn2" icon='close' on-click='FnDelete'></paper-icon-button> 
           <paper-tooltip for="btn2">Delete</paper-tooltip> 
+             </td> 
         </div>     
-    </div>
-
+      </div>
+    </tr>
+</table>
  <span>
    <div id="updateempdetails" hidden>
               
@@ -157,7 +168,7 @@
           this.f1();
           this.f2();
 
-          document.querySelector('new-employee-creation-card').fnnedit();
+          //document.querySelector('new-employee-creation-card').fnnedit();
         document.querySelector('new-employee-creation-card').funct1(this.employeeid,this.employeename,this.employeephone,this.employeemobile,this.employeemail,this.employeepassword,this.schoolid);
    
      },
