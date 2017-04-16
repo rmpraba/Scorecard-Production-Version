@@ -70,24 +70,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
        .vertical-row 
       {
-          /* position: absolute;
-          border:  solid grey;
-
-           margin-left: 50px;
-          height: 1000px;
-         
-          margin-left: 35px%;
-          min-height: 1000px;
-          top: 30% !important;*/
-
-          position: absolute;
-          border: solid grey;
-           margin-left: 550px;
-           height: 1000px;
-            width: 0px;
-           max-height: 2000px;
-           margin-top: 10% !important;   
-           
+           position: absolute;
+          border: 1px solid grey;
+          height: 100px;
+          margin-left: 42em;
+          min-height: 440px;
+          top: 18.5em !important;
       } 
       .newwwwcarddd
       {
@@ -96,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #tablhiddn
       {
-        margin-top: 3%;
+        margin-top: 9%;
       }
       table
     {
@@ -165,28 +153,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>  
 
 
-          <div id="tablhiddn" hidden$="{{hidenewsubcat}}">
-        <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
-        <div>
-          <table class="table table-bordered">
-            <!-- <div class="container"> -->
-            <div>
-              <thead> 
+      <div id="tablhiddn" hidden$="{{hidenewsubcat}}">
+        <table class="table table-bordered">
+            <thead> 
               <tr>
-              <td>
-              </td>
-                  <th class="innercard1" style="width: 750px;">
+                <td></td>
+                  <th class="innercard1" style="width: 750px; margin-left: 14em;margin-top: -29em;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
                     </template>
                   </th>  
                </tr>
               </thead>
-                <tbody class="newwwwcarddd col-sm-12" style="width: 1070px;height: 350px;">
-                  <!-- <tr>
-                    <td></td>
-                    <td></td>
-                  </tr> -->
+                <div class="newwwwcarddd " style="width: 1070px;height: 350px;">
                   <template is="dom-repeat" items="{{bigarr}}" as="view">
                     <tr>
                       <td class="outcard">
@@ -197,16 +176,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                           <student-list-mapping-item id="{{s.id}}" studentname="{{view.student_name}}" studentid="{{view.student_id}}" subjectid="{{s.subject_id}}" subjectname="{{s.subject_name}}" langugagepref="{{s.language_pref}}" check="{{s.check}}"></student-list-mapping-item>
                         </template>  
                       </td>        
-                    <td>    
+                      <td>    
                         <paper-icon-button id="btn1" icon="save" on-click="fnsubmit"></paper-icon-button>
                         <paper-tooltip for="btn1">Save</paper-tooltip>
                       </td>
-                      </tr>
+                    </tr>
                   </template>
-                </tbody>
-            </div>
+                </div>
           </table>   
-        </div>   
         </div>  
 
 
@@ -288,7 +265,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     },
    fnsecondlanginfo:function(arr){
-   fnsecondlanginfoarr=arr;
+   fnsecondlanginfoarr=arr; 
    },
      FnStosGrade:function(e)  
      {     

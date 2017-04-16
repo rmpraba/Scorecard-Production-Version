@@ -47,10 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 4%;
       }
    
-      .subbutton
-      {
-        margin-left: 12%;
-      }
       
 
        #creatediv paper-button
@@ -58,40 +54,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: #363636;
       color: #ffffff;
       width: 7%;
-      /*margin-left: 70%;*/
-      margin-top: 1%;
-      }
-
-      /* table
-      {
-         @apply(--layout-horizontal);
-         border-collapse: collapse;
-         border: 3px solid #dedede;
-         padding: 6px;
-         margin-left: 52%;
-         width: 70%;
-         margin-top: 3% !important;     
-      }*/
-
-     
+      margin-top: 3%;
+      } 
 
       #creatediv
        {
-        position: fixed;
         min-height: 198px;
-        top: 18%;
         width: 47%;
-        margin-left: -1%;
+        margin-left: 7em;
+        margin-top: 4em;
        }
 
       
        #updatedetails
        {
-          position: fixed;
           min-height: 600px;
-          top: 20%;
           width: 45%;
-          margin-left: 1%;
+          margin-left: 7em;
+          margin-top: 4em;
        
        }
        .updatediv paper-button
@@ -99,8 +79,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #363636;
         color: #ffffff;
         width: 7%;
-        margin-left: 82%;
-        margin-top: 1%;
+        margin-left: 23em;
+        margin-top: 3em;
        }
 
       .title
@@ -115,21 +95,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {
            
           border: 1px solid grey;
-          width: 1px;
           position: fixed;
           margin-left: 46%;
           min-height: 630px;
           top: 12.3%;
         }
 
-        /* hr
-        {
-          position: fixed;
-          border: 0.5px solid grey;
-          width: 1500px;
-          margin-top: 4%;
-          margin-left: -14%;
-        }*/
+       
         .titlesdiv
         {
           position: fixed;
@@ -152,10 +124,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         overflow-x: hidden;
        }
 
+        .horizontalframes
+       {
+        @apply(--layout-horizontal);
+        width: 70%;
+        margin-left: -1%;
+       }
+      
+       .horizontalframes .field paper-input
+       {
+         width: 70%;
+       }
 
-
+      
     </style>
-    <div class="titlesdiv" style="margin-top: -3%;">
+    <div class="titlesdiv" style="margin-top: -2em;">
       <div class="tit1" style=" margin-left: 37em; width: 100%">  
         <h3><b>SCHOOL CREATION</b></h3>
       </div>
@@ -173,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- <hr></hr> -->
 
 
-    <div class="outcard" hidden$="{{hideschooldiv}}">
+    <!-- <div class="outcard" hidden$="{{hideschooldiv}}">
       <table cellspacing="0" cellpadding="1" border="0" width="780px">
         <tr>
           <td>
@@ -205,133 +188,136 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </td>
         </tr>    
       </table>
-    </div>
+    </div> -->
 
       <div class="vertical-row"></div>
-
-        <!-- <h4>School Details</h4> -->
-
-    <div class="col-sm-6" id="creatediv" hidden$="{{hidecreatediv}}">
+    <div id="creatediv" hidden$="{{hidecreatediv}}">
       
-  <div class="list-group col-sm-12 panel-body form-category">
-        <div class="col-sm-6">
-          <paper-input label="School Name" id="School" required error-message="needs Schoolname!" value="{{school}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
-        </div>
+          <div class="fields" style="width:70%;">
+            <paper-input label="School Name" id="School" required error-message="needs Schoolname!" value="{{school}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
+          </div>
+        <div class="horizontalframes">
+          
+          <div class="fields">
+            <paper-dropdown-menu label="Board Type">
+              <paper-listbox id="academicswww" class="dropdown-content" on-iron-select="boardtype">
+                <paper-item>ICSE</paper-item>
+                <paper-item>CBSE</paper-item>
+                <paper-item>State</paper-item>
+                <paper-item>IB</paper-item>
+              </paper-listbox>
+            </paper-dropdown-menu>       
+          </div>
 
-         <div class="col-sm-6">
-          <paper-dropdown-menu label="Board Type">
-            <paper-listbox id="academicswww" class="dropdown-content" on-iron-select="boardtype">
-              <paper-item>ICSE</paper-item>
-              <paper-item>CBSE</paper-item>
-              <paper-item>State</paper-item>
-              <paper-item>IB</paper-item>
-            </paper-listbox>
-          </paper-dropdown-menu>
-        </div> 
+          <div class="fields" style="margin-left: 6%;">
+             <paper-input label="Mobile Number" id="Mobile" required error-message="needs mobileno" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
+          </div>
+        </div>  
 
-        <div class="col-sm-6">
-          <paper-input label="Mobile Number" id="Mobile" required error-message="needs mobileno" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
-        </div>
-
-        <div class="col-sm-6">
-          <paper-input label="Telephone Number" id="Telephone" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="10"></paper-input>
-        </div>
         
-        <div class="col-sm-6">
-          <gold-email-input label="Email" id="Emailid" required error-message="needs mailid!" value="{{Emailid}}"></gold-email-input>
-        </div>
-
-        <div class="col-sm-6">
-          <paper-input label="Website" id="Website" required error-message="needs wevbsite!" value="{{Website}}"></paper-input>
-        </div>
-       
-        <div class="col-sm-6">
-          <paper-input label="Affiliation" id="affiliation"  value="{{affiliation}}"></paper-input>
+          
+        <div class="horizontalframes">  
+          <div class="fields">
+            <paper-input label="Telephone Number" id="Telephone" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="10"></paper-input>
+          </div>
+          <div class="fields" style="margin-left: 6%;">
+            <gold-email-input label="Email" id="Emailid" required error-message="needs mailid!" value="{{Emailid}}"></gold-email-input>
+          </div>
         </div> 
-      </div>  
 
-        <!-- <div class="form-group-heading" style="margin-top:10%"> -->
+        <div class="horizontalframes">
+          <div class="fields">
+            <paper-input label="Website" id="Website" required error-message="needs wevbsite!" value="{{Website}}"></paper-input>
+          </div>
+          <div class="fields" style="margin-left: 6%;">
+            <paper-input label="Affiliation" id="affiliation"  value="{{affiliation}}"></paper-input>
+          </div> 
+        </div> 
+
+
           <h4> School Address Details</h4>
-        <!-- </div> -->
-        <div class="list-group col-sm-12 panel-body form-category">
-          <div class="col-sm-6">
+        <div class="horizontalframes">
+          <div class="fields">
             <paper-input label="Village/Town" id="Village" required error-message="needs Village/Town!" value="{{address}}"></paper-input>
           </div>
-          <div class="col-sm-6">
-            <paper-input label="District" id="District" value="{{address1}}"  required error-message="needs District!"  allowed-pattern="[a-zA-Z ]"></paper-input>
+          <div class="fields" style="margin-left: 6%;">
+             <paper-input label="District" id="District" value="{{address1}}"  required error-message="needs District!"  allowed-pattern="[a-zA-Z ]"></paper-input>
           </div>
-          <div class="col-sm-6">
-            <paper-input label="State" id="State" value="{{address2}}"  required error-message="needs state!"  allowed-pattern="[a-zA-Z ]"></paper-input>
+        </div>
+
+        <div class="horizontalframes">
+          <div class="fields">
+             <paper-input label="State" id="State" value="{{address2}}"  required error-message="needs state!"  allowed-pattern="[a-zA-Z ]"></paper-input>
           </div>
-          <div class="col-sm-6">
+          <div class="fields" style="margin-left: 6%;">
             <paper-input label="Pincode" id="Pincode" value="{{address3}}"  required error-message="needs Pincode!"  allowed-pattern="[0-9]" maxlength="10"></paper-input>
           </div>
-          <span class="subbutton">
-            <paper-button style="margin-left:73%" on-click="FnSubmit">Submit </paper-button>
-          </span>
         </div>
-    </div>
-      
+
+          <span class="subbutton">
+            <paper-button style="margin-left:14em" on-click="FnSubmit">Submit </paper-button>
+          </span>
+      </div>  
+
 
       <div id="updatedetails" hidden$="{{hideupdatediv}}">
       <div class="updatediv"> 
-        
-        <!-- <div class="form-group-heading" style="margin-top:-3%">
-          <h4>School Details</h4>
-        </div> -->
-        <div class="list-group col-sm-12 panel-body form-category">
-          <div class="col-sm-6">
+        <div class="fields" style="width: 70%">
             <paper-input label="School Name"  value="{{schoolname}}" ></paper-input>
-          </div>
+        </div>
 
-          <div class="col-sm-4">
+        <div class="horizontalframes">
+          <div class="fields"">
             <paper-input label="Board Type"  value="{{boardselection}}"></paper-input>
           </div> 
-
-          <div class="col-sm-6">
+          <div class="fields"  style="margin-left: 6%;">
             <paper-input label="Mobile Number" value="{{mobile}}" allowed-pattern="[0-9]"></paper-input>
           </div>
+        </div>  
 
-          <div class="col-sm-6">
+        <div class="horizontalframes">
+          <div class="fields">
             <paper-input label="Telephone Number" value="{{telnum}}"  allowed-pattern="[0-9]"></paper-input>
           </div>
-
-          <div class="col-sm-6">
+          <div class="fields"  style="margin-left: 6%;">
             <gold-email-input label="Emailid" value="{{mailid}}"></gold-email-input>
           </div>
-          <div class="col-sm-4">
+        </div>
+          
+        <div class="horizontalframes"> 
+          <div class="fields" >
             <paper-input label="Website" value="{{wesite}}"></paper-input>
           </div>
 
-          <div class="col-sm-4">
+          <div class="fields" style="margin-left: 6%;">
             <paper-input label="affiliation" value="{{affiliationno}}"></paper-input>
-          </div>
-                       
+          </div>  
         </div>
-        <div>
-          <div class="form-group-heading">
+         
             <h4> School Address Details</h4>
-          </div>
-          <div class="list-group col-sm-12 panel-body form-category">
-            <div class="col-sm-6">
+          <div class="horizontalframes">
+             <div class="fields">
               <paper-input label="Village/Town" value="{{addr}}"></paper-input>
             </div>
-            <div class="col-sm-6">
+            <div class="fields" style="margin-left: 6%;">
               <paper-input label="District"  value="{{addr1}}"></paper-input>
             </div>
-            <div class="col-sm-6">
+          </div>
+
+          <div class="horizontalframes">
+            <div class="fields">
               <paper-input label="State" value="{{addr2}}"></paper-input>
             </div>
-            <div class="col-sm-6">
+            <div class="fields" style="margin-left: 6%;">
               <paper-input label="Pincode" value="{{addr3}}"></paper-input>
             </div>
+          </div> 
+            
             <span class="savebutton">
               <paper-button on-click='FnSave'>Save</paper-button>
             </span>
-          </div>
         </div>
-      </div>         
-    </div>
+      </div>
 
     <demosumbit-card id="mydialog"></demosumbit-card>
     <master-ui-service id="uiservice"></master-ui-service>
