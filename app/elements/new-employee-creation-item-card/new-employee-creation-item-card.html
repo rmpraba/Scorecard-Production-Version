@@ -69,30 +69,23 @@
         @apply(--layout-horizontal);
       }
     </style>  
-<table>
-<tr>
- <div class="horizontalframes">
-  <td>
-
-          <paper-item>{{employeeid}}</paper-item>
-    </td>
-    <td> 
-         <paper-item hidden$="{{employeepassword}}"></paper-item>
-          <paper-item>{{employeename}}</paper-item>
+     <table>
+       <tr>
+          <td>
+              <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
+              <paper-tooltip for="btn1">Edit</paper-tooltip>
+          </td>
+          <td>
+                <paper-icon-button  id="btn2" icon='close' on-click='FnDelete'></paper-icon-button> 
+             <paper-tooltip for="btn2">Delete</paper-tooltip> 
         </td>
-            <td>    
-      
-          <paper-icon-button id="btn1" icon='create' on-click='FnEdit'></paper-icon-button>
-          <paper-tooltip for="btn1">Edit</paper-tooltip> 
-             </td> 
-                <td> 
+
+       </tr>
+    </table>
+           <!-- 
           <paper-icon-button  id="btn2" icon='close' on-click='FnDelete'></paper-icon-button> 
-          <paper-tooltip for="btn2">Delete</paper-tooltip> 
-             </td> 
-        </div>     
-      </div>
-    </tr>
-</table>
+          <paper-tooltip for="btn2">Delete</paper-tooltip>  -->
+ 
  <span>
    <div id="updateempdetails" hidden>
               
