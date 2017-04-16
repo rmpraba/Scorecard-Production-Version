@@ -71,21 +71,23 @@
        }*/
 
     </style>       
-    <div> 
-    </table>   
-   <div class="row">  
-  <div>
-    <div class="itemcard col-sm-9">
+      
+    <div class="itemcard">
         <paper-item>{{schoolname}}</paper-item>
     </div>
 
-      <div class="newbuttons col-sm-3">
-          <paper-icon-button id="btn1" icon='create' on-click="showupdetails"></paper-icon-button>
-          <paper-tooltip for="btn1">Edit</paper-tooltip>       
-          <paper-icon-button id="btn2" icon='close' on-click="FnDelete"></paper-icon-button>
-          <paper-tooltip for="btn2">Delete</paper-tooltip>
-      </div>
-   </div> 
+      <table>
+        <tr>
+          <td>
+            <paper-icon-button id="btn1" icon='create' on-click="showupdetails"></paper-icon-button>
+            <paper-tooltip for="btn1">Edit</paper-tooltip> 
+          </td>
+          <td>
+            <paper-icon-button id="btn2" icon='close' on-click="FnDelete"></paper-icon-button>
+            <paper-tooltip for="btn2">Delete</paper-tooltip>
+          </td>
+        </tr>
+      </table>
 
    
 
