@@ -23,18 +23,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-left:4.0em;
       width:100%
      }
+
+       paper-checkbox.paper-checkbox-0
+      {
+      
+         font-family: 'Roboto', 'Noto', sans-serif;
+         -webkit-font-smoothing: antialiased;
+         padding-left: 80px;
+     }
     </style>
-    <div class="outcard">
-       <div class="list-group col-sm-12 panel-body form-category">
+       <div>
           <paper-input  hidden>{{gender}}</paper-input>
           <paper-input  hidden>{{dob}}</paper-input>
           <paper-input  hidden>{{admissinno}}</paper-input>
           <paper-input  hidden>{{admissinno1}}</paper-input>
           <paper-input  hidden>{{classid}}</paper-input>
           <paper-input  hidden>{{noofstudent}}</paper-input>
-          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">
           </paper-checkbox>
         </div>
+      <div class="outcard">  
          <paper-dialog id="noofstudent1" modal>
            <h2>Cannot add more students to this section.</h2>
             <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>

@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        .innercard{     
       @apply(--layout-horizontal);
        width:100%
-      margin-left:3.5em;
+      /*margin-left:3.5em;*/
      }
     
      .tt{
@@ -141,7 +141,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </CENTER>
     </div>
     <div class="outercard">
-          <div>   
         <div class="createdivv">
           <div class="catcard" style="margin-top: 2%;">
             <label><b>School Type</b></label>
@@ -165,7 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
        
         </div>  
-       </div>  
+      </div>  
 
         <div id="z1">
              <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
@@ -186,26 +185,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
 
    <div class="newwwtabb" hidden$="{{hidenewtabb}}">
-      <div>
-        <table class="table table-bordered">
+        <table>
             <thead> 
               <tr>
-                <th class="innercard" style="width: 776px;margin-left: 17%;">
+                <th class="innercard" style="width: 776px;margin-left: 30%;">
                   <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                    <h4 style="width:17%;">{{view.srtarr}}</h4>   
+                    <h4 style="width:10%;">{{view.srtarr}}</h4>   
                   </template>
                 </th>
               </tr>
             </thead>
             
-              <tbody class="newcarddzz col-sm-12">
-                
+              <tbody class="newcarddzz">
                 <template is="dom-repeat" items="{{sectionfullarr}}" as="view">
                   <tr>
                     <td class="outcard">
                       <h4>{{view.student_name}}</h4>
                     </td>
-                    <td class="innercard" style="width: 800px;">
+                    <td class="innercard" style="width: 800px;margin-left: -42em;">
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <student-list-pass-section-card studentname="{{view.student_name}}" 
                         id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
@@ -216,7 +213,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </tbody>
           </table>   
         </div>   
-        </div>  
 
             <paper-button on-click="FnSavez"></paper-button>  
         </div>
