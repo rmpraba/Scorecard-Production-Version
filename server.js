@@ -6806,6 +6806,7 @@ app.post('/terminsert-service' , urlencodedParser,function (req, res)
       term_name:req.query.termid,
 
       };
+      console.log(response);
   var qur="SELECT * FROM md_workingdays WHERE school_id='"+req.query.school_id+"' and academic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and type='"+req.query.gradename+"' and term_name='"+req.query.termid+"'";
 
     var qur1="update md_workingdays set no_of_days='"+req.query.termvalue+"' where school_id='"+req.query.school_id+"' and academic_year='"+req.query.acadamicyears+"' and school_type='"+req.query.schootypids+"' and term_name='"+req.query.termid+"'and type='"+req.query.gradename+"'";

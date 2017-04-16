@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
 <dom-module id="working-days-card">
   <template>
@@ -131,6 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>
     </div>  
 
+      <demosumbit-card id="mydialog1"></demosumbit-card>
       <master-ui-service id="uiservice"></master-ui-service>
 
   </template>
@@ -176,7 +178,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //  alert(this.acadamicyear);
           this.$.uiservice.fnsetpasssectinvalue(this.schootypidz,this.acadamicyear);
            this.$.uiservice.fngetpasssectinvaluezz(this.schootypidz,this.acadamicyear);
-                    document.querySelector('workingday-terms-card').fnsplice();
+          document.querySelector('workingday-terms-card').fnsplice();
    
   
       },
@@ -217,7 +219,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            //   alert(this.scooltypgrid);
          
          }
-         
+
+         /*fnwork:function()
+         {
+          this.$.mydialog1.toggleDialog1();
+         }
+         */
 
  });
   })();

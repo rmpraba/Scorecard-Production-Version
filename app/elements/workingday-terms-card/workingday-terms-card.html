@@ -148,7 +148,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     fnsectiostudentpassvalue1Response:function(e){
          var res=e.detail.response.returnval; 
-         // alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
+        if(res=='Inserted!')
+        {
+          alert("Inserted");
+        }
+        else if(res=='updated successfully')
+        {
+          alert("Updated")
+        }
+
  
     }
 

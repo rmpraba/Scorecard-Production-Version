@@ -3421,6 +3421,8 @@ insertschoolTypename:function(schooltypesarr)
      fngetpasssectintermvalueResponse:function(e)
      {
         var res=e.detail.response.returnval; 
+        //alert("get working");
+        //alert(JSON.stringify(res));
         document.querySelector('working-days-card').scooltypgridval1(res);
      }      
     });
