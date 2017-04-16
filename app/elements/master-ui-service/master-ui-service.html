@@ -1241,23 +1241,25 @@ fndelsectionz:function(emparrr){
     },
     fnsetstudentinfohistory1Response:function(e){
       var res=e.detail.response.returnval; 
-       //alert(JSON.stringify(obj));
+     //  alert(JSON.stringify(obj));
         
     },
       fngetstudent:function(stugradeid,stugrade)
       {
-      this.studentcheckinfo1=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
+      //  alert("eee");
+      this.fngetstudenturl=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
       var obj={"school_id":"","stugradeid":"","academic_year":""};
       obj.stugradeid=stugradeid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-
-      this.fngetstudentparam=obj;
+    //  alert(JSON.stringify(obj));
+     this.fngetstudentparam=obj;
       this.$.fngetstudentajax.generateRequest();
      },
     fngetstudentResponse:function(e){
+      //  alert('2');
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+    //  alert(JSON.stringify(res));
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
@@ -1300,14 +1302,11 @@ fndelsectionz:function(emparrr){
           obj.stugrade=stugrade;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.academic_year="AY-"+localStorage.getItem("curr_sess_academicyear"); 
-      this.FngetStudentpasssectionparam=obj;
-      //    alert(JSON.stringify(obj));
-  
-      this.$.FngetStudentpasssectionajax.generateRequest();
+        this.FngetStudentpasssectionparam=obj;
+     this.$.FngetStudentpasssectionajax.generateRequest();
      },
   FngetStudentpasssectionResponse:function(e){
       var res=e.detail.response.returnval; 
-    //alert(JSON.stringify(res));
       document.querySelector('Student-to-section-mapping-card').studentlist(res);
     },
    
@@ -1383,13 +1382,14 @@ fndelsectionz:function(emparrr){
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.gradeid=gradeid;
          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-     //   alert(JSON.stringify(res));
+     //  alert(JSON.stringify(obj));
       this.fnretrivestudentparam=obj;
          this.$.fnretrivestudentajax.generateRequest();
         },
     fnretrivestudentResponse:function(e){
+      //  alert('1');
            var res=e.detail.response.returnval; 
-         //  alert(JSON.stringify(res));
+       //      alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
        document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
   
