@@ -66,14 +66,14 @@
           position: absolute;
           top: 15em;
     }
-    .newwwwcardd
+    .newscrolzz
     {
       overflow-y: scroll;
       overflow-x: hidden;
     }
     #talhidn
     {
-      margin-top: 2%;
+      margin-top: 5%;
     }
     table
     {
@@ -129,53 +129,39 @@
 
      <div id="talhidn" hidden$="{{hidenewgridd}}">
         <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
-        <div>
           <table class="table table-bordered">
             <!-- <div class="container"> -->
-            <div>
-              <thead> 
               <tr>
-                  <th class="innercard" style="width: 770px;margin-left: 15%;">
-                    <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                      <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-                    </template>
-                  </th>
-                  <!-- <th class="icheadd">
-                    <th>Save</th>
-                    <th>Delete</th>
-                  </th>  -->  
-                    
-               </tr>
-              </thead>
-                <tbody class="newwwwcardd" style="width: 1070px;height: 350px;">
-              <!--  <tr>
-                 <td></td>
-                 <td></td>
-               </tr> -->
-                <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
+                <th class="innercard" style=" width: 830px; margin-left: 9%;margin-top: -37em">
+                  <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
+                    <h4 style="width: 50%;">{{view.srtarr}}&nbsp;&nbsp;</h4>
+                  </template>
+                </th>
+                <th></th>    
+              </tr>
+            <div class="newscrolzz"  style="height: 450px; width: 89%">
+              <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
                 <tr>
                   <td class="outcard"> 
                     <h4>{{view.emp_name}}</h4>   
-                    </td>
-                    <td class="innercard" style="width: 770px;">
-                      <template is="dom-repeat" items="{{view.employee}}" as="s">
+                  </td>
+                  <td class="innercard">
+                    <template is="dom-repeat" items="{{view.employee}}" as="s">
                         <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
-                      </template>   
+                          </template>   
                   </td>
                   <td>
                     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
-                 </td>
+                  </td>
                   <td>
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
-                 </td>          
-                </tr>
-                </template>
-              </tbody>
+                  </td>          
+                </tr>    
+              </template>
             </div>
           </table>   
-        </div>   
         </div>  
         
       
