@@ -9,7 +9,9 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
+
    database : 'master'
+
  });
 
 
@@ -7796,10 +7798,8 @@ app.post('/schoolGradetype-service',  urlencodedParser,function (req,res)
 app.post('/fngetstudent-service',  urlencodedParser,function (req,res)
 {  
      var e={school_id:req.query.schoolid};
-    console.log(e);
+  //   console.log(e);
   var qur="SELECT * FROM mp_grade_section where school_id='"+req.query.school_id+"' and grade_id='"+req.query.stugradeid+"' and  academic_year='"+req.query.academic_year+"'";
-  console.log(qur);
-
   connection.query(qur,
     function(err, rows)
     {

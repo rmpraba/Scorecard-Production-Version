@@ -2064,8 +2064,18 @@ fnschoolemployeerole:function( employeeid,employeename){
      },
     selectrolenameResponse:function(e){
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
-        document.querySelector('new-employee-creation-card').selectrolearr=res; 
+        var overall=[];
+        var temp=[];
+        for(var i=0;i<res.length;i++){
+        temp.push(res[i]);
+         if(i!=0&&i%3==0){
+            overall.push(temp);
+            temp=[];
+         }
+        }
+        alert(JSON.stringify(overall));
+        
+        document.querySelector('new-employee-creation-card').selectrolearr=overall; 
      },
    empsubjectTeacher:function(){
       //alert('1');

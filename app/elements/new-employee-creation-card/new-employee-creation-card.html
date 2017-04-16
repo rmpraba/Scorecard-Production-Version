@@ -102,6 +102,13 @@
        {
         @apply(--layout-horizontal);
         width: 50%;
+        margin-left: 20%;
+       }
+    
+        .horizontalframes1
+       {
+        @apply(--layout-horizontal);
+        width: 50%;
         margin-left: -1%;
        }
       
@@ -166,12 +173,6 @@
                   </td>
 
                 
-          <div class="newcardd" style="width:550px; height:400px; ">
-         <!--    <table cellspacing="0" cellpadding="1" border="0" width="550px">
-          -->  <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
-                <tr>
-                  <td colspan="6">
-                    <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card></td>           
                 </tr>
               </template> 
             </table>
@@ -224,6 +225,8 @@
             <h4 style="text-align: left;">Employee School Type</h4>
           </th>    
         </tr>
+         <tr>
+          <td>
          <div class="horizontalframes1">
          <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
               <tr>
@@ -234,23 +237,36 @@
            </tr>  
        </template>
          </div>
-     
+           </td>
+          </tr>
+      
         <tr>
           <th>
             <h4 style="text-align: left;">Employee Role Selection</h4>
           </th>
         </tr>
+          <tr>
+          <td>
+       
       <div class="horizontalframes1">
+      <table>
         <template is="dom-repeat" items="{{selectrolearr}}" as="view">
-               <tr>
-               <td>
-      <employee-role-item-card
-    emproleid="{{view.id}}" emprolename="{{view.role_name}}"></employee-role-item-card>
+        <tr>
+        <template is="dom-repeat" items="{{view}}" as="v">
+               
+               <td style="padding-left:15px">
+                  <employee-role-item-card
+                  emproleid="{{v.id}}" emprolename="{{v.role_name}}"></employee-role-item-card>
                 </td>
-                </tr>
-      
+                
+        </template>
+        </tr>
        </template>
+       </table>
           </div>
+           </td>
+      </tr>
+       
      
   </table>   
 
@@ -308,7 +324,7 @@
                   <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" id="{{view.school_type_id}}{{employeeid}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
                 </td>
               </tr>  
-            </template>
+            </template> 
             </div>
           </td>
         </tr>  
@@ -321,14 +337,18 @@
         <tr>
           <td>
                 <div class="horizontalframes">
-      
-            <template is="dom-repeat" items="{{selectrolearr}}" as="view">
+      <table>
+            <template is="dom-repeat" items="{{selectschoolrolearr1}}" as="view" >
               <tr>
-                <td>
-                  <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" id="{{view.id}}{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card> 
+                 <template is="dom-repeat" items="{{view}}" as="v">
+     
+                <td style="padding-left:15px">  
+                  <new-employee-creation-role-item-card schoolroleids="{{v.role_name}}" schoolroleidxx="{{v.id}}" schoolempgetid="{{employeeid}}" id="{{v.id}}{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{v.check}}"></new-employee-creation-role-item-card> 
                 </td>
+                </template>  
               </tr>  
             </template>
+            </table>
             </div>
           </td>
         </tr>
@@ -456,11 +476,22 @@
         this.hideupdateemp=false;   
       },
       FnSchoolrole:function(arr){
-        this.selectschoolrolearr1=arr;
-        //alert(JSON.stringify(this.selectschoolrolearr1));
+        // this.selectschoolrolearr1=[];
+        this.selectschoolrolearr1=overall;
+     /*      var overall=[];
+        var temp=[];
+        for(var l=0;l<arr.length;l++){
+        temp.push(arr[l]);
+         if(l!=0&&l%3==0){
+            overall.push(temp);
+            temp=[];
+         }
+        }
+       this.selectschoolrolearr1=overall;
+       alert(JSON.stringify(this.selectschoolrolearr1));
         this.hidecreateemp=true;
         this.hideupdateemp=false;  
-      },
+     */ },
       
        FnpersonalSave:function(e)
        {

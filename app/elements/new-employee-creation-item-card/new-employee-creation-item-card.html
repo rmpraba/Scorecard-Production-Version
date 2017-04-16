@@ -186,8 +186,20 @@
                   res[j].check=false;
                  }
                }
-              document.querySelector('new-employee-creation-card').FnSchoolrole(res);
+             var overall=[];
+        var temp=[];
+        for(var l=0;l<res.length;l++){
+        temp.push(res[l]);
+         if(l!=0&&l%3==0){
+            overall.push(temp);
+            temp=[];
+         }
+        }
+             alert(JSON.stringify(overall));      
+             document.querySelector('new-employee-creation-card').selectschoolrolearr1=overall  
+            //   document.querySelector('new-employee-creation-card').FnSchoolrole(res);
         },
+
         selectschooltypemap11Response:function(e)
         {
          var res=e.detail.response.returnval;

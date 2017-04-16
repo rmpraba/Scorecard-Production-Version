@@ -93,7 +93,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        width:100%
       margin-left:5.0em;
      }
-   
+     table
+    {
+      border-collapse: collapse;
+      width: 80%;
+     margin-left: 7em;
+    margin-top: 4em;
+    }
     </style>
 
 
@@ -129,8 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
    
       <div id="newwgridd">
-        <table class="table table-bordered">
-          <tbody>
+        <table>
             <tr>
               <th><h4><b>Grade</b></h4></th>
               <th><h4><b>Subject</b></h4></th>
@@ -138,7 +143,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <th><h4><b>Save</b></h4></th>  
               <th><h4><b>Delete</b></h4></th>
             </tr>
-              
+
+          <tbody>    
             <template is="dom-repeat" items="{{allarrr}}" as="view">
               <tr>
                 <td></td>
@@ -155,10 +161,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <template is="dom-repeat" items="{{view.busvalue}}" as="s">
                 <tr>
                   <td class="outcard"> 
-                    <h4>{{view.gradename1}}</h4>
+                    <h4 style="margin-top: -4em;">{{view.gradename1}}</h4>
                   </td>
                   <td class="outcard"> 
-                    <h4>{{s.subname}}</h4>
+                    <h4 style="margin-top: -4em;">{{s.subname}}</h4>
                   </td>
                   <td class="innercard">
                     <template is="dom-repeat" items="{{s.subject}}" as="m">
