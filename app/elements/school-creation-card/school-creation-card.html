@@ -154,41 +154,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
 
-
     <div class="outcard" hidden$="{{hideschooldiv}}">
-      <table cellspacing="0" cellpadding="1" border="0" width="780px">
+      <table cellspacing="0" cellpadding="1" border="0" width="540px">
         <tr>
           <td>
-            <table cellspacing="0" cellpadding="1" border="0" width="750px">
+            <table cellspacing="0" cellpadding="1" border="0" width="560px">
               <tr>
-                <th><h4><label style="margin-left:8%">School Names</label></h4></th>
+                <th><h4><label>School Names</label></h4></th>
                 <th><paper-icon-button id="btn1" icon="icons:add" on-click="getscldetails"></paper-icon-button>
                 <paper-tooltip for="btn1">Create</paper-tooltip>
                 </th>
                 <th></th>
-              </tr>
+              </tr>   
             </table>
           </td>
         </tr>
 
         <tr>
           <td>
-            <div  class="newcard" style="width:700px; height:300px;">
-              <table cellspacing="0" cellpadding="1" border="0" width="530px">
+            <div  class="newcard" style="width:560px;margin-left: 3em;height:270px;">
+              <table cellspacing="0" cellpadding="1" border="0" width="550px">
                 <template is="dom-repeat" items="{{schoolcreatarr}}" as="view">
                   <tr>
                     <td>{{view.name}}</td>
-                    <td>  
-                      <school-creation-item-card schoolid="{{view.id}}" mobile="{{view.mobile_no}}"  addr="{{view.address}}" addr1="{{view.address1}}" addr2="{{view.address2}}" addr3="{{view.address3}}"   affiliationno="{{view.affiliation_no}}" telnum="{{view.telno}}" graprimary="{{view.primary}}"  mailid="{{view.email_id}}" boardselection="{{view.Board}}" wesite="{{view.website}}"  hiderolenameinput="true" hiderolenameitem="false"></school-creation-item-card>
+                    <td>
+                      <school-creation-item-card schoolname="{{view.name}}" schoolid="{{view.id}}" mobile="{{view.mobile_no}}"  addr="{{view.address}}" addr1="{{view.address1}}" addr2="{{view.address2}}" addr3="{{view.address3}}"   affiliationno="{{view.affiliation_no}}" telnum="{{view.telno}}" graprimary="{{view.primary}}"  mailid="{{view.email_id}}" boardselection="{{view.Board}}" wesite="{{view.website}}"  hiderolenameinput="true" hiderolenameitem="false"></school-creation-item-card>          
                     </td>
                   </tr>
                 </template>
               </table>
             </div>
           </td>
-        </tr>    
+        </tr>
       </table>
     </div>
+
+
 
       <div class="vertical-row"></div>
     <div id="creatediv" hidden$="{{hidecreatediv}}">
