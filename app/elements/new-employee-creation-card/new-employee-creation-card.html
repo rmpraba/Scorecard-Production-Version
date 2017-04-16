@@ -84,7 +84,7 @@
         .newempldiv
        {
         position: fixed;
-        margin-left : 38%;
+        margin-left : 41%;
         margin-top: 2%;
         
        }
@@ -98,6 +98,13 @@
         width: 100%;
         margin-left: -1%;
        }
+        .horizontalframes1
+       {
+        @apply(--layout-horizontal);
+        width: 50%;
+        margin-left: -1%;
+       }
+      
        .horizontalframes .field paper-input
        {
          width: 88%;
@@ -130,27 +137,40 @@
     <span>    
 
     <div class="newempldiv" hidden$="{{hidenewempldiv}}">
+      <table cellspacing="0" cellpadding="1" border="0" width="540px">
+      <tr>
+        <td>
           <table cellspacing="0" cellpadding="1" border="0" width="560px">
             <tr>
-              <th><h4><label>Employee ID</label></h4></th>
-              <th><h4><label style="float: center;margin-left: -2em;">Employee Names</label></h4></th>
-              <th><paper-icon-button style="float: right; margin-right: 7em;" id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
-              <paper-tooltip for="btn1">Create</paper-tooltip></th>
+              <th><h4><label style="margin-left: -16em;">Employee ID</label></h4></th>
+              <th><h4><label style="margin-left: -29em;">Employee Names</label></h4></th>
+              <th><paper-icon-button  style="margin-left: -17em;"  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
+               <paper-tooltip for="btn1">Create</paper-tooltip>
+              </th>
               <th></th>
             </tr>   
-     
-          <div class="newcardd" style="width:550px; height:400px; ">
-         <!--    <table cellspacing="0" cellpadding="1" border="0" width="550px">
-          -->     <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
+          </table>
+        </td>
+     </tr>
+
+      <tr>
+        <td>
+          <div class="newcardd">
+            <table cellspacing="0" cellpadding="1" border="0" width="550px">
+              <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
                 <tr>
-                  <td colspan="6">
+                 <td>{{view.emp_id}}</td>
+                  <td>{{view.emp_name}}</td>
+                  <td>
                     <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>           
+                  </td>
+
                 </tr>
               </template> 
-         <!--    </table>
-          --> 
+            </table>
           </div>
         </td> 
+      </tr>       
     </table>
     </div>
 
@@ -197,34 +217,35 @@
             <h4 style="text-align: left;">Employee School Type</h4>
           </th>    
         </tr>
-        <tr>
-          <td>  
-            <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
-                <td>
+         <div class="horizontalframes1">
+         <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
+              <tr>
+                 <td>
                   <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschooltypename="{{view.school_type_name}}">
                   </employe-schooltype-creation-card>
                 </td>
-            </template>
-          </td>
-        </tr>  
-
+           </tr>  
+       </template>
+         </div>
+     
         <tr>
           <th>
             <h4 style="text-align: left;">Employee Role Selection</h4>
           </th>
         </tr>
-        <tr>
-          <td>
-            <template is="dom-repeat" items="{{selectrolearr}}" as="view">
-              <tr>
-                <td colspan="3">
-                  <employee-role-item-card  emproleid="{{view.id}}" emprolename="{{view.role_name}}"></employee-role-item-card>
+      <div class="horizontalframes1">
+        <template is="dom-repeat" items="{{selectrolearr}}" as="view">
+               <tr>
+               <td>
+      <employee-role-item-card
+    emproleid="{{view.id}}" emprolename="{{view.role_name}}"></employee-role-item-card>
                 </td>
-              </tr>  
-            </template>
-          </td>
-        </tr>
-      </table>   
+                </tr>
+      
+       </template>
+          </div>
+     
+  </table>   
 
       <div> 
         <paper-button on-click="FnSubmit">Submit</paper-button>     
@@ -272,6 +293,8 @@
         </tr>
         <tr>
           <td>  
+              <div class="horizontalframes">
+      
             <template is="dom-repeat" items="{{selectmapschooltypearr1}}" as="view">
               <tr>  
                 <td>
@@ -279,6 +302,7 @@
                 </td>
               </tr>  
             </template>
+            </div>
           </td>
         </tr>  
 
@@ -289,6 +313,8 @@
         </tr>
         <tr>
           <td>
+                <div class="horizontalframes">
+      
             <template is="dom-repeat" items="{{selectrolearr}}" as="view">
               <tr>
                 <td>
@@ -296,6 +322,7 @@
                 </td>
               </tr>  
             </template>
+            </div>
           </td>
         </tr>
       </table>  
