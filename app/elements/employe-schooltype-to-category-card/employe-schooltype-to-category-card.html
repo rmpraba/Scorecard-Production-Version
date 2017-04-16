@@ -44,20 +44,23 @@
         margin-left: 10%;
         min-height: 330px;
       }
-       .subbutton paper-button
+       .subbutton 
+
       {
         @apply(--layout-right);
         background-color: #363636;
         color: #ffffff;                
         width: 17%;
-        margin-left: 56em;
-        margin-top: 6em;
+        margin-left: 55em;
+        margin-top: 19em;
+
       }
       
     .subcat1
       {
         margin-left: 36%;
-        margin-top: -7em;
+        margin-top: 59px;
+        position: absolute;
       }
     .language
     {
@@ -80,7 +83,10 @@
       width: 70%;
       margin-left: 9%;
     }
-
+    #btn1
+    {
+      margin-left: 50px;
+    }
     </style>
    
       <div>
@@ -91,7 +97,7 @@
         
      <div>   
        <div class="outercard">
-            <div class="scltype1" style="margin-top: 4%;margin-left: 3em;">
+            <div class="scltype1" style="margin-top: 4%;margin-left: 3em;position: absolute;">
               <div>
                 <h4>SCHOOL TYPE</h4>    
               </div>
@@ -132,12 +138,12 @@
           <table class="table table-bordered">
             <!-- <div class="container"> -->
               <tr>
-                <th class="innercard" style=" width: 830px; margin-left: 9%;margin-top: -37em">
+                <th class="innercard" style=" width: 400px; margin-left:3%;margin-top: -37em">
                   <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                    <h4 style="width: 50%;">{{view.srtarr}}&nbsp;&nbsp;</h4>
+                    <h4 style="padding-left: 60px" >{{view.srtarr}}</h4>
                   </template>
                 </th>
-                <th></th>    
+                  
               </tr>
             <div class="newscrolzz"  style="height: 450px; width: 89%">
               <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
