@@ -26,6 +26,11 @@
       width:25% 
      /* margin-left:5.0em;*/
       }
+      .newwwwcardd
+      {
+        overflow-y: scroll;
+         overflow-x: hidden;
+      }
        .innercardgrid
        {     
         @apply(--layout-horizontal);
@@ -81,6 +86,15 @@
       }
       .subbcatt
       {
+
+            margin-left: 40%;
+            margin-top: -100px;
+      }
+      #schtypeid
+      {
+        margin-left: 20px;
+        margin-top: 20px;
+
             position: absolute;
             margin-left: 20em;
             margin-top: 2em;
@@ -91,12 +105,9 @@
         margin-left: 3em;
         margin-top: 2em;
 
+
       }
-      .newwwwcardd
-    {
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
+     
     .language
     {
        margin-left: 39em;
@@ -162,7 +173,11 @@
             </td>
           </tr> 
         </thead> 
+        <div class="newwwwcardd col-sm-12">
+        <tbody  style="width: 1190px;height: 400px;"> 
+
         <div class="newwwwcardd col-sm-12" style="width: 1190px;height: 400px;"> 
+
           <template is="dom-repeat" items="{{bigarr}}" as="view"> 
             <!-- <tr> 
               <td>Save</td>
@@ -187,7 +202,12 @@
               </td>
             </tr>
           </template>
+
+        </tbody>
+       </div>
+
         </div>
+
       </div>    
     </table>  
     </div>    

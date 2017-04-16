@@ -1920,11 +1920,12 @@ fnschoolemployeerole:function( employeeid,employeename){
     
     },
  fnschoolemployeepersonal:function(){
+   // alert('1');
      this.fnschoolemployeepersonalurl=sessionStorage.getItem("addrinfo")+"/fnschoolemployeepersonal-service";
      var obj={"school_id":"","academic_year":""};
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-      // alert(JSON.stringify(obj));
+         obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+      //alert(JSON.stringify(obj));
          this.fnschoolemployeepersonalparam=obj;
         this.$.fnschoolemployeepersonalajax.generateRequest();
     },
@@ -1998,7 +1999,7 @@ fnschoolemployeerole:function( employeeid,employeename){
     fnschoolemployeepersonalResponse:function(e)
     {
      var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
      document.querySelector('new-employee-creation-card').selectschoolpersonalarr=res;
       }, 
     
@@ -2040,7 +2041,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      selectschooltype1Response:function(e)
      {
          var res=e.detail.response.returnval; 
-         alert(JSON.stringify(res)); 
+       //  alert(JSON.stringify(res)); 
          
             document.querySelector('schooltype-to-grade-card').selectschooltypearr=res; 
          
@@ -3157,7 +3158,7 @@ insertschoolTypename:function(schooltypesarr)
              obj.langugagepref=langugagepref;
              obj.schoolnames=sessionStorage.getItem("curr_sess_loggedschoolid");; 
            this.FnSecondLangSubjectToStudentparam=obj;
-         alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
         this.$.FnSecondLangSubjectToStudentajax.generateRequest();
       }
       },
@@ -3274,13 +3275,21 @@ insertschoolTypename:function(schooltypesarr)
        obj.FnStosGradeid=FnStosGradeid;
        obj.acadamicyear=acadamicyear;
         this.FnselecttoSectionparam=obj;
-        alert(JSON.stringify(obj));
+
+       // alert(JSON.stringify(obj));
+
+        //alert(JSON.stringify(obj));
+
         this.$.FnselecttoSectionajax.generateRequest();
       },
       FnselecttoSectionResponse:function(e)
       {
         var arr=e.detail.response.returnval;
-         alert(JSON.stringify(arr));
+
+       //  alert(JSON.stringify(arr));
+
+        // alert(JSON.stringify(arr));
+
         document.querySelector('student-to-subject-mapping-card').selectsectionarrr=arr;
        },
 

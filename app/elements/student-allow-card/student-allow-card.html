@@ -52,10 +52,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     
     <div class="newdivzzz">
+
           <div class="sctypez" style="margin-top: 2%;">  
             <div>
               <label><b>School Type</b></label>
             </div>
+
             <template is="dom-repeat" items="{{Sectionarrr}}" as="view">
                <student-allow-item-card schooltypename="{{view.school_type_name}}" schootypeid="{{view.school_type_id}}" id="STTYPH{{view.school_type_id}}">
                 </student-allow-item-card>

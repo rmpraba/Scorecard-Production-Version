@@ -35,6 +35,13 @@
             font-size: 1.3em;
 
       }
+        paper-checkbox.paper-checkbox-0
+      {
+      
+         font-family: 'Roboto', 'Noto', sans-serif;
+         -webkit-font-smoothing: antialiased;
+         padding-left: 80px;
+     }
     </style>
     <div>
       <table>
@@ -44,8 +51,7 @@
             <paper-input value="{{empsubjectname}}" hidden></paper-input>
             <paper-input value="{{empnames}}" hidden></paper-input>
             <paper-input value="{{employeesetidz}}" hidden></paper-input>
-            <paper-checkbox  on-change="fnempsetsubject" id="{{id}}" 
-            style="padding-left: 3em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
+            <paper-checkbox  on-change="fnempsetsubject" id="{{id}}"><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --></paper-checkbox>
           </td>
       </tr>
       </table>

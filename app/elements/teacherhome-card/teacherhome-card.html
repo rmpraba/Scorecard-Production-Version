@@ -554,8 +554,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           {
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('new-employee-creation-card','');
+              document.querySelector('new-employee-creation-card').fnnewemp();
               this.$.uiservice.fnschoolemployeepersonal();
-              document.querySelector('new-employee-creation-card').fnemprefresh();
+              //alert('2');
    
         }
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
