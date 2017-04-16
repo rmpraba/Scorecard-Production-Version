@@ -44,13 +44,14 @@
             <paper-input value="{{empsubjectname}}" hidden></paper-input>
             <paper-input value="{{empnames}}" hidden></paper-input>
             <paper-input value="{{employeesetidz}}" hidden></paper-input>
-            <paper-checkbox  on-change="fnempsetsubject" id="{{id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
+            <paper-checkbox  on-change="fnempsetsubject" id="{{id}}" 
+            style="padding-left: 3em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>
           </td>
       </tr>
       </table>
       <paper-dialog id="empremapid" modal>
-        <label  id="labelid">Already assigned sections for this subject, Cannot undo
-        </label>
+        <b><label  id="labelid">Already assigned sections for this subject, Cannot undo
+        </label></b>
              <template is="dom-repeat" items="{{dbsectionvalue}}" as="view">
                   <h4 style="margin-left: 2%"> * {{view.section_id}}</h4>
            </template>
