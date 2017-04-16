@@ -48,13 +48,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .outcard
       {
-      margin-left:5.0em;
+      margin-left:5px;
       }
        .innercard
        {     
         @apply(--layout-horizontal);
-        width:50%
-        margin-left:2.5em;
+        width:50%;
+        margin-left: 20px;
+        /*margin-left:2.5em;*/
+       }
+       .innercard1{
+         @apply(--layout-horizontal);
+        width:100%;
+        margin-left:50px;
+
        }
      
         .border-right 
@@ -63,13 +70,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
        .vertical-row 
       {
-           position: absolute;
-          border: 1px solid grey;
-          height: 100px;
-          width: 1px;
-          margin-left: 48.5%;
-          min-height: 440px;
-          top: 34.9% !important;
+          /* position: absolute;
+          border:  solid grey;
+
+           margin-left: 50px;
+          height: 1000px;
+         
+          margin-left: 35px%;
+          min-height: 1000px;
+          top: 30% !important;*/
+
+          position: absolute;
+          border: solid grey;
+           margin-left: 550px;
+           height: 1000px;
+            width: 0px;
+           max-height: 2000px;
+           margin-top: 10% !important;   
+           
       } 
       .newwwwcarddd
       {
@@ -138,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="vertical-row" hidden$="{{hidenewline}}"></div>
           
           <div id="labelhide">
-            <div style="float: left;position: absolute;top: 29%;margin-left: 29%;" id="secondid">
+            <div style="float: left;position: absolute;top: 29%;margin-left: 22%;" id="secondid">
                 <label><h4><b>SECOND LANGUAGES</b></h4></label>
               </div>
               <div style="display: inline-block;position: absolute;margin-left:59%;top: 29%;" id="thirdid">
@@ -155,7 +173,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div>
               <thead> 
               <tr>
-                  <th class="innercard" style="width: 750px;margin-left: 23%;">
+              <td>
+              </td>
+                  <th class="innercard1" style="width: 750px;">
                     <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
                       <h4>{{view.srtarr}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
                     </template>
@@ -170,7 +190,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <template is="dom-repeat" items="{{bigarr}}" as="view">
                     <tr>
                       <td class="outcard">
-                        <h4>{{view.student_name}}</h4>
+                        <h3>{{view.student_name}}</h3>
                       </td>
                       <td class="innercard" style="width: 770px;">
                         <template is="dom-repeat" items="{{view.subject}}" as="s">

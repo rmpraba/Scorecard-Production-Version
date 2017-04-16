@@ -24,19 +24,28 @@
       .outcard
       {
       width:25% 
-      margin-left:5.0em;
+     /* margin-left:5.0em;*/
       }
-       .innercard
+       .innercardgrid
        {     
         @apply(--layout-horizontal);
-        width:100%
-        margin-left:2.5em;
+        width:100%;
+        -webkit-margin-start: -568px;
+
+       }
+        .innercard
+       {     
+        @apply(--layout-horizontal);
+        width:100%;
+          
+        /*margin-left:2.5em;*/
        }
      .innercard1
      {
        @apply(--layout-horizontal);
-       width:100%
-      margin-left:5.0em;
+       width:100%;
+
+      /*margin-left:5.0em;*/
      }
      .tt
      {      
@@ -72,7 +81,14 @@
       }
       .subbcatt
       {
-        margin-left: 36%;
+            margin-left: 40%;
+            margin-top: -90px;
+      }
+      #schtypeid
+      {
+        margin-left: 20px;
+        margin-top: 17px;
+
       }
       .newwwwcardd
     {
@@ -96,16 +112,18 @@
    
     <div>
       <div class="outer1">
-        <div class="col-sm-4">
+        <div  id="schtypeid">
           <div class="form-group-heading">
             <h4>SCHOOL TYPE</h4>
           </div>
+          
           <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
             <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
-          </template>  
+          </template> 
+          
         </div>      
         <div class="subbcatt">
-          <div class="form-group-heading">   
+          <div >   
             <h4> SUBJECT CATEGORY</h4>
           </div>   
           <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
@@ -153,7 +171,7 @@
               <td class="outcard">
                 <h4 style="width: 203px;">{{view.subject_name}}</h4>
               </td>
-              <td class="innercard" style="width: 800px;">
+              <td class="innercardgrid">
                 <template is="dom-repeat" items="{{view.subject}}" as="s">
                 <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypesubjectid}}" getschoolcategory="{{schooltypename}}" emplanpreff="{{emplangprefernce}}"></school_grade-subject-item-card>
                </template>
