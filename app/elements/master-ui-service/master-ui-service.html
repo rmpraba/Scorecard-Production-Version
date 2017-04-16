@@ -14,7 +14,7 @@
         method="post"
         on-response="rolecreationResponse"
         debounce-duration="300"
-    ><iron-ajax        
+    ><iron-ajax         
         id="fetchroleajax"    
         url="{{fetchroleurl}}"  
         params="{{fetchroleparam}}"
@@ -1246,7 +1246,7 @@ fndelsectionz:function(emparrr){
     },
       fngetstudent:function(stugradeid,stugrade)
       {
-      this.fngetstudenturl=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
+      this.studentcheckinfo1=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
       var obj={"school_id":"","stugradeid":"","academic_year":""};
       obj.stugradeid=stugradeid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");

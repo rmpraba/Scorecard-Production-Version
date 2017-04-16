@@ -27,7 +27,7 @@
       background-color: #363636;
       color: #ffffff; 
       width: 7%;
-      margin-left: 75%;
+      margin-left: 23em;
       margin-top: 3%;
       }
 
@@ -40,11 +40,10 @@
 
       #createemp
        {
-          position: fixed;
+          /*position: fixed;*/
           min-height: 200%;
           width: 50%;
-          margin-left: -11%;
-          top: 20.2%;
+          
        }
        .title
        {
@@ -54,11 +53,9 @@
       #updateempdetails
        {
        
-        position: fixed;
+        /*position: fixed;*/
         min-height: 190%;
         width: 47%;
-        margin-left: -9%;
-        top: 21%;
        }
        
        .subbutton
@@ -68,38 +65,48 @@
               background-color: #363636;
               color: #ffffff;
               width: 7%;
-              margin-left: -16%;
+              margin-left: 20%;
               margin-top: 3%;
        }
       
 
        .vertical-row
        {
-          position: fixed;
+          position: absolute;
           border: 1px solid grey;
-          width: 1px;
-          margin-left: 38%;
+          margin-left: 36em;
           min-height: 2900px;
-          top: 12.3%;
+          top: 7em;
        }
 
        
-        .titlesdiv
-        {
-          position: fixed;
-        }
-
+        
         .newempldiv
        {
         position: fixed;
-        margin-left : 42%;
-        margin-top: 5%;
+        margin-left : 38%;
+        margin-top: 2%;
         
        }
+       .empinput
+       {
+        @apply(--layout-vertical);
+       }
+       .horizontalframes
+       {
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: -1%;
+       }
+       .horizontalframes .field paper-input
+       {
+         width: 88%;
+       }
+
 
     </style>
 
-     <div class="titlesdiv" style="margin-top: -3%;">
+     <!-- <div class="titlesdiv" style="margin-top: -3%;">
         <div class="tit1" style=" margin-left: 135%; width: 100%">
           <h3><b>EMPLOYEE CREATION</b></h3>
         </div>
@@ -112,99 +119,115 @@
         <div id="tit4" style="margin-top: 7%;margin-left: 12%;">
           <h4><b>Update Employee Details</b></h4>
         </div>    
+    </div> -->
+
+     <div class="tit1" style="margin-left: -9em;">
+      <CENTER>
+        <h3><b>EMPLOYEE CREATION</b></h3>
+      </CENTER>
     </div>
-    <!-- <hr></hr> -->
-    <span>
-
-
-    
+   
+    <span>    
 
     <div class="newempldiv" hidden$="{{hidenewempldiv}}">
-      <table cellspacing="0" cellpadding="1" border="0" width="560px">
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="1" border="0" width="530px">
+          <table cellspacing="0" cellpadding="1" border="0" width="560px">
             <tr>
-              <th><h4><label style="margin-left:1% ">Employee ID</label></h4></th>
-              <th><h4><label style="margin-left:0%">Employee Names</label></h4></th>
-              <th><paper-icon-button  id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
+              <th><h4><label>Employee ID</label></h4></th>
+              <th><h4><label style="float: center;margin-left: -2em;">Employee Names</label></h4></th>
+              <th><paper-icon-button style="float: right; margin-right: 7em;" id="btn1" icon="add" on-click="getempdetails"></paper-icon-button>
               <paper-tooltip for="btn1">Create</paper-tooltip></th>
+              <th></th>
             </tr>   
-          </table>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="newcardd col-sm-12" style="width:510px; height:400px; ">
-            <table cellspacing="0" cellpadding="1" border="0" width="530px">
-              <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
+     
+          <div class="newcardd" style="width:550px; height:400px; ">
+         <!--    <table cellspacing="0" cellpadding="1" border="0" width="550px">
+          -->     <template is="dom-repeat" items="{{selectschoolpersonalarr}}" as="view">
                 <tr>
                   <td colspan="6">
                     <new-employee-creation-item-card employeeid="{{view.emp_id}}" employeename="{{view.emp_name}}" employeephone="{{view.emp_phone}}"  employeemail="{{view.emp_mail}}" employeeschool="{{view.school_id}}" employeepassword="{{view.emp_password}}" employeemobile="{{view.emp_mobile}}" hiderolenameinput="true" hiderolenameitem="false"></new-employee-creation-item-card>           
-                  </td>
                 </tr>
               </template> 
-            </table>
+         <!--    </table>
+          --> 
           </div>
         </td> 
-      </tr>       
     </table>
     </div>
 
     
-    <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}">
-      <div class="list-group col-sm-12 panel-body form-category form-dialog">
-        <div class="form-group-heading">    
+    <!-- <div class="col-sm-6" id="createemp" hidden$="{{hidecreateemp}}"> -->
+    <div id="createemp" hidden$="{{hidecreateemp}}">
+      <div class="empinput">
+        <div>    
           <h4>Employee Details</h4>
         </div>  
 
           <paper-input value={{empid}} hidden></paper-input>
-
-        <div class="col-sm-4">
+      <div class="horizontalframes">
+        <div class="field">
           <paper-input label="Employee name" id="empname" required error-message="needs employee name!" value="{{name}}"  allowed-pattern="[a-zA-Z ]" ></paper-input>
         </div>
 
-        <div class="col-sm-4">
+        <div class="field" style="margin-left: 6%;">
           <paper-input label="Mobile Number" id="empTelephone" required error-message="needs telepnoneno!" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
-
-        <div class="col-sm-4">
+      </div>    
+        
+      <div class="horizontalframes">
+        <div class="field">
           <paper-input label="Secondary Mobile Number" id="empMobile" value="{{MobileNumber}}" allowed-pattern="[0-9]" maxlength="10"></paper-input>
         </div>
 
-        <div >
+        <div class="field" style="margin-left: 6%;">
+          <gold-email-input label="Email" id="empmailid" required error-message="needs mailid!" value="{{mailid}}"></gold-email-input>
+        </div>
+
+        <div class="field">
           <paper-input  hidden label="Password" id="emppassword"  value="password"></paper-input>
         </div>
-
-        <div class="col-sm-4">
-          <gold-email-input label="Email" id="empmailid" required error-message="needs mailid!" value="{{mailid}}"></gold-email-input>
-        </div>    
+      </div>
+        
+            
       </div>    
 
-      <div class="list-group col-sm-12 panel-body form-category form-dialog">
-        <div class="form-group-heading">
-          <h4>Employee School Type</h4>
-        </div>     
+      <!-- <table style="border-collapse: collapse; border: "1"> -->
+      <table  border="0" width="100px">
+        <tr>
+          <th>
+            <h4 style="text-align: left;">Employee School Type</h4>
+          </th>    
+        </tr>
+        <tr>
+          <td>  
+            <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
+                <td>
+                  <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschooltypename="{{view.school_type_name}}">
+                  </employe-schooltype-creation-card>
+                </td>
+            </template>
+          </td>
+        </tr>  
 
-         <div class="col-sm-12">
-          <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
-            <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschooltypename="{{view.school_type_name}}"></employe-schooltype-creation-card>
-         </template>
-        </div>   
-      </div>
+        <tr>
+          <th>
+            <h4 style="text-align: left;">Employee Role Selection</h4>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <template is="dom-repeat" items="{{selectrolearr}}" as="view">
+              <tr>
+                <td colspan="3">
+                  <employee-role-item-card  emproleid="{{view.id}}" emprolename="{{view.role_name}}"></employee-role-item-card>
+                </td>
+              </tr>  
+            </template>
+          </td>
+        </tr>
+      </table>   
 
-      <div class="list-group col-sm-12 panel-body form-category"> 
-        <div class="form-group-heading">
-          <h4>Employee Role Selection</h4>
-        </div>
-        <template is="dom-repeat" items="{{selectrolearr}}" as="view">
-          <employee-role-item-card  emproleid="{{view.id}}" emprolename="{{view.role_name}}"></employee-role-item-card>
-        </template>  
-
-        <span>
-          <paper-button on-click="FnSubmit">Submit</paper-button>     
-        </span>
+      <div> 
+        <paper-button on-click="FnSubmit">Submit</paper-button>     
       </div>    
      </div>
     </span>
@@ -214,62 +237,68 @@
     <div id="updateempdetails" hidden$="{{hideupdateemp}}">
      <div class="updateemp">
          
-        <div class="form-group-heading">
+        <div>
           <h4>Employee Personal  Details</h4>
         </div>
 
-        <div class="list-group col-sm-12 panel-body form-category">
           <paper-input value={{schoolid}} hidden></paper-input>
-            <div class="col-sm-4">
+          <div class="horizontalframes">
+            <div class="field">
               <paper-input label="Employee Name" value="{{employeename}}"></paper-input>
             </div>
-            <div class="col-sm-4">
+            <div class="field">
               <paper-input label="Mobile Number" value="{{employeephone}}"  allowed-pattern="[0-9]"></paper-input>
             </div>
-            <div class="col-sm-4">
-              <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
-            </div>
-        </div> 
-
-        <div class="list-group col-sm-12 panel-body form-category">       
-          <div class="col-sm-4">
-            <gold-email-input label="Email" value="{{employeemail}}"></gold-email-input>
           </div>
-          <div class="col-sm-4">
+           
+          <div class="horizontalframes">
+             <div class="field">
+              <paper-input label=" Secondry Mobile Number" value="{{employeemobile}}" allowed-pattern="[0-9]"></paper-input>
+             </div>
+             <div class="field">
+              <gold-email-input label="Email" value="{{employeemail}}"></gold-email-input>
+             </div>
+          </div> 
+                      
+          <div>
             <paper-input  hidden label="EmployeePassword"  type="password" value="{{employeepassword}}" readonly></paper-input>
           </div>
-        </div>
-      <!-- </div> --> 
 
-      <div>
-          <div class="form-group-heading">
-            <h4>Employee Role Mapping</h4>
-          </div>
+      <table  border="0" width="100px">
+        <tr>
+          <th>
+            <h4 style="text-align: left;">Employee school type Mapping</h4>
+          </th>    
+        </tr>
+        <tr>
+          <td>  
+            <template is="dom-repeat" items="{{selectmapschooltypearr1}}" as="view">
+              <tr>  
+                <td>
+                  <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}" id="{{view.school_type_id}}{{employeeid}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>
+                </td>
+              </tr>  
+            </template>
+          </td>
+        </tr>  
 
-          <div class="list-group col-sm-12 panel-body form-category">
-            <paper-input value={{schoolid}} hidden></paper-input>
-              <div class="col-sm-12">
-                <template is="dom-repeat" items="{{selectschoolrolearr1}}" as="view">
-              <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" id="{{view.id}}{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card>     
-            </template>   
-              </div>
-          </div>  
-      </div>
-    <div>   
-      <div class="form-group-heading">
-        <h4>Employee school type Mapping</h4>
-      </div>
-
-      <div class="list-group col-sm-12 panel-body form-category">
-        <paper-input value={{schoolid}} hidden></paper-input>
-          <div class="col-sm-12">
-             <template is="dom-repeat" items="{{selectmapschooltypearr1}}" as="view">
-                  <new-employee-creation-schooltype-item-card schooltypeidszzzz="{{view.school_type_id}}"
-                  id="{{view.school_type_id}}{{employeeid}}" schooltypenames="{{view.school_type_name}}" schoolempschooltypeid="{{employeeid}}" schoolempschooltypename="{{employeename}}"  check="{{view.check}}"></new-employee-creation-schooltype-item-card>    
-              </template>
-          </div>
-        </div>
-      </div>
+        <tr>
+          <th>
+            <h4 style="text-align: left; width: 400px;">Employee Role Mapping</h4>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <template is="dom-repeat" items="{{selectrolearr}}" as="view">
+              <tr>
+                <td>
+                  <new-employee-creation-role-item-card schoolroleids="{{view.role_name}}" schoolroleidxx="{{view.id}}" schoolempgetid="{{employeeid}}" id="{{view.id}}{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{view.check}}"></new-employee-creation-role-item-card> 
+                </td>
+              </tr>  
+            </template>
+          </td>
+        </tr>
+      </table>  
     </div>   
 
           <div>
@@ -294,9 +323,8 @@
       //alert("hiii");
       this.hidecreateemp=false;
       this.hideupdateemp=true;
-      this.$.tit4.hidden=true;
-      this.$.tit3.hidden=false;
-     
+      //this.$.tit4.hidden=true;
+      //this.$.tit3.hidden=false;
      },  
      setschoolrolezz:function(arr){
           setrolearr=arr;   
@@ -358,8 +386,8 @@
          this.$.uiservice.selectrolename();
          this.hidecreateemp=false;
          this.hideupdateemp=true;
-         this.$.tit4.hidden=true;
-         this.$.tit3.hidden=false;
+         //this.$.tit4.hidden=true;
+         //this.$.tit3.hidden=false;
          //alert(this.hidecreateemp);
          document.getElementById('#hidecreateemp');
       },
@@ -414,11 +442,11 @@
        this.ready();
        },
 
-      fnnedit:function()
+      /*fnnedit:function()
       {
         this.$.tit4.hidden=false;
         this.$.tit3.hidden=true;
-      },
+      },*/
 
       fundelttt:function()
       {
@@ -427,8 +455,8 @@
       fnemprefresh:function()
       {
       this.hidecreateemp=false;
-        this.$.tit4.hidden=true;
-        this.$.tit3.hidden=false; 
+        //this.$.tit4.hidden=true;
+        //this.$.tit3.hidden=false; 
       }
 
 });

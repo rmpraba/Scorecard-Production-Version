@@ -50,20 +50,21 @@
         background-color: #363636;
         color: #ffffff;                
         width: 17%;
-        margin-left: 80%;
-        margin-top: 8%;
+        margin-left: 56em;
+        margin-top: 6em;
       }
       
     .subcat1
       {
         margin-left: 36%;
+        margin-top: -7em;
       }
     .language
     {
       @apply(--layout-horizontal);
           margin-left: 55%;
           position: absolute;
-          top: 38%;
+          top: 15em;
     }
     .newwwwcardd
     {
@@ -90,36 +91,36 @@
         
      <div>   
        <div class="outercard">
-            <div class="col-sm-4" style="margin-top: 4%;">
-              <div class="form-group-heading">
+            <div class="scltype1" style="margin-top: 4%;margin-left: 3em;">
+              <div>
                 <h4>SCHOOL TYPE</h4>    
               </div>
-               <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
-                <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
-              </template>
-              </div>  
-          <div class="subcat1" style="margin-top: 5%;">
-              <div class="form-group-heading">  
+                <template is="dom-repeat" items="{{getschooltypearr}}" as="view">
+                  <employe-schooltype-to-category-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="EM0S{{view.school_type_id}}"></employe-schooltype-to-category-item-card>
+                </template>
+            </div>  
+            <div class="subcat1">
+              <div>  
                 <h4>SUBJECT CATEGORY</h4>  
               </div>
-              <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
-                <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
-              </template>
-          </div>   
+                <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
+                  <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
+                </template>
+            </div>   
    
-          <div class="language">
-            <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
-               <paper-menu id="empLanguageprefernceid" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
-                 <paper-item value="coresub">Core Subject</paper-item>
-                 <paper-item value="2language">Second Language</paper-item>
-                 <paper-item value="3language">Third Language</paper-item>
-             </paper-menu>
-            </paper-dropdown-menu>
-          </div>
+            <div class="language">
+              <paper-dropdown-menu id="empLanguageprefernce" label="Select The language Type">
+                <paper-menu id="empLanguageprefernceid" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
+                  <paper-item value="coresub">Core Subject</paper-item>
+                  <paper-item value="2language">Second Language</paper-item>
+                  <paper-item value="3language">Third Language</paper-item>
+                </paper-menu>
+              </paper-dropdown-menu>
+            </div>
 
-           <div class="subbutton">
+            <div class="subbutton">
               <paper-button on-click="grnerate">Generate</paper-button>
-           </div>
+            </div>
            
 
          </div>
@@ -146,7 +147,7 @@
                     
                </tr>
               </thead>
-                <tbody class="newwwwcardd col-sm-12" style="width: 1070px;height: 350px;">
+                <tbody class="newwwwcardd" style="width: 1070px;height: 350px;">
               <!--  <tr>
                  <td></td>
                  <td></td>
