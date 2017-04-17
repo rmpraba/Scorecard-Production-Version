@@ -160,7 +160,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="subbutton" hidden$="{{hidegenerateopt}}">
             <paper-button on-click="Generate">Generate</paper-button>
         </div>   
-    </div>  
+       
+      </div>  
 
         <div id="z1">
              <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
@@ -181,8 +182,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
 
    <div class="newwwtabb" hidden$="{{hidenewtabb}}">
-        <table>
-            <thead> 
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+            <!-- <thead> 
               <tr>
                 <th class="innercard" style="width: 776px;margin-left: 30%;">
                   <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
@@ -190,21 +191,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </template>
                 </th>
               </tr>
-            </thead>
+            </thead> -->
             
               <tbody class="newcarddzz">
+
                 <template is="dom-repeat" items="{{sectionfullarr}}" as="view">
-                  <tr>
-                    <td class="outcard">
+                  <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
+                    <td width="20%">
                       <h4>{{view.student_name}}</h4>
                     </td>
-                    <td class="innercard" style="width: 800px;margin-left: -42em;">
+                    <!-- <td width="80%">
+                      <table border="1">
+                      <tr> -->
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
-                        <student-list-pass-section-card studentname="{{view.student_name}}" 
+                        <td>
+                        <student-list-pass-section-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" studentname="{{view.student_name}}" 
                         id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
-                      </template>  
-                    </td>         
+                        </td>
+                      </template>
+                      <!-- </tr>  -->
+                      <!-- </table>  -->
+                    <!-- </td>          -->
                   </tr>
+                  <!-- <tr><td colspan="2"><hr/></td></tr> -->
                 </template>
               </tbody>
           </table>   
@@ -262,7 +271,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var mappingstudentarr=[];
     var kn=[];
     var overall12=[];
-  
+    var setarrr=[];
       
    Polymer({
       is: 'Student-to-section-mapping-card',
@@ -332,7 +341,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               kn.splice(obj);     
           }          
      
-      var setarrr=[];
+      // var setarrr=[];
       var getgradearr=[];
           for(var i=0;i<sectionarr.length;i++){
                           var section_id=sectionarr[i].section_id;
@@ -343,7 +352,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                              // alert(JSON.stringify(obj));
                           }
              // alert(JSON.stringify(setarrr));
-                   this.setsubjectarr=setarrr;
+                   // this.setsubjectarr=setarrr;
                 var generatearr=[];
                 var subarr=[];
                 for(var j=0;j<studentlistarr.length;j++){
@@ -473,7 +482,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }   
        }
-         this.sectionfullarr=k;  
+         // this.sectionfullarr=k;
+          var temp=[];
+          var subarr=[];
+          var obj={};
+          obj.class_for_admission="class";
+          obj.enquiry_no="enq";
+          obj.admission_no="admn";
+          obj.student_name="";
+          obj.gender="gen";
+          obj.dob="dob";
+          for(var i=0;i<(setarrr).length;i++){
+          var obj1={};
+          obj1.section_id=setarrr[i].srtarr;
+          obj1.hideinput=false;
+          obj1.hidecheck=true;          
+          subarr.push(obj1);
+          }
+          obj.subject=subarr;
+          temp.push(obj);
+
+         this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(k).length;i++){
+          for(var j=0;j<(k[i].subject).length;j++){
+            k[i].subject[j].hideinput=true;
+             k[i].subject[j].hidecheck=false;
+          }
+          this.finalarr.push(k[i]);
+         }
+
+         // alert(JSON.stringify(k));
+
+         this.sectionfullarr=this.finalarr;
        if(k.length!=0){
         
         this.$.uiservice.fnretrivestudent(this.stugradeid);
@@ -584,7 +625,36 @@ for(var j=0;j<k.length;j++){
          //alert(JSON.stringify(k));
      
    if(k.length!=0){
-     this.sectionfullarr=k;
+    var temp=[];
+          var subarr=[];
+          var obj={};
+          obj.class_for_admission="class";
+          obj.enquiry_no="enq";
+          obj.admission_no="admn";
+          obj.student_name="";
+          obj.gender="gen";
+          obj.dob="dob";
+          for(var i=0;i<(setarrr).length;i++){
+          var obj1={};
+          obj1.section_id=setarrr[i].srtarr;
+          obj1.hideinput=false;
+          obj1.hidecheck=true;          
+          subarr.push(obj1);
+          }
+          obj.subject=subarr;
+          temp.push(obj);
+
+         this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(k).length;i++){
+          for(var j=0;j<(k[i].subject).length;j++){
+            k[i].subject[j].hideinput=true;
+             k[i].subject[j].hidecheck=false;
+          }
+          this.finalarr.push(k[i]);
+         }
+         this.sectionfullarr=this.finalarr;
+     // this.sectionfullarr=k;
              this.$.uiservice.fnretrivestudent(this.stugradeid);
              document.querySelector('student-list-pass-section-card').f11(); 
              document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
@@ -698,7 +768,37 @@ for(var j=0;j<l.length;j++){
 
  
      if(l.length!=0){
-      this.sectionfullarr=l;
+      // this.finalarr=[];
+      var temp=[];
+          var subarr=[];
+          var obj={};
+          obj.class_for_admission="class";
+          obj.enquiry_no="enq";
+          obj.admission_no="admn";
+          obj.student_name="";
+          obj.gender="gen";
+          obj.dob="dob";
+          for(var i=0;i<(setarrr).length;i++){
+          var obj1={};
+          obj1.section_id=setarrr[i].srtarr;
+          obj1.hideinput=false;
+          obj1.hidecheck=true;          
+          subarr.push(obj1);
+          }
+          obj.subject=subarr;
+          temp.push(obj);
+
+         this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(l).length;i++){
+          for(var j=0;j<(l[i].subject).length;j++){
+            l[i].subject[j].hideinput=true;
+             l[i].subject[j].hidecheck=false;
+          }
+          this.finalarr.push(l[i]);
+         }
+         this.sectionfullarr=this.finalarr;
+      // this.sectionfullarr=l;
    // alert(JSON.stringify(this.sectionfullarr));
          document.querySelector('student-list-pass-section-card').f11(); 
          document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
@@ -782,6 +882,7 @@ FnSavez:function(e)
        
         overall=[];
         g=[];
+        setarrr=[];
      },
     
     /*f1:function(e){

@@ -16,20 +16,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-          .innercard{
+    /*      .innercard{
          @apply(--layout-horizontal);    
       margin-left:7.5em;
       width:100%;   
+     }*/
+     .incard{
+       @apply(--layout-vertical);    
+       margin-top: -2%;
      }
-
   
     </style>
-    <div class="innercard">
+    <div>
           <paper-input value="{{employeeidz}}" hidden></paper-input>
           <paper-input value="{{empgradeidz}}" hidden></paper-input>
           <paper-input value="{{empsubjectidz}}" hidden></paper-input>
           <paper-input value="{{employeesectionidz}}" hidden></paper-input>
+          <div class="incard">
+          <div>{{employeesectionnamez}}</div>
           <paper-checkbox value="{{employeesectionnamez}}" id="{{id}}" on-change="fnsetsection"></paper-checkbox>
+          </div>
     </div>
         
   </template>

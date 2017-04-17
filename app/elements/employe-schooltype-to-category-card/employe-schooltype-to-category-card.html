@@ -44,9 +44,11 @@
       {
         background-color: #363636;
         color: #ffffff;                
+
         height: 3em;
         margin-left: 25em;
         margin-top: 6em;
+
 
       }
       
@@ -54,7 +56,9 @@
     {
           margin-left: 28em;
           position: absolute;
+
           margin-top: 4em;
+
     }
     .newscrolzz
     {
@@ -136,27 +140,35 @@
 
      <div id="talhidn" hidden$="{{hidenewgridd}}">
         <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
-          <table class="table table-bordered">
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
             <!-- <div class="container"> -->
-              <tr>
-                <th class="innercard" style=" width: 400px; margin-left:-4em;margin-top: -38em">
+              <!-- <tr>
+                <th class="innercard" style=" width: 400px; margin-left:4em;margin-top: -38em">
                   <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                    <h4 style="padding-left: 43px" >{{view.srtarr}}</h4>
+                    <h4 style="padding-left: 50px" >{{view.srtarr}}</h4>
                   </template>
                 </th>
                   
-              </tr>
-            <div class="newscrolzz"  style="height: 450px; width: 89%">
+              </tr> -->
+            <!-- <div class="newscrolzz"> -->
               <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
-                <tr>
-                  <td class="outcard"> 
+                <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
+                  <td > 
                     <h4>{{view.emp_name}}</h4>   
                   </td>
-                  <td class="innercard">
+                  <!-- <td>
+                  <table border="1">
+                  <tr> -->
                     <template is="dom-repeat" items="{{view.employee}}" as="s">
-                        <employe-creation-card employeesetidz="{{view.emp_id}}" id="{{s.id}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
-                          </template>   
-                  </td>
+                        <td><center>
+                        <employe-creation-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" employeesetidz="{{view.emp_id}}" id="{{s.id}}" subjectname="{{s.subject_name}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
+                        </center>
+                        </td>
+                    </template>   
+                  <!-- </tr>
+                  </table> 
+
+                  </td> -->
                   <td>
                     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
@@ -166,8 +178,9 @@
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
                 </tr>    
+                <!-- <tr><hr/></tr> -->
               </template>
-            </div>
+            <!-- </div> -->
           </table>   
         </div>  
         
@@ -297,7 +310,7 @@
                   }
 
                  
-                   this.setsubjectarr=setarrr;
+                   // this.setsubjectarr=setarrr;
 
                   var generatearr=[];
                  var subarr=[];
@@ -349,7 +362,39 @@
                    overall1.push(nameobj);
                    a=[];
                 }
-                 this.subjectbigarr=overall;
+
+          var temp=[];
+          var subarr=[];
+          var obj={};
+          obj.emp_name="";
+          obj.emp_id="id";
+          for(var i=0;i<(setarrr).length;i++){
+          var obj1={};
+          obj1.subject_name=setarrr[i].srtarr;
+          obj1.hideinput=false;
+          obj1.hidecheck=true;          
+          subarr.push(obj1);
+          }
+          obj.employee=subarr;
+          temp.push(obj);
+
+         this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(overall).length;i++){
+          for(var j=0;j<(overall[i].employee).length;j++){
+            overall[i].employee[j].emp_id=overall[i].emp_id;
+            if(j==0)
+            overall[i].employee[j].emp_name=overall[i].emp_name;
+            else
+            overall[i].employee[j].emp_name="";
+            overall[i].employee[j].hideinput=true;
+            overall[i].employee[j].hidecheck=false;
+          }
+          this.finalarr.push(overall[i]);
+         }
+         this.subjectbigarr=this.finalarr;
+                 // this.subjectbigarr=overall;
+                 // alert(JSON.stringify(this.finalarr));
                   //  setspecificarr=overall;
                        this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                         this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
