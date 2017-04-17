@@ -18,9 +18,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {   
         display: block;
       }
-         .outcard{   
-      width:25% 
-     margin-left:2.0em;
+      .outcard
+      {   
+        width:25% 
+        margin-left:2.0em;
       }
        .innercard{     
       @apply(--layout-horizontal);
@@ -33,29 +34,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      }
     .subbutton paper-button  
       {
-        @apply(--layout-right);
         background-color: #363636;
         color: #ffffff;                
         width: 18%;
-        margin-left: 81%;
-        margin-top: 23%;
+        margin-left: 29em;
+        margin-top: 3em;
       }
 
-      .createdivv
+      .section1
       {
+            @apply(--layout-horizontal);
             border-radius: 10px;
             border: 1px solid #6699ff;
             padding: 15px;
             width: 45%;
             margin-left: 30%;
             margin-top: 3% !important;
-            min-height: 170px; 
+            min-height: 100px; 
       }
       .newcard
       {
-        @apply(--layout-horizontal);
-        margin-top: -4%;
-        margin-left: 24%;
+        margin-top: 1em;
+        margin-left: 11em;
       }
 
       #subzz paper-button
@@ -72,10 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: white;
         width: 240%;  
       }
-      /*--paper-tooltip-background
-      {
-        background-color: #12A5F4;
-      }*/
+     
       #z1
       {
            position: absolute;
@@ -117,12 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 10%;
       }
 
-      /*.newcarddzz
-      {
-        overflow-x: hidden;
-        overflow-y: scroll;
-      }
-*/      .newwwtabb
+      .newwwtabb
       {
         margin-top: 8%;
       }
@@ -131,7 +123,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 70%;
       margin-left: 12%;
     }
-
+    .createdivv
+    {
+      @apply(--layout-vertical);
+    }
    
     </style>    
     
@@ -140,31 +135,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h3><b>STUDENT TO SECTION MAPPING</b></h3>   
       </CENTER>
     </div>
-    <div class="outercard">
+    <div class="section1">
         <div class="createdivv">
-          <div class="catcard" style="margin-top: 2%;">
+          <div>
             <label><b>School Type</b></label>
+          </div>
+          <div>
             <template is="dom-repeat" items="{{studentsectionarr}}" as="view">
               <Student-to-section-mapping-item-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="STTYP{{view.school_type_id}}">
                 </Student-to-section-mapping-item-card>   
             </template>  
-          </div>       
+          </div>      
+        </div>       
 
-            <div class="newcard" style="position: absolute;">
-              <paper-dropdown-menu  label="Select the Grade">
-                <paper-menu id="empgradeiddd" class="dropdown-content"  on-iron-select="fnselectgrade">
-                  <template is="dom-repeat" items="{{setgrade}}">
-                    <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
-                  </template>    
-                </paper-menu>
-              </paper-dropdown-menu>
-           </div> 
+        <div class="newcard" style="position: absolute;">
+          <paper-dropdown-menu  label="Select the Grade">
+            <paper-menu id="empgradeiddd" class="dropdown-content"  on-iron-select="fnselectgrade">
+                <template is="dom-repeat" items="{{setgrade}}">
+                  <paper-item value="{{item.grade_id}}">{{item.grade_name}}</paper-item>
+                </template>    
+            </paper-menu>
+          </paper-dropdown-menu>
+        </div> 
           <div class="subbutton" hidden$="{{hidegenerateopt}}">
             <paper-button on-click="Generate">Generate</paper-button>
-        </div>
-       
-        </div>  
-      </div>  
+        </div>   
+    </div>  
 
         <div id="z1">
              <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>

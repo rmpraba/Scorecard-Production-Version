@@ -18,20 +18,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }  
        
-      .outercard 
-      {
-        @apply(--layout-vertical);
-      }
-      
+     
      .outercard
       {
+        @apply(--layout-vertical);
         border-radius: 10px;
-        border: 2px solid #6699ff;
+        border: 1px solid #6699ff;
         padding: 20px;
         margin-top: 6%;
-        width: 48%;
-        margin-left: 28%;
-        min-height: 300px;
+        width: 30%;
+        margin-left: 32em;
+        min-height: 100px;
       }
       .subbutton paper-button
       {
@@ -67,8 +64,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         @apply(--layout-horizontal);
         width: 250%;
-        margin-left: 24%;
-        margin-top: -12%;
+        margin-left: 7em;
+        margin-top: -5em;
       }
        paper-dropdown-menu
        {
@@ -79,8 +76,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        }
        .catcard
        {
-        @apply(--layout-center);
-        margin-top: 5%;
+        @apply(--layout-vertical);
+        margin-left: 2em;
        }
        .innercard{     
       @apply(--layout-horizontal);
@@ -109,15 +106,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </CENTER>
     </div>
 
-    <div>
-      <div class="outercard">
-        <table>
-          <div>  
-          <div class="catcard">   
-            <label><b>School Type</b></label>  
-            <template is="dom-repeat" items="{{empschoolarr}}" as="view">
-              <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
-            </template>   
+      <div class="outercard">  
+          <div class="catcard"> 
+            <div>
+              <label><b>School Type</b></label>
+            </div>  
+             <div>
+                <template is="dom-repeat" items="{{empschoolarr}}" as="view">
+                  <emp-category-get-card empschooltypeids="{{view.school_type_name}}" empschoolnames="{{view.school_type_id}}" id="EMSEC{{view.school_type_id}}"></emp-category-get-card>
+                </template> 
+             </div> 
           </div>     
     
             <div class="newcard">
@@ -131,8 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>  
        
           </div>  
-        </table>
-      </div>
+        
    
       <div id="newwgridd">
         <table>
