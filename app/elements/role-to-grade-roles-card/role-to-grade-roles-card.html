@@ -13,7 +13,7 @@
      }
     </style>
     <div>
-      <paper-input hidden>{{name}}</paper-input>
+       <paper-input hidden>{{name}}</paper-input>
        <paper-checkbox  on-change="FnSelectRole" id="gtor{{id}}">{{name}}</paper-checkbox>
     </div>
   </template>
@@ -24,7 +24,6 @@
     Polymer({
       is: 'role-to-grade-roles-card',
       ready:function(){
-
       },
       FnSelectRole:function(e){
         if(selected==""){          
