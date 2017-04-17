@@ -7,14 +7,7 @@
       :host {
         display: block;
       }
-       .card1{
-        margin-left:5%;
-        margin-top: 4%;
-      }
-      .card2{
-        margin-left:40%;
-         margin-top:-17%;
-      }
+      
       .outcard{
       width:25% 
      margin-left:2.0em;
@@ -22,22 +15,13 @@
        .innercard{     
       @apply(--layout-horizontal);
        width:100%
-      margin-left:4em;
+      margin-left:4em; 
      }
     
      .tt{   
       width:70%;  
      }
-     /*.outercard
-      {  
-        border-radius: 10px;
-        border: 2px solid #6699ff;
-        padding: 0px;
-        margin-top: 6%;
-        width: 50%;
-        margin-left: 25%;
-        min-height: 300px;
-      }*/
+     
        .delbutton paper-button
       {
         /*@apply(--layout-right);*/
@@ -67,12 +51,13 @@
       }
       .newdiv
       {
+        @apply(--layout-vertical);
          border-radius: 10px;
          border: 1px solid #6699ff;
          padding: 7px;
-         width: 30%;
+         width: 20%;
          margin-left: 37%;
-         min-height: 500%;
+         min-height: 135px;
          margin-top: 4%;
       }
       
@@ -85,10 +70,11 @@
       <div>
         <h4><b>Select School type</b></h4>
       </div>
-      <template is="dom-repeat" items="{{schootypearrss}}" as="view">
-           <!--  <p>{{view.school_type_id}}</p> -->
-            <school-grade-section-creation-card  id="TYPSECT{{view.school_type_id}}" sectionschooltypeid="{{view.school_type_id}}" sectionschooltypename="{{view.school_type_name}}"></school-grade-section-creation-card>   
-      </template>
+      <div>
+        <template is="dom-repeat" items="{{schootypearrss}}" as="view">
+          <school-grade-section-creation-card  id="TYPSECT{{view.school_type_id}}" sectionschooltypeid="{{view.school_type_id}}" sectionschooltypename="{{view.school_type_name}}"></school-grade-section-creation-card>   
+        </template>
+      </div>
     </div> 
      
       <div class="newtitle" hidden$="{{hidenewgrade}}">
