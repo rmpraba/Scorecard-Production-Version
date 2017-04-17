@@ -16,9 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;  
       }
-      .outcard{
-      /*@apply(--layout-horizontal);  
-      margin-left: 10%;*/
+      /*      .outcard{
        @apply(--layout-horizontal);
       margin-left:4.0em;
       width:100%
@@ -30,24 +28,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          font-family: 'Roboto', 'Noto', sans-serif;
          -webkit-font-smoothing: antialiased;
          padding-left: 80px;
-     }
+     }*/
     </style>
-       <div>
           <paper-input  hidden>{{gender}}</paper-input>
           <paper-input  hidden>{{dob}}</paper-input>
           <paper-input  hidden>{{admissinno}}</paper-input>
           <paper-input  hidden>{{admissinno1}}</paper-input>
           <paper-input  hidden>{{classid}}</paper-input>
           <paper-input  hidden>{{noofstudent}}</paper-input>
-          <paper-checkbox  on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">
-          </paper-checkbox>
-        </div>
-      <div class="outcard">  
+          <div hidden$="{{hideinput}}">{{sectionname}}</div>
+          <paper-checkbox  hidden$="{{hidecheck}}" on-change="fnsudentGrade" id="{{id}}" checked="{{check}}">
+          </paper-checkbox>     
+        <div class="outcard">  
          <paper-dialog id="noofstudent1" modal>
            <h2>Cannot add more students to this section.</h2>
             <paper-button  dialog-confirm autofocus style="color:white;background-color:black;margin-left: 59%;"> close</paper-button>
         </paper-dialog>
-   </div>  
+        </div>  
   </template>
   <script>
   (function() {
@@ -211,7 +208,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       var  dbid=arr[k].dd;
                     //  alert(dbid);
                     document.querySelector('#'+dbid).checked=false;
-           }
+        }
      }
 
     });
