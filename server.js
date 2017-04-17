@@ -7446,9 +7446,6 @@ app.post('/empgetschooltype111-service',  urlencodedParser,function (req,res)
     });
 app.post('/empgetschooltype11-service',  urlencodedParser,function (req,res)
 
-
-    // app.post('/fnschoolidgenerate-service',  urlencodedParser,function (req,res)
-
     {    
   // var e={school_id:req.query.school_id,school_type:req.query.schooltypeid};
      //   console.log(e);
