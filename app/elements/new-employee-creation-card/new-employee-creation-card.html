@@ -224,11 +224,11 @@
          <div class="horizontalframes1">
          <template is="dom-repeat" items="{{selectschooltypearr}}" as="view">
               <tr>
-                 <td>
+                 <td>  
                   <employe-schooltype-creation-card empschooltype="{{view.school_type_id}}" empschooltypename="{{view.school_type_name}}">
                   </employe-schooltype-creation-card>
                 </td>
-           </tr>  
+           </tr>    
        </template>
          </div>
            </td>
@@ -339,7 +339,7 @@
               <tr>
                  <template is="dom-repeat" items="{{view}}" as="v">
      
-                <td style="padding-left:15px">  
+                <td style="padding-left:15px">     
                   <new-employee-creation-role-item-card schoolroleids="{{v.role_name}}" schoolroleidxx="{{v.id}}" schoolempgetid="{{employeeid}}" id="{{v.id}}{{employeeid}}" schoolempgetname="{{employeename}}" emppsw="{{employeepassword}}" check="{{v.check}}"></new-employee-creation-role-item-card> 
                 </td>
                 </template>  

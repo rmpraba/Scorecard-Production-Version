@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    user     : 'root',
    password : 'admin',
 
-   database : 'reportcardmaster'
+   database : 'master'
 
  });
 
@@ -6168,7 +6168,7 @@ app.post('/fnschooltypez-service',  urlencodedParser,function (req,res)
 });
 app.post('/selectrolename-service',  urlencodedParser,function (req,res)
 {  
-   var qur="SELECT * FROM md_role";
+   var qur="SELECT * FROM md_role where id!='management' and id!='superadmin' and id!='schooladmin'";
   connection.query(qur,
     function(err, rows)
     {
