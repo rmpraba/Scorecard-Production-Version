@@ -3268,15 +3268,16 @@ insertschoolTypename:function(schooltypesarr)
       },
 
 
-      FnselecttoSection:function(subjectselectid,FnStosGradeid,acadamicyear){
+      FnselecttoSection:function(subjectselectid,FnStosGradeid,acadamicyear,FnStosGradeid2){
         this.FnselecttoSectionurl=sessionStorage.getItem("addrinfo")+"/FnselecttoSection-service";
-        var obj={"subjectselectid":"","FnStosGradeid":"","acadamicyear":""};
+        var obj={"subjectselectid":"","FnStosGradeid":"","acadamicyear":"","gradeid":""};
        obj.subjectselectid=subjectselectid;
        obj.FnStosGradeid=FnStosGradeid;
        obj.acadamicyear=acadamicyear;
+     obj.gradeid=FnStosGradeid2;
         this.FnselecttoSectionparam=obj;
 
-       // alert(JSON.stringify(obj));
+   // alert(JSON.stringify(obj));
 
         //alert(JSON.stringify(obj));
 
