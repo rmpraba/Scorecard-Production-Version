@@ -117,7 +117,7 @@
           <template is="dom-repeat" items="{{getempcategoryarr}}" as="view">
             <employee-category-item-card schooltypecategoryid="{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" id="EM0CAT{{view.subject_category_id}}"></employee-category-item-card>
           </template>
-        </div>    
+        </div>      
       </div>
 
       <div class="language">
@@ -150,22 +150,15 @@
             <!-- <div class="newscrolzz"> -->
               <template is="dom-repeat" items="{{subjectbigarr}}" as="view">
                 <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
-                  <td > 
+                  <td> 
                     <h4>{{view.emp_name}}</h4>   
                   </td>
-                  <!-- <td>
-                  <table border="1">
-                  <tr> -->
                     <template is="dom-repeat" items="{{view.employee}}" as="s">
-                        <td><center>
+                        <td ><center>
                         <employe-creation-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" employeesetidz="{{view.emp_id}}" id="{{s.id}}" subjectname="{{s.subject_name}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
-                        </center>
+                        </center> 
                         </td>
-                    </template>   
-                  <!-- </tr>
-                  </table> 
-
-                  </td> -->
+                    </template>     
                   <td>
                     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
