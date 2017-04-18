@@ -28,6 +28,7 @@
        {     
         @apply(--layout-horizontal);
         width:100%;
+        margin-top: 1%;
         /*-webkit-margin-start: -568px;*/
 
        }
@@ -43,23 +44,25 @@
      }   
    .outer1
       {
+         @apply(--layout-horizontal);
         border-radius: 10px;
         border: 2px solid #6699ff;
         padding: 0px;
         margin-top: 4%;
-        width: 60%;
+        width:65%;
         margin-left: 19%;
-        min-height: 300px;
+        min-height: 170px;
       }
 
        .subbutton paper-button
       {
-        @apply(--layout-right);
+       /* @apply(--layout-right);*/
         background-color: #363636;
         color: #ffffff;                
-        width: 15%;
-        margin-left: 45em;
-        margin-top: 17em;
+         width: 26%;
+         margin-top: 6em;
+         margin-left: 20em;
+     
       }
       .sbutton
       {
@@ -71,31 +74,33 @@
       }
       .subbcatt
       {
-          position: absolute;
-            margin-left: 25em;
+        @apply(--layout-vertical);
+            margin-left: 6em;
             margin-top: 2em;
       }
       
       #schtypeid
-      {
-        position: absolute;
+      { 
+        @apply(--layout-vertical);
         margin-left: 3em;
         margin-top: 2em;
-
-
+      }
+      .subouter
+      {
+        @apply(--layout-vertical);
       }
      
     .language
     {
-       margin-left: 39em;
-      margin-top: 6em;
+       margin-left: 30em;
+      margin-top: 4em;
       position: absolute;
     }
 
     #tbz1
     {
      margin-top: 5em; 
-     margin-left: 12em;
+     margin-left: 5em;
     }
     </style>
 
@@ -106,28 +111,31 @@
       </CENTER>
     </div>
    
-    <div>
       <div class="outer1">
         <div  id="schtypeid">
           <div>
-            <h4>SCHOOL TYPE</h4>
-          </div>  
-          
-          <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
-            <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
-          </template> 
-            
+            <label><b>SCHOOL TYPE</b></label>
+          </div>
+          <div>
+            <template is="dom-repeat" items="{{schooltypegrarr}}" as="view">
+              <school-type-item-card schooltypenamexx="{{view.school_type_name}}" schooltypeidxx="{{view.school_type_id}}" id="GDSUB{{view.school_type_id}}"></school-type-item-card>
+            </template>
+          </div> 
         </div>      
         <div class="subbcatt"> 
           <div >   
-            <h4> SUBJECT CATEGORY</h4>
-          </div>   
-          <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
-            <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
-            id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
-          </template>   
+
+            <label><b>SUBJECT CATEGORY</b></label> 
+          </div>  
+          <div>
+            <template is="dom-repeat" items="{{schoolcategoryarr}}" as="view">
+              <schoolcategory-type-item-card schooltypecategoryid="{{view.subject_category_id}}"
+              id="GDCAT{{view.subject_category_id}}" schooltypecategoryname="{{view.subject_category_name}}" ></schoolcategory-type-item-card>
+            </template>
+          </div>  
+
         </div>    
-      <div class="language">
+        <div class="language">
             <paper-dropdown-menu id="empLanguageprefernce1" label="Select The language Type">
                <paper-menu id="empLanguageprefernce1id" class="dropdown-content" on-iron-select="empfnselectlanprefercence" attr-for-selected="value" required>
                  <paper-item value="coresub">Core Subject</paper-item>
@@ -137,26 +145,29 @@
             </paper-dropdown-menu>
          </div>
     
-          <div class="subbutton">
+          <div class="subbutton"  hidden$="{{hidegenerate}}">
             <paper-button on-click="Generate">Generate</paper-button>
-          </div>
-          
-      </div>     
-    </div>
+          </div>          
+      </div>   
+       
 
   <div id="tbz1" hidden$="{{hidenewsubcat}}">
-    <table>
-      <tr>
-        <td class="innercard" style="width: 803px; margin-top: -33em; margin-left: 8em;">
+
+    <table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+      <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
+        <td class="innercard" style="width: 803px;  margin-left: 8em;">
+
           <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-            <h4 style="width:22%;">{{view.srtarr}}</h4>   
+            <h4 style="width:14%;">{{view.srtarr}}</h4>   
           </template>
         </td>
       </tr>
-
-      <div class="newwwwcardd" style="width: 1000px;height: 400px;"> 
+    <!-- </table> -->
+      <!-- <div class="newwwwcardd" style="width: 1000px;height: 400px;">  -->
+      <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
+      <table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
         <template is="dom-repeat" items="{{bigarr}}" as="view"> 
-          <tr>
+          <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
             <td class="outcard">
               <h4>{{view.subject_name}}</h4>
             </td>
@@ -175,14 +186,14 @@
             </td>
           </tr>
         </template>
-      </div>
+        </table></tr>
+      <!-- </div> -->
+
     </table>
   </div>     
 
    <demosumbit-card id="mydialog"></demosumbit-card>  
-    <master-ui-service id="uiservice"></master-ui-service>
-
-
+   <master-ui-service id="uiservice"></master-ui-service>
 
   </template>
   <script>
@@ -195,11 +206,13 @@
     var overall1=[];
     Polymer({
       is: 'school-grade-to-subject-card',   
-       /*ready:function()
+       ready:function()
        {
-       this.$.tbz1.hidden=true;
-       this.$.empLanguageprefernce1.hidden=true;
-      },*/
+       /*this.$.tbz1.hidden=true;
+       this.$.empLanguageprefernce1.hidden=true;*/
+       /*this.$.hidegenerate.hidden=true;*/
+      },
+     
        getgrade:function(arr1){
          getgradearr=arr1;
        //  alert(JSON.stringify(getgradearr));
@@ -215,26 +228,31 @@
       fndelapssgradedetails:function(arr){
          delpassservicearr=arr; 
       },
-
- 
+  
           langprefere:function(e){
         //   alert('1');
           if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1'){
                   this.$.empLanguageprefernce1.hidden=false;
+                   
                 }
             else{
 
               this.$.empLanguageprefernce1.hidden=true;
+              this.hidegenerate=false;
+             
               var empty='empty';
               document.querySelector('schoolcategory-type-item-card').fnsetemployeelanprefer(empty);
+
               document.querySelector('#empLanguageprefernce1id').selected=-1;
                }   
              },
         clean:function(e){
         this.$.empLanguageprefernce1.hidden=true;
+         this.hidegenerate=true;
       },
       empfnselectlanprefercence:function(e){
         this.emplangprefernce=e.target.selectedItem.textContent.trim();
+        this.hidegenerate=false;
         document.querySelector('schoolcategory-type-item-card').fnsetemployeelanprefer(this.emplangprefernce);
          
       },
@@ -348,6 +366,7 @@
         {
            this.$.tbz1.hidden=true;
            this.$.empLanguageprefernce1.hidden=true;
+           this.hidegenerate=true;
            if(document.querySelector('#empLanguageprefernce1id').selected!=-1)
            {
             document.querySelector('#empLanguageprefernce1id').selected=-1;

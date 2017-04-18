@@ -889,7 +889,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.SchoolCategorytype();
         document.querySelector('school-grade-to-subject-card').hidenewsubcat=true;
          this.$.cdialog.toggle(); 
-   
+          
 
       },
       CategorytoSchooltype:function(e)
@@ -899,7 +899,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.empcategorye();
         this.$.uiservice.empschooltype();
        document.querySelector('employe-schooltype-to-category-card').FnRefresh(); 
-       document.querySelector('employe-schooltype-to-category-card').fnsclsubject();
+       //document.querySelector('employe-schooltype-to-category-card').fnsclsubject();
+       document.querySelector('employe-schooltype-to-category-card').fnempsubject();
           this.$.cdialog.toggle();
     
       }, 

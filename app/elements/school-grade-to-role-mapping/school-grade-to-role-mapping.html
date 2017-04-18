@@ -4,7 +4,8 @@
 <dom-module id="school-grade-to-role-mapping">
   <template>
     <style>
-    paper-button{
+    paper-button
+    {
       @apply(--layout-left);
       background-color: #363636;
       color: #ffffff;
@@ -15,33 +16,58 @@
     tr{
       height: 40px;
     }
-    .outer1
+    .outer1 
       {
+        @apply(--layout-horizontal);
         border-radius: 10px;
-        border: 2px solid #6699ff;
+        border: 1px solid #6699ff;
         padding: 0px;
         margin-top: 4%;
         width: 60%;
-        margin-left: 19%;
-        min-height: 300px;
+        margin-left: 20em;
+        min-height: 190px;
       }
-
+      .rolemap
+      {
+        @apply(--layout-vertical);
+        margin-left: 2em;
+        margin-top: 2em;
+      }
+      .roletype
+      {
+        margin-left: 6em;
+        margin-top: 3em;
+      }
+      .gradeselect
+      {
+        margin-left: 4em;
+        margin-top: 3em;
+      }
+      .genbutton
+      {
+        margin-top: 4em;
+        margin-left: 4em;
+      }
     </style>
     <div>
       <CENTER>
         <h3><b>ROLE TO GRADE MAPPING</b></h3>
       </CENTER>
     </div>
+
     <div class="outer1">
-      <table width="50%" style="margin-left: 20%;">
-      <tr><th colspan="3">Select Role To Map</th></tr>
-      <tr>
-        <td colspan="2">
+      <div class="rolemap">
+        <div style="width: 140%;">
+          <label><b>Select Role To Map</b></label>
+        </div>
+        <div>
           <template is="dom-repeat" items="{{rolesarr}}">
-          <role-to-grade-roles-card id="{{item.id}}" name="{{item.role_name}}"></role-to-grade-roles-card>
+            <role-to-grade-roles-card id="{{item.id}}" name="{{item.role_name}}"></role-to-grade-roles-card>
           </template>
-        </td>
-        <td>
+        </div>
+      </div>
+
+      <div class="roletype">
         <paper-dropdown-menu  label="Select Type">
             <paper-menu id="gradetoroleschooltype" class="dropdown-content"   on-iron-select="FnSelectType">
               <template is="dom-repeat" items="{{schooltypearr}}">
@@ -49,10 +75,9 @@
               </template>    
             </paper-menu>
         </paper-dropdown-menu>
-        </td>
-      </tr>
-      <tr hidden$="{{hidegradeselection}}">
-      <td colspan="2">
+      </div>
+
+      <div class="gradeselect" hidden$="{{hidegradeselection}}">
         <paper-dropdown-menu  label="Select Grade">
             <paper-menu id="gradetorolegrade" class="dropdown-content"   on-iron-select="FnSelectGrade">
               <template is="dom-repeat" items="{{gradearr}}">
@@ -61,16 +86,13 @@
               </template>    
             </paper-menu>
         </paper-dropdown-menu>
-      </td>
-      <td colspan="1"><paper-button on-click="FnGenerate">Generate
-      </paper-button></td>
-      </tr>
-      <tr hidden$="{{hidegeneratebtn}}"><td colspan="2"></td>
-      <td><paper-button on-click="FnGenerate">Generate
-      </paper-button></td>
-      </tr>
-      </table>
+      </div>
+
+      <div class="genbutton" hidden$="{{hidegeneratebtn}}">
+        <paper-button on-click="FnGenerate">Generate</paper-button>
+      </div>
     </div>
+    
     <br><br>
     <div>
     <table width="60%" style="margin-left: 20%;">
@@ -124,6 +146,7 @@
         roleid=selectedrole;
         if(roleid=='class-teacher'){
         this.hidegradeselection=false;
+        this.hidegeneratebtn=false;
         }
         else if(roleid=='co-ordinator'||roleid=='headmistress'){
         this.hidegeneratebtn=false;

@@ -25,22 +25,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .studname{
         width: 30%;  
       }
-      #tb1{
+      #tb1
+       {
           width:23.6%
         }
         .newdropzzz
         {
-          margin-top: 6%;
+          position: absolute;
+          margin-top: 1em;
+          margin-left: 20em;
         }
         .newdivzzz
-        {      
+        {   
+          @apply(--layout-horizontal);    
           border-radius: 10px;
           border: 1px solid #6699ff;
           padding: 15px; 
           width: 41%;
           margin-left: 30%;
           margin-top: 5% !important;
-          min-height: 200px; 
+          min-height: 100px; 
+        }
+        .sctypez
+        {
+          @apply(--layout-vertical); 
+          margin-left: 2em;
         }
     
     </style>  
@@ -53,18 +62,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <div class="newdivzzz">
 
-          <div class="sctypez" style="margin-top: 2%;">  
-            <div>
-              <label><b>School Type</b></label>
-            </div>
-
+        <div class="sctypez">  
+          <div>
+            <label><b>School Type</b></label>
+          </div>
+          <div>
             <template is="dom-repeat" items="{{Sectionarrr}}" as="view">
                <student-allow-item-card schooltypename="{{view.school_type_name}}" schootypeid="{{view.school_type_id}}" id="STTYPH{{view.school_type_id}}">
                 </student-allow-item-card>
-             </template>   
-          </div>  
+             </template>
+          </div>
+            
+        </div>  
 
-    <div class="newdropzzz">
+      <div class="newdropzzz">
         <paper-dropdown-menu id="term" label="Select Acadamic year">
             <paper-menu id="rtermmmzzzz" class="dropdown-content"   on-iron-select="fnsetonacadamicsection" attr-for-selected="value" required>
                 <paper-item value="2015-2016">2015-2016</paper-item>     
@@ -74,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-item value="2019-2020">2019-2020</paper-item>
             </paper-menu>
           </paper-dropdown-menu>
-    </div>
+      </div>
    </div> 
    
    <div class="newtabgrid" hidden$="{{hidenewtabgrid}}">
