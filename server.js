@@ -7431,7 +7431,7 @@ app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
 app.post('/empgetschooltype111-service',  urlencodedParser,function (req,res)
 
     {    
-      var qur="SELECT distinct emp_name,emp_id FROM md_employee_subject where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
+      var qur="SELECT distinct emp_name,emp_id FROM md_employee_subject where school_id='"+req.query.school_id+"'and school_type_id='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
       connection.query(qur,
         function(err, rows)
         {
