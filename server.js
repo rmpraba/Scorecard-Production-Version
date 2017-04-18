@@ -9,8 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-
-   database : 'master'
+   database : 'reportcardmaster'
 
  });
 
@@ -60,7 +59,7 @@ console.log(logfile);
   var username={"id":req.query.username};
   var password={"password":req.query.password};
   // connection.query('select id,role_name from md_role where id in (select role_id from md_employee where ? and ? )',[id,password],
-  var qur="select mr.id,mr.role_name,(select name from md_school where id=me.school_id) as name,me.school_id "+
+  var qur="select distinct(mr.id),mr.role_name,(select name from md_school where id=me.school_id) as name,me.school_id "+
   "from md_role mr join md_employee me on(mr.id=me.role_id) "+
   "where me.id='"+req.query.username+"' and password='"+req.query.password+"'";
 
