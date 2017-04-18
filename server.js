@@ -7430,7 +7430,7 @@ app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
 app.post('/empgetschooltype111-service',  urlencodedParser,function (req,res)
 
     {    
-      var qur="SELECT distinct emp_name,emp_id FROM md_employee_subject where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
+      var qur="SELECT distinct emp_name,emp_id FROM md_employee_subject where school_id='"+req.query.school_id+"'and school_type_id='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and flage='active'";
       connection.query(qur,
         function(err, rows)
         {
@@ -7996,8 +7996,11 @@ app.post('/FnselecttoSection-service' ,urlencodedParser,
   function (req, res)
 
 {  
-  var qur="select * from md_class_section where school_id='"+req.query.subjectselectid+"' and class='"+req.query.FnStosGradeid+"' and academic_year='"+req.query.acadamicyear+"'";
-  connection.query(qur,function(err, rows){
+  
+  var qur1="select * from md_class_section where school_id='"+req.query.subjectselectid+"'and class='"+req.query.FnStosGradeid+"'  and academic_year='"+req.query.acadamicyear+"' and id in (SELECT distinct class_id FROM `md_student` WHERE  grade_id='"+req.query.gradeid+"'  and academic_year='"+req.query.acadamicyear+"' and school_id='"+req.query.subjectselectid+"')";
+
+  console.log(qur1);
+  connection.query(qur1,function(err, rows){
     if(!err){
 
       res.status(200).json({'returnval': rows});

@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          <td id="tb1" hidden>{{acadamicyears}}</td>
          <td id="tb1" hidden>{{schootypids}}</td>
          <td id="tb1">{{gradename}}</td>
-        <td id="tb1"><paper-input value="{{section}}" required error-message="needs Section Count!"   allowed-pattern="[0-9]" maxlength="2" on-change="fnsetvel" ></paper-input></td>
+        <td id="tb1"><paper-input value="{{section}}" required error-message="needs Section Count!"   allowed-pattern="[0-9]" maxlength="2" on-change="fnsetvel" id="tw1"></paper-input></td>
         <td id="tb1"><paper-input value="{{student}}" required error-message="needs Student Count!" value="{{Telephone}}"  allowed-pattern="[0-9]" maxlength="2" on-change="fnsetvel"></paper-input></td>
             <td id="tb1">{{capacity}}</td>
       
@@ -70,23 +70,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
     Polymer({ 
       is: 'section-allocation-card',
-
-   /* fnsectioninfo:function(e){
-    
-    },*/
-    /* this.fnsetpasssectinvalueurl=sessionStorage.getItem("addrinfo")+"/fnsetpasssectinvalue-service";
-        var obj={"school_id":"","schooltype":""};
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-         obj.schooltype=schooltype;
-       this.fnsetpasssectinvalueparam=obj;
-       this.$.fnsetpasssectinvalueajax.generateRequest();
-    */ 
+ 
     fnsetvel:function(e){
+      
         this.capacity=this.student*this.section;
     },
-    FnSave:function(e){
-      //alert("1");
-      //alert(this.student+" "+this.section+" "+this.capacity);
+    FnSave:function(e)
+    {
     if(this.student==""||this.student==null||this.section==""
       ||this.section==null)
     {
@@ -94,8 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }   
     else
     {
-  //alert(this.student+this.section+this.acadamicyears+this.gradename+this.gradeid+this.schootypids+this.capacity);
-    this.fnsectiostudentpassvalueurl=sessionStorage.getItem("addrinfo")+"/fnsectiostudentpassvalue-service";
+      this.fnsectiostudentpassvalueurl=sessionStorage.getItem("addrinfo")+"/fnsectiostudentpassvalue-service";
     var obj={"school_id":"","student":"","section":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":"","capacity":""};
                  obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                  obj.student=this.student;
