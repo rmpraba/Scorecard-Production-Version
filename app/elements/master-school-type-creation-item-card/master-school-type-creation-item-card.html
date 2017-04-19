@@ -202,6 +202,7 @@
           ///    alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapzajax.generateRequest();
         }
+        //alert("Inserted Successfully");
          for(var i=0;i<getarr1.length;i++)
        {
           var schooltype=getarr1[i].schooltype;
@@ -218,6 +219,8 @@
               //alert(JSON.stringify(obj));
             this.$.fnschooltypegradmapz1ajax.generateRequest();
         }
+        document.querySelector('school-grade-mapping--item-card').fnnewsubmit();
+
    },
       fnschooltypegradmapz1Response(e)
       {
@@ -225,20 +228,20 @@
         var res=e.detail.response.returnval; 
           //alert(JSON.stringify(res));
         // this.fnclean();
-          if(res=='Deleted!')
+          /*if(res=='Deleted!')
           {
             alert("Deleted Successfully");
-          }
+          }*/
       },
 
       fnschooltypegradmapzResponse(e)
       {
         //alert(22);
         var res=e.detail.response.returnval;
-          if(res=='Inserted!')
+          /*if(res=='Inserted!')
           {
             alert("Inserted Successfully");
-          }
+          }*/
       },  
       fnschooltypezResponse:function(e){
         var res=e.detail.response.returnval; 
