@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'master'
+   database : 'scorecardmaster'
 
  });
 
@@ -7693,15 +7693,15 @@ app.post('/empgetsectionvalues-service',  urlencodedParser,function (req,res)
    {
     // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
 var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where id=s.class_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.role_id='subject-teacher' and s.academic_year='"+req.query.academic_year+"' and s.school_type='"+req.query.schooltypeid+"'and flage='active'";
-    console.log(qur);
+   // console.log(qur);
     /*  var qur="SELECT id,s.grade_id,s.id,section_id ,subject_id,(SELECT id FROM md_class_section where section=s.section_id and school_id='"+req.query.school_id+"') as classid FROM mp_teacher_grade s  where s.school_id='"+req.query.school_id+"' and s.id='"+req.query.empselectid+"' and s.grade_id='"+req.query.setgradeidz+"' and flage='active'";*/
-    console.log(qur);
+    //console.log(qur);
 connection.query(qur,
     function(err, rows)
     {
     if(!err)
     { 
-      console.log(JSON.stringify(rows));   
+      //console.log(JSON.stringify(rows));   
       res.status(200).json({'returnval': rows});
     }
     else
@@ -7719,9 +7719,9 @@ app.post('/getschooltypeas-service',  urlencodedParser,function (req,res)
 var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id FROM md_school_grade_mapping p join mp_grade_section s  on(s.grade_id=p.grade_id) where s.school_id='"+req.query.school_id+"' and p.school_id='"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"'  and p.academic_year='"+req.query.academic_year+"' and p.school_type='"+req.query.schooltypeid+"'";
 
    var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"'";
-   console.log("-------------value------------------------");
-  console.log(qurr);
-    console.log("-------------value------------------------");
+  // console.log("-------------value------------------------");
+ // console.log(qurr);
+  //  console.log("-------------value------------------------");
  
   connection.query(qurr,
     function(err, rows)
@@ -7758,7 +7758,7 @@ app.post('/empsectionclass-service' ,  urlencodedParser,function (req, res)
 {  
  
    var qur="DELETE FROM  mp_teacher_grade where school_id='"+req.query.school_id+"' and id='"+req.query.employeeidz+"' and grade_id='"+req.query.empgradeidz+"' and subject_id='"+req.query.empsubjectidz+"'and section_id='"+req.query.employeesectionnamez+"' and school_type='"+req.query.schooltypeid+"'";
-    console.log(qur);
+  //  console.log(qur);
     connection.query(qur,function(err, rows)
     {
     if(!err)
@@ -7890,7 +7890,7 @@ app.post('/fngetThefunction-service',  urlencodedParser,function (req,res)
      qur="select * FROM  mp_grade_subject where  school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and subject_category='"+req.query.schooltypesubjectid+"'and academic_year='"+req.query.academic_year+"'";
 
  }
- console.log(qur);
+// console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -8134,7 +8134,7 @@ app.post('/FnSecondLangSubjectToStudent-service' , urlencodedParser,function (re
       class_id:req.query.sectionid,
      lang_pref:req.query.langugagepref,
     }; 
-      console.log(response);
+     // console.log(response);
 
 var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and  class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
  
@@ -8191,7 +8191,7 @@ app.post('/FnSecondLangSubjectToStudentsets-service' , urlencodedParser,function
      lang_pref:req.query.langugagepref,
       //studentid,studentname,schoolnames,termsname,gradenamesssss,Sectionnames,seclang,thirdlang,Sectionnameseeee
     }; 
-      console.log(response);
+     // console.log(response);
 
 var qur="SELECT * FROM  tr_student_to_subject WHERE school_id='"+req.query.schoolnames+"' and student_id='"+req.query.studentid+"' and academic_year='"+req.query.Acadamicyear+"' and grade='"+req.query.gradeid+"' and  class_id='"+req.query.sectionid+"' and lang_pref='"+req.query.langugagepref+"'";
  
@@ -8629,8 +8629,8 @@ app.post('/fngetpasssectinvaluezzz-service',  urlencodedParser,function (req,res
 app.post('/fetchschooltypesforgradetorolemap-service',  urlencodedParser,function (req,res)
   {  
     var qur="SELECT * FROM master_school_type where school_id='"+req.query.schoolid+"' ";
-    console.log('------------school type-------------');
-    console.log(qur);
+   // console.log('------------school type-------------');
+    //console.log(qur);
     connection.query(qur,
     function(err, rows)
     {
@@ -8646,8 +8646,8 @@ app.post('/fetchschooltypesforgradetorolemap-service',  urlencodedParser,functio
 app.post('/fetchgradesforgradetorolemap-service',  urlencodedParser,function (req,res)
   {  
     var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.schoolid+"' and school_type='"+req.query.type+"' and academic_year='"+req.query.academicyear+"'";
-    console.log('------------school grade-------------');
-    console.log(qur);
+   // console.log('------------school grade-------------');
+   // console.log(qur);
     connection.query(qur,
     function(err, rows)
     {
@@ -8686,13 +8686,13 @@ app.post('/generateroletogrademappinginfo-service',  urlencodedParser,function (
              "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
              "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
              "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"' and m.flage='active'";
-    console.log('------------school role-------------');
-    console.log(qur1);
-    console.log('------------------------------------');
-    console.log(qur2);
-    console.log('------------------------------------');
-    console.log(qur3);
-    console.log('------------------------------------');
+   // console.log('------------school role-------------');
+    //console.log(qur1);
+    //console.log('------------------------------------');
+    //console.log(qur2);
+    //console.log('------------------------------------');
+    //console.log(qur3);
+    //console.log('------------------------------------');
     var maparr=[];
     var secarr=[];
     var emparr=[];
@@ -8727,13 +8727,13 @@ app.post('/generateroletogrademappinginfo-service1',  urlencodedParser,function 
              "on(m.emp_id=e.id) where m.school_id='"+req.query.schoolid+"' and e.school_id='"+req.query.schoolid+"' and  "+
              "e.academic_year='"+req.query.academicyear+"' and m.academic_year='"+req.query.academicyear+"' and "+
              "m.school_type='"+req.query.type+"' and e.role_id='"+req.query.roleid+"' and m.flage='active'";
-    console.log('------------school role-------------');
-    console.log(qur1);
-    console.log('------------------------------------');
-    console.log(qur2);
-    console.log('------------------------------------');
-    console.log(qur3);
-    console.log('------------------------------------');
+   // console.log('------------school role-------------');
+    //console.log(qur1);
+    //console.log('------------------------------------');
+    //console.log(qur2);
+    //console.log('------------------------------------');
+    //console.log(qur3);
+    //console.log('------------------------------------');
     var maparr=[];
     var secarr=[];
     var emparr=[];
