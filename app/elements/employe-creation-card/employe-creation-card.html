@@ -12,22 +12,7 @@
       
       width:100%
      }  
-    #empremapid
-    {
-        border-radius: 10px;
-        width: 350px;
-        min-height: 440px;
-    }
-
     
-
-     #labelid
-
-      {
-            font-style: oblique;
-            font-size: 1.3em;
-
-      }
         paper-checkbox.paper-checkbox-0
       {
       
@@ -43,6 +28,20 @@
       width: 10%;
       margin-top: 5%;
     }
+      #empremapid
+    {
+        border-radius: 10px;
+        width: 350px;
+        min-height: 440px;
+    }
+
+      #labelid
+
+      {
+            font-style: oblique;
+            font-size: 1.3em;
+
+      }
     </style>
             <!-- <div style="width: 10%;"> -->
             <paper-input value="{{emplanpreff}}" hidden></paper-input>
@@ -256,7 +255,7 @@
 
          fnnewsave:function(e)
         {
-          if(empgetarr.length!=0)
+          if(empgetarr.length!=0) 
           {
             document.querySelector('employe-schooltype-to-category-card').fnndialogg();
           }
