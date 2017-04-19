@@ -1575,15 +1575,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        this.insertgradeinfoparam=obj;
        //alert(JSON.stringify(obj));
        this.$.insertgradeinfoajax.generateRequest();
-     /*this.Deleteinsertgradeinfourl=sessionStorage.getItem("addrinfo")+"/Deleteinsertgradeinfo-service";
-       var obj={"school_id":"","setgradeid":"","tranfersection":"","studentname":""};
-       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-       obj.setgradeid=setgradeid;
-       obj.tranfersection=tranfersection;
-       obj.studentname=studentname;
-       this.Deleteinsertgradeinfoparam=obj;
-       alert(JSON.stringify(obj));
-       this.$.Deleteinsertgradeinfoajax.generateRequest();*/
+     
         },
 
        deletegradeinfo:function(schooltype,classid,studentname,gradename,section){
@@ -2417,7 +2409,7 @@ insertschoolTypename:function(schooltypesarr)
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
            //alert('hi');
-           // alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },

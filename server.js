@@ -7890,7 +7890,7 @@ app.post('/fngetThefunction-service',  urlencodedParser,function (req,res)
      qur="select * FROM  mp_grade_subject where  school_id='"+req.query.school_id+"' and school_type_id='"+req.query.schooltypeid+"' and subject_category='"+req.query.schooltypesubjectid+"'and academic_year='"+req.query.academic_year+"'";
 
  }
-// console.log(qur);
+//  console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
