@@ -852,7 +852,8 @@ FnSavez:function(e)
       this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
-       document.querySelector('student-list-pass-section-card').fnsaveinput();
+       this.$.mydialog.toggleDialog();
+       //document.querySelector('student-list-pass-section-card').fnsaveinput();
        
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
