@@ -117,13 +117,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    },
 
        FnSave:function(e){
-    if(this.student==""||this.section==""||this.studentterm3==""){
+    if(this.term1==""||this.term1==null&&this.term2==""||this.term2==null&&this.term3==""||this.term3==null)
+      {
          alert("Please insert the value");
       }   
     else
     {
        // alert(JSON.stringify(term));
-          
+           
    for(var i=0;i<term.length;i++){
 
     this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
@@ -140,25 +141,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                this.fnsectiostudentpassvalue1param=obj;
                  //alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalue1ajax.generateRequest();
+
                }
           term.splice(obj);
-  
-        }
+          alert('Inserted successfully');
+       }
 
     },
     fnsectiostudentpassvalue1Response:function(e){
          var res=e.detail.response.returnval; 
         //alert(JSON.stringify(res));
-        if(res=='Inserted!')
-        {
-          alert("Inserted");
-        }
-        else if(res=='updated successfully')
-        {
-          alert("Updated")
-        }
-
- 
+       
     }
 
      
