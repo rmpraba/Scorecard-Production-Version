@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-      }
+      } 
        .card{
       width: 100%;            
       @apply(--layout-vertical);
@@ -350,8 +350,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
 
    },
-
-SbjecttoStudentmapping1Response:function(e){
+ SbjecttoStudentmapping1Response:function(e){
      var res=e.detail.response.returnval;
       studbarr=res;
  },
@@ -563,7 +562,7 @@ SbjecttoStudentmapping1Response:function(e){
              obj1.subject_id=generatearr[l].subject_id;
              obj1.language_pref=generatearr[l].language_pref;
               var  id=generatearr[l].subject_id+generatearr[l].student_id;
-              id=id.replace(/[^\w\s]/gi, '');
+              id=id.replace(/[^\w\s]/gi,'');
              obj1.id=id;
 
              a.push(obj1);

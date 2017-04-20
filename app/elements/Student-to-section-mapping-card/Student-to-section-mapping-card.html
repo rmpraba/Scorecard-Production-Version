@@ -201,7 +201,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <h4>{{view.student_name}}</h4>
                     </td>
                     <!-- <td width="80%">
-                      <table border="1">
+                      <table border="1">  
                       <tr> -->
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td>
@@ -230,7 +230,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <label  id="labelid">Please Click Previous Button</label> 
        <div class="buttons">
         </div> 
-       <center>
+       <center>  
          <paper-button  style="color:white;background-color:black;"  dialog-confirm autofocus>close</paper-button>
        </center>
     </paper-dialog>
@@ -656,7 +656,8 @@ for(var j=0;j<k.length;j++){
          this.sectionfullarr=this.finalarr;
      // this.sectionfullarr=k;
              this.$.uiservice.fnretrivestudent(this.stugradeid);
-             document.querySelector('student-list-pass-section-card').f11(); 
+            document.querySelector('student-list-pass-section-card').ttt3(); 
+            document.querySelector('student-list-pass-section-card').f11(); 
              document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
             kn.splice(obj);
          }
@@ -707,23 +708,7 @@ mappingstudent1:function(e){
                          overall.push(obj);
                }
     }
-   /*  for(var j=0;j<mappingstudentarr.length;j++){
-            var flag=0;
-              // var getschoolroleid=res[j].role_name;
-              for(var i=0;i<l.length;i++){
-                  
-                  if(mappingstudentarr[j].id==l[i].admission_no)
-                  {    
-                   flag=1;
-                   l[i].check=true;   
-                  }
-
-                 }
-                 if(flag==0){   
-                  l[i].check=false;
-                 }
-               }
-*/
+ 
 for(var i=0;i<g.length;i++){
 
             for(var m=0;m<l.length;m++){
@@ -817,7 +802,10 @@ for(var j=0;j<l.length;j++){
             this.$.prebutton.hidden=true;
         } 
         this.f22();
+               document.querySelector('student-list-pass-section-card').ttt3(); 
+    
      this.$.uiservice.fnretrivestudent(this.stugradeid);
+
     },
    f22:function(e){
        for(var j=0;j<overall.length;j++){
@@ -861,6 +849,9 @@ FnSavez:function(e)
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
        this.$.mydialog.toggleDialog();
+           document.querySelector('student-list-pass-section-card').ttt3(); 
+     
+
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
          kn.splice(obj);

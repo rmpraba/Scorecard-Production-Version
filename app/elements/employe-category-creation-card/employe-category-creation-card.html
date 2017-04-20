@@ -143,22 +143,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <tbody>    
             <template is="dom-repeat" items="{{allarrr}}" as="view">
-              <!-- <tr>
-                <td></td>
-                <td></td>
-                <td class="innercard1">
-                  <template is="dom-repeat" items="{{view.head}}" as="s">
-                   <h4 style="margin-left:7%; width: 12%;">{{s.section_id}}</h4>
-                  </template>
-                </td>
-                <td></td>  
-                <td></td>
-              </tr> -->
-              
               <template is="dom-repeat" items="{{view.busvalue}}" as="s">
-                <tr width="100%" style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
-
-                  <td class="outcard" width="10%"> 
+                <tr width="100%" style="border-bottom: 1px solid #ccc; line-height: 1.8em;">  <td class="outcard" width="10%"> 
                     <h4>{{view.gradename1}}</h4>
                   </td>
                   <td class="outcard" width="10%"> 
@@ -418,8 +404,104 @@ if(document.querySelector('#employeeidzzzzzz').selected!=-1){
            overall11.push(nameobj);
           a1=[];
         }
+
+
+
+
+    
+
+
        // alert(JSON.stringify(overall1));
         this.allarrr=overall1;
+
+      var temp=[];
+          var subarr=[];
+           var subarr1=[];
+            var temp1=[];
+    
+          var obj={};
+          obj.grade_id="";
+          obj.grade_name="";
+          for(var i=0;i<(overall1).length;i++){
+        
+            var obj1={};
+            obj1.busvalue="";
+            subarr.push(obj1);
+      
+          for(var j=0;j<(subject).length;j++){
+           var obj2={};
+      
+          obj2.class_id=subject[j].subject_id;
+          obj2.hideinput=false;
+          obj2.hidecheck=true;          
+          subarr1.push(obj2);
+            }
+          obj1.subject=subarr;
+          temp1.push(obj1);
+          temp1=[];
+         }
+
+          obj.busvalue=temp1;
+          temp.push(obj);
+          alert(JSON.stringify(temp));
+
+
+/*          var temp=[];
+          var subarr=[];
+          var obj={};
+          obj.emp_name="";
+          obj.emp_id="id";
+          for(var i=0;i<(setarrr).length;i++){
+          var obj1={};
+          obj1.subject_name=setarrr[i].srtarr;
+          obj1.hideinput=false;
+          obj1.hidecheck=true;          
+          subarr.push(obj1);
+          }
+          obj.employee=subarr;
+          temp.push(obj);
+
+         this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(overall).length;i++){
+          for(var j=0;j<(overall[i].employee).length;j++){
+            overall[i].employee[j].emp_id=overall[i].emp_id;
+            if(j==0)
+            overall[i].employee[j].emp_name=overall[i].emp_name;
+            else
+            overall[i].employee[j].emp_name="";
+            overall[i].employee[j].hideinput=true;
+            overall[i].employee[j].hidecheck=false;
+          }
+          this.finalarr.push(overall[i]);
+         }
+      
+          for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
+         this.subjectbigarr=this.finalarr;
+
+*/        
+     /*    this.finalarr=[];
+         this.finalarr.push(temp[0]);
+         for(var i=0;i<(overall).length;i++){
+          for(var j=0;j<(overall[i].employee).length;j++){
+            overall[i].employee[j].emp_id=overall[i].emp_id;
+            if(j==0)
+            overall[i].employee[j].emp_name=overall[i].emp_name;
+            else
+            overall[i].employee[j].emp_name="";
+            overall[i].employee[j].hideinput=true;
+            overall[i].employee[j].hidecheck=false;
+          }
+          this.finalarr.push(overall[i]);
+         }
+    */
+
         this.$.uiservice.empgetsectionvalues(this.empselectid);
       },
 
