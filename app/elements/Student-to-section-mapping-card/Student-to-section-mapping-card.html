@@ -183,15 +183,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
    <div class="newwwtabb" hidden$="{{hidenewtabb}}">
         <table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-            <!-- <thead> 
-              <tr>
-                <th class="innercard" style="width: 776px;margin-left: 30%;">
-                  <template is="dom-repeat" items="{{setsubjectarr}}" as="view">
-                    <h4 style="width:10%;">{{view.srtarr}}</h4>   
-                  </template>
-                </th>
-              </tr>
-            </thead> -->
+        
             
               <tbody class="newcarddzz">
 
@@ -200,22 +192,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <td width="20%">
                       <h4>{{view.student_name}}</h4>
                     </td>
-                    <!-- <td width="80%">
-                      <table border="1">  
-                      <tr> -->
-                      <table border="1">
-                      <tr> --> 
+                     <td width="80%">
+                      <table border="0">
+                      <tr> 
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td>
                         <student-list-pass-section-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" studentname="{{view.student_name}}" 
                         id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
                         </td>
                       </template>
-                      <!-- </tr>  -->
-                      <!-- </table>  -->
-                    <!-- </td>          -->
-                  </tr>
-                  <!-- <tr><td colspan="2"><hr/></td></tr> -->
+                     </tr>
+                    </table>
+                    </td>
                 </template>
               </tbody>
           </table>   
