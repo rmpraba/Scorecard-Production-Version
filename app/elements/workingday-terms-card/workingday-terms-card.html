@@ -116,20 +116,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
    },
 
-       FnSave:function(e){
-    if(this.term1==""||this.term1==null&&this.term2==""||this.term2==null&&this.term3==""||this.term3==null)
+       FnSave:function(e)
+       {
+        if(this.term1==""||this.term1==null&&this.term2==""||this.term2==null&&this.term3==""||this.term3==null)
+        {
+           alert("Please insert the value");
+        }   
+      else
       {
-         alert("Please insert the value");
-      }   
-    else
-    {
        // alert(JSON.stringify(term));
            
-   for(var i=0;i<term.length;i++){
+        for(var i=0;i<term.length;i++){
 
-    this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
+            this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
  
- var obj={"school_id":"","termvalue":"","termid":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":""};
+            var obj={"school_id":"","termvalue":"","termid":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":""};
 
                  obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                   obj.termvalue=term[i].termvalue;
@@ -141,8 +142,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                this.fnsectiostudentpassvalue1param=obj;
                  //alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalue1ajax.generateRequest();
+          }
 
-               }
           term.splice(obj);
           alert('Inserted successfully');
        }
@@ -151,7 +152,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     fnsectiostudentpassvalue1Response:function(e){
          var res=e.detail.response.returnval; 
         //alert(JSON.stringify(res));
-       
+
     }
 
      

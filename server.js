@@ -6962,18 +6962,18 @@ app.post('/tranfersection-service', urlencodedParser,function (req,res)
 app.post('/insertgradeinfo-service',urlencodedParser,function (req, res)
 {  
  var qurr="select school_type from md_school_grade_mapping where grade_name='"+req.query.setgradeid+"' and academic_year='"+req.query.academic_year+"'";  
- console.log(qurr);
+ //console.log(qurr);
 
  var response={class_id:req.query.tranfersection,
   school_type:req.query.setgradeid};
-console.log(response);
+//console.log(response);
 
 var qur1="UPDATE md_student SET ? WHERE id='"+req.query.studentname+"' and school_id='"+req.query.school_id+"' and "+" academic_year='"+req.query.academic_year+"'";
-console.log(qur1);
+//console.log(qur1);
   connection.query(qurr,
     function(err, rows){
     response.school_type=rows[0].school_type;
-   /*connection.query('UPDATE md_student SET ? WHERE id="'+req.query.studentname+'"',[response],*/
+   
    connection.query(qur1,[response],
     function(err, rows)
     {
@@ -6983,7 +6983,7 @@ console.log(qur1);
     }
     else
     {
-      console.log(err);
+     // console.log(err);
       res.status(200).json({'returnval': 'Not Updated!'});
     }
      });
@@ -7143,7 +7143,7 @@ app.post('/selectsectiongrade-service',  urlencodedParser,function (req,res)
 app.post('/fnsetpasssectinvalue-service',  urlencodedParser,function (req,res)
 {  
   var qur="SELECT * FROM md_school_grade_mapping where school_id='"+req.query.school_id+"' and school_type='"+req.query.schooltype+"'  and academic_year='"+req.query.acadamicyear+"'";
-  console.log(qur);
+  //console.log(qur);
   connection.query(qur,
     function(err, rows)
     {   
