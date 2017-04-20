@@ -70,8 +70,8 @@
             </div>
 
             <div class="elementsdiv">
-              <paper-input  id="locality" required error-message="needs locality!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
-              <paper-listbox class="dropdown-content" id="itemlist11" on-iron-select="Fnselected" valueattr="value">
+              <paper-input  id="locality" required error-message="needs Student Name!" label="Enter Student Name" is="" value="{{textvalue}}" on-keydown="FnInputChanged"></paper-input>
+              <paper-listbox class="dropdown-content" id="itemlistname" on-iron-select="Fnselected" valueattr="value">
                 <template is="dom-repeat" items="{{itemArray}}" as="item">
                   <paper-item value="{{item.itemid}}">{{item.itemdes}}</paper-item>
                 </template>
@@ -111,30 +111,31 @@
   (function() {
     'use strict';
 var namearr=[];
+var newsection;
   Polymer({
       is: 'student-transfer-grade',
        
       autocompletename(nameitem){
           namearr=nameitem;
         },
-FnInputChanged:function(e){
+    FnInputChanged:function(e){
           if(e.keyCode==13|| e.keyCode==40)
-            this.querySelector('paper-listbox').focus();
+            this.querySelector('#itemlistname').focus();
           var arr=[];
           arr.push({"itemdes":"-----Select-----"});
-          this.querySelector('paper-listbox').style.visibility='visible';
+          this.querySelector('#itemlistname').style.visibility='visible';
           if(e.keyCode==8){
             this.itemflag="true";
             this.itemval="";
             //alert('yes');
             var len=(this.textvalue).length;
             if(len<=1){
-              this.querySelector('paper-listbox').style.visibility='hidden';
+              this.querySelector('#itemlistname').style.visibility='hidden';
               this.itemArray="";
               this.itemval="";
             }
             if(len>1){   
-              this.querySelector('paper-listbox').style.visibility='visible';
+              this.querySelector('#itemlistname').style.visibility='visible';
               var backsubval=(((this.textvalue).substring(0,(len-1))).trim()).toUpperCase();
               for(var i=0;i<namearr.length;i++)
               {
@@ -183,16 +184,18 @@ FnInputChanged:function(e){
 Fnselected:function(e)
         {
           //alert('s');
-          this.querySelector('paper-listbox').style.visibility='hidden';
+          this.querySelector('#itemlistname').style.visibility='hidden';
           this.textvalue=e.target.selectedItem.textContent.trim();
           this.studentname=e.target.selectedItem.value;
           //alert(this.textvalue+this.textvalue1);
           this.itemArray=[];
-          document.querySelector('#itemlist11').selected=-1;
+          document.querySelector('#itemlistname').selected=-1;
           this.$.uiservice.studentinfo(this.studentname);
            
         },
-      fntranfergrade:function(e){
+      fntranfergrade:function(e)
+      {
+
           this.setgradeid=e.target.selectedItem.textContent.trim();
           this.$.uiservice.getstudentname(this.setgradeid);
   
@@ -203,21 +206,51 @@ Fnselected:function(e)
         },
         fntranfersection:function(e){
              this.tranfersection=e.target.selectedItem.value;
+             this.newsection=e.target.selectedItem.textContent.trim();
         },
-        fnsubmit:function(e){
-         this.$.uiservice.insertgradeinfo(this.setgradeid,this.tranfersection,this.studentname,this.classid);
-         this.$.mydialog.toggleDialog();
+        fnsubmit:function(e)
+        {
+          //alert(this.section+""+this.newsection);
+          if(this.section==this.newsection)
+          {
+            //alert(111111);
+            alert("Please Select Different Section");
+          }
+          else
+          {
+            //alert(this.setgradeid+""+this.tranfersection+""+this.studentname+""+this.classid)
+            this.$.uiservice.insertgradeinfo(this.setgradeid,this.tranfersection,this.studentname,this.classid);
+         
          this.gradename="";
          this.section="";
-          document.querySelector('#itemlist11').selected=-1;
+         this.textvalue="";
+          //this.querySelector('#itemlistname').style.visibility='hidden';
           document.querySelector('#fntranfergradeid').selected=-1;
           document.querySelector('#fntranfersectionid').selected=-1;
-        },
+          }
+         
+
+        }, 
         fndelete:function(e){
         this.$.uiservice.deletegradeinfo(this.schooltype,this.classid,this.studentname,this.gradename,this.section);
         this.$.mydialog.toggleDialog1();
         //this.$.uiservice.getstudentname();
 
+        },
+        fnrefresh:function()
+        {
+          //alert("refff");
+          this.gradename="";
+          this.section="";
+          this.textvalue="";
+          //this.querySelector('#itemlistname').style.visibility='hidden';
+          document.querySelector('#fntranfergradeid').selected=-1;
+          document.querySelector('#fntranfersectionid').selected=-1;
+
+        },
+        fnupdatesection:function(e)
+        {
+          this.$.mydialog.toggleDialog2();
         }
       });
   })();

@@ -936,7 +936,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       EmptoCategory:function(e){
         localStorage.setItem('curr_sess_loggedassesmenttype','StudentTranfer');
               this.$.uiservice.tranfergradeinfo();
+              document.querySelector('student-transfer-grade').fnrefresh();
              this.$.cdialog.toggle();
+
    
     },
     EmployeeToGrade:function(e)

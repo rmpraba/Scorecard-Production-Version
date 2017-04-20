@@ -165,6 +165,7 @@
                            </center>
                         </td>
                     </template>   
+
                   <td hidden$="{{view.hidebtn}}">
                     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
@@ -264,7 +265,7 @@
 
          this.schooltypesubjectid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
         this.schooltypename=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-       // alert(this.schooltypesubjectid+this.schooltypename);
+       //alert(this.schooltypesubjectid+this.schooltypename);
     
         if(overall1!=0){
                  document.querySelector('school_grade-subject-item-card').Fngradeclean11(); 
@@ -277,9 +278,9 @@
                             var obj={"srtarr":""};
                                 obj.srtarr=gradename;
                                setarrr.push(obj);
-                              // alert(JSON.stringify(obj));
+                              //alert(JSON.stringify(obj));
                           }
-               //  alert(JSON.stringify(setarrr));
+               //alert(JSON.stringify(setarrr));
                    this.setsubjectarr=setarrr;
                 var generatearr=[];
                 var subarr=[];
@@ -296,7 +297,8 @@
                            obj.grade_id=grade_id;
                            obj.subject_id=subject_id;
                            generatearr.push(obj);
-                        }}//alert(JSON.stringify(generatearr));
+                        }}
+                       // alert(JSON.stringify(generatearr));
         var a=[];
         var overall=[];
        for(var k=0;k<generatearr.length;k++)
@@ -333,7 +335,7 @@
             overall.push(nameobj);
             overall1.push(nameobj);
        
-        //   alert(JSON.stringify(overall));
+        // alert(JSON.stringify(overall));
            a=[];
    
        }

@@ -25,7 +25,7 @@
         debounce-duration="300">
     <iron-ajax        
         id="deleteroleajax"
-        url="{{deleteroleurl}}"
+        url="{{deleteroleurl}}" 
         params="{{deleteroleparam}}"
         handle-as="json"
         content-type="application/json"
@@ -1575,15 +1575,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        this.insertgradeinfoparam=obj;
        //alert(JSON.stringify(obj));
        this.$.insertgradeinfoajax.generateRequest();
-     /*this.Deleteinsertgradeinfourl=sessionStorage.getItem("addrinfo")+"/Deleteinsertgradeinfo-service";
-       var obj={"school_id":"","setgradeid":"","tranfersection":"","studentname":""};
-       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-       obj.setgradeid=setgradeid;
-       obj.tranfersection=tranfersection;
-       obj.studentname=studentname;
-       this.Deleteinsertgradeinfoparam=obj;
-       alert(JSON.stringify(obj));
-       this.$.Deleteinsertgradeinfoajax.generateRequest();*/
+     
         },
 
        deletegradeinfo:function(schooltype,classid,studentname,gradename,section){
@@ -1620,7 +1612,15 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       },
   insertgradeinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      if(res=='Updated!')
+      {
+        document.querySelector('student-transfer-grade').fnupdatesection();
+      }
+      else
+      {
+        alert("Not Updated");
+      }
+      
         //document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },
     fnempgenerateidResponse:function(e)
@@ -2417,7 +2417,7 @@ insertschoolTypename:function(schooltypesarr)
        fngetThefunctionResponse:function(e){
           var res=e.detail.response.returnval;
            //alert('hi');
-           // alert(JSON.stringify(res));
+        //alert(JSON.stringify(res));
       document.querySelector('school_grade-subject-item-card').fnsetgradetosubject(res);
  
         },
@@ -3167,7 +3167,7 @@ insertschoolTypename:function(schooltypesarr)
         var res=e.detail.response.returnval
 
         //alert(JSON.stringify(res));        
-         if(res=='Inserted!')
+         /*if(res=='Inserted!')
          {
             document.querySelector('student-to-subject-mapping-card').fninsert();
 
@@ -3176,7 +3176,7 @@ insertschoolTypename:function(schooltypesarr)
          {
             document.querySelector('student-to-subject-mapping-card').fnupdate();
          }
-
+*/
       },
       FnSecondLangSubjectToStudentsets:function(fnthidlanginfoarr){
            for(var i=0;i<fnthidlanginfoarr.length;i++){
@@ -3212,16 +3212,7 @@ insertschoolTypename:function(schooltypesarr)
       {
         var res=e.detail.response.returnval;
          //alert(JSON.stringify(e.detail.response.returnval));
-         if(res=='Inserted!')
-         {
-            document.querySelector('student-to-subject-mapping-card').fninsert();
-
-         }
-         else if(res=='updated successfully')
-         {
-            document.querySelector('student-to-subject-mapping-card').fnupdate();
-         }
-
+         
       },
        FnThirdLangSubjectToStudent:function(fnthidlanginfo1arr){
                    for(var i=0;i<fnthidlanginfo1arr.length;i++){
@@ -3253,7 +3244,11 @@ insertschoolTypename:function(schooltypesarr)
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
+
         alert(JSON.stringify(e.detail.response.returnval));
+        //alert(JSON.stringify(e.detail.response.returnval));
+          
+
       },
        SelectSchoolgrades:function()
        {
@@ -3276,21 +3271,13 @@ insertschoolTypename:function(schooltypesarr)
        obj.acadamicyear=acadamicyear;
      obj.gradeid=FnStosGradeid2;
         this.FnselecttoSectionparam=obj;
-
-   // alert(JSON.stringify(obj));
-
-        //alert(JSON.stringify(obj));
-
+        // alert(JSON.stringify(obj));
         this.$.FnselecttoSectionajax.generateRequest();
       },
       FnselecttoSectionResponse:function(e)
       {
         var arr=e.detail.response.returnval;
-
        //  alert(JSON.stringify(arr));
-
-        // alert(JSON.stringify(arr));
-
         document.querySelector('student-to-subject-mapping-card').selectsectionarrr=arr;
        },
 

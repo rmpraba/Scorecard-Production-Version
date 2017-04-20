@@ -203,6 +203,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <!-- <td width="80%">
                       <table border="1">  
                       <tr> -->
+                      <table border="1">
+                      <tr> --> 
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td>
                         <student-list-pass-section-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" studentname="{{view.student_name}}" 
@@ -848,10 +850,13 @@ FnSavez:function(e)
       this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
+
        this.$.mydialog.toggleDialog();
            document.querySelector('student-list-pass-section-card').ttt3(); 
      
 
+       document.querySelector('student-list-pass-section-card').fnsaveinput();
+       
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
          kn.splice(obj);
@@ -875,6 +880,15 @@ FnSavez:function(e)
         g=[];
         setarrr=[];
      },
+
+     fnsavezz:function()
+     {
+      this.$.mydialog.toggleDialog();
+    },
+    fnnoinput:function()
+    {
+      this.$.mydialog.toggleDialog3();
+    }
     
     /*f1:function(e){
       this.$.uiservice.FngetStudentpasssection(this.stugradeid,this.stugradevalue);
