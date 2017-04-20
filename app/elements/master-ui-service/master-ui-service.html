@@ -1573,7 +1573,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
 
        this.insertgradeinfoparam=obj;
-       //alert(JSON.stringify(obj));
+       alert(JSON.stringify(obj));
        this.$.insertgradeinfoajax.generateRequest();
      
         },
@@ -1612,7 +1612,15 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       },
   insertgradeinfoResponse:function(e){
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      if(res=='Updated!')
+      {
+        document.querySelector('student-transfer-grade').fnupdatesection();
+      }
+      else
+      {
+        alert("Not Updated");
+      }
+      
         //document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },
     fnempgenerateidResponse:function(e)

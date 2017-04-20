@@ -220,7 +220,7 @@ Fnselected:function(e)
           {
             alert(this.setgradeid+""+this.tranfersection+""+this.studentname+""+this.classid)
             this.$.uiservice.insertgradeinfo(this.setgradeid,this.tranfersection,this.studentname,this.classid);
-         this.$.mydialog.toggleDialog2();
+         
          this.gradename="";
          this.section="";
          this.textvalue="";
@@ -229,6 +229,7 @@ Fnselected:function(e)
           document.querySelector('#fntranfersectionid').selected=-1;
           }
          
+
         }, 
         fndelete:function(e){
         this.$.uiservice.deletegradeinfo(this.schooltype,this.classid,this.studentname,this.gradename,this.section);
@@ -246,6 +247,10 @@ Fnselected:function(e)
           document.querySelector('#fntranfergradeid').selected=-1;
           document.querySelector('#fntranfersectionid').selected=-1;
 
+        },
+        fnupdatesection:function(e)
+        {
+          this.$.mydialog.toggleDialog2();
         }
       });
   })();
