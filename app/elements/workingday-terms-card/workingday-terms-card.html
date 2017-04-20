@@ -116,19 +116,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
    },
 
-       FnSave:function(e){
-    if(this.student==""||this.section==""||this.studentterm3==""){
-         alert("Please insert the value");
-      }   
-    else
-    {
-       // alert(JSON.stringify(term));
+       FnSave:function(e)
+       {
+        if(this.student==""||this.section==""||this.studentterm3=="")
+        {
+           alert("Please insert the value");
+        }   
+        else
+        {
+            // alert(JSON.stringify(term));
           
-   for(var i=0;i<term.length;i++){
+          for(var i=0;i<term.length;i++)
+          {
 
-    this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
+            this.fnsectiostudentpassvalue1url=sessionStorage.getItem("addrinfo")+"/terminsert-service";
  
- var obj={"school_id":"","termvalue":"","termid":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":""};
+            var obj={"school_id":"","termvalue":"","termid":"","acadamicyears":"","gradename":"","gradeid":"","schootypids":""};
 
                  obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
                   obj.termvalue=term[i].termvalue;
@@ -140,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                this.fnsectiostudentpassvalue1param=obj;
                  //alert(JSON.stringify(obj));
                  this.$.fnsectiostudentpassvalue1ajax.generateRequest();
-               }
+          }
           term.splice(obj);
   
         }
@@ -158,7 +161,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           alert("Updated")
         }
 
- 
     }
 
      
