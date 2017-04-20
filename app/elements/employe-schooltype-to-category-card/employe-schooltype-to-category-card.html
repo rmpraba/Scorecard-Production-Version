@@ -159,11 +159,11 @@
                         </center> 
                         </td>
                     </template>     
-                  <td>
+                  <td hidden$="{{view.hidebtn}}">
                     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
                   </td>
-                  <td>
+                  <td hidden$="{{view.hidebtn}}">
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
@@ -382,13 +382,18 @@
           }
           this.finalarr.push(overall[i]);
          }
+      
+          for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
          this.subjectbigarr=this.finalarr;
-                 // this.subjectbigarr=overall;
-                 // alert(JSON.stringify(this.finalarr));
-                  //  setspecificarr=overall;
-                       this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
-                        this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
-                this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
+  this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
+  this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+  this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
                     
                  overall.splice();
                  generatearr=[];

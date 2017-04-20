@@ -165,11 +165,12 @@
                            </center>
                         </td>
                     </template>   
-                  <td>
-                    <paper-icon-button  id="btn1" icon="save" on-click="FnSavez"></paper-icon-button>
+
+                  <td hidden$="{{view.hidebtn}}">
+                    <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
                   </td>
-                  <td>
+                  <td hidden$="{{view.hidebtn}}">
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
@@ -358,7 +359,7 @@
          this.finalarr=[];
          this.finalarr.push(temp[0]);
          for(var i=0;i<(overall).length;i++){
-          for(var j=0;j<(overall[i].subject).length;j++){
+           for(var j=0;j<(overall[i].subject).length;j++){
             overall[i].subject[j].subject_id=overall[i].subject_id;
             if(j==0)
             overall[i].subject[j].subject_name=overall[i].subject_name;
@@ -368,6 +369,13 @@
             overall[i].subject[j].hidecheck=false;
           }
           this.finalarr.push(overall[i]);
+         }
+         for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
          }
          this.bigarr=this.finalarr;
         

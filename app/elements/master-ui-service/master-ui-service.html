@@ -1391,7 +1391,7 @@ fndelsectionz:function(emparrr){
            var res=e.detail.response.returnval; 
        //      alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
-       document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
+          document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
   
    
        },
@@ -3244,8 +3244,11 @@ insertschoolTypename:function(schooltypesarr)
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
+
+        alert(JSON.stringify(e.detail.response.returnval));
         //alert(JSON.stringify(e.detail.response.returnval));
           
+
       },
        SelectSchoolgrades:function()
        {
