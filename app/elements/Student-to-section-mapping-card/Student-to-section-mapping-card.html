@@ -215,7 +215,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
    
      <paper-dialog id="previousid" modal>
-       <label  id="labelid">Please Click Previous Button</label> 
+      <center>
+         <label  id="labelid"><b>Please Click Previous Button</b></label> 
+      </center>
        <div class="buttons">
         </div> 
        <center>
@@ -224,7 +226,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-dialog>
            
      <paper-dialog id="Nextid" modal>
-        <label  id="labelid">Please Click Next Button</label>
+      <center>
+        <label  id="labelid"><b>Please Click Next Button</b></label>
+      </center>
+        
         <div class="buttons">
         </div>  
         <center>
@@ -852,7 +857,7 @@ FnSavez:function(e)
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
        this.$.mydialog.toggleDialog();
-       //document.querySelector('student-list-pass-section-card').fnsaveinput();
+        document.querySelector('Student-to-section-mapping-item-card-card').FnRefresh();
        
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
