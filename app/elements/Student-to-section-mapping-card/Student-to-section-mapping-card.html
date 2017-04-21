@@ -210,9 +210,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </table>   
         </div>   
 
-            <paper-button on-click="FnSavez"></paper-button>  
-        </div>
-
         <div id="subzz">
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
@@ -866,6 +863,7 @@ FnSavez:function(e)
 },
    fnselectgrade:function(e)
    {
+      //alert("grade");
         this.hidegenerateopt=false;
         this.stugradevalue=e.target.selectedItem.textContent.trim(); 
         this.stugradeid=e.target.selectedItem.value;
