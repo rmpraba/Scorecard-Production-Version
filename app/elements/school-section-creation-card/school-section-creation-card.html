@@ -148,9 +148,13 @@ setschooltype:function(e)
 },
 fndeletepass:function(arr){
   fnpasdelarr=arr;
+
 },
 fndelete:function(e){
+  alert(JSON.stringify(fnpasdelarr));
    this.$.uiservice.fndelsectiongrade(fnpasdelarr);
+      document.querySelector('school-section-creation-item-card').splice();
+    
  },
 setdbschooltype:function(e){
   secdbarr=e;

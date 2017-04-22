@@ -7027,6 +7027,32 @@ console.log(qur);
     }
     });
   });
+
+
+app.post('/fndelsectiongrade11-service',  urlencodedParser,function (req,res)
+{  
+  // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
+  var qur="SELECT * FROM md_student where grade_id='"+req.query.grade_id+"' and school_id='"+req.query.school_id+"'and class_id='"+req.query.classid+"' and academic_year='"+req.query.academic_year+"'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      if(rows.length>0)
+      {
+       //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows}); 
+      }
+      else
+      {
+        res.status(200).json({'returnval':'empty'}); 
+      }
+      
+    }
+    else
+      res.status(200).json({'returnval': 'Invalid'});
+  });
+});
 app.post('/fndelsectiongrade-service' ,urlencodedParser,function (req, res)
 {  
 var qur="DELETE FROM  mp_grade_section where school_id='"+req.query.school_id+"' and grade_id='"+req.query.grade_id+"' and class_id='"+req.query.classid+"' and section_id='"+req.query.sectionid+"' and academic_year='"+req.query.academic_year+"'";
