@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      </center>
    </paper-dialog>
  
-  
+   
         <iron-ajax        
         id="getsectioncreategradeajax"   
         url="{{getsectioncreategradeurl}}"
@@ -88,7 +88,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'school-section-creation-item-card',
     
-       fngetsectiongrade:function(e){
+       fngetsectiongrade:function(e)
+       {
     //   alert(this.id);
          if(document.querySelector('#'+this.id).checked==false)
          {
@@ -115,38 +116,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.sectionname=sectionname;
           obj.classid=this.classid;
           delsecarr.push(obj);
-        // alert(JSON.stringify(delsecarr));
+          //alert(JSON.stringify(delsecarr));
      
-       }
+        }
       if(document.querySelector('#'+this.id).checked==true)
-             for(var i=0;i<delsecarr.length;i++){
-            delsecarr.splice(i,1);
-            }
-          document.querySelector('school-section-creation-card').fndeletepass(delsecarr);
-
-        
-       },
-       splice:function(e){
-         var obj={};
-        delsecarr.splice(obj);
-   
-       },
-       getsectioncreategrade1Response:function(e){
-
-       // alert(JSON.stringify(e.detail.response.returnval));
-           if(e.detail.response.returnval!='empty'){
-
-             this.$.sdgdf.open();
-                 for(var i=0;i<delsecarr.length;i++){
-                if(delsecarr.length!=0){
-                var m=delsecarr[i].id1;
-                document.querySelector('#'+m).checked=true;
+             for(var i=0;i<delsecarr.length;i++)
+             {
+            if(delsecarr[i].classid==this.classid){
                 delsecarr.splice(i,1);
               }
-              }
-
-           } 
+             }
+          document.querySelector('school-section-creation-card').fndeletepass(delsecarr); 
        },
+       splice:function(e)
+       {
+         var obj={};
+        delsecarr.splice(obj);   
+   
+       },
+       getsectioncreategrade1Response:function(e)
+       {
+
+       // alert(JSON.stringify(e.detail.response.returnval));
+           if(e.detail.response.returnval!='empty')
+           {
+
+              this.$.sdgdf.open();
+                 for(var i=0;i<delsecarr.length;i++)
+                 {
+                    if(delsecarr.length!=0)
+                    {
+                      var m=delsecarr[i].id1;
+                      document.querySelector('#'+m).checked=true;
+                      delsecarr.splice(i,1);
+                    }
+                  }
+            } 
+          }
 
    
 
