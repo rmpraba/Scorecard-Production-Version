@@ -11,7 +11,7 @@
   <template>
     <style>   
       :host {  
-        display: block;
+        display: block;   
       }
     
       .outcard
@@ -156,18 +156,18 @@
                   </td>
                     <template is="dom-repeat" items="{{view.employee}}" as="s">
                         <td ><center>
-                        <employe-creation-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" employeesetidz="{{view.emp_id}}" id="{{s.id}}" subjectname="{{s.subject_name}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>
+                        <employe-creation-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" employeesetidz="{{view.emp_id}}" id="{{s.id}}" subjectname="{{s.subject_name}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  emplanpreff="{{emplangprefernce}}"></employe-creation-card>   
                         </center> 
                         </td>
                     </template>     
                   <td hidden$="{{view.hidebtn}}">
                     <employee-schooltype-to-category-basecard id="basecard" empid="{{view.emp_id}}"></employee-schooltype-to-category-basecard>
                   </td>
-                  <td hidden>
+                  <td hidden>    
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
-                </tr>    
+                </tr>     
                 <!-- <tr><hr/></tr> -->
               </template>
             <!-- </div> -->

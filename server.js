@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    user     : 'root',
    password : 'admin',
 
-   database : 'reportcardmaster'
+   database : 'master'
   // host     : 'localhost',
   // port     : '58116',
   // user     : 'adminTEZN77M',
@@ -7744,8 +7744,13 @@ connection.query(qur,
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      //console.log(JSON.stringify(rows));  
+       if(rows.length>0) {
       res.status(200).json({'returnval': rows});
+    }else{
+      res.status(200).json({'returnval': 'empty'});
+      
+    }
     }
     else
     {

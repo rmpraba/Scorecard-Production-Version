@@ -32,71 +32,76 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input value="{{empgradeidz}}" hidden></paper-input>
           <paper-input value="{{empsubjectidz}}" hidden></paper-input>
           <paper-input value="{{employeesectionidz}}" hidden></paper-input>
+          <paper-input value="{{grasub}}" hidden></paper-input>
           <div class="incard">
           <div>{{employeesectionnamez}}</div>
           <paper-checkbox value="{{employeesectionnamez}}" id="{{id}}" on-change="fnsetsection"></paper-checkbox>
           </div>
     </div>
-        
+     <iron-ajax        
+        id="empsectionclassajax"
+        url="{{empsectionclassurl}}"
+        params="{{empsectionclassparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="empsectionclassResponse"
+        debounce-duration="300">
+      </iron-ajax>     
   </template>
   <script>
   (function() {
     'use strict';
   var empsectionarr=[];
-   var empsectionarr1=[];
  
    var empdbsubjectarr=[];
    var v=[];
     Polymer({
       is: 'emp-grade-get-card',
           fnsetsection:function(e){
-           //alert(this.id);
-           //alert(this.empsubjectidz);
-            //alert(document.querySelector('#'+this.id).checked);
             if(document.querySelector('#'+this.id).checked==true)
             {
-                    //alert(this.employeeidz+this.empgradeidz+this.empsubjectidz+this.employeesectionnamez);
-                var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
+                var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":"","grasub":""};
                     obj.employeeidz=this.employeeidz;
                     obj.empgradeidz=this.empgradeidz;
                     obj.empsubjectidz=this.empsubjectidz;
                     obj.employeesectionnamez=this.employeesectionnamez;
                     obj.employeesectionidz=this.employeesectionidz;
+                    obj.grasub=this.grasub;
                     empsectionarr.push(obj);
                     v.push(obj);   
-                  // alert(JSON.stringify(obj));
-               document.querySelector('employe-category-creation-card').fnsetempsection(empsectionarr);
+         document.querySelector('emp-grade-get-based-card').fnsetempsection(empsectionarr);
                }   
               else if(document.querySelector('#'+this.id).checked==false){
-                 var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
-                      obj.employeeidz=this.employeeidz;
-                      obj.empgradeidz=this.empgradeidz;
-                      obj.empsubjectidz=this.empsubjectidz;
-                      obj.employeesectionnamez=this.employeesectionnamez;
-                      obj.employeesectionidz=this.employeesectionidz;
+
+                 this.empsectionclassurl=sessionStorage.getItem("addrinfo")+"/empsectionclass-service";
+                 var obj={"school_id":"","employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":"","schooltypeid":""};
+                     obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+                     obj.employeeidz=this.employeeidz;;
+                     obj.empgradeidz=this.empgradeidz;
+                     obj.empsubjectidz=this.empsubjectidz;
+                     obj.employeesectionnamez=this.employeesectionnamez;
+                     obj.employeesectionidz=this.employeesectionidz;
+                     obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
                      this.empsectionclassparam=obj;
-                      empsectionarr1.push(obj);
-                document.querySelector('employe-category-creation-card').fnsetempsection1(empsectionarr1);
-          
-              
-                for(var i=0;i<empsectionarr.length;i++){
+                     this.$.empsectionclassajax.generateRequest();
+  
+            for(var i=0;i<empsectionarr.length;i++){
                    empsectionarr.splice(i,1);
           }
         }
       },
+
     empsectionclassResponse:function(e)
     {
          var res=e.detail.response.returnval; 
-            //alert(JSON.stringify(res));
    },
    Fngradecleansection2:function(e){
 
     for(var j=0;j<v.length;j++)
       {
              var empdbsubject=v[j].empsubjectidz+v[j].employeesectionidz;
-            //alert(empdbsubject);
             document.querySelector('#'+empdbsubject).checked=false;
-            //  document.querySelector('#'+this.id).checked=false;
         }
             var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.employeeidz=this.employeeidz;
@@ -105,11 +110,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
                      v.splice(obj);
-               
-     
-   },
+                },
     Fngradecleansection:function(e)
     {
+          if(empsectionarr.length!=0){
             var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.employeeidz=this.employeeidz;
                      obj.empgradeidz=this.empgradeidz;
@@ -117,19 +121,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
                      empsectionarr.splice(obj);
-                     empdbsubjectarr.splice(obj);
-    }, 
-    Fngradecleansection1:function(e){
-            var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
-                     obj.employeeidz=this.employeeidz;
-                     obj.empgradeidz=this.empgradeidz;
-                     obj.empsubjectidz=this.empsubjectidz;
-                     obj.employeesectionnamez=this.employeesectionnamez;
-                     obj.employeesectionidz=this.employeesectionidz;
-                   //  alert(JSON.stringify(obj));
-                     empsectionarr1.splice(obj);
-            
-    },
+               }
+          },
+   
       empsctionmaping:function(arr)
       {
         empdbsubjectarr=arr;

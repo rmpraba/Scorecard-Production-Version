@@ -17,9 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {  
         display: block;
       }  
-       
-     
-     .outercard
+  .outercard
       {
         @apply(--layout-vertical);
         border-radius: 10px;
@@ -138,7 +136,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <th><h4><b>Subject</b></h4></th>
               <th><center><h4><b>Select Section Name</b></h4></center></th>
               <th><h4><b>Save</b></h4></th>  
-              <th><h4><b>Delete</b></h4></th>
             </tr>
 
           <tbody>    
@@ -154,20 +151,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <table style="margin-top: -1%;"><tr>
                     <template is="dom-repeat" items="{{s.subject}}" as="m">
                     <td width="10%">
-                      <emp-grade-get-card employeesectionidz="{{m.class_id}}" id="{{s.subname1}}{{m.class_id}}"   empsubjectidz="{{s.subname1}}" employeesectionnamez="{{m.section_id}}" employeeidz="{{empselectid}}" empgradeidz="{{view.gradename}}" >
+                      <emp-grade-get-card  grasub="{{view.gradename1}}{{s.subname}}" employeesectionidz="{{m.class_id}}" id="{{s.subname1}}{{m.class_id}}"   empsubjectidz="{{s.subname1}}" employeesectionnamez="{{m.section_id}}" employeeidz="{{empselectid}}" empgradeidz="{{view.gradename}}" >
                       </emp-grade-get-card>
                     </td>
-                    </template>
-                    </tr>
+                       </template>  
+                 
+                    </tr>  
                     </table>
                     </td>
-                    
-                 
                   <td width="10%">
-                    <paper-icon-button id="btnn1" icon='save' on-click='fnsubmit'></paper-icon-button>
-                    <paper-tooltip for="btnn1">Save</paper-tooltip>
-                  </td>
-                  <td width="10%">
+                      <emp-grade-get-based-card classid="{{view.gradename1}}{{s.subname}}" employeeidz="{{empselectid}}"></emp-grade-get-based-card>
+                    </td>
+                   
+                  <td hidden>
                     <paper-icon-button id="btn2" icon='close' on-click='fndelete'></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>
@@ -251,28 +247,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       fnselectgradezResponse:function(e){
                sectionnamearr=e.detail.response.returnval;
      },
-     fnsubmit:function(e){
-     
-         this.$.uiservice.fnsavesection(empsectionarr);
-         this.$.mydialog.toggleDialog();
-         document.querySelector('emp-grade-get-card').Fngradecleansection(); 
+  /*   fnsubmit:function(e){
         },      
-       fndelete:function(e){ 
+  */   /*  fndelete:function(e){ 
       this.$.uiservice.fndelsectionz(empsectionarr1);
       this.$.mydialog.toggleDialog1();
       document.querySelector('emp-grade-get-card').Fngradecleansection1(); 
       
      },
-     fnsetempsection:function(arr)
-     {
-      empsectionarr=arr;
-     //alert(JSON.stringify(empsectionarr));
-     },
-       fnsetempsection1:function(arr){
+*/ /*      fnsetempsection1:function(arr){
       empsectionarr1=arr;
-  //    alert(JSON.stringify(empsectionarr));
     },
-  
+  */
        f11:function(e){
           this.fnemployeenamezurl=sessionStorage.getItem("addrinfo")+"/empmappingsubject-service";
           var obj={"empselectid":"","school_id":""};
@@ -295,7 +281,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        this.$.newwgridd.hidden=false;
        this.f12();
         this.f11();
-      //  document.querySelector('#employeeidzzzzzz').selected=-1;  
+       document.querySelector('emp-grade-get-card').Fngradecleansection();  
       },
      FnRefresh:function(e){
 if(document.querySelector('#employeeidzzzzzz').selected!=-1){
