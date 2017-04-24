@@ -645,6 +645,8 @@ for(var j=0;j<k.length;j++){
          this.sectionfullarr=this.finalarr;
      // this.sectionfullarr=k;
              this.$.uiservice.fnretrivestudent(this.stugradeid);
+                document.querySelector('student-list-pass-section-card').ttt3();
+  
              document.querySelector('student-list-pass-section-card').f11(); 
              document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
             kn.splice(obj);
@@ -807,6 +809,8 @@ for(var j=0;j<l.length;j++){
         } 
         this.f22();
      this.$.uiservice.fnretrivestudent(this.stugradeid);
+        document.querySelector('student-list-pass-section-card').ttt3();
+  
     },
    f22:function(e){
        for(var j=0;j<overall.length;j++){
@@ -850,7 +854,7 @@ FnSavez:function(e)
        this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
        this.$.uiservice.fnretrivestudent(this.stugradeid);
        this.$.mydialog.toggleDialog();
-       //document.querySelector('student-list-pass-section-card').fnsaveinput();
+       document.querySelector('student-list-pass-section-card').ttt3();
        
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
