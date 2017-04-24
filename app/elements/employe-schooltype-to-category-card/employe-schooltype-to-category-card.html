@@ -4,6 +4,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 <link rel="import" href="../demosumbit-card/demosumbit-card.html">
+<link rel="import" href="../employee-schooltype-to-category-basecard/employee-schooltype-to-category-basecard.html">
 
 
 <dom-module id="employe-schooltype-to-category-card">
@@ -160,10 +161,9 @@
                         </td>
                     </template>     
                   <td hidden$="{{view.hidebtn}}">
-                    <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
-                    <paper-tooltip for="btn1">Save</paper-tooltip>
+                    <employee-schooltype-to-category-basecard id="basecard" empid="{{view.emp_id}}"></employee-schooltype-to-category-basecard>
                   </td>
-                  <td hidden$="{{view.hidebtn}}">
+                  <td hidden>
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
@@ -201,11 +201,14 @@
     FnRefresh:function()
     {
       this.$.empLanguageprefernce.hidden=true;
+     // this.$.basecard.FnClear();
       if(document.querySelector('#empLanguageprefernceid').selected!=-1)
 
       {
         document.querySelector('#empLanguageprefernceid').selected=-1;
       }
+
+
     },
     
        getgrade:function(arr){
@@ -243,9 +246,10 @@
        getemployeegrade:function(arr){
         empgradearr=arr;
       },
-      passempgrade:function(arr){
-       getgradenames=arr;
-      },
+      // passempgrade:function(arr){
+      //  getgradenames=arr;
+      //  this.$.basecard.passempgrade(arr);
+      // },
       autocompletename:function(nameitem){
           namearr=nameitem;
       },

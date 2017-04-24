@@ -74,6 +74,10 @@
         on-response="deletesubjectz1Response"
         debounce-duration="300">
 
+         <demosumbit-card id="mydialog"></demosumbit-card>
+    
+          <master-ui-service id="uiservice"></master-ui-service>  
+
   </template>
   <script>
   (function() {
@@ -104,7 +108,7 @@
              v.push(obj);
              //alert(JSON.stringify(obj));
            //  alert(JSON.stringify(empgetarr));
-            document.querySelector('employe-schooltype-to-category-card').passempgrade(empgetarr); 
+      document.querySelector('employee-schooltype-to-category-basecard').passempgrade(empgetarr); 
             }
             else{
                 var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
@@ -116,7 +120,7 @@
              empgetarr.push(obj);
              v.push(obj);
               //alert(JSON.stringify(empgetarr));
-            document.querySelector('employe-schooltype-to-category-card').passempgrade(empgetarr); 
+      document.querySelector('employee-schooltype-to-category-basecard').passempgrade(empgetarr); 
                           } 
  }
 
@@ -154,8 +158,12 @@
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarrdelarr.push(obj);
+                          this.$.uiservice.fnemployeeedelfn(empgetarrdelarr);
+                          // this.$.mydialog.toggleDialog1();
+                          this.Fnsubjectdelclean()
+                          // document.querySelector('employe-creation-card').Fnsubjectdelclean();
                       //   alert(JSON.stringify(obj));
-                document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
+                // document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
       
                
            }
@@ -173,7 +181,7 @@
      setempsubject:function(arr){
      // alert('1');
              empsubjectarr=arr;
-             //alert(JSON.stringify(empsubjectarr));
+             // alert(JSON.stringify(empsubjectarr));
 
            for(var i=0;i<empsubjectarr.length;i++){
               

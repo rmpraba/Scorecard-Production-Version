@@ -9,7 +9,12 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'scorecardmaster1'
+   database : 'reportcardmaster'
+  // host     : 'localhost',
+  // port     : '58116',
+  // user     : 'adminTEZN77M',
+  // password : 'pEbElHqKSxh2',
+  // database : 'scorecarddb'
 
  });
 
@@ -1649,7 +1654,9 @@ app.post('/fetchstudname-service',  urlencodedParser,function (req,res)
   var gradeid={grade_id:req.query.grade};
   var sectionid={section_id:req.query.section};
 
-  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"'";
+  // var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"'";
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"' ) and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"'";
+  console.log(qur);
   connection.query(qur,
     function(err, rows)
     {
@@ -7406,7 +7413,11 @@ app.post('/fnempsubjectdetails-service' , urlencodedParser,function (req, res)
   var collection = {"school_id":req.query.school_id,"emp_id":req.query.emp_id,"emp_name":req.query.emp_name,
   "subjectid":req.query.subjectid,"school_type_id":req.query.schooltypeid,"school_category_id":req.query.categoryid,"flage":req.query.flage,"langugage_pref":req.query.emplanpreff,"academic_year":req.query.academic_year};
 
- connection.query("SELECT * FROM md_employee_subject WHERE school_id='"+req.query.school_id+"' and emp_id='"+req.query.emp_id+"' and emp_name='"+req.query.emp_name+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"'and school_category_id='"+req.query.categoryid+"' and academic_year='"+req.query.academic_year+"'",function(err, rows)
+ var qur="SELECT * FROM md_employee_subject WHERE school_id='"+req.query.school_id+"' and emp_id='"+req.query.emp_id+"' and emp_name='"+req.query.emp_name+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"' and academic_year='"+req.query.academic_year+"'";
+ console.log('--------------------');
+ console.log(qur);
+ console.log('--------------------');
+ connection.query(qur,function(err, rows)
       {
     if(rows.length==0)
     {

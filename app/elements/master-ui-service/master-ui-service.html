@@ -1436,7 +1436,7 @@ fndelsectionz:function(emparrr){
         },
         deletesubjectz11Response:function(e){
         var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
    
         },
              deletesubjectzResponse:function(e){
@@ -1846,7 +1846,7 @@ fnempsubjectdetails:function(getgradenames)
   fnempsubjectdetailsResponse:function(e)
   {
       var res=e.detail.response.returnval; 
-    
+    // alert(res);
   },
  fnrolesaveinfo:function(passrolearr){
     //alert(JSON.stringify(passrolearr));
@@ -2065,14 +2065,24 @@ fnschoolemployeerole:function( employeeid,employeename){
      },
     selectrolenameResponse:function(e){
         var res=e.detail.response.returnval;
+        // alert(JSON.stringify(res));
         var overall=[];
         var temp=[];
         for(var i=0;i<res.length;i++){
+        // alert(res[i].id);
         temp.push(res[i]);
+        
          if(i!=0&&i%3==0){
-            overall.push(temp);
+            // alert(i); 
+            overall.push(temp);           
             temp=[];
          }
+         if(i==(res.length)-1)
+           {
+             // temp.push(res[i]);
+             overall.push(temp); 
+           } 
+         // alert(JSON.stringify(overall));
         }
        // alert(JSON.stringify(overall));
         

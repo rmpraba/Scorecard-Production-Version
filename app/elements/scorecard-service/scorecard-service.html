@@ -295,7 +295,7 @@
          this.$.scorecardreadynessajax.generateRequest();
       },
       scorecardreadynessResponse:function(e){
-        
+        // alert(e.detail.response.returnval);
         if(e.detail.response.returnval=='match'){
           this.callFetchstudentnameService();
         }
@@ -309,6 +309,7 @@
         obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
         obj.grade=localStorage.getItem("curr_sess_grade");
         obj.section=localStorage.getItem("curr_sess_section");
+        obj.academicyear=localStorage.getItem("curr_sess_academicyear");
         this.fetchstudnameparam=obj;
         this.$.fetchstudnameajax.generateRequest();
       },
