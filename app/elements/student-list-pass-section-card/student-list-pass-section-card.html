@@ -186,7 +186,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     cm=map[paspstuinfo[i].classid];
               }
          }
-        //    alert(cm+count+" "+this.noofstudent);
+       // alert(cm+count+" "+this.noofstudent);
    
           if(cm+count<=this.noofstudent){
           
@@ -198,7 +198,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if(paspstuinfo[g].classid==this.classid){ 
                 document.querySelector('#'+rm).checked=false;
                 this.$.noofstudent1.open();
-                paspstuinfo.splice
+                paspstuinfo.splice(g,1)
               }
             }  
             } 
