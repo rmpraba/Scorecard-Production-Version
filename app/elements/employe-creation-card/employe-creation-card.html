@@ -10,7 +10,7 @@
     /*  .innercard{
       @apply(--layout-horizontal);
       
-      width:100%
+      width:100%   
      }  
     
         paper-checkbox.paper-checkbox-0
@@ -135,7 +135,7 @@
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarr.push(obj);
-                      //   alert(JSON.stringify(obj));
+                      //alert(JSON.stringify(obj));
                         this.deletesubjectz1param=obj;
                        this.$.deletesubjectz1ajax.generateRequest();
              
@@ -150,7 +150,7 @@
        deletesubjectz1Response:function(e){
            if(e.detail.response.returnval=='empty'){
         
-                var obj={"school_id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
+  var obj={"school_id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
                         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid"); 
                          obj.empid=this.employeesetidz;
                          obj.empname=this.empnames;
@@ -218,10 +218,9 @@
                          obj.empname=this.empnames;
                          obj.subjectid=this.empsubjectname;
                          obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
-                         obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
+                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarrdelarr.push(obj);
-                         //alert(JSON.stringify(obj));
-             document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
+               document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
              this.$.empremapid.close();
            },
    

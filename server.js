@@ -9,12 +9,14 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
+
    database : 'reportcardmaster'
   // host     : 'localhost',
   // port     : '58116',
   // user     : 'adminTEZN77M',
   // password : 'pEbElHqKSxh2',
   // database : 'scorecarddb'
+
 
  });
 
@@ -7034,6 +7036,32 @@ console.log(qur);
     }
     });
   });
+
+
+app.post('/fndelsectiongrade11-service',  urlencodedParser,function (req,res)
+{  
+  // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
+  var qur="SELECT * FROM md_student where grade_id='"+req.query.grade_id+"' and school_id='"+req.query.school_id+"'and class_id='"+req.query.classid+"' and academic_year='"+req.query.academic_year+"'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      if(rows.length>0)
+      {
+       //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows}); 
+      }
+      else
+      {
+        res.status(200).json({'returnval':'empty'}); 
+      }
+      
+    }
+    else
+      res.status(200).json({'returnval': 'Invalid'});
+  });
+});
 app.post('/fndelsectiongrade-service' ,urlencodedParser,function (req, res)
 {  
 var qur="DELETE FROM  mp_grade_section where school_id='"+req.query.school_id+"' and grade_id='"+req.query.grade_id+"' and class_id='"+req.query.classid+"' and section_id='"+req.query.sectionid+"' and academic_year='"+req.query.academic_year+"'";
@@ -7612,13 +7640,11 @@ app.post('/deletesubjectz11-service' ,  urlencodedParser,function (req, res)
   });
 });
 
-
- app.post('/deletesubjectz1-service',  urlencodedParser,function (req,res)
-    {  
-    /*   var qur="DELETE FROM  md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empid+"' and emp_name='"+req.query.empname+"' and subjectid='"+req.query.subjectid+"' and school_type_id='"+req.query.schooltypeid+"' and school_category_id='"+req.query.categoryid+"'";*/
- 
+app.post('/deletesubjectz1-service',  urlencodedParser,function (req,res)
+     {  
      var qur="SELECT * FROM mp_teacher_grade where school_id='"+req.query.school_id+"' and id='"+req.query.empid+"'and subject_id='"+req.query.subjectid+"'";
-  connection.query(qur,
+      //console.log(qur);
+     connection.query(qur,
     function(err, rows)
     {
     if(!err)
@@ -7626,7 +7652,7 @@ app.post('/deletesubjectz11-service' ,  urlencodedParser,function (req, res)
         if(rows.length>0){
                 res.status(200).json({'returnval': rows});
    
-        }
+     }
        else if(rows.length==0){
              res.status(200).json({'returnval': 'empty'});
    
