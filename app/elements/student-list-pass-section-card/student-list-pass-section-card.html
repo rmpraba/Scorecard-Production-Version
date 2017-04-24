@@ -91,13 +91,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         rr=this.admissinno;
         var count;
  if(document.querySelector('#'+this.id).checked==true){
-      
-     count=0;
+      count=0;
          for(var i=0;i<studentcheckinfoarr.length;i++){ 
                    if(studentcheckinfoarr[i].class_id==this.classid){
             count++;
           }
         }
+        alert(count+" "+this.noofstudent);
       if(count<this.noofstudent){
     
     var obj={"id1":"","id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
@@ -119,8 +119,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   var m=paspstuinfo[i].enq_id;
                   document.querySelector('#'+m).checked=true;
                      pm.push(paspstuinfo[i].classid);
-         
-                    }
+
+    
+               }
                   else if(paspstuinfo[i].classid!=this.classid){
                  var s=paspstuinfo[i].enq_id;
                  var bb=paspstuinfo[i].classid;
@@ -130,32 +131,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    if(a==g){
                    pm.splice(a,1);
                 }
-              }
-                   paspstuinfo.splice(i,1);
-                   
-                }
+              }paspstuinfo.splice(i,1);
+                    }}
 
-              } 
-             }
-           }
+                  }}
            else{
              this.$.noofstudent1.open();
              document.querySelector('#'+this.id).checked=false;
                 }
 
-                var c=0;
-          for(var k=0;k<paspstuinfo.length;k++){
-            if(paspstuinfo[k].classid==this.classid){
-                   if(k+count+1<this.noofstudent){
-                 }
-                 
-             }    
-             c++;   
-           }
+                var mn=0;
+           if(count<this.noofstudent){
+
+        for(var k=0;k<paspstuinfo.length;k++){
+                if(paspstuinfo[k].id1==this.id){
+
+                 if(paspstuinfo[k].classid==this.classid){
+
+                    map = pm.reduce(function(prev, cur) {
+
+                  prev[cur] = (prev[cur] || 0)+1;
+                  return prev;
+                       },{});
+                      var c=map[paspstuinfo[k].classid];
+
+                       if(c+count<=this.noofstudent){
+
+                       }
+                       else{
+                        var m=paspstuinfo[k].id1;
+                    document.querySelector('#'+m).checked=false;
+                    paspstuinfo.splice(k,1);
+                         this.$.noofstudent1.open();
+                    }
+                         c=mn;
+                     
+                      }
+                     }
+                }
+          }
+              
 
 
 
-           var cm;
+           /*var cm;
             for(var i=0;i<paspstuinfo.length;i++){
 
                 map = pm.reduce(function(prev, cur) {
@@ -165,7 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                        },{});
                  if(paspstuinfo[i].classid==this.classid){
                     cm=map[paspstuinfo[i].classid];
-               }
+              }
          }
        // alert(cm+count+" "+this.noofstudent);
    
@@ -183,8 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               }
             }  
             } 
-            }       
-     if(c+count!=this.noofstudent){
+            }      */ 
+     if(mn+count!=this.noofstudent){
              
           document.querySelector('Student-to-section-mapping-card').stupersonalinfo12();
         }
@@ -260,7 +279,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
      },
 
-     /*fnsaveinput:function()
+     fnsaveinput:function()
      {
       if(paspstuinfo.length!=0)
       {
@@ -270,7 +289,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
         document.querySelector('Student-to-section-mapping-card').fnnoinput();
       }
-     }*/
+     }
 
     });
   })();  

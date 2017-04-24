@@ -19,7 +19,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        width:100%
       margin-left:5em;
      }   
-       
+      
+      #labelid
+
+      {
+            font-style: oblique;
+            font-size: 1.3em;
+
+      }
+
+        #sdgdf
+      {
+        border-radius: 10px;
+        width: 450px;
+        min-height: 180px;
+      }
+ 
       
     </style>
            <paper-input hidden >{{classid}}</paper-input>
@@ -30,7 +45,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        id="{{id}}">{{sectiongradeid}}&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>    
             
 
-          <iron-ajax        
+
+    <paper-dialog id="sdgdf" modal>
+     <center>
+      <b><label  id="labelid">Already Students are mapped to this Section, Cannot undo
+        </label></b>
+        <div>
+        <paper-button style="background-color:black;color:white;margin-top: 8%;" dialog-confirm autofocus> close</paper-button>
+        </div>
+     </center>
+   </paper-dialog>
+ 
+   
+        <iron-ajax        
         id="getsectioncreategradeajax"   
         url="{{getsectioncreategradeurl}}"
         params="{{getsectioncreategradeparam}}"
@@ -40,6 +67,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         on-response="getsectioncreategradeResponse"
         debounce-duration="300">
    </iron-ajax>
+       <iron-ajax        
+        id="getsectioncreategrade1ajax"   
+        url="{{getsectioncreategrade1url}}"
+        params="{{getsectioncreategrade1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="getsectioncreategrade1Response"
+        debounce-duration="300">
+   </iron-ajax>
+ 
  
    
   </template>
@@ -50,29 +88,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'school-section-creation-item-card',
     
-       fngetsectiongrade:function(e){
+       fngetsectiongrade:function(e)
+       {
     //   alert(this.id);
          if(document.querySelector('#'+this.id).checked==false)
          {
-          //var obj={"sectiongradeid":"","school_id":""};
-          var sectionid=this.sectiongradeid.toLowerCase();
+            var sectionid=this.sectiongradeid.toLowerCase();
           var sectionname=sectionid.toUpperCase();
-          var obj={"grade_id":"","grade_name":"","sectionid":"","sectionname":"","classid":""};
+   
+
+         this.getsectioncreategrade1url=sessionStorage.getItem("addrinfo")+"/fndelsectiongrade11-service";
+            var obj={"school_id":"","grade_id":"","grade_name":"","classid":"","academic_year":""};
+          obj.grade_id=this.sectiongradeidzx;
+          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+          obj.academic_year=localStorage.getItem("curr_sess_academicyear");                obj.classid=this.classid;
+  
+        // alert(JSON.stringify(obj));
+         this.getsectioncreategrade1param=obj;
+         this.$.getsectioncreategrade1ajax.generateRequest();
+
+   
+         var obj={"id1":"","grade_id":"","grade_name":"","sectionid":"","sectionname":"","classid":""};
+          obj.id1=this.id;
           obj.grade_id=this.sectiongradeidzx;
           obj.grade_name=this.sectiongradenamezx
           obj.sectionid=sectionid;
           obj.sectionname=sectionname;
           obj.classid=this.classid;
           delsecarr.push(obj);
-      //   alert(JSON.stringify(obj));
-      //    alert(JSON.stringify(delsecarr));
-          document.querySelector('school-section-creation-card').fndeletepass(delsecarr);
-       }
+          //alert(JSON.stringify(delsecarr));
+     
+        }
+      if(document.querySelector('#'+this.id).checked==true)
+             for(var i=0;i<delsecarr.length;i++)
+             {
+            if(delsecarr[i].classid==this.classid){
+                delsecarr.splice(i,1);
+              }
+             }
+          document.querySelector('school-section-creation-card').fndeletepass(delsecarr); 
        },
-     /*  getsectioncreategradeResponse:function(e){
-           var res=e.detail.response.returnval; 
-           alert(JSON.stringify(res));
-       },*/
+       splice:function(e)
+       {
+         var obj={};
+        delsecarr.splice(obj);   
+   
+       },
+       getsectioncreategrade1Response:function(e)
+       {
+
+       // alert(JSON.stringify(e.detail.response.returnval));
+           if(e.detail.response.returnval!='empty')
+           {
+
+              this.$.sdgdf.open();
+                 for(var i=0;i<delsecarr.length;i++)
+                 {
+                    if(delsecarr.length!=0)
+                    {
+                      var m=delsecarr[i].id1;
+                      document.querySelector('#'+m).checked=true;
+                      delsecarr.splice(i,1);
+                    }
+                  }
+            } 
+          }
 
    
 

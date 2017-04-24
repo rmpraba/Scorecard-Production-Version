@@ -143,16 +143,21 @@
 setschooltype:function(e)
 {  
   secarr=e;
- //alert(JSON.stringify(this.secarr));
+ //alert(JSON.stringify(this.secarr)); 
 
 },
 fndeletepass:function(arr){
   fnpasdelarr=arr;
+
 },
 fndelete:function(e){
+  //alert(JSON.stringify(fnpasdelarr));
    this.$.uiservice.fndelsectiongrade(fnpasdelarr);
+     document.querySelector('school-section-creation-item-card').splice();
+    
  },
-setdbschooltype:function(e){
+setdbschooltype:function(e)
+{
   secdbarr=e;
     var fullarr=[];
    
@@ -241,7 +246,7 @@ setdbschooltype:function(e){
           this.hidenewgrade=false;
           this.hidenewopt=false;
           this.$.talhidn.hidden=false;
-        },
+        }
 
 
      });
