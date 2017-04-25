@@ -735,6 +735,16 @@
         on-response="fngetempsubjectResponse"
         debounce-duration="300">
            <iron-ajax        
+        id="fngetempsubject1ajax"
+        url="{{fngetempsubject1url}}"
+        params="{{fngetempsubject1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="fngetempsubject1Response"
+        debounce-duration="300">
+     
+           <iron-ajax        
         id="empgetsectionvaluesajax"
         url="{{empgetsectionvaluesurl}}"
         params="{{empgetsectionvaluesparam}}"
@@ -1472,7 +1482,8 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       } 
      //   alert(JSON.stringify(res));
      },
-     fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){     
+     fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){ 
+     alert('1');    
        this.fngetempsubjecturl=sessionStorage.getItem("addrinfo")+"/fngetempsubject-service";
       var obj={"school_id":"","schooltypeid":"","categoryid":"","academic_year":""};
        obj.schooltypeid=schooltypeid;
@@ -1485,13 +1496,31 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
        },
       fngetempsubjectResponse:function(e){
        var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+     //   alert(JSON.stringify(res));
 
-        if(res!='invalid'){
-          //  alert('1');
-       document.querySelector('employe-creation-card').setempsubject(res);
-        }
+        /*if(res!='invalid'){
+        */  //  alert('1');
+     //  document.querySelector('employe-creation-card').setempsubject(res);
+       document.querySelector('employe-schooltype-to-category-card').setempsubject1(res);
+  
+  /*      }
+  */    },
+   fngetempsubject1:function(schooltypeid,categoryid,emplangprefernce){ 
+       this.fngetempsubject1url=sessionStorage.getItem("addrinfo")+"/fngetempsubject-service";
+      var obj={"school_id":"","schooltypeid":"","categoryid":"","academic_year":""};
+       obj.schooltypeid=schooltypeid;
+       obj.categoryid=categoryid;
+       obj.emplangprefernce=emplangprefernce
+       obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+       this.fngetempsubject1param=obj;
+       this.$.fngetempsubject1ajax.generateRequest();
+       },
+      fngetempsubject1Response:function(e){
+       var res=e.detail.response.returnval; 
+       document.querySelector('employe-schooltype-to-category-card').setempsubject11(res);
       },   
+   
 
     insertgradeinfo:function(setgradeid,tranfersection,studentname){
       this.insertgradeinfourl=sessionStorage.getItem("addrinfo")+"/insertgradeinfo-service";
