@@ -6,18 +6,15 @@
 
 var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
-   host     : 'localhost',
-   user     : 'root',
-   password : 'admin',
-
-   database : 'reportcardmaster'
-  // host     : 'localhost',
-  // port     : '58116',
-  // user     : 'adminTEZN77M',
-  // password : 'pEbElHqKSxh2',
-  // database : 'scorecarddb'
-
-
+   // host     : 'localhost',
+   // user     : 'root',
+   // password : 'admin',
+   // database : 'scorecarddb'
+  host     : 'localhost',
+  port     : '64091',
+  user     : 'adminvRjnewB',
+  password : 'DNrIgJ3-ecwp',
+  database : 'scorecarddb'
  });
 
 
@@ -1657,7 +1654,7 @@ app.post('/fetchstudname-service',  urlencodedParser,function (req,res)
   var sectionid={section_id:req.query.section};
 
   // var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"'";
-  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"' ) and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"'";
+  var qur="SELECT * FROM md_student where class_id=(select class_id from mp_grade_section where grade_id=(select grade_id from md_grade where grade_name='"+req.query.grade+"') and section_id=(select section_id from md_section where section_name='"+req.query.section+"' and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"') and school_id='"+req.query.schoolid+"' and academic_year='"+req.query.academicyear+"'";
   console.log(qur);
   connection.query(qur,
     function(err, rows)
