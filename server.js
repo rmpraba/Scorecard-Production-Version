@@ -7681,7 +7681,7 @@ app.post('/tranfersection-service', urlencodedParser,function (req,res)
 app.post('/empmappingsubject-service',urlencodedParser,function (req,res)
 {  
 
-  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active' and academic_year='"+req.query.academicyear+"'";
+  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active' and academic_year='"+req.query.academicyear+"' and school_type_id='"+req.query.schooltype+"'";
 
   console.log("--------------------------------------------------------------");
  

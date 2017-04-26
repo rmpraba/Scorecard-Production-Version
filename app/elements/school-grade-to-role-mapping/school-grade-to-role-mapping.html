@@ -152,6 +152,7 @@
         this.hidegeneratebtn=false;
         // this.$.mappingservice.fetchgradesforgradetorolemapService(type);
         }
+        this.hidegeneratebtn=false;
       },
       FnGenerate:function(){
         if(roleid=='class-teacher')
@@ -173,7 +174,7 @@
         this.maparr=[];
         this.hidebtn=true;
         this.hidegradeselection=true;
-        this.hidegeneratebtn=true;
+        this.hidegeneratebtn=false;
         document.querySelector('#gradetoroleschooltype').selected=-1;
         document.querySelector('#gradetorolegrade').selected=-1;
       },
@@ -189,6 +190,7 @@
         this.maparr=[];
         this.hidebtn=true;
         this.hidegradeselection=true;
+        this.hidegeneratebtn=true;
         document.querySelector('#gradetoroleschooltype').selected=-1;
         document.querySelector('#gradetorolegrade').selected=-1;
       }

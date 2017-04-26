@@ -9,7 +9,7 @@
     <div>
        <div hidden>{{class}}{{section}}{{empid}}{{empname}}{{flage}}{{academicyear}}{{roleid}}{{schooltype}}{{classid}}</div>
        <div hidden$="{{flag}}">{{compid}}</div>
-       <paper-checkbox hidden$="{{flagg}}" checked="{{check}}" on-change="FnSelectRole" id="{{compid}}"></paper-checkbox>
+       <paper-checkbox hidden$="{{flagg}}" checked="{{check}}" on-change="FnSelectRole" id="sgtrm{{compid}}"></paper-checkbox>
     </div>
   </template>
   <script>
@@ -31,7 +31,7 @@
       FnSelectRole:function(e){
         // alert(document.querySelector('#'+this.compid).checked);
         if(selected==""){
-          if(document.querySelector('#'+this.compid).checked==true)
+          if(document.querySelector('#sgtrm'+this.compid).checked==true)
           {
           if(arr.length==0){
           selected=this.compid;

@@ -265,6 +265,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.empselectid=this.empselectid;
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.academicyear=localStorage.getItem("curr_sess_academicyear");
+          obj.schooltype=sessionStorage.getItem("curr_sess_loggedschooltupes");
           this.fnemployeenamezparam=obj;
          // alert(JSON.stringify(obj));
           this.$.fnemployeenamezajax.generateRequest();
