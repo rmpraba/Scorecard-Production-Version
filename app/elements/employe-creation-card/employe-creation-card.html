@@ -1,5 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\employee-schooltype-to-category-basecard/employee-schooltype-to-category-basecard.html">
+
 
 <dom-module id="employe-creation-card">
   <template>
@@ -86,18 +88,18 @@
     var v=[];
      var f;
     var empgetarrdelarr=[];
+    var rr;
         Polymer({
       is: 'employe-creation-card',
      fnempsetsubject:function(e){
         f=this.id;
        rr=this.employeesetidz;
-     
+     alert('1');
         if(document.querySelector('#'+this.id).checked==true)
         {  
                this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
-               
-          if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=="category1"){
+            if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=="category1"){
           var obj={"id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":"","emplanpreff":""};
             obj.id=this.id;
              obj.empid=this.employeesetidz;
@@ -108,14 +110,14 @@
              obj.emplanpreff=this.emplanpreff;
              empgetarr.push(obj);
              v.push(obj);
-             //alert(JSON.stringify(obj));
-           //  alert(JSON.stringify(empgetarr));
-             document.querySelector('Student-to-section-mapping-card').stupersonalinfo12();
+        alert(JSON.stringify(empgetarr));
+    document.querySelector('student-to-subject-mapping-based-card').passempgrade11(empgetarr);
+       document.querySelector('employe-schooltype-to-category-card').stupersonalinfo12();
    
-      document.querySelector('employee-schooltype-to-category-basecard').passempgrade(empgetarr); 
             }
             else{
-                var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
+                var obj={"id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
+                    obj.id=this.id;
              obj.empid=this.employeesetidz;
              obj.empname=this.empnames;
              obj.subjectid=this.empsubjectname;
@@ -123,9 +125,8 @@
              obj.categoryid=this.categoryid;
              empgetarr.push(obj);
              v.push(obj);
-              //alert(JSON.stringify(empgetarr));
-      document.querySelector('employee-schooltype-to-category-basecard').passempgrade(empgetarr); 
-                          } 
+       document.querySelector('student-to-subject-mapping-based-card').passempgrade11(empgetarr); 
+   } 
  }
 
         else if(document.querySelector('#'+this.id).checked==false){
@@ -214,13 +215,15 @@
                    if(rnwn>0){
 
                  for(var i=0;i<empgetarr.length;i++){
-               spliceid=empgetarr[i].id;
+              var  spliceid=empgetarr[i].id;
               document.querySelector('#'+spliceid).checked=false;
               }
              var obj={};
-            paspstuinfo.splice(obj);
+            empgetarr.splice(obj);
            }
         },
+
+
       deletesubjectzResponse:function(e){
      var res=e.detail.response.returnval; 
       //alert(JSON.stringify(res));
@@ -241,29 +244,17 @@
            },
    
          Fnsubjectclean:function(e){
-      //alert('1');
-            var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
+          if(empgetarr.length!=0){
+         var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
              obj.empid=this.employeesetidz;
              obj.empname=this.empnames;
              obj.subjectid=this.empsubjectname;
              obj.schooltypeid=this.schooltypeid;
              obj.categoryid=this.categoryid;
              empgetarr.splice(obj);
+           }
         },
-        Fnsubjectclean1:function(e){
-    for(var j=0;j<v.length;j++){
-         var getsubidz=v[j].subjectid+v[j].empid;
-         // alert(getsubidz);
-              document.querySelector('#'+getsubidz).checked=false;
-              }
-            var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
-             obj.empid=this.employeesetidz;
-             obj.empname=this.empnames;
-             obj.subjectid=this.empsubjectname;
-             obj.schooltypeid=this.schooltypeid;
-             obj.categoryid=this.categoryid;
-             v.splice(obj);
-        },
+   
          stupersonalinfo13:function(arr)
         {
                 for(var k=0;k<arr.length;k++){
@@ -271,17 +262,7 @@
                     document.querySelector('#'+dbid).checked=false;
         }
      },
-        Fnsubjectdelclean:function(e){
-            var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
-             obj.empid=this.employeesetidz;
-             obj.empname=this.empnames;
-             obj.subjectid=this.empsubjectname;
-             obj.schooltypeid=this.schooltypeid;
-             obj.categoryid=this.categoryid;
-            empgetarrdelarr.splice(obj);
-    
-        },
-
+       
         /* fnnewsave:function(e)
         {
           if(empgetarr.length!=0) 

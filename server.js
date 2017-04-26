@@ -8437,65 +8437,6 @@ app.post('/selectschoolnames-service' ,urlencodedParser, function (req, res)
       });
     });
 
-app.post('/fnsetstudentinfohistory-service' ,urlencodedParser, function (req, res)
-    {  
-      var e={id:req.query.school_id};
-      //console.log(e);
-
-      var qur="select * from md_student where school_id='"+req.query.school_id+"' and id='"+req.query.id+"' and grade_id!='"+req.query.stugradeid+"' and  academic_year!='"+req.query.academic_year+"'";
-      connection.query(qur,function(err, rows){
-        if(!err){
-
-          if(rows.length>0)  
-           { 
-          //console.log(JSON.stringify(rows));   
-          res.status(200).json({'returnval': rows});
-          }
-       else if(rows.length==0|| row.length==null)
-         { 
-          //console.log(JSON.stringify(rows));  
-          res.status(200).json({'returnval': 'empty'});
-         }
-       }
-
-        else
-          //console.log(err);
-          res.status(200).json({'returnval': 'invalid'});
-
-      });
-    });
-app.post('/fnsetstudentinfohistory1-service',  urlencodedParser,function (req, res){
-
-
-  var response={  
-     school_id:req.query.school_id,
-     id:req.query.id,
-     student_name:req.query.student_name,
-     school_type:req.query.school_type,
-     dob:req.query.dob,
-     Gender:req.query.Gender,
-     classs_id:req.query.class_id, 
-     ageinmonth:req.query.ageinmonth, 
-     grade_id:req.query.grade_id, 
-     academic_year:req.query.academic_year  
-    }
-  // console.log(response);
-  connection.query("INSERT INTO md_student_history set ?",[response],
-    function(err, rows)
-    {
-    if(!err)
-    {    
-      res.status(200).json({'returnval': 'insert'});
-    }
-    else
-    {
-      console.log(err);
-      res.status(200).json({'returnval': 'not insert'});
-    }  
-
-  });
-});
-
 
 app.post('/studentsectiontype-service' ,urlencodedParser, function (req, res)
     {  

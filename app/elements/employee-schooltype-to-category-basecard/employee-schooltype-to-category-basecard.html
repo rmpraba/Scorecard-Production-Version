@@ -10,7 +10,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
-
 <dom-module id="employee-schooltype-to-category-basecard">
   <template>
     <style>
@@ -19,47 +18,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-    <paper-input hidden value="{{empid}}"></paper-input>
-    <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
+    <paper-input hidden value="{{stuid}}"></paper-input>
+    <paper-input hidden value="{{stugradeid}}"></paper-input>
+    <paper-icon-button  id="btn1" icon="save" on-click="fnsetsave"></paper-icon-button>
     <paper-tooltip for="btn1">Save</paper-tooltip>
     </div>
+
     <demosumbit-card id="mydialog"></demosumbit-card>
-    
-  <master-ui-service id="uiservice"></master-ui-service> 
+    <master-ui-service id="uiservice"></master-ui-service> 
   </template>
   <script>
   (function() {
     'use strict';
-    var getgradenames=[];
+    var getgradenames=[];  
+    var schooltype;
     Polymer({
       is: 'employee-schooltype-to-category-basecard',
-    /*  passempgrade:function(arr){
-       getgradenames=arr;
-       
-      },
-     */  
-     passempgrade:function(arr){
-       getgradenames=arr;  
-     //this.$.basecard.passempgrade(arr);
-      },
-     
-      FnSubmit:function(e){
-      //  alert(JSON.stringify(getgradenames));
-      var temparr=[];
-      for(var i=0;i<getgradenames.length;i++){
-        if(getgradenames[i].empid==this.empid)
-          temparr.push(getgradenames[i]);
-      }
-        this.$.uiservice.fnempsubjectdetails(temparr);
-        //document.querySelector('employe-creation-card').fnnewsave();
-        this.$.mydialog.toggleDialog();
-       // document.querySelector('employe-creation-card').Fnsubjectclean(); 
-       // getgradenames=[];
-       },
-    /*   FnClear:function(){
-        getgradenames=[];
+       stupersonalinfo:function(arr){
+        getgradenames=arr;
+          alert(JSON.stringify(getgradenames));
+        },
+    fnsetsave:function(e){
+    var temparr=[];
+     for(var i=0;i<getgradenames.length;i++){
+      if(getgradenames[i].id==this.stuid){ 
+         temparr.push(getgradenames[i]);
        }
-   */ });
+     }
+   alert(JSON.stringify(temparr));
+       schooltype=sessionStorage.getItem("curr_sess_loggedschooltupes");
+       alert(this.stugradeid+" "+schooltype);
+      
+       this.$.uiservice.fnsetstudentinfo(temparr,this.stugradeid,schooltype);
+       this.$.uiservice.fnretrivestudent(this.stugradeid);
+       this.$.mydialog.toggleDialog();
+  
+     },
+     });
   })();
   </script>
 </dom-module>

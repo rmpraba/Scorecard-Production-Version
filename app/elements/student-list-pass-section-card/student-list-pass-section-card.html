@@ -139,8 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              this.$.noofstudent1.open();
              document.querySelector('#'+this.id).checked=false;
                 }
-
-                var mn=0;
+        var mn=0;
            if(count<this.noofstudent){
 
         for(var k=0;k<paspstuinfo.length;k++){
@@ -154,7 +153,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   return prev;
                        },{});
                       var c=map[paspstuinfo[k].classid];
-
+          alert(JSON.stringify(map));
+     
                        if(c+count<=this.noofstudent){
 
                        }
@@ -170,53 +170,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      }
                 }
           }
-              
+        alert(JSON.stringify(pm));
 
-
-
-           /*var cm;
-            for(var i=0;i<paspstuinfo.length;i++){
-
-                map = pm.reduce(function(prev, cur) {
-
-                  prev[cur] = (prev[cur] || 0)+1;
-                  return prev;
-                       },{});
-                 if(paspstuinfo[i].classid==this.classid){
-                    cm=map[paspstuinfo[i].classid];
-              }
-         }
-       // alert(cm+count+" "+this.noofstudent);
-   
-          if(cm+count<=this.noofstudent){
-          
-        }
-       else{
-               for(var g=0;g<paspstuinfo.length;g++){
-                 if(paspstuinfo[g].id1==this.id){ 
-            
-              if(paspstuinfo[g].classid==this.classid){ 
-                document.querySelector('#'+rm).checked=false;
-                this.$.noofstudent1.open();
-                paspstuinfo.splice(g,1)
-              }
-            }  
-            } 
-            }      */ 
      if(mn+count!=this.noofstudent){
              
           document.querySelector('Student-to-section-mapping-card').stupersonalinfo12();
         }
-        document.querySelector('Student-to-section-mapping-card').stupersonalinfo(paspstuinfo);  
+        document.querySelector('employee-schooltype-to-category-basecard').stupersonalinfo(paspstuinfo);  
         }
   else if(document.querySelector('#'+this.id).checked==false){
              for(var i=0;i<paspstuinfo.length;i++){
+                     alert('1');
+                   if(paspstuinfo[i].id1==this.id){
+
+                      if(paspstuinfo[i].classid==this.classid){
+                         var cc=paspstuinfo[i].classid;
+                       alert(cc+" "+this.classid)
+               
+                   var a = pm.indexOf(cc);
+                   alert(a);
+                for(var g=0;g<pm.length;g++){
+                alert(a+" "+g);
+                   if(a==g){
+                   pm.splice(a,1);
+
+                }}
+             }
+           }
+
                paspstuinfo.splice(i,1);
-               }
-              }
-            
- 
-       },
+
+             }
+              alert(JSON.stringify(pm));
+          }
+              },
          studentcheckinfo1:function(arr){
        studentcheckinfoarr=arr;
        },
