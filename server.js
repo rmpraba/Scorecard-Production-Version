@@ -8,10 +8,14 @@ var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
 
    host     : 'localhost',
-   user     : 'root',
-   password : 'admin',
+   // user     : 'root',
+   // password : 'admin',
 
-   database : 'master'
+   // database : 'reportcardmaster'
+   user:'adminvRjnewB',
+   port:'64091',
+   password:'DNrIgJ3-ecwp',
+   database:'scorecarddb'
 
  });
 
@@ -7677,7 +7681,7 @@ app.post('/tranfersection-service', urlencodedParser,function (req,res)
 app.post('/empmappingsubject-service',urlencodedParser,function (req,res)
 {  
 
-  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active' ";
+  var qur="SELECT school_id,subjectid,emp_id,emp_name,(select subject_name from md_subject where subject_id =subjectid) as subject FROM md_employee_subject where school_id='"+req.query.school_id+"' and emp_id='"+req.query.empselectid+"' and flage='active' and academic_year='"+req.query.academicyear+"'";
 
   console.log("--------------------------------------------------------------");
  
