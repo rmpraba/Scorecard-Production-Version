@@ -38,17 +38,19 @@ var getgradenames=[];
 sdvnsdvksdv:function(e){
 var temparr=[];
      for(var i=0;i<getgradenames.length;i++){
-      if(getgradenames[i].classid==this.empid){ 
+      if(getgradenames[i].empid==this.empid){ 
          temparr.push(getgradenames[i]);
        }
      }
+     //alert(JSON.stringify(temparr));
         this.$.uiservice.fnempsubjectdetails(temparr);
         this.$.mydialog.toggleDialog();
    
     },
 passempgrade11:function(arr){
         getgradenames=arr;
-          alert(JSON.stringify(getgradenames));
+       // alert("PP");
+         // alert(JSON.stringify(getgradenames));
        
        },
 

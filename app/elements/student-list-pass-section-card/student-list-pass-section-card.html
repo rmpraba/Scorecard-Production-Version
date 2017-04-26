@@ -136,6 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                   }}
            else{
+            alert('1f');
              this.$.noofstudent1.open();
              document.querySelector('#'+this.id).checked=false;
                 }
@@ -153,12 +154,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   return prev;
                        },{});
                       var c=map[paspstuinfo[k].classid];
-          alert(JSON.stringify(map));
-     
-                       if(c+count<=this.noofstudent){
-
-                       }
-                       else{
+                     // alert(JSON.stringify(map));
+                    //  alert(JSON.stringify(c));
+                 
+                  if(JSON.stringify(map)===JSON.stringify({}))
+                  {
+                  }
+                   else if(c+count<=this.noofstudent){
+                   }
+                   else if(c+count>this.noofstudent){
+                       //   alert('2f');
+          
                         var m=paspstuinfo[k].id1;
                     document.querySelector('#'+m).checked=false;
                     paspstuinfo.splice(k,1);
@@ -170,7 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      }
                 }
           }
-        alert(JSON.stringify(pm));
+     //   alert(JSON.stringify(pm));
 
      if(mn+count!=this.noofstudent){
              
@@ -178,30 +184,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         document.querySelector('employee-schooltype-to-category-basecard').stupersonalinfo(paspstuinfo);  
         }
-  else if(document.querySelector('#'+this.id).checked==false){
+    else if(document.querySelector('#'+this.id).checked==false){
              for(var i=0;i<paspstuinfo.length;i++){
-                     alert('1');
+                //     alert('1');
+           //       alert(paspstuinfo[i].id1+" "+this.id);
                    if(paspstuinfo[i].id1==this.id){
-
-                      if(paspstuinfo[i].classid==this.classid){
+                 if(paspstuinfo[i].classid==this.classid){
                          var cc=paspstuinfo[i].classid;
-                       alert(cc+" "+this.classid)
-               
-                   var a = pm.indexOf(cc);
-                   alert(a);
+                  //     alert(cc+" "+this.classid)
+                 var a = pm.indexOf(cc);
+           //      alert(a);
                 for(var g=0;g<pm.length;g++){
-                alert(a+" "+g);
+             //   alert(a+" "+g);
                    if(a==g){
                    pm.splice(a,1);
+                  paspstuinfo.splice(i,1);
 
                 }}
              }
            }
 
-               paspstuinfo.splice(i,1);
+             //  
 
              }
-              alert(JSON.stringify(pm));
+      //alert(JSON.stringify(pm));
           }
               },
          studentcheckinfo1:function(arr){

@@ -206,7 +206,7 @@
                  <!--    $="{{view.hidebtn}}" -->     
                   <td hidden$="{{view.hidebtn}}">
                   <student-to-subject-mapping-based-card empid="{{view.emp_id}}"></student-to-subject-mapping-based-card>
-                  </td>
+                  </td>   
                   <td hidden>    
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
@@ -626,7 +626,7 @@ for(var j=0;j<k.length;j++){
          }
          this.subjectbigarr=this.finalarr;
        
-         alert(JSON.stringify(this.subjectbigarr));
+      //   alert(JSON.stringify(this.subjectbigarr));
    this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
   this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
   this.$.uiservice.fngetempsubject1(this.schooltypeid,this.categoryid,this.emplangprefernce);
@@ -745,7 +745,7 @@ for(var j=0;j<l.length;j++){
             this.finalarr[i].hidebtn=false;
          }
          this.subjectbigarr=this.finalarr;
-          alert(JSON.stringify(this.subjectbigarr));
+   //       alert(JSON.stringify(this.subjectbigarr));
          this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
          this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
           this.$.uiservice.fngetempsubject1(this.schooltypeid,this.categoryid,this.emplangprefernce);
