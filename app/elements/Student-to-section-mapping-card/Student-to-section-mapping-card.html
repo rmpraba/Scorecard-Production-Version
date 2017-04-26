@@ -185,28 +185,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <table width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
         
             
-              <tbody class="newcarddzz">
-
+           
                 <template is="dom-repeat" items="{{sectionfullarr}}" as="view">
                   <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
-                    <td width="20%">
+                    <td>
                       <h4>{{view.student_name}}</h4>
                     </td>
    
-                     <td width="80%">
                       <table border="0">
-                      <tr> 
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td>
                         <student-list-pass-section-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" studentname="{{view.student_name}}" 
                         id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
                         </td>
                       </template>
+                      <!-- " -->
+                      <td hidden$="{{view.hidebtn}}">
+                        <employee-schooltype-to-category-basecard stuid="{{view.enquiry_no}}"  stugradeid="{{stugradeid}}">
+                        </employee-schooltype-to-category-basecard>
+                      </td>
+                      <td hidden> <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
+                    <paper-tooltip for="btn2">Delete</paper-tooltip></td>
                      </tr>
-                    </table>
-                    </td>
-                </template>
-              </tbody>
+                   </template>
           </table>   
         </div>   
 
@@ -475,7 +476,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }   
        }
-         // this.sectionfullarr=k;
+         alert(JSON.stringify(k));
           var temp=[];
           var subarr=[];
           var obj={};
@@ -499,15 +500,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          this.finalarr.push(temp[0]);
          for(var i=0;i<(k).length;i++){
           for(var j=0;j<(k[i].subject).length;j++){
-            k[i].subject[j].hideinput=true;
+             k[i].subject[j].enquiry_no=k[i].enquiry_no;
+             k[i].subject[j].class_for_admission=k[i].class_for_admission;
+             k[i].subject[j].admission_no=k[i].admission_no;
+             k[i].subject[j].subject_id=k[i].subject_id;
+             k[i].subject[j].gender=k[i].gender;
+             k[i].subject[j].dob=k[i].dob;
+         
+            if(j==0)
+            k[i].subject[j].subject_name=k[i].student_name;
+           else
+           
+             k[i].subject[j].student_name="";
+             k[i].subject[j].hideinput=true;
              k[i].subject[j].hidecheck=false;
           }
           this.finalarr.push(k[i]);
          }
-
-         // alert(JSON.stringify(k));
-
-         this.sectionfullarr=this.finalarr;
+         for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
+        this.sectionfullarr=this.finalarr;
+       
        if(k.length!=0){
         
         this.$.uiservice.fnretrivestudent(this.stugradeid);
@@ -541,7 +559,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          }
          if(flag==0){
           }
-     }
+     }  
   
     },
     fnnext:function(e){
@@ -645,7 +663,14 @@ for(var j=0;j<k.length;j++){
           }
           this.finalarr.push(k[i]);
          }
-         this.sectionfullarr=this.finalarr;
+          for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
+        this.sectionfullarr=this.finalarr;
      // this.sectionfullarr=k;
              this.$.uiservice.fnretrivestudent(this.stugradeid);
                 document.querySelector('student-list-pass-section-card').ttt3();
@@ -792,7 +817,14 @@ for(var j=0;j<l.length;j++){
           }
           this.finalarr.push(l[i]);
          }
-         this.sectionfullarr=this.finalarr;
+          for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
+        this.sectionfullarr=this.finalarr;
       // this.sectionfullarr=l;
    // alert(JSON.stringify(this.sectionfullarr));
          document.querySelector('student-list-pass-section-card').f11(); 
@@ -853,14 +885,7 @@ for(var j=0;j<l.length;j++){
        document.querySelector('student-list-pass-section-card').fnsplice();
 
 },*/
-FnSavez:function(e)
-{
-      this.$.uiservice.fnsetstudentinfohistory(studeninfoarr,this.stugradeid,schooltype);
-       this.$.uiservice.fnsetstudentinfo(studeninfoarr,this.stugradeid,schooltype);
-       this.$.uiservice.fnretrivestudent(this.stugradeid);
-       this.$.mydialog.toggleDialog();
-       document.querySelector('student-list-pass-section-card').ttt3();
-        document.querySelector('Student-to-section-mapping-item-card-card').FnRefresh();
+    //   document.querySelector('student-list-pass-section-card').ttt3();
        
 /*alert(JSON.stringify(kn));
        var obj={"dd":"","admno":""};
@@ -870,7 +895,7 @@ FnSavez:function(e)
        document.querySelector('Student-to-section-mapping-item-card-card').FnRefresh();
        this.fnrefresh();
    */
-},
+
    fnselectgrade:function(e)
    {
       //alert("grade");

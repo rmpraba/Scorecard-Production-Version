@@ -57,21 +57,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       fnsudentGrade:function(e)
       {
-         if(document.querySelector('#'+this.id).checked==true)
+      if(document.querySelector('#'+this.id).checked==true)
        {
-
-      document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames);
-      
-      this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
+         sessionStorage.setItem("curr_sess_loggedschooltupes",this.empschoolnames);
+      document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames); 
+    this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
      var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.empschoolnames;
           obj.id=this.id;
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-    
-          scltypearr.push(obj);
+        scltypearr.push(obj);
           this.studensectiongetgradeparam=obj;
-        //  alert(JSON.stringify(obj));
           this.$.studensectiongetgradeajax.generateRequest();
         }
           for(var i=0;i<scltypearr.length;i++)
@@ -82,14 +79,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 scltypearr.splice(i,1); 
         }
         }
-},
-
-         studensectiongetgradeResponse:function(e)
+    },
+   studensectiongetgradeResponse:function(e)
          {
-               var res=e.detail.response.returnval;
-        //  alert(JSON.stringify(res));
- 
-           document.querySelector('Student-to-section-mapping-card').fnstudentgetgrade(res);
+              var res=e.detail.response.returnval;
+               document.querySelector('Student-to-section-mapping-card').fnstudentgetgrade(res);
       
         },
    

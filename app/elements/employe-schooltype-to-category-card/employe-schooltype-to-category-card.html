@@ -196,20 +196,22 @@
                   <td>   
                     <h4>{{view.emp_name}}</h4>   
                   </td>
-                    <template is="dom-repeat" items="{{view.employee}}" as="s">
-                        <td ><center>
+
+                     <template is="dom-repeat" items="{{view.employee}}" as="s">
+                        <td><center>
                         <employe-creation-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" employeesetidz="{{view.emp_id}}" id="{{s.id}}" subjectname="{{s.subject_name}}" empsubjectname="{{s.subject_id}}"  empnames="{{view.emp_name}}"  check="{{s.check}}" emplanpreff="{{emplangprefernce}}"></employe-creation-card>   
                         </center> 
                         </td>
-                    </template>     
-                <!--   <td hidden$="{{view.hidebtn}}">
-                    <employee-schooltype-to-category-basecard id="basecard" empid="{{view.emp_id}}"></employee-schooltype-to-category-basecard>
+                    </template>
+                 <!--    $="{{view.hidebtn}}" -->     
+                  <td hidden$="{{view.hidebtn}}">
+                  <student-to-subject-mapping-based-card empid="{{view.emp_id}}"></student-to-subject-mapping-based-card>
                   </td>
                   <td hidden>    
                     <paper-icon-button  id="btn2" icon="close" on-click="Fndelte"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
-                 --></tr>     
+                </tr>     
                 <!-- <tr><hr/></tr> -->
               </template>
             <!-- </div> -->   
@@ -220,7 +222,7 @@
 
 
 
-        <div id="subzz1">
+        <div hidden>
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
    
@@ -275,7 +277,6 @@
     'use strict';
      var empteacharr=[];
      var getcategory=[];
-     var getgradenames=[];
      var namearr=[];
      var setspecificarr=[];
      var bigarrz=[];
@@ -293,7 +294,6 @@
       fnempsubject:function(){
         this.$.empLanguageprefernce.hidden=true;
         this.hidegenerate=true;
-          this.$.subzz1.hidden=true;
         this.$.z11.hidden=true;
         this.$.z22.hidden=true;
   
@@ -311,7 +311,7 @@
     getgrade:function(arr){
         empteacharr=arr;
      },
-       langprefere:function(e)
+  langprefere:function(e)
        {
         //   alert('1');
           if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1')
@@ -359,14 +359,7 @@
     deldbarr:function(arr){  
        deldbarrs=arr;  
     },
-      FnSubmit:function(e){
-      //  alert(JSON.stringify(getgradenames));
-        this.$.uiservice.fnempsubjectdetails(getgradenames);
-        //document.querySelector('employe-creation-card').fnnewsave();
-        this.$.mydialog.toggleDialog();
-       document.querySelector('employe-creation-card').Fnsubjectclean(); 
-       
-       },
+   
        Fndelte:function(e){
       // alert(JSON.stringify(deldbarrs));
         this.$.uiservice.fnemployeeedelfn(deldbarrs);  
@@ -376,33 +369,33 @@
        },
       
  stupersonalinfo12:function(){
-     document.querySelector('student-list-pass-section-card').stupersonalinfo11(kn); 
+     document.querySelector('employe-creation-card').stupersonalinfo11(kn); 
     
     },
   
   grnerate:function(e)
         {
+
   this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
   this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
   this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
-    //document.querySelector('employe-creation-card').Fnsubjectclean1();
+   document.querySelector('employe-creation-card').Fnsubjectclean();
+     overall=[];
+         g=[];
          
           },
       setempsubject11:function(e){
         dbsetsubjectarr=e;    
           },
       setempsubject1:function(arr){
-dbsetsubjectarr=arr;
+   dbsetsubjectarr=arr;
         this.hidegenerate=false;
-        this.$.subzz1.hidden=false;
-        this.$.z11.hidden=false;
+        this.$.z11.hidden=true;
         this.$.z22.hidden=false;
   
 
- if(overall1!=0){
-             // alert('1');
+ if(overall1!=0) { 
 
-           document.querySelector('employe-creation-card').Fnsubjectclean1();
             document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
               kn.splice(obj);     
       
@@ -502,8 +495,6 @@ for(var j=0;j<k.length;j++){
                       obj.admno=admno;
                       kn.push(obj);
                        }
-                       else
-                        k[j].employee[t].check=false;
                   
                      }}}}
             for(var i=0;i<overall.length;i++){
@@ -535,42 +526,36 @@ for(var j=0;j<k.length;j++){
           }
           this.finalarr.push(k[i]);
          }
-
+        for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
          this.subjectbigarr=this.finalarr;
-         alert(JSON.stringify(this.subjectbigarr));
-         this.$.talhidn.hidden=false;
-       
+        
        if(k.length!=0){
         this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
       this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
      this.$.uiservice.fngetempsubject1(this.schooltypeid,this.categoryid,this.emplangprefernce);
-   }
-  
-          },
-
-
-           fnnext:function(e){
+   }},
+fnnext:function(e){
                  var setarrr=[];
-       
-                 for(var i=0;i<getcategory.length;i++)
-                 {
+ for(var i=0;i<getcategory.length;i++){
                           var subject_name=getcategory[i].subject_name;
-                          
-                            var obj={"srtarr":""};
-                                obj.srtarr=subject_name;
-                               setarrr.push(obj);
+                          var obj={"srtarr":""};
+                          obj.srtarr=subject_name;
+                         setarrr.push(obj);
                            }
 
             var k=[];
         document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
+            document.querySelector('employe-creation-card').f11(); 
+    
           kn.splice(obj);
         
-  
-       /*   document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
-          kn.splice(obj);
-             this.f33();     
-       */    
-   for(var j=0;j<overall.length;j++){
+ for(var j=0;j<overall.length;j++){
          if(j<=7){
              var obj={"emp_name":"","emp_id":"","employee":""};
                     var emp_name=overall[j].emp_name;
@@ -601,20 +586,18 @@ for(var j=0;j<k.length;j++){
                       obj.admno=admno;
                       kn.push(obj);
                        }
-                       else
-                        k[j].employee[t].check=false;
                   
+
                      }}}}
             for(var i=0;i<overall.length;i++){
        for(var s=0;s<k.length;s++){
                 if(overall[i].emp_id==k[s].emp_id){
            overall.splice(i,1);
          }}}
-           if(k.length!=0){
- 
-         var temp=[];
+        if(k.length!=0){
+          var temp=[];
           var subarr=[];
-         var obj={};
+          var obj={};
           obj.emp_id="";
           obj.emp_name="";
           for(var i=0;i<(setarrr).length;i++){
@@ -622,39 +605,43 @@ for(var j=0;j<k.length;j++){
           obj1.subject_name=setarrr[i].srtarr;
           obj1.hideinput=false;
           obj1.hidecheck=true;          
-          subarr.push(obj1);
-          }
+          subarr.push(obj1);}
           obj.employee=subarr;
           temp.push(obj);
-
-         this.finalarr=[];
+          this.finalarr=[];
          this.finalarr.push(temp[0]);
          for(var i=0;i<(k).length;i++){
           for(var j=0;j<(k[i].employee).length;j++){
             k[i].employee[j].hideinput=true;
              k[i].employee[j].hidecheck=false;
-          }
-          this.finalarr.push(k[i]);
+          }this.finalarr.push(k[i]);
+
          }
-    
+ for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
          this.subjectbigarr=this.finalarr;
+       
          alert(JSON.stringify(this.subjectbigarr));
    this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
   this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
   this.$.uiservice.fngetempsubject1(this.schooltypeid,this.categoryid,this.emplangprefernce);
     document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
-          document.querySelector('employe-creation-card').f11(); 
-          setarrr=[];
-   
-      }
+    document.querySelector('employe-creation-card').f11(); 
+    setarrr=[];
+  }
       else{
-            document.querySelector('student-list-pass-section-card').f11(); 
-           kn.splice(obj);
-          
-         this.$.previousid1.open();
+           //   alert('1');
+              this.$.previousid1.open();
               this.$.z11.hidden=false;
-               this.$.z22.hidden=true;
-        
+              this.$.z22.hidden=true;
+          document.querySelector('student-list-pass-section-card').f11(); 
+           kn.splice(obj);
+         
          
       }
 
@@ -678,6 +665,7 @@ mappingstudent1:function(e){
     
               document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
           kn.splice(obj);
+          document.querySelector('employe-creation-card').f11();
 
           var l=[];
    for(var j=0;j<g.length;j++){
@@ -711,9 +699,7 @@ for(var j=0;j<l.length;j++){
                       obj.admno=admno;
                       kn.push(obj);
                        }
-                       else
-                        l[j].employee[t].check=false;
-                  
+                     
                      }}}}
        for(var i=0;i<g.length;i++){
 
@@ -751,8 +737,15 @@ for(var j=0;j<l.length;j++){
           this.finalarr.push(l[i]);
          }
 
+       for(var i=0;i<this.finalarr.length;i++)
+         {
+          if(i==0)
+            this.finalarr[i].hidebtn=true;
+          else
+            this.finalarr[i].hidebtn=false;
+         }
          this.subjectbigarr=this.finalarr;
-         alert(JSON.stringify(this.subjectbigarr));
+          alert(JSON.stringify(this.subjectbigarr));
          this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
          this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
           this.$.uiservice.fngetempsubject1(this.schooltypeid,this.categoryid,this.emplangprefernce);
@@ -762,15 +755,12 @@ for(var j=0;j<l.length;j++){
          kn.splice(obj);
      
        }else{
-               kn.splice(obj);
-             document.querySelector('employe-creation-card').f11(); 
               this.$.Nextid1.open();
-                this.$.z11.hidden=true;
-               this.$.z22.hidden=false;
-        
- 
-
-       }
+              this.$.z11.hidden=true;
+              this.$.z22.hidden=false;
+              document.querySelector('employe-creation-card').f11(); 
+              kn.splice(obj);
+             }
       
  },
    

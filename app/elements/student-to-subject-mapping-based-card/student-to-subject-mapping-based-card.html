@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
+
 
 <dom-module id="student-to-subject-mapping-based-card">
   <template>
@@ -17,22 +19,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+    <div>
+    <paper-input hidden value="{{empid}}"></paper-input>
+    <paper-icon-button  id="btn1" icon="save" on-click="sdvnsdvksdv"></paper-icon-button>
+    <paper-tooltip for="btn1">Save</paper-tooltip>
+    </div>
+  <demosumbit-card id="mydialog"></demosumbit-card>
+    <master-ui-service id="uiservice"></master-ui-service> 
+  </div>
   </template>
   <script>
   (function() {
     'use strict';
-
+var getgradenames=[];
     Polymer({
       is: 'student-to-subject-mapping-based-card',
 
-      properties: {
-        foo: {
-          type: String,
-          value: 'student-to-subject-mapping-based-card',
-          notify: true
-        }
-      }
+sdvnsdvksdv:function(e){
+var temparr=[];
+     for(var i=0;i<getgradenames.length;i++){
+      if(getgradenames[i].classid==this.empid){ 
+         temparr.push(getgradenames[i]);
+       }
+     }
+        this.$.uiservice.fnempsubjectdetails(temparr);
+        this.$.mydialog.toggleDialog();
+   
+    },
+passempgrade11:function(arr){
+        getgradenames=arr;
+          alert(JSON.stringify(getgradenames));
+       
+       },
+
+    /* 
+    *//*FnSubmit:function(e){
+     },
+     sdasdadasd:function(){
+
+     },*/
     });
   })();
   </script>

@@ -1022,25 +1022,7 @@
         method="post"
         on-response="fnsetstudentinfoResponse"
         debounce-duration="300">
-        <iron-ajax        
-        id="fnsetstudentinfohistoryajax"
-        url="{{fnsetstudentinfohistoryurl}}"
-        params="{{fnsetstudentinfohistoryparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="fnsetstudentinfohistoryResponse"
-        debounce-duration="300">
-          <iron-ajax        
-        id="fnsetstudentinfohistory1ajax"
-        url="{{fnsetstudentinfohistory1url}}"
-        params="{{fnsetstudentinfohistory1param}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="fnsetstudentinfohistory1Response"
-        debounce-duration="300">
-      
+    
        <iron-ajax        
         id="fnsetpasssectinvalueajax"
         url="{{fnsetpasssectinvalueurl}}"
@@ -1132,29 +1114,7 @@
   
     Polymer({
       is: 'master-ui-service',
-  fnsetstudentinfohistory:function(studeninfoarr,stugradeid,schooltype){
-       for(var i=0;i<studeninfoarr.length;i++){
-             var id=studeninfoarr[i].id;
-             var student_name=studeninfoarr[i].student_name;
-             var dob=studeninfoarr[i].dob;
-             var Gender=studeninfoarr[i].gender;
-             var classid=studeninfoarr[i].classid;
-   
-    this.fnsetstudentinfohistoryurl=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory-service";
-       var obj={"school_id":"","id":"","student_name":"","school_type":"","stugradeid":"","dob":"","Gender":"","classid":"","academic_year":""};
-           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-           obj.student_name=student_name;
-           obj.id=id;
-           obj.school_type=schooltype;
-           obj.dob=dob;
-           obj.stugradeid=stugradeid;
-           obj.Gender=Gender;
-           obj.classid=classid;
-           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-          this.fnsetstudentinfohistoryparam=obj;
-           this.$.fnsetstudentinfohistoryajax.generateRequest();
-              }
-},
+  
 Generatesectionid:function()
        {
         this.Generatesectionidurl=sessionStorage.getItem("addrinfo")+"/Generatesectionid-service";
@@ -1176,38 +1136,7 @@ Generatesectionid:function()
 },
  fnsetstudentinfohistoryResponse:function(e){
        var res=e.detail.response.returnval; 
-         if(res!='empty'){
-             var id=res[0].id;
-             var student_name=res[0].student_name;
-             var school_type=res[0].school_type;
-             var dob=res[0].dob;
-             var Gender=res[0].gender;
-             var ageinmonth=res[0].ageinmonth;
-             var grade_id=res[0].grade_id;
-           var academic_year=res[0].academic_year;
-     
-        this.fnsetstudentinfohistory1url=sessionStorage.getItem("addrinfo")+"/fnsetstudentinfohistory1-service";
-         var obj={"school_id":"","id":"","student_name":"","school_type":"","dob":"","Gender":"","class_id":"","ageinmonth":"","grade_id":"","academic_year":""};
-           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-           obj.student_name=student_name;
-           obj.id=id;
-           obj.school_type=school_type;
-           obj.class_id=class_id;
-           obj.dob=dob;
-           obj.Gender=Gender;
-           obj.ageinmonth=ageinmonth;
-           obj.grade_id=grade_id;
-           obj.academic_year=academic_year;
-           this.fnsetstudentinfohistory1param=obj;
-           //alert(JSON.stringify(obj));
-          this.$.fnsetstudentinfohistory1ajax.generateRequest();
-      }
-    },
-    fnsetstudentinfohistory1Response:function(e){
-      var res=e.detail.response.returnval; 
-     //  alert(JSON.stringify(obj));
-        
-    },
+        },
       fngetstudent:function(stugradeid,stugrade)
       {
       //  alert("eee");
@@ -1227,6 +1156,8 @@ Generatesectionid:function()
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
+        alert('1');
+        alert(JSON.stringify(studeninfoarr));
      for(var i=0;i<studeninfoarr.length;i++){
              var id=studeninfoarr[i].id;
              var student_name=studeninfoarr[i].student_name;
@@ -1247,7 +1178,7 @@ Generatesectionid:function()
 
         //   obj.stugradeid=stugradeid;
            this.fnsetstudentinfoparam=obj;
-           //alert(JSON.stringify(obj));
+           alert(JSON.stringify(obj));
            this.$.fnsetstudentinfoajax.generateRequest();
 
          }
@@ -1257,7 +1188,8 @@ Generatesectionid:function()
 
      fnsetstudentinfoResponse:function(e){   
         var res=e.detail.response.returnval; 
-      
+             alert(JSON.stringify(res));
+    
        },
       FngetStudentpasssection:function(stugradeid,stugrade)
       {
@@ -3213,10 +3145,6 @@ insertschoolTypename:function(schooltypesarr)
     },
       FnThirdLangSubjectToStudentResponse:function(e)
       {
-
-        // alert(JSON.stringify(e.detail.response.returnval));
-        //alert(JSON.stringify(e.detail.response.returnval));
-          
 
       },
        SelectSchoolgrades:function()
