@@ -10,56 +10,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
-
-<dom-module id="employee-schooltype-to-category-basecard">
+<dom-module id="school-grade-subject-baseed-card">
   <template>
-    <style>
+    <style>   
       :host {
         display: block;
       }
     </style>
     <div>
-    <paper-input hidden value="{{empid}}"></paper-input>
+    <paper-input hidden value="{{subjectid}}"></paper-input>
     <paper-icon-button  id="btn1" icon="save" on-click="FnSubmit"></paper-icon-button>
     <paper-tooltip for="btn1">Save</paper-tooltip>
     </div>
     <demosumbit-card id="mydialog"></demosumbit-card>
     
   <master-ui-service id="uiservice"></master-ui-service> 
+ 
   </template>
   <script>
+  var passservicearr=[];
   (function() {
     'use strict';
-    var getgradenames=[];
+
     Polymer({
-      is: 'employee-schooltype-to-category-basecard',
-    /*  passempgrade:function(arr){
-       getgradenames=arr;
-       
+      is: 'school-grade-subject-baseed-card',
+
+
+       fnapssgradedetails:function(arr){
+        passservicearr=arr;  
       },
-     */  
-     passempgrade:function(arr){
-       getgradenames=arr;  
-     //this.$.basecard.passempgrade(arr);
-      },
-     
+    
       FnSubmit:function(e){
-      //  alert(JSON.stringify(getgradenames));
       var temparr=[];
-      for(var i=0;i<getgradenames.length;i++){
-        if(getgradenames[i].empid==this.empid)
-          temparr.push(getgradenames[i]);
-      }
-        this.$.uiservice.fnempsubjectdetails(temparr);
-        //document.querySelector('employe-creation-card').fnnewsave();
-        this.$.mydialog.toggleDialog();
-       // document.querySelector('employe-creation-card').Fnsubjectclean(); 
-       // getgradenames=[];
-       },
-    /*   FnClear:function(){
-        getgradenames=[];
-       }
-   */ });
+      for(var i=0;i<passservicearr.length;i++){
+        if(passservicearr[i].subjectname==this.subjectid)
+          temparr.push(passservicearr[i]);
+         }
+         this.$.uiservice.fnsubjecttocategorysaving(temparr);
+         this.$.mydialog.toggleDialog();
+       document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
+     },
+  
+      });
   })();
   </script>
 </dom-module>

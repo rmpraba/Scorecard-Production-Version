@@ -161,16 +161,16 @@
                   </td width="10%">
                     <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td style="margin-left:20%"><center>
-                       <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" getsgradename="{{s.Grade_name}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypesubjectid}}" getschoolcategory="{{schooltypename}}" emplanpreff="{{emplangprefernce}}" hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}"></school_grade-subject-item-card>
+                <school_grade-subject-item-card id="{{s.id}}" getsubjectname="{{view.subject_id}}" getgradename="{{s.grade_id}}" getsgradename="  {{s.Grade_name}}" cattype="{{s.schooltypenamexx}}" getname="{{schooltypesubjectid}}" getschoolcategory="{{schooltypename}}" emplanpreff="{{emplangprefernce}}" hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}"></school_grade-subject-item-card>
                            </center>
                         </td>
                     </template>   
-
+   
                   <td hidden$="{{view.hidebtn}}">
-                    <paper-icon-button  id="btn1" icon="save" on-click="FnSavez"></paper-icon-button>
+                       <school-grade-subject-baseed-card subjectid="{{view.subject_id}}"></school-grade-subject-baseed-card>      <!--  <paper-icon-button  id="btn1" icon="save" on-click="FnSavez"></paper-icon-button>
                     <paper-tooltip for="btn1">Save</paper-tooltip>
-                  </td>
-                  <td hidden$="{{view.hidebtn}}">
+                 -->  </td>
+                   <td hidden>
                     <paper-icon-button  id="btn2" icon="close" on-click="fndelete"></paper-icon-button>
                     <paper-tooltip for="btn2">Delete</paper-tooltip>
                   </td>          
@@ -209,9 +209,6 @@
            //alert(JSON.stringify(getcategory));
       },
      
-      fnapssgradedetails:function(arr){
-        passservicearr=arr;  
-      },
       fndelapssgradedetails:function(arr){
          delpassservicearr=arr; 
       },
@@ -243,22 +240,9 @@
         document.querySelector('schoolcategory-type-item-card').fnsetemployeelanprefer(this.emplangprefernce);
          
       },
-      FnSavez:function(e)
-      {
-           //alert('save');
-           //alert(JSON.stringify(passservicearr));
-           this.$.uiservice.fnsubjecttocategorysaving(passservicearr);
-          // document.querySelector('school_grade-subject-item-card').fnnsaveinputzz();
-           this.$.mydialog.toggleDialog();
-         //  passservicearr=[];
-           document.querySelector('school_grade-subject-item-card').Fngradeclean(); 
-     },
      fndelete:function(e)
      {
-        this.$.uiservice.fndeletegradetosubmapping(delpassservicearr);
-        this.$.mydialog.toggleDialog1();
-     document.querySelector('school_grade-subject-item-card').Fngradeclean1(); 
-    
+     
      },
   
        Generate:function(){

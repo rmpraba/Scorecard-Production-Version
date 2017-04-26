@@ -6,15 +6,13 @@
 
 var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
-   // host     : 'localhost',
-   // user     : 'root',
-   // password : 'admin',
-   // database : 'scorecarddb'
-  host     : 'localhost',
-  port     : '64091',
-  user     : 'adminvRjnewB',
-  password : 'DNrIgJ3-ecwp',
-  database : 'scorecarddb'
+
+   host     : 'localhost',
+   user     : 'root',
+   password : 'admin',
+
+   database : 'master'
+
  });
 
 
@@ -7741,8 +7739,13 @@ connection.query(qur,
     {
     if(!err)
     { 
-      //console.log(JSON.stringify(rows));   
+      //console.log(JSON.stringify(rows));  
+       if(rows.length>0) {
       res.status(200).json({'returnval': rows});
+    }else{
+      res.status(200).json({'returnval': 'empty'});
+      
+    }
     }
     else
     {
