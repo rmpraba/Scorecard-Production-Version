@@ -1178,7 +1178,7 @@ Generatesectionid:function()
 
         //   obj.stugradeid=stugradeid;
            this.fnsetstudentinfoparam=obj;
-           alert(JSON.stringify(obj));
+         //  alert(JSON.stringify(obj));
            this.$.fnsetstudentinfoajax.generateRequest();
 
          }
@@ -1188,7 +1188,7 @@ Generatesectionid:function()
 
      fnsetstudentinfoResponse:function(e){   
         var res=e.detail.response.returnval; 
-             alert(JSON.stringify(res));
+          //   alert(JSON.stringify(res));
     
        },
       FngetStudentpasssection:function(stugradeid,stugrade)
@@ -1415,7 +1415,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
      //   alert(JSON.stringify(res));
      },
      fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){ 
-     alert('1');    
+     //alert('1');    
        this.fngetempsubjecturl=sessionStorage.getItem("addrinfo")+"/fngetempsubject-service";
       var obj={"school_id":"","schooltypeid":"","categoryid":"","academic_year":""};
        obj.schooltypeid=schooltypeid;

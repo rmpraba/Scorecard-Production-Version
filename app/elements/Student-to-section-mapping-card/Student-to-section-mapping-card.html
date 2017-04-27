@@ -211,7 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </table>   
         </div>   
 
-        <div id="subzz">
+        <div hidden>
            <paper-button on-click="FnSavez">Submit</paper-button>  
         </div>
    
@@ -290,22 +290,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.gradeid=this.stugradeid;
          obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-
          this.counttypevalueparam=obj;
-        // alert(JSON.stringify(obj));
          this.$.counttypevalueajax.generateRequest();
         },
     counttypevalueResponse:function(e){
            var res=e.detail.response.returnval; 
-           //alert(JSON.stringify(res));
            var m=res[0].no_of_student;
-          // alert(m)
            this.noofstudent=m;
-      //  document.querySelector('student-list-pass-section-card').noofstudent(m); 
-  
-
-     },
-
+    },
     fnstudentgetgrade:function(arr){
      this.setgrade=arr;
     },
