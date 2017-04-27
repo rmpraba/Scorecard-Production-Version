@@ -134,15 +134,6 @@
              }
        },
 
-        /* stupersonalinfo11:function(arr){
-          for(var i=0;i<arr.length;i++){
-
-            if(arr[i].admno==rr){
-                var m=arr[i].dd;
-           document.querySelector('#'+m).checked=false;
-
-           }}},
-      */
        fncancal:function(e){
        document.querySelector('#'+f).checked=true;
        },
@@ -158,20 +149,13 @@
                          obj.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
                          empgetarrdelarr.push(obj);
                           this.$.uiservice.fnemployeeedelfn(empgetarrdelarr);
-                          // this.$.mydialog.toggleDialog1();
                           this.Fnsubjectdelclean()
-                          // document.querySelector('employe-creation-card').Fnsubjectdelclean();
-                      //   alert(JSON.stringify(obj));
-                // document.querySelector('employe-schooltype-to-category-card').deldbarr(empgetarrdelarr); 
-      
+                    
                
            }
            else{
-             //alert(JSON.stringify(e.detail.response.returnval));
-            
-             this.dbsectionvalue=e.detail.response.returnval;
+            this.dbsectionvalue=e.detail.response.returnval;
              this.$.empremapid.open();
-        //   alert("this subject already mapping in section pls deleted");
             
            }      
     

@@ -196,7 +196,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <template is="dom-repeat" items="{{view.subject}}" as="s">
                         <td>
                         <student-list-pass-section-card hideinput="{{s.hideinput}}" hidecheck="{{s.hidecheck}}" studentname="{{view.student_name}}" 
-                        id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}"></student-list-pass-section-card>
+                        id="{{s.id}}" admissinno="{{view.enquiry_no}}" gender="{{view.gender}}" dob="{{view.dob}}" sectionname="{{s.section_id}}" check="{{s.check}}" classid="{{s.class_id}}" admissinno1="{{view.admission_no}}" noofstudent="{{noofstudent}}" stugradeid="{{stugradeid}}"></student-list-pass-section-card>
                         </td>
                       </template>
                       <!-- " -->
@@ -208,7 +208,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-tooltip for="btn2">Delete</paper-tooltip></td>
                      </tr>
                    </template>
-          </table>   
+          </table>   <re>rww</re>
         </div>   
 
         <div hidden>
@@ -271,7 +271,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'Student-to-section-mapping-card',
       funnstudent:function()
        {
-       // this.$.subzz.hidden=true;
         this.$.z.hidden=true;
         this.$.z1.hidden=true;
         this.hidenewtabb=true;
@@ -309,25 +308,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     mappingstudent:function(arr){
     mappingstudentarr=arr;
-
-    },
+     },
     Generate:function(e)
     {
-
-     //   this.$.subzz.hidden=false;
         this.$.z.hidden=false;   
         this.$.z1.hidden=true;
         this.hidenewtabb=false;
         this.$.nextbutton.hidden=false;
         this.hidegenerateopt=true;
-
-    if(overall12!=0){
+if(overall12!=0){
            document.querySelector('student-list-pass-section-card').overallinfo(); 
            document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
               kn.splice(obj);     
           }          
-     
-      // var setarrr=[];
       var getgradearr=[];
           for(var i=0;i<sectionarr.length;i++){
                           var section_id=sectionarr[i].section_id;

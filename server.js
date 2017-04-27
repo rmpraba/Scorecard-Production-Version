@@ -5160,7 +5160,6 @@ app.post('/rolecreation-service' ,  urlencodedParser,function (req, res)
 
 app.post('/fetchrole-service',  urlencodedParser,function (req,res)
 {  
-  // var qur="SELECT grade FROM MD_GRADE_RATING WHERE lower_limit<='"+req.query.score+"' and higher_limit>='"+req.query.score+"'";
   var qur="SELECT * FROM md_role";
   connection.query(qur,
     function(err, rows)
@@ -5182,7 +5181,33 @@ app.post('/fetchrole-service',  urlencodedParser,function (req,res)
       res.status(200).json({'returnval': 'Invalid'});
   });
 });
-
+app.post('/thirdlangrefret-service',  urlencodedParser,function (req,res)
+{  
+  var qur="SELECT subject_id as subid,( select subject_name from md_subject where subject_id=subid)as subjectid FROM tr_student_to_subject where school_id='"+req.query.school_id+"' and academic_year='"+req.query.academic_year+"' and grade='"+req.query.gradeid+"' and class_id='"+req.query.classid+"' and student_id='"+req.query.id+"'";
+  console.log("------------------askcnsa--------------");
+  console.log(qur);
+  console.log("-----------------zcknkcs---------------");
+  
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    { 
+      if(rows.length>0)
+      {
+       //console.log(JSON.stringify(rows));   
+      res.status(200).json({'returnval': rows}); 
+      }
+      else
+      {
+        res.status(200).json({'returnval':'empty'}); 
+      }
+      
+    }
+    else
+      res.status(200).json({'returnval': 'Invalid'});
+  });
+});
 app.post('/deleterole-service' ,  urlencodedParser,function (req, res)
 {  
    

@@ -1139,14 +1139,12 @@ Generatesectionid:function()
         },
       fngetstudent:function(stugradeid,stugrade)
       {
-      //  alert("eee");
-      this.fngetstudenturl=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
+  this.fngetstudenturl=sessionStorage.getItem("addrinfo")+"/fngetstudent-service";
       var obj={"school_id":"","stugradeid":"","academic_year":""};
       obj.stugradeid=stugradeid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
-    //  alert(JSON.stringify(obj));
-     this.fngetstudentparam=obj;
+      this.fngetstudentparam=obj;
       this.$.fngetstudentajax.generateRequest();
      },
     fngetstudentResponse:function(e){

@@ -17,7 +17,16 @@
          padding-left: 80px;
      }*/
 
-
+  #empremapid
+    {
+        border-radius: 10px;
+        width: 350px;
+        min-height: 440px;
+    }
+    #labelid{
+            font-style: oblique;
+            font-size: 1.3em;
+          }
      #noofstudent1
      {
            border-radius: 10px;
@@ -39,6 +48,7 @@
       margin-top: 10%;
      }
     </style>
+          <paper-input  hidden>{{stugradeid}}</paper-input>
           <paper-input  hidden>{{gender}}</paper-input>
           <paper-input  hidden>{{dob}}</paper-input>
           <paper-input  hidden>{{admissinno}}</paper-input>
@@ -57,6 +67,32 @@
          </center>
            
         </paper-dialog>
+                 <!-- </div> -->
+      <paper-dialog id="empremapid11" modal>
+        <b><label  id="labelid">Already assigned student for this subject, Cannot undo
+        </label></b>
+             <template is="dom-repeat" items="{{dbsectionvalue}}" as="view">
+                  <h4 style="margin-left: 2%"> * {{view.subjectid}}</h4>
+           </template>
+     <div class="buttons">
+       <paper-button hidden on-click="FnSubmit">Submit</paper-button>
+       <paper-button dialog-confirm autofocus  on-click="fncancal">OK
+          </paper-button>
+       </div>
+     </paper-dialog>
+     
+     
+        <iron-ajax        
+        id="thirdlangrefretajax"
+        url="{{thirdlangrefreturl}}"
+        params="{{thirdlangrefretparam}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="thirdlangrefretResponse"
+        debounce-duration="300">
+      </iron-ajax>
+     
         </div>  
   </template>
   <script>
@@ -71,7 +107,7 @@
   var map;
   var rm;
   var rm1;
-
+var f;
             
   //var checkvalu=[];
     Polymer({
@@ -81,6 +117,7 @@
       fnsudentGrade:function(e){
         rr=this.admissinno;
         var count;
+        f=this.id;
  if(document.querySelector('#'+this.id).checked==true){
       count=0;
          for(var i=0;i<studentcheckinfoarr.length;i++){ 
@@ -88,7 +125,7 @@
             count++;
           }
         }
-        alert(count+" "+this.noofstudent);
+     //   alert(count+" "+this.noofstudent);
       if(count<this.noofstudent){
     
     var obj={"id1":"","id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
@@ -127,7 +164,7 @@
 
                   }}
            else{
-            alert('1f');
+            //alert('1f');
              this.$.noofstudent1.open();
              document.querySelector('#'+this.id).checked=false;
                 }
@@ -175,31 +212,43 @@
         document.querySelector('employee-schooltype-to-category-basecard').stupersonalinfo(paspstuinfo);  
         }
     else if(document.querySelector('#'+this.id).checked==false){
-             for(var i=0;i<paspstuinfo.length;i++){
-                //     alert('1');
-           //       alert(paspstuinfo[i].id1+" "+this.id);
+//alert('1');
+this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-service";
+
+      var obj={"id":"","school_id":"","gradeid":"","classid":"","academic_year":""};
+      obj.id=this.admissinno;
+      obj.gradeid=this.stugradeid;
+      obj.classid=this.classid;
+      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+      obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+      this.thirdlangrefretparam=obj;
+      //alert(JSON.stringify(obj));
+      this.$.thirdlangrefretajax.generateRequest();
+  
+           }},
+       thirdlangrefretResponse:function(e){
+         //    alert(JSON.stringify(e.detail.response.returnval));
+ 
+        if(e.detail.response.returnval=="empty"){
+
+            for(var i=0;i<paspstuinfo.length;i++){
                    if(paspstuinfo[i].id1==this.id){
                  if(paspstuinfo[i].classid==this.classid){
                          var cc=paspstuinfo[i].classid;
-                  //     alert(cc+" "+this.classid)
                  var a = pm.indexOf(cc);
-           //      alert(a);
                 for(var g=0;g<pm.length;g++){
-             //   alert(a+" "+g);
                    if(a==g){
                    pm.splice(a,1);
                   paspstuinfo.splice(i,1);
-
-                }}
+              }}}}}
+            }
+         else{
+         this.dbsectionvalue=e.detail.response.returnval;
+         this.$.empremapid11.open();
+       //  alert(f);
+          document.querySelector('#'+f).checked=true;
              }
-           }
-
-             //  
-
-             }
-      //alert(JSON.stringify(pm));
-          }
-              },
+       },       
          studentcheckinfo1:function(arr){
        studentcheckinfoarr=arr;
        },
