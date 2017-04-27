@@ -59,6 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'emp-grade-get-card',
           fnsetsection:function(e){
+            alert(this.id);
             if(document.querySelector('#'+this.id).checked==true)
             {
                 var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":"","grasub":""};
@@ -102,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       {
              var empdbsubject=v[j].empsubjectidz+v[j].employeesectionidz;
             document.querySelector('#'+empdbsubject).checked=false;
-        }
+       }
             var obj={"employeeidz":"","empgradeidz":"","empsubjectidz":"","employeesectionnamez":"","employeesectionidz":""};
                      obj.employeeidz=this.employeeidz;
                      obj.empgradeidz=this.empgradeidz;
@@ -110,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                      obj.employeesectionnamez=this.employeesectionnamez;
                      obj.employeesectionidz=this.employeesectionidz;
                      v.splice(obj);
-                },
+        },
     Fngradecleansection:function(e)
     {
           if(empsectionarr.length!=0){
@@ -127,16 +128,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       empsctionmaping:function(arr)
       {
         empdbsubjectarr=arr;
-         //alert(JSON.stringify(empdbsubjectarr));
+       //  alert(JSON.stringify(empdbsubjectarr));
         for(var i=0;i<empdbsubjectarr.length;i++)
         {
               var employeeidz=empdbsubjectarr[i].id;
               var empgradeidz=empdbsubjectarr[i].grade_id;
               var empsubjectidz=empdbsubjectarr[i].subject_id;
               var employeesectionnamez=empdbsubjectarr[i].section_id;
-              var empdbsubject=empdbsubjectarr[i].subject_id+empdbsubjectarr[i].classid;
+          var empdbsubject=empdbsubjectarr[i].subject_id+empdbsubjectarr[i].classid;
               var cassidz=empdbsubjectarr[i].classid;
-            // alert(empdbsubject);
+         //    alert(empdbsubject);
              document.querySelector('#'+empdbsubject).checked=true; 
            if(document.querySelector('#'+empdbsubject).checked==true)
            {
