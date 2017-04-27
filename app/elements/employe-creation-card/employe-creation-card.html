@@ -9,22 +9,9 @@
       :host {
         display: block;
       }  
-    /*  .innercard{
-      @apply(--layout-horizontal);
-      
-      width:100%   
-     }  
-    
-        paper-checkbox.paper-checkbox-0
-      {
-      
-         font-family: 'Roboto', 'Noto', sans-serif;
-         -webkit-font-smoothing: antialiased;
-         padding-left: 80px;
-     }*/
      .buttons paper-button
       {
-        @apply(--layout-right);   
+      @apply(--layout-right);   
       background-color: #363636;
       color: #ffffff;
       width: 10%;
@@ -112,10 +99,7 @@
              v.push(obj);
      //   alert(JSON.stringify(empgetarr));
     document.querySelector('student-to-subject-mapping-based-card').passempgrade11(empgetarr);
-       document.querySelector('employe-schooltype-to-category-card').stupersonalinfo12();
-   
-            }
-            else{
+         }else{
                 var obj={"id":"","empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
                     obj.id=this.id;
              obj.empid=this.employeesetidz;
@@ -150,7 +134,7 @@
              }
        },
 
-         stupersonalinfo11:function(arr){
+        /* stupersonalinfo11:function(arr){
           for(var i=0;i<arr.length;i++){
 
             if(arr[i].admno==rr){
@@ -158,7 +142,7 @@
            document.querySelector('#'+m).checked=false;
 
            }}},
-      
+      */
        fncancal:function(e){
        document.querySelector('#'+f).checked=true;
        },
@@ -194,14 +178,14 @@
 
        },
 
-       stupersonalinfo11:function(arr){
+     /*  stupersonalinfo11:function(arr){
           for(var i=0;i<arr.length;i++){
 
             if(arr[i].admno==rr){
                 var m=arr[i].dd;
            document.querySelector('#'+m).checked=false;
 
-           }}},
+           }}},*/
    
       f11:function(e){
         
@@ -210,9 +194,9 @@
                 this.fnsplice();
               } 
           },
-     fnsplice:function(){
+      fnsplice:function(){
               var rnwn=empgetarr.length;
-                   if(rnwn>0){
+                   if(rnwn>0){   
 
                  for(var i=0;i<empgetarr.length;i++){
               var  spliceid=empgetarr[i].id;
@@ -245,6 +229,12 @@
    
          Fnsubjectclean:function(e){
           if(empgetarr.length!=0){
+       for(var i=0;i<empgetarr.length;i++){
+               var empty=empgetarr[i].id;
+              alert(empty);
+              document.querySelector('#'+empty).checked=false;           
+             }
+
          var obj={"empid":"","empname":"","subjectid":"","schooltypeid":"","categoryid":""};
              obj.empid=this.employeesetidz;
              obj.empname=this.empnames;

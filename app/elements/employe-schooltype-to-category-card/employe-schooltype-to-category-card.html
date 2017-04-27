@@ -79,15 +79,7 @@
       margin-left: 50px;
 
     }
-    .buttons paper-button
-      {
-        @apply(--layout-left);
-      background-color: #363636;
-      color: #ffffff;
-      width: 10%;
-      margin-left: 6%;
-      margin-top: 10%;
-      }
+  
     .scltype1
     {
         @apply(--layout-vertical);
@@ -99,7 +91,7 @@
            /*color:  #0000ff;*/
            color: #6699ff;
           margin-left: 15%;
-          margin-top: 4%;
+          margin-top: -43% !important;
       }
         #subzz1 paper-button
       {
@@ -116,7 +108,7 @@
         /*color:  #0000ff;*/
         color: #6699ff;
         margin-left: 77%;
-        margin-top: 4%;
+        margin-top: -43%;
       }
 
       #previousid1,#Nextid1
@@ -253,7 +245,7 @@
         <div id="z11">
              <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
               -->
-             <paper-buuton  id="prebutton" on-click="fnpriver">
+             <paper-buuton   on-click="fnpriver">
              <a href="#"  style="font-size: 19px;font-style: oblique;"><b>Previous</b></a>
              </paper-buuton>
       </div>
@@ -261,7 +253,7 @@
       <div id="z22">
           <!-- <paper-icon-button id="nextbutton" icon='chevron-right' on-click='fnnext'></paper-icon-button> -->
 
-           <paper-buuton  id="nextbutton" on-click="fnnext">
+           <paper-buuton   on-click="fnnext">
              <a href="#" style="font-size: 19px;font-style: oblique;"><b>Next</b></a>
              </paper-buuton>
           
@@ -366,43 +358,42 @@
         this.$.mydialog.toggleDialog1();
        document.querySelector('employe-creation-card').Fnsubjectdelclean();        
        
-       },
+       },  
       
- stupersonalinfo12:function(){
+ /*stupersonalinfo12:function(){
      document.querySelector('employe-creation-card').stupersonalinfo11(kn); 
     
     },
-  
+  */
   grnerate:function(e)
         {
 
   this.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltype_ids");
   this.categoryid=sessionStorage.getItem("curr_sess_loggedschoolcategory_id");
   this.$.uiservice.fngetempsubject(this.schooltypeid,this.categoryid,this.emplangprefernce);
-   document.querySelector('employe-creation-card').Fnsubjectclean();
+   //alert(JSON.stringify(overall1));
      overall=[];
          g=[];
-         
+    document.querySelector('employe-creation-card').Fnsubjectclean();
+ 
           },
       setempsubject11:function(e){
         dbsetsubjectarr=e;    
           },
       setempsubject1:function(arr){
-   dbsetsubjectarr=arr;
+        dbsetsubjectarr=arr;
         this.hidegenerate=false;
         this.$.z11.hidden=true;
         this.$.z22.hidden=false;
   
 
- if(overall1!=0) { 
-
-            document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
-              kn.splice(obj);     
-      
-            }
-             var setarrr=[];
-       
-                 for(var i=0;i<getcategory.length;i++)
+ if(overall1!=0){ 
+    // alert('asc');
+         document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
+         kn.splice(obj);     
+        }
+            var setarrr=[];
+           for(var i=0;i<getcategory.length;i++)
                  {
                           var subject_name=getcategory[i].subject_name;
                           
@@ -459,11 +450,7 @@
                    overall1.push(nameobj);
                    a=[];
                 }
-
-//alert(JSON.stringify(overall));
-
-
-     var k=[];
+ var k=[];
    for(var j=0;j<overall.length;j++){
          if(j<=7){
              var obj={"emp_name":"","emp_id":"","employee":""};
@@ -494,7 +481,7 @@ for(var j=0;j<k.length;j++){
                       obj.dd=rrn;
                       obj.admno=admno;
                       kn.push(obj);
-                       }
+                      }
                   
                      }}}}
             for(var i=0;i<overall.length;i++){
@@ -522,7 +509,7 @@ for(var j=0;j<k.length;j++){
          for(var i=0;i<(k).length;i++){
           for(var j=0;j<(k[i].employee).length;j++){
             k[i].employee[j].hideinput=true;
-             k[i].employee[j].hidecheck=false;
+            k[i].employee[j].hidecheck=false;
           }
           this.finalarr.push(k[i]);
          }
@@ -548,14 +535,11 @@ fnnext:function(e){
                           obj.srtarr=subject_name;
                          setarrr.push(obj);
                            }
-
-            var k=[];
-        document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
+           var k=[];
+            document.querySelector('employe-creation-card').stupersonalinfo13(kn); 
             document.querySelector('employe-creation-card').f11(); 
-    
-          kn.splice(obj);
-        
- for(var j=0;j<overall.length;j++){
+      kn.splice(obj);
+        for(var j=0;j<overall.length;j++){
          if(j<=7){
              var obj={"emp_name":"","emp_id":"","employee":""};
                     var emp_name=overall[j].emp_name;
