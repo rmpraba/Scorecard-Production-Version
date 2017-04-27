@@ -1154,8 +1154,8 @@ Generatesectionid:function()
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
-        alert('1');
-        alert(JSON.stringify(studeninfoarr));
+       // alert('1');
+        //alert(JSON.stringify(studeninfoarr));
      for(var i=0;i<studeninfoarr.length;i++){
              var id=studeninfoarr[i].id;
              var student_name=studeninfoarr[i].student_name;
@@ -1176,7 +1176,8 @@ Generatesectionid:function()
 
         //   obj.stugradeid=stugradeid;
            this.fnsetstudentinfoparam=obj;
-         //  alert(JSON.stringify(obj));
+          // alert(JSON.stringify(obj));
+
            this.$.fnsetstudentinfoajax.generateRequest();
 
          }
@@ -1186,8 +1187,7 @@ Generatesectionid:function()
 
      fnsetstudentinfoResponse:function(e){   
         var res=e.detail.response.returnval; 
-          //   alert(JSON.stringify(res));
-    
+            // alert(JSON.stringify(res));    
        },
       FngetStudentpasssection:function(stugradeid,stugrade)
       {
@@ -1413,7 +1413,8 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
      //   alert(JSON.stringify(res));
      },
      fngetempsubject:function(schooltypeid,categoryid,emplangprefernce){ 
-     //alert('1');    
+    // alert('1');    
+
        this.fngetempsubjecturl=sessionStorage.getItem("addrinfo")+"/fngetempsubject-service";
       var obj={"school_id":"","schooltypeid":"","categoryid":"","academic_year":""};
        obj.schooltypeid=schooltypeid;
@@ -1695,7 +1696,7 @@ fnschooltypesaveinfo:function(selectmapschooltypearr,empname)
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
     
          obj.flage='active';
-        alert(JSON.stringify(obj));
+       // alert(JSON.stringify(obj));
          this.fnsavesectionparam=obj;
          this.$.fnsavesectionajax.generateRequest();
     }
