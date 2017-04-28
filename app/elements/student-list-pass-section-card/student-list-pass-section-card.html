@@ -7,19 +7,8 @@
       :host {
         display: block;  
       }
-      
-/*
-       paper-checkbox.paper-checkbox-0
-      {
-      
-         font-family: 'Roboto', 'Noto', sans-serif;
-         -webkit-font-smoothing: antialiased;
-         padding-left: 80px;
-     }*/
-
   #empremapid
-    {
-        border-radius: 10px;
+    {   border-radius: 10px;
         width: 350px;
         min-height: 440px;
     }
@@ -62,7 +51,6 @@
          <paper-dialog id="noofstudent1" modal>
          <center>
            <label><b>Cannot add more students to this section.</b></label><br>
-
             <paper-button  dialog-confirm autofocus> close</paper-button>
          </center>
            
@@ -75,7 +63,7 @@
                   <h4 style="margin-left: 2%"> * {{view.subjectid}}</h4>
            </template>
      <div class="buttons">
-       <paper-button hidden on-click="FnSubmit">Submit</paper-button>
+       <paper-button  on-click="FnSubmit">Submit</paper-button>
        <paper-button dialog-confirm autofocus  on-click="fncancal">OK
           </paper-button>
        </div>
@@ -92,8 +80,27 @@
         on-response="thirdlangrefretResponse"
         debounce-duration="300">
       </iron-ajax>
-     
-        </div>  
+      <iron-ajax        
+        id="thirdlangrefret1ajax"
+        url="{{thirdlangrefret1url}}"
+        params="{{thirdlangrefret1param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="thirdlangrefret1Response"
+        debounce-duration="300">
+      </iron-ajax>
+       <iron-ajax        
+        id="thirdlangrefret11ajax"
+        url="{{thirdlangrefret11url}}"
+        params="{{thirdlangrefret11param}}"
+        handle-as="json"
+        content-type="application/json"
+        method="post"
+        on-response="thirdlangrefret11Response"
+        debounce-duration="300">
+      </iron-ajax>
+     </div>  
   </template>
   <script>
   (function() {
@@ -180,16 +187,18 @@ var f;
                   return prev;
                        },{});
                       var c=map[paspstuinfo[k].classid];
-                     // alert(JSON.stringify(map));
-                    //  alert(JSON.stringify(c));
-                 
+                  //    alert(JSON.stringify(map));
+                 //     alert(JSON.stringify(c));
+              //   alert(c+count+"  "+this.noofstudent);
+                  //  alert(c+"  "   +count+"  "+this.noofstudent);
+                  
                   if(JSON.stringify(map)===JSON.stringify({}))
                   {
                   }
                    else if(c+count<=this.noofstudent){
                    }
                    else if(c+count>this.noofstudent){
-                       //   alert('2f');
+                      //    /('2f');
           
                         var m=paspstuinfo[k].id1;
                     document.querySelector('#'+m).checked=false;
@@ -211,9 +220,7 @@ var f;
         }
     else if(document.querySelector('#'+this.id).checked==false){
 //alert('1');
-this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-service";
-
-      var obj={"id":"","school_id":"","gradeid":"","classid":"","academic_year":""};
+this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-service";    var obj={"id":"","school_id":"","gradeid":"","classid":"","academic_year":""};
       obj.id=this.admissinno;
       obj.gradeid=this.stugradeid;
       obj.classid=this.classid;
@@ -246,7 +253,12 @@ this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-ser
        //  alert(f);
           document.querySelector('#'+f).checked=true;
              }
-       },       
+       },   
+        thirdlangrefret11Response:function(e){
+          if(e.detail.response.returnval=="Deleted!")
+      document.querySelector('#'+).checked=false;
+    
+        },   
          studentcheckinfo1:function(arr){
        studentcheckinfoarr=arr;
        },
@@ -267,13 +279,34 @@ this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-ser
            ttt3:function(e){
             pm=[];
            },
+      FnSubmit:function(e){
+      
+      this.thirdlangrefret1url=sessionStorage.getItem("addrinfo")+"/thirdlangrefret1-service"; 
+         var obj={"id":"","school_id":"","gradeid":"","classid":"","academic_year":""};
+      obj.id=this.admissinno;
+      obj.gradeid=this.stugradeid;
+      obj.classid=this.classid;
+      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+      obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+      this.thirdlangrefret1param=obj;
+      this.$.thirdlangrefret1ajax.generateRequest();
+  this.thirdlangrefret11url=sessionStorage.getItem("addrinfo")+"/thirdlangrefret11-service"; 
+var obj={"id":"","school_id":"","gradeid":"","classid":"","academic_year":""};
+      obj.id=this.admissinno;
+      obj.gradeid=this.stugradeid;
+      obj.classid=this.classid;
+      obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
+      obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+      this.thirdlangrefret11param=obj;
+      this.$.thirdlangrefret11ajax.generateRequest();
+    },     
    overallinfo:function(e){
       for(var i=0;i<paspstuinfo.length;i++){
                var empty=paspstuinfo[i].enq_id;
               document.querySelector('#'+empty).checked=false;           
              }
 
-              var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
+  var obj={"id":"","student_name":"","dob":"","gender":"","enq_id":"","classid":"",};
             obj.id=this.admissinno;
             obj.student_name=this.studentname;
             obj.dob=this.dob;

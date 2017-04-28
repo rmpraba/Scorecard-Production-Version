@@ -60,8 +60,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(document.querySelector('#'+this.id).checked==true)
        {
          sessionStorage.setItem("curr_sess_loggedschooltupes",this.empschoolnames);
-      document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames); 
-    this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype-service";
+document.querySelector('Student-to-section-mapping-card').passscholtyp(this.empschoolnames); 
+    this.studensectiongetgradeurl=sessionStorage.getItem("addrinfo")+"/getschooltype1-service";
      var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.empschoolnames;

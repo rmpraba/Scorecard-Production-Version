@@ -36,7 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'employee-schooltype-to-category-basecard',
        stupersonalinfo:function(arr){
         getgradenames=arr;
-      //    alert(JSON.stringify(getgradenames));
         },
     fnsetsave:function(e){
     var temparr=[];
@@ -45,12 +44,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          temparr.push(getgradenames[i]);
        }
      }
-  // alert(JSON.stringify(temparr));
        schooltype=sessionStorage.getItem("curr_sess_loggedschooltupes");
-     //  alert(this.stugradeid+" "+schooltype);
-      
        this.$.uiservice.fnsetstudentinfo(temparr,this.stugradeid,schooltype);
-       this.$.uiservice.fnretrivestudent(this.stugradeid);
        this.$.mydialog.toggleDialog();
   
      },
