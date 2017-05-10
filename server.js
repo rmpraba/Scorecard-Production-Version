@@ -8861,6 +8861,112 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
 });
 
 
+
+/*app.post('/studentschooltype-service',  urlencodedParser,function (req,res)
+{
+  var qur1="SELECT school_type_name,school_type_id from master_school_type where school_id='"+req.query.scholid+"'";
+
+  console.log(qur1);
+
+  connection.query(qur1,function(err, rows){
+        if(!err){
+
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+        }
+
+        else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+
+      });
+ });*/
+
+
+
+app.post('/studentgrade-service',  urlencodedParser,function (req,res)
+{
+  var qur1="SELECT grade_name,grade_id FROM master.md_school_grade_mapping where school_id='"+req.query.schoolid+"'  and academic_year='"+req.query.academic_year+"'";
+  console.log(qur1);
+
+   connection.query(qur1,
+    function(err, rows){
+      if(!err)
+      {
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+      }
+
+      else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+      });
+});
+
+
+
+app.post('/selectclass-service',  urlencodedParser,function (req,res)
+{
+ 
+/* var qur="SELECT UPPER(section_id),class_id FROM master.mp_grade_section where school_id='"+req.query.schlid+"' and grade_id='"+req.query.gradeid+"' and  academic_year='"+req.query.academic_year+"'";*/
+
+ var qur="SELECT UPPER(p.section_id)as section_id, p.class_id FROM md_school_grade_mapping s join mp_grade_section p  on s.grade_id=p.grade_id  where p.school_id='"+req.query.schlid+"' and s.school_id='"+req.query.schlid+"' and p.grade_id='"+req.query.gradeid+"' and p.academic_year='"+req.query.academic_year+"' and s.academic_year='"+req.query.academic_year+"'";
+  console.log(qur);
+
+   connection.query(qur,
+    function(err, rows){
+      if(!err)
+      {
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+      }
+
+      else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+      });
+});
+
+
+app.post('/selectallsection-service',  urlencodedParser,function (req,res)
+{
+  var qur1="select s.id,s.student_name,g.grade_name,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on s.grade_id=g.grade_id where s.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"'";
+
+  console.log(qur1);
+
+   connection.query(qur1,
+    function(err, rows){
+      if(!err)
+      {
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+      }
+
+      else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+      });
+});
+app.post('/selectallsection1-service',  urlencodedParser,function (req,res)
+{
+  var qur1="select s.id,s.student_name,g.grade_name,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on s.grade_id=g.grade_id where s.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"' and s.class_id='"+req.query.classname+"'";
+
+  console.log(qur1);
+
+   connection.query(qur1,
+    function(err, rows){
+      if(!err)
+      {
+          res.status(200).json({'returnval': rows});
+          console.log(rows);
+      }
+
+      else
+          //console.log(err);
+          res.status(200).json({'returnval': 'invalid'});
+      });
+});
+
 var server = app.listen(5000, function () {
 var host = server.address().address
 var port = server.address().port

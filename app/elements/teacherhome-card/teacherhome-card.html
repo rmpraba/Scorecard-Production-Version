@@ -439,6 +439,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        </div> 
       
     </div>
+    <div class="container1">
+      <div class="card" hidden$="{{studentsectionreport}}">
+            <paper-button on-click="Fnstudentreport" no ink><img src="../../images/studentreport.jpg" height="180px" width="180px">
+               <h4>Student Section Report</h4>
+            </paper-button>
+       </div>
+    </div>
  
  
 
@@ -486,6 +493,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <master-ui-service id="uiservice"></master-ui-service> 
     <mapping-service id="mappingservice"></mapping-service>
     <employee-report-service id="empservice"></employee-report-service>
+    <student-report-service id="reportservice"></student-report-service>
+
   </template>
   <script>
   (function() {
@@ -521,9 +530,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.gradetosection=true;
         this.roletogrademapping=true;
         this.empreportdetails=true;
+        this.studentsectionreport=true;
        }, 
 
-      FnSelectacademicyear:function(e){  
+      FnSelectacademicyear:function(e)
+      {  
         academicyear = e.target.selectedItem.value.trim();
         // alert(localStorage.getItem('curr_sess_loggedassesmenttype'));
         localStorage.setItem("curr_sess_academicyear",academicyear); 
@@ -630,6 +641,12 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
               this.$.empservice.FnSelectemp();
           
          }  
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="studentsectionreport")
+         {
+           document.querySelector('app-card').setPage('homepage','');
+            document.querySelector('home-page').setPage('student-to-section-report',''); 
+            this.$.reportservice.gradeService();
+         } 
              this.$.cdialog.close();
          
       },
@@ -731,6 +748,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            this.subjecttostudent=false;
            this.roletogrademapping=false;
            this.empreportdetails=false;
+           this.studentsectionreport=false;
            }
        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
           {
@@ -1019,6 +1037,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          this.$.cdialog.toggle();
 
           
+      },
+      Fnstudentreport:function()
+      {
+          //alert("test");
+           localStorage.setItem('curr_sess_loggedassesmenttype','studentsectionreport');
+           document.querySelector('student-to-section-report').Fnrefresh();
+           document.querySelector('student-to-section-report').ready();
+           this.$.cdialog.toggle();
       }
 
 
