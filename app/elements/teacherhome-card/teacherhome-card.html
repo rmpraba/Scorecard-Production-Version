@@ -11,6 +11,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../beginner-assesment-service/beginner-assesment-service.html">
 <link rel="import" href="../term-assesment-service/term-assesment-service.html">
 <link rel="import" href="../scorecard-service/scorecard-service.html">
+<link rel="import" href="../employee-report-service/employee-report-service.html">
 
 
 <dom-module id="teacherhome-card">
@@ -438,15 +439,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
             </paper-button>
        </div> 
       
-    </div>
-    <div class="container1">
+    
+    
       <div class="card" hidden$="{{studentsectionreport}}">
             <paper-button on-click="Fnstudentreport" no ink><img src="../../images/studentreport.jpg" height="180px" width="180px">
                <h4>Student Section Report</h4>
             </paper-button>
        </div>
-    </div>
- 
+     
  
 
     <div class="cdialog">      
@@ -638,7 +638,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
          {          
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('employee-report-card','');
-              this.$.empservice.FnSelectemp();
+          this.$.empservice.FnSelectemp();
           
          }  
          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="studentsectionreport")
@@ -1033,10 +1033,9 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       },
       FnEmpreportdetails:function(e){
          localStorage.setItem('curr_sess_loggedassesmenttype','empreportdetails');
-         document.querySelector('employee-report-card').FnRefresh();
+        // document.querySelector('employee-report-card').Fnclear();
          this.$.cdialog.toggle();
 
-          
       },
       Fnstudentreport:function()
       {
