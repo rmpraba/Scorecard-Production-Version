@@ -75,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-dropdown-menu id="grade" label="Select Employee">
             <paper-menu id="empdddd" class="dropdown-content" on-iron-select="Fnemp">     
               <template is="dom-repeat" items="{{selectemparry}}">
-                <paper-item value="{{item.id}}">{{item.name}}</paper-item>
+                <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
@@ -158,7 +158,7 @@ var tableToExcel = (function() {
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           obj.id=this.empid;
           this.Getempparam=obj;
-         // alert(JSON.stringify(obj));
+          //alert(JSON.stringify(obj));
           this.$.Getempajax.generateRequest();
           this.$.btn.hidden=false;
            this.$.tabledetails.hidden=false;

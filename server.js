@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'master'
+   database : 'newscorecarddb'
 
  });
 
@@ -8821,7 +8821,8 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
   function (req, res)
 
 {  
-  var qur="select distinct id,(select emp_name from md_employee_creation where emp_id=id and school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"') as name from mp_teacher_grade where school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"' and flage='active'";
+ /* var qur="select distinct id,(select emp_name from md_employee_creation where emp_id=id and school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"') as name from mp_teacher_grade where school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"' and flage='active'";*/
+ var qur="select emp_id,emp_name from md_employee_creation where school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"'";
     console.log(qur);
   connection.query(qur,function(err, rows){
     if(!err){
@@ -8844,7 +8845,7 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
 
 {  
    var em={school_id:req.query.school_id,academic_year:req.query.academic_year,id:req.query.empid};
-  var qur="SELECT s.id,s.section_id,p.grade_name,r.subject_name,s.section_id,(Select emp_name from md_employee_creation WHERE  emp_id=id and school_id= '"+req.query.school_id+"' and  academic_year='"+req.query.academic_year+"') as name FROM  mp_teacher_grade s join md_grade p on (s.grade_id=p.grade_id) join  md_subject r  on(s.subject_id=r.subject_id)  WHERE s.school_id= '"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"' and s.id='"+req.query.id+"'";
+  var qur="SELECT s.id,UPPER(s.section_id) as section_id,p.grade_name,UPPER(r.subject_name) as subject_name,(Select UPPER(emp_name) from md_employee_creation WHERE  emp_id=id and school_id= '"+req.query.school_id+"' and  academic_year='"+req.query.academic_year+"') as name FROM  mp_teacher_grade s join md_grade p on (s.grade_id=p.grade_id) join  md_subject r  on(s.subject_id=r.subject_id)  WHERE s.school_id= '"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"' and s.id='"+req.query.id+"'";
   //console.log(qur);
   connection.query(qur,function(err, rows){
     if(!err){
