@@ -135,6 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      <div class="studentreport" hidden$="{{studentreport1}}">
        <table id="report1" border="1" style="margin-left: 19%;">
         <tr>
+          <th>SNO</th>
           <th>Student ID</th>
           <th>Student Name</th>
           <th>Class</th>
@@ -142,10 +143,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </tr>
         <template  is="dom-repeat" items="{{studentsecctionarr}}" as="view">
           <tr>
-            <td>{{view.id}}</td>
-            <td>{{view.student_name}}</td>
-            <td>{{view.grade_name}}</td>
-            <td>{{view.section}}</td>
+              <td>{{view.squence}}</td>
+               <td>{{view.id}}</td>
+              <td>{{view.student_name}}</td>
+              <td>{{view.grade_name}}</td>
+              <td>{{view.section}}</td>
           </tr>
         </template>
       </table>
@@ -191,13 +193,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.spsectionhidecx=true;
         chk2zxc.checked=false;
         chk1s.checked=false;
+        this.spsectionhide=false;
+        this.allsectionhide=false;
       },
-      selectspecific:function(e){
-      if(chk2zxc.checked==true){
-        chk1s.checked=false;
+      selectspecific:function(e)
+      {
+        if(chk2zxc.checked==true)
+        {
+          this.allsectionhide=true;
+          chk1s.checked=false;
           this.spsectionhidecx=false;
+          this.studentreport1=true;
           //this.fnhide();
-      }
+        }
+        else
+        {
+          this.allsectionhide=false;
+        }
      },
       Fnrefresh:function()
       {
@@ -219,7 +231,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        // alert("Alll");
            
         if(chk1s.checked==true)
-          {
+        {
+            this.spsectionhide=true;
             chk2zxc.checked=false;
             this.spsectionhidecx=true;
             sessionStorage.setItem("curr_sess_sectionname",this.sectionname);
@@ -229,6 +242,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.$.reportservice.allsections(this.gradeid);
             this.fnhide();
         //    this.spsectionhide=true;
+          }
+          else
+          {
+            this.spsectionhide=false;
           }
       }
       

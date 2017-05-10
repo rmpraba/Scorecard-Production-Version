@@ -96,7 +96,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 },
 allsections1Response:function(e){
   var res=e.detail.response.returnval;
-     document.querySelector('student-to-section-report').studentsecctionarr=res;
+  var newtemparr=[];
+    for(var i=0;i<res.length;i++)
+    {
+      var obj={"id":"","student_name":"","grade_name":"","section":"","squence":""}
+          obj.id=res[i].id;
+          obj.student_name=res[i].student_name;
+          obj.grade_name=res[i].grade_name;
+          obj.section=res[i].section;
+            var a=i+1;
+          obj.squence=a;    
+           newtemparr.push(obj);
+          //alert(JSON.stringify(obj));
+      }
+      //alert(JSON.stringify(newtemparr));
+     document.querySelector('student-to-section-report').studentsecctionarr=newtemparr;
      
        
 }
