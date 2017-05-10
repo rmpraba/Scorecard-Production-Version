@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'master'
+   database : 'masterdb'
 
  });
 
@@ -8814,6 +8814,50 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
     else
      res.status(200).json({'returnval': 'no rows'}); 
   });
+});
+  
+
+ app.post('/Selectemp-service' ,urlencodedParser,
+  function (req, res)
+
+{  
+  var qur="select distinct id,(select emp_name from md_employee_creation where emp_id=id and school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"') as name from mp_teacher_grade where school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"' and flage='active'";
+  //console.log(qur);
+  connection.query(qur,function(err, rows){
+    if(!err){
+
+      res.status(200).json({'returnval': rows});
+      //console.log(rows);
+    }
+
+    else
+    //  console.log(err);
+      res.status(200).json({'returnval': 'invalid'});
+
+  });    
+});
+
+
+
+ app.post('/empreport-service' ,urlencodedParser,
+  function (req, res)
+
+{  
+   var em={school_id:req.query.school_id,academic_year:req.query.academic_year,id:req.query.empid};
+  var qur="SELECT s.id,s.section_id,p.grade_name,r.subject_name,s.section_id,(Select emp_name from md_employee_creation WHERE  emp_id=id and school_id= '"+req.query.school_id+"' and  academic_year='"+req.query.academic_year+"') as name FROM  mp_teacher_grade s join md_grade p on (s.grade_id=p.grade_id) join  md_subject r  on(s.subject_id=r.subject_id)  WHERE s.school_id= '"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"' and s.id='"+req.query.id+"'";
+  //console.log(qur);
+  connection.query(qur,function(err, rows){
+    if(!err){
+
+      res.status(200).json({'returnval': rows});
+     // console.log(rows);
+    }
+
+    else
+    //  console.log(err);
+      res.status(200).json({'returnval': 'invalid'});
+
+  });    
 });
 
 

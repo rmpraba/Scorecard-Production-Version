@@ -204,6 +204,10 @@
         <section data-category="school-grade-to-role-mapping">
           <school-grade-to-role-mapping></school-grade-to-role-mapping>
         </section>
+        <section data-category="employee-report-card">
+          
+          <employee-report-card></employee-report-card>
+        </section>
         </iron-pages>
     </div>    
 
@@ -671,7 +675,13 @@
       document.querySelector('teacherhome-card').FnRefresh();
       document.querySelector('school-grade-to-role-mapping').FnRefresh();
     }
-
+     if(localStorage.getItem("curr_sess_page")=="employee-report-card")
+    {
+      this.page="teacherhomecard";
+      document.querySelector('teacherhome-card').FnRefresh();
+      document.querySelector('employee-report-card').FnRefresh();
+    }
+     
   },
 
   FnsetTitle:function(title){

@@ -432,6 +432,11 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
                <h4>Role To Grade Mapping</h4>
             </paper-button>
        </div> 
+       <div class="card" hidden$="{{empreportdetails}}">
+            <paper-button on-click="FnEmpreportdetails" no ink><img src="../../images/empexcelimg.jpg" height="180px" width="180px">
+               <h4>Employee Report Details</h4>
+            </paper-button>
+       </div> 
       
     </div>
  
@@ -480,7 +485,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <teacher-observation_service id="observerservice"></teacher-observation_service>
     <master-ui-service id="uiservice"></master-ui-service> 
     <mapping-service id="mappingservice"></mapping-service>
-
+    <employee-report-service id="empservice"></employee-report-service>
   </template>
   <script>
   (function() {
@@ -515,6 +520,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.sectioncreation=true;
         this.gradetosection=true;
         this.roletogrademapping=true;
+        this.empreportdetails=true;
        }, 
 
       FnSelectacademicyear:function(e){  
@@ -617,6 +623,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           this.$.mappingservice.fetchschooltypesforgradetorolemapService();
           this.$.mappingservice.fetchrolesforgradetorolemapService();
          }  
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="empreportdetails") 
+         {          
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('employee-report-card','');
+              this.$.empservice.FnSelectemp();
+          
+         }  
              this.$.cdialog.close();
          
       },
@@ -717,6 +730,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            this.gradetosection=false;
            this.subjecttostudent=false;
            this.roletogrademapping=false;
+           this.empreportdetails=false;
            }
        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
           {
@@ -763,6 +777,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       {
          document.querySelector('#academicyr').selected=-1;
          document.querySelector('#termtype').selected=-1;
+
       },
       FnAnalysiscard:function(){
         localStorage.setItem('curr_sess_loggedassesmenttype','Analysis');   
@@ -872,7 +887,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
       GradeToSection:function(e)
       { 
           localStorage.setItem('curr_sess_loggedassesmenttype','StudentToSection');
-      this.$.uiservice.studentsectiontype();
+          this.$.uiservice.studentsectiontype();
               this.$.cdialog.toggle(); 
       },  
    
@@ -997,7 +1012,15 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         localStorage.setItem('curr_sess_loggedassesmenttype','roletogrademapping');
         // this.$.scorecardservice.callGradeService();
         this.$.cdialog.toggle();
+      },
+      FnEmpreportdetails:function(e){
+         localStorage.setItem('curr_sess_loggedassesmenttype','empreportdetails');
+         document.querySelector('employee-report-card').FnRefresh();
+         this.$.cdialog.toggle();
+
+          
       }
+
 
     });
   })();
