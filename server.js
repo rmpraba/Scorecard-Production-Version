@@ -8822,12 +8822,12 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
 
 {  
   var qur="select distinct id,(select emp_name from md_employee_creation where emp_id=id and school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"') as name from mp_teacher_grade where school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"' and flage='active'";
-  //console.log(qur);
+    console.log(qur);
   connection.query(qur,function(err, rows){
     if(!err){
 
       res.status(200).json({'returnval': rows});
-      //console.log(rows);
+      console.log(rows);
     }
 
     else
@@ -8887,14 +8887,14 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
 app.post('/studentgrade-service',  urlencodedParser,function (req,res)
 {
   var qur1="SELECT grade_name,grade_id FROM md_school_grade_mapping where school_id='"+req.query.schoolid+"'  and academic_year='"+req.query.academic_year+"'";
-  console.log(qur1);
+//  console.log(qur1);
 
    connection.query(qur1,
     function(err, rows){
       if(!err)
       {
           res.status(200).json({'returnval': rows});
-          console.log(rows);
+         // console.log(rows);
       }
 
       else
