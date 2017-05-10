@@ -80,6 +80,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           spsectionarr.push(obj);
         this.allsections1param=obj;
         this.$.allsections1ajax.generateRequest();
+     }   
+
            for(var i=0;i<spsectionarr.length;i++)
            {
               if(spsectionarr[i].classname!=this.classname)
@@ -91,7 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               }
            }
 
-    }
+    
     document.querySelector('student-to-section-report').fnhide();
 },
 allsections1Response:function(e){
