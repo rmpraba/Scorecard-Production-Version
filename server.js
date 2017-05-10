@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'master'
+   database : 'masterdb'
 
  });
 
@@ -8886,7 +8886,7 @@ app.post('/savegradetorolemapping-service',  urlencodedParser,function (req,res)
 
 app.post('/studentgrade-service',  urlencodedParser,function (req,res)
 {
-  var qur1="SELECT grade_name,grade_id FROM master.md_school_grade_mapping where school_id='"+req.query.schoolid+"'  and academic_year='"+req.query.academic_year+"'";
+  var qur1="SELECT grade_name,grade_id FROM md_school_grade_mapping where school_id='"+req.query.schoolid+"'  and academic_year='"+req.query.academic_year+"'";
   console.log(qur1);
 
    connection.query(qur1,
