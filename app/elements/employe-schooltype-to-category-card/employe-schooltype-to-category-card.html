@@ -308,6 +308,7 @@
           if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1')
           {
                   this.$.empLanguageprefernce.hidden=false;
+                  //this.hidegenerate=false;
                   
           }
           else
@@ -381,7 +382,7 @@
           },
       setempsubject1:function(arr){
         dbsetsubjectarr=arr;
-        this.hidegenerate=false;
+        this.hidegenerate=true;
         this.$.z11.hidden=true;
         this.$.z22.hidden=false;
         this.hidenewgridd=false;
