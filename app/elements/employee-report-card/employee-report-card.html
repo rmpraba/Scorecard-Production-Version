@@ -98,10 +98,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <td>{{view.name}}</td>
        <td>{{view.grade_name}}</td>
        <td>{{view.subject_name}}</td>
-       <td>{{view.section_id}}</td>
-      
-
-      </tr> 
+       <!-- <td>{{view.section_id}}</td> -->
+      </tr>
+      <template is="dom-repeat" items="{{empsection}}" as="view">
+        <td>{{view.section_id}}</td>
+      </template> 
 
       </template>
       </table>
@@ -165,13 +166,44 @@ var tableToExcel = (function() {
 
             },
 
-   GetempResponse:function(e)
+     /* GetempResponse:function(e)
        {
          var emp1=e.detail.response.returnval;
          this.emp1aaaa=emp1;
          // alert(JSON.stringify(this.emp1aaaa));
 
          // document.querySelector('emplyee-report-item-card').emparr=emp1;
+       },*/
+
+       GetempResponse:function(e)
+       {
+         var emp1=e.detail.response.returnval;
+         //this.emp1aaaa=emp1;
+          var temp1=[];
+          var temp2=[];
+          for(var i=0;i<emp1.length;i++)
+          {
+            var obj={"id":"","name":"","grade_name":"","subject_name":""};
+            obj.id=emp1[i].id;
+            obj.name=emp1[i].name;
+            obj.grade_name=emp1[i].grade_name;
+            obj.subject_name=emp1[i].subject_name;
+            temp1.push(obj);
+
+             var obj1={"section_id":""}
+             obj1.section_id=emp1[i].section_id;
+             temp2.push(obj1);
+          }
+         /* for(var i=0;i<emp1.length;i++ )
+          {
+            var obj={"section_id":""};
+            obj.section_id=emp1[i].section_id;
+            temp2.push(obj);
+          }*/
+
+          this.emp1aaaa=temp1;
+          this.empsection=temp2;
+        
        },
        FnRefresh:function()
        {
