@@ -33,18 +33,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
      #tb3{
           width:7.5%;
+          text-align: start;
     }
      #tb2{
       width:17%;
     }
      #tb4{
       width:22.5%;
+      text-align: start;
     }
     #tb1{
       width:37.5%;
+      text-align: start;
     }
     #tb5{
       width:10%;
+      text-align: start;
     }
     #btn{
       width: 10%;
@@ -57,21 +61,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-size: 17px;
       margin-left: 40%;
       }
+      #td1{
+        padding:2%;
+      }
 
     </style>
      <div class="title">
         <h3><b>EMPLOYEE REPORT</b></h3>
       </div>
-
-
-         <!--  <paper-dropdown-menu id="acadid" label="Select Acadamic year">
-            <paper-menu id="rtermmm" class="dropdown-content"   on-iron-select="Fnyear" attr-for-selected="value" required>
-                <paper-item value="2016-2017">2016-2017</paper-item>
-                <paper-item value="2017-2018">2017-2018</paper-item>
-                <paper-item value="2018-2019">2018-2019</paper-item>
-                <paper-item value="2019-2020">2019-2020</paper-item>
-            </paper-menu>
-          </paper-dropdown-menu> -->
           <paper-dropdown-menu id="grade" label="Select Employee">
             <paper-menu id="empdddd" class="dropdown-content" on-iron-select="Fnemp">     
               <template is="dom-repeat" items="{{selectemparry}}">
@@ -85,25 +82,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <th id="tb5">Employee ID</th>
       <th id="tb1">Employee Name</th>
       <th  id="tb3">Grade</th>
-      <th  id="tb4">Subject</th>
-      <th  id="tb2">Section</th>
+      <th  id="tb4">Subject-Section</th>
      
-      </tr>
-
-      
-          
+     
+      </tr>  
       <template is="dom-repeat" items="{{emp1aaaa}}" as="view">
       <tr>
        <td>{{view.id}}</td>
        <td>{{view.name}}</td>
        <td>{{view.grade_name}}</td>
-       <td>{{view.subject_name}}</td>
-       <td>{{view.section_id}}</td>
-      
-
-      </tr> 
-
-      </template>
+         <td>   
+          <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  
+         </template>
+        </td>
+       </template>  
+      </tr>     
       </table>
       <input type="button" id="btn" onclick="tableToExcel('tabledetails', 'Mark Report')" value="Export to Excel"> 
 
@@ -136,6 +129,11 @@ var tableToExcel = (function() {
   <script>
   (function() {
     'use strict';
+      
+      var temp1=[];
+      var temp2=[];
+      var temp3=[];
+      var tempall=[];
 
     Polymer({
       is: 'employee-report-card',
@@ -168,19 +166,71 @@ var tableToExcel = (function() {
    GetempResponse:function(e)
        {
          var emp1=e.detail.response.returnval;
-         this.emp1aaaa=emp1;
-         // alert(JSON.stringify(this.emp1aaaa));
+        // alert(JSON.stringify(emp1));
+       //  this.emp1aaaa=emp1;
+         
+          
+          for(var i=0;i<emp1.length;i++)
+          {
+            var obj={"id":"","name":"","grade_id":"","grade_name":""};
+            obj.id=emp1[i].id;
+            obj.name=emp1[i].name;
+            obj.grade_id=emp1[i].grade_id;
+            obj.grade_name=emp1[i].grade_name;
 
-         // document.querySelector('emplyee-report-item-card').emparr=emp1;
-       },
-       FnRefresh:function()
+            //obj.subject=temp1;
+           // alert(JSON.stringify(obj));
+             temp1.push(obj);
+            var obj1={"subject_name":"","subject_id":"","section_id":""};
+            obj1.subject_name=emp1[i].subject_name;
+            obj1.subject_id=emp1[i].subject_id;
+            obj1.section_id=emp1[i].section_id;
+            temp1.push(obj1);
+               
+           // alert(JSON.stringify(obj1));
+            
+            for(var j=i+1;j<emp1.length;j++)
+            {
+             // alert(emp1.length);
+             // alert(JSON.stringify(emp1[i].grade_name));
+             // alert(JSON.stringify(emp1[j].grade_name));
+                if(emp1[i].grade_name==emp1[j].grade_name)
+                {
+                 
+                var obj2={"subject_name":"","subject_id":"","section_id":""};
+                obj2.subject_name=emp1[j].subject_name;
+                obj2.subject_id=emp1[j].subject_id;
+                obj2.section_id=emp1[j].section_id;
+                temp1.push(obj2);
+                // alert(1111);
+               //  alert(JSON.stringify(temp1));
+                emp1.splice(j,1);
+               j--;
+              }
+
+            }
+              obj.subject=temp1;
+              tempall.push(obj);
+            //   alert(JSON.stringify(tempall));
+               temp1=[];
+
+
+        }
+            this.emp1aaaa=tempall;
+             tempall=[];
+           // alert(JSON.stringify(this.emp1aaaa));
+             
+
+        },
+          
+      FnRefresh:function()
        {
         //alert(44444);
          document.querySelector('#empdddd').selected=-1;
          this.$.tabledetails.hidden=true;
          this.$.btn.hidden=true;
-         this.emp1aaaa=[];
-       }
+         this.emp1aaaa=[];  
+       } 
 
 
     });
