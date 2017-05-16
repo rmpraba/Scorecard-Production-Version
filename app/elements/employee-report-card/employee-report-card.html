@@ -92,13 +92,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <td>{{view.name}}</td>
        <td>{{view.grade_name}}</td>
          <td>   
-          <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  </style>
+          <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  
          </template>
         </td>
        </template>  
-      </tr>    
-     
-      </template>
+      </tr>     
       </table>
       <input type="button" id="btn" onclick="tableToExcel('tabledetails', 'Mark Report')" value="Export to Excel"> 
 
@@ -140,10 +138,11 @@ var tableToExcel = (function() {
     Polymer({
       is: 'employee-report-card',
              
-             Fnhidden:function()
+             fnhidden:function()
              {
                 this.$.btn.hidden=true;
                 this.$.tabledetails.hidden=true;
+
              },
             Fnemp:function(e)
             {
@@ -164,7 +163,7 @@ var tableToExcel = (function() {
 
             },
 
-      GetempResponse:function(e)
+   GetempResponse:function(e)
        {
          var emp1=e.detail.response.returnval;
         // alert(JSON.stringify(emp1));
@@ -221,8 +220,10 @@ var tableToExcel = (function() {
              tempall=[];
            // alert(JSON.stringify(this.emp1aaaa));
              
+
         },
-       FnRefresh:function()
+          
+      FnRefresh:function()
        {
         //alert(44444);
          document.querySelector('#empdddd').selected=-1;
