@@ -92,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        <td>{{view.name}}</td>
        <td>{{view.grade_name}}</td>
          <td>   
-          <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  
+          <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  </style>
          </template>
         </td>
        </template>  
@@ -140,11 +140,10 @@ var tableToExcel = (function() {
     Polymer({
       is: 'employee-report-card',
              
-             ready:function()
+             Fnhidden:function()
              {
                 this.$.btn.hidden=true;
                 this.$.tabledetails.hidden=true;
-
              },
             Fnemp:function(e)
             {
