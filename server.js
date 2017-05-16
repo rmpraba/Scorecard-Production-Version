@@ -7848,7 +7848,7 @@ app.post('/getschooltype1-service',  urlencodedParser,function (req,res)
 {  
     var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
    
-var qur1="SELECT grade_id,grade_name  FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and grade_name in(select distinct class from md_class_section where  class=grade_name  and  school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"')";
+var qur1="SELECT grade_id,grade_name  FROM md_school_grade_mapping where school_id='"+req.query.school_id+"'and school_type='"+req.query.schooltypeid+"' and academic_year='"+req.query.academic_year+"' and grade_name in(select distinct class from md_class_section where  class=grade_name  and  school_id='"+req.query.school_id+"'and academic_year='"+req.query.academic_year+"' and school_type='"+req.query.schooltypeid+"')";
 
    //var qur="SELECT * FROM md_school_grade_mapping where";
    console.log(qur1);
@@ -8931,8 +8931,9 @@ app.post('/selectclass-service',  urlencodedParser,function (req,res)
 
 app.post('/selectallsection-service',  urlencodedParser,function (req,res)
 {
-  var qur1="select s.id,s.student_name,g.grade_name,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on s.grade_id=g.grade_id where s.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"'";
+  var qur1="select s.id,s.student_name,g.grade_name,a.admission_status,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on (s.grade_id=g.grade_id) join md_admission a on(s.id=a.admission_no) where s.school_id='"+req.query.schlid1+"' and a.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"' order by student_name";
 
+console.log("-------Report---------");
   console.log(qur1);
 
    connection.query(qur1,
@@ -8940,7 +8941,7 @@ app.post('/selectallsection-service',  urlencodedParser,function (req,res)
       if(!err)
       {
           res.status(200).json({'returnval': rows});
-          console.log(rows);
+          //console.log(rows);
       }
 
       else
@@ -8950,7 +8951,7 @@ app.post('/selectallsection-service',  urlencodedParser,function (req,res)
 });
 app.post('/selectallsection1-service',  urlencodedParser,function (req,res)
 {
-  var qur1="select s.id,s.student_name,g.grade_name,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on s.grade_id=g.grade_id where s.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"' and s.class_id='"+req.query.classname+"'";
+  var qur1="select s.id,s.student_name,g.grade_name,a.admission_status,(select UPPER(section_id) from mp_grade_section ss where ss.grade_id='"+req.query.gradeid+"' and ss.class_id=s.class_id) as section from md_student s join md_school_grade_mapping g on (s.grade_id=g.grade_id) join md_admission a on (s.id=a.admission_no) where s.school_id='"+req.query.schlid1+"' and a.school_id='"+req.query.schlid1+"' and g.school_id='"+req.query.schlid1+"'and s.grade_id='"+req.query.gradeid+"' and s.academic_year='"+req.query.academic_year+"' and g.academic_year='"+req.query.academic_year+"' and s.class_id='"+req.query.classname+"' order by student_name";
 
   console.log(qur1);
 
@@ -8959,7 +8960,7 @@ app.post('/selectallsection1-service',  urlencodedParser,function (req,res)
       if(!err)
       {
           res.status(200).json({'returnval': rows});
-          console.log(rows);
+          //console.log(rows);
       }
 
       else

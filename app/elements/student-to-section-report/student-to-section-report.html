@@ -28,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .innercard{
       @apply(--layout-horizontal);
-      margin-left: 24%;
+      margin-left: 33%;
       }
       paper-dropdown-menu{
         margin-left: 5%;
@@ -56,36 +56,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-collapse: collapse;
         margin-top: 7%;
         /*margin-left: 19%;*/
-        width: 60%;
+        
       }
      table   
        {
         border-collapse: collapse;
         margin-top: 3%;
         /*margin-left: -39%;*/
-        width: 60%;
+        width: 40%;
       }
        #btn1
        {
         background-color: #363636;
         color: #ffffff; 
-        width: 12%;
+        /*width: 12%;*/
+        height: 34px;
         margin-top: 4%;
-        margin-left: 44%;
+        margin-left: 48%;
+      }
+      #btn2
+       {
+        background-color: #363636;
+        color: #ffffff; 
+        /*width: 12%;*/
+        height: 34px;
+        margin-top: 4%;
+        margin-left: 48%;
       }
       .newtempl
       {
         border: 1px solid #6699ff;
         padding: 5px;
         width: 100%;
-        margin-top: 3%;
-        margin-left: -45%;
+        margin-top: 4%;
+        margin-left: -58%;
       }
 
     </style>
     <div>
       <center>
-        <h3>STUDENT SECTION REPORT</h3>
+        <h3>STUDENT-TO-SECTION-REPORT</h3>
       </center>     
     </div>
     <div class="card">
@@ -132,14 +142,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>  
       </div>
     </div>
-     <div class="studentreport" hidden$="{{studentreport1}}">
-       <table id="report1" border="1" style="margin-left: 19%;">
-        <tr>
+     <div class="studentreport" hidden$="{{studentallreport1}}">
+       <table id="report1" border="1" style="margin-left: 23%;width: 65%;">
+        <tr style="text-align: left;">
           <th>SNO</th>
           <th>Student ID</th>
           <th>Student Name</th>
           <th>Class</th>
           <th>Section</th>
+          <th>Student Status</th>
         </tr>
         <template  is="dom-repeat" items="{{studentsecctionarr}}" as="view">
           <tr>
@@ -148,11 +159,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <td>{{view.student_name}}</td>
               <td>{{view.grade_name}}</td>
               <td>{{view.section}}</td>
+              <td>{{view.admission_status}}</td>
           </tr>
         </template>
       </table>
 
       <input type="button" id="btn1" onclick="tableToExcel('report1', 'Student Section report')" value="Export to Excel">
+    </div>
+
+    <div class="studentreport" hidden$="{{studentreport1}}">
+       <table id="report1" border="1" style="margin-left: 33%;">
+        <tr style="text-align: left;">
+          <th>SNO</th>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Student Status</th>
+          <!-- <th>Class</th>
+          <th>Section</th> -->
+        </tr>
+        <template  is="dom-repeat" items="{{studentreportarr}}" as="view">
+          <tr>
+              <td>{{view.squence}}</td>
+              <td>{{view.id}}</td>
+              <td>{{view.student_name}}</td>
+              <td>{{view.admission_status}}</td>
+
+              <!-- <td>{{view.grade_name}}</td>
+              <td>{{view.section}}</td> -->
+          </tr>
+        </template>
+      </table>
+
+      <input type="button" id="btn2" onclick="tableToExcel('report1', 'Student Section report')" value="Export to Excel">
     </div>
 
       <student-report-service id="reportservice"></student-report-service>
@@ -181,6 +219,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready:function()
      {
       this.studentreport1=true;
+      this.studentallreport1=true;
       this.sectionhide=true;
      },
       FnSelectGrade1:function(e)
@@ -195,6 +234,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         chk1s.checked=false;
         this.spsectionhide=false;
         this.allsectionhide=false;
+        this.studentreport1=true;
+        this.studentallreport1=true;
         document.querySelector('studentsectionwise-report').Fnrefresh();
       },
       selectspecific:function(e)
@@ -205,11 +246,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           chk1s.checked=false;
           this.spsectionhidecx=false;
           this.studentreport1=true;
+          this.studentallreport1=true;
           //this.fnhide();
         }
         else
         {
           this.allsectionhide=false;
+          this.spsectionhidecx=true;
+          this.studentreport1=true;
+          this.studentallreport1=true;
         }
      },
       Fnrefresh:function()
@@ -218,9 +263,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.studentreport1=true;
         chk1s.checked=false;
         chk2zxc.checked=false;
+        this.studentallreport1=true;
       },
       fnhide:function()
       {
+        this.studentallreport1=true;
         this.studentreport1=false;
       },
       fnallsection:function(arr)
@@ -236,17 +283,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.spsectionhide=true;
             chk2zxc.checked=false;
             this.spsectionhidecx=true;
+            this.studentreport1=true;
             sessionStorage.setItem("curr_sess_sectionname",this.sectionname);
             var obj={"id":""};
                 obj.id=this.id;
                 selectallarr.push(obj);
             this.$.reportservice.allsections(this.gradeid);
-            this.fnhide();
-        //    this.spsectionhide=true;
+            this.studentallreport1=false;           
+            //  this.spsectionhide=true;
           }
           else
           {
             this.spsectionhide=false;
+            this.studentallreport1=true;
+            this.studentreport1=true;
           }
       }
       
