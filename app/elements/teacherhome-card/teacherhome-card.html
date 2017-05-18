@@ -222,6 +222,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     </div> 
   </div>
   <div class="inner1">
+  
      <div class="card" hidden$="{{createemployeee}}">
         <paper-button on-click="FnCreateEmployee" no ink><img src="../../images/employee.jpg" height="180px" width="180px">
              <h4> Employee</h4>
@@ -248,6 +249,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           </paper-button>
       </div>
 
+ 
   </div>
   <div class="inner1">
       <div class="card" hidden$="{{studentfixedd}}">
@@ -434,8 +436,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        </div> 
       
     </div>
- 
- 
+ <div class="container1">
+   <div class="card" hidden$="{{captureReport}}">
+          <paper-button on-click="CaptureReportads" no ink><img src="../../images/active1.jpg" height="180px" width="180px">
+            <h4>Books</h4>
+          </paper-button>
+   </div>
+</div>
 
     <div class="cdialog">      
       <paper-dialog id="cdialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" modal>
@@ -480,6 +487,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <teacher-observation_service id="observerservice"></teacher-observation_service>
     <master-ui-service id="uiservice"></master-ui-service> 
     <mapping-service id="mappingservice"></mapping-service>
+    <teacher-book-service-card id="bookservice"></teacher-book-service-card>
 
   </template>
   <script>
@@ -515,6 +523,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.sectioncreation=true;
         this.gradetosection=true;
         this.roletogrademapping=true;
+        this.captureReport=true;
        }, 
 
       FnSelectacademicyear:function(e){  
@@ -555,10 +564,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
               document.querySelector('app-card').setPage('homepage','');
               document.querySelector('home-page').setPage('new-employee-creation-card','');
               document.querySelector('new-employee-creation-card').fnnewemp();
-              this.$.uiservice.fnschoolemployeepersonal();
-              //alert('2');
-   
+              this.$.uiservice.fntschoolemployeepersonal();
         }
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="captureReport") 
+         {
+        //   alert('1'); 
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('teacher-book-refernce-card','');
+          this.$.bookservice.capterseq();
+         // this.$.bookservice.conceptseq();
+        //  this.$.bookservice.getcaptervalue();
+         } 
         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="Term")
         {   
             this.$.assesmentservice.callTermService("Term");
@@ -569,11 +585,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('home-page').setPage('studentlistcard','');
          } 
         if(localStorage.getItem('curr_sess_loggedassesmenttype').trim()=="Scorecard") 
-         {
+         {  
           // alert('in');
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('scorecard','');
-         }  
+         } 
+
+          
          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="PreEntry") 
          {
           this.$.bassesmentservice.callAssesmentService("Beginner Level"); 
@@ -717,6 +735,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            this.gradetosection=false;
            this.subjecttostudent=false;
            this.roletogrademapping=false;
+           //alert('1');
+           this.captureReport=false;
            }
        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
           {
@@ -925,6 +945,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         //document.querySelector('new-employee-creation-card').hideupdateemp=true;
         this.$.cdialog.toggle();   
       },
+      CaptureReportads:function(e){
+       // alert('1');
+           localStorage.setItem('curr_sess_loggedassesmenttype','captureReport');
+            this.$.bookservice.teacherbookref1();
+            this.$.cdialog.toggle();   
+          },
+  
        Workingdays:function(e)
       {
            document.querySelector('app-card').setPage('homepage','');

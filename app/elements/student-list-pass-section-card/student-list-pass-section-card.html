@@ -250,13 +250,12 @@ this.thirdlangrefreturl=sessionStorage.getItem("addrinfo")+"/thirdlangrefret-ser
          else{
          this.dbsectionvalue=e.detail.response.returnval;
          this.$.empremapid11.open();
-       //  alert(f);
           document.querySelector('#'+f).checked=true;
              }
        },   
         thirdlangrefret11Response:function(e){
           if(e.detail.response.returnval=="Deleted!")
-      document.querySelector('#'+).checked=false;
+      document.querySelector('#'+f).checked=false;
     
         },   
          studentcheckinfo1:function(arr){

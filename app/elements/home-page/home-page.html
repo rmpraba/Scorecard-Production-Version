@@ -204,6 +204,9 @@
         <section data-category="school-grade-to-role-mapping">
           <school-grade-to-role-mapping></school-grade-to-role-mapping>
         </section>
+        <section data-category="teacher-book-refernce-card">
+          <teacher-book-refernce-card></teacher-book-refernce-card>
+        </section>
         </iron-pages>
     </div>    
 
@@ -230,7 +233,7 @@
   signout:function()
   {
    window.location.href="../index.html";   
-  },
+  }, 
   FnHome:function(){ 
    if(localStorage.getItem("curr_sess_page")=="student-allow-card")
       {
@@ -239,13 +242,20 @@
       document.querySelector('student-allow-item-card').FnRefresh();
 
       }
-  if(localStorage.getItem("curr_sess_page")=="section-period-itme-card")
+    if(localStorage.getItem("curr_sess_page")=="teacher-book-refernce-card")
+      {
+      this.page="teacherhomecard";
+     // document.querySelector('teacherhome-card').FnRefresh();
+     // document.querySelector('student-allow-item-card').FnRefresh();
+
+      }
+   if(localStorage.getItem("curr_sess_page")=="section-period-itme-card")
        {
        this.page="teacherhomecard";
        document.querySelector('teacherhome-card').FnRefresh();
       }
-  if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
-    {
+    if(localStorage.getItem("curr_sess_page")=="employe-schooltype-to-category-card")
+        {
       this.page="teacherhomecard";
           document.querySelector('teacherhome-card').FnRefresh();
           document.querySelector('employe-schooltype-to-category-item-card').FnRefresh();

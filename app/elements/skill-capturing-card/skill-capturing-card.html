@@ -1,0 +1,94 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="skill-capturing-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .dialog-right-position {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+    .dialog-right-position::shadow #scroller {
+      width: 500px;
+      height: 350px;
+       } 
+    </style>
+     <div width=10%>
+   <paper-input  capterid={{conceptname}} value={{conceptname}} 
+       conceptid={{conceptid}} readonly>
+          <paper-icon-button icon="add" suffix on-click="fnaddskil">
+           </paper-icon-button>
+           <paper-icon-button icon="arrow-forward" suffix on-click="fngetskill1">
+        </paper-icon-button>
+   
+         </paper-input>
+     </div>
+      <paper-dialog  id="skillposition"  heading="Custom Dialog Positioning" class="dialog-right-position"  entry-animation="scale-up-animation" exit-animation="fade-out-animation"   transition="paper-dialog-transition-bottom">
+          <paper-input label="skill" value="{{skillvalue}}"></paper-input>
+        <center><paper-button style="background-color:black;color:white"
+        on-click="fnsetconcept">submit</paper-button></center>
+      </paper-dialog>
+ <paer-input value="{{skillid}}" hidden></paer-input>
+     <teacher-book-service-card id="bookservice"></teacher-book-service-card>
+  
+     <iron-ajax
+        method="post"
+        id="skillgetcapturevalueajax"
+        url="{{skillgetcapturevalueurl}}"
+        params="{{skillgetcapturevalueparam}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="skillgetcapturevalueResponse"
+        debounce-duration="300">
+    </iron-ajax> 
+
+  </template>
+  <script>
+  (function(){
+    'use strict';
+var skillid;
+    Polymer({
+      is: 'skill-capturing-card',
+
+   fnaddskil:function(e){
+     this.$.bookservice.skillseq();
+     this.$.skillposition.open();
+    //alert(this.conceptid+this.skillvalue+this.skillid);
+    },
+    fngetskill1:function(e){
+         this.skillgetcapturevalueurl=sessionStorage.getItem("addrinfo")+"/skillgetcapturevalue-service";
+          var obj={"concept_id":""};
+             obj.concept_id=this.conceptid;
+         this.skillgetcapturevalueparam=obj;
+              alert(JSON.stringify(obj));
+
+     this.$.skillgetcapturevalueajax.generateRequest();
+   // skillgetcapturevalue(this.conceptid)
+    },
+    fnsetconcept:function(e){
+
+      alert(this.conceptid+this.skillvalue+skillid);
+     this.$.bookservice.skillcapturevalue(this.conceptid,this.skillvalue,skillid);
+     this.skillvalue="";
+  },
+  skillidgen:function(e){
+    skillid=e;
+  },
+
+  skillgetcapturevalueResponse:function(e){ 
+     var res=e.detail.response.returnval;
+            alert(JSON.stringify(res));
+           // this.skillarr=res;
+     document.querySelector('teacher-book-refernce-card').skillarr=res;
+   
+  },
+ 
+    });
+  })();
+  </script>
+</dom-module>
