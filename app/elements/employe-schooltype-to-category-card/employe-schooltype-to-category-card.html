@@ -91,7 +91,7 @@
            /*color:  #0000ff;*/
            color: #6699ff;
           margin-left: 15%;
-          margin-top: -43% !important;
+          margin-top: 4% !important;
       }
         #subzz1 paper-button
       {
@@ -108,8 +108,9 @@
         /*color:  #0000ff;*/
         color: #6699ff;
         margin-left: 77%;
-        margin-top: -43%;
+        margin-top: 4% !important;
       }
+
 
       #previousid1,#Nextid1
       {
@@ -169,6 +170,20 @@
         <paper-button on-click="grnerate">Generate</paper-button>
       </div>
    </div>
+
+
+    <div id="z11">
+             <paper-buuton   on-click="fnpriver">
+             <a href="#"  style="font-size: 19px;font-style: oblique;"><b>Previous</b></a>
+             </paper-buuton>
+      </div>
+      <div id="z22">
+           <paper-buuton   on-click="fnnext">
+             <a href="#" style="font-size: 19px;font-style: oblique;"><b>Next</b></a>
+             </paper-buuton>
+      </div>
+
+
 
      <div id="talhidn" hidden$="{{hidenewgridd}}">
         <!-- <div class="list-group col-sm-12 panel-body form-category"> -->  
@@ -241,21 +256,7 @@
         </center>    
      </paper-dialog>
      
-      
-        <div id="z11">
-             <paper-buuton   on-click="fnpriver">
-             <a href="#"  style="font-size: 19px;font-style: oblique;"><b>Previous</b></a>
-             </paper-buuton>
-      </div>
-      
-      <div id="z22">
-       
-           <paper-buuton   on-click="fnnext">
-             <a href="#" style="font-size: 19px;font-style: oblique;"><b>Next</b></a>
-             </paper-buuton>
-          
-      </div>
-      
+    
 
     <demosumbit-card id="mydialog"></demosumbit-card>
     
@@ -307,6 +308,7 @@
           if(sessionStorage.getItem("curr_sess_loggedschoolcategory_id")=='category1')
           {
                   this.$.empLanguageprefernce.hidden=false;
+                  //this.hidegenerate=false;
                   
           }
           else
@@ -380,7 +382,7 @@
           },
       setempsubject1:function(arr){
         dbsetsubjectarr=arr;
-        this.hidegenerate=false;
+        this.hidegenerate=true;
         this.$.z11.hidden=true;
         this.$.z22.hidden=false;
         this.hidenewgridd=false;
