@@ -446,6 +446,14 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
                <h4>Student To Section Report</h4>
             </paper-button>
        </div>
+
+        <!-- <div class="container1"> -->
+        <div class="card" hidden$="{{captureReport}}">
+          <paper-button on-click="CaptureReportads" no ink><img src="../../images/active1.jpg" height="180px" width="180px">
+            <h4>Books</h4>
+          </paper-button>
+        </div>
+<!-- </div> -->
      
  
 
@@ -494,6 +502,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
     <mapping-service id="mappingservice"></mapping-service>
     <employee-report-service id="empservice"></employee-report-service>
     <student-report-service id="reportservice"></student-report-service>
+    <teacher-book-service-card id="bookservice"></teacher-book-service-card>
 
   </template>
   <script>
@@ -531,6 +540,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.roletogrademapping=true;
         this.empreportdetails=true;
         this.studentsectionreport=true;
+        this.captureReport=true;
        }, 
 
       FnSelectacademicyear:function(e)
@@ -565,7 +575,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');
           document.querySelector('Student-to-section-mapping-card').funnstudent(); 
-          //document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
+          document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
           {
@@ -647,6 +657,17 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
             document.querySelector('home-page').setPage('student-to-section-report',''); 
             this.$.reportservice.gradeService();
          } 
+
+         if(localStorage.getItem('curr_sess_loggedassesmenttype')=="captureReport") 
+         {
+        //   alert('1'); 
+          document.querySelector('app-card').setPage('homepage','');
+          document.querySelector('home-page').setPage('teacher-book-refernce-card','');
+          this.$.bookservice.capterseq();
+         // this.$.bookservice.conceptseq();
+        //  this.$.bookservice.getcaptervalue();
+         } 
+
              this.$.cdialog.close();
          
       },
@@ -749,6 +770,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            this.roletogrademapping=false;
            this.empreportdetails=false;
            this.studentsectionreport=false;
+           this.captureReport=false;
            }
        if(sessionStorage.getItem("curr_sess_loggedroleid")=='superadmin')
           {
@@ -1044,7 +1066,13 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
            document.querySelector('student-to-section-report').Fnrefresh();
            document.querySelector('student-to-section-report').ready();
            this.$.cdialog.toggle();
-      }
+      },
+       CaptureReportads:function(e){
+       // alert('1');
+           localStorage.setItem('curr_sess_loggedassesmenttype','captureReport');
+            this.$.bookservice.teacherbookref1();
+            this.$.cdialog.toggle();   
+          },
 
 
     });

@@ -210,6 +210,10 @@
         <section data-category="student-to-section-report">
           <student-to-section-report></student-to-section-report>
         </section>
+
+        <section data-category="teacher-book-refernce-card">
+          <teacher-book-refernce-card></teacher-book-refernce-card>
+        </section>
         </iron-pages>
     </div>    
 
@@ -693,6 +697,15 @@
        document.querySelector('studentsectionwise-report').Fnrefresh();
   
     }
+
+
+    if(localStorage.getItem("curr_sess_page")=="teacher-book-refernce-card")
+      {
+      this.page="teacherhomecard";
+     // document.querySelector('teacherhome-card').FnRefresh();
+     // document.querySelector('student-allow-item-card').FnRefresh();
+
+      }
 
   },
 
