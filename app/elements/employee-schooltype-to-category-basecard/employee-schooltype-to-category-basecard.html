@@ -42,8 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      for(var i=0;i<getgradenames.length;i++){
       if(getgradenames[i].id==this.stuid){ 
          temparr.push(getgradenames[i]);
+         }
        }
-     }
        schooltype=sessionStorage.getItem("curr_sess_loggedschooltupes");
        this.$.uiservice.fnsetstudentinfo(temparr,this.stugradeid,schooltype);
        this.$.mydialog.toggleDialog();
