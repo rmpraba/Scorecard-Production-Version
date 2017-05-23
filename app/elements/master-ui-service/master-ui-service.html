@@ -2009,7 +2009,8 @@ fnschoolemployeerole:function( employeeid,employeename){
      empschooltypeResponse:function(e){
           var res=e.detail.response.returnval;
           //alert(JSON.stringify(res));
-         document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;          
+         document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;         
+         document.querySelector('employee-report-card').schooltypearr(res);
       },
  terminsert:function(termids,termgrade,noofdays)
        {
