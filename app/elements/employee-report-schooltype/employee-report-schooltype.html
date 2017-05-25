@@ -50,6 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var sclltypearr=[];
     var temp1=[];
     var tempallzz=[];
+    var emp1select=[];
     Polymer({
       is: 'employee-report-schooltype',
 
@@ -102,17 +103,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      emplschooltypeResponse:function(e)
      {
         var res=e.detail.response.returnval;
-        //alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
          for(var i=0;i<res.length;i++)
           {
-            var obj={"id":"","emp_name":"","grade_id":"","grade_name":""};
+            var obj={"id":"","name":"","grade_id":"","grade_name":""};
             obj.id=res[i].id;
-            obj.emp_name=res[i].emp_name;
+            obj.name=res[i].name;
             obj.grade_id=res[i].grade_id;
             obj.grade_name=res[i].grade_name;
 
             //obj.subject=temp1;
-           // alert(JSON.stringify(obj));
+                     //alert(JSON.stringify(obj));
              temp1.push(obj);
             var obj1={"subject_name":"","subject_id":"","section_id":""};
             obj1.subject_name=res[i].subject_name;
@@ -120,38 +121,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj1.section_id=res[i].section_id;
             temp1.push(obj1);
                
-           // alert(JSON.stringify(obj1));
+          // alert(JSON.stringify(temp1));
             
             for(var j=i+1;j<res.length;j++)
             {
              // alert(res.length);
-             // alert(JSON.stringify(emp1[i].grade_name));
-             // alert(JSON.stringify(emp1[j].grade_name));
-                if(res[i].grade_name==res[j].grade_name)
+            // alert(JSON.stringify(res[i].grade_name));
+             //alert(JSON.stringify(res[j].grade_name));
+                if(res[i].id==res[j].id)
                 {
+                  if(res[i].grade_name==res[j].grade_name)
+                  {
+                 // alert(JSON.stringify(res[i].grade_name)+" "+(res[j].grade_name));
                  
                 var obj2={"subject_name":"","subject_id":"","section_id":""};
                 obj2.subject_name=res[j].subject_name;
                 obj2.subject_id=res[j].subject_id;
                 obj2.section_id=res[j].section_id;
                 temp1.push(obj2);
-                // alert(1111);
-               //  alert(JSON.stringify(temp1));
+                //alert(1111);
+              alert(JSON.stringify(temp1));
                 res.splice(j,1);
                j--;
+             }
               }
 
             }
               obj.subject=temp1;
               tempallzz.push(obj);
-            //   alert(JSON.stringify(tempall));
                temp1=[];
-
-
         }
-           // this.emp1aaaa=tempall;
-             
+       // this.idSsa=tempallzz;
+       //alert(JSON.stringify(this.idSsa));
         document.querySelector('employee-report-card').emp1select=tempallzz;
+        //alert(JSON.stringify(tempallzz));
           tempallzz=[];
        document.querySelector('employee-report-card').fnvisible();
      }

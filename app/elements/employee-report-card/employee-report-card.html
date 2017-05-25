@@ -185,7 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <template is="dom-repeat" items="{{emp1select}}" as="view">
           <tr>
            <td>{{view.id}}</td>
-           <td>{{view.emp_name}}</td>
+           <td>{{view.name}}</td>
            <td>{{view.grade_name}}</td>
              <td>   
               <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  
@@ -246,6 +246,7 @@ var tableToExcel = (function() {
                 this.$.tabledetails.hidden=true;
                 this.$.tabledetails2.hidden=true;
                 this.$.emphide.hidden=true;
+                chk1s.checked=false;
                 //this.$.id11.hidden=true;
                 //this.hideschooltype=true;
 
@@ -330,7 +331,6 @@ var tableToExcel = (function() {
             //   alert(JSON.stringify(tempall));
                temp1=[];
 
-
         }
             this.emp1aaaa=tempall;
              tempall=[];
@@ -372,7 +372,9 @@ var tableToExcel = (function() {
            document.querySelector('employee-report-schooltype').fnrefresh1();
 
         }
-      }
+        
+      },
+     
 
     });
   })();
