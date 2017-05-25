@@ -103,12 +103,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      emplschooltypeResponse:function(e)
      {
         var res=e.detail.response.returnval;
-        alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
          for(var i=0;i<res.length;i++)
           {
-            var obj={"id":"","name":"","grade_id":"","grade_name":""};
+            var obj={"id":"","emp_name":"","grade_id":"","grade_name":""};
             obj.id=res[i].id;
-            obj.name=res[i].name;
+            obj.emp_name=res[i].emp_name;
             obj.grade_id=res[i].grade_id;
             obj.grade_name=res[i].grade_name;
 
@@ -140,7 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 obj2.section_id=res[j].section_id;
                 temp1.push(obj2);
                 //alert(1111);
-              alert(JSON.stringify(temp1));
+              //alert(JSON.stringify(temp1));
                 res.splice(j,1);
                j--;
              }
