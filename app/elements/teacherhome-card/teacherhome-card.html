@@ -1070,6 +1070,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        CaptureReportads:function(e){
        // alert('1');
            localStorage.setItem('curr_sess_loggedassesmenttype','captureReport');
+           document.querySelector('teacher-book-refernce-card').fnrefresh();
             this.$.bookservice.teacherbookref1();
             this.$.cdialog.toggle();   
           },
