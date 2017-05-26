@@ -1,12 +1,4 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
@@ -28,18 +20,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     width: 327px;
     height: 300px;
    }
-   section p{
+   section p{    
    
    }
    .cadcdd{
-    top: 200px;
-    right: 65%;
-    width: 327px;
-    height: 300px;
-    margin-top: 27%;
-    /* position: fixed;
-    */overflow: auto;
+ 
    }
+   .hs-inner{
+  padding: 30px 20px 10px 377px;
+    @apply(--layout-horizontal);
+    
+}
+.hs-inner p{
+  font-size: 18px;
+  line-height: 24px;
+  text-align: justify;
+  position: relative;
+  padding: 15px 0px;
+  text-shadow: 1px 0px 1px rgba(255, 255, 255, 0.8);
+}
+/*h2{
+ padding: 30px 20px 10px 350px;
+   
+}*/
+.hs-inner p:first-letter{
+  font-size: 28px;
+}
     .cadcdd1{
     top: 200px;
     right: 90% !important;
@@ -79,30 +85,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-icon-button>
          </paper-input>
       </div>
-       <section>
-          <h2 style="margin-left:8%;margin-top:1%;position:fixed;"> CHAPTER NAME</h2>
-          <div class="cadcdd"> 
-           <template is="dom-repeat" items="{{capterarr}}" as="view">
-              <teacher-book-refernce-item-card capter="{{view.capter}}" capterid="{{view.capter_id}}"></teacher-book-refernce-item-card>
-          </template>
-       </div> 
-      </section>
-     
-      <h2 style="margin-left: 38%;margin-top: -22%;position:fixed;">CONCEPT NAME</h2>
-       <div class="cadcdd1">
-       <template is="dom-repeat" items="{{conceptarr}}" as="s">
-          <skill-capturing-card conceptid="{{s.concept_id}}" conceptname="{{s.concept}}"></skill-capturing-card>
-      </template>
-     </div>
-      <div style="margin-left: 72%;margin-top: -29%;position: fixed;">
-          <h2> SKILL NAME</h2>
-          <template is="dom-repeat" items="{{skillarr}}" as="r">
-         <h2>*{{r.skill}}</h2>
-         </template>
-         </div>
-       
+          <center><h2>CHAPTER NAME</h2></center>
+  <div class="hs-inner">
+    <table>
+        <template is="dom-repeat" items="{{capterarr}}" as="view">
+        <tr>
+        <template is="dom-repeat" items="{{view}}" as="v">
+               
+               <td>
+                  <p><teacher-book-refernce-item-card capter="{{v.capter}}" capterid="{{v.capter_id}}"></teacher-book-refernce-item-card></p>
+             </td>
+                
+        </template>
+        </tr>
+       </template>
+       </table>
+      </div>
     <teacher-book-service-card id="bookservice"></teacher-book-service-card>
-
   </template>
   <script>
   (function() {
@@ -110,7 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 var k;
     Polymer({
       is: 'teacher-book-refernce-card',
-
+/*set1Page:function(page1){
+   this.page1=page1;
+},*/
     fnsetgrade:function(e){
      this.gradeid=e.target.selectedItem.value;
       sessionStorage.setItem("grdeidz",this.gradeid);
@@ -128,8 +129,12 @@ var k;
     
     },
      fnset:function(e){
+       if(this.captername==""){
+      alert("Please enter the value");
+       }else{
      this.$.bookservice.fnsetcapture(this.gradeid,this.subjectid,this.captername,this.capterid);
-     //this.captername="";
+     this.captername="";
+     }
        },
 
    addconcept:function() {
