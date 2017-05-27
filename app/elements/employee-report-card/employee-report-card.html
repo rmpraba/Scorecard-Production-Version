@@ -59,7 +59,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border-radius: 4%;
       font-family: Calibri;
       font-size: 17px;
-      margin-left: 40%;
+      margin-left: 44%;
+      }
+      #btn2
+      {
+      width: 10%;
+      background: #252626;
+      color: white;
+      margin-top: 5%;
+      height: 30px;
+      border-radius: 4%;
+      font-family: Calibri;
+      font-size: 17px;
+      margin-left: 44%;
       }
       #td1{
         padding:2%;
@@ -142,6 +154,21 @@ var tableToExcel = (function() {
              {
                 this.$.btn.hidden=true;
                 this.$.tabledetails.hidden=true;
+                this.$.tabledetails2.hidden=true;
+                this.$.emphide.hidden=true;
+                chk1s.checked=false;
+                //this.$.id11.hidden=true;
+                //this.hideschooltype=true;
+
+             },
+              fnvisible:function()
+             {
+              //alert("view....");
+                this.$.btn2.hidden=false;
+                this.$.tabledetails2.hidden=false;
+
+                //this.hideschooltype=true;
+
 
              },
             Fnemp:function(e)
@@ -214,7 +241,6 @@ var tableToExcel = (function() {
             //   alert(JSON.stringify(tempall));
                temp1=[];
 
-
         }
             this.emp1aaaa=tempall;
              tempall=[];
@@ -233,6 +259,13 @@ var tableToExcel = (function() {
        }
         
 
+<<<<<<< HEAD
+=======
+        }
+
+      },
+     
+>>>>>>> origin/master
 
     });
   })();

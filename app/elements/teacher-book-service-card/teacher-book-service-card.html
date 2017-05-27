@@ -24,7 +24,7 @@
         on-response="bookrefsectionResponse"
          debounce-duration="300">
         </iron-ajax>  
-        <iron-ajax
+        <iron-ajax  
         method="post"
         id="fnsetcaptureajax"
         url="{{fnsetcaptureurl}}"
@@ -114,7 +114,7 @@
    
       fnsetcapture:function(gradeid,subjectid,captername,capterid){
     this.fnsetcaptureurl=sessionStorage.getItem("addrinfo")+"/bookrefsectioncapter-service";
-     var obj={"school_id":"","gradeid":"","subjectid":"","academic_year":"","capter_id":"","capter":""};
+     var obj={"school_id":"","gradeid":"","subjectid":"","academic_year":"","capter_id":"","capter":""};  
       obj.gradeid=gradeid;
       obj.subjectid=subjectid;
       obj.capter_id=capterid;
@@ -130,7 +130,7 @@
 
       fnsetcaptureResponse:function(e){
        var res=e.detail.response.returnval;
-            alert(JSON.stringify(res));
+         //alert(JSON.stringify(res));
    
          if(res=="Inserted"){
           this.capterseq();
@@ -151,9 +151,27 @@
     
       },
       getcaptervalueResponse:function(e){
-document.querySelector('teacher-book-refernce-card').capterarr=e.detail.response.returnval;
+    var res=e.detail.response.returnval;
+        //   alert(JSON.stringify(res));
   
-         alert(JSON.stringify(e.detail.response.returnval));
+         var temp=[];
+         var overall=[];
+       //  var temp1=[];
+        for(var l=0;l<res.length;l++){
+        temp.push(res[l]);
+         if(l!=0&&l%4==0){
+            overall.push(temp);
+            temp=[];
+         }
+        }
+        overall.push(temp);
+
+                // alert(JSON.stringify(temp));
+                // alert(JSON.stringify(overall));
+
+document.querySelector('teacher-book-refernce-card').capterarr=overall;
+
+  
      
       },
       capterseq:function()
@@ -190,7 +208,7 @@ document.querySelector('teacher-book-refernce-card').capterarr=e.detail.response
            //  alert(JSON.stringify(arr[0].concept_prefix+arr[0].concept_sequence));
       var val1=arr[0].concept_prefix+arr[0].concept_sequence;
       alert(val1);
-       document.querySelector('teacher-book-refernce-item-card').conceptidget(val1);
+     document.querySelector('teacher-book-chapter-refernce-card').conceptidget(val1);
        
       },
        skillseq:function()
@@ -232,11 +250,10 @@ document.querySelector('teacher-book-refernce-card').capterarr=e.detail.response
 
          var res=e.detail.response.returnval;
             alert(JSON.stringify(res));
-   
-         if(res=="Inserted"){
+      if(res=="Inserted"){
           this.conceptseq();
-       //   this.getconceptvalue();
-         }
+        document.querySelector('teacher-book-refernce-item-card').fngetconceptvalue();
+       }
 
       },
       skillcapturevalue:function(conceptid,skillvalue,skillid){

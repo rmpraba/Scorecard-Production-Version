@@ -575,7 +575,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');
           document.querySelector('Student-to-section-mapping-card').funnstudent(); 
-          
+
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
           {
@@ -598,8 +598,8 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         if(localStorage.getItem('curr_sess_loggedassesmenttype').trim()=="Scorecard") 
          {
           // alert('in');
-          document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('scorecard','');
+          document.querySelector('app-card').setPage('homepage','');
          }  
          if(localStorage.getItem('curr_sess_loggedassesmenttype')=="PreEntry") 
          {
@@ -1072,6 +1072,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
        CaptureReportads:function(e){
        // alert('1');
            localStorage.setItem('curr_sess_loggedassesmenttype','captureReport');
+           document.querySelector('teacher-book-refernce-card').fnrefresh();
             this.$.bookservice.teacherbookref1();
             this.$.cdialog.toggle();   
           },
