@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-        <iron-ajax          
+        <iron-ajax        
         id="Selectempajax"
         url="{{Selectempurl}}"
         params="{{Selectempparam}}"
@@ -26,17 +26,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         content-type="application/json"
         method="post"
         on-response="SelectempResponse"
-        debounce-duration="300"
-        > 
-      
-       <iron-ajax          
-        id="Selectempschooltypeajax"
-        url="{{Selectempschooltypeurl}}"
-        params="{{Selectempschooltypeparam}}"
-        handle-as="json"
-        content-type="application/json"
-        method="post"
-        on-response="SelectempschooltypeResponse"
         debounce-duration="300"
         > 
       
@@ -67,26 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var emply=e.detail.response.returnval;
         document.querySelector('employee-report-card').selectemparry=emply;
       },
-
-      
-
-      Selectempschooltype:function()
-      {
-       // alert("check");
-        this.Selectempschooltypeurl=sessionStorage.getItem("addrinfo")+"/Selectempschooltype-service";
-        var obj={"school_id":""};
-         obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
-        this.Selectempschooltypeparam=obj;
-        this.$.Selectempschooltypeajax.generateRequest();
-       },
-       SelectempschooltypeResponse:function(e)
-       {
-         var res=e.detail.response.returnval;
-         // alert(123);
-         // alert(JSON.stringify(res));
-         document.querySelector('employee-report-card').schooltypearr=res;
-      
-       }
      
     
     });

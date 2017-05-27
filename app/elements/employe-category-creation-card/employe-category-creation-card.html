@@ -95,15 +95,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      margin-left: 7em;
     margin-top: 4em;
     }
+    .spcid
+    {
+      margin-left: 71%;
+      margin-top: 20%;
+    }
     </style>
-
-
     <div>
       <CENTER>
         <h3><b>EMPLOYEE TO GRADE SECTION MAPPING</b></h3>
       </CENTER>
     </div>
-
       <div class="outercard">  
           <div class="catcard"> 
             <div>
@@ -115,20 +117,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </template> 
              </div> 
           </div>       
-    
-            <div class="newcard">
+            <div class="newcard" id="hiddennewcard">
               <paper-dropdown-menu  label="Select the Employee">
                 <paper-menu id="employeeidzzzzzz" class="dropdown-content"   on-iron-select="fnemployeename">
                   <template is="dom-repeat" items="{{empschoolnamesarr}}">
                     <paper-item value="{{item.emp_id}}">{{item.emp_name}}</paper-item>
                   </template>    
                 </paper-menu>
-              </paper-dropdown-menu>
+              </paper-dropdown-menu> 
             </div>  
-       
+           <div class="spcid">
+            <label> OR</label></br>
+            <paper-checkbox id="spempchecked" on-change="fnselectempcheck"></paper-checkbox>
+            <label>Search Specific Employee</label>  
+            </div>
           </div>  
-        
-   
+          <div id="empid">
+            <paper-input  label="Employee Name" is="" value="{{value}}" on-keydown="FnSearchEnquiry"></paper-input>
+                   <paper-listbox class="dropdown-content" id="searchempinput" on-iron-select="FnSelectEnquiry">
+                   <template is="dom-repeat" items="{{itemArray}}" as="item">
+                   <paper-item value="{{item.emp_id}}">{{item.itemdes}}</paper-item>
+                   </template>
+                   </paper-listbox>
+          </div>
       <div id="newwgridd">
         <table width="100%" width="100%"  border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
             <tr style="border-bottom: 1px solid #ccc; line-height: 1.8em;">
@@ -157,7 +168,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                        </template>  
                  
                     </tr>  
-                    </table>  
+                    </table>
                     </td>
                   <td width="10%">
                       <emp-grade-get-based-card classid="{{view.gradename1}}{{s.subname}}" employeeidz="{{empselectid}}"></emp-grade-get-based-card>
@@ -210,15 +221,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   var empsectionarr1=[];
   var sectionnamearr1=[];
   var overall11=[];
-  
+  var item=[];
+  var empselectid;
     Polymer({
       is: 'employe-category-creation-card',
       fnnempgrade:function(e){
         this.$.newwgridd.hidden=true;
+
+        },
+        fnemp:function(e)
+        {
+          this.$.empid.hidden=true;
+        },
+        fnhidden:function(e)
+        {
+          this.$.newwgridd.hidden=true;
         },
      
         fnschoolempnames:function(arr){
-           //  alert(JSON.stringify(arr));
+         //  alert(JSON.stringify(arr));
              this.empschoolnamesarr=arr;
          //    alert("1");
       },  
@@ -227,7 +248,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.empschoolnamesarr=arr;
         },  
         fnschoolempgrade:function(arr){
-          //alert(JSON.stringify(arr));
+       //   alert(JSON.stringify(arr));
            sectionnamearr1=arr;
             
 
@@ -286,9 +307,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        document.querySelector('emp-grade-get-card').Fngradecleansection();  
       },
      FnRefresh:function(e){
-if(document.querySelector('#employeeidzzzzzz').selected!=-1){
-      document.querySelector('#employeeidzzzzzz').selected=-1;  
-  
+       
+       this.$.spempchecked.checked=false;
+       this.querySelector('#searchempinput').style.visibility='hidden'
+       this.$.newwgridd.hidden=true;
+       this.itemArray=[];
+       this.value="";
+      if(document.querySelector('#employeeidzzzzzz').selected!=-1){
+      document.querySelector('#employeeidzzzzzz').selected=-1;   
    }
      },
       fnemployeenamezResponse:function(e){
@@ -485,17 +511,118 @@ if(document.querySelector('#employeeidzzzzzz').selected!=-1){
 
         this.$.uiservice.empgetsectionvalues(this.empselectid);
       },
-
-/*
-      fnnsavezz:function()
+       fnempnamesarr:function(array)
+        {
+           
+           item=array;
+          // alert(JSON.stringify(item));
+        },
+      fnselectempcheck:function(e)
       {
-        this.$.mydialog.toggleDialog();
+         if(spempchecked.checked==true)               
+          {
+             //alert(66666);
+             this.$.hiddennewcard.hidden=true;
+             this.$.empid.hidden=false;
+             this.$.newwgridd.hidden=false;
+             document.querySelector('#employeeidzzzzzz').selected=-1;
+            // this.fnempnamesarr();
+              // alert(empnamesarr);
+          }
+          else if(spempchecked.checked==false){
+           
+            this.$.empid.hidden=true;
+            this.$.hiddennewcard.hidden=false;
+            this.$.newwgridd.hidden=true;
+            this.value="";
+          }
+          else{}
       },
-      fnninputzz:function()
-      {
-        this.$.mydialog.toggleDialog3();
-      }*/
+       
+       FnSearchEnquiry:function(e){
+      if(e.keyCode==13|| e.keyCode==40)
+      this.querySelector('#searchempinput').focus();
+      var arr=[];
+      arr.push({"itemdes":"-----Select-----"});
+      this.querySelector('#searchempinput').style.visibility='visible';
+      if(e.keyCode==8){
+        this.itemflag="true";
+        this.itemval="";
+        //alert('yes');
+        var len=(this.value).length;
+        if(len<=1){
+          this.querySelector('#searchempinput').style.visibility='hidden';
+          this.itemArray="";
+          this.itemval="";
+        }
+        if(len>1){
+          this.querySelector('#searchempinput').style.visibility='visible';
+          var backsubval=(((this.value).substring(0,(len-1))).trim()).toUpperCase();
+          for(var i=0;i<item.length;i++)
+          {
+            // alert(item[i].emp_name);
+            var subval=((item[i].emp_name).trim()).substring(0,backsubval.length);
+            if((item[i].emp_name).toUpperCase().indexOf((this.value).toUpperCase())!=-1)
+            {
+              var obj={"itemdes":"","emp_id":""};
+              obj.itemdes=item[i].emp_name;
+              obj.emp_id=item[i].emp_id;
+              arr.push(obj);
+            }
+          }
+          this.itemArray=arr;
+        }
+      }
+      if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39){
+        if(this.itemflag=="true") {
+          this.itemval = (this.value).toUpperCase()+String.fromCharCode((e.keyCode)).toUpperCase();
+          this.itemflag="false";
+        }
+        else
+        this.itemval = this.value +String.fromCharCode((e.keyCode));
+        if(this.itemval.length>0)
+        {
+          for(var i=0;i<item.length;i++)
+          {
+            var subval=((item[i].emp_name).trim()).substring(0,this.itemval.length);
+            if((item[i].emp_name).toUpperCase().indexOf((this.itemval).toUpperCase())!=-1)
+            {
+              var obj={"itemdes":"","emp_id":""};
+              obj.itemdes=item[i].emp_name;
+              obj.emp_id=item[i].emp_id;
+              arr.push(obj);
+            }
+          }
+          if(arr.length>0)
+            this.itemArray=arr;
+          else
+          {
+            var obj={"itemdes":"","emp_id":""};
+            obj.itemdes="No items found";
+            arr.push(obj);
+            this.itemArray=arr;
+          }
+        }
+      }
+    },
+    FnSelectEnquiry:function(e){
+    this.querySelector('#searchempinput').style.visibility='hidden';
+    var emp_name = e.target.selectedItem.textContent.trim();
+    this.empselectid= e.target.selectedItem.value.trim();
+    //localStorage.setItem("curr_sess_employeeid",emp_id);
+    //localStorage.setItem("curr_sess_employeename",emp_name);
+    this.itemArray=[];
+    document.querySelector('#searchempinput').selected=-1;
+    this.value=emp_name;
+  // alert(emp_name+" "+this.empselectid);
+       this.f12();
+        this.f11();
+       document.querySelector('emp-grade-get-card').Fngradecleansection();  
+        this.$.uiservice.empgetsectionvalues(this.empselectid);
+       // alert(111);
 
+      },
+   
        });
       
       })();

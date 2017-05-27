@@ -1148,9 +1148,9 @@ Generatesectionid:function()
       this.$.fngetstudentajax.generateRequest();
      },
     fngetstudentResponse:function(e){
-      //  alert('2');
+      alert('2.....');
       var res=e.detail.response.returnval; 
-    //  alert(JSON.stringify(res));
+        alert(JSON.stringify(res));
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
@@ -1199,9 +1199,11 @@ Generatesectionid:function()
         this.FngetStudentpasssectionparam=obj;
      this.$.FngetStudentpasssectionajax.generateRequest();
      },
-  FngetStudentpasssectionResponse:function(e){
+  FngetStudentpasssectionResponse:function(e)
+  {
+    alert('3.......');
       var res=e.detail.response.returnval; 
-      //alert(JSON.stringify(res));
+      alert(JSON.stringify(res));
       document.querySelector('Student-to-section-mapping-card').studentlist(res);
     },
    
@@ -1255,9 +1257,9 @@ Generatesectionid:function()
          this.$.fnretrivestudentajax.generateRequest();
         },
     fnretrivestudentResponse:function(e){
-      //  alert('1');
+     // alert('1.......');
            var res=e.detail.response.returnval; 
-       //      alert(JSON.stringify(res));
+                alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
           document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
   
@@ -1385,6 +1387,7 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       obj.setgradeid=setgradeid;
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
+
       this.tranfersectionparam=obj;
       this.$.tranfersectionajax.generateRequest();
      },  
@@ -1394,6 +1397,8 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
         document.querySelector('student-transfer-grade').tranfersectionarr=res;
      },     
      empgetsectionvalues:function(empselectid){
+      //  alert("get iddddddd");
+       // alert(empselectid);
       this.empgetsectionvaluesurl=sessionStorage.getItem("addrinfo")+"/empgetsectionvalues-service";
       var obj={"school_id":"","empselectid":"","academic_year":"","schooltypeid":""};
       obj.empselectid=empselectid;
@@ -1401,12 +1406,14 @@ this.tranfersectionurl=sessionStorage.getItem("addrinfo")+"/tranfersection-servi
       obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
       obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
       this.empgetsectionvaluesparam=obj;
-     //   alert(JSON.stringify(obj));
+     // alert('00000');
+      //alert(JSON.stringify(obj));
     this.$.empgetsectionvaluesajax.generateRequest();
      },
      empgetsectionvaluesResponse:function(e){
       var res=e.detail.response.returnval;
       if(res!='empty'){
+       // alert(JSON.stringify(res));
       document.querySelector('emp-grade-get-card').empsctionmaping(res);
         
       } 
@@ -2009,8 +2016,7 @@ fnschoolemployeerole:function( employeeid,employeename){
      empschooltypeResponse:function(e){
           var res=e.detail.response.returnval;
           //alert(JSON.stringify(res));
-         document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;         
-         document.querySelector('employee-report-card').schooltypearr(res);
+         document.querySelector('employe-schooltype-to-category-card').getschooltypearr=res;          
       },
  terminsert:function(termids,termgrade,noofdays)
        {

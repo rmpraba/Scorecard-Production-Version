@@ -575,7 +575,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
           document.querySelector('app-card').setPage('homepage','');
           document.querySelector('home-page').setPage('Student-to-section-mapping-card','');
           document.querySelector('Student-to-section-mapping-card').funnstudent(); 
-          document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
+          //document.querySelector('Student-to-section-mapping-card').fnrefresh (); 
           }
           if(localStorage.getItem('curr_sess_loggedassesmenttype')=="employeecreation")
           {
@@ -1002,6 +1002,7 @@ l<link rel="import" href="..\..\bower_components/polymer/polymer.html">
         this.$.uiservice.schoolemployeegrademapping();   
       //document.querySelector('employe-category-creation-card').fncleanbutton(); 
         document.querySelector('employe-category-creation-card').fnnempgrade();
+        document.querySelector('employe-category-creation-card').fnemp();
               this.$.cdialog.toggle();
      
       },

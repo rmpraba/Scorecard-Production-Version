@@ -98,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
            obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           this.empschoolgradezparam=obj;
-     //    alert(JSON.stringify(obj));
+       // alert(JSON.stringify(obj));
 
         this.$.empschoolgradezajax.generateRequest();
    
@@ -112,23 +112,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           obj.schooltypeid=sessionStorage.getItem("curr_sess_loggedschooltupes");
           obj.academic_year=localStorage.getItem("curr_sess_academicyear"); 
           this.empgetnameparam=obj;
-        // alert(JSON.stringify(obj));
+       // alert(JSON.stringify(obj));
           this.$.empgetnameajax.generateRequest();
    
         },
         empgetnameResponse:function(e){
            var res=e.detail.response.returnval;
-          //     alert(JSON.stringify(res));
+            //  alert(JSON.stringify(res));
 
         document.querySelector('employe-category-creation-card').fnschoolempnames(res);
+        document.querySelector('employe-category-creation-card').fnempnamesarr(res);
       },
       empschoolgradezResponse:function(e)
       {
        var res=e.detail.response.returnval;
-
+      //  alert(JSON.stringify(res));
      
         document.querySelector('employe-category-creation-card').fnschoolempgrade(res);
-              }
+        
+
+      }
     });
  
   })();
