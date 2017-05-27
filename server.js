@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'finalscorecarddb1'
+   database : 'master'
 
  });
 
@@ -9161,10 +9161,13 @@ app.post('/skillgetcapturevalue-service',  urlencodedParser,function (req,res)
 
 app.post('/emplschooltype11-service',  urlencodedParser,function (req, res)
 {
-/*  var qur="SELECT distinct(emp_id),emp_name FROM employee_to_school_type_category_mapping  WHERE school_id='"+req.query.school_id+"' and academic_year='"+req.query.academic_year+"' and school_type='"+req.query.schooltypeid+"'";
-*/
 
-var qur="SELECT t.id,UPPER(t.section_id)as section_id,UPPER(e.emp_name)as emp_name,(select UPPER(grade_name) from md_grade g where g.grade_id=t.grade_id)as grade_name,(select UPPER(subject_name) from md_subject b where b.subject_id=t.subject_id)as subject_name FROM mp_teacher_grade t join  employee_to_school_type_category_mapping e on(e.emp_id=t.id) where t.school_type='"+req.query.schooltypeid+"' and t.role_id LIKE '%subject_teacher%'  and t.school_id='"+req.query.school_id+"' and e.school_id='"+req.query.school_id+"' and e.academic_year='"+req.query.academic_year+"' and t.academic_year='"+req.query.academic_year+"'";
+  /* var qur="SELECT s.id,p.grade_id,UPPER(p.grade_name)as grade_name,UPPER(s.section_id) as section_id,r.subject_id,UPPER(r.subject_name) as subject_name,(Select UPPER(emp_name) from md_employee_creation WHERE  emp_id=id and school_id= '"+req.query.school_id+"' and  academic_year='"+req.query.academic_year+"') as name FROM  mp_teacher_grade s join md_grade p on (s.grade_id=p.grade_id) join  md_subject r on(s.subject_id=r.subject_id)  WHERE s.school_id= '"+req.query.school_id+"' and  s.academic_year='"+req.query.academic_year+"' and s.school_type='"+req.query.schooltypeid+"' and s.role_id LIKE '%subject-teacher%'";*/
+
+
+  /*var qur="SELECT distinct(e.emp_id),e.emp_name,e.subjectid,t.grade_id,g.grade_name,t.section_id  from md_employee_subject e  join mp_teacher_grade t on(t.subject_id=e.subjectid) join md_grade g on(t.grade_id=g.grade_id)WHERE e.school_id='"+req.query.school_id+"' and e.school_type_id='"+req.query.schooltypeid+"' and e.academic_year='"+req.query.academic_year+"'  and t.school_id='"+req.query.school_id+"' and t.school_type='"+req.query.schooltypeid+"' and  t.role_id LIKE '%subject_teacher%' and t.academic_year='"+req.query.academic_year+"' ";*/
+
+ var qur="select distinct(t.id),t.subject_id,t.grade_id,UPPER(t.section_id)as section_id,UPPER(e.emp_name)as emp_name,(select UPPER(grade_name) from md_grade g where g.grade_id=t.grade_id)as grade_name,(select UPPER(subject_name) from md_subject  where subject_id=t.subject_id)as subject_name from mp_teacher_grade t join md_employee_creation e  on(e.emp_id=t.id) where t.school_id='"+req.query.school_id+"' and t.academic_year='"+req.query.academic_year+"' and t.school_type='"+req.query.schooltypeid+"' and e.school_id='"+req.query.school_id+"'and e.academic_year='"+req.query.academic_year+"' and t.role_id LIKE '%subject-teacher%'";
 
   console.log("----------Employee with School type----------");
   console.log(qur);
@@ -9176,12 +9179,12 @@ var qur="SELECT t.id,UPPER(t.section_id)as section_id,UPPER(e.emp_name)as emp_na
     {
     if(rows.length>0)
     {
-      console.log(rows);
+      //console.log(rows);
       res.status(200).json({'returnval': rows});
     }
     else
     {
-      console.log(err);
+      //console.log(err);
       res.status(200).json({'returnval': 'invalid'});
     }
     }
