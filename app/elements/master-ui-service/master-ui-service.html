@@ -1104,6 +1104,40 @@
         debounce-duration="300">
       </iron-ajax>
 
+       <iron-ajax
+            id="selectspecificstudentajax"
+            url="{{selectspecificstudenturl}}"
+            params="{{selectspecificstudentparam}}"
+            handle-as="json"
+            content-type="application/json"
+            method="post"
+            on-response="selectspecificstudentResponse"
+            debounce-duration="300">
+      </iron-ajax>
+
+       <iron-ajax
+            id="fnsubmitsectionajax"
+            url="{{fnsubmitsectionurl}}"
+            params="{{fnsubmitsectionparam}}"
+            handle-as="json"
+            content-type="application/json"
+            method="post"
+            on-response="fnsubmitsectionResponse"
+            debounce-duration="300">
+      </iron-ajax>
+            <iron-ajax
+            id="previoussectionajax"
+            url="{{previoussectionurl}}"
+            params="{{previoussectionparam}}"
+            handle-as="json"
+            content-type="application/json"
+            method="post"
+            on-response="previoussectionResponse"
+            debounce-duration="300">
+      </iron-ajax>
+
+
+
       <demosumbit-card id="service1"></demosumbit-card>
       
       </template>
@@ -1148,9 +1182,9 @@ Generatesectionid:function()
       this.$.fngetstudentajax.generateRequest();
      },
     fngetstudentResponse:function(e){
-      alert('2.....');
+     // alert('2.....');
       var res=e.detail.response.returnval; 
-        alert(JSON.stringify(res));
+       // alert(JSON.stringify(res));
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
@@ -1201,9 +1235,9 @@ Generatesectionid:function()
      },
   FngetStudentpasssectionResponse:function(e)
   {
-    alert('3.......');
+   // alert('3.......');
       var res=e.detail.response.returnval; 
-      alert(JSON.stringify(res));
+     // alert(JSON.stringify(res));
       document.querySelector('Student-to-section-mapping-card').studentlist(res);
     },
    
@@ -1259,7 +1293,7 @@ Generatesectionid:function()
     fnretrivestudentResponse:function(e){
      // alert('1.......');
            var res=e.detail.response.returnval; 
-                alert(JSON.stringify(res));
+              //  alert(JSON.stringify(res));
            document.querySelector('Student-to-section-mapping-card').mappingstudent(res);
           document.querySelector('student-list-pass-section-card').studentcheckinfo1(res); 
   
@@ -3314,7 +3348,106 @@ insertschoolTypename:function(schooltypesarr)
         //alert("get working");
         //alert(JSON.stringify(res));
         document.querySelector('working-days-card').scooltypgridval1(res);
-     }      
+     },
+
+      selectspecificstudent:function(admissionnum)
+     {
+        //alert(admissionnum);
+        this.selectspecificstudenturl=sessionStorage.getItem("addrinfo")+"/Fnselectspecific-service";
+        var obj={"schl1":"","admissionnum":"","stugradeid":"","academic_year":""}
+        obj.schl1=sessionStorage.getItem("curr_sess_loggedschoolid");
+        obj.admissionnum=admissionnum;
+        
+        obj.academic_year="AY-"+localStorage.getItem("curr_sess_academicyear");
+        this.selectspecificstudentparam=obj;
+        //alert(JSON.stringify(obj));
+        this.$.selectspecificstudentajax.generateRequest();
+     },
+
+     selectspecificstudentResponse:function(e)
+     {
+   
+        var res=e.detail.response.returnval;
+        //alert(JSON.stringify(res));  
+        
+        document.querySelector('Student-to-section-mapping-card').studentname=res[0].student_name;
+        
+        document.querySelector('Student-to-section-mapping-card').fnenq(res[0].admission_no);
+        
+          var adminsdas=res[0].admission_no;
+          adminsdas=adminsdas.replace(/[^\w\s]/gi, '');
+          
+
+        document.querySelector('Student-to-section-mapping-card').fnadminno(adminsdas);
+        //alert(adminsdas);
+        document.querySelector('Student-to-section-mapping-card').dob=res[0].dob;
+        
+        document.querySelector('Student-to-section-mapping-card').gender=res[0].gender;
+     },
+  
+        fnsubmitsection:function(setsectionarr1,schooltype)
+        {
+            //1alert("testing...");
+            //alert(setsectionarr1);
+            for(var i=0;i<setsectionarr1.length;i++)
+            {
+                var id=setsectionarr1[i].id;
+                var student_name=setsectionarr1[i].student_name;
+                var gender=setsectionarr1[i].gender;
+                var dob=setsectionarr1[i].dob;
+                var class_id=setsectionarr1[i].classid;
+                var grade_id=setsectionarr1[i].grade_id;
+            
+
+                this.fnsubmitsectionurl=sessionStorage.getItem("addrinfo")+"/fnsubmitsection-service";
+                var obj={"scholid1":"","student_name":"","id":"","gender":"","dob":"","academic_year":"","grade_id":"","class_id":"","school_type":""};
+                obj.scholid1=sessionStorage.getItem("curr_sess_loggedschoolid");
+                obj.student_name=student_name;
+                obj.id=id;
+                obj.gender=gender;
+                obj.dob=dob;
+                obj.grade_id=grade_id;
+                obj.class_id=class_id;
+                obj.school_type=schooltype;
+                obj.academic_year=localStorage.getItem("curr_sess_academicyear");
+                this.fnsubmitsectionparam=obj;
+               // alert(JSON.stringify(obj));
+                this.$.fnsubmitsectionajax.generateRequest();
+            }
+        },
+
+        fnsubmitsectionResponse:function(e)
+        {
+            //alert('response............');
+            var res=e.detail.response.returnval;
+            alert(JSON.stringify(res));
+            
+        },
+        previoussection:function(admissionno,gradeid,schooltype)
+        {
+            
+            this.previoussectionurl=sessionStorage.getItem("addrinfo")+"/previoussection-service";
+                var obj={"scholid1":"","admission_no":"","academic_year":"","grade_id":"","school_type":""};
+                obj.scholid1=sessionStorage.getItem("curr_sess_loggedschoolid");
+                obj.admission_no=admissionno;
+                obj.grade_id=gradeid;
+                obj.school_type=schooltype;
+                obj.academic_year=localStorage.getItem("curr_sess_academicyear");
+                this.previoussectionparam=obj;
+                //alert(JSON.stringify(obj));
+                this.$.previoussectionajax.generateRequest();
+        },
+        previoussectionResponse:function(e)
+        {
+            var res=e.detail.response.returnval;
+            //alert(JSON.stringify(res));
+            
+              document.querySelector('specific-student-section-card').getprestudent(res);
+
+        }
+    
+
+     
     });
   })();
   </script>

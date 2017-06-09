@@ -1,3 +1,13 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
   <link rel="import" href="../demosumbit-card/demosumbit-card.html">
 
@@ -6,17 +16,18 @@
   <template>
     <style>  
       :host {   
-        display: block;
-      }
+        display: block;  
+      }   
       .outcard
       {   
         width:25% 
         margin-left:2.0em;
-      }
+      } 
        .innercard{     
       @apply(--layout-horizontal);
        width:100%
-         }
+      /*margin-left:3.5em;*/
+     }
     
      .tt{
       width:70%;
@@ -25,26 +36,27 @@
       {
         background-color: #363636;
         color: #ffffff;                
-        width: 19%;
-        margin-left: 25em;
-        margin-top: 3em;
+        width: 30%;
+        margin-left: 14em;
+        margin-top: 10em;
       }
-
+      
       .section1
       {
             @apply(--layout-horizontal);
             border-radius: 10px;
             border: 1px solid #6699ff;
             padding: 15px;
-            width: 45%;
-            margin-left: 30%;
+            width: 70%;
+            margin-left: 22%;
             margin-top: 3% !important;
-            min-height: 100px; 
+            min-height: 300px; 
       }
       .newcard
       {
-        margin-top: 1em;
-        margin-left: 11em;
+        position: absolute;
+        margin-top: 8em;
+        margin-left: 25em;
       }
 
       #subzz paper-button
@@ -115,8 +127,43 @@
     .createdivv
     {
       @apply(--layout-vertical);
-    }
-   
+      position: absolute;
+      margin-top: 8%;
+      margin-left: 7%;    
+  }
+    .hrspace
+  {
+    padding-left: 9%;
+    padding-top: 4%;
+  }
+  .sectionclass
+  {
+   @apply(--layout-horizontal);
+    width: 100%;
+    margin-left: 20%;
+  }
+    #tdid
+      { 
+      
+         font-family: 'Roboto', 'Noto', sans-serif;
+         -webkit-font-smoothing: antialiased;
+         padding-left:45px;
+     }
+
+     .specific1
+     {
+       width: 69%;
+       margin-left: 18%;
+       margin-top: 4%;
+     }
+      .student1
+      {
+            margin-top: 14%;
+          margin-left: 7%;
+          position: absolute;
+          width: 60%;
+      }
+    
     </style>    
     
     <div>
@@ -125,7 +172,22 @@
       </CENTER>
     </div>
     <div class="section1">
-        <div class="createdivv">
+
+          <div class="hrspace" id="allchk">
+              <paper-checkbox id="chk2" on-change="allstudent"></paper-checkbox>  
+              <label>Select All Student</label>
+          </div>
+            <div class="hrspace" id="id11">
+              <label>OR</label>
+            </div> 
+
+          <div  class="hrspace" id="stdchzz">
+              <paper-checkbox id="chzz" on-change="selectstudentzz"></paper-checkbox>  
+              <label>Select Specific Student</label>
+          </div>
+
+
+        <div class="createdivv" hidden$="{{hideschooltype}}">
           <div>
             <label><b>School Type</b></label>
           </div>
@@ -137,7 +199,7 @@
           </div>      
         </div>       
 
-        <div class="newcard" style="position: absolute;">
+        <div class="newcard" hidden$="{{hidesetgrade}}">
           <paper-dropdown-menu  label="Select the Grade">
             <paper-menu id="empgradeiddd" class="dropdown-content"  on-iron-select="fnselectgrade">
                 <template is="dom-repeat" items="{{setgrade}}">
@@ -146,11 +208,59 @@
             </paper-menu>
           </paper-dropdown-menu>
         </div> 
-          <div class="subbutton" hidden$="{{hidegenerateopt}}">
+
+        <div class="student1" id="studz">
+              <paper-input label="Enter Student Name" is="" value="{{value}}" on-keydown="FnSearchname"></paper-input>
+                <paper-listbox class="dropdown-content" id="studentselect" on-iron-select="FnSelectenq">
+                  <template is="dom-repeat" items="{{itemArray}}" as="item">
+                    <paper-item value="{{item.admission_no}}">{{item.itemdes}}</paper-item>
+                  </template>
+                </paper-listbox>
+          </div>
+
+        <div class="subbutton" hidden$="{{hidegenerateopt}}">
             <paper-button on-click="Generate">Generate</paper-button>
-        </div>   
-       
-      </div>  
+        </div>  
+
+        <!-- <div class="gbutton" hidden$="{{hidegenratebutton}}">
+          <paper-button on-click="Fngenerate">Generate</paper-button>
+        </div> -->
+      </div>           
+
+        <div class="specific1"  hidden$="{{hidespecific}}">
+          <table style="border-collapse: collapse;">            
+            <tr>
+              <th></th>
+              <td style="padding-left: 5%;">
+                <template is="dom-repeat" items="{{sectionsetarr}}" as="view">
+                  <td id="tdid">{{view.section_id}}</td>
+                </template>
+              </td>
+              <th></th>
+            </tr>     
+            <tbody>
+              <td><h4>{{value}}</h4></td>
+                <td width="80%">
+                  <table border="0">
+                  <tr>
+                     <template is="dom-repeat" items="{{sectionsetarr}}" as="s">
+                        <td>
+                          <specific-student-section-card sectionname="{{s.section_id}}" classid="{{s.class_id}}" studentname="{{student_name}}"
+                        id="{{s.class_id}}{{adminno1}}" enqno="{{enqno}}" gender="{{gender}}" dob="{{dob}}" adminno1="{{adminno1}}" stugradeid="{{stugradeid}}"></specific-student-section-card>
+                        </td>
+                      </template>
+                      
+                      <td>
+                        <paper-icon-button icon="save" on-click="fnsubmit"></paper-icon-button>
+                      </td>
+                   </tr>
+                  </table>
+                </td>  
+              </tbody>  
+            </table>
+            
+          </div>    
+                 
 
         <div id="z1">
              <!-- <paper-icon-button  id="prebutton" icon='chevron-left' on-click='fnpriver' ></paper-icon-button>
@@ -195,10 +305,7 @@
                     <paper-tooltip for="btn2">Delete</paper-tooltip></td>
                      </tr>
                    </template>
-
-          </table>   
           </table>   <!-- <re>rww</re> -->
-
         </div>   
 
         <div hidden>
@@ -226,8 +333,9 @@
         <center>
           <paper-button style="color:white;background-color:black;" dialog-confirm autofocus> close</paper-button>
         </center>    
-     </paper-dialog>
-     
+     </paper-dialog> 
+
+   
       <iron-ajax        
         id="counttypevalueajax"
           url="{{counttypevalueurl}}"
@@ -238,6 +346,8 @@
         on-response="counttypevalueResponse"
         debounce-duration="300">
       </iron-ajax>
+
+      
      
      <demosumbit-card id="mydialog"></demosumbit-card>  
       <master-ui-service id="uiservice"></master-ui-service>
@@ -256,6 +366,10 @@
     var kn=[];
     var overall12=[];
     var setarrr=[];
+    var namearr=[];    
+    var admission_no;
+    var studentdetarr=[];
+    var studentsetarr=[];
       
    Polymer({
       is: 'Student-to-section-mapping-card',
@@ -265,11 +379,26 @@
         this.$.z1.hidden=true;
         this.hidenewtabb=true;
         this.hidegenerateopt=true;
-
+        this.$.studz.hidden=true;  
+        this.hidespecific=true;
+        this.hideschooltype=true;
+          this.hidesetgrade=true;
+          this.value="";
+          chzz.checked=false;
+          chk2.checked-false;
+          this.hidespecific=true;
+          //document.querySelector('#studentselect').selected=-1;
+          
          if(document.querySelector('#empgradeiddd').selected!=-1)
         {
          document.querySelector('#empgradeiddd').selected=-1; 
         }
+       },
+       Fnclear:function()
+       {
+        this.value="";
+        this.sectionsetarr="";
+        document.querySelector('#studentselect').selected=-1
        },
 
         counttypevalue:function(e)
@@ -292,6 +421,7 @@
     },
     stupersonalinfo:function(arr){
        studeninfoarr=arr;
+
     },
     passscholtyp:function(value){
       schooltype=value;
@@ -306,7 +436,13 @@
         this.hidenewtabb=false;
         this.$.nextbutton.hidden=false;
         this.hidegenerateopt=true;
-if(overall12!=0){
+        this.$.stdchzz.hidden=false;
+        this.$.chzz.hidden=false;
+        
+        this.hidespecific=true;
+
+    if(overall12!=0)
+    {
            document.querySelector('student-list-pass-section-card').overallinfo(); 
            document.querySelector('student-list-pass-section-card').stupersonalinfo13(kn); 
               kn.splice(obj);     
@@ -324,18 +460,19 @@ if(overall12!=0){
                    // this.setsubjectarr=setarrr;
                 var generatearr=[];
                 var subarr=[];
-                for(var j=0;j<studentlistarr.length;j++){
-                     for(var i=0;i<sectionarr.length;i++){
-                   var class_for_admission=studentlistarr[j].class_for_admission;
-                   var enquiry_no=studentlistarr[j].admission_no;
-                   var student_name=studentlistarr[j].student_name;
-                   var gender=studentlistarr[j].gender;
-                   var dob=studentlistarr[j].dob;
-                   var  admission_no=studentlistarr[j].admission_no;
-                        admission_no = admission_no.replace(/[^\w\s]/gi, '');
+                for(var j=0;j<studentlistarr.length;j++)
+                {
+                     for(var i=0;i<sectionarr.length;i++)
+                     {
+                       var class_for_admission=studentlistarr[j].class_for_admission;
+                       var enquiry_no=studentlistarr[j].admission_no;
+                       var student_name=studentlistarr[j].student_name;
+                       var gender=studentlistarr[j].gender;
+                       var dob=studentlistarr[j].dob;
+                       var  admission_no=studentlistarr[j].admission_no;
+                            admission_no = admission_no.replace(/[^\w\s]/gi, '');
 
-                  
- var obj={"class_for_admission":"","admission_no":"","enquiry_no":"","student_name":"","gender":"","dob":"","section_id":"","class_id":""}; 
+                    var obj={"class_for_admission":"","admission_no":"","enquiry_no":"","student_name":"","gender":"","dob":"","section_id":"","class_id":""}; 
                           var section_id=sectionarr[i].section_id;
                           var class_id=sectionarr[i].class_id;
                            obj.class_for_admission=class_for_admission;
@@ -348,7 +485,7 @@ if(overall12!=0){
                            obj.class_id=class_id;
                             generatearr.push(obj);
                         }
-                        }//alert(JSON.stringify(generatearr));
+                        }//aler9t(JSON.stringify(generatearr));
         var a=[];
        for(var k=0;k<generatearr.length;k++)
        {          var nameobj={"class_for_admission":"","student_name ":"","gender":"","enquiry_no":"","dob":"","admission_no":""};
@@ -500,7 +637,7 @@ if(overall12!=0){
             this.finalarr[i].hidebtn=false;
          }
         this.sectionfullarr=this.finalarr;
-       
+      
        if(k.length!=0){
         
         this.$.uiservice.fnretrivestudent(this.stugradeid);
@@ -850,6 +987,8 @@ for(var j=0;j<l.length;j++){
     },
     Studentsection:function(arr){
      sectionarr=arr;
+     
+     //alert(JSON.stringify(sectionarr));
     },
   /* fnemployeename:function(e){
    
@@ -873,31 +1012,201 @@ for(var j=0;j<l.length;j++){
    fnselectgrade:function(e)
    {
       //alert("grade");
-        this.hidegenerateopt=false;
+        //this.hidegenerateopt=false;
         this.stugradevalue=e.target.selectedItem.textContent.trim(); 
         this.stugradeid=e.target.selectedItem.value;
         this.counttypevalue();
-        this.$.uiservice.fnretrivestudent(this.stugradeid);
+        this.$.uiservice.fnretrivestudent(this.stugradeid); 
         this.$.uiservice.fngetstudent(this.stugradeid,this.stugradevalue);
         this.$.uiservice.FngetStudentpasssection(this.stugradeid,this.stugradevalue);
+        this.$.chzz.hidden=false;
+        this.hidespecific=true;
+        this.value="";
        
         overall=[];
         g=[];
         setarrr=[];
      },
 
-    /* fnsavezz:function()
-     {
-      this.$.mydialog.toggleDialog();
+      selectstudentzz:function(e)
+      {
+        //alert('test');
+
+        if(chzz.checked==true)
+      {
+          this.hideschooltype=false;
+          this.hidesetgrade=false;
+          chk2.checked=false;
+          this.$.studz.hidden=false;
+          this.hidegenerateopt=true;
+          document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
+          document.querySelector('#empgradeiddd').selected=-1;
+
+
+      }
+      else
+      {
+          this.$.studz.hidden=true; 
+         this.hideschooltype=true;
+          this.hidesetgrade=true;
+          this.hidegenratebutton=true;
+
+      }
+      },
+
+      selectname:function(name1)
+      {
+        //alert(JSON.stringify(name1));
+        namearr=name1;
+      },
+
+     
+       FnSearchname:function(e)
+      {
+
+      if(e.keyCode==13|| e.keyCode==40)
+      this.querySelector('#studentselect').focus();
+      var arr=[];
+      //alert(arr.push({"itemdes":"-----Select-----"}));
+      arr.push({"itemdes":"-----Select-----"});
+      //alert(arr);
+      this.querySelector('#studentselect').style.visibility='visible';
+      if(e.keyCode==8)
+      {
+        this.itemflag="true";
+        this.itemval="";
+        //alert('yes');
+        var len=(this.value).length;
+        if(len<=1)
+        {
+          this.querySelector('#studentselect').style.visibility='hidden';
+          this.itemArray="";
+          this.itemval="";
+        }
+        if(len>1)
+        {
+          this.querySelector('#studentselect').style.visibility='visible';
+          var backsubval=(((this.value).substring(0,(len-1))).trim()).toUpperCase();
+          for(var i=0;i<namearr.length;i++)
+          {
+            //alert(item[i].student_name);
+            var subval=((namearr[i].student_name).trim()).substring(0,backsubval.length);
+            if((namearr[i].student_name).toUpperCase().indexOf((this.value).toUpperCase())!=-1)
+            {
+              var obj={"itemdes":"","enquiry_no":""};
+              obj.itemdes=namearr[i].student_name;
+              obj.enquiry_no=namearr[i].admission_no;
+              arr.push(obj);
+            }
+          }
+          this.itemArray=arr;
+        }
+      }
+      if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39)
+      {
+        if(this.itemflag=="true") 
+        {
+          this.itemvawwl = (this.value).toUpperCase()+String.fromCharCode((e.keyCode)).toUpperCase();
+          this.itemflag="false";
+        }
+        else
+        this.itemval = this.value +String.fromCharCode((e.keyCode));
+        if(this.itemval.length>0)
+        {
+          for(var i=0;i<namearr.length;i++)
+          {
+            var subval=((namearr[i].student_name).trim()).substring(0,this.itemval.length);
+            if((namearr[i].student_name).toUpperCase().indexOf((this.itemval).toUpperCase())!=-1)
+            {
+              var obj={"itemdes":"","enquiry_no":""};
+              obj.itemdes=namearr[i].student_name;
+              obj.admission_no=namearr[i].admission_no;
+              arr.push(obj);
+              //alert(JSON.stringify(obj));
+            }
+          }
+          if(arr.length>0)
+            this.itemArray=arr;
+          else
+          {
+            var obj={"itemdes":"","enquiry_no":""};
+            obj.itemdes="No items found";
+            arr.push(obj);
+            this.itemArray=arr;
+          }
+        }
+      }
+      this.$.studentselect.hidden=false;
     },
-    fnnoinput:function()
+
+     FnSelectenq:function(e)
     {
-      this.$.mydialog.toggleDialog3();
-    }*/
+      //alert('test');
+    this.querySelector('#studentselect').style.visibility='hidden';
+    this.student_name = e.target.selectedItem.textContent.trim();
+    admission_no = e.target.selectedItem.value;
     
-    /*f1:function(e){
-      this.$.uiservice.FngetStudentpasssection(this.stugradeid,this.stugradevalue);
-      } */
+    this.value=this.student_name;
+     this.hidenewtabb=true;
+    this.hidespecific=false;
+    this.$.uiservice.selectspecificstudent(admission_no);
+    this.$.uiservice.previoussection(admission_no,this.stugradeid,schooltype); 
+      this.itemArray=[];
+      document.querySelector('#studentselect').selected=-1; 
+      document.querySelector('specific-student-section-card').studentsectionclean();   
+         
+    },
+
+    allstudent:function(e)
+    {
+      if(chk2.checked==true)
+      {
+          this.hideschooltype=false;
+          this.hidesetgrade=false;
+          this.hidegenerateopt=false;
+          chzz.checked=false;
+          this.$.studz.hidden=true;
+          document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
+          document.querySelector('#empgradeiddd').selected=-1;
+      }
+      else
+      {
+          this.hideschooltype=true;
+          this.hidesetgrade=true;
+          this.hidegenerateopt=true;
+          this.$.stdchzz.hidden=false;
+
+      }
+    },
+    fnsetsetcion:function(arr)
+    {
+      //alert(JSON.stringify(arr));
+      studentsetarr=arr;
+    },
+    fnsubmit:function(e)
+    {
+
+        this.$.uiservice.fnsubmitsection(studentsetarr,schooltype);
+        this.itemArray=[];
+        this.value="";
+        //this.hidespecific=true;
+        document.querySelector('specific-student-section-card').studentsectionclean();
+
+    },
+    fnenq:function(enq1)
+    {
+      this.enqno=enq1;
+      //alert(this.enqno);
+    },
+    fnadminno:function(adn)
+    {
+      this.adminno1=adn;
+      //alert(this.adminno1);
+    },
+    
+    
+  
+   
     }); 
   })();
   </script>
