@@ -1,0 +1,194 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="specific-student-section-card">
+  <template>
+    <style>   
+      :host {  
+        display: block;
+      }
+
+       paper-checkbox.paper-checkbox-0
+      {
+       
+         font-family: 'Roboto', 'Noto', sans-serif;
+         -webkit-font-smoothing: antialiased;
+         padding-top: 4px;
+        /*padding-left: 15px;
+        margin-left: 0.5em;*/
+     }
+    </style>
+          <paper-input hidden value={{studentname}}></paper-input>
+          <paper-input  hidden value={{stugradeid}}></paper-input>
+          <paper-input  hidden  value={{gender}}></paper-input>
+          <paper-input  hidden  value={{dob}}></paper-input>
+          <paper-input  hidden  value={{enqno}}></paper-input>
+          <paper-input  hidden  value={{adminno1}}></paper-input>
+          <paper-input  hidden  value={{classid}}></paper-input>
+          <paper-input hidden  value={{sectionname}}></paper-input>
+         
+
+          <paper-checkbox  id="{{id}}" on-change="fnsudentsection"></paper-checkbox>   
+
+                   
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var studsection=[];
+    var getstudentarr=[];
+    var arr=[];
+      var pmm=[];
+      var s1;
+      var c1; 
+      var studclassid;
+      
+      
+    Polymer({
+      is: 'specific-student-section-card',
+
+      fnsudentsection:function(e)
+      {
+        //alert(this.enqno);
+
+                    
+         if(document.querySelector('#'+this.id).checked==true)
+        {
+
+          var obj={"student_name":"","gender":"","dob":"","classid":"","grade_id":"","id":"","id1":"","enquiry_no":""}
+          
+          obj.id1=this.id;
+          obj.id=this.enqno;
+          obj.student_name=this.studentname;
+          obj.enquiry_no=this.id;
+          obj.gender=this.gender;
+          obj.dob=this.dob;
+          obj.classid=this.classid;
+          obj.grade_id=this.stugradeid;
+           
+          //alert(JSON.stringify(obj));
+          studsection.push(obj); 
+          //alert(JSON.stringify(studsection));
+
+          s1=this.id;
+          c1=this.classid;
+                 
+          
+        for(var i=0;i<studsection.length;i++)
+        {
+            //alert(studsection[i].id);
+           //alert(this.enqno);
+
+           if(studsection[i].id==this.enqno)
+           {    
+                //alert(studsection[i].classid);
+                //alert(this.classid);
+                   if(studsection[i].classid==this.classid)
+                   {
+                     var mm=studsection[i].enquiry_no;
+                      document.querySelector('#'+mm).checked=true;
+                     pmm.push(studsection[i].classid);
+                    }
+                  else if(studsection[i].classid!=this.classid)
+                  {
+                    alert(studsection[i].stdcls);
+                    alert(studsection[i].classid);
+                    var sss=studsection[i].stdcls;
+                    var bb=studsection[i].classid;
+                      document.querySelector('#'+sss).checked=false;
+                      var a1 = pmm.indexOf(bb);
+                    for(var g=0;g<pmm.length;g++)
+                    {
+                      if(a1==g)
+                      {
+                          pmm.splice(a1,1);
+                      }
+                    }
+                      studsection.splice(i,1);
+                    }
+                  }
+
+                  }
+                   document.querySelector('student-to-section-mapping-card').fnsetsetcion(studsection);
+                }
+
+
+      },
+      getprestudent:function(arr)
+      {
+       getstudentarr=arr;
+
+          for(var i=0;i<getstudentarr.length;i++)
+          {
+            
+            var studentname=getstudentarr[i].student_name;
+            var gender=getstudentarr[i].gender;
+            var dob=getstudentarr[i].dob;
+            var classid=getstudentarr[i].class_id;
+            var aid=getstudentarr[i].id;
+
+             var getid=getstudentarr[i].id;
+                getid=getid.replace(/[^\w\s]/gi, '');
+
+               studclassid=classid+getid;
+                //alert(studclassid);
+                
+            document.querySelector('#'+studclassid).checked=true;
+            if(document.querySelector('#'+studclassid).checked==true)
+            {
+              var obj1={"studentname":"","gender":"","dob":"","id":"","classid":"","stugradeid":"","stdcls":""}
+                obj1.studentname=studentname;
+                obj1.gender=gender;
+                obj1.dob=dob;
+                obj1.id=aid;
+                obj1.classid=classid;
+                obj1.stugradeid=this.stugradeid;
+                obj1.stdcls=studclassid;
+                studsection.push(obj1);
+                
+            }
+            //getstudentarr.splice(i,1);
+          }
+
+      },
+      studentsectionclean:function(e)
+      {
+        //alert(333);
+    alert(JSON.stringify(studsection));
+
+        if(studsection.length!=0)
+        {
+            for(var i=0;i<studsection.length;i++){
+                var idz=studsection[i].id1;
+                alert(idz);
+                 document.querySelector('#'+idz).checked=false;
+               }
+
+               var obj={"studentname":"","gender":"","dob":"","adminno":"","classid":"","stugradeid":""};
+                obj.studentname=this.studentname;
+                obj.gender=this.gender;
+                obj.dob=this.dob;
+                obj.adminno=this.enqno;
+                obj.classid=this.classid;
+                obj.stugradeid=this.stugradeid;
+                getstudentarr.splice(obj);
+               studsection.splice(obj);
+        }
+
+      }
+
+
+     
+    });
+  })();
+  </script>
+</dom-module>

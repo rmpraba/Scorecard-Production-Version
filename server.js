@@ -7,8 +7,6 @@
 var dbserver_ip_address = process.env.OPENSHIFT_MYSQL_DB_HOST || '127.0.0.1'
 var connection = mysql.createConnection({
 
-   host     : 'localhost',
-   user     : 'root',
    password : 'admin',
    database : 'cloudreportcard'
 
@@ -9325,6 +9323,122 @@ app.post('/Selectempschooltype-service',  urlencodedParser,function (req,res)
     else
       res.status(200).json({'returnval': ''});
   });
+});
+
+
+app.post('/Fnselectspecific-service',  urlencodedParser,function (req,res)
+{
+    var qur1="SELECT * from md_admission where admission_no='"+req.query.admissionnum+"'  and school_id='"+req.query.schl1+"' and academic_year='"+req.query.academic_year+"'";  
+
+  //console.log(qur1);
+
+  connection.query(qur1,
+    function(err, rows)
+    {
+      if(!err)
+      {
+        if(rows.length>0)
+        {
+          res.status(200).json({'returnval': rows});
+        } 
+      else 
+      {
+          console.log(err);
+          res.status(200).json({'returnval': 'no rows'});
+      }
+    } 
+    else 
+    {
+        console.log(err);
+    }
+    });
+});
+
+
+
+app.post('/fnsubmitsection-service' , urlencodedParser,function (req, res)
+{  
+
+   var qurr1={ 
+      school_id:req.query.scholid1,
+      id:req.query.id,
+      student_name:req.query.student_name,
+      class_id:req.query.class_id,
+      dob:req.query.dob,
+      school_type:req.query.school_type,
+      gender:req.query.gender,
+      grade_id:req.query.grade_id,
+      academic_year:req.query.academic_year,
+      }; 
+  console.log(JSON.stringify(qurr1));
+   var qur= "SELECT * FROM  md_student WHERE school_id='"+req.query.scholid1+"' and id='"+req.query.id+"' and student_name='"+req.query.student_name+"' and  academic_year='"+req.query.academic_year+"'";
+   
+    var qur11="update md_student set class_id='"+req.query.class_id+"',grade_id='"+req.query.grade_id+"',school_type='"+req.query.school_type+"' where school_id='"+req.query.scholid1+"' and id='"+req.query.id+"' and  academic_year='"+req.query.academic_year+"'";
+
+
+      console.log("------------Student Section------------");
+   console.log(qur);
+   console.log(qur11)
+   connection.query(qur,
+    function(err, rows)
+    {
+      console.log(rows.length);
+     if(rows.length==0){
+     // console.log('1');
+     connection.query("INSERT INTO md_student SET ?",[qurr1],
+    function(err, rows)
+    {
+    if(!err)
+    {
+      res.status(200).json({'returnval': 'Inserted!'});
+    }
+    else
+    {
+      console.log(err);
+      res.status(200).json({'returnval': 'Not Inserted!'});
+    }
+    });
+    }
+    else{
+       connection.query(qur11,function(err, rows){  
+          console.log('update');
+        if(!err)
+        res.status(200).json({'returnval': 'updated successfully'});
+        else
+        res.status(200).json({'returnval': 'not updated'});
+        });   
+        } 
+      });   
+});
+
+
+  app.post('/previoussection-service',  urlencodedParser,function (req,res)
+  {
+
+   var qur="SELECT * from md_student where id='"+req.query.admission_no+"'  and school_id='"+req.query.scholid1+"' and grade_id='"+req.query.grade_id+"'and school_type='"+req.query.school_type+"' and academic_year='"+req.query.academic_year+"'";  
+
+  //console.log(qur);
+  connection.query(qur,
+    function(err, rows)
+    {
+      if(!err)
+      {
+        if(rows.length>0)
+        {
+          //console.log(rows);
+          res.status(200).json({'returnval': rows});
+        } 
+      else 
+      {
+          console.log(err);
+          res.status(200).json({'returnval': 'no rows'});
+      }
+    } 
+    else 
+    {
+        console.log(err);
+    }
+    });
 });
 var server = app.listen(5000, function () {
 var host = server.address().address
