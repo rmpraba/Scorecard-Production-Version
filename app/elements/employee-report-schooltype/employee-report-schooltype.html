@@ -73,11 +73,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      {
       //alert(5677);
       //alert(this.id);
+      document.querySelector('employee-report-card').fnnewrefresh();
         if(document.querySelector('#'+this.id).checked==true)
          {  
 
           sessionStorage.setItem("curr_sess_loggedschooltype_ids",this.schooltypenamezz);
-          this.emplschooltypeurl=sessionStorage.getItem("addrinfo")+"/emplschooltype11-service";
+          this.emplschooltypeurl=sessionStorage.getItem("addrinfo")+"/emplschooltypezzz-service";
           var obj={"schooltypeid":"","school_id":"","id":"","academic_year":""};
           obj.school_id=sessionStorage.getItem("curr_sess_loggedschoolid");
           obj.schooltypeid=this.schooltypenamezz;
@@ -120,8 +121,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             obj1.subject_id=res[i].subject_id;
             obj1.section_id=res[i].section_id;
             temp1.push(obj1);
-               
-          // alert(JSON.stringify(temp1));
+               //alert(JSON.stringify(obj1));
+          //alert(JSON.stringify(temp1));
             
             for(var j=i+1;j<res.length;j++)
             {
@@ -130,20 +131,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              //alert(JSON.stringify(res[j].grade_name));
                 if(res[i].id==res[j].id)
                 {
-                  if(res[i].grade_name==res[j].grade_name)
+                  if(res[i].grade_name==res[j].grade_name && res[i].subject_id==res[j].subject_id)
                   {
                  // alert(JSON.stringify(res[i].grade_name)+" "+(res[j].grade_name));
-                 
-                var obj2={"subject_name":"","subject_id":"","section_id":""};
-                obj2.subject_name=res[j].subject_name;
-                obj2.subject_id=res[j].subject_id;
-                obj2.section_id=res[j].section_id;
-                temp1.push(obj2);
-                //alert(1111);
-              //alert(JSON.stringify(temp1));
-                res.splice(j,1);
-               j--;
-             }
+                      var obj2={"section_id":""};
+                      obj2.section_id=","+res[j].section_id;
+                      temp1.push(obj2);
+                      res.splice(j,1);
+                      j--;
+                  }
               }
 
             }

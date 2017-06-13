@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }  
        .title
       {
-        margin-left: 40%;
+        margin-left: 2%;
       }
       
      .tabl1
@@ -35,10 +35,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            border-collapse: collapse;
 
       }
-      #grade{
+     /* #grade{
         margin-left: 40%;
       }
-     #tb3{
+*/     #tb3{
           width:7.5%;
           text-align: start;
     }
@@ -46,11 +46,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width:17%;
     }
      #tb4{
-      width:22.5%;
+      width:30%;
       text-align: start;
     }
     #tb1{
-      width:37.5%;
+      width:30.5%;
       text-align: start;
     }
      #tb11{
@@ -91,8 +91,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .newtempl
       {
-          /*margin-top: -4%;*/
-          margin-left: 31%;
+              margin-left: 3%;
+            margin-top: 3%;
       }
       .emp22
       {
@@ -104,24 +104,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .hrspace
       {
-        margin-left: 43%;
-        position: absolute;
-        margin-top: 3%;
+        margin-left: 9%;
+        /*position: absolute;*/
+        margin-top: 8%;
       }
        .hrspace1
        {
-            margin-left: 48%;
-          margin-top: 3%;
-          position: absolute;
+            margin-left: 9%;
+          margin-top: 8%;
+          /*position: absolute;*/
        }
       .fulldiv
       {
         @apply(--layout-horizontal);
+        border: 1px solid #6699ff;
+        padding: 5px;
+            width: 60%;
+        margin-left: 24%;
+        height: 150px;
+      }
+      .hrspace3
+      {
+        margin-left: 6%;
+        margin-top: 4%;
+
+      }
+      paper-dropdown-menu
+      {
+        width: 100%;
+        text-align: center;
+      }
+      i
+      {
+        hyphens: manual;
       }
     </style>
 
      <div class="title">
+      <center>
         <h3><b>EMPLOYEE REPORT</b></h3>
+      </center>
       </div>
 
 
@@ -138,7 +160,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-checkbox id="chk1" on-change="selectemp">Select Specific Employee</paper-checkbox>      
         </div>
 
-        <div class="emp22" id="emphide" ">
+        <div class="hrspace3" id="emphide">
           <paper-dropdown-menu id="grade" label="Select Employee">
             <paper-menu id="empdddd" class="dropdown-content" on-iron-select="Fnemp">     
               <template is="dom-repeat" items="{{selectemparry}}">
@@ -164,7 +186,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              <td>{{view.name}}</td>
              <td>{{view.grade_name}}</td>
                <td>   
-                <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}  
+                <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> &nbsp;{{s.section_id}}  
                </template>
               </td>
             </tr>     
@@ -174,7 +196,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <input type="button" id="btn" onclick="tableToExcel('tabledetails', 'Employee Report')" value="Export to Excel">
         </div>  
 
-      <div>
+      <div>t
           <table border="1" class="tabl2" id="tabledetails2">
           <tr>
           <th id="tb5">Employee ID</th>
@@ -188,7 +210,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            <td>{{view.emp_name}}</td>
            <td>{{view.grade_name}}</td>
              <td>   
-              <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> -{{s.section_id}}
+              <template is="dom-repeat" items="{{view.subject}}" as="s" style="font-family: Calibri;"><b>{{s.subject_name}}</b> &nbsp; {{s.section_id}}
              </template>
             </td>
            </template>  
@@ -236,6 +258,7 @@ var tableToExcel = (function() {
       var tempall=[];
       var emp1aaaa=[];
 
+
     Polymer({
       is: 'employee-report-card',
              
@@ -246,7 +269,7 @@ var tableToExcel = (function() {
                 this.$.tabledetails.hidden=true;
                 this.$.tabledetails2.hidden=true;
                 this.$.emphide.hidden=true;
-                chk1s.checked=false;
+                chk1.checked=false;
                 //this.$.id11.hidden=true;
                 //this.hideschooltype=true;
 
@@ -281,7 +304,7 @@ var tableToExcel = (function() {
             },
 
    GetempResponse:function(e)
-       {
+    {
          var emp1=e.detail.response.returnval;
         // alert(JSON.stringify(emp1));
        //  this.emp1aaaa=emp1;
@@ -295,48 +318,39 @@ var tableToExcel = (function() {
             obj.grade_id=emp1[i].grade_id;
             obj.grade_name=emp1[i].grade_name;
 
-            //obj.subject=temp1;
-           // alert(JSON.stringify(obj));
              temp1.push(obj);
             var obj1={"subject_name":"","subject_id":"","section_id":""};
             obj1.subject_name=emp1[i].subject_name;
             obj1.subject_id=emp1[i].subject_id;
             obj1.section_id=emp1[i].section_id;
             temp1.push(obj1);
-               
-           // alert(JSON.stringify(obj1));
-            
-            for(var j=i+1;j<emp1.length;j++)
-            {
-             // alert(emp1.length);
-             // alert(JSON.stringify(emp1[i].grade_name));
-             // alert(JSON.stringify(emp1[j].grade_name));
-                if(emp1[i].grade_name==emp1[j].grade_name)
-                {
-                 
-                var obj2={"subject_name":"","subject_id":"","section_id":""};
-                obj2.subject_name=emp1[j].subject_name;
-                obj2.subject_id=emp1[j].subject_id;
-                obj2.section_id=emp1[j].section_id;
-                temp1.push(obj2);
-                // alert(1111);
-               //  alert(JSON.stringify(temp1));
-                emp1.splice(j,1);
-               j--;
-              }
+            //alert(JSON.stringify(temp1));              
 
-            }
-              obj.subject=temp1;
-              tempall.push(obj);
-            //   alert(JSON.stringify(tempall));
+             for(var j=i+1;j<emp1.length;j++)
+             {
+              if(emp1[i].grade_name==emp1[j].grade_name && emp1[i].subject_id==emp1[j].subject_id)
+              {
+
+                var obj2={"section_id":""}
+                obj2.section_id=","+emp1[j].section_id;
+                temp1.push(obj2);
+                //alert(JSON.stringify(temp1));
+                emp1.splice(j,1);
+                j--;
+              }
+             }
+
+               obj.subject=temp1;
+               tempall.push(obj);
+              //alert(JSON.stringify(tempall));
                temp1=[];
 
-        }
-            this.emp1aaaa=tempall;
-             tempall=[];
-           // alert(JSON.stringify(this.emp1aaaa));
+          }
+            
+              this.emp1aaaa=tempall;
+              tempall=[];
+          //alert(JSON.stringify(this.emp1aaaa));
              
-
         },
           
       FnRefresh:function()
@@ -355,25 +369,34 @@ var tableToExcel = (function() {
         if(chk1.checked==true)
         {
           this.$.emphide.hidden=false;
-          this.$.scltypehide.hidden=true;
-          this.$.id11.hidden=true;
+          //this.$.scltypehide.hidden=true;
+          //this.$.id11.hidden=true;
           this.$.tabledetails2.hidden=true;
           this.$.btn2.hidden=true;
+          document.querySelector('employee-report-schooltype').fnrefresh1();
 
         }
         else if(chk1.checked==false)
         {
           this.$.emphide.hidden=true;
-          this.$.scltypehide.hidden=false;
-          this.$.tabledetails.hidden=true;
+          //this.$.scltypehide.hidden=false;
+          //this.$.tabledetails.hidden=true;
           this.$.id11.hidden=false;
           this.$.btn.hidden=true;
+          this.$.tabledetails.hidden=true;
            document.querySelector('#empdddd').selected=-1;
            document.querySelector('employee-report-schooltype').fnrefresh1();
 
         }
 
       },
+      fnnewrefresh:function()
+      {
+        chk1.checked=false;
+        document.querySelector('#empdddd').selected=-1;
+        this.$.tabledetails.hidden=true;
+        this.$.emphide.hidden=true;
+      }
      
 
     });
