@@ -382,6 +382,7 @@
          obj.schoolid=sessionStorage.getItem("curr_sess_loggedschoolid");
          obj.loggedid=sessionStorage.getItem("curr_sess_loggedid");
          obj.roleid=sessionStorage.getItem("curr_sess_loggedroleid");
+         obj.academicyear=localStorage.getItem("curr_sess_academicyear");
          obj.gradename=gradename;
          this.sectionparam= obj;
          this.$.sectionajax.generateRequest();
