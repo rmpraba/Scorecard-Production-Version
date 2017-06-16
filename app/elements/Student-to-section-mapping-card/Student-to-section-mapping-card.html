@@ -231,7 +231,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <table style="border-collapse: collapse;">            
             <tr>
               <th></th>
-              <td style="padding-left: 5%;">
+              <td style="padding-left: 4%;">
                 <template is="dom-repeat" items="{{sectionsetarr}}" as="view">
                   <td id="tdid">{{view.section_id}}</td>
                 </template>
@@ -240,7 +240,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </tr>     
             <tbody>
               <td><h4>{{value}}</h4></td>
-                <td width="80%">
+                <td style="width: 80%;">
                   <table border="0">
                   <tr>
                      <template is="dom-repeat" items="{{sectionsetarr}}" as="s">
@@ -251,7 +251,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </template>
                       
                       <td>
-                        <paper-icon-button icon="save" on-click="fnsubmit"></paper-icon-button>
+                        <paper-icon-button style="margin-left: 10em;" icon="save" on-click="fnsubmit"></paper-icon-button>
                       </td>
                    </tr>
                   </table>
@@ -986,8 +986,7 @@ for(var j=0;j<l.length;j++){
    studentlistarr=arr;
     },
     Studentsection:function(arr){
-     sectionarr=arr;
-     
+     sectionarr=arr; 
      //alert(JSON.stringify(sectionarr));
     },
   /* fnemployeename:function(e){
@@ -1041,7 +1040,6 @@ for(var j=0;j<l.length;j++){
           this.hidegenerateopt=true;
           document.querySelector('Student-to-section-mapping-item-card').FnRefresh();
           document.querySelector('#empgradeiddd').selected=-1;
-
 
       }
       else
@@ -1189,7 +1187,8 @@ for(var j=0;j<l.length;j++){
         this.$.uiservice.fnsubmitsection(studentsetarr,schooltype);
         this.itemArray=[];
         this.value="";
-        //this.hidespecific=true;
+        this.hidespecific=true;
+        this.$.mydialog.toggleDialog();
         document.querySelector('specific-student-section-card').studentsectionclean();
 
     },
@@ -1203,7 +1202,13 @@ for(var j=0;j<l.length;j++){
       this.adminno1=adn;
       //alert(this.adminno1);
     },
-    
+/*
+    fnsectionsubmit:function()
+    {
+      alert('testttt');
+      this.$.mydialog.toggleDialog();
+    }
+    */
     
   
    

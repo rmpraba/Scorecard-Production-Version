@@ -13,7 +13,6 @@ var connection = mysql.createConnection({
    password : '',
    database : 'scorecarddb'
 
-
  });
 
 
@@ -7856,7 +7855,7 @@ var qurr="SELECT p.school_type,p.grade_id,p.grade_name,s.section_id,s.class_id F
       res.status(200).json({'returnval': ''});
   });
 });
-app.post('/getschooltype-service',  urlencodedParser,function (req,res)
+app.post('/getschooltype1-service',  urlencodedParser,function (req,res)
 {  
     var e={school_id:req.query.school_id,school_type:req.query.schooltypename};
    

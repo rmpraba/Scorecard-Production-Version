@@ -1186,6 +1186,7 @@ Generatesectionid:function()
       var res=e.detail.response.returnval; 
        // alert(JSON.stringify(res));
         document.querySelector('Student-to-section-mapping-card').Studentsection(res);
+        document.querySelector('Student-to-section-mapping-card').sectionsetarr=res;
      },
      fnsetstudentinfo:function(studeninfoarr,stugradeid,schooltype){
        // alert('1');
@@ -1239,6 +1240,7 @@ Generatesectionid:function()
       var res=e.detail.response.returnval; 
      // alert(JSON.stringify(res));
       document.querySelector('Student-to-section-mapping-card').studentlist(res);
+      document.querySelector('Student-to-section-mapping-card').selectname(res);
     },
    
     fnempgenerateid:function()
@@ -3420,8 +3422,12 @@ insertschoolTypename:function(schooltypesarr)
         {
             //alert('response............');
             var res=e.detail.response.returnval;
-            alert(JSON.stringify(res));
-            
+            //alert(JSON.stringify(res));
+
+            /*if(res=='Inserted!' && res=='updated successfully')
+            {
+                document.querySelector('Student-to-section-mapping-card').fnsectionsubmit();
+            }*/   
         },
         previoussection:function(admissionno,gradeid,schooltype)
         {
@@ -3444,10 +3450,7 @@ insertschoolTypename:function(schooltypesarr)
             
               document.querySelector('specific-student-section-card').getprestudent(res);
 
-        }
-    
-
-     
+        }     
     });
   })();
   </script>

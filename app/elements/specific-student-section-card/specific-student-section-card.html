@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          font-family: 'Roboto', 'Noto', sans-serif;
          -webkit-font-smoothing: antialiased;
          padding-top: 4px;
+         padding-left: 42px;
         /*padding-left: 15px;
         margin-left: 0.5em;*/
      }
@@ -37,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-input hidden  value={{sectionname}}></paper-input>
          
 
-          <paper-checkbox  id="{{id}}" on-change="fnsudentsection"></paper-checkbox>   
+          <paper-checkbox  id="{{id}}" on-change="fnsudentsection">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</paper-checkbox>   
 
                    
   </template>
@@ -100,8 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     }
                   else if(studsection[i].classid!=this.classid)
                   {
-                    alert(studsection[i].stdcls);
-                    alert(studsection[i].classid);
+                    //alert(studsection[i].stdcls);
+                    //alert(studsection[i].classid);
                     var sss=studsection[i].stdcls;
                     var bb=studsection[i].classid;
                       document.querySelector('#'+sss).checked=false;
